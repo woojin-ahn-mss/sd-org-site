@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Search & Discovery 조직 사이트</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #080808;
+    color: #e8e8e8;
+    font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Segoe UI", sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+  .container {
+    max-width: 720px;
+    width: 100%;
+  }
+  .badge {
+    display: inline-block;
+    padding: 4px 10px;
+    background: rgba(124, 92, 255, 0.15);
+    color: #b19eff;
+    border: 1px solid rgba(124, 92, 255, 0.3);
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    margin-bottom: 1.25rem;
+    letter-spacing: 0.02em;
+  }
+  h1 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    background: linear-gradient(135deg, #fff 0%, #888 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .subtitle {
+    color: #888;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+  }
+  .pages {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+  .page-card {
+    padding: 1rem 1.25rem;
+    background: #131313;
+    border: 1px solid #1f1f1f;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    transition: border-color 0.15s;
+  }
+  .page-card:hover {
+    border-color: #2a2a2a;
+  }
+  .page-card .icon {
+    font-size: 1.25rem;
+  }
+  .page-card .name {
+    flex: 1;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  .page-card .status {
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 500;
+  }
+  .status.mvp { background: rgba(34, 197, 94, 0.15); color: #4ade80; }
+  .status.v2 { background: rgba(251, 191, 36, 0.12); color: #fbbf24; }
+  .status.v3 { background: rgba(148, 163, 184, 0.12); color: #94a3b8; }
+  .meta {
+    padding-top: 1.5rem;
+    border-top: 1px solid #1f1f1f;
+    font-size: 0.8rem;
+    color: #666;
+    display: flex;
+    justify-content: space-between;
+  }
+  a { color: #b19eff; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+  <div class="container">
+    <span class="badge">v0.1 · 셋업 테스트</span>
+    <h1>Search & Discovery</h1>
+    <p class="subtitle">
+      조직 로드맵 · 일감 · 리소스를 한 화면에서 관리하고 상위 보고에 활용하는 사내 사이트입니다.
+      이 페이지는 GitHub Pages 배포 검증용 임시 랜딩이며, MVP 페이지들은 곧 추가됩니다.
+    </p>
+
+    <div class="pages">
+      <div class="page-card"><span class="icon">🏠</span><span class="name">홈</span><span class="status v2">Phase 2</span></div>
+      <div class="page-card"><span class="icon">📋</span><span class="name">로드맵 (간트)</span><span class="status mvp">MVP</span></div>
+      <div class="page-card"><span class="icon">🚀</span><span class="name">진행 현황</span><span class="status v3">Phase 3</span></div>
+      <div class="page-card"><span class="icon">👥</span><span class="name">리소스</span><span class="status v3">Phase 3</span></div>
+      <div class="page-card"><span class="icon">📊</span><span class="name">성과</span><span class="status v2">Phase 2</span></div>
+      <div class="page-card"><span class="icon">🛠</span><span class="name">로드맵 관리</span><span class="status v2">Phase 2</span></div>
+      <div class="page-card"><span class="icon">⚡</span><span class="name">패스트트랙</span><span class="status mvp">MVP</span></div>
+      <div class="page-card"><span class="icon">📥</span><span class="name">ETR</span><span class="status mvp">MVP</span></div>
+    </div>
+
+    <div class="meta">
+      <span>마지막 동기화: —</span>
+      <span><a href="PRD.md">PRD 문서</a></span>
+    </div>
+  </div>
+</body>
+</html>
+</content>
