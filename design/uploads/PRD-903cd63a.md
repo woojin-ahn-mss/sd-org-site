@@ -96,52 +96,31 @@ sd-org-site/
 
 ---
 
-## 3. 디자인 시스템 — SD/Console v2.0
+## 3. 공통 디자인 규칙
 
-> **단일 진실 원천**: `design/` 폴더 (`Design System.html`, `styles.css`, `pages-{1,2,3}.jsx`, `ui.jsx`).
-> 모든 페이지·컴포넌트 구현은 이 디자인 시스템을 **절대 기준**으로 따른다. 임의의 색·폰트·간격을 만들지 않음.
+### 테마 (다크 + 라이트 둘 다 지원)
+- **다크 테마**: 배경 `#080808` / 텍스트 `#e8e8e8` / 카드 `#131313` / 보더 `#1f1f1f` / 액센트 `#b19eff`
+- **라이트 테마**: 배경 `#fafafa` / 텍스트 `#1a1a1a` / 카드 `#ffffff` / 보더 `#e5e7eb` / 액센트 `#6d4eff`
+- **토글**: 상단 네비 우측 아이콘 (☀️/🌙). localStorage에 사용자 선택 저장 (`theme=dark|light`)
+- **초기값**: OS 설정 따름 (`prefers-color-scheme`) → 사용자 토글 시 그 값 우선
+- **구현**: CSS custom properties (`--bg`, `--text`, ...) 로 토큰화. `[data-theme="light"]` 셀렉터로 라이트 값 오버라이드
+- 모든 페이지에서 동일한 토글 위치·동작
 
-### 핵심 6 룰
-1. **카드 대신 룰** — 흰 박스 X, `border-bottom: 1px solid var(--rule)` 로만 위계
-2. **데이터는 mono** — 키·날짜·숫자·카운트·진척률 = JetBrains Mono. 한글/본문 = Pretendard Variable
-3. **컬러는 골드 하나** — 액센트는 `--accent: #e3b340` 하나만. 위험=빨강, 완료=그린, 그 외 X
-4. **모서리 0~2px** — sharp (라운드 금지)
-5. **페이지 헤더는 editorial** — kicker (mono uppercase) → 32px title → 14.5px lede
-6. **밀도 우선** — 운영 도구 톤. 여백 늘려 "고급스럽게" X. KPI 카드 X
+### 색상 토큰 (테마 무관)
+- 상태:
+  - Backlog/대기: slate
+  - In Progress/검토중: amber
+  - Done/완료: green
+  - Blocked/지연: red
+  - 발의/대기: purple
+- 우선순위: P0 빨강 / P1 주황 / P2 노랑 / P3 회색
+- 각 토큰은 다크/라이트 모두에서 적절히 조정된 hex 값 매핑 (라이트 모드는 채도 낮춘 변형)
 
-### 색 토큰 (dark / light)
-| 토큰 | dark | light |
-|---|---|---|
-| `--bg` | #0e0d0b | #faf7f0 |
-| `--bg-elev` | #15140f | #f4f0e6 |
-| `--text` | #ece8df | #1a1816 |
-| `--dim` | #8d887d | #5f5b54 |
-| `--faint` | #555148 | #a39d92 |
-| `--rule` | #221f1b | #e0dbcf |
-| `--accent` | #e3b340 | #9c7400 |
-| `--alert` | #ee5a52 | #b8332b |
-| `--success` | #6cc486 | #2c7d4a |
-
-### 메인주제 5색 (Subject palette — 간트 바 / 플랜 카드 전용, 무지개 금지)
-- `b-rec` 추천 = #e3b340 (accent)
-- `b-srch` 검색 = #cbb88f
-- `b-rank` 랭킹 = #d68a5a
-- `b-pers` 개인화 = #b89a78
-- `b-disc` 디스커버리 = #9c9c9c
-
-### 테마
-- Dark 1차, Light 동등 지원. `[data-theme="light"]` 로 오버라이드
-- 토글: 사이드바 하단 또는 상단 우측. localStorage 저장 (`theme=dark|light`)
-- 초기값: OS `prefers-color-scheme`
-
-### 레이아웃 골격
-- 좌측 사이드바 (196px) — 브랜드 + 페이지 TOC + 푸터 메타
-- 우측 메인 (max-width 1280px, padding 36px 56px)
-- 모든 페이지: PageHead (kicker / title / lede) 로 시작
-- 섹션은 `.sec-head` (mono uppercase 11.5px) 로 구분
-
-### 컴포넌트 토큰 (`design/styles.css` 참조)
-Status / Priority / Key / Tag / Who / Button / Tlink / SegText / Filter / Stat / Row / Tbl / Bar / Heat / Gantt / PlanCard / Entry / Alert / Modal / Toast / Form fields — 모두 정의됨. 새로 만들지 말고 재사용.
+### 기타
+- 폰트: Pretendard 우선, 시스템 폰트 fallback
+- 상단 고정 네비: 8개 페이지 탭 + 마지막 동기화 표시 + 테마 토글 + 검색
+- 모든 Jira 키는 클릭 시 새 탭으로 Jira 이동
+- 카드/표 hover 시 1px 보더 색 변경
 
 ---
 
@@ -151,30 +130,22 @@ Status / Priority / Key / Tag / Who / Button / Tlink / SegText / Filter / Stat /
 
 **목적**: 매일 들어가서 오늘/이번주 상황 파악 + 8개 페이지 진입점
 
-#### PageHead (editorial)
-- kicker: `YYYY.MM.DD (요일) — Search & Discovery 실`
-- title: `오늘.`
-- lede: 동적 문장 ("확인이 필요한 ETR이 N건, 이번 주 마감이 M건...")
+#### 상단 KPI 카드 (가로 6개)
+1. **이번 분기 진척률** — One 레이블 Initiative 중 완료 비율 (게이지 + 숫자)
+2. **P0 처리율** — 분기 내 P0 티켓 중 Done 비율
+3. **임박 마감 N건** — 다음 7일 안에 마감인 본인 담당 티켓 수
+4. **확인 필요 N건** — ETR 페이지의 "확인 필요" 상태 카운트
+5. **패스트트랙 진행 중** — ETR+one 중 In Progress / 전체
+6. **마지막 동기화** — 시각 + 다음 동기화까지 남은 시간
 
-#### 상단 인라인 스탯 (impact-stats · 가로 4개)
-1. **Quarter Progress** — One Initiative 중 완료 비율 (%)
-2. **Due in 7 days** — 다음 7일 마감 건수
-3. **ETR Awaiting** — "확인 필요" 상태 카운트
-4. **Fast-Track Active** — ETR+one 진행 중 비율 (3/5)
+#### 중단 — 오늘의 액션 위젯 (3 컬럼)
+- **확인 필요 (ETR)**: 상위 5건 미리보기 → 클릭 시 ETR 페이지
+- **패스트트랙 최근 업데이트**: 상위 5건 미리보기 → 패스트트랙 페이지
+- **이번 주 마감**: 상위 5건 (날짜순) → 로드맵 페이지
 
-> 디자인 시스템 룰 "밀도 우선" 으로 6개 → 4개 정렬. 마지막 동기화 시각은 사이드바 푸터에 항상 표시.
-
-#### 섹션 1 — 확인 필요 · ETR
-SecHead + row-list 상위 5건 미리보기. 행 클릭 → ETR 페이지
-
-#### 섹션 2 — 이번 주 ~ 6월 중순 마감
-상위 5건 날짜순. 행 클릭 → 로드맵 페이지
-
-#### 섹션 3 — 패스트트랙 · 최근
-상위 3건, 진척률 게이지 포함. 행 클릭 → 패스트트랙 페이지
-
-#### 섹션 4 — 모든 페이지
-toc-grid (2 컬럼) — 페이지 8개 인덱스, 우측 mono 번호 `01 →`
+#### 하단 — 8 페이지 카드 그리드
+- 각 페이지로 가는 카드. 아이콘 + 이름 + 한 줄 설명
+- 클릭 시 해당 페이지로 이동
 
 #### 데이터 소스
 - `data/jira/initiatives.json`
@@ -618,56 +589,8 @@ project = ETR AND assignee = currentUser() ORDER BY updated DESC
 - 진행 현황의 "장기 정체" 기준 (30일? 60일?)
 - 리소스의 "과부하" 기준값 (현재 5건 / 8건은 가설, 운영하며 조정)
 - 로드맵 관리에서 키워드 카드 → 실제 Jira 티켓화 시 워크플로우 (수동 / 자동 생성?)
+- Jira 커스텀 필드 정확한 ID (메인주제 cf 번호, Year/Quarter cf[14521] 확인)
 - 패스트트랙 "연결 티켓" 의 link type 어떤 걸로 잡을지 (relates / blocks / implements 중)
-
-### 확정된 Jira 커스텀 필드 ID (2026-05-22 조회)
-- **메인주제** = `customfield_14403` (multi-select)
-- **Year/Quarter** = `customfield_14521` (single-select, 값 예: "2026-Q2")
-- **Sub-Group** = `customfield_10620` (multi-select, 값 예: "MSS-P Discovery & Engagement")
-- **시작일 (Start date)** = `customfield_10015` (datepicker)
-- 표준 필드: `duedate`, `priority`, `status`, `assignee`, `reporter`, `labels`, `created`, `updated`
-- Jira Cloud base URL: `https://musinsa-oneteam.atlassian.net`
-
----
-
-## 10. 디자인 결정 (PRD-Design 정렬 결과)
-
-### 10.1 네비게이션
-- **좌측 사이드바 196px** (top tab X) — design `.sb` 채택
-- 사이드바 구성: 브랜드 마크 + 페이지 8개 + 푸터 (last-sync + theme toggle)
-- 활성 페이지: 골드 점 + 골드 텍스트
-- **사이드바 카운트 배지**: 알림 있는 페이지에 mono 숫자 표시
-  - ETR: 확인 필요 N건이면 골드 N
-  - 로드맵: 마감 임박 N건이면 알림 색 N
-  - 패스트트랙: 진행 중 N건이면 dim N
-- 사이드바 푸터에 마지막 동기화 시각 + theme toggle (Dark/Light)
-
-### 10.2 상태 → 시각 매핑 (실제 데이터 기준)
-| 그룹 | st-class | 색 | 매핑되는 상태 |
-|---|---|---|---|
-| progress | st-progress | accent (gold) | "In Progress", "개발중", "검토완료-우선착수" |
-| review | st-review | info | "Tech 검토 중", "PMO 검토 중", "검토중" |
-| wait | st-wait | faint | "Tech 검토 대기 중", "검토완료-백로그", "대기", "Backlog" |
-| prop | st-prop | dim (outline dot) | "발의", "매니저 승인 대기" |
-| done | st-done | success (green) | "완료", "Done", "론치완료" |
-| rejected | st-rejected | alert (red) | "반려", "DROPPED" |
-| skip | st-wait + dim | faint | "검토완료-미진행", "WAITING FOR REVIEW", "SUGGESTED" |
-
-### 10.3 메인주제 5+ 확장 룰
-- 디자인 정의: `b-rec`(추천) / `b-srch`(검색) / `b-rank`(랭킹) / `b-pers`(개인화) / `b-disc`(디스커버리)
-- 6번째+ 메인주제 (예: "공통(GNB/게이트웨이)", "브랜드 샵") → **`b-misc`** 추가 (`#7a8a7a` muted sage)
-- 더 늘어나면 해시 기반 자동 할당 (어쓰톤 팔레트 5색에서 hash % 5)
-
-### 10.4 간트 바 표현
-- **키만 표시** (CBP-1342). 요약은 호버 툴팁으로 노출
-- 툴팁: `[키] · [요약] · [담당] · [시작일~기한]`
-- bar 높이 14px, mono 10px, color 매핑 위 10.3 따름
-- fade variant: 시작일 없을 때 기한 왼쪽 14일 (cellW × 0.6 비례)
-
-### 10.5 다크/라이트 동등 지원
-- Dark 1차, Light 동등 polish
-- 보고용 캡처가 Light 모드면 모든 차트·바·카드가 라이트 톤에서도 가독성 검증 필수
-- 사이드바 푸터 theme toggle 으로 즉시 전환
 
 ---
 
