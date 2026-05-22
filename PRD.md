@@ -589,8 +589,13 @@ project = ETR AND assignee = currentUser() ORDER BY updated DESC
 - 진행 현황의 "장기 정체" 기준 (30일? 60일?)
 - 리소스의 "과부하" 기준값 (현재 5건 / 8건은 가설, 운영하며 조정)
 - 로드맵 관리에서 키워드 카드 → 실제 Jira 티켓화 시 워크플로우 (수동 / 자동 생성?)
-- Jira 커스텀 필드 정확한 ID (메인주제 cf 번호, Year/Quarter cf[14521] 확인)
 - 패스트트랙 "연결 티켓" 의 link type 어떤 걸로 잡을지 (relates / blocks / implements 중)
+
+### 확정된 Jira 커스텀 필드 ID (2026-05-22 조회)
+- **메인주제** = `customfield_14403` (multi-select)
+- **Year/Quarter** = `customfield_14521` (single-select, 값 예: "2026-Q2")
+- **Sub-Group** = `customfield_10620` (multi-select, 값 예: "MSS-P Discovery & Engagement")
+- Jira Cloud base URL: `https://musinsa-oneteam.atlassian.net`
 
 ---
 

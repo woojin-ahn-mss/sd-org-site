@@ -11,13 +11,13 @@ PRD v0.2 기반. 단계/우선순위 라벨 없이 의존성 순서대로 정리
 - [x] GitHub Pages 활성화 (main / root, public)
 - [x] 다크 + 라이트 토글 랜딩 배포
 - [x] `<meta name="robots" content="noindex">` 추가
-- [ ] `robots.txt` 추가 (`User-agent: *` / `Disallow: /`)
-- [ ] Jira PAT 발급 (woojin.ahn@musinsa.com 계정)
-- [ ] GitHub Secret 등록 (`JIRA_TOKEN`, `JIRA_EMAIL`)
-- [ ] Jira 커스텀 필드 ID 확인
-  - [ ] 메인주제 cf 번호
-  - [ ] Year/Quarter cf 번호 (현재 `cf[14521]` 가정)
-  - [ ] Sub-Group cf 번호
+- [x] `robots.txt` 추가 (`User-agent: *` / `Disallow: /`)
+- [ ] Jira PAT 발급 (woojin.ahn@musinsa.com 계정) — **우진님 액션 필요**
+- [ ] GitHub Secret 등록 (`JIRA_TOKEN`, `JIRA_EMAIL`, `JIRA_BASE_URL`) — PAT 발급 후
+- [x] Jira 커스텀 필드 ID 확인
+  - [x] 메인주제: **`customfield_14403`** (값 예: "추천", "브랜드 샵", "공통(GNB/게이트웨이)")
+  - [x] Year/Quarter: **`customfield_14521`** (값 예: "2026-Q2")
+  - [x] Sub-Group: **`customfield_10620`** (값 예: "MSS-P Discovery & Engagement")
 
 ---
 
