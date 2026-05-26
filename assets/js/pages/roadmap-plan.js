@@ -59,7 +59,7 @@ export async function renderRoadmapPlan({ rootRel = '' } = {}) {
   state.filters = Object.assign({ mainSubject: null, priority: null, project: null },
     scoped(FILTERS_KEY).get({}));
   const savedGroup = scoped(GROUP_KEY).get(null);
-  if (savedGroup === 'subject' || savedGroup === 'none') state.groupBy = savedGroup;
+  if (savedGroup === 'subject' || savedGroup === 'goal' || savedGroup === 'none') state.groupBy = savedGroup;
 
   renderYearSelect();
   bindTopActions();
@@ -435,6 +435,27 @@ function columnEl(colId, label, cards, { pool }) {
       col.appendChild(gh);
       gcards.forEach(c => col.appendChild(cardEl(c)));
     }
+  } else if (state.groupBy === 'goal') {
+    // 목표별 그룹 헤더 + 그룹 내 카드들
+    const groups = groupCardsByGoal(cards);
+    for (const [groupLabel, gcards, goalId] of groups) {
+      const gh = document.createElement('div');
+      gh.className = 'plan-group-h plan-group-goal';
+      gh.dataset.groupGoalId = goalId || '';
+      gh.innerHTML = `
+        <span class="plan-group-name">🎯 ${escapeHtml(groupLabel)}</span>
+        <span class="ct num">${gcards.length}</span>
+        ${goalId ? '<button type="button" class="plan-group-add" title="이 목표 그룹에 키워드 카드 추가" aria-label="목표에 카드 추가">＋</button>' : ''}
+      `;
+      if (goalId) {
+        gh.querySelector('.plan-group-add').addEventListener('click', () => {
+          // 새 키워드 카드를 이 목표 + 이 분기 로 자동 매핑되게 prefill
+          openCardModal(null, { quarter: pool ? null : colId, goalId });
+        });
+      }
+      col.appendChild(gh);
+      gcards.forEach(c => col.appendChild(cardEl(c)));
+    }
   } else {
     cards.forEach(c => col.appendChild(cardEl(c)));
   }
@@ -466,6 +487,29 @@ function groupCardsBySubject(cards) {
   const result = [];
   for (const k of [...orderedKeys, ...otherKeys]) result.push([k, map.get(k)]);
   if (map.has(SUBJECT_UNCATEGORIZED)) result.push([SUBJECT_UNCATEGORIZED, map.get(SUBJECT_UNCATEGORIZED)]);
+  return result;
+}
+
+/** 목표별 카드 그룹핑.
+ *  @returns {Array<[label, cards[], goalId|null]>}  목표 정렬순(sortGoals) + 마지막에 (목표 미지정).
+ */
+function groupCardsByGoal(cards) {
+  const byGoal = new Map();
+  const noGoal = [];
+  for (const c of cards) {
+    const gid = state.cardGoals[c.id];
+    if (gid && state.goals.some(g => g.id === gid)) {
+      if (!byGoal.has(gid)) byGoal.set(gid, []);
+      byGoal.get(gid).push(c);
+    } else {
+      noGoal.push(c);
+    }
+  }
+  const result = [];
+  for (const g of sortGoals(state.goals)) {
+    if (byGoal.has(g.id)) result.push([g.title, byGoal.get(g.id), g.id]);
+  }
+  if (noGoal.length) result.push(['(목표 미지정)', noGoal, null]);
   return result;
 }
 
@@ -659,7 +703,7 @@ function openCardModal(card, prefill = {}) {
   f.elements.projectKey.value = card?.projectKey || '';
   f.elements.ticketKey.value = card?.ticketKey || '';
   f.elements.quarter.value = card?.quarter ?? prefill.quarter ?? '';
-  f.elements.goalId.value = (card && state.cardGoals[card.id]) || '';
+  f.elements.goalId.value = (card && state.cardGoals[card.id]) || prefill.goalId || '';
   f.dataset.editingId = card?.id || '';
 
   cardModalCtl.open();
@@ -966,15 +1010,45 @@ function goalCardEl(goal, cardIds) {
   el.dataset.goalId = goal.id;
   const periodOk = isValidPeriod(goal.startMonth, goal.endMonth);
   const period = periodOk ? fmtPeriod(goal) : '<span class="muted">기간 미설정</span>';
-  const validIds = cardIds.filter(id => !!findCard(id));
+  const validCards = cardIds.map(id => findCard(id)).filter(Boolean);
+
+  // 매핑 카드 리스트 렌더
+  let cardListHtml = '';
+  if (validCards.length) {
+    cardListHtml = `
+      <ul class="goal-card-list">
+        ${validCards.map(c => {
+          const isJira = c.type === 'jira';
+          const typeTag = isJira ? 'Jira' : '키워드';
+          const keyHtml = c.ticketKey
+            ? `<a class="key" href="${jiraUrl(c.ticketKey) || '#'}" target="_blank" rel="noopener noreferrer">${escapeHtml(c.ticketKey)}</a>`
+            : `<span class="tag">${typeTag}</span>`;
+          const quarter = c.quarter ? `<span class="muted">· ${escapeHtml(c.quarter)}</span>` : '';
+          const subject = c.mainSubject ? `<span class="muted">· ${escapeHtml(c.mainSubject)}</span>` : '';
+          return `
+            <li class="goal-card-list-item" data-card-id="${escapeAttr(c.id)}">
+              <span class="gcli-key">${keyHtml}</span>
+              <span class="gcli-title">${escapeHtml(c.title || '(제목 없음)')}</span>
+              <span class="gcli-meta">${quarter}${subject}</span>
+              <button type="button" class="tlink alert-color gcli-unmap" data-card-id="${escapeAttr(c.id)}" title="이 목표에서 해제">✕</button>
+            </li>
+          `;
+        }).join('')}
+      </ul>
+    `;
+  } else {
+    cardListHtml = '<p class="goal-card-empty muted">아직 매핑된 카드가 없습니다.</p>';
+  }
+
   el.innerHTML = `
     <div class="goal-card-head">
       <h4 class="goal-card-title">${escapeHtml(goal.title || '(제목 없음)')}</h4>
       <span class="goal-card-period">${period}</span>
     </div>
     ${goal.description ? `<p class="goal-card-desc">${escapeHtml(goal.description)}</p>` : ''}
+    ${cardListHtml}
     <div class="goal-card-foot">
-      <span class="num">${validIds.length}건 매핑</span>
+      <span class="num">${validCards.length}건 매핑</span>
       <span class="gc-actions">
         <button type="button" class="tlink" data-action="map">＋ 카드</button>
         <button type="button" class="tlink" data-action="edit">편집</button>
@@ -993,6 +1067,20 @@ function goalCardEl(goal, cardIds) {
   el.querySelector('[data-action="delete"]').addEventListener('click', e => {
     e.stopPropagation();
     confirmDeleteGoal(goal);
+  });
+  // 개별 카드 unmap 버튼
+  el.querySelectorAll('.gcli-unmap').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      const cid = btn.dataset.cardId;
+      if (state.cardGoals[cid]) {
+        delete state.cardGoals[cid];
+        persistCardGoals();
+        renderGoalBoard();
+        renderBoard();
+        toast({ kicker: '매핑 해제', msg: findCard(cid)?.title || cid, kind: 'success' });
+      }
+    });
   });
   return el;
 }

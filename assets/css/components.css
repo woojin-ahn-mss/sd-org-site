@@ -713,6 +713,37 @@
 }
 .goal-tag { background: rgba(196, 156, 88, 0.12); border: 1px solid rgba(196, 156, 88, 0.32); }
 
+/* 목표 카드 안 매핑 카드 리스트 */
+.goal-card-list {
+  list-style: none; margin: 8px 0 0; padding: 0;
+  border-top: 1px solid var(--rule);
+  max-height: 280px; overflow-y: auto;
+}
+.goal-card-list-item {
+  display: flex; align-items: center; gap: 8px;
+  padding: 6px 2px;
+  border-bottom: 1px solid var(--rule);
+  font-size: 12px;
+}
+.goal-card-list-item:last-child { border-bottom: 0; }
+.goal-card-list-item .gcli-key { flex-shrink: 0; font-family: var(--font-mono); font-size: 10.5px; }
+.goal-card-list-item .gcli-title {
+  flex: 1; min-width: 0;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  color: var(--text);
+}
+.goal-card-list-item .gcli-meta {
+  font-family: var(--font-mono); font-size: 10.5px; color: var(--faint);
+  flex-shrink: 0;
+}
+.goal-card-list-item .gcli-unmap {
+  flex-shrink: 0; font-size: 11px; padding: 0 4px;
+  opacity: 0; transition: opacity 100ms;
+}
+.goal-card-list-item:hover .gcli-unmap,
+.goal-card-list-item:focus-within .gcli-unmap { opacity: 1; }
+.goal-card-empty { margin: 8px 0 0; padding: 8px 0; font-size: 12px; }
+
 /* 카드 매핑 모달 — 체크박스 리스트 */
 .mapping-list {
   margin-top: 8px;
