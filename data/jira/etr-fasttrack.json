@@ -1,5 +1,4702 @@
 {
-  "lastSync": null,
-  "count": 0,
-  "items": []
+  "lastSync": "2026-05-26T11:08:02+09:00",
+  "count": 100,
+  "items": [
+    {
+      "key": "ETR-4460",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4460",
+      "summary": "[무신사 체크인 이벤트] 아웃링크 직접 연결 대신 앱 내 기획전 중간 페이지 경유 플로우 추가",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "발의",
+      "statusCategory": "new",
+      "priority": "P0",
+      "assignee": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-26T08:46:31.680+0900",
+      "updated": "2026-05-26T10:46:30.773+0900",
+      "resolutionDate": null,
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-4454",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4454",
+      "summary": "퀵픽스 기능 앱 반영 완료 시 피드백자 알림 발송",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "반려",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-22T20:30:33.856+0900",
+      "updated": "2026-05-23T21:21:54.313+0900",
+      "resolutionDate": null,
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-4425",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4425",
+      "summary": "퀵픽스 화면 내 두 항목 노출 순서 변경 요청",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "PMO 검토 중",
+      "statusCategory": "indeterminate",
+      "priority": "P0",
+      "assignee": {
+        "name": "LS",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": "2026-05-27",
+      "created": "2026-05-22T11:41:54.788+0900",
+      "updated": "2026-05-22T13:20:46.659+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "TM-3105",
+          "summary": "퀵픽스 화면 내 두 항목 노출 순서 변경 요청",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-4423",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4423",
+      "summary": "전문관 PDP 내 전문관 로고 위치 앞으로 이동 및 풀 로고 디자인 적용 검토",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "Tech 검토 중",
+      "statusCategory": "indeterminate",
+      "priority": "P0",
+      "assignee": {
+        "name": "LS",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": "2026-06-05",
+      "created": "2026-05-22T10:50:44.165+0900",
+      "updated": "2026-05-22T13:50:43.757+0900",
+      "resolutionDate": null,
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-4420",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4420",
+      "summary": "[최근본] 최근본에서 상품내 브랜드숍 이동 경로 제공",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-우선착수",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "WA",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "JP",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-22T00:09:12.851+0900",
+      "updated": "2026-05-26T08:12:40.478+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "MSSCXTF-1319",
+          "summary": "[최근본] 최근본에서 상품내 브랜드숍 이동 경로 제공",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        },
+        {
+          "key": "FT-25",
+          "summary": "[최근본] 최근본에서 상품내 브랜드숍 이동 경로 제공",
+          "status": "개발중",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 2
+      }
+    },
+    {
+      "key": "ETR-4419",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4419",
+      "summary": "라이브 모듈 개선 — 하단 정보 구조, 아이콘 색상, 캐러셀 사이즈 조정",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-백로그",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "WA",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "JP",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-21T23:36:24.384+0900",
+      "updated": "2026-05-26T08:12:52.239+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "MSSCXTF-1368",
+          "summary": "라이브 모듈 개선 — 하단 정보 구조, 아이콘 색상, 캐러셀 사이즈 조정",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        },
+        {
+          "key": "TM-3106",
+          "summary": "라이브 모듈 개선 — 하단 정보 구조, 아이콘 색상, 캐러셀 사이즈 조정",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 2
+      }
+    },
+    {
+      "key": "ETR-4413",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4413",
+      "summary": "[추천] 개인화 추천에 사이즈(SKU 단위) 필터 추가",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "PMO 검토 중",
+      "statusCategory": "indeterminate",
+      "priority": "P0",
+      "assignee": {
+        "name": "LS",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "WA",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": "2026-05-28",
+      "created": "2026-05-21T17:36:39.738+0900",
+      "updated": "2026-05-26T09:15:10.462+0900",
+      "resolutionDate": null,
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-4412",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4412",
+      "summary": "[PDP] 판매 지표 노출 - 신상품/유즈드",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "매니저 승인 대기",
+      "statusCategory": "indeterminate",
+      "priority": "P0",
+      "assignee": {
+        "name": "WA",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "WA",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": "2026-05-27",
+      "created": "2026-05-21T17:27:09.964+0900",
+      "updated": "2026-05-22T11:00:17.746+0900",
+      "resolutionDate": null,
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-4411",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4411",
+      "summary": "[오프라인] 콘텐츠 하단 오프라인스토어 링크 추가",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-우선착수",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "WA",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "JP",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-21T17:10:33.776+0900",
+      "updated": "2026-05-21T23:48:46.346+0900",
+      "resolutionDate": null,
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-4410",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4410",
+      "summary": "[design-driven][공통] 킥스 메인탭 가독성 개선 ",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-우선착수",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "WA",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "JP",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-21T17:06:29.789+0900",
+      "updated": "2026-05-22T16:08:00.139+0900",
+      "resolutionDate": null,
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-4408",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4408",
+      "summary": "[PLP] 옵션 보기 로그 추천 및 개인화 활용",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "PMO 검토 중",
+      "statusCategory": "indeterminate",
+      "priority": "P0",
+      "assignee": {
+        "name": "LS",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "WA",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": "2026-05-27",
+      "created": "2026-05-21T17:00:28.841+0900",
+      "updated": "2026-05-22T10:57:55.072+0900",
+      "resolutionDate": null,
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-4404",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4404",
+      "summary": "[브랜드] 브랜드 정보 노출 강화 ",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-백로그",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "LS",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "WA",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-21T16:52:37.650+0900",
+      "updated": "2026-05-22T09:51:58.137+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "TM-3095",
+          "summary": "[브랜드] 브랜드 정보 노출 강화",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Clones",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-4401",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4401",
+      "summary": "[추천판] 눈에 띄는 신규 입점 브랜드 섹션 브랜드 모듈로 개선",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "Tech 검토 대기 중",
+      "statusCategory": "new",
+      "priority": "P0",
+      "assignee": {
+        "name": "LS",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "WA",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": "2026-06-04",
+      "created": "2026-05-21T16:24:18.231+0900",
+      "updated": "2026-05-22T10:38:42.361+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "TM-3098",
+          "summary": "[추천판] 눈에 띄는 신규 입점 브랜드 섹션 브랜드 모듈로 개선",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-4383",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4383",
+      "summary": "[SRP] '새상품 좋아요/조회수 급상순 정렬' 및 좋아요 정렬 기간 분리",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-우선착수",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "LS",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "WA",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-21T11:40:24.200+0900",
+      "updated": "2026-05-22T14:46:17.628+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "TM-2527",
+          "summary": "[검색] MSS 정렬 확대 : 좋아요/조회순 기간분리&등락순 추가",
+          "status": "개발중",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-4381",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4381",
+      "summary": "[주문서] 퀵구매 대상 유료 사은품 선택 조건 \"무배당발 X원 구매시 Y 선택 가능\" 옵션 제공",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "PMO 검토 중",
+      "statusCategory": "indeterminate",
+      "priority": "P0",
+      "assignee": {
+        "name": "SP",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "WA",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": "MSS-P Commerce Core",
+      "startDate": null,
+      "dueDate": "2026-05-26",
+      "created": "2026-05-21T11:33:43.703+0900",
+      "updated": "2026-05-22T02:20:50.621+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "COMCO-3354",
+          "summary": "[주문서] 퀵구매 대상 유료 사은품 선택 조건 \"무배당발 X원 구매시 Y 선택 가능\" 옵션 제공",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-4375",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4375",
+      "summary": "카테고리숍 검색 화면 인기/추천 검색어 및 추천 상품 노출",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-백로그",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "LS",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-21T10:30:30.306+0900",
+      "updated": "2026-05-21T23:48:39.857+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "TM-3093",
+          "summary": "카테고리숍 검색 화면 인기/추천 검색어 및 추천 상품 노출",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-4374",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4374",
+      "summary": "카테고리숍 검색 화면 밀도감 개선 및 하위 카테고리/다양한 정보 노출",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "매니저 승인 대기",
+      "statusCategory": "indeterminate",
+      "priority": "P0",
+      "assignee": {
+        "name": "WA",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": "2026-05-26",
+      "created": "2026-05-21T10:30:13.056+0900",
+      "updated": "2026-05-22T02:26:28.945+0900",
+      "resolutionDate": null,
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-4342",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4342",
+      "summary": "앱 '단독' 섹션 배치 순서 변경 — 메인 캠페인 다음·스페셜 이전으로 이동",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-우선착수",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "WA",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-20T14:17:46.959+0900",
+      "updated": "2026-05-21T23:48:49.995+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "FT-23",
+          "summary": "앱 '단독' 섹션 배치 순서 변경 — 메인 캠페인 다음·스페셜 이전으로 이동",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-4340",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4340",
+      "summary": "[design-driven] 브랜드 로고 비율별 사이즈 개선",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-우선착수",
+      "statusCategory": "done",
+      "priority": "Big-Rock",
+      "assignee": {
+        "name": "WA",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "JP",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": "2026-Q2",
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-20T14:11:55.328+0900",
+      "updated": "2026-05-21T23:48:49.329+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "MSSCXTF-1349",
+          "summary": "[design-driven] 브랜드 로고 비율별 사이즈 개선",
+          "status": "디자인중",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-4330",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4330",
+      "summary": "적립금 지급 푸시 알림에 해당 건 적립금액 표시",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-미진행",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "LS",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-20T11:39:00.734+0900",
+      "updated": "2026-05-21T23:48:48.557+0900",
+      "resolutionDate": null,
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-4317",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4317",
+      "summary": "마이페이지 쿠폰함 — 특정 쿠폰 공유하기 버튼 추가",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-우선착수",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "LS",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-19T16:56:47.436+0900",
+      "updated": "2026-05-21T23:48:53.661+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "FT-14",
+          "summary": "마이페이지 쿠폰함 — 특정 쿠폰 공유하기 버튼 추가",
+          "status": "준비중",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-4313",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4313",
+      "summary": "[공통] 앱바 아이콘 크기 및 간격 수정",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-우선착수",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "JP",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "YH",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-19T16:42:42.947+0900",
+      "updated": "2026-05-21T23:48:42.043+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "FT-24",
+          "summary": "[공통] 앱바 아이콘 크기 및 간격 수정",
+          "status": "디자인완료",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Clones",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-4282",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4282",
+      "summary": "리유저블백 이벤트/혜택 내 진입점 추가",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "완료",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "LS",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-19T09:44:16.643+0900",
+      "updated": "2026-05-21T23:48:50.653+0900",
+      "resolutionDate": "2026-05-20T16:25:39.975+0900",
+      "linkedTickets": [
+        {
+          "key": "PEL-978",
+          "summary": "리유저블백 이벤트/혜택 메뉴 추가",
+          "status": "완료",
+          "statusCategory": "done",
+          "assignee": null,
+          "linkType": "Blocks",
+          "direction": "outward"
+        },
+        {
+          "key": "FT-11",
+          "summary": "리유저블백 이벤트/혜택 내 진입점 추가",
+          "status": "론치완료",
+          "statusCategory": "done",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 2,
+        "total": 2
+      }
+    },
+    {
+      "key": "ETR-4281",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4281",
+      "summary": "무배당발 지면 / 쿠폰리스트 페이지 / 오프라인 페이지 — 영업 효용 강화 및 진입 경로 확대",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-우선착수",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "LS",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-19T09:16:51.022+0900",
+      "updated": "2026-05-21T23:48:52.891+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "FT-15",
+          "summary": "무배당발 지면 / 쿠폰리스트 페이지 / 오프라인 페이지 — 영업 효용 강화 및 진입 경로 확대",
+          "status": "개발중",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-4280",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4280",
+      "summary": "무배당발 상품 전체보기 배너 — CTA 명확화 및 클릭 피드백 UI 개선",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "완료",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "LS",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-19T09:16:35.258+0900",
+      "updated": "2026-05-21T23:48:52.173+0900",
+      "resolutionDate": "2026-05-21T23:21:33.939+0900",
+      "linkedTickets": [
+        {
+          "key": "MSSCXTF-1260",
+          "summary": "[design-driven][PDP] 무배당발 배너 디자인 개선",
+          "status": "론치완료",
+          "statusCategory": "done",
+          "assignee": null,
+          "linkType": "Blocks",
+          "direction": "inward"
+        },
+        {
+          "key": "FT-9",
+          "summary": "무배당발 상품 전체보기 배너 — CTA 명확화 및 클릭 피드백 UI 개선",
+          "status": "론치완료",
+          "statusCategory": "done",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 2,
+        "total": 2
+      }
+    },
+    {
+      "key": "ETR-4279",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4279",
+      "summary": "삼성카드 결제 혜택 화면 — 잔여 적립 한도 표시 방식 개선",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "완료",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "LS",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-19T09:16:11.534+0900",
+      "updated": "2026-05-21T23:48:51.392+0900",
+      "resolutionDate": "2026-05-21T00:28:58.073+0900",
+      "linkedTickets": [
+        {
+          "key": "FT-12",
+          "summary": "삼성카드 결제 혜택 화면 — 잔여 적립 한도 표시 방식 개선",
+          "status": "론치완료",
+          "statusCategory": "done",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 1,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-4270",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4270",
+      "summary": "무배당발 지면 내 인기 상품 노출 기능 요청",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-백로그",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "LS",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-18T18:57:32.161+0900",
+      "updated": "2026-05-21T23:48:55.635+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "TM-3073",
+          "summary": "무배당발 지면 내 인기 상품 노출 기능 요청",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-4265",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4265",
+      "summary": "무신사 바지 카테고리 PLP 핏 필터를 바지 전용 핏으로 교체 및 다양화",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "Tech 검토 중",
+      "statusCategory": "indeterminate",
+      "priority": "P0",
+      "assignee": {
+        "name": "WA",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": "2026-06-03",
+      "created": "2026-05-18T17:12:39.125+0900",
+      "updated": "2026-05-21T23:48:58.253+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "PPRD-13241",
+          "summary": "무신사 속성 통합에 따른 상품 마이그레이션",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "outward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-4259",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4259",
+      "summary": "PLP/PDP 상품 리스트 AI 유사 디자인, 해당 상품 스탭 코디 찾기 버튼 추가 및 레이어 노출",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-백로그",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "LS",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "WA",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-18T15:58:08.402+0900",
+      "updated": "2026-05-22T10:46:19.542+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "FT-6",
+          "summary": "PLP/PDP 상품 리스트 AI 유사 디자인, 해당 상품 스탭 코디 찾기 버튼 추가 및 레이어 노출",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Clones",
+          "direction": "inward"
+        },
+        {
+          "key": "TM-3072",
+          "summary": "PLP/PDP 상품 리스트 AI 유사 디자인, 해당 상품 스탭 코디 찾기 버튼 추가 및 레이어 노출",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 2
+      }
+    },
+    {
+      "key": "ETR-4261",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4261",
+      "summary": "콘텐츠·발매 상세 페이지 하단 관련 브랜드 상시 노출 (멀티브랜드 대응 포함)",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-백로그",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "WA",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-18T11:26:37.515+0900",
+      "updated": "2026-05-21T23:48:57.409+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "FT-4",
+          "summary": "콘텐츠·발매 상세 페이지 하단 관련 브랜드 상시 노출 (멀티브랜드 대응 포함)",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Clones",
+          "direction": "inward"
+        },
+        {
+          "key": "TM-3082",
+          "summary": "콘텐츠·발매 상세 페이지 하단 관련 브랜드 상시 노출 (멀티브랜드 대응 포함)",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 2
+      }
+    },
+    {
+      "key": "ETR-4204",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4204",
+      "summary": "무신사 원앱 PLP 사이즈 필터 — 체계별 탭 분리 및 멀티 선택 지원",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-백로그",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "WA",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-18T11:12:28.912+0900",
+      "updated": "2026-05-21T23:48:54.307+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "TM-3066",
+          "summary": "무신사 원앱 PLP 사이즈 필터 — 체계별 탭 분리 및 멀티 선택 지원",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-4199",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4199",
+      "summary": "배너 소재 가이드 개선 — 아이폰 하단 홈 인디케이터(safe area) 여백 반영",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-우선착수",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "WA",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-18T11:01:56.925+0900",
+      "updated": "2026-05-21T23:48:56.592+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "FT-3",
+          "summary": "[주문완료] 배너 소재 가이드 개선 — 아이폰 하단 홈 인디케이터(safe area) 여백 반영",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Clones",
+          "direction": "inward"
+        },
+        {
+          "key": "FT-3",
+          "summary": "[주문완료] 배너 소재 가이드 개선 — 아이폰 하단 홈 인디케이터(safe area) 여백 반영",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 2
+      }
+    },
+    {
+      "key": "ETR-4198",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4198",
+      "summary": "주문완료 풀배너 페이지 하단 앱바 노출 반복 방지를 위한 개발 가이드/프로세스 정비",
+      "issueType": "기타(KTLO/BAU)",
+      "project": "ETR",
+      "status": "완료",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "LS",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-18T11:01:36.383+0900",
+      "updated": "2026-05-18T13:23:55.358+0900",
+      "resolutionDate": "2026-05-18T13:23:01.372+0900",
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-4143",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4143",
+      "summary": "[MSS][광고] 게이트웨이 하단 광고 구좌 영상 광고 재활성화 및 메인 광고판 연동",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-백로그",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "LS",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-14T21:59:27.247+0900",
+      "updated": "2026-05-22T15:39:56.555+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "TM-2440",
+          "summary": "[게이트웨이] 브랜드광고 배너 노출",
+          "status": "준비중",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        },
+        {
+          "key": "PD-8156",
+          "summary": "[PD][디자인 가이드] 게이트웨이 브랜드광고 배너 노출",
+          "status": "완료",
+          "statusCategory": "done",
+          "assignee": null,
+          "linkType": "Blocks",
+          "direction": "inward"
+        },
+        {
+          "key": "FT-26",
+          "summary": "[MSS][광고] 게이트웨이 하단 광고 구좌 영상 광고 재활성화 및 메인 광고판 연동",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 1,
+        "total": 3
+      }
+    },
+    {
+      "key": "ETR-4136",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4136",
+      "summary": "29CM 검색홈 인기검색어 UI/UX 개선 — 순위 변동 표시, 상품 수 미리보기, 카테고리 분류",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "Tech 검토 중",
+      "statusCategory": "indeterminate",
+      "priority": "P0",
+      "assignee": {
+        "name": "HL",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": "2026-06-05",
+      "created": "2026-05-14T19:29:50.370+0900",
+      "updated": "2026-05-23T14:05:16.148+0900",
+      "resolutionDate": null,
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-4135",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4135",
+      "summary": "29CM 검색홈 인기검색어 랭킹 품질 개선 — 오타/금칙어/NR 키워드 필터링 적용",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "Tech 검토 중",
+      "statusCategory": "indeterminate",
+      "priority": "P0",
+      "assignee": {
+        "name": "KL",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": "2026-06-02",
+      "created": "2026-05-14T19:29:31.955+0900",
+      "updated": "2026-05-22T15:32:37.559+0900",
+      "resolutionDate": null,
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-4128",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4128",
+      "summary": "신규 고객 가입 퍼널 획기적 개선 과제",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "Tech 검토 대기 중",
+      "statusCategory": "new",
+      "priority": "P0",
+      "assignee": {
+        "name": "TA",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "WA",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": "2026-06-03",
+      "created": "2026-05-14T18:22:29.355+0900",
+      "updated": "2026-05-22T02:07:02.976+0900",
+      "resolutionDate": null,
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-4127",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4127",
+      "summary": "[이미지 태깅] 태깅된 상품중 품절이 특정 비중 이상일 경우 alert 보내는 시스템",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "Tech 검토 대기 중",
+      "statusCategory": "new",
+      "priority": "P0",
+      "assignee": {
+        "name": "CL",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "WA",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": "2026-06-05",
+      "created": "2026-05-14T18:19:50.646+0900",
+      "updated": "2026-05-22T14:57:20.288+0900",
+      "resolutionDate": null,
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-4125",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4125",
+      "summary": "카테고리·필터 변경 시 판매·랭킹 데이터 마이그레이션 자동화 기능 개발",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "반려",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "LS",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-14T16:39:41.744+0900",
+      "updated": "2026-05-22T02:07:22.644+0900",
+      "resolutionDate": null,
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-4124",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4124",
+      "summary": "품절/판매종료 상품의 랭킹 반영 및 아카이브 로직 점검",
+      "issueType": "기타(KTLO/BAU)",
+      "project": "ETR",
+      "status": "완료",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "LS",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-14T16:39:22.006+0900",
+      "updated": "2026-05-20T09:08:10.919+0900",
+      "resolutionDate": "2026-05-20T09:07:36.150+0900",
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-4123",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4123",
+      "summary": "무신사 앨범/굿즈 전용 차트 신설 및 카테고리 1뎁스 재분류 (오프라인 합산·과거 데이터 마이그레이션 포함)",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-백로그",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "LS",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-14T16:39:01.228+0900",
+      "updated": "2026-05-21T23:49:02.825+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "TM-3041",
+          "summary": "무신사 앨범/굿즈 전용 차트 신설 및 카테고리 1뎁스 재분류 (오프라인 합산·과거 데이터 마이그레이션 포함)",
+          "status": "기획중",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Clones",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-4118",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4118",
+      "summary": "앱 내 '아즈니섬 쿠폰' 기능 고도화 관련",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "Tech 검토 대기 중",
+      "statusCategory": "new",
+      "priority": "P0",
+      "assignee": {
+        "name": "YO",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "WA",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": "MSS-P Discovery & Engagement",
+      "startDate": null,
+      "dueDate": "2026-06-03",
+      "created": "2026-05-14T15:34:01.315+0900",
+      "updated": "2026-05-21T23:58:20.975+0900",
+      "resolutionDate": null,
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-4115",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4115",
+      "summary": "[전문관] 추천 섹션에서 더보기를 누르면 전문관 PLP로 이동하는 동선 설계",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-백로그",
+      "statusCategory": "done",
+      "priority": "Big-Rock",
+      "assignee": {
+        "name": "LS",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "WA",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": "MSS-P Discovery & Engagement",
+      "startDate": null,
+      "dueDate": "2026-05-28",
+      "created": "2026-05-14T15:26:01.557+0900",
+      "updated": "2026-05-21T23:49:00.421+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "TM-3039",
+          "summary": "[전문관] 추천 섹션에서 더보기를 누르면 전문관 PLP로 이동하는 동선 설계",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Clones",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-4112",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4112",
+      "summary": "주문완료 이메일 무신사 로고 다크모드 고려해 수정",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-우선착수",
+      "statusCategory": "done",
+      "priority": "P2",
+      "assignee": {
+        "name": "LS",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "WA",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-14T15:13:33.132+0900",
+      "updated": "2026-05-21T23:49:06.468+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "FT-1",
+          "summary": "주문완료 이메일 무신사 로고 다크모드 고려해 수정",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Clones",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-4111",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4111",
+      "summary": "[검색어] 국영문 교차 검색 지원",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-백로그",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "LS",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "WA",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-14T15:08:07.522+0900",
+      "updated": "2026-05-21T23:48:58.947+0900",
+      "resolutionDate": null,
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-4108",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4108",
+      "summary": "발매 상세 하단 퀵 추천 섹션 추가 — 동일 브랜드·개인화·카테고리 인기 시나리오",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-백로그",
+      "statusCategory": "done",
+      "priority": "P1",
+      "assignee": {
+        "name": "LS",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-14T14:52:48.186+0900",
+      "updated": "2026-05-21T23:48:59.650+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "TM-3036",
+          "summary": "발매 상세 하단 퀵 추천 섹션 추가 — 동일 브랜드·개인화·카테고리 인기 시나리오",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Clones",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-4095",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4095",
+      "summary": "GNB 탭 광고 배너 면적 기준 크기 관리 — 다른 탭 메뉴와 시각적 균형 확보",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "완료",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "LS",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-13T18:35:28.443+0900",
+      "updated": "2026-05-21T23:59:22.561+0900",
+      "resolutionDate": "2026-05-14T14:59:44.895+0900",
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-4091",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4091",
+      "summary": "[스냅] 숏츠 영상 섬네일 생성기준 확인 및 카테고리숍/SRP 내 노출 방식 개선",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-우선착수",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "HC",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "WA",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-13T18:23:39.606+0900",
+      "updated": "2026-05-22T00:02:24.886+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "TM-3031",
+          "summary": "[스냅] 숏츠 영상 섬네일 생성기준 확인 및 카테고리숍/SRP 내 노출 방식 개선",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Clones",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-4090",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4090",
+      "summary": "[SRP/PLP] 연령대별 인기 상품 필터/정렬",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "Tech 검토 대기 중",
+      "statusCategory": "new",
+      "priority": "P0",
+      "assignee": {
+        "name": "YO",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "WA",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": "2026-06-02",
+      "created": "2026-05-13T18:20:28.594+0900",
+      "updated": "2026-05-21T23:59:57.161+0900",
+      "resolutionDate": null,
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-4088",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4088",
+      "summary": "[앱테크] 설문형 앱테크 ",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-백로그",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "LS",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "WA",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-13T18:13:20.978+0900",
+      "updated": "2026-05-21T23:49:10.743+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "TM-3030",
+          "summary": "[앱테크] 설문형 앱테크",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Clones",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-4087",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4087",
+      "summary": "[MATCH] 개인 취향 기준 추천 로직 고도화",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "Tech 검토 대기 중",
+      "statusCategory": "new",
+      "priority": "P0",
+      "assignee": {
+        "name": "AC",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "WA",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "conveyor",
+        "fasttrack",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": "2026-06-03",
+      "created": "2026-05-13T18:08:42.037+0900",
+      "updated": "2026-05-22T00:00:42.399+0900",
+      "resolutionDate": null,
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-4084",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4084",
+      "summary": "[앱테크] 브랜드 업체가 부담하는 후기 이벤트",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-백로그",
+      "statusCategory": "done",
+      "priority": "Big-Rock",
+      "assignee": {
+        "name": "LS",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "WA",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-13T18:00:05.743+0900",
+      "updated": "2026-05-21T23:49:10.031+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "TM-3029",
+          "summary": "[앱테크] 브랜드 업체가 부담하는 후기 이벤트",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Clones",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-4078",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4078",
+      "summary": "광고 섹션 '더보기' 기능 추가 — 필터/카테고리탭 포함 상품 목록 확장",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-백로그",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "LS",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-13T16:39:39.081+0900",
+      "updated": "2026-05-21T23:49:08.598+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "TM-3035",
+          "summary": "광고 섹션 '더보기' 기능 추가 — 필터/카테고리탭 포함 상품 목록 확장",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Clones",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-4061",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4061",
+      "summary": "[유즈드] 추천판>인기브랜드 섹션 내 '유즈드'탭 추가",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-우선착수",
+      "statusCategory": "done",
+      "priority": "Big-Rock",
+      "assignee": {
+        "name": "LS",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "YO",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "PEL",
+        "conveyor",
+        "one",
+        "홈앤디"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": "2026-Q2",
+      "subGroup": "MSS-P Discovery & Engagement",
+      "startDate": null,
+      "dueDate": "2026-05-26",
+      "created": "2026-05-13T09:03:00.544+0900",
+      "updated": "2026-05-22T13:59:15.159+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "PEL-917",
+          "summary": "[유즈드] 추천판 인기브랜드 섹션 유즈드 탭 추가 (ETR-4061)",
+          "status": "In Progress",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        },
+        {
+          "key": "MSSCXTF-1362",
+          "summary": "[유즈드] 추천판>인기브랜드 섹션 내 '유즈드'탭 추가",
+          "status": "개발중",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        },
+        {
+          "key": "SNDPRD-3958",
+          "summary": "[유즈드] 추천판 > 인기브랜드 섹션 내 '유즈드'탭 추가",
+          "status": "완료",
+          "statusCategory": "done",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        },
+        {
+          "key": "SEARCHPL-2613",
+          "summary": "[유즈드] 브랜드 필터 인기 정렬에 판매금액순(D-30) 추가",
+          "status": "완료",
+          "statusCategory": "done",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 2,
+        "total": 4
+      }
+    },
+    {
+      "key": "ETR-4032",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4032",
+      "summary": "[공통] 헤더에 전문관 홈으로 이동할 수 있는 경로 제공",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "완료",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "LS",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "JP",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-11T15:30:08.692+0900",
+      "updated": "2026-05-22T00:05:15.244+0900",
+      "resolutionDate": "2026-05-22T00:04:40.722+0900",
+      "linkedTickets": [
+        {
+          "key": "MSSCXTF-1208",
+          "summary": "[공통] 헤더에 전문관 홈으로 이동할 수 있는 경로 제공",
+          "status": "론치완료",
+          "statusCategory": "done",
+          "assignee": null,
+          "linkType": "Blocks",
+          "direction": "inward"
+        },
+        {
+          "key": "MSSCXTF-1208",
+          "summary": "[공통] 헤더에 전문관 홈으로 이동할 수 있는 경로 제공",
+          "status": "론치완료",
+          "statusCategory": "done",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 2,
+        "total": 2
+      }
+    },
+    {
+      "key": "ETR-4020",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4020",
+      "summary": "[AI 생성 콘텐츠] 제한 정책 안내 추가 - phase 1",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-우선착수",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "LS",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "WA",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-11T10:38:53.601+0900",
+      "updated": "2026-05-21T23:49:15.321+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "MSSCXTF-1331",
+          "summary": "[AI 생성 콘텐츠] 제한 정책 안내 추가",
+          "status": "개발중",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-4012",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4012",
+      "summary": "무신사 퀵픽스 특정 화면 광고 문구 n초 자동 전환 및 개인화 적용",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-우선착수",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "LS",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": "2026-05-12",
+      "dueDate": "2026-05-27",
+      "created": "2026-05-08T22:00:24.030+0900",
+      "updated": "2026-05-21T23:49:16.011+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "MSSCXTF-1355",
+          "summary": "무신사 퀵픽스 특정 화면 광고 문구 n초 자동 전환 및 개인화 적용",
+          "status": "개발완료",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Clones",
+          "direction": "inward"
+        },
+        {
+          "key": "MSSCXTF-1355",
+          "summary": "무신사 퀵픽스 특정 화면 광고 문구 n초 자동 전환 및 개인화 적용",
+          "status": "개발완료",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        },
+        {
+          "key": "PEL-884",
+          "summary": "[BE] 퀵픽스 이벤트배너 다중 문구 노출 API 개선",
+          "status": "완료",
+          "statusCategory": "done",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        },
+        {
+          "key": "PEL-885",
+          "summary": "[FE] 퀵픽스 이벤트배너 3초 자동 롤링 (Web)",
+          "status": "완료",
+          "statusCategory": "done",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        },
+        {
+          "key": "PEL-886",
+          "summary": "[ME] 퀵픽스 이벤트배너 3초 자동 롤링 (Mobile)",
+          "status": "완료",
+          "statusCategory": "done",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 3,
+        "total": 5
+      }
+    },
+    {
+      "key": "ETR-4010",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4010",
+      "summary": "PDP 신고 관련 두 영역(안전거래센터 배너 + 상품정보 신고) 통합 및 위치 하향 조정",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "반려",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-08T19:06:02.938+0900",
+      "updated": "2026-05-22T00:05:30.078+0900",
+      "resolutionDate": null,
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-3973",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3973",
+      "summary": "[PDP] 옵션 레이어에 이미 구매 브랜드+품목 상품의 경우 사이즈 정보 추천하기",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-백로그",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "WA",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "WA",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "conveyor",
+        "one",
+        "pdp"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-07T11:14:27.181+0900",
+      "updated": "2026-05-21T23:49:17.385+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "TM-3034",
+          "summary": "[PDP] 옵션 레이어에 이미 구매 브랜드+품목 상품의 경우 사이즈 정보 추천하기",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-3971",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3971",
+      "summary": "장바구니 담기 추천 바텀시트 내에 AI 상품 추천 더보기 버튼 추가 ",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-우선착수",
+      "statusCategory": "done",
+      "priority": "P1",
+      "assignee": {
+        "name": "LS",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "WA",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "CX",
+        "conveyor",
+        "one",
+        "pdp"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-07T11:10:47.253+0900",
+      "updated": "2026-05-22T00:06:40.516+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "MSSCXTF-1351",
+          "summary": "장바구니 담기 추천 바텀시트 내에 AI 상품 추천 더보기 버튼 추가 ",
+          "status": "배포완료",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-3962",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3962",
+      "summary": "퀵픽스 영수증 출력 화면에 미출력 버튼 추가",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-미진행",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "GY",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-05T16:22:01.396+0900",
+      "updated": "2026-05-18T11:01:44.823+0900",
+      "resolutionDate": null,
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-3960",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3960",
+      "summary": "브랜드 상세 페이지 AI 브랜드 맵 기능 추가 — 로고 애니메이션 및 추천 브랜드 탐색 레이어",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "PMO 검토 중",
+      "statusCategory": "indeterminate",
+      "priority": "P0",
+      "assignee": {
+        "name": "LS",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "CX",
+        "auto-etr-triaged",
+        "one",
+        "브랜드숍"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": "2026-05-11",
+      "created": "2026-05-05T12:48:45.727+0900",
+      "updated": "2026-05-14T15:22:18.184+0900",
+      "resolutionDate": null,
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-3956",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3956",
+      "summary": "매거진 콘텐츠 상세 페이지 진입 시 즉시 노출 UI 요소 제거",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-백로그",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "HC",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one",
+        "콘텐츠"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-04T20:16:53.995+0900",
+      "updated": "2026-05-22T00:07:42.301+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "TM-3037",
+          "summary": "매거진 콘텐츠 페이지 로드 팝업 제거",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-3954",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3954",
+      "summary": "무신사 앱 랭킹 탭 내 월간 랭킹 페이지 링크 추가",
+      "issueType": "기타(KTLO/BAU)",
+      "project": "ETR",
+      "status": "검토완료-우선착수",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "LS",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "fasttrack",
+        "one",
+        "랭킹"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-04T19:20:41.869+0900",
+      "updated": "2026-05-08T13:35:35.622+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "PEL-760",
+          "summary": "[랭킹판] 월간 랭킹 진입점 추가",
+          "status": "완료",
+          "statusCategory": "done",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 1,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-3950",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3950",
+      "summary": "[유즈드 구매활성화] PDP 상품추천 - 1단계",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-우선착수",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "KL",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "VL",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "one",
+        "유즈드"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-04T13:51:46.235+0900",
+      "updated": "2026-05-15T11:10:56.857+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "TM-3008",
+          "summary": "[추천] 유즈드 추천 시나리오 구축 : 유즈드 PDP 추천 모듈",
+          "status": "QA중",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Blocks",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-3943",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3943",
+      "summary": "무인포스 QR/바코드 통합 — 오프라인 QR 스캔 시 계산 분기처리 지원",
+      "issueType": "기타(KTLO/BAU)",
+      "project": "ETR",
+      "status": "완료",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "HT",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "one",
+        "오프라인"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-04T11:32:30.984+0900",
+      "updated": "2026-05-13T14:20:02.715+0900",
+      "resolutionDate": "2026-05-13T14:20:02.612+0900",
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-3936",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3936",
+      "summary": "브랜드 맞춤형 설문형 앱테크 미션 개발 — 브랜드 구매자 대상 제품 개선 의견 수렴",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-백로그",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "WA",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "one",
+        "앱테크"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-01T23:04:18.477+0900",
+      "updated": "2026-05-14T15:21:31.368+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "TM-3038",
+          "summary": "브랜드 맞춤형 설문형 앱테크 미션 개발 — 브랜드 구매자 대상 제품 개선 의견 수렴",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Clones",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-3934",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3934",
+      "summary": "라이프스타일 기반 고객 세그멘테이션으로 개인화 배너/상품 추천 고도화",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "PMO 검토 중",
+      "statusCategory": "indeterminate",
+      "priority": "P0",
+      "assignee": {
+        "name": "LS",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "one",
+        "추천"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": "2026-05-07",
+      "created": "2026-05-01T21:57:45.417+0900",
+      "updated": "2026-05-08T13:36:37.054+0900",
+      "resolutionDate": null,
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-3933",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3933",
+      "summary": "브랜드 상품 N회 조회 시 브랜드 좋아요 유도 팝업 레이어 도입",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-백로그",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "WA",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "CX",
+        "auto-etr-triaged",
+        "one",
+        "pdp"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-01T21:57:43.058+0900",
+      "updated": "2026-05-15T18:20:26.859+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "MSSCXTF-1324",
+          "summary": "브랜드 상품 N회 조회 시 브랜드 좋아요 유도 팝업 레이어 도입",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Clones",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-3932",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3932",
+      "summary": "브랜드 업체 분담 후기이벤트를 앱테크/마케팅지원솔루션으로 우선순위 상향 추진",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-백로그",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "WA",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one",
+        "앱테크"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-01T21:56:56.121+0900",
+      "updated": "2026-05-22T00:13:25.962+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "TM-2995",
+          "summary": "브랜드 업체 분담 후기이벤트를 앱테크/마케팅지원솔루션으로 우선순위 상향 추진",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Clones",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-3930",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3930",
+      "summary": "기획전 상품진열 페이지 탭 → 단일 스크롤 페이지 전환 및 퀵바로구매 UI 적용",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-우선착수",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "WA",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one",
+        "기획전"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-01T18:16:36.071+0900",
+      "updated": "2026-05-22T00:13:04.544+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "MSSCXTF-1320",
+          "summary": "기획전 상품진열 페이지 탭 → 단일 스크롤 페이지 전환",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Clones",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-3929",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3929",
+      "summary": "부티크 상품 결제할인 미적용 오류 수정 — 전상품 조건인데 실제 제외됨",
+      "issueType": "기타(KTLO/BAU)",
+      "project": "ETR",
+      "status": "완료",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "LS",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-01T18:16:00.281+0900",
+      "updated": "2026-05-08T14:43:42.398+0900",
+      "resolutionDate": "2026-05-08T14:41:42.025+0900",
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-3927",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3927",
+      "summary": "스토어 메뉴 리스트(스페셜/래플/기프트 등) 개인화 추천순 및 성별 기본 정렬 적용",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-백로그",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "WA",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "one",
+        "콘텐츠"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-01T11:26:17.082+0900",
+      "updated": "2026-05-21T11:15:09.064+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "MSSCXTF-1318",
+          "summary": "스토어 메뉴 리스트(스페셜/래플/기프트 등) 개인화 추천순 및 성별 기본 정렬 적용",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Clones",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-3926",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3926",
+      "summary": "PLP 필터에 좋아요·누적판매량 구간 수치 필터 추가",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-백로그",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "WA",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "PLP/필터",
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-01T11:25:52.272+0900",
+      "updated": "2026-05-22T00:12:28.968+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "MSSCXTF-1317",
+          "summary": "PLP 필터에 좋아요·누적판매량 구간 수치 필터 추가",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Clones",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-3866",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3866",
+      "summary": "랭킹판에서 부티크를 유즈드보다 앞에 배치",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "완료",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "LS",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-04-24T17:22:25.563+0900",
+      "updated": "2026-05-22T00:18:02.853+0900",
+      "resolutionDate": "2026-05-08T14:43:19.741+0900",
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-3863",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3863",
+      "summary": "장바구니 담기 후 추천 레이어 닫기 이후 재진입 트리거 제공",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-백로그",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "WA",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "CX",
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-04-24T16:19:27.458+0900",
+      "updated": "2026-05-22T00:18:04.357+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "MSSCXTF-1337",
+          "summary": "장바구니 추천 레이어 재호출 UX",
+          "status": "준비중",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-3860",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3860",
+      "summary": "추천판 하이라이트 퀵메뉴 마지막 슬롯에 스페셜 전체보기 진입점 추가",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "반려",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "CX",
+        "auto-etr-triaged",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-04-24T16:17:38.089+0900",
+      "updated": "2026-05-08T14:44:46.538+0900",
+      "resolutionDate": null,
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-3848",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3848",
+      "summary": "이벤트 원장 구축 및 CMS 기반 이벤트 리스트 페이지 설계",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-백로그",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "WA",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-04-24T10:36:57.881+0900",
+      "updated": "2026-05-22T00:18:04.989+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "TM-3087",
+          "summary": "이벤트 원장 구축 및 CMS 기반 이벤트 리스트 페이지 설계",
+          "status": "Backlog",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Clones",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-3847",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3847",
+      "summary": "브랜드/제3자 출처 콘텐츠 무신사 온사이트 노출 시스템 구축",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-백로그",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "WA",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-04-24T10:35:30.958+0900",
+      "updated": "2026-05-22T00:18:05.703+0900",
+      "resolutionDate": null,
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-3846",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3846",
+      "summary": "스펠링 자체로 읽는 브랜드명 한글 구문 대신 영문자 그대로 표기",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-백로그",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "WA",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-04-24T10:34:38.752+0900",
+      "updated": "2026-05-22T00:18:03.676+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "MSSCXTF-1340",
+          "summary": "영문 스펠링 브랜드명 영문 표기 정책",
+          "status": "기획중",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-3827",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3827",
+      "summary": "장바구니 품절 상품 대체 추천 레이어 기능 추가 및 다지면 확장",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "반려",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "SH",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-04-22T19:55:25.382+0900",
+      "updated": "2026-05-15T09:24:50.206+0900",
+      "resolutionDate": null,
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-3821",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3821",
+      "summary": "무신사 앱 PLP 필터/탭 영역에 시각적 인디케이터(뉴마크·파란점·파란테두리) 추가 검토",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "완료",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "WA",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "CX",
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-04-22T19:04:50.544+0900",
+      "updated": "2026-05-22T00:18:21.492+0900",
+      "resolutionDate": "2026-05-08T14:45:34.911+0900",
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-3815",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3815",
+      "summary": "퀵픽스 배너광고 영역에 기획전 날짜·슬로건 추가 노출 요청",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-우선착수",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "WA",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "CX",
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-04-22T17:11:35.250+0900",
+      "updated": "2026-05-22T00:18:25.227+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "PEL-472",
+          "summary": "[랭킹판/PLP] 퍼널 배너 광고 영역 추가 정보 노출",
+          "status": "디자인완료",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-3799",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3799",
+      "summary": "키즈 등 전문관에서 PLP/PDP 내 전문관 표시 강화",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-백로그",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "JS",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "CX",
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-04-21T23:11:53.338+0900",
+      "updated": "2026-05-22T00:18:25.921+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "MSSCXTF-1343",
+          "summary": "키즈 전문관 PLP/PDP 노출 강화",
+          "status": "디자인중",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-3770",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3770",
+      "summary": "아더컬러 미연동 상품 간 후기 공유 현상 재발 및 정책 정비 요청",
+      "issueType": "기타(KTLO/BAU)",
+      "project": "ETR",
+      "status": "검토완료-백로그",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "LS",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-04-20T18:19:23.314+0900",
+      "updated": "2026-05-08T14:48:14.432+0900",
+      "resolutionDate": null,
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-3769",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3769",
+      "summary": "무신사 퀵픽스 AI 상품 노출 필터링 로직 개선",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "Tech 검토 대기 중",
+      "statusCategory": "new",
+      "priority": "P0",
+      "assignee": {
+        "name": "YJ",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": "2026-04-28",
+      "created": "2026-04-20T18:18:53.867+0900",
+      "updated": "2026-05-22T00:18:27.393+0900",
+      "resolutionDate": null,
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-3768",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3768",
+      "summary": "무신사 퀵픽스 화면 레이아웃 깨짐 버그 수정",
+      "issueType": "기타(KTLO/BAU)",
+      "project": "ETR",
+      "status": "완료",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "LS",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-04-20T18:18:27.398+0900",
+      "updated": "2026-05-08T14:41:00.491+0900",
+      "resolutionDate": "2026-05-08T14:40:27.889+0900",
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-3688",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3688",
+      "summary": "발매 상세 페이지 하단 관련 발매 리스트 — 진입 경로 맥락별 노출 개선",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "Tech 검토 중",
+      "statusCategory": "indeterminate",
+      "priority": "P0",
+      "assignee": {
+        "name": "HC",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": "2026-05-14",
+      "created": "2026-04-18T14:01:40.096+0900",
+      "updated": "2026-05-22T00:18:28.158+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "MSSCXTF-1338",
+          "summary": "발매 상세 하단 진입경로 맥락 콘텐츠",
+          "status": "준비중",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-3687",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3687",
+      "summary": "결제 실패 시 흰화면 노출 및 주문서 복귀 UX 개선",
+      "issueType": "기타(KTLO/BAU)",
+      "project": "ETR",
+      "status": "반려",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-04-18T14:01:25.407+0900",
+      "updated": "2026-04-23T14:10:14.881+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "ETR-3684",
+          "summary": "결제 실패 시 흰화면 멈춤 문제 및 오류 안내/복구 UX 개선",
+          "status": "발의",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Duplicate",
+          "direction": "outward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-3686",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3686",
+      "summary": "장바구니 내 이벤트 종료 상품 구매 시도 시 오류 메시지 충돌 버그",
+      "issueType": "기타(KTLO/BAU)",
+      "project": "ETR",
+      "status": "반려",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-04-18T14:01:07.976+0900",
+      "updated": "2026-04-23T14:10:14.881+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "ETR-3682",
+          "summary": "장바구니 내 이벤트 종료 상품 주문 시도 시 오류 반복 버그",
+          "status": "검토완료-우선착수",
+          "statusCategory": "done",
+          "assignee": null,
+          "linkType": "Duplicate",
+          "direction": "outward"
+        }
+      ],
+      "progress": {
+        "done": 1,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-3684",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3684",
+      "summary": "결제 실패 시 흰화면 멈춤 문제 및 오류 안내/복구 UX 개선",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "발의",
+      "statusCategory": "new",
+      "priority": "P0",
+      "assignee": {
+        "name": "SL",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "SP",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": "MSS-P Commerce Core",
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-04-18T14:00:44.986+0900",
+      "updated": "2026-05-22T00:18:28.899+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "ETR-3687",
+          "summary": "결제 실패 시 흰화면 노출 및 주문서 복귀 UX 개선",
+          "status": "반려",
+          "statusCategory": "done",
+          "assignee": null,
+          "linkType": "Duplicate",
+          "direction": "inward"
+        },
+        {
+          "key": "COMCO-3272",
+          "summary": "[UX] 결제 실패 시 흰화면 멈춤 → 명확한 에러 핸들링 및 주문서 복귀 플로우 개선",
+          "status": "In Progress",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Blocks",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 1,
+        "total": 2
+      }
+    },
+    {
+      "key": "ETR-3682",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3682",
+      "summary": "장바구니 내 이벤트 종료 상품 주문 시도 시 오류 반복 버그",
+      "issueType": "기타(KTLO/BAU)",
+      "project": "ETR",
+      "status": "검토완료-우선착수",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "SP",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": "MSS-P Commerce Core",
+      "startDate": "2026-05-18",
+      "dueDate": "2026-06-05",
+      "created": "2026-04-18T14:00:30.654+0900",
+      "updated": "2026-05-13T11:12:05.504+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "ETR-3686",
+          "summary": "장바구니 내 이벤트 종료 상품 구매 시도 시 오류 메시지 충돌 버그",
+          "status": "반려",
+          "statusCategory": "done",
+          "assignee": null,
+          "linkType": "Duplicate",
+          "direction": "inward"
+        },
+        {
+          "key": "COMCO-3271",
+          "summary": "이벤트 상품 > 검증 로직 개선 (우선순위, FE/BE 검증 통일)",
+          "status": "In Progress",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Blocks",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 1,
+        "total": 2
+      }
+    },
+    {
+      "key": "ETR-3680",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3680",
+      "summary": "결제 화면 적용 불가 쿠폰에 '미적용(조건 미충족)' 상태 표시 UX 개선",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "매니저 승인 대기",
+      "statusCategory": "indeterminate",
+      "priority": "P0",
+      "assignee": {
+        "name": "SH",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": "MSS-P Commerce Core",
+      "startDate": null,
+      "dueDate": "2026-05-26",
+      "created": "2026-04-18T14:00:16.153+0900",
+      "updated": "2026-05-22T00:18:29.641+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "ETR-3685",
+          "summary": "조건 미충족 쿠폰(장쿠폰) 비활성화 상태 워딩 및 디자인 개선",
+          "status": "반려",
+          "statusCategory": "done",
+          "assignee": null,
+          "linkType": "Duplicate",
+          "direction": "inward"
+        },
+        {
+          "key": "COMCO-3270",
+          "summary": "[UX] 주문서 > 미적용 장바구니 쿠폰이 선택 가능한 것처럼 보이는 디자인 개선",
+          "status": "완료",
+          "statusCategory": "done",
+          "assignee": null,
+          "linkType": "Blocks",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 2,
+        "total": 2
+      }
+    },
+    {
+      "key": "ETR-3679",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3679",
+      "summary": "PLP 상품 미표시 및 새로고침 후에도 미복구되는 버그",
+      "issueType": "기타(KTLO/BAU)",
+      "project": "ETR",
+      "status": "발의",
+      "statusCategory": "new",
+      "priority": "P0",
+      "assignee": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-04-18T14:00:03.451+0900",
+      "updated": "2026-04-20T09:02:33.749+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "ETR-3683",
+          "summary": "PLP 상품 목록 간헐적 미표시 버그 — 새로고침 후에도 로드 실패",
+          "status": "반려",
+          "statusCategory": "done",
+          "assignee": null,
+          "linkType": "Duplicate",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 1,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-3677",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3677",
+      "summary": "결제수단 화면 개선 — 현재 주문 적용 가능 결제수단 활성화/정렬 및 프로모션 구좌 활용",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "Tech 검토 대기 중",
+      "statusCategory": "new",
+      "priority": "P0",
+      "assignee": {
+        "name": "SP",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": "2026-05-29",
+      "created": "2026-04-18T13:59:48.486+0900",
+      "updated": "2026-05-22T00:18:30.396+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "ETR-3681",
+          "summary": "주문서 결제 수단 전체 노출 + 적용 가능 여부 활성화/비활성화 UI 개선",
+          "status": "반려",
+          "statusCategory": "done",
+          "assignee": null,
+          "linkType": "Clones",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 1,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-3676",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3676",
+      "summary": "결제 주문서 내 '결제하기' 버튼을 제휴카드 정보 영역 상단으로 이동",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-우선착수",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "SH",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-04-18T13:59:33.168+0900",
+      "updated": "2026-05-22T00:18:31.132+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "ETR-3678",
+          "summary": "주문서 결제하기 버튼, 무신사카드 혜택 영역 상단으로 이동 요청",
+          "status": "반려",
+          "statusCategory": "done",
+          "assignee": null,
+          "linkType": "Clones",
+          "direction": "inward"
+        },
+        {
+          "key": "PEL-558",
+          "summary": "결제 주문서 내 '결제하기' 버튼을 제휴카드 정보 영역 상단으로 이동",
+          "status": "디자인완료",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Clones",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 1,
+        "total": 2
+      }
+    },
+    {
+      "key": "ETR-3675",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3675",
+      "summary": "유즈드 패이지리스 PLP 간헐적 미동작 버그",
+      "issueType": "기타(KTLO/BAU)",
+      "project": "ETR",
+      "status": "발의",
+      "statusCategory": "new",
+      "priority": "P0",
+      "assignee": {
+        "name": "YO",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "CD",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-04-17T23:04:38.543+0900",
+      "updated": "2026-04-20T08:57:53.773+0900",
+      "resolutionDate": null,
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-3346",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3346",
+      "summary": "[PO] 브랜드 대표이미지 성별 이미지 적용 개발 요청",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-백로그",
+      "statusCategory": "done",
+      "priority": "Emergency",
+      "assignee": {
+        "name": "TA",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "JS",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "26'2Q",
+        "conveyor",
+        "one",
+        "홈앤디"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": "2026-Q2",
+      "subGroup": null,
+      "startDate": "2026-03-24",
+      "dueDate": null,
+      "created": "2026-03-24T11:04:12.944+0900",
+      "updated": "2026-05-22T00:19:07.913+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "TM-2332",
+          "summary": "브랜드 대표 이미지 성별 적용 및 PO 개발",
+          "status": "Backlog",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Blocks",
+          "direction": "outward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-2904",
+      "url": "https://jira.team.musinsa.com/browse/ETR-2904",
+      "summary": "[CRM & 알림 ] 앱테크/이벤트 참여 시 기기 알림 동의 프로세스 추가 요청의 건",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-백로그",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "WA",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "BL",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "apptech-one",
+        "conveyor",
+        "domain-apptech",
+        "one",
+        "무신사",
+        "앱테크-기타"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-02-26T15:03:53.866+0900",
+      "updated": "2026-05-22T01:11:31.107+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "TM-2311",
+          "summary": "[앱테크] 고객참여 시 기기알림 동의 프로세스 확대",
+          "status": "디자인완료",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Clones",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-1245",
+      "url": "https://jira.team.musinsa.com/browse/ETR-1245",
+      "summary": "매거진 메뉴 수정 요청 건",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "완료",
+      "statusCategory": "done",
+      "priority": "P2",
+      "assignee": {
+        "name": "RG",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "EK",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2025-07-18T13:54:19.666+0900",
+      "updated": "2026-05-22T13:23:30.004+0900",
+      "resolutionDate": null,
+      "linkedTickets": [
+        {
+          "key": "SNDPRD-2617",
+          "summary": "콘텐츠 001 리스트 카테고리 변경 , 전체탭 노출건",
+          "status": "완료",
+          "statusCategory": "done",
+          "assignee": null,
+          "linkType": "Clones",
+          "direction": "inward"
+        },
+        {
+          "key": "FE-16206",
+          "summary": "콘텐츠 카테고리 001 전체 탭 사용 예정 ",
+          "status": "완료",
+          "statusCategory": "done",
+          "assignee": null,
+          "linkType": "Blocks",
+          "direction": "inward"
+        },
+        {
+          "key": "ETR-1255",
+          "summary": "뷰티 매거진 메뉴 수정 요청 건",
+          "status": "완료",
+          "statusCategory": "done",
+          "assignee": null,
+          "linkType": "Clones",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 3,
+        "total": 3
+      }
+    }
+  ]
 }

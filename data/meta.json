@@ -1,12 +1,37 @@
 {
   "dataVersion": "0.1.0",
-  "lastSync": null,
-  "nextSync": null,
+  "lastSync": "2026-05-26T11:08:12+09:00",
+  "nextSync": "2026-05-27T06:00:00+09:00",
   "syncResults": {
-    "initiatives.json":         { "count": 0, "status": "pending", "error": null },
-    "all-tickets.json":         { "count": 0, "status": "pending", "error": null },
-    "etr-fasttrack.json":       { "count": 0, "status": "pending", "error": null },
-    "etr-assigned.json":        { "count": 0, "status": "pending", "error": null },
-    "completed-launches.json":  { "count": 0, "status": "pending", "error": null }
+    "initiatives.json": {
+      "status": "success",
+      "count": 470,
+      "error": null,
+      "elapsed_ms": 22104
+    },
+    "all-tickets.json": {
+      "status": "success",
+      "count": 504,
+      "error": null,
+      "elapsed_ms": 18947
+    },
+    "etr-fasttrack.json": {
+      "status": "success",
+      "count": 100,
+      "error": null,
+      "elapsed_ms": 4180
+    },
+    "etr-assigned.json": {
+      "status": "success",
+      "count": 125,
+      "error": null,
+      "elapsed_ms": 5692
+    },
+    "completed-launches.json": {
+      "status": "success",
+      "count": 117,
+      "error": null,
+      "elapsed_ms": 4140
+    }
   }
 }
