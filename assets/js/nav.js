@@ -87,10 +87,8 @@ export function renderSidebar(opts = {}) {
         <p><span class="muted">next sync</span><br>
            <span class="num" data-meta-next-sync>${meta.nextSync ? fmtDateTime(meta.nextSync) : '—'}</span></p>
         <p>
-          <a class="sb-sync-link"
-             href="https://github.com/woojin-ahn-mss/docs/actions/workflows/jira-sync.yml"
-             target="_blank" rel="noopener noreferrer"
-             title="GitHub Actions 에서 'Run workflow' 클릭하면 수동 sync 실행">↻ 수동 sync</a>
+          <button type="button" class="sb-sync-link" data-sync-trigger
+                  title="클릭 한 번으로 sync 트리거 (PAT 필요)">↻ 수동 sync</button>
         </p>
         <div class="sb-theme" role="group" aria-label="테마">
           <button type="button" data-theme-set="dark">Dark</button>
@@ -124,6 +122,7 @@ export function renderSidebar(opts = {}) {
   bindShortcuts();
   bindThemeButtons(sb);
   bindSidebarToggle(app, sb);
+  bindSyncTrigger(sb);
 }
 
 /** 사이드바 접기/펼치기. localStorage 에 상태 저장. 키보드 단축키 '[' */
@@ -168,6 +167,104 @@ function updateToggleIcon(sb, collapsed) {
   const btn = sb.querySelector('[data-sb-toggle]');
   if (btn) btn.textContent = collapsed ? '▶' : '◀';
 }
+
+/* ----- 수동 sync 트리거 ----- */
+
+const PAT_KEY = 'github.pat';
+const SYNC_REPO = 'woojin-ahn-mss/docs';
+const SYNC_WORKFLOW = 'jira-sync.yml';
+
+function bindSyncTrigger(sb) {
+  const btn = sb.querySelector('[data-sync-trigger]');
+  if (!btn) return;
+  btn.addEventListener('click', async () => {
+    let pat = scoped(PAT_KEY).get(null);
+    if (!pat) {
+      pat = window.prompt(
+        'GitHub Personal Access Token 입력\n\n' +
+        '필요 권한: Fine-grained PAT → Repository: woojin-ahn-mss/docs → Permissions → Actions: Read & Write\n\n' +
+        '한 번 입력하면 localStorage 에 저장됩니다 (sd.github.pat).'
+      );
+      if (!pat) return;
+      pat = pat.trim();
+      if (!pat) return;
+      scoped(PAT_KEY).set(pat);
+    }
+    await runSyncFlow(btn, pat);
+  });
+}
+
+async function runSyncFlow(btn, pat) {
+  const original = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = '↻ Sync 트리거...';
+
+  // 1) workflow_dispatch
+  try {
+    const r = await fetch(`https://api.github.com/repos/${SYNC_REPO}/actions/workflows/${SYNC_WORKFLOW}/dispatches`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${pat}`,
+        'Accept': 'application/vnd.github+json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ ref: 'main' }),
+    });
+    if (!r.ok) {
+      if (r.status === 401 || r.status === 403) {
+        scoped(PAT_KEY).remove();
+        alert(`PAT 인증 실패 (HTTP ${r.status}). 다시 입력해주세요.`);
+      } else {
+        alert(`Sync 트리거 실패: HTTP ${r.status}`);
+      }
+      btn.disabled = false;
+      btn.textContent = original;
+      return;
+    }
+  } catch (err) {
+    alert('Sync 트리거 오류: ' + err.message);
+    btn.disabled = false;
+    btn.textContent = original;
+    return;
+  }
+
+  // 2) Polling — 가장 최근 workflow_dispatch run 의 status 추적
+  btn.textContent = '↻ Sync 중...';
+  const dispatchedAt = Date.now();
+  let runId = null;
+  try {
+    while (Date.now() - dispatchedAt < 6 * 60 * 1000) {
+      await sleep(6000);
+      const r = await fetch(`https://api.github.com/repos/${SYNC_REPO}/actions/runs?event=workflow_dispatch&per_page=5`, {
+        headers: {
+          'Authorization': `Bearer ${pat}`,
+          'Accept': 'application/vnd.github+json',
+        },
+      });
+      if (!r.ok) throw new Error(`Run check failed: ${r.status}`);
+      const data = await r.json();
+      // 트리거 직후의 run 찾기 — created_at 이 dispatchedAt 보다 최근인 것
+      const run = (data.workflow_runs || []).find(rn => {
+        const t = new Date(rn.created_at).getTime();
+        return t >= dispatchedAt - 30 * 1000;  // 시계 오차 30초 여유
+      });
+      if (!run) continue;
+      runId = run.id;
+      if (run.status === 'completed') {
+        btn.textContent = run.conclusion === 'success' ? '✓ Sync 완료' : '✗ Sync 실패';
+        setTimeout(() => location.reload(), 1500);
+        return;
+      }
+    }
+    throw new Error('Sync 타임아웃 (6분 초과)');
+  } catch (err) {
+    alert('Sync 상태 확인 오류: ' + err.message);
+    btn.disabled = false;
+    btn.textContent = original;
+  }
+}
+
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
 /**
  * meta.json 로드 후 사이드바 last-sync / next-sync 갱신.
