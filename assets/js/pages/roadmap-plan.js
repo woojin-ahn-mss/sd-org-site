@@ -18,7 +18,7 @@ import { escapeHtml, escapeAttr } from '../escape.js';
 import { attachModal } from '../modal.js';
 import {
   newGoalId, isValidMonth, isValidPeriod, normalizeGoal,
-  fmtPeriod, sortGoals, invertCardGoals, cleanCardGoals,
+  fmtPeriod, sortGoals, invertCardGoals, cleanCardGoals, reassignOrder,
 } from '../goals.js';
 
 const QUARTERS = ['Q1', 'Q2', 'Q3', 'Q4'];
@@ -984,6 +984,7 @@ function exportJson() {
 function renderGoalBoard() {
   const host = document.getElementById('goal-board');
   if (!host) return;
+  // state.goals 가 사용자가 정한 순서. sortGoals 는 order 필드 기준 정렬.
   const sorted = sortGoals(state.goals);
   if (!sorted.length) {
     host.innerHTML = `
@@ -1002,6 +1003,64 @@ function renderGoalBoard() {
     const cardIds = cardsByGoal.get(g.id) || [];
     host.appendChild(goalCardEl(g, cardIds));
   }
+  bindGoalDnd(host);
+}
+
+/** 목표 카드 드래그앤드롭 — 순서 재배열 + state.goals 의 order 필드 갱신 + persist. */
+function bindGoalDnd(host) {
+  let draggedId = null;
+  host.querySelectorAll('.goal-card').forEach(card => {
+    card.draggable = true;
+    card.addEventListener('dragstart', e => {
+      // 액션 버튼 / 카드 리스트 안에서 시작된 드래그는 양보
+      if (e.target.closest('.gc-actions, .goal-card-list, .gcli-unmap, a, button')) {
+        e.preventDefault();
+        return;
+      }
+      draggedId = card.dataset.goalId;
+      card.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
+      e.dataTransfer.setData('text/plain', draggedId);
+    });
+    card.addEventListener('dragend', () => {
+      card.classList.remove('dragging');
+      host.querySelectorAll('.goal-card.drag-over').forEach(c => c.classList.remove('drag-over'));
+      draggedId = null;
+    });
+    card.addEventListener('dragover', e => {
+      if (!draggedId || card.dataset.goalId === draggedId) return;
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+      // 다른 카드의 over 표시 제거
+      host.querySelectorAll('.goal-card.drag-over').forEach(c => {
+        if (c !== card) c.classList.remove('drag-over');
+      });
+      card.classList.add('drag-over');
+    });
+    card.addEventListener('dragleave', e => {
+      if (!card.contains(e.relatedTarget)) card.classList.remove('drag-over');
+    });
+    card.addEventListener('drop', e => {
+      const targetId = card.dataset.goalId;
+      if (!draggedId || targetId === draggedId) return;
+      e.preventDefault();
+      moveGoal(draggedId, targetId);
+    });
+  });
+}
+
+function moveGoal(draggedId, targetId) {
+  const sorted = sortGoals(state.goals);
+  const fromIdx = sorted.findIndex(g => g.id === draggedId);
+  const toIdx = sorted.findIndex(g => g.id === targetId);
+  if (fromIdx < 0 || toIdx < 0 || fromIdx === toIdx) return;
+  const [moved] = sorted.splice(fromIdx, 1);
+  sorted.splice(toIdx, 0, moved);
+  reassignOrder(sorted);
+  // state.goals 의 객체 참조를 update (sortGoals 가 shallow copy 라 원본 객체에 order 만 들어가 있음 — 그대로 OK)
+  persistGoals();
+  toast({ kicker: '순서 변경', msg: `${moved.title}`, kind: 'success' });
+  renderGoalBoard();
 }
 
 function goalCardEl(goal, cardIds) {

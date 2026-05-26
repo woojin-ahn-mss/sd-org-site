@@ -45,6 +45,7 @@ export function normalizeGoal(g) {
     description: g.description || '',
     startMonth: g.startMonth || '',
     endMonth: g.endMonth || '',
+    order: typeof g.order === 'number' ? g.order : null,  // 사용자 D&D 순서
     createdAt: g.createdAt || now,
     updatedAt: g.updatedAt || now,
   };
@@ -132,13 +133,25 @@ export function cleanCardGoals(cardGoals, goals, validCardIds) {
   return { cleaned, removed };
 }
 
-/** 정렬: startMonth asc, endMonth asc, title asc. 결정적 순서. */
+/** 정렬:
+ *  1) order 필드가 있으면 그것 우선 (사용자 D&D 순서)
+ *  2) order 없는 항목은 startMonth asc, endMonth asc, title asc 로 뒤에 붙음.
+ */
 export function sortGoals(goals) {
   return [...goals].sort((a, b) => {
-    if (a.startMonth !== b.startMonth) return a.startMonth.localeCompare(b.startMonth);
-    if (a.endMonth !== b.endMonth) return a.endMonth.localeCompare(b.endMonth);
-    return a.title.localeCompare(b.title, 'ko');
+    const ao = typeof a.order === 'number' ? a.order : Infinity;
+    const bo = typeof b.order === 'number' ? b.order : Infinity;
+    if (ao !== bo) return ao - bo;
+    if (a.startMonth !== b.startMonth) return (a.startMonth || '').localeCompare(b.startMonth || '');
+    if (a.endMonth !== b.endMonth) return (a.endMonth || '').localeCompare(b.endMonth || '');
+    return (a.title || '').localeCompare(b.title || '', 'ko');
   });
+}
+
+/** goals 배열의 현재 순서대로 order 필드를 0..N-1 로 재할당 (mutate). */
+export function reassignOrder(goals) {
+  goals.forEach((g, i) => { g.order = i; });
+  return goals;
 }
 
 /** goalId 별 카드 ID 리스트 invert. */
