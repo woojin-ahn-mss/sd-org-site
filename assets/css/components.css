@@ -581,6 +581,27 @@
 }
 .plan-col-h .ct { color: var(--faint); }
 
+/* 그룹 헤더 (메인주제별) — 분기 컬럼 내부 sub-divider */
+.plan-group-h {
+  display: flex; align-items: baseline; gap: 8px;
+  padding: 10px 0 5px;
+  font-family: var(--font-mono);
+  font-size: 10px; color: var(--faint);
+  letter-spacing: 0.12em; text-transform: uppercase;
+  border-top: 1px solid var(--rule);
+  margin-top: 8px;
+}
+.plan-group-h:first-of-type { border-top: 0; margin-top: 4px; }
+.plan-group-h .plan-group-name { color: var(--dim); }
+.plan-group-h .ct { color: var(--faint); }
+.plan-group-h .plan-group-add {
+  margin-left: auto; background: transparent; border: 0;
+  color: var(--faint); cursor: pointer;
+  font-family: var(--font-mono); font-size: 13px; padding: 0 4px;
+  line-height: 1;
+}
+.plan-group-h .plan-group-add:hover { color: var(--accent); }
+
 .plan-card {
   padding: 10px 0 10px 12px;
   border-left: 2px solid var(--text);

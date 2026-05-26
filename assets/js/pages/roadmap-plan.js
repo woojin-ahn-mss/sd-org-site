@@ -26,12 +26,15 @@ const FILTERS_KEY = 'roadmapPlan.filters';
 const SCHEMA_VERSION = 1;
 const PROJECT_KEY_RE = /^[A-Z][A-Z0-9]{1,11}$/; // Jira project key
 
+const GROUP_KEY = 'roadmapPlan.groupBy';
+
 let state = {
   rootRel: '',
   year: 2026,
   jiraCards: [],
   keywordCards: [],
   filters: { mainSubject: null, priority: null, project: null },
+  groupBy: 'subject',  // 'subject' | 'none'
   cardsStore: null,
 };
 
@@ -40,9 +43,12 @@ export async function renderRoadmapPlan({ rootRel = '' } = {}) {
   state.year = currentYear();
   state.filters = Object.assign({ mainSubject: null, priority: null, project: null },
     scoped(FILTERS_KEY).get({}));
+  const savedGroup = scoped(GROUP_KEY).get(null);
+  if (savedGroup === 'subject' || savedGroup === 'none') state.groupBy = savedGroup;
 
   renderYearSelect();
   bindTopActions();
+  bindGroupToggle();
 
   await loadAll();
   refreshFiltersForValidity();
@@ -128,11 +134,16 @@ function normalizeKeywordCard(c) {
     mainSubject: c.mainSubject || '',
     priority: c.priority || '',
     projectKey: c.projectKey || '',
+    ticketKey: c.ticketKey || '',  // optional: 사용자가 직접 연결한 Jira 키
     notes: c.notes || '',
     createdAt: c.createdAt || new Date().toISOString(),
     updatedAt: c.updatedAt || new Date().toISOString(),
   };
 }
+
+// 메인주제 그룹 표시 순서 (디자인 시스템 5+ 기준)
+const SUBJECT_ORDER = ['01.추천', '02.검색', '03.랭킹', '04.개인화', '05.디스커버리'];
+const SUBJECT_UNCATEGORIZED = '(미분류)';
 
 function newCardId() {
   if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
@@ -164,6 +175,22 @@ function bindTopActions() {
   const exportBtn = document.getElementById('btn-export');
   if (addBtn) addBtn.addEventListener('click', () => openCardModal(null));
   if (exportBtn) exportBtn.addEventListener('click', exportJson);
+}
+
+function bindGroupToggle() {
+  document.querySelectorAll('[data-group-by]').forEach(btn => {
+    const updateActive = () => {
+      btn.classList.toggle('active', btn.dataset.groupBy === state.groupBy);
+    };
+    updateActive();
+    btn.addEventListener('click', () => {
+      state.groupBy = btn.dataset.groupBy;
+      scoped(GROUP_KEY).set(state.groupBy);
+      document.querySelectorAll('[data-group-by]').forEach(b =>
+        b.classList.toggle('active', b.dataset.groupBy === state.groupBy));
+      renderBoard();
+    });
+  });
 }
 
 function renderHeader() {
@@ -294,16 +321,60 @@ function columnEl(colId, label, cards, { pool }) {
     </div>
     ${cards.length === 0 ? '<div class="plan-col-drop">DROP HERE</div>' : ''}
   `;
-  cards.forEach(c => col.appendChild(cardEl(c)));
-  if (pool) {
-    const addBtn = document.createElement('button');
-    addBtn.type = 'button';
-    addBtn.className = 'tlink plan-add-btn';
-    addBtn.textContent = '＋ 키워드 카드';
-    addBtn.addEventListener('click', () => openCardModal(null));
-    col.appendChild(addBtn);
+
+  if (state.groupBy === 'subject') {
+    // 메인주제별 그룹 헤더 + 그룹 내 카드들
+    const groups = groupCardsBySubject(cards);
+    for (const [subject, gcards] of groups) {
+      const gh = document.createElement('div');
+      gh.className = 'plan-group-h';
+      gh.dataset.groupSubject = subject;
+      gh.innerHTML = `
+        <span class="plan-group-name">${escapeHtml(subject)}</span>
+        <span class="ct num">${gcards.length}</span>
+        <button type="button" class="plan-group-add" title="이 그룹에 카드 추가" aria-label="${escapeAttr(subject)} 그룹에 카드 추가">＋</button>
+      `;
+      gh.querySelector('.plan-group-add').addEventListener('click', () => {
+        openCardModal(null, {
+          mainSubject: subject === SUBJECT_UNCATEGORIZED ? '' : subject,
+          quarter: pool ? null : colId,
+        });
+      });
+      col.appendChild(gh);
+      gcards.forEach(c => col.appendChild(cardEl(c)));
+    }
+  } else {
+    cards.forEach(c => col.appendChild(cardEl(c)));
   }
+
+  // 컬럼 하단 + 카드 추가 (분기 자동 채움)
+  const addBtn = document.createElement('button');
+  addBtn.type = 'button';
+  addBtn.className = 'tlink plan-add-btn';
+  addBtn.textContent = '＋ 카드 추가';
+  addBtn.addEventListener('click', () => {
+    openCardModal(null, { quarter: pool ? null : colId });
+  });
+  col.appendChild(addBtn);
   return col;
+}
+
+/** 메인주제별로 카드를 묶음. 디자인 순서(SUBJECT_ORDER) → 그 외 알파벳 → 미분류. */
+function groupCardsBySubject(cards) {
+  const map = new Map();
+  for (const c of cards) {
+    const k = c.mainSubject || SUBJECT_UNCATEGORIZED;
+    if (!map.has(k)) map.set(k, []);
+    map.get(k).push(c);
+  }
+  const orderedKeys = SUBJECT_ORDER.filter(s => map.has(s));
+  const otherKeys = [...map.keys()].filter(s =>
+    !SUBJECT_ORDER.includes(s) && s !== SUBJECT_UNCATEGORIZED
+  ).sort();
+  const result = [];
+  for (const k of [...orderedKeys, ...otherKeys]) result.push([k, map.get(k)]);
+  if (map.has(SUBJECT_UNCATEGORIZED)) result.push([SUBJECT_UNCATEGORIZED, map.get(SUBJECT_UNCATEGORIZED)]);
+  return result;
 }
 
 function cardEl(card) {
@@ -318,6 +389,9 @@ function cardEl(card) {
 
   const meta = [];
   if (card.type === 'jira') {
+    meta.push(jiraKeyHtml(card.ticketKey));
+  } else if (card.ticketKey) {
+    // 사용자가 직접 연결한 Jira 키 (키워드 카드 + 티켓)
     meta.push(jiraKeyHtml(card.ticketKey));
   } else {
     meta.push(`<span class="tag">키워드</span>`);
@@ -453,19 +527,20 @@ function moveCard(cardId, colId) {
 let cardModalEl = null;
 let cardModalCtl = null;
 
-function openCardModal(card) {
+function openCardModal(card, prefill = {}) {
   ensureCardModal();
   const isEdit = !!card;
   cardModalEl.querySelector('[data-modal-kicker]').textContent = isEdit ? 'EDIT' : 'NEW CARD';
-  cardModalEl.querySelector('[data-modal-title]').textContent = isEdit ? '키워드 카드 편집' : '키워드 카드 추가';
+  cardModalEl.querySelector('[data-modal-title]').textContent = isEdit ? '카드 편집' : '카드 추가';
 
   const f = cardModalEl.querySelector('form');
   f.elements.title.value = card?.title || '';
   f.elements.notes.value = card?.notes || '';
-  f.elements.mainSubject.value = card?.mainSubject || '';
+  f.elements.mainSubject.value = card?.mainSubject ?? prefill.mainSubject ?? '';
   f.elements.priority.value = card?.priority || '';
   f.elements.projectKey.value = card?.projectKey || '';
-  f.elements.quarter.value = card?.quarter || '';
+  f.elements.ticketKey.value = card?.ticketKey || '';
+  f.elements.quarter.value = card?.quarter ?? prefill.quarter ?? '';
   f.dataset.editingId = card?.id || '';
 
   cardModalCtl.open();
@@ -524,6 +599,12 @@ function ensureCardModal() {
               <input class="input" id="kw-project" name="projectKey" maxlength="12" placeholder="CBP" pattern="[A-Z][A-Z0-9]{1,11}" title="대문자로 시작 + 영숫자 2~12자" />
             </div>
             <div class="field">
+              <label class="field-label" for="kw-ticket">티켓 키 (선택)</label>
+              <input class="input" id="kw-ticket" name="ticketKey" maxlength="20" placeholder="TM-1234" pattern="[A-Z][A-Z0-9]{1,11}-[0-9]+" title="예: CBP-1234 — 비우면 키워드 전용" />
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
               <label class="field-label" for="kw-quarter">분기</label>
               <select class="select" id="kw-quarter" name="quarter">
                 <option value="">미배치</option>
@@ -533,6 +614,7 @@ function ensureCardModal() {
                 <option value="Q4">Q4</option>
               </select>
             </div>
+            <div class="field"></div>
           </div>
         </div>
         <div class="modal-foot">
@@ -560,12 +642,22 @@ function saveCardFromForm(form) {
     toast({ kicker: '형식 오류', msg: '프로젝트 키는 대문자 영숫자 2~12자여야 합니다.', kind: 'alert' });
     return;
   }
+  const ticketKeyRaw = form.elements.ticketKey.value.trim().toUpperCase();
+  if (ticketKeyRaw && !/^[A-Z][A-Z0-9]{1,11}-[0-9]+$/.test(ticketKeyRaw)) {
+    toast({ kicker: '형식 오류', msg: '티켓 키는 PROJ-숫자 형식이어야 합니다 (예: TM-1234).', kind: 'alert' });
+    return;
+  }
+  // ticketKey 가 있으면 projectKey 자동 채움 (없을 때만)
+  let projectKey = projectKeyRaw;
+  if (ticketKeyRaw && !projectKey) projectKey = ticketKeyRaw.split('-', 1)[0];
+
   const data = {
     title: form.elements.title.value.trim(),
     notes: form.elements.notes.value.trim(),
     mainSubject: form.elements.mainSubject.value,
     priority: form.elements.priority.value,
-    projectKey: projectKeyRaw,
+    projectKey,
+    ticketKey: ticketKeyRaw,
     quarter: form.elements.quarter.value || null,
   };
   if (!data.title) {
