@@ -16,10 +16,57 @@
   position: sticky; top: 0; height: 100vh;
   display: flex; flex-direction: column;
   padding: 22px 18px 18px;
+  transition: width 160ms ease, padding 160ms ease;
 }
 .sb-brand {
-  display: flex; align-items: baseline; gap: 8px;
+  display: flex; align-items: center; gap: 8px;
   margin-bottom: 4px;
+}
+.sb-toggle {
+  margin-left: auto;
+  border: 0; background: transparent;
+  color: var(--faint); cursor: pointer;
+  font-size: 10px; padding: 2px 4px;
+  line-height: 1;
+  transition: color 80ms;
+}
+.sb-toggle:hover { color: var(--text); }
+
+/* ---------- Sidebar 접힘 상태 ---------- */
+.app[data-sidebar="collapsed"] .sb {
+  width: 52px;
+  padding: 22px 6px 18px;
+}
+.app[data-sidebar="collapsed"] .sb-brand {
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.app[data-sidebar="collapsed"] .sb-brand-name,
+.app[data-sidebar="collapsed"] .sb-org,
+.app[data-sidebar="collapsed"] .sb-section,
+.app[data-sidebar="collapsed"] .sb-link .grow,
+.app[data-sidebar="collapsed"] .sb-foot p,
+.app[data-sidebar="collapsed"] .sb-foot .sb-theme {
+  display: none;
+}
+.app[data-sidebar="collapsed"] .sb-toggle {
+  margin-left: 0;
+}
+.app[data-sidebar="collapsed"] .sb-link {
+  justify-content: center;
+  padding: 8px 0;
+}
+.app[data-sidebar="collapsed"] .sb-link.active::before {
+  display: none;
+}
+.app[data-sidebar="collapsed"] .sb-link .num,
+.app[data-sidebar="collapsed"] .sb-link .badge {
+  margin-left: 0;
+  font-size: 11px;
+}
+.app[data-sidebar="collapsed"] .sb-foot {
+  border-top: 0; padding-top: 0;
 }
 .sb-mark {
   width: 8px; height: 8px; background: var(--accent);

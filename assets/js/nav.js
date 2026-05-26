@@ -7,6 +7,9 @@
 
 import { fmtDateTime } from './format.js';
 import { bindThemeButtons } from './theme.js';
+import { scoped } from './storage.js';
+
+const SIDEBAR_STATE_KEY = 'sidebar.collapsed';
 
 /** 페이지 정의 (디자인 결정: 좌측 사이드바, 카운트 배지) */
 export const PAGES = [
@@ -71,6 +74,7 @@ export function renderSidebar(opts = {}) {
       <div class="sb-brand">
         <span class="sb-mark"></span>
         <span class="sb-brand-name">S&amp;D Console</span>
+        <button type="button" class="sb-toggle" aria-label="사이드바 접기/펼치기" data-sb-toggle title="사이드바 접기/펼치기 ([)">◀</button>
       </div>
       <p class="sb-org">MSS Search &amp; Discovery</p>
 
@@ -113,6 +117,50 @@ export function renderSidebar(opts = {}) {
   // 키보드 단축키 1~8 (accesskey 도 있지만 모든 브라우저가 같지 않음)
   bindShortcuts();
   bindThemeButtons(sb);
+  bindSidebarToggle(app, sb);
+}
+
+/** 사이드바 접기/펼치기. localStorage 에 상태 저장. 키보드 단축키 '[' */
+function bindSidebarToggle(app, sb) {
+  const store = scoped(SIDEBAR_STATE_KEY);
+  // 초기 상태 적용
+  if (store.get(false)) {
+    app.dataset.sidebar = 'collapsed';
+    updateToggleIcon(sb, true);
+  }
+  const btn = sb.querySelector('[data-sb-toggle]');
+  if (btn) {
+    btn.addEventListener('click', () => toggleSidebar(app, sb));
+  }
+  // '[' 키로 토글 — 입력 중에는 무시
+  if (!sidebarShortcutBound) {
+    sidebarShortcutBound = true;
+    document.addEventListener('keydown', e => {
+      if (e.key !== '[' && e.key !== ']') return;
+      const t = e.target;
+      if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      e.preventDefault();
+      const currentApp = document.querySelector('.app');
+      const currentSb = document.querySelector('.sb');
+      if (currentApp && currentSb) toggleSidebar(currentApp, currentSb);
+    });
+  }
+}
+
+let sidebarShortcutBound = false;
+
+function toggleSidebar(app, sb) {
+  const collapsed = app.dataset.sidebar !== 'collapsed';
+  if (collapsed) app.dataset.sidebar = 'collapsed';
+  else delete app.dataset.sidebar;
+  scoped(SIDEBAR_STATE_KEY).set(collapsed);
+  updateToggleIcon(sb, collapsed);
+}
+
+function updateToggleIcon(sb, collapsed) {
+  const btn = sb.querySelector('[data-sb-toggle]');
+  if (btn) btn.textContent = collapsed ? '▶' : '◀';
 }
 
 /**
