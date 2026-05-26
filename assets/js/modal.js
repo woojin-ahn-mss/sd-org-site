@@ -38,7 +38,8 @@ export function attachModal(backdrop, opts = {}) {
   };
 
   backdrop.addEventListener('click', e => {
-    if (e.target.matches('[data-modal-close]') || e.target === backdrop) close();
+    // closest() — 버튼 내부 텍스트/아이콘 클릭도 처리
+    if (e.target === backdrop || (e.target.closest && e.target.closest('[data-modal-close]'))) close();
   });
   document.addEventListener('keydown', e => {
     if (backdrop.hidden) return;

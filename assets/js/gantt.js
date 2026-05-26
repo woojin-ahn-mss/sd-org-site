@@ -32,7 +32,8 @@ function subjectClass(subject) {
 
 /** 컬럼 정의 (PRD 4.4) */
 export const COLUMNS = [
-  { id: 'key',       label: 'KEY',       width: 80,  default: true,  required: true },
+  { id: 'key',       label: 'KEY',       width: 92,  default: true,  required: true },
+  { id: 'summary',   label: 'TITLE',     width: 260, default: true },
   { id: 'priority',  label: 'PRI',       width: 36,  default: true },
   { id: 'status',    label: 'STATUS',    width: 110, default: true },
   { id: 'due',       label: 'DUE',       width: 86,  default: true },
@@ -276,6 +277,10 @@ function renderMetaCell(c, item) {
     case 'key': {
       const url = jiraUrl(item.key) || '#';
       return `<a class="key" href="${url}" target="_blank" rel="noopener noreferrer" data-jira-key="${escapeAttr(item.key)}">${escapeHtml(item.key || '')}</a>`;
+    }
+    case 'summary': {
+      const s = item.summary || '—';
+      return `<span class="g-title" title="${escapeAttr(s)}" style="font-size:12px;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:block;width:100%">${escapeHtml(s)}</span>`;
     }
     case 'priority':
       return `<span class="pri pri-${(item.priority || '').toLowerCase() || 'p3'}">${escapeHtml(item.priority || '—')}</span>`;

@@ -47,6 +47,13 @@ export async function renderRoadmap({ rootRel = '' }) {
   if (!state.cols || !state.cols.length) state.cols = DEFAULT_STATE.cols;
   if (!state.filters) state.filters = {};
 
+  // 마이그레이션: 새로 추가된 default 컬럼은 기존 saved state 에 없어도 자동 켜기
+  const colsSet = new Set(state.cols);
+  for (const c of COLUMNS) {
+    if (c.default && !colsSet.has(c.id)) colsSet.add(c.id);
+  }
+  state.cols = [...colsSet];
+
   // --- 컬럼 토글 popover (이벤트 1회 부착) ---
   bindColsPopover(state, () => { persist(state); rerender(); });
 
@@ -207,6 +214,9 @@ function bindColsPopover(state, onChange) {
   if (!pop) return;
   // data-close-cols 를 표준 data-modal-close 로 보강 (attachModal 이 인식)
   pop.querySelectorAll('[data-close-cols]').forEach(b => b.setAttribute('data-modal-close', ''));
+
+  // 초기 렌더 — 사용자가 클릭하기 전부터 body 채워둠 (스크린샷 비어보이는 케이스 방지)
+  renderColsBody(state, onChange);
 
   const modal = attachModal(pop);
 
