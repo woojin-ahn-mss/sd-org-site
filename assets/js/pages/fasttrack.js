@@ -14,6 +14,7 @@ import { fmtDate, daysUntil } from '../format.js';
 import { STATUS_GROUPS, statusGroup } from '../charts.js';
 import { scoped } from '../storage.js';
 import { escapeHtml, escapeAttr } from '../escape.js';
+import { openDrilldown } from '../drilldown.js';
 
 const FILTERS_KEY = 'fasttrack.filters';
 const PERIOD_DAYS = { '1m': 30, '3m': 90, 'all': Infinity };
@@ -306,9 +307,11 @@ function renderWeeklyChart() {
     const hDn = (d.done / maxVal) * innerH;
     bars += `
       <rect x="${xIn.toFixed(1)}" y="${(padT + innerH - hIn).toFixed(1)}" width="${barW.toFixed(1)}" height="${hIn.toFixed(1)}"
-            fill="${colorIntake}" data-tip="인입 ${d.intake}건 · ${d.label} 주차" />
+            fill="${colorIntake}" class="wc-bar" data-kind="intake" data-week-idx="${i}"
+            data-tip="인입 ${d.intake}건 · ${d.label} 주차 (클릭: 티켓 보기)" tabindex="0" role="button" aria-label="${d.label} 주차 인입 ${d.intake}건" />
       <rect x="${xDn.toFixed(1)}" y="${(padT + innerH - hDn).toFixed(1)}" width="${barW.toFixed(1)}" height="${hDn.toFixed(1)}"
-            fill="${colorDone}" opacity="0.7" data-tip="완료 ${d.done}건 · ${d.label} 주차" />
+            fill="${colorDone}" opacity="0.7" class="wc-bar" data-kind="done" data-week-idx="${i}"
+            data-tip="완료 ${d.done}건 · ${d.label} 주차 (클릭: 티켓 보기)" tabindex="0" role="button" aria-label="${d.label} 주차 완료 ${d.done}건" />
       ${d.intake > 0 ? `<text x="${xIn + barW / 2}" y="${(padT + innerH - hIn - 3).toFixed(1)}" class="wc-val">${d.intake}</text>` : ''}
       ${d.done > 0 ? `<text x="${xDn + barW / 2}" y="${(padT + innerH - hDn - 3).toFixed(1)}" class="wc-val">${d.done}</text>` : ''}
     `;
@@ -330,6 +333,7 @@ function renderWeeklyChart() {
     <div class="wc-legend">
       <span class="wc-key"><span class="wc-sw" style="background:${colorIntake}"></span>인입 (ETR created)</span>
       <span class="wc-key"><span class="wc-sw" style="background:${colorDone};opacity:0.7"></span>완료 (FT resolutionDate)</span>
+      <span class="wc-key muted dim-mono" style="margin-left:auto">막대 클릭 → 해당 주 티켓 보기</span>
     </div>
     <svg class="wc-svg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="주별 인입/완료 추이">
       ${yticks}
@@ -337,6 +341,34 @@ function renderWeeklyChart() {
       ${xlabels}
     </svg>
   `;
+
+  // 막대 클릭 / Enter / Space → 해당 주의 티켓 모달
+  host.querySelectorAll('.wc-bar').forEach(rect => {
+    const open = () => openWeekDrilldown(data, +rect.dataset.weekIdx, rect.dataset.kind);
+    rect.addEventListener('click', open);
+    rect.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
+    });
+  });
+}
+
+function openWeekDrilldown(data, weekIdx, kind) {
+  const bucket = data[weekIdx];
+  if (!bucket) return;
+  const source = kind === 'intake' ? state.items : state.ftItems;
+  const dateField = kind === 'intake' ? 'created' : 'resolutionDate';
+  const tickets = source.filter(it => {
+    if (kind === 'done' && it.statusCategory !== 'done') return false;
+    const v = it[dateField] || (kind === 'done' && it.updated);
+    if (!v) return false;
+    const t = new Date(v).getTime();
+    return !isNaN(t) && t >= bucket.start && t < bucket.end;
+  });
+  const kicker = kind === 'intake' ? 'ETR 인입' : 'FT 완료';
+  openDrilldown(tickets, {
+    kicker,
+    title: `${bucket.label} 주차 · ${kicker} ${tickets.length}건`,
+  });
 }
 
 function renderDwellGroup(table, rows) {

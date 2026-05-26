@@ -509,6 +509,9 @@
   font-family: var(--font-mono); font-size: 9.5px; fill: var(--dim);
   text-anchor: middle;
 }
+.wc-bar { cursor: pointer; transition: opacity 80ms; }
+.wc-bar:hover { opacity: 0.85; }
+.wc-bar:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
 
 /* =========================================================
    Bar / proportional bars
