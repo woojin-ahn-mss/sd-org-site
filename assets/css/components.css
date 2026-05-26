@@ -456,7 +456,7 @@
 .gantt-meta {
   flex: 0 0 auto;
   background: var(--bg);
-  border-right: 1px solid var(--rule);
+  border-right: 1px solid var(--rule); /* 메타/시간 단일 경계 — 시간 패널 측은 첫 셀 좌측 보더 제거 */
   position: relative;
   z-index: 2;
 }
@@ -465,23 +465,23 @@
   flex: 1 1 0;
   min-width: 0;
   overflow-x: auto;
+  scrollbar-gutter: stable; /* 스크롤바로 인한 높이 변동 방지 */
 }
 
-/* ----- 공통 행 ----- */
+/* ----- 공통 행 (양쪽 패널 동일 높이 강제) ----- */
 .gm-head, .gm-row, .gt-head, .gt-row {
   display: grid;
-  min-height: 38px;
+  height: 38px;        /* min 대신 fixed 로 양쪽 정확히 매칭 */
   background: var(--bg);
 }
 
-/* ----- 헤더 (양쪽 패널 동일 스타일) ----- */
+/* ----- 헤더 ----- */
 .gm-head, .gt-head {
-  position: sticky; top: 0; z-index: 4;
   border-bottom: 1px solid var(--rule);
 }
 .gm-head .gh-meta,
 .gt-head .gh-time {
-  padding: 9px 10px;
+  padding: 0 8px;       /* 데이터 셀과 동일한 가로 padding 으로 텍스트 시작점 정렬 */
   font-family: var(--font-mono);
   font-size: 10.5px; color: var(--faint);
   letter-spacing: 0.1em; text-transform: uppercase;
@@ -491,6 +491,7 @@
 .gm-head .gh-meta { border-right: 1px solid var(--rule); }
 .gm-head .gh-meta:last-child { border-right: 0; }
 .gt-head .gh-time { justify-content: center; border-left: 1px solid var(--rule); }
+.gt-head .gh-time:first-child { border-left: 0; } /* 메타/시간 경계 중복 보더 제거 */
 .gt-head .gh-time.current { color: var(--accent); }
 
 /* ----- 데이터 행 ----- */
@@ -500,7 +501,7 @@
 }
 .gm-row > div {
   display: flex; align-items: center;
-  padding: 0 6px;
+  padding: 0 8px;       /* 헤더와 동일 */
   min-width: 0; overflow: hidden;
 }
 .gm-row:hover { background: var(--bg-elev); }
@@ -508,26 +509,24 @@
 .gt-row {
   border-bottom: 1px solid var(--rule);
 }
+.gt-row > .g-cell:first-child { border-left: 0; } /* 메타/시간 경계 중복 보더 제거 */
 .gt-row:hover { background: var(--bg-elev); }
 
-/* ----- 그룹 헤더 ----- */
-.gm-group {
-  min-height: 32px;
+/* ----- 그룹 헤더 (양쪽 정확히 같은 32px) ----- */
+.gm-group, .gt-group {
+  height: 32px;
   border-bottom: 1px solid var(--rule-strong);
   background: var(--bg);
+}
+.gm-group {
   cursor: pointer;
-  padding: 8px 0;
-  display: flex; align-items: baseline; gap: 8px;
+  padding: 0 8px;
+  display: flex; align-items: center; gap: 8px;
   font-family: var(--font-mono);
   font-size: 11px; color: var(--dim);
   letter-spacing: 0.08em; text-transform: uppercase;
 }
 .gm-group .ct { color: var(--faint); margin-left: 8px; font-size: 10.5px; }
-.gt-group {
-  min-height: 32px;
-  border-bottom: 1px solid var(--rule-strong);
-  background: var(--bg);
-}
 
 .g-cell { border-left: 1px solid var(--faintest); position: relative; padding: 0 !important; }
 .g-cell.current { background: var(--accent-soft) !important; }
@@ -973,7 +972,8 @@ hr.rule { border: 0; border-top: 1px solid var(--rule); margin: 18px 0; }
   appearance: none;
   background-image: linear-gradient(45deg, transparent 50%, var(--dim) 50%),
                     linear-gradient(135deg, var(--dim) 50%, transparent 50%);
-  background-position: calc(100% - 14px) 14px, calc(100% - 9px) 14px;
+  /* short select 에서도 화살표가 항상 세로 중앙에 오도록 — three-value syntax */
+  background-position: right 14px center, right 9px center;
   background-size: 5px 5px, 5px 5px;
   background-repeat: no-repeat;
   padding-right: 30px;
