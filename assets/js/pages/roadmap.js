@@ -7,6 +7,7 @@ import { loadJson } from '../fetch-data.js';
 import { showError, showLoading } from '../states.js';
 import { renderGantt, COLUMNS } from '../gantt.js';
 import { scoped } from '../storage.js';
+import { attachModal } from '../modal.js';
 
 const store = scoped('roadmap');
 
@@ -46,8 +47,8 @@ export async function renderRoadmap({ rootRel = '' }) {
   if (!state.cols || !state.cols.length) state.cols = DEFAULT_STATE.cols;
   if (!state.filters) state.filters = {};
 
-  // --- 컬럼 토글 popover ---
-  buildColsPopover(state, () => { persist(state); rerender(); });
+  // --- 컬럼 토글 popover (이벤트 1회 부착) ---
+  bindColsPopover(state, () => { persist(state); rerender(); });
 
   // --- 필터 UI ---
   buildFilters(items, state, () => { persist(state); rerender(); });
@@ -166,9 +167,12 @@ function applyFilters(items, filters) {
   });
 }
 
-/* ----------------- 컬럼 popover ----------------- */
+/* ----------------- 컬럼 popover -----------------
+ * 이벤트 부착은 1회만, 컬럼 리스트(body)만 매번 다시 그림.
+ * 모달 닫기 / Esc / focus trap / 백드롭 클릭 모두 attachModal 위임.
+ */
 
-function buildColsPopover(state, onChange) {
+function renderColsBody(state, onChange) {
   const body = document.getElementById('cols-body');
   body.innerHTML = '';
   for (const c of COLUMNS) {
@@ -196,15 +200,27 @@ function buildColsPopover(state, onChange) {
     row.appendChild(txt);
     body.appendChild(row);
   }
+}
 
+function bindColsPopover(state, onChange) {
   const pop = document.getElementById('cols-pop');
-  document.querySelector('[data-cols]')?.addEventListener('click', () => { pop.hidden = false; });
-  document.querySelectorAll('[data-close-cols]').forEach(b => b.addEventListener('click', () => { pop.hidden = true; }));
-  pop.addEventListener('click', e => { if (e.target === pop) pop.hidden = true; });
+  if (!pop) return;
+  // data-close-cols 를 표준 data-modal-close 로 보강 (attachModal 이 인식)
+  pop.querySelectorAll('[data-close-cols]').forEach(b => b.setAttribute('data-modal-close', ''));
+
+  const modal = attachModal(pop);
+
+  // 트리거: 컬럼 버튼
+  document.querySelector('[data-cols]')?.addEventListener('click', () => {
+    renderColsBody(state, onChange);   // 매번 최신 state 로 다시 그림
+    modal.open();
+  });
+
+  // 기본값
   document.querySelector('[data-cols-default]')?.addEventListener('click', () => {
     state.cols = COLUMNS.filter(c => c.default).map(c => c.id);
     onChange();
-    buildColsPopover(state, onChange);
+    renderColsBody(state, onChange);
   });
 }
 
