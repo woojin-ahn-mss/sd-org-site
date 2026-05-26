@@ -195,14 +195,19 @@ function persistCards() {
 }
 
 function initiativeToCard(it) {
-  if (!it || !it.yearQuarter) return null;
-  const m = /^(\d{4})-(Q[1-4])$/.exec(it.yearQuarter);
-  if (!m) return null;
+  if (!it || !it.key) return null;
+  // yearQuarter 가 있으면 그 year/quarter, 없으면 현재 연도 미배치 pool 로
+  let year = null, quarter = null;
+  if (it.yearQuarter) {
+    const m = /^(\d{4})-(Q[1-4])$/.exec(it.yearQuarter);
+    if (m) { year = Number(m[1]); quarter = m[2]; }
+  }
+  if (year == null) year = currentYear();
   return {
     id: 'jira-' + it.key,
     type: 'jira',
-    year: Number(m[1]),
-    quarter: m[2],
+    year,
+    quarter,                // null = 미배치 (Jira 데이터에 yearQuarter 없음)
     ticketKey: it.key,
     title: it.summary || '',
     mainSubject: it.mainSubject || '',

@@ -350,7 +350,14 @@ function dateToQuarterKey(dateStr) {
   return `${y}-Q${q}`;
 }
 
-/** startDate ~ dueDate 범위의 모든 분기 key Set. dueDate 만 있으면 단일. 둘 다 없으면 yearQuarter fallback. */
+/** 막대를 표시할 분기 key Set.
+ *  우선순위:
+ *   1) startDate~dueDate 범위가 걸친 모든 분기 (둘 다 있을 때)
+ *   2) endQ (dueDate 만 있을 때)
+ *   3) startQ (startDate 만 있을 때)
+ *   4) item.yearQuarters (복수 분기 — Jira 멀티 셀렉트, 예: 2025-Q4 + 2026-Q1)
+ *   5) item.yearQuarter (단일 — 하위호환)
+ */
 function quartersForItem(item) {
   const startQ = dateToQuarterKey(item.startDate);
   const endQ = dateToQuarterKey(item.dueDate);
@@ -358,7 +365,6 @@ function quartersForItem(item) {
   if (startQ && endQ) {
     let [sy, sq] = startQ.split('-Q').map(Number);
     const [ey, eq] = endQ.split('-Q').map(Number);
-    // start > end 면 정상화 (swap)
     if (sy > ey || (sy === ey && sq > eq)) [sy, sq] = [ey, eq];
     let cy = sy, cq = sq;
     let safety = 0;
@@ -370,6 +376,8 @@ function quartersForItem(item) {
     set.add(endQ);
   } else if (startQ) {
     set.add(startQ);
+  } else if (Array.isArray(item.yearQuarters) && item.yearQuarters.length) {
+    for (const yq of item.yearQuarters) set.add(yq);
   } else if (item.yearQuarter) {
     set.add(item.yearQuarter);
   }
