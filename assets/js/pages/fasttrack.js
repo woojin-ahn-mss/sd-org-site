@@ -1,8 +1,10 @@
 /* =========================================================
-   pages/fasttrack.js — 패스트트랙 (PRD 4.7)
-   ETR + 'one' 레이블 — 임원 요청 추적
+   pages/fasttrack.js — 패스트트랙 (PRD 4.7 + 리뉴얼 2026-05-26)
+   ETR + 'one' 레이블 = 인입 / status '검토완료-우선착수' = 트리아지
    - 1행 = 1 ETR, 행 클릭으로 연결 티켓 펼침
-   - 상단 4 카드 + 필터 (상태 / 요청자 / 기간 1m·3m·all)
+   - 상단 5 카드: 총인입 / 트리아지 / 일반과제 / 지난주 인입 / 금주 인입(+트리아지N)
+   - 진행 상태 · 평균 경과 시간 표 (ETR | FT 두 컬럼)
+   - 필터, 메인 테이블, 펼침 영역 유지
    ========================================================= */
 
 import { loadJson } from '../fetch-data.js';
@@ -16,9 +18,21 @@ import { escapeHtml, escapeAttr } from '../escape.js';
 const FILTERS_KEY = 'fasttrack.filters';
 const PERIOD_DAYS = { '1m': 30, '3m': 90, 'all': Infinity };
 
+// 상태 분류 (사용자 정의)
+const STATUS_TRIAGE = '검토완료-우선착수';   // 패스트트랙 트리아지
+const STATUS_NORMAL = '검토완료-백로그';     // 일반 과제 (패스트트랙 진행 X)
+const STATUS_DROPPED = new Set(['반려', '검토완료-미진행', '철회']);
+
+// ETR 진행 단계 순서 (표 정렬용). 알 수 없는 상태는 뒤에 알파벳순.
+const ETR_STATUS_ORDER = [
+  '발의', '매니저 승인 대기', 'PMO 검토 중', 'Tech 검토 대기 중', 'Tech 검토 중',
+  STATUS_TRIAGE, STATUS_NORMAL, '검토완료-미진행', '반려', '완료',
+];
+
 let state = {
   rootRel: '',
-  items: [],
+  items: [],     // ETR 인입 (etr-fasttrack.json)
+  ftItems: [],   // FT 프로젝트 티켓 (ft-tickets.json) — 없으면 빈 배열
   filters: { status: null, reporter: null, period: 'all' },
   expanded: new Set(),
 };
@@ -42,8 +56,17 @@ export async function renderFasttrack({ rootRel = '' } = {}) {
     return;
   }
 
+  // FT 데이터는 옵셔널 — 없어도 (sync 전) 페이지 동작
+  try {
+    const ft = await loadJson(`${rootRel}data/jira/ft-tickets.json`);
+    state.ftItems = ft.items || [];
+  } catch (_) {
+    state.ftItems = [];
+  }
+
   renderStats();
   renderHeader();
+  renderDwellTables();
   renderFilters();
   renderTable();
 }
@@ -56,34 +79,60 @@ function normalizeItem(raw) {
   for (const l of linked) {
     if (l && (l.statusCategory === 'done' || statusGroup(l) === 'done')) done++;
   }
-  // sync.py 가 progress 를 넣어줬으면 그것을 신뢰 (소스가 동일하므로 일치할 것)
   const progress = raw.progress && typeof raw.progress.done === 'number'
     ? { done: raw.progress.done, total: raw.progress.total }
     : { done, total };
   return { ...raw, linkedTickets: linked, progress };
 }
 
-/* ----- 상단 4 카드 ----------------------------------------- */
+/* ----- 상단 5 카드 ----------------------------------------- */
 
 function renderStats() {
   const all = state.items;
-  const active = all.filter(it => !isItemDone(it));
-  const done = all.filter(it => isItemDone(it));
-  const reporters = new Set(all.map(it => reporterName(it)).filter(Boolean));
+  const triage = all.filter(it => it.status === STATUS_TRIAGE);
+  const normal = all.filter(it => it.status === STATUS_NORMAL);
+  const { thisWeek, lastWeek } = weekBuckets(all);
+  const thisWeekTriage = thisWeek.filter(it => it.status === STATUS_TRIAGE);
 
-  setStat('total', all.length, '전체');
-  setStat('active', active.length, '진행 중');
-  setStat('done', done.length, '완료');
-  setStat('reporters', reporters.size, '요청자');
+  setStat('total', all.length, 'ETR + one');
+  setStat('triage', triage.length, '우선착수');
+  setStat('normal', normal.length, '검토완료-백로그');
+  setStat('lastweek', lastWeek.length, 'created 기준');
+  setStat('thisweek', thisWeek.length, `트리아지 ${thisWeekTriage.length}건`);
 }
 
-function isItemDone(it) {
-  // 1) ETR 자체가 done 상태
-  if (statusGroup(it) === 'done') return true;
-  // 2) 연결 티켓 모두 완료
-  const p = it.progress || { done: 0, total: 0 };
-  if (p.total > 0 && p.done === p.total) return true;
-  return false;
+/** KST 월~일 기준으로 created 를 금주/지난주 버킷에 배정.
+ *  @returns {{thisWeek: Item[], lastWeek: Item[]}}
+ */
+export function weekBuckets(items, now = new Date()) {
+  const { thisStart, thisEnd, lastStart, lastEnd } = kstWeekRange(now);
+  const thisWeek = [];
+  const lastWeek = [];
+  for (const it of items) {
+    if (!it.created) continue;
+    const c = new Date(it.created);
+    if (isNaN(c)) continue;
+    const ms = c.getTime();
+    if (ms >= thisStart && ms < thisEnd) thisWeek.push(it);
+    else if (ms >= lastStart && ms < lastEnd) lastWeek.push(it);
+  }
+  return { thisWeek, lastWeek };
+}
+
+/** KST 기준 이번 주 (월 00:00) 시작 / 끝 + 지난 주 시작 / 끝 — ms epoch. */
+export function kstWeekRange(now) {
+  // KST = UTC+9
+  const kstNow = new Date(now.getTime() + 9 * 3600 * 1000);
+  // KST 기준 요일: 일=0 ~ 토=6 → 월요일을 주 시작으로
+  const dow = kstNow.getUTCDay();            // 0=일, 1=월, ..., 6=토
+  const daysFromMon = (dow + 6) % 7;          // 월=0, 화=1, ..., 일=6
+  // 이번주 월요일 00:00 KST = 09:00 UTC 전날
+  const thisMonKst = new Date(Date.UTC(kstNow.getUTCFullYear(), kstNow.getUTCMonth(), kstNow.getUTCDate() - daysFromMon, 0, 0, 0));
+  const thisStart = thisMonKst.getTime() - 9 * 3600 * 1000;     // → UTC epoch
+  const thisEnd = thisStart + 7 * 86400 * 1000;
+  const lastStart = thisStart - 7 * 86400 * 1000;
+  const lastEnd = thisStart;
+  return { thisStart, thisEnd, lastStart, lastEnd };
 }
 
 function setStat(id, val, foot) {
@@ -107,11 +156,93 @@ function renderHeader() {
     lede.innerHTML = '데이터 동기화를 기다리는 중. 사이드바 푸터의 last sync 확인.';
     return;
   }
-  const active = state.items.filter(it => !isItemDone(it)).length;
+  const triage = state.items.filter(it => it.status === STATUS_TRIAGE).length;
+  const ft = state.ftItems.length;
   lede.innerHTML =
-    `임원이 직접 의뢰한 ETR + <span class="num">one</span> 레이블 요청 ` +
-    `<strong class="num">${total}</strong>건. ` +
-    `진행 중 <strong class="num">${active}</strong>건, 행을 누르면 연결된 Jira 티켓이 펼쳐집니다.`;
+    `ETR + <span class="num">one</span> 레이블 ` +
+    `<strong class="num">${total}</strong>건 (인입). ` +
+    `트리아지 <strong class="num">${triage}</strong>건, ` +
+    `FT 티켓 <strong class="num">${ft}</strong>건. ` +
+    `행 클릭 시 연결 티켓 펼침.`;
+}
+
+/* ----- 진행 상태 · 평균 경과 시간 표 -------------------------- */
+
+function renderDwellTables() {
+  const etrTable = document.getElementById('dwell-etr');
+  const ftTable = document.getElementById('dwell-ft');
+  if (etrTable) renderDwellGroup(etrTable, dwellStats(state.items, ETR_STATUS_ORDER));
+  if (ftTable)  renderDwellGroup(ftTable,  dwellStats(state.ftItems));
+}
+
+/**
+ * 상태별 (건수, 평균 경과 일수) 집계.
+ * 경과 일수 = (now - lastStatusChangedAt) / day. lastStatusChangedAt 없으면 updated, 그것도 없으면 created.
+ * 완료/반려/철회 상태는 별로 의미 없지만 일단 포함 (현황 파악용).
+ *
+ * @returns {{status: string, count: number, avgDays: number|null}[]}
+ */
+export function dwellStats(items, order = [], now = Date.now()) {
+  const map = new Map();
+  for (const it of items) {
+    const s = it.status || '(없음)';
+    if (!map.has(s)) map.set(s, { count: 0, sum: 0, sumCount: 0 });
+    const b = map.get(s);
+    b.count++;
+    const ts = pickElapsedAnchor(it);
+    if (ts != null) {
+      b.sum += Math.max(0, (now - ts) / 86400000);
+      b.sumCount++;
+    }
+  }
+  const arr = [];
+  for (const [status, b] of map.entries()) {
+    arr.push({
+      status,
+      count: b.count,
+      avgDays: b.sumCount > 0 ? b.sum / b.sumCount : null,
+    });
+  }
+  arr.sort((a, b) => {
+    const ia = order.indexOf(a.status);
+    const ib = order.indexOf(b.status);
+    if (ia >= 0 && ib >= 0) return ia - ib;
+    if (ia >= 0) return -1;
+    if (ib >= 0) return 1;
+    return a.status.localeCompare(b.status, 'ko');
+  });
+  return arr;
+}
+
+/** 경과 일수 계산용 기준 시점 (epoch ms or null). */
+function pickElapsedAnchor(it) {
+  const candidates = [it.lastStatusChangedAt, it.updated, it.created];
+  for (const c of candidates) {
+    if (!c) continue;
+    const d = new Date(c);
+    if (!isNaN(d)) return d.getTime();
+  }
+  return null;
+}
+
+function renderDwellGroup(table, rows) {
+  const tbody = table.querySelector('tbody');
+  if (!tbody) return;
+  if (!rows.length) {
+    tbody.innerHTML = '<tr><td colspan="3" class="empty">데이터 동기화 대기 중.</td></tr>';
+    return;
+  }
+  tbody.innerHTML = rows.map(r => {
+    const avg = r.avgDays == null ? '—' : r.avgDays.toFixed(1);
+    const longCls = (r.avgDays != null && r.avgDays >= 7) ? 'long' : '';
+    return `
+      <tr>
+        <td>${escapeHtml(r.status)}</td>
+        <td class="num">${r.count}</td>
+        <td class="num ${longCls}">${avg}</td>
+      </tr>
+    `;
+  }).join('');
 }
 
 /* ----- 필터 ------------------------------------------------ */
@@ -120,7 +251,6 @@ function renderFilters() {
   const host = document.getElementById('sec-filters');
   const section = document.getElementById('filter-section');
   if (!host) return;
-  // 리뷰 Suggestion #9 — 데이터 없으면 섹션 자체 숨김 (빈 헤더 방지)
   if (section) section.hidden = state.items.length === 0;
   if (!state.items.length) { host.innerHTML = ''; return; }
 
@@ -216,7 +346,6 @@ function rowHtml(it) {
   const doneAll = p.total > 0 && p.done === p.total;
   const doneCls = doneAll ? 'done' : '';
   const dueClass = (() => {
-    // 리뷰 Important #4 — 이미 완료된 ETR 은 과거 마감이라도 alert 톤 안 함
     if (isItemDone(it)) return 'date num';
     const d = daysUntil(it.duedate);
     return d !== null && d < 0 ? 'date num alert-color' : 'date num';
@@ -247,7 +376,6 @@ function rowHtml(it) {
   `;
 }
 
-/** Jira key (CBP-1234) → CSS-safe id segment */
 function cssId(s) {
   return String(s || '').replace(/[^a-zA-Z0-9_-]/g, '_');
 }
@@ -266,8 +394,7 @@ function expandHtml(it, expandId) {
   const rows = linked.map(l => {
     const g = STATUS_GROUPS.find(x => x.id === statusGroup(l));
     const isDone = l.statusCategory === 'done' || statusGroup(l) === 'done';
-    const pct = isDone ? 100 : 0; // sync 결과에 개별 % 없음 — 완료/미완료만
-    // 리뷰 Suggestion #5 — design 정합: data-jira-key 는 .key 앵커가 이미 가짐. 외곽 div 에는 제거.
+    const pct = isDone ? 100 : 0;
     return `
       <div class="linked-row">
         ${jiraKeyHtml(l.key)}
@@ -294,7 +421,6 @@ function expandHtml(it, expandId) {
 function bindRowToggle(host) {
   host.querySelectorAll('tr.ft-row').forEach(tr => {
     tr.addEventListener('click', e => {
-      // anchor 클릭은 native 처리에 양보 (Jira 키, 연결 행 키 등)
       if (e.target.closest('a')) return;
       toggleRow(tr);
     });
@@ -302,11 +428,8 @@ function bindRowToggle(host) {
   });
 }
 
-/** 리뷰 Critical #1 — Enter/Space 는 tr 자체가 focus 일 때만 토글.
- *  내부 anchor 등 다른 focusable 에서 발생한 키 이벤트는 native 동작에 양보.
- */
 export function onRowKeydown(e) {
-  if (e.currentTarget !== e.target) return; // 자식(anchor 등)에서 발생 → 양보
+  if (e.currentTarget !== e.target) return;
   if (e.key !== 'Enter' && e.key !== ' ') return;
   e.preventDefault();
   toggleRow(e.currentTarget);
@@ -329,8 +452,6 @@ export function filteredItems(items = state.items, filters = state.filters, now 
   return items.filter(it => {
     if (filters.status && it.status !== filters.status) return false;
     if (filters.reporter && reporterName(it) !== filters.reporter) return false;
-    // 의도: created 없는 항목은 기간 필터를 무시 (older Jira 임포트나 일부 ETR 은 비어 있음).
-    // 운영 시 누락 케이스를 노출하기보다 통과시키는 게 안전.
     if (cutoff && it.created) {
       const c = new Date(it.created);
       if (!isNaN(c) && c < cutoff) return false;
@@ -346,4 +467,15 @@ export function reporterName(it) {
   return '';
 }
 
-export const _internal = { isItemDone, normalizeItem, PERIOD_DAYS };
+function isItemDone(it) {
+  if (statusGroup(it) === 'done') return true;
+  const p = it.progress || { done: 0, total: 0 };
+  if (p.total > 0 && p.done === p.total) return true;
+  return false;
+}
+
+export const _internal = {
+  isItemDone, normalizeItem, PERIOD_DAYS,
+  STATUS_TRIAGE, STATUS_NORMAL,
+  dwellStats, weekBuckets, kstWeekRange, pickElapsedAnchor,
+};

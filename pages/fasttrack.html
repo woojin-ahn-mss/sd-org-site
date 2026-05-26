@@ -28,27 +28,50 @@
       <p class="page-lede" data-lede>데이터를 불러오는 중…</p>
     </header>
 
-    <!-- 상단 4 카드 -->
-    <section class="impact-stats" aria-label="패스트트랙 요약">
+    <!-- 상단 5 카드 -->
+    <section class="impact-stats five" aria-label="패스트트랙 요약">
       <div class="imp-stat">
-        <div class="imp-label">TOTAL</div>
+        <div class="imp-label">총 인입</div>
         <div class="imp-val num" data-stat="total">—<span class="u">건</span></div>
-        <div class="imp-delta" data-stat-foot="total">전체</div>
+        <div class="imp-delta" data-stat-foot="total">ETR + one</div>
       </div>
       <div class="imp-stat">
-        <div class="imp-label">ACTIVE</div>
-        <div class="imp-val num" data-stat="active">—<span class="u">건</span></div>
-        <div class="imp-delta" data-stat-foot="active">진행 중</div>
+        <div class="imp-label">트리아지</div>
+        <div class="imp-val num" data-stat="triage">—<span class="u">건</span></div>
+        <div class="imp-delta" data-stat-foot="triage">우선착수</div>
       </div>
       <div class="imp-stat">
-        <div class="imp-label">DONE</div>
-        <div class="imp-val num" data-stat="done">—<span class="u">건</span></div>
-        <div class="imp-delta" data-stat-foot="done">완료</div>
+        <div class="imp-label">일반 과제</div>
+        <div class="imp-val num" data-stat="normal">—<span class="u">건</span></div>
+        <div class="imp-delta" data-stat-foot="normal">검토완료-백로그</div>
       </div>
       <div class="imp-stat">
-        <div class="imp-label">REPORTERS</div>
-        <div class="imp-val num" data-stat="reporters">—<span class="u">명</span></div>
-        <div class="imp-delta" data-stat-foot="reporters">요청자</div>
+        <div class="imp-label">지난주 인입</div>
+        <div class="imp-val num" data-stat="lastweek">—<span class="u">건</span></div>
+        <div class="imp-delta" data-stat-foot="lastweek">created 기준</div>
+      </div>
+      <div class="imp-stat">
+        <div class="imp-label">금주 인입</div>
+        <div class="imp-val num" data-stat="thisweek">—<span class="u">건</span></div>
+        <div class="imp-delta" data-stat-foot="thisweek">트리아지 —건</div>
+      </div>
+    </section>
+
+    <!-- 상태별 경과 시간 (ETR | FT 두 컬럼) -->
+    <section>
+      <div class="sec-head">
+        <h2>진행 상태 · 평균 경과 시간</h2>
+        <small>현재 그 상태에 머무르는 평균 일수 (changelog 기반)</small>
+      </div>
+      <div class="dwell-grid" id="dwell-grid">
+        <div>
+          <h3 class="dwell-head">ETR (인입 / 검토)</h3>
+          <table class="dwell-tbl" id="dwell-etr"><thead><tr><th>상태</th><th class="num">건수</th><th class="num">평균 일수</th></tr></thead><tbody></tbody></table>
+        </div>
+        <div>
+          <h3 class="dwell-head">FT (실제 진행)</h3>
+          <table class="dwell-tbl" id="dwell-ft"><thead><tr><th>상태</th><th class="num">건수</th><th class="num">평균 일수</th></tr></thead><tbody></tbody></table>
+        </div>
       </div>
     </section>
 

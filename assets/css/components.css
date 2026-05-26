@@ -410,6 +410,7 @@
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
   border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
 }
+.impact-stats.five { grid-template-columns: repeat(5, 1fr); }
 .imp-stat {
   padding: 22px 24px 22px 0; border-right: 1px solid var(--rule);
   position: relative;
@@ -441,6 +442,42 @@
   width: 70px; height: 26px; opacity: 0.85;
 }
 .imp-stat:last-child .imp-spark { right: 0; }
+
+/* ----- Dwell time table (FastTrack) ----- */
+.dwell-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 28px;
+  border-top: 1px solid var(--rule);
+  padding-top: 16px;
+}
+.dwell-head {
+  margin: 0 0 8px;
+  font-family: var(--font-mono);
+  font-size: 11px; color: var(--faint);
+  letter-spacing: 0.12em; text-transform: uppercase;
+  font-weight: 500;
+}
+.dwell-tbl {
+  width: 100%; border-collapse: collapse;
+  font-size: 12.5px;
+}
+.dwell-tbl th, .dwell-tbl td {
+  text-align: left; padding: 8px 10px 8px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.dwell-tbl th {
+  font-family: var(--font-mono);
+  font-size: 10px; color: var(--faint);
+  letter-spacing: 0.1em; text-transform: uppercase;
+  font-weight: 400;
+}
+.dwell-tbl .num { text-align: right; font-variant-numeric: tabular-nums; }
+.dwell-tbl td.num { color: var(--dim); }
+.dwell-tbl td.num.long { color: var(--alert); }  /* 7일 이상 정체 */
+.dwell-tbl tr:last-child td { border-bottom: 0; }
+.dwell-tbl .empty { color: var(--faint); padding: 16px 0; }
+@media (max-width: 768px) {
+  .dwell-grid { grid-template-columns: 1fr; gap: 18px; }
+}
 
 /* =========================================================
    Bar / proportional bars
