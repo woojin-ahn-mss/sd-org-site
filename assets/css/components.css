@@ -784,6 +784,7 @@
   padding: 0 0 14px;
   margin-bottom: 4px;
 }
+.filters[hidden] { display: none !important; }
 .filters .flabel {
   font-family: var(--font-mono);
   font-size: 10.5px; color: var(--faint);
@@ -922,6 +923,9 @@ hr.rule { border: 0; border-top: 1px solid var(--rule); margin: 18px 0; }
   padding-top: 10vh; padding-bottom: 40px;
   animation: backdrop-in 160ms ease-out;
 }
+/* CRITICAL: HTML `hidden` 속성은 UA의 display:none(낮은 specificity).
+ * 위의 display:flex가 [hidden]을 무력화하므로 명시적으로 숨김. */
+.modal-backdrop[hidden] { display: none !important; }
 [data-theme="light"] .modal-backdrop { background: rgba(26, 24, 22, 0.35); }
 @keyframes backdrop-in { from { opacity: 0; } to { opacity: 1; } }
 

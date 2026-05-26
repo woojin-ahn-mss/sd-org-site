@@ -5,6 +5,12 @@
 
 * { box-sizing: border-box; }
 
+/* HTML `hidden` 속성은 UA의 display:none 만 지정 (낮은 specificity).
+ * .modal-backdrop, .filters 등 명시적 display:flex 가 있는 요소는
+ * [hidden] 이 무력화됨 → 모달이 페이지 진입 시 보이거나 닫혀도 안 닫힘.
+ * Bootstrap/Tailwind 등도 동일 패턴으로 강제. */
+[hidden] { display: none !important; }
+
 html, body {
   margin: 0; padding: 0;
   background: var(--bg); color: var(--text);
