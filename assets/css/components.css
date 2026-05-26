@@ -444,46 +444,90 @@
 }
 
 /* =========================================================
-   Gantt
+   Gantt — 좌측 메타패널(고정) + 우측 시간패널(가로 스크롤) 분리
    ========================================================= */
 .gantt {
   border-top: 1px solid var(--rule-strong);
   border-bottom: 1px solid var(--rule-strong);
+  display: flex;
+  align-items: flex-start;
+}
+
+.gantt-meta {
+  flex: 0 0 auto;
+  background: var(--bg);
+  border-right: 1px solid var(--rule);
+  position: relative;
+  z-index: 2;
+}
+
+.gantt-time {
+  flex: 1 1 0;
+  min-width: 0;
   overflow-x: auto;
 }
-.g-grid { display: grid; min-width: 100%; }
-.g-head > div {
+
+/* ----- 공통 행 ----- */
+.gm-head, .gm-row, .gt-head, .gt-row {
+  display: grid;
+  min-height: 38px;
+  background: var(--bg);
+}
+
+/* ----- 헤더 (양쪽 패널 동일 스타일) ----- */
+.gm-head, .gt-head {
+  position: sticky; top: 0; z-index: 4;
+  border-bottom: 1px solid var(--rule);
+}
+.gm-head .gh-meta,
+.gt-head .gh-time {
   padding: 9px 10px;
   font-family: var(--font-mono);
   font-size: 10.5px; color: var(--faint);
   letter-spacing: 0.1em; text-transform: uppercase;
-  border-bottom: 1px solid var(--rule);
-  background: var(--bg);
-  position: sticky; top: 0; z-index: 4;
   display: flex; align-items: center;
+  background: var(--bg);
 }
-.g-head .gh-meta { border-right: 1px solid var(--rule); }
-.g-head .gh-time { justify-content: center; border-left: 1px solid var(--rule); }
-.g-head .gh-time.current { color: var(--accent); }
+.gm-head .gh-meta { border-right: 1px solid var(--rule); }
+.gm-head .gh-meta:last-child { border-right: 0; }
+.gt-head .gh-time { justify-content: center; border-left: 1px solid var(--rule); }
+.gt-head .gh-time.current { color: var(--accent); }
 
-.g-row > div {
+/* ----- 데이터 행 ----- */
+.gm-row {
   border-bottom: 1px solid var(--rule);
-  min-height: 38px; display: flex; align-items: center;
-  font-size: 12.5px; background: var(--bg);
+  font-size: 12.5px;
 }
-.g-row:hover > div:not(.g-cell) { background: var(--bg-elev); }
-.g-row > .g-meta { padding: 0 12px 0 0; border-right: 1px solid var(--rule); gap: 10px; }
+.gm-row > div {
+  display: flex; align-items: center;
+  padding: 0 6px;
+  min-width: 0; overflow: hidden;
+}
+.gm-row:hover { background: var(--bg-elev); }
 
-.g-row.g-group > div {
-  background: transparent;
-  cursor: pointer; min-height: 32px;
+.gt-row {
+  border-bottom: 1px solid var(--rule);
+}
+.gt-row:hover { background: var(--bg-elev); }
+
+/* ----- 그룹 헤더 ----- */
+.gm-group {
+  min-height: 32px;
+  border-bottom: 1px solid var(--rule-strong);
+  background: var(--bg);
+  cursor: pointer;
+  padding: 8px 0;
+  display: flex; align-items: baseline; gap: 8px;
   font-family: var(--font-mono);
   font-size: 11px; color: var(--dim);
   letter-spacing: 0.08em; text-transform: uppercase;
-  border-bottom: 1px solid var(--rule-strong);
 }
-.g-row.g-group > div:first-child { padding-left: 0; }
-.g-row.g-group .ct { color: var(--faint); margin-left: 8px; font-size: 10.5px; }
+.gm-group .ct { color: var(--faint); margin-left: 8px; font-size: 10.5px; }
+.gt-group {
+  min-height: 32px;
+  border-bottom: 1px solid var(--rule-strong);
+  background: var(--bg);
+}
 
 .g-cell { border-left: 1px solid var(--faintest); position: relative; padding: 0 !important; }
 .g-cell.current { background: var(--accent-soft) !important; }

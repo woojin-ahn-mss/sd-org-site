@@ -83,7 +83,9 @@ export function buildTimeAxis(mode, anchor = new Date()) {
   return { mode, cells, totalStart: cells[0].start, totalEnd: cells[cells.length - 1].end };
 }
 
-/** 메인 렌더 */
+/** 메인 렌더 — 좌측 메타패널(고정) + 우측 시간패널(가로 스크롤) 분리 구조.
+ *  같은 행 인덱스의 양쪽 row 는 동일한 min-height 로 수직 정렬됨.
+ */
 export function renderGantt(host, opts) {
   const { mode = 'quarter', items, columns = COLUMNS.filter(c => c.default).map(c => c.id),
           collapsedGroups = new Set(), onGroupToggle } = opts;
@@ -91,42 +93,52 @@ export function renderGantt(host, opts) {
   const grouped = groupBySubject(items);
   const activeCols = COLUMNS.filter(c => columns.includes(c.id) || c.required);
 
-  const metaCols = activeCols.map(c => `${c.width}px`).join(' ');
-  const timeColsCount = axis.cells.length;
-  // 월 모드: 셀당 최소 110px 보장 → 12셀 = 최소 1320px → 컨테이너 좁으면 가로 스크롤
-  // 분기 모드: 6셀이라 60px 최소면 충분
+  const metaTemplate = activeCols.map(c => `${c.width}px`).join(' ');
+  // 월: 셀당 최소 110px, 분기: 60px. 시간패널 너비가 컨테이너보다 크면 자동 가로 스크롤
   const timeCellSize = mode === 'month' ? 'minmax(110px, 1fr)' : 'minmax(60px, 1fr)';
-  const gridTemplate = `${metaCols} repeat(${timeColsCount}, ${timeCellSize})`;
+  const timeTemplate = `repeat(${axis.cells.length}, ${timeCellSize})`;
 
   const root = document.createElement('div');
   root.className = 'gantt';
-
-  const grid = document.createElement('div');
-  grid.className = 'g-grid';
-  grid.style.gridTemplateColumns = gridTemplate;
-
-  // 헤더
-  grid.appendChild(renderHead(activeCols, axis));
-
-  // 그룹별 행
-  for (const group of grouped) {
-    const collapsed = collapsedGroups.has(group.subject);
-    grid.appendChild(renderGroupHead(group, collapsed, timeColsCount, activeCols.length, onGroupToggle));
-    if (!collapsed) {
-      for (const item of group.items) {
-        grid.appendChild(renderItemRow(item, activeCols, axis, mode));
-      }
-    }
-  }
 
   if (!grouped.length) {
     const empty = document.createElement('div');
     empty.className = 'empty-state';
     empty.innerHTML = '<span class="empty-kicker">EMPTY</span><span class="empty-msg">조건에 맞는 Initiative 없음</span>';
     root.appendChild(empty);
-  } else {
-    root.appendChild(grid);
+    host.innerHTML = '';
+    host.appendChild(root);
+    return;
   }
+
+  const metaTotalWidth = activeCols.reduce((s, c) => s + c.width, 0);
+  const metaPane = document.createElement('div');
+  metaPane.className = 'gantt-meta';
+  metaPane.style.width = `${metaTotalWidth}px`;
+  metaPane.style.minWidth = `${metaTotalWidth}px`;
+
+  const timePane = document.createElement('div');
+  timePane.className = 'gantt-time';
+
+  // 헤더 (양쪽 패널)
+  metaPane.appendChild(renderMetaHead(activeCols, metaTemplate));
+  timePane.appendChild(renderTimeHead(axis, timeTemplate));
+
+  // 그룹/데이터 행 (양쪽 패널 동시에 push — 수직 정렬 유지)
+  for (const group of grouped) {
+    const collapsed = collapsedGroups.has(group.subject);
+    metaPane.appendChild(renderGroupMetaRow(group, collapsed, onGroupToggle));
+    timePane.appendChild(renderGroupTimeRow(timeTemplate));
+    if (!collapsed) {
+      for (const item of group.items) {
+        metaPane.appendChild(renderItemMetaRow(item, activeCols, metaTemplate));
+        timePane.appendChild(renderItemTimeRow(item, axis, mode, timeTemplate));
+      }
+    }
+  }
+
+  root.appendChild(metaPane);
+  root.appendChild(timePane);
 
   host.innerHTML = '';
   host.appendChild(root);
@@ -160,106 +172,86 @@ function groupBySubject(items) {
   return groups;
 }
 
-/* ----------------- 헤더 ----------------- */
+/* ----------------- 헤더 (좌/우 패널 분리) ----------------- */
 
-function renderHead(cols, axis) {
-  const head = document.createElement('div');
-  head.className = 'g-head';
-  head.style.display = 'contents';
+function renderMetaHead(cols, template) {
+  const row = document.createElement('div');
+  row.className = 'gm-head';
+  row.style.gridTemplateColumns = template;
   for (const c of cols) {
     const d = document.createElement('div');
     d.className = 'gh-meta';
     d.textContent = c.label;
-    head.appendChild(d);
+    row.appendChild(d);
   }
+  return row;
+}
+
+function renderTimeHead(axis, template) {
+  const row = document.createElement('div');
+  row.className = 'gt-head';
+  row.style.gridTemplateColumns = template;
   for (const cell of axis.cells) {
     const d = document.createElement('div');
     d.className = 'gh-time' + (cell.isCurrent ? ' current' : '');
     d.textContent = cell.label;
-    head.appendChild(d);
+    row.appendChild(d);
   }
-  return head;
+  return row;
 }
 
-/* ----------------- 그룹 헤더 ----------------- */
+/* ----------------- 그룹 헤더 (양쪽 패널 한 줄씩) ----------------- */
 
-function renderGroupHead(group, collapsed, timeCellsCount, metaColsCount, onToggle) {
+function renderGroupMetaRow(group, collapsed, onToggle) {
   const row = document.createElement('div');
-  row.className = 'g-row g-group';
-  row.style.display = 'contents';
+  row.className = 'gm-group';
   row.dataset.subject = group.subject;
-
-  const head = document.createElement('div');
-  head.style.gridColumn = `1 / span ${metaColsCount + timeCellsCount}`;
-  head.style.cursor = 'pointer';
-  head.style.padding = '8px 0';
-  head.style.display = 'flex';
-  head.style.alignItems = 'baseline';
-  head.style.gap = '8px';
-  head.style.fontFamily = 'var(--font-mono)';
-  head.style.fontSize = '11px';
-  head.style.color = 'var(--dim)';
-  head.style.letterSpacing = '0.08em';
-  head.style.textTransform = 'uppercase';
-  head.style.borderBottom = '1px solid var(--rule-strong)';
-  head.innerHTML = `
+  row.innerHTML = `
     <span class="caret ${collapsed ? '' : 'open'}">▸</span>
     <span>${escapeHtml(group.subject)}</span>
     <span class="ct">${group.items.length}건</span>
   `;
-  head.addEventListener('click', () => onToggle && onToggle(group.subject));
-  row.appendChild(head);
+  row.addEventListener('click', () => onToggle && onToggle(group.subject));
   return row;
 }
 
-/* ----------------- 데이터 행 ----------------- */
-
-function renderItemRow(item, cols, axis, mode) {
+function renderGroupTimeRow(template) {
+  // 시간 패널의 그룹 행은 빈 줄 — 메타 행과 높이만 맞춤
   const row = document.createElement('div');
-  row.className = 'g-row';
-  row.style.display = 'contents';
+  row.className = 'gt-group';
+  row.style.gridTemplateColumns = template;
+  return row;
+}
 
-  // meta cells
-  const metaWrap = document.createElement('div');
-  metaWrap.className = 'g-meta';
-  metaWrap.style.gridColumn = `1 / span ${cols.length}`;
-  metaWrap.style.display = 'grid';
-  metaWrap.style.gridTemplateColumns = cols.map(c => `${c.width}px`).join(' ');
-  metaWrap.style.gap = '0';
-  metaWrap.style.padding = '0 12px 0 0';
-  metaWrap.style.borderRight = '1px solid var(--rule)';
+/* ----------------- 데이터 행 (양쪽 패널 한 줄씩) ----------------- */
+
+function renderItemMetaRow(item, cols, template) {
+  const row = document.createElement('div');
+  row.className = 'gm-row';
+  row.style.gridTemplateColumns = template;
   for (const c of cols) {
     const cell = document.createElement('div');
-    cell.style.display = 'flex';
-    cell.style.alignItems = 'center';
-    cell.style.padding = '0 6px';
     cell.innerHTML = renderMetaCell(c, item);
-    metaWrap.appendChild(cell);
+    row.appendChild(cell);
   }
-  row.appendChild(metaWrap);
+  return row;
+}
 
-  // time cells
+function renderItemTimeRow(item, axis, mode, template) {
+  const row = document.createElement('div');
+  row.className = 'gt-row';
+  row.style.gridTemplateColumns = template;
+
   if (mode === 'month') {
-    // 12개 셀을 wrapper에 + bar 절대 위치
-    const timeWrap = document.createElement('div');
-    timeWrap.style.gridColumn = `${cols.length + 1} / span ${axis.cells.length}`;
-    timeWrap.style.position = 'relative';
-    timeWrap.style.display = 'grid';
-    timeWrap.style.gridTemplateColumns = `repeat(${axis.cells.length}, 1fr)`;
-    timeWrap.style.borderBottom = '1px solid var(--rule)';
-    timeWrap.style.minHeight = '38px';
-    timeWrap.style.background = 'var(--bg)';
+    row.style.position = 'relative';
     for (const cell of axis.cells) {
       const c = document.createElement('div');
       c.className = 'g-cell' + (cell.isCurrent ? ' current' : '');
-      c.style.minHeight = '38px';
-      timeWrap.appendChild(c);
+      row.appendChild(c);
     }
     const barEl = makeMonthBar(item, axis);
-    if (barEl) timeWrap.appendChild(barEl);
-    row.appendChild(timeWrap);
+    if (barEl) row.appendChild(barEl);
   } else {
-    // 분기 모드: 각 cell 안에 g-bar
     for (const cell of axis.cells) {
       const c = document.createElement('div');
       c.className = 'g-cell' + (cell.isCurrent ? ' current' : '');

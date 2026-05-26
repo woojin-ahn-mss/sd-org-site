@@ -1,7 +1,10 @@
 /* =========================================================
    pages/roadmap-plan.js — 로드맵 관리 (PRD 4.6)
    1년치 보드: 미배치 / Q1 / Q2 / Q3 / Q4
-   - Jira 카드: initiatives.json 에서 자동 (read-only, D&D 시 토스트 안내)
+   - Jira 카드: initiatives.json 에서 자동 + **localStorage 의 override 우선**
+     · D&D 로 옮기면 ticketKey→quarter override 를 LS 에 저장
+     · 다음 sync 후 Jira yearQuarter 가 바뀌어도 사용자 위치 유지
+     · 단, 카드가 더 이상 jiraCards 에 없으면 (sync 에서 빠짐) override stale → 자동 정리
    - 키워드 카드: **localStorage 가 SoT**, 파일은 첫 시드 + 백업
      → 파일이 갱신돼도 LS 가 있으면 그대로 둠. "↓ JSON Export" 로 공유.
    ========================================================= */
@@ -36,6 +39,9 @@ let state = {
   filters: { mainSubject: null, priority: null, project: null },
   groupBy: 'subject',  // 'subject' | 'none'
   cardsStore: null,
+  // ticketKey → quarter ('Q1'|'Q2'|'Q3'|'Q4'|null). null = 사용자가 pool 로 옮김.
+  jiraOverrides: {},
+  overridesStore: null,
 };
 
 export async function renderRoadmapPlan({ rootRel = '' } = {}) {
@@ -63,8 +69,10 @@ async function loadAll() {
   const boardHost = document.getElementById('plan-board');
   showLoading(boardHost, { rows: 4, title: false });
   state.cardsStore = scoped(`roadmapPlan.cards.${state.year}`);
+  state.overridesStore = scoped(`roadmapPlan.jiraOverrides.${state.year}`);
+  state.jiraOverrides = state.overridesStore.get({}) || {};
 
-  // Jira initiatives → year 매칭만
+  // Jira initiatives → year 매칭만, 그리고 LS override 우선 적용
   try {
     const data = await loadJson(`${state.rootRel}data/jira/initiatives.json`);
     state.jiraCards = (data.items || [])
@@ -74,6 +82,7 @@ async function loadAll() {
     console.warn('[roadmap-plan] initiatives load failed', err);
     state.jiraCards = [];
   }
+  applyJiraOverrides();
 
   // 키워드 카드: LS 가 SoT — 없을 때만 파일에서 시드
   const lsCards = state.cardsStore.get(null);
@@ -89,6 +98,45 @@ async function loadAll() {
       persistCards();
     }
   }
+}
+
+/** state.jiraOverrides 를 jiraCards.quarter 에 반영 + stale 정리.
+ *  override 값 형식: { 'TM-1234': { quarter: 'Q3', jiraQuarter: 'Q2' } }
+ *  - card.quarter 를 override.quarter 로 덮어씀
+ *  - card.overridden = true (UI 마커용)
+ *  - card.jiraQuarter = Jira 원본 quarter (revert / 표시용)
+ *  - stale: override 가 있는데 jiraCards 에 해당 ticketKey 가 없으면 LS 에서 삭제
+ *  - 또한 Jira 원본 quarter 가 override.quarter 와 같아지면 override 자동 해제
+ */
+function applyJiraOverrides() {
+  const overrides = state.jiraOverrides || {};
+  const validKeys = new Set(state.jiraCards.map(c => c.ticketKey));
+  let mutated = false;
+
+  // stale 정리
+  for (const tk of Object.keys(overrides)) {
+    if (!validKeys.has(tk)) { delete overrides[tk]; mutated = true; }
+  }
+
+  for (const card of state.jiraCards) {
+    const ov = overrides[card.ticketKey];
+    if (!ov) continue;
+    const jiraQuarter = card.quarter;
+    // Jira 가 사용자 위치를 따라잡았으면 override 해제
+    if (jiraQuarter === ov.quarter) {
+      delete overrides[card.ticketKey];
+      mutated = true;
+      continue;
+    }
+    card.jiraQuarter = jiraQuarter;
+    card.quarter = ov.quarter;
+    card.overridden = true;
+  }
+  if (mutated) state.overridesStore.set(overrides);
+}
+
+function persistOverrides() {
+  return state.overridesStore.set(state.jiraOverrides);
 }
 
 /** 카드를 LS 에 저장. 실패 시 토스트 안내. */
@@ -390,6 +438,10 @@ function cardEl(card) {
   const meta = [];
   if (card.type === 'jira') {
     meta.push(jiraKeyHtml(card.ticketKey));
+    if (card.overridden) {
+      const jq = card.jiraQuarter || '미배치';
+      meta.push(`<span class="tag" title="Jira 원본: ${escapeAttr(jq)} — 사용자 위치로 덮어씀">✦ 사용자 위치</span>`);
+    }
   } else if (card.ticketKey) {
     // 사용자가 직접 연결한 Jira 키 (키워드 카드 + 티켓)
     meta.push(jiraKeyHtml(card.ticketKey));
@@ -499,16 +551,30 @@ function moveCard(cardId, colId) {
   }
   const targetQuarter = colId === 'pool' ? null : colId;
 
-  // Jira 카드 — 데이터 변경 안 함, 안내만
+  // Jira 카드 — LS override 우선. Jira 원본은 건드리지 않음.
   if (known.type === 'jira') {
     if (known.quarter === targetQuarter) return;
+    const jiraQuarter = known.jiraQuarter ?? known.quarter; // override 안 된 카드면 현재 quarter 가 jira 원본
+    known.quarter = targetQuarter;
+    if (jiraQuarter === targetQuarter) {
+      // 사용자가 Jira 원본 위치로 되돌림 → override 해제
+      delete state.jiraOverrides[known.ticketKey];
+      known.overridden = false;
+      delete known.jiraQuarter;
+    } else {
+      state.jiraOverrides[known.ticketKey] = { quarter: targetQuarter, jiraQuarter };
+      known.overridden = true;
+      known.jiraQuarter = jiraQuarter;
+    }
+    persistOverrides();
     toast({
-      kicker: 'JIRA SYNC 필요',
-      msg: `${known.ticketKey} → ${targetQuarter || '미배치'} 이동.`,
-      meta: 'Jira의 Year/Quarter 필드도 직접 업데이트하세요. 다음 sync 때 보드가 갱신됩니다.',
-      kind: 'alert',
-      hold: 6000,
+      kicker: '위치 저장',
+      msg: `${known.ticketKey} → ${targetQuarter || '미배치'}`,
+      meta: known.overridden ? `Jira 원본: ${jiraQuarter || '미배치'} (다음 sync 후에도 사용자 위치 유지)` : '',
+      kind: 'success',
     });
+    renderBoard();
+    renderHeader();
     return;
   }
 
@@ -791,4 +857,6 @@ export const _internal = {
   SCHEMA_VERSION,
   PROJECT_KEY_RE,
   sortCards,
+  applyJiraOverrides,
+  _state: state,
 };
