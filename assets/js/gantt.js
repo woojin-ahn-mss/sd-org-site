@@ -321,10 +321,14 @@ function renderItemTimeRow(item, axis, mode, template, minWidth) {
     const barEl = makeMonthBar(item, axis);
     if (barEl) row.appendChild(barEl);
   } else {
+    // 분기 모드: startDate~dueDate 가 걸친 분기 모두에 막대.
+    // dueDate 만 있으면 그 분기, 둘 다 없으면 yearQuarter fallback.
+    // 이전: yearQuarter 만 사용 → Jira 의 yearQuarter / dueDate 불일치 시 잘못된 분기에 표시됨.
+    const activeQuarters = quartersForItem(item);
     for (const cell of axis.cells) {
       const c = document.createElement('div');
       c.className = 'g-cell' + (cell.isCurrent ? ' current' : '');
-      if (item.yearQuarter === cell.key) {
+      if (activeQuarters.has(cell.key)) {
         const bar = makeBarElement(item);
         bar.style.left = '4px';
         bar.style.right = '4px';
@@ -334,6 +338,42 @@ function renderItemTimeRow(item, axis, mode, template, minWidth) {
     }
   }
   return row;
+}
+
+/** YYYY-MM-DD → 'YYYY-Q[1-4]'. invalid → null. */
+function dateToQuarterKey(dateStr) {
+  if (!dateStr) return null;
+  const d = new Date(dateStr);
+  if (isNaN(d)) return null;
+  const y = d.getFullYear();
+  const q = Math.floor(d.getMonth() / 3) + 1;
+  return `${y}-Q${q}`;
+}
+
+/** startDate ~ dueDate 범위의 모든 분기 key Set. dueDate 만 있으면 단일. 둘 다 없으면 yearQuarter fallback. */
+function quartersForItem(item) {
+  const startQ = dateToQuarterKey(item.startDate);
+  const endQ = dateToQuarterKey(item.dueDate);
+  const set = new Set();
+  if (startQ && endQ) {
+    let [sy, sq] = startQ.split('-Q').map(Number);
+    const [ey, eq] = endQ.split('-Q').map(Number);
+    // start > end 면 정상화 (swap)
+    if (sy > ey || (sy === ey && sq > eq)) [sy, sq] = [ey, eq];
+    let cy = sy, cq = sq;
+    let safety = 0;
+    while ((cy < ey || (cy === ey && cq <= eq)) && safety++ < 20) {
+      set.add(`${cy}-Q${cq}`);
+      cq++; if (cq > 4) { cq = 1; cy++; }
+    }
+  } else if (endQ) {
+    set.add(endQ);
+  } else if (startQ) {
+    set.add(startQ);
+  } else if (item.yearQuarter) {
+    set.add(item.yearQuarter);
+  }
+  return set;
 }
 
 function renderMetaCell(c, item) {
