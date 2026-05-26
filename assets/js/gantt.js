@@ -47,8 +47,8 @@ export const COLUMNS = [
 /** 시간 축 계산 */
 export function buildTimeAxis(mode, anchor = new Date()) {
   if (mode === 'month') {
-    // 12개월 — 현재 월 기준 -3 ~ +8 (총 12개)
-    const start = new Date(anchor.getFullYear(), anchor.getMonth() - 3, 1);
+    // 12개월 — anchor 연도의 1월부터 12월까지
+    const start = new Date(anchor.getFullYear(), 0, 1);
     const cells = [];
     for (let i = 0; i < 12; i++) {
       const d = new Date(start.getFullYear(), start.getMonth() + i, 1);
