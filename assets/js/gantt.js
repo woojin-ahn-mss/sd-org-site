@@ -388,13 +388,12 @@ function makeMonthBar(item, axis) {
     leftFrac = (s - axis.totalStart) / totalMs;
     widthFrac = (e - s) / totalMs;
   } else {
-    // 시작일 X, 기한 O → 기한 기준 왼쪽 14일 fade
+    // 시작일 X, 기한 O → 기한이 속한 월의 1일 ~ 기한+1일 (DUE 컬럼에 정확히 매핑)
     if (!end) return null;
-    const e = end;
-    const s = new Date(e.getFullYear(), e.getMonth(), e.getDate() - 14);
-    if (e <= axis.totalStart || s >= axis.totalEnd) return null;
-    const sClamped = Math.max(s, axis.totalStart);
-    const eClamped = Math.min(new Date(e.getFullYear(), e.getMonth(), e.getDate() + 1), axis.totalEnd);
+    const monthStart = new Date(end.getFullYear(), end.getMonth(), 1);
+    const sClamped = Math.max(monthStart, axis.totalStart);
+    const eClamped = Math.min(new Date(end.getFullYear(), end.getMonth(), end.getDate() + 1), axis.totalEnd);
+    if (eClamped <= axis.totalStart || sClamped >= axis.totalEnd) return null;
     leftFrac = (sClamped - axis.totalStart) / totalMs;
     widthFrac = (eClamped - sClamped) / totalMs;
     faded = true;
