@@ -1,18 +1,56 @@
 {
-  "lastSync": "2026-05-26T11:23:15+09:00",
-  "count": 100,
+  "lastSync": "2026-05-26T18:21:15+09:00",
+  "count": 101,
   "items": [
     {
-      "key": "ETR-4460",
-      "url": "https://jira.team.musinsa.com/browse/ETR-4460",
-      "summary": "[무신사 체크인 이벤트] 아웃링크 직접 연결 대신 앱 내 기획전 중간 페이지 경유 플로우 추가",
+      "key": "ETR-4471",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4471",
+      "summary": "랭킹 및 판매 데이터 노출 강화",
       "issueType": "과제 발의",
       "project": "ETR",
       "status": "발의",
       "statusCategory": "new",
       "priority": "P0",
       "assignee": {
-        "name": "촤비스",
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-26T14:55:09.230+0900",
+      "updated": "2026-05-26T14:55:10.094+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null,
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-4460",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4460",
+      "summary": "[무신사 체크인 이벤트] 아웃링크 직접 연결 대신 앱 내 기획전 중간 페이지 경유 플로우 추가",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "PMO 검토 중",
+      "statusCategory": "indeterminate",
+      "priority": "P0",
+      "assignee": {
+        "name": "이승연",
         "email": null,
         "accountId": null
       },
@@ -31,10 +69,11 @@
       "yearQuarter": null,
       "subGroup": null,
       "startDate": null,
-      "dueDate": null,
+      "dueDate": "2026-05-29",
       "created": "2026-05-26T08:46:31.680+0900",
-      "updated": "2026-05-26T10:46:30.773+0900",
+      "updated": "2026-05-26T11:34:59.821+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-26T11:34:26.226+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -73,6 +112,7 @@
       "created": "2026-05-22T20:30:33.856+0900",
       "updated": "2026-05-23T21:21:54.313+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-23T21:21:54.313+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -112,6 +152,7 @@
       "created": "2026-05-22T11:41:54.788+0900",
       "updated": "2026-05-22T13:20:46.659+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-22T13:12:48.166+0900",
       "linkedTickets": [
         {
           "key": "TM-3105",
@@ -149,6 +190,7 @@
       },
       "labels": [
         "auto-etr-triaged",
+        "conveyor",
         "one"
       ],
       "mainSubject": null,
@@ -158,12 +200,23 @@
       "startDate": null,
       "dueDate": "2026-06-05",
       "created": "2026-05-22T10:50:44.165+0900",
-      "updated": "2026-05-22T13:50:43.757+0900",
+      "updated": "2026-05-26T16:45:00.462+0900",
       "resolutionDate": null,
-      "linkedTickets": [],
+      "lastStatusChangedAt": "2026-05-22T13:50:15.650+0900",
+      "linkedTickets": [
+        {
+          "key": "FT-27",
+          "summary": "전문관 PDP 내 전문관 로고 위치 앞으로 이동 및 풀 로고 디자인 적용 검토",
+          "status": "Waiting For Review",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        }
+      ],
       "progress": {
         "done": 0,
-        "total": 0
+        "total": 1
       }
     },
     {
@@ -198,6 +251,7 @@
       "created": "2026-05-22T00:09:12.851+0900",
       "updated": "2026-05-26T08:12:40.478+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-26T08:12:00.932+0900",
       "linkedTickets": [
         {
           "key": "MSSCXTF-1319",
@@ -255,6 +309,7 @@
       "created": "2026-05-21T23:36:24.384+0900",
       "updated": "2026-05-26T08:12:52.239+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-26T08:12:12.782+0900",
       "linkedTickets": [
         {
           "key": "MSSCXTF-1368",
@@ -311,6 +366,7 @@
       "created": "2026-05-21T17:36:39.738+0900",
       "updated": "2026-05-26T09:15:10.462+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-26T08:18:45.448+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -348,6 +404,7 @@
       "created": "2026-05-21T17:27:09.964+0900",
       "updated": "2026-05-22T11:00:17.746+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-22T11:00:05.981+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -386,6 +443,7 @@
       "created": "2026-05-21T17:10:33.776+0900",
       "updated": "2026-05-21T23:48:46.346+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-21T22:57:01.657+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -424,6 +482,7 @@
       "created": "2026-05-21T17:06:29.789+0900",
       "updated": "2026-05-22T16:08:00.139+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-21T22:56:20.271+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -461,6 +520,7 @@
       "created": "2026-05-21T17:00:28.841+0900",
       "updated": "2026-05-22T10:57:55.072+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-22T10:57:46.932+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -496,8 +556,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-21T16:52:37.650+0900",
-      "updated": "2026-05-22T09:51:58.137+0900",
+      "updated": "2026-05-26T15:00:30.699+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-22T09:51:18.209+0900",
       "linkedTickets": [
         {
           "key": "TM-3095",
@@ -507,11 +568,20 @@
           "assignee": null,
           "linkType": "Clones",
           "direction": "inward"
+        },
+        {
+          "key": "PD-8258",
+          "summary": "[PD] 브랜드숍 - 브랜드 정보 노출 강화",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Blocks",
+          "direction": "inward"
         }
       ],
       "progress": {
         "done": 0,
-        "total": 1
+        "total": 2
       }
     },
     {
@@ -546,6 +616,7 @@
       "created": "2026-05-21T16:24:18.231+0900",
       "updated": "2026-05-22T10:38:42.361+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-21T16:24:51.152+0900",
       "linkedTickets": [
         {
           "key": "TM-3098",
@@ -594,6 +665,7 @@
       "created": "2026-05-21T11:40:24.200+0900",
       "updated": "2026-05-22T14:46:17.628+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-22T13:25:22.054+0900",
       "linkedTickets": [
         {
           "key": "TM-2527",
@@ -616,8 +688,8 @@
       "summary": "[주문서] 퀵구매 대상 유료 사은품 선택 조건 \"무배당발 X원 구매시 Y 선택 가능\" 옵션 제공",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "Tech 검토 대기 중",
-      "statusCategory": "new",
+      "status": "Tech 검토 중",
+      "statusCategory": "indeterminate",
       "priority": "P0",
       "assignee": {
         "name": "박승현",
@@ -639,8 +711,9 @@
       "startDate": null,
       "dueDate": "2026-06-09",
       "created": "2026-05-21T11:33:43.703+0900",
-      "updated": "2026-05-26T11:17:47.853+0900",
+      "updated": "2026-05-26T11:23:36.632+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-26T11:23:36.632+0900",
       "linkedTickets": [
         {
           "key": "COMCO-3354",
@@ -690,6 +763,7 @@
       "created": "2026-05-21T10:30:30.306+0900",
       "updated": "2026-05-21T23:48:39.857+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-21T23:06:49.653+0900",
       "linkedTickets": [
         {
           "key": "TM-3093",
@@ -738,6 +812,7 @@
       "created": "2026-05-21T10:30:13.056+0900",
       "updated": "2026-05-22T02:26:28.945+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-21T11:36:48.701+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -777,6 +852,7 @@
       "created": "2026-05-20T14:17:46.959+0900",
       "updated": "2026-05-21T23:48:49.995+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-20T16:23:36.203+0900",
       "linkedTickets": [
         {
           "key": "FT-23",
@@ -825,6 +901,7 @@
       "created": "2026-05-20T14:11:55.328+0900",
       "updated": "2026-05-21T23:48:49.329+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-21T22:57:31.766+0900",
       "linkedTickets": [
         {
           "key": "MSSCXTF-1349",
@@ -874,6 +951,7 @@
       "created": "2026-05-20T11:39:00.734+0900",
       "updated": "2026-05-21T23:48:48.557+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-21T00:24:31.310+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -913,6 +991,7 @@
       "created": "2026-05-19T16:56:47.436+0900",
       "updated": "2026-05-21T23:48:53.661+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-20T16:24:44.667+0900",
       "linkedTickets": [
         {
           "key": "FT-14",
@@ -961,6 +1040,7 @@
       "created": "2026-05-19T16:42:42.947+0900",
       "updated": "2026-05-21T23:48:42.043+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-21T23:08:44.508+0900",
       "linkedTickets": [
         {
           "key": "FT-24",
@@ -1010,6 +1090,7 @@
       "created": "2026-05-19T09:44:16.643+0900",
       "updated": "2026-05-21T23:48:50.653+0900",
       "resolutionDate": "2026-05-20T16:25:39.975+0900",
+      "lastStatusChangedAt": "2026-05-20T16:25:40.044+0900",
       "linkedTickets": [
         {
           "key": "PEL-978",
@@ -1068,11 +1149,12 @@
       "created": "2026-05-19T09:16:51.022+0900",
       "updated": "2026-05-21T23:48:52.891+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-21T00:30:52.633+0900",
       "linkedTickets": [
         {
           "key": "FT-15",
           "summary": "무배당발 지면 / 쿠폰리스트 페이지 / 오프라인 페이지 — 영업 효용 강화 및 진입 경로 확대",
-          "status": "개발중",
+          "status": "배포완료",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
@@ -1117,6 +1199,7 @@
       "created": "2026-05-19T09:16:35.258+0900",
       "updated": "2026-05-21T23:48:52.173+0900",
       "resolutionDate": "2026-05-21T23:21:33.939+0900",
+      "lastStatusChangedAt": "2026-05-21T23:21:34.050+0900",
       "linkedTickets": [
         {
           "key": "MSSCXTF-1260",
@@ -1175,6 +1258,7 @@
       "created": "2026-05-19T09:16:11.534+0900",
       "updated": "2026-05-21T23:48:51.392+0900",
       "resolutionDate": "2026-05-21T00:28:58.073+0900",
+      "lastStatusChangedAt": "2026-05-21T00:28:58.149+0900",
       "linkedTickets": [
         {
           "key": "FT-12",
@@ -1224,6 +1308,7 @@
       "created": "2026-05-18T18:57:32.161+0900",
       "updated": "2026-05-21T23:48:55.635+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-21T23:01:08.874+0900",
       "linkedTickets": [
         {
           "key": "TM-3073",
@@ -1273,6 +1358,7 @@
       "created": "2026-05-18T17:12:39.125+0900",
       "updated": "2026-05-21T23:48:58.253+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-20T09:11:29.595+0900",
       "linkedTickets": [
         {
           "key": "PPRD-13241",
@@ -1321,6 +1407,7 @@
       "created": "2026-05-18T15:58:08.402+0900",
       "updated": "2026-05-22T10:46:19.542+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-21T23:00:35.993+0900",
       "linkedTickets": [
         {
           "key": "FT-6",
@@ -1379,6 +1466,7 @@
       "created": "2026-05-18T11:26:37.515+0900",
       "updated": "2026-05-21T23:48:57.409+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-21T23:01:49.821+0900",
       "linkedTickets": [
         {
           "key": "FT-4",
@@ -1437,6 +1525,7 @@
       "created": "2026-05-18T11:12:28.912+0900",
       "updated": "2026-05-21T23:48:54.307+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-20T09:12:03.956+0900",
       "linkedTickets": [
         {
           "key": "TM-3066",
@@ -1484,8 +1573,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-18T11:01:56.925+0900",
-      "updated": "2026-05-21T23:48:56.592+0900",
+      "updated": "2026-05-26T14:49:51.038+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-20T09:12:25.833+0900",
       "linkedTickets": [
         {
           "key": "FT-3",
@@ -1504,11 +1594,20 @@
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward"
+        },
+        {
+          "key": "PD-8245",
+          "summary": "주문 완료 화면 > 광고배너 하단 여백 확보 필요",
+          "status": "In Design",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "outward"
         }
       ],
       "progress": {
         "done": 0,
-        "total": 2
+        "total": 3
       }
     },
     {
@@ -1543,6 +1642,7 @@
       "created": "2026-05-18T11:01:36.383+0900",
       "updated": "2026-05-18T13:23:55.358+0900",
       "resolutionDate": "2026-05-18T13:23:01.372+0900",
+      "lastStatusChangedAt": "2026-05-18T13:23:01.438+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -1582,6 +1682,7 @@
       "created": "2026-05-14T21:59:27.247+0900",
       "updated": "2026-05-22T15:39:56.555+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-18T13:21:51.986+0900",
       "linkedTickets": [
         {
           "key": "TM-2440",
@@ -1648,6 +1749,7 @@
       "created": "2026-05-14T19:29:50.370+0900",
       "updated": "2026-05-23T14:05:16.148+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-23T14:05:16.148+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -1686,6 +1788,7 @@
       "created": "2026-05-14T19:29:31.955+0900",
       "updated": "2026-05-22T15:32:37.559+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-22T15:32:37.559+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -1723,6 +1826,7 @@
       "created": "2026-05-14T18:22:29.355+0900",
       "updated": "2026-05-22T02:07:02.976+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-20T10:14:47.977+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -1760,6 +1864,7 @@
       "created": "2026-05-14T18:19:50.646+0900",
       "updated": "2026-05-22T14:57:20.288+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-22T14:56:51.060+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -1798,6 +1903,7 @@
       "created": "2026-05-14T16:39:41.744+0900",
       "updated": "2026-05-22T02:07:22.644+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-21T23:40:15.077+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -1836,6 +1942,7 @@
       "created": "2026-05-14T16:39:22.006+0900",
       "updated": "2026-05-20T09:08:10.919+0900",
       "resolutionDate": "2026-05-20T09:07:36.150+0900",
+      "lastStatusChangedAt": "2026-05-20T09:07:36.248+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -1875,6 +1982,7 @@
       "created": "2026-05-14T16:39:01.228+0900",
       "updated": "2026-05-21T23:49:02.825+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-20T09:05:49.987+0900",
       "linkedTickets": [
         {
           "key": "TM-3041",
@@ -1922,6 +2030,7 @@
       "created": "2026-05-14T15:34:01.315+0900",
       "updated": "2026-05-21T23:58:20.975+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-20T10:24:44.267+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -1960,6 +2069,7 @@
       "created": "2026-05-14T15:26:01.557+0900",
       "updated": "2026-05-21T23:49:00.421+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-14T15:26:33.919+0900",
       "linkedTickets": [
         {
           "key": "TM-3039",
@@ -2008,12 +2118,13 @@
       "created": "2026-05-14T15:13:33.132+0900",
       "updated": "2026-05-21T23:49:06.468+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-14T15:14:17.614+0900",
       "linkedTickets": [
         {
           "key": "FT-1",
           "summary": "주문완료 이메일 무신사 로고 다크모드 고려해 수정",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "Waiting For Review",
+          "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Clones",
           "direction": "inward"
@@ -2056,6 +2167,7 @@
       "created": "2026-05-14T15:08:07.522+0900",
       "updated": "2026-05-21T23:48:58.947+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-21T23:37:38.580+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -2095,6 +2207,7 @@
       "created": "2026-05-14T14:52:48.186+0900",
       "updated": "2026-05-21T23:48:59.650+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-14T15:02:01.160+0900",
       "linkedTickets": [
         {
           "key": "TM-3036",
@@ -2143,6 +2256,7 @@
       "created": "2026-05-13T18:35:28.443+0900",
       "updated": "2026-05-21T23:59:22.561+0900",
       "resolutionDate": "2026-05-14T14:59:44.895+0900",
+      "lastStatusChangedAt": "2026-05-14T14:59:44.985+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -2180,6 +2294,7 @@
       "created": "2026-05-13T18:23:39.606+0900",
       "updated": "2026-05-22T00:02:24.886+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-13T18:24:09.900+0900",
       "linkedTickets": [
         {
           "key": "TM-3031",
@@ -2227,6 +2342,7 @@
       "created": "2026-05-13T18:20:28.594+0900",
       "updated": "2026-05-21T23:59:57.161+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-19T11:37:46.639+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -2265,6 +2381,7 @@
       "created": "2026-05-13T18:13:20.978+0900",
       "updated": "2026-05-21T23:49:10.743+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-13T18:14:25.362+0900",
       "linkedTickets": [
         {
           "key": "TM-3030",
@@ -2314,6 +2431,7 @@
       "created": "2026-05-13T18:08:42.037+0900",
       "updated": "2026-05-22T00:00:42.399+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-20T10:26:27.060+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -2352,6 +2470,7 @@
       "created": "2026-05-13T18:00:05.743+0900",
       "updated": "2026-05-21T23:49:10.031+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-13T18:03:54.923+0900",
       "linkedTickets": [
         {
           "key": "TM-3029",
@@ -2401,6 +2520,7 @@
       "created": "2026-05-13T16:39:39.081+0900",
       "updated": "2026-05-21T23:49:08.598+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-14T14:53:59.887+0900",
       "linkedTickets": [
         {
           "key": "TM-3035",
@@ -2449,8 +2569,9 @@
       "startDate": null,
       "dueDate": "2026-05-26",
       "created": "2026-05-13T09:03:00.544+0900",
-      "updated": "2026-05-22T13:59:15.159+0900",
+      "updated": "2026-05-26T14:55:15.868+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-13T14:30:30.542+0900",
       "linkedTickets": [
         {
           "key": "PEL-917",
@@ -2464,8 +2585,8 @@
         {
           "key": "MSSCXTF-1362",
           "summary": "[유즈드] 추천판>인기브랜드 섹션 내 '유즈드'탭 추가",
-          "status": "개발중",
-          "statusCategory": "indeterminate",
+          "status": "론치완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward"
@@ -2490,7 +2611,7 @@
         }
       ],
       "progress": {
-        "done": 2,
+        "done": 3,
         "total": 4
       }
     },
@@ -2526,6 +2647,7 @@
       "created": "2026-05-11T15:30:08.692+0900",
       "updated": "2026-05-22T00:05:15.244+0900",
       "resolutionDate": "2026-05-22T00:04:40.722+0900",
+      "lastStatusChangedAt": "2026-05-22T00:04:40.792+0900",
       "linkedTickets": [
         {
           "key": "MSSCXTF-1208",
@@ -2583,6 +2705,7 @@
       "created": "2026-05-11T10:38:53.601+0900",
       "updated": "2026-05-21T23:49:15.321+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-11T15:14:00.931+0900",
       "linkedTickets": [
         {
           "key": "MSSCXTF-1331",
@@ -2632,6 +2755,7 @@
       "created": "2026-05-08T22:00:24.030+0900",
       "updated": "2026-05-21T23:49:16.011+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-12T09:10:38.042+0900",
       "linkedTickets": [
         {
           "key": "MSSCXTF-1355",
@@ -2716,6 +2840,7 @@
       "created": "2026-05-08T19:06:02.938+0900",
       "updated": "2026-05-22T00:05:30.078+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-11T13:27:58.984+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -2755,6 +2880,7 @@
       "created": "2026-05-07T11:14:27.181+0900",
       "updated": "2026-05-21T23:49:17.385+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-12T23:01:33.941+0900",
       "linkedTickets": [
         {
           "key": "TM-3034",
@@ -2805,6 +2931,7 @@
       "created": "2026-05-07T11:10:47.253+0900",
       "updated": "2026-05-22T00:06:40.516+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-22T00:06:01.103+0900",
       "linkedTickets": [
         {
           "key": "MSSCXTF-1351",
@@ -2853,6 +2980,7 @@
       "created": "2026-05-05T16:22:01.396+0900",
       "updated": "2026-05-18T11:01:44.823+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-18T09:22:27.055+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -2893,6 +3021,7 @@
       "created": "2026-05-05T12:48:45.727+0900",
       "updated": "2026-05-14T15:22:18.184+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-06T14:07:56.194+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -2933,6 +3062,7 @@
       "created": "2026-05-04T20:16:53.995+0900",
       "updated": "2026-05-22T00:07:42.301+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-14T15:18:51.948+0900",
       "linkedTickets": [
         {
           "key": "TM-3037",
@@ -2983,6 +3113,7 @@
       "created": "2026-05-04T19:20:41.869+0900",
       "updated": "2026-05-08T13:35:35.622+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-06T14:04:52.666+0900",
       "linkedTickets": [
         {
           "key": "PEL-760",
@@ -3031,6 +3162,7 @@
       "created": "2026-05-04T13:51:46.235+0900",
       "updated": "2026-05-15T11:10:56.857+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-11T09:35:27.796+0900",
       "linkedTickets": [
         {
           "key": "TM-3008",
@@ -3080,6 +3212,7 @@
       "created": "2026-05-04T11:32:30.984+0900",
       "updated": "2026-05-13T14:20:02.715+0900",
       "resolutionDate": "2026-05-13T14:20:02.612+0900",
+      "lastStatusChangedAt": "2026-05-13T14:20:02.715+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -3119,6 +3252,7 @@
       "created": "2026-05-01T23:04:18.477+0900",
       "updated": "2026-05-14T15:21:31.368+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-14T15:20:50.137+0900",
       "linkedTickets": [
         {
           "key": "TM-3038",
@@ -3168,6 +3302,7 @@
       "created": "2026-05-01T21:57:45.417+0900",
       "updated": "2026-05-08T13:36:37.054+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-04T13:30:06.429+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -3208,6 +3343,7 @@
       "created": "2026-05-01T21:57:43.058+0900",
       "updated": "2026-05-15T18:20:26.859+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-08T13:27:48.057+0900",
       "linkedTickets": [
         {
           "key": "MSSCXTF-1324",
@@ -3258,6 +3394,7 @@
       "created": "2026-05-01T21:56:56.121+0900",
       "updated": "2026-05-22T00:13:25.962+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-22T00:12:46.650+0900",
       "linkedTickets": [
         {
           "key": "TM-2995",
@@ -3308,6 +3445,7 @@
       "created": "2026-05-01T18:16:36.071+0900",
       "updated": "2026-05-22T00:13:04.544+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-14T15:38:53.183+0900",
       "linkedTickets": [
         {
           "key": "MSSCXTF-1320",
@@ -3356,6 +3494,7 @@
       "created": "2026-05-01T18:16:00.281+0900",
       "updated": "2026-05-08T14:43:42.398+0900",
       "resolutionDate": "2026-05-08T14:41:42.025+0900",
+      "lastStatusChangedAt": "2026-05-08T14:41:42.112+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -3395,6 +3534,7 @@
       "created": "2026-05-01T11:26:17.082+0900",
       "updated": "2026-05-21T11:15:09.064+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-21T11:14:29.247+0900",
       "linkedTickets": [
         {
           "key": "MSSCXTF-1318",
@@ -3445,6 +3585,7 @@
       "created": "2026-05-01T11:25:52.272+0900",
       "updated": "2026-05-22T00:12:28.968+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-21T11:14:17.806+0900",
       "linkedTickets": [
         {
           "key": "MSSCXTF-1317",
@@ -3494,6 +3635,7 @@
       "created": "2026-04-24T17:22:25.563+0900",
       "updated": "2026-05-22T00:18:02.853+0900",
       "resolutionDate": "2026-05-08T14:43:19.741+0900",
+      "lastStatusChangedAt": "2026-05-08T14:43:19.841+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -3534,6 +3676,7 @@
       "created": "2026-04-24T16:19:27.458+0900",
       "updated": "2026-05-22T00:18:04.357+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-21T11:11:21.162+0900",
       "linkedTickets": [
         {
           "key": "MSSCXTF-1337",
@@ -3583,6 +3726,7 @@
       "created": "2026-04-24T16:17:38.089+0900",
       "updated": "2026-05-08T14:44:46.538+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-08T14:44:46.538+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -3622,6 +3766,7 @@
       "created": "2026-04-24T10:36:57.881+0900",
       "updated": "2026-05-22T00:18:04.989+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-21T11:08:55.985+0900",
       "linkedTickets": [
         {
           "key": "TM-3087",
@@ -3671,6 +3816,7 @@
       "created": "2026-04-24T10:35:30.958+0900",
       "updated": "2026-05-22T00:18:05.703+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-21T11:08:21.028+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -3710,6 +3856,7 @@
       "created": "2026-04-24T10:34:38.752+0900",
       "updated": "2026-05-22T00:18:03.676+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-21T11:08:07.211+0900",
       "linkedTickets": [
         {
           "key": "MSSCXTF-1340",
@@ -3758,6 +3905,7 @@
       "created": "2026-04-22T19:55:25.382+0900",
       "updated": "2026-05-15T09:24:50.206+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-15T09:23:18.397+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -3798,6 +3946,7 @@
       "created": "2026-04-22T19:04:50.544+0900",
       "updated": "2026-05-22T00:18:21.492+0900",
       "resolutionDate": "2026-05-08T14:45:34.911+0900",
+      "lastStatusChangedAt": "2026-05-08T14:45:35.000+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -3838,6 +3987,7 @@
       "created": "2026-04-22T17:11:35.250+0900",
       "updated": "2026-05-22T00:18:25.227+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-04-28T17:44:04.384+0900",
       "linkedTickets": [
         {
           "key": "PEL-472",
@@ -3888,6 +4038,7 @@
       "created": "2026-04-21T23:11:53.338+0900",
       "updated": "2026-05-22T00:18:25.921+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-04-30T10:58:10.411+0900",
       "linkedTickets": [
         {
           "key": "MSSCXTF-1343",
@@ -3936,6 +4087,7 @@
       "created": "2026-04-20T18:19:23.314+0900",
       "updated": "2026-05-08T14:48:14.432+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-08T14:47:35.124+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -3975,6 +4127,7 @@
       "created": "2026-04-20T18:18:53.867+0900",
       "updated": "2026-05-22T00:18:27.393+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-14T13:44:39.454+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -4013,6 +4166,7 @@
       "created": "2026-04-20T18:18:27.398+0900",
       "updated": "2026-05-08T14:41:00.491+0900",
       "resolutionDate": "2026-05-08T14:40:27.889+0900",
+      "lastStatusChangedAt": "2026-05-08T14:40:28.013+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -4052,6 +4206,7 @@
       "created": "2026-04-18T14:01:40.096+0900",
       "updated": "2026-05-22T00:18:28.158+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-16T19:24:42.760+0900",
       "linkedTickets": [
         {
           "key": "MSSCXTF-1338",
@@ -4100,6 +4255,7 @@
       "created": "2026-04-18T14:01:25.407+0900",
       "updated": "2026-04-23T14:10:14.881+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-04-23T14:10:14.881+0900",
       "linkedTickets": [
         {
           "key": "ETR-3684",
@@ -4148,6 +4304,7 @@
       "created": "2026-04-18T14:01:07.976+0900",
       "updated": "2026-04-23T14:10:14.881+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-04-23T14:10:14.881+0900",
       "linkedTickets": [
         {
           "key": "ETR-3682",
@@ -4197,6 +4354,7 @@
       "created": "2026-04-18T14:00:44.986+0900",
       "updated": "2026-05-22T00:18:28.899+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": null,
       "linkedTickets": [
         {
           "key": "ETR-3687",
@@ -4254,6 +4412,7 @@
       "created": "2026-04-18T14:00:30.654+0900",
       "updated": "2026-05-13T11:12:05.504+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-13T10:16:16.595+0900",
       "linkedTickets": [
         {
           "key": "ETR-3686",
@@ -4312,6 +4471,7 @@
       "created": "2026-04-18T14:00:16.153+0900",
       "updated": "2026-05-22T00:18:29.641+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-21T13:06:39.289+0900",
       "linkedTickets": [
         {
           "key": "ETR-3685",
@@ -4369,6 +4529,7 @@
       "created": "2026-04-18T14:00:03.451+0900",
       "updated": "2026-04-20T09:02:33.749+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": null,
       "linkedTickets": [
         {
           "key": "ETR-3683",
@@ -4418,6 +4579,7 @@
       "created": "2026-04-18T13:59:48.486+0900",
       "updated": "2026-05-22T00:18:30.396+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-08T14:46:15.191+0900",
       "linkedTickets": [
         {
           "key": "ETR-3681",
@@ -4467,6 +4629,7 @@
       "created": "2026-04-18T13:59:33.168+0900",
       "updated": "2026-05-22T00:18:31.132+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-05-06T13:07:10.609+0900",
       "linkedTickets": [
         {
           "key": "ETR-3678",
@@ -4524,6 +4687,7 @@
       "created": "2026-04-17T23:04:38.543+0900",
       "updated": "2026-04-20T08:57:53.773+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": null,
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -4564,6 +4728,7 @@
       "created": "2026-03-24T11:04:12.944+0900",
       "updated": "2026-05-22T00:19:07.913+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-04-15T06:19:09.210+0900",
       "linkedTickets": [
         {
           "key": "TM-2332",
@@ -4616,6 +4781,7 @@
       "created": "2026-02-26T15:03:53.866+0900",
       "updated": "2026-05-22T01:11:31.107+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2026-03-04T14:17:57.284+0900",
       "linkedTickets": [
         {
           "key": "TM-2311",
@@ -4664,6 +4830,7 @@
       "created": "2025-07-18T13:54:19.666+0900",
       "updated": "2026-05-22T13:23:30.004+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": "2025-08-01T15:17:48.082+0900",
       "linkedTickets": [
         {
           "key": "SNDPRD-2617",
