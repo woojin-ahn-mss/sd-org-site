@@ -663,20 +663,28 @@
   box-shadow: 0 1px 0 rgba(0,0,0,0.3);
   cursor: default;
 }
-.goalbar[data-color="accent"]  { background: var(--accent); }
-.goalbar[data-color="success"] { background: var(--success); }
-.goalbar[data-color="info"]    { background: var(--info); }
-.goalbar[data-color="rank"]    { background: var(--subj-rank); }
-.goalbar[data-color="pers"]    { background: var(--subj-pers); }
-.goalbar[data-color="misc"]    { background: var(--subj-misc); }
+.goalbar[data-color="accent"]        { background: var(--accent); }
+.goalbar[data-color="accent-strong"] { background: var(--accent-strong); }
+.goalbar[data-color="success"]       { background: var(--success); }
+.goalbar[data-color="info"]          { background: var(--info); }
+.goalbar[data-color="alert"]         { background: var(--alert); }
+.goalbar[data-color="srch"]          { background: var(--subj-srch); }
+.goalbar[data-color="rank"]          { background: var(--subj-rank); }
+.goalbar[data-color="pers"]          { background: var(--subj-pers); }
+.goalbar[data-color="disc"]          { background: var(--subj-disc); }
+.goalbar[data-color="misc"]          { background: var(--subj-misc); }
 [data-theme="light"] .goalbar { color: #fff; }
 
 /* 목표 카드 좌측 border 도 동일 색 */
-.goal-card[data-color="success"] { border-left-color: var(--success); }
-.goal-card[data-color="info"]    { border-left-color: var(--info); }
-.goal-card[data-color="rank"]    { border-left-color: var(--subj-rank); }
-.goal-card[data-color="pers"]    { border-left-color: var(--subj-pers); }
-.goal-card[data-color="misc"]    { border-left-color: var(--subj-misc); }
+.goal-card[data-color="accent-strong"] { border-left-color: var(--accent-strong); }
+.goal-card[data-color="success"]       { border-left-color: var(--success); }
+.goal-card[data-color="info"]          { border-left-color: var(--info); }
+.goal-card[data-color="alert"]         { border-left-color: var(--alert); }
+.goal-card[data-color="srch"]          { border-left-color: var(--subj-srch); }
+.goal-card[data-color="rank"]          { border-left-color: var(--subj-rank); }
+.goal-card[data-color="pers"]          { border-left-color: var(--subj-pers); }
+.goal-card[data-color="disc"]          { border-left-color: var(--subj-disc); }
+.goal-card[data-color="misc"]          { border-left-color: var(--subj-misc); }
 
 /* 색상 swatch picker — 목표 모달 */
 .color-swatches {

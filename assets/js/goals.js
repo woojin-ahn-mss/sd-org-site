@@ -37,14 +37,18 @@ export function isValidPeriod(start, end) {
   return isValidMonth(start) && isValidMonth(end) && start <= end;
 }
 
-/** 사용 가능한 목표 색상 팔레트 — 디자인 시스템 토큰 재사용. */
+/** 사용 가능한 목표 색상 팔레트 — 10개, 디자인 시스템 토큰 재사용 (새 색 정의 X). */
 export const GOAL_COLORS = [
-  { key: 'accent',  label: 'Gold',   var: '--accent' },
-  { key: 'success', label: 'Green',  var: '--success' },
-  { key: 'info',    label: 'Blue',   var: '--info' },
-  { key: 'rank',    label: 'Orange', var: '--subj-rank' },
-  { key: 'pers',    label: 'Tan',    var: '--subj-pers' },
-  { key: 'misc',    label: 'Sage',   var: '--subj-misc' },
+  { key: 'accent',        label: 'Gold',         var: '--accent' },
+  { key: 'accent-strong', label: 'Bright Gold',  var: '--accent-strong' },
+  { key: 'success',       label: 'Green',        var: '--success' },
+  { key: 'info',          label: 'Blue',         var: '--info' },
+  { key: 'alert',         label: 'Red',          var: '--alert' },
+  { key: 'srch',          label: 'Cream',        var: '--subj-srch' },
+  { key: 'rank',          label: 'Orange',       var: '--subj-rank' },
+  { key: 'pers',          label: 'Tan',          var: '--subj-pers' },
+  { key: 'disc',          label: 'Gray',         var: '--subj-disc' },
+  { key: 'misc',          label: 'Sage',         var: '--subj-misc' },
 ];
 
 export function normalizeGoal(g) {
