@@ -143,11 +143,16 @@ export function renderGantt(host, opts) {
   timePane.appendChild(renderTimeHead(axis, timeTemplate, timeMinWidth));
 
   // 그룹/데이터 행 (양쪽 패널 동시에 push — 수직 정렬 유지).
-  // 목표 그룹(group._goal 보유) 의 헤더 행 시간축에는 목표 기간 막대가 함께 그려진다.
+  // 그룹 헤더 행 시간축에 목표 기간 막대:
+  //   1) group._goal 이 있으면 (groupBy='goal' 분기)
+  //   2) 없더라도 group.subject 와 동일 제목의 목표가 있으면 (메인주제 그룹이지만 같은 이름의 목표가 존재)
   for (const group of grouped) {
     const collapsed = collapsedGroups.has(group.subject);
+    const matchedGoal = group._goal
+      || (goals && goals.find(g => g.title === group.subject))
+      || null;
     metaPane.appendChild(renderGroupMetaRow(group, collapsed, onGroupToggle));
-    timePane.appendChild(renderGroupTimeRow(timeTemplate, group, axis, timeMinWidth));
+    timePane.appendChild(renderGroupTimeRow(timeTemplate, matchedGoal, axis, timeMinWidth));
     if (!collapsed) {
       for (const item of group.items) {
         metaPane.appendChild(renderItemMetaRow(item, activeCols, metaTemplate));
@@ -259,14 +264,13 @@ function renderGroupMetaRow(group, collapsed, onToggle) {
   return row;
 }
 
-function renderGroupTimeRow(template, group, axis, minWidth) {
-  // 시간 패널의 그룹 행 — 메타 행과 높이 맞춤 + 목표 그룹이면 기간 막대
+function renderGroupTimeRow(template, goal, axis, minWidth) {
+  // 시간 패널의 그룹 행 — 메타 행과 높이 맞춤 + 매칭된 목표가 있으면 기간 막대
   const row = document.createElement('div');
   row.className = 'gt-group';
   row.style.gridTemplateColumns = template;
   if (minWidth) row.style.minWidth = `${minWidth}px`;
   row.style.position = 'relative';
-  const goal = group && group._goal;
   if (goal && axis) {
     const pos = goalToAxisBar(goal, axis.totalStart, axis.totalEnd);
     if (pos) {
