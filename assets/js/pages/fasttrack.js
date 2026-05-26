@@ -332,7 +332,7 @@ function renderWeeklyChart() {
   host.innerHTML = `
     <div class="wc-legend">
       <span class="wc-key"><span class="wc-sw" style="background:${colorIntake}"></span>인입 (ETR created)</span>
-      <span class="wc-key"><span class="wc-sw" style="background:${colorDone};opacity:0.7"></span>완료 (FT resolutionDate)</span>
+      <span class="wc-key"><span class="wc-sw" style="background:${colorDone};opacity:0.7"></span>완료 (MSSCXTF+FT Initiative resolutionDate)</span>
       <span class="wc-key muted dim-mono" style="margin-left:auto">막대 클릭 → 해당 주 티켓 보기</span>
     </div>
     <svg class="wc-svg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="주별 인입/완료 추이">
