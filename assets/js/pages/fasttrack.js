@@ -17,6 +17,7 @@ import { escapeHtml, escapeAttr } from '../escape.js';
 
 const FILTERS_KEY = 'fasttrack.filters';
 const PERIOD_DAYS = { '1m': 30, '3m': 90, 'all': Infinity };
+const PAGE_SIZE = 20;
 
 // 상태 분류 (사용자 정의)
 const STATUS_TRIAGE = '검토완료-우선착수';   // 패스트트랙 트리아지
@@ -35,6 +36,8 @@ let state = {
   ftItems: [],   // FT 프로젝트 티켓 (ft-tickets.json) — 없으면 빈 배열
   filters: { status: null, reporter: null, period: 'all' },
   expanded: new Set(),
+  etrPage: 1,
+  ftPage: 1,
 };
 
 export async function renderFasttrack({ rootRel = '' } = {}) {
@@ -70,6 +73,7 @@ export async function renderFasttrack({ rootRel = '' } = {}) {
   renderWeeklyChart();
   renderFilters();
   renderTable();
+  renderFtTable();
 }
 
 /** linkedTickets 진척률 보정 + missing progress 계산 */
@@ -390,6 +394,7 @@ function renderFilters() {
         state.filters[f] = state.filters[f] === v ? null : v;
       }
       scoped(FILTERS_KEY).set(state.filters);
+      state.etrPage = 1;  // 필터 변경 시 첫 페이지로
       renderFilters();
       renderTable();
     });
@@ -398,6 +403,7 @@ function renderFilters() {
   if (reset) reset.addEventListener('click', () => {
     state.filters = { status: null, reporter: null, period: 'all' };
     scoped(FILTERS_KEY).set(state.filters);
+    state.etrPage = 1;
     renderFilters();
     renderTable();
   });
@@ -427,6 +433,11 @@ function renderTable() {
     });
     return;
   }
+  const totalPages = Math.max(1, Math.ceil(rows.length / PAGE_SIZE));
+  if (state.etrPage > totalPages) state.etrPage = totalPages;
+  if (state.etrPage < 1) state.etrPage = 1;
+  const start = (state.etrPage - 1) * PAGE_SIZE;
+  const slice = rows.slice(start, start + PAGE_SIZE);
 
   host.innerHTML = `
     <table class="tbl">
@@ -442,10 +453,106 @@ function renderTable() {
           <th style="width:20px"></th>
         </tr>
       </thead>
-      <tbody>${rows.map(rowHtml).join('')}</tbody>
+      <tbody>${slice.map(rowHtml).join('')}</tbody>
     </table>
+    ${pagerHtml('etr', rows.length, totalPages, state.etrPage, start, slice.length)}
   `;
   bindRowToggle(host);
+  bindPager(host, 'etr');
+}
+
+/* ----- FT 티켓 섹션 ----- */
+
+function renderFtTable() {
+  const host = document.getElementById('ft-table');
+  if (!host) return;
+  const rows = state.ftItems;
+  if (!rows.length) {
+    host.innerHTML = emptyHtml({
+      kicker: 'NO FT TICKETS',
+      msg: '동기화 대기 중 — FT 프로젝트 sync 후 표시됩니다.',
+    });
+    return;
+  }
+  const totalPages = Math.max(1, Math.ceil(rows.length / PAGE_SIZE));
+  if (state.ftPage > totalPages) state.ftPage = totalPages;
+  if (state.ftPage < 1) state.ftPage = 1;
+  const start = (state.ftPage - 1) * PAGE_SIZE;
+  const slice = rows.slice(start, start + PAGE_SIZE);
+
+  host.innerHTML = `
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th style="width:90px">키</th>
+          <th>요약</th>
+          <th style="width:140px">담당자</th>
+          <th style="width:160px">상태</th>
+          <th style="width:60px">우선</th>
+          <th style="width:80px">생성</th>
+          <th style="width:80px">기한</th>
+        </tr>
+      </thead>
+      <tbody>${slice.map(ftRowHtml).join('')}</tbody>
+    </table>
+    ${pagerHtml('ft', rows.length, totalPages, state.ftPage, start, slice.length)}
+  `;
+  bindPager(host, 'ft');
+}
+
+function ftRowHtml(it) {
+  const g = STATUS_GROUPS.find(x => x.id === statusGroup(it));
+  const isDone = it.statusCategory === 'done' || statusGroup(it) === 'done';
+  const dueClass = (() => {
+    if (isDone) return 'date num';
+    const d = daysUntil(it.dueDate);
+    return d !== null && d < 0 ? 'date num alert-color' : 'date num';
+  })();
+  const priCls = `pri-${(it.priority || '').toLowerCase() || 'p3'}`;
+  return `
+    <tr>
+      <td>${jiraKeyHtml(it.key)}</td>
+      <td class="ft-summary">${escapeHtml(it.summary || '')}</td>
+      <td><span class="who"><span class="who-dot"></span>${escapeHtml((it.assignee && it.assignee.name) || '—')}</span></td>
+      <td><span class="st ${g ? g.stClass : 'st-wait'}">${escapeHtml(it.status || '—')}</span></td>
+      <td><span class="pri ${priCls}">${escapeHtml(it.priority || '—')}</span></td>
+      <td class="date num">${it.created ? fmtDate(it.created) : '—'}</td>
+      <td class="${dueClass}">${it.dueDate ? fmtDate(it.dueDate) : '—'}</td>
+    </tr>
+  `;
+}
+
+/* ----- 페이저 (etr/ft 공용) ----- */
+
+function pagerHtml(kind, total, totalPages, cur, start, sliceLen) {
+  if (totalPages <= 1) {
+    return `<div class="pager"><span class="pager-info"><span class="num">${total}</span>건</span></div>`;
+  }
+  return `
+    <nav class="pager" role="navigation" aria-label="페이지네이션">
+      <button type="button" data-pg-kind="${kind}" data-pg="prev" ${cur === 1 ? 'disabled' : ''}>‹ 이전</button>
+      <span class="num">${start + 1}–${start + sliceLen}</span>
+      <span class="pager-sep">/</span>
+      <span class="num">${total}</span>
+      <button type="button" data-pg-kind="${kind}" data-pg="next" ${cur === totalPages ? 'disabled' : ''}>다음 ›</button>
+      <span class="pager-info"><span class="num">${cur}</span>/<span class="num">${totalPages}</span></span>
+    </nav>
+  `;
+}
+
+function bindPager(host, kind) {
+  host.querySelectorAll(`button[data-pg-kind="${kind}"]`).forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (btn.disabled) return;
+      const stKey = kind === 'etr' ? 'etrPage' : 'ftPage';
+      if (btn.dataset.pg === 'prev') state[stKey]--;
+      else state[stKey]++;
+      if (kind === 'etr') renderTable(); else renderFtTable();
+      const reduce = typeof matchMedia === 'function'
+        && matchMedia('(prefers-reduced-motion: reduce)').matches;
+      host.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+    });
+  });
 }
 
 function rowHtml(it) {
@@ -585,7 +692,7 @@ function isItemDone(it) {
 }
 
 export const _internal = {
-  isItemDone, normalizeItem, PERIOD_DAYS,
+  isItemDone, normalizeItem, PERIOD_DAYS, PAGE_SIZE,
   STATUS_TRIAGE, STATUS_NORMAL,
   dwellStats, weekBuckets, kstWeekRange, pickElapsedAnchor,
   weeklyTrend,
