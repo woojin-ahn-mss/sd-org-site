@@ -1402,7 +1402,7 @@ hr.rule { border: 0; border-top: 1px solid var(--rule); margin: 18px 0; }
    Performance — horizontal timeline (분기 3개월)
    ========================================================= */
 .perf-timeline {
-  padding: 32px 12px 56px;
+  padding: 32px 12px 180px;          /* 아래 여백 확대 — 기울인 라벨 공간 */
   border-top: 1px solid var(--rule);
   border-bottom: 1px solid var(--rule);
   position: relative;
@@ -1413,6 +1413,21 @@ hr.rule { border: 0; border-top: 1px solid var(--rule); margin: 18px 0; }
   background: var(--rule-strong);
   position: relative;
   margin: 30px 0;
+}
+/* 출시 점 아래 라벨 — 60도 기울여 표기 (겹침 방지) */
+.perf-tl-label {
+  position: absolute;
+  top: 14px;
+  transform-origin: top left;
+  transform: rotate(60deg);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--dim);
+  white-space: nowrap;
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  pointer-events: none;             /* 점 호버/클릭이 가려지지 않게 */
 }
 
 /* =========================================================

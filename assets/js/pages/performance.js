@@ -277,19 +277,19 @@ function renderTimeline(q) {
            `<span style="position:absolute;left:${leftPct}%;top:-4px;width:1px;height:9px;background:var(--rule-strong)"></span>`;
   }).join('');
 
-  // 출시 점
+  // 출시 점 + 60도 기울인 라벨 (겹침 방지)
   const dots = launches.map(l => {
     const date = l.launchedAt || l.resolutionDate;
     if (!date) return '';
     const t = new Date(date);
     if (isNaN(t)) return '';
     const pct = Math.max(0, Math.min(100, ((t - start) / totalMs) * 100));
-    const title = (l.title || l.summary || '').slice(0, 28);
+    const title = (l.title || l.summary || '').slice(0, 32);
     const key = l.ticketKey || l.key || '';
     const tip = `${key} · ${fmtDate(date)} · ${l.title || l.summary || ''}`;
     return `
-      <div data-tip="${escapeAttr(tip)}" style="position:absolute;left:${pct}%;top:-5px;transform:translateX(-50%);width:10px;height:10px;background:var(--accent);border:2px solid var(--bg);cursor:pointer" data-jira-key="${escapeAttr(key)}"></div>
-      <div style="position:absolute;left:${pct}%;top:12px;transform:translateX(-50%);font-size:11px;color:var(--dim);white-space:nowrap;font-family:var(--font-mono);max-width:140px;overflow:hidden;text-overflow:ellipsis">${escapeHtml(title)}</div>
+      <div data-tip="${escapeAttr(tip)}" style="position:absolute;left:${pct}%;top:-5px;transform:translateX(-50%);width:10px;height:10px;background:var(--accent);border:2px solid var(--bg);cursor:pointer;z-index:2" data-jira-key="${escapeAttr(key)}"></div>
+      <div class="perf-tl-label" style="left:${pct}%">${escapeHtml(title)}</div>
     `;
   }).join('');
 
