@@ -8,6 +8,7 @@ import { showError, showLoading } from '../states.js';
 import { renderGantt, COLUMNS } from '../gantt.js';
 import { scoped } from '../storage.js';
 import { attachModal } from '../modal.js';
+import { loadAll as loadGoals, currentYear } from '../goals.js';
 
 const store = scoped('roadmap');
 
@@ -32,6 +33,7 @@ const DEFAULT_STATE = {
   cols: COLUMNS.filter(c => c.default).map(c => c.id),
   filters: {},        // { project: ['CBP'], ... }
   collapsedGroups: [],
+  groupBy: 'subject',  // 'subject' | 'goal'
 };
 
 export async function renderRoadmap({ rootRel = '' }) {
@@ -47,9 +49,14 @@ export async function renderRoadmap({ rootRel = '' }) {
   }
 
   const items = data.items || [];
+  // 목표 데이터 — roadmap-plan 페이지의 LS 와 cross-page 공유
+  const year = currentYear();
+  const goalsData = loadGoals(year);  // { goals: [], cardGoals: {} }
+
   let state = { ...DEFAULT_STATE, ...(store.get() || {}), ...stateFromUrl() };
   if (!state.cols || !state.cols.length) state.cols = DEFAULT_STATE.cols;
   if (!state.filters) state.filters = {};
+  if (state.groupBy !== 'subject' && state.groupBy !== 'goal') state.groupBy = 'subject';
 
   // 마이그레이션: 새로 추가된 default 컬럼은 기존 saved state 에 없어도 자동 켜기
   const colsSet = new Set(state.cols);
@@ -71,6 +78,19 @@ export async function renderRoadmap({ rootRel = '' }) {
       state.mode = btn.dataset.timeMode;
       document.querySelectorAll('[data-time-mode]').forEach(b =>
         b.classList.toggle('active', b.dataset.timeMode === state.mode));
+      persist(state); rerender();
+    });
+  });
+
+  // --- 그룹 모드 토글 (메인주제 / 목표) ---
+  document.querySelectorAll('[data-group-by]').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.groupBy === state.groupBy);
+    btn.addEventListener('click', () => {
+      state.groupBy = btn.dataset.groupBy;
+      document.querySelectorAll('[data-group-by]').forEach(b =>
+        b.classList.toggle('active', b.dataset.groupBy === state.groupBy));
+      // 그룹 모드 바뀌면 접힘 상태는 의미가 달라지므로 초기화
+      state.collapsedGroups = [];
       persist(state); rerender();
     });
   });
@@ -101,6 +121,10 @@ export async function renderRoadmap({ rootRel = '' }) {
         state.collapsedGroups = [...set];
         persist(state); rerender();
       },
+      groupBy: state.groupBy,
+      goals: goalsData.goals,
+      cardGoals: goalsData.cardGoals,
+      showGoalBars: goalsData.goals.length > 0,  // 목표가 하나라도 있으면 막대 영역 표시
     });
   }
   rerender();
@@ -247,9 +271,10 @@ function bindColsPopover(state, onChange) {
 
 function persist(state) {
   store.set(state);
-  // URL hash 에 기본 필터만 (간단히 mode + filters)
+  // URL hash 에 기본 필터만 (간단히 mode + filters + group)
   const params = new URLSearchParams();
   params.set('mode', state.mode);
+  if (state.groupBy) params.set('group', state.groupBy);
   for (const [k, v] of Object.entries(state.filters || {})) {
     if (v && v.length) params.set(`f.${k}`, v.join('|'));
   }
@@ -263,6 +288,7 @@ function stateFromUrl() {
   const p = new URLSearchParams(h);
   const out = {};
   if (p.get('mode')) out.mode = p.get('mode');
+  if (p.get('group')) out.groupBy = p.get('group');
   if (p.get('cols')) out.cols = p.get('cols').split(',').filter(Boolean);
   const filters = {};
   for (const [k, v] of p.entries()) {

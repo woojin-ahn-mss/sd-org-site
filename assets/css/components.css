@@ -531,6 +531,55 @@
 .g-cell { border-left: 1px solid var(--faintest); position: relative; padding: 0 !important; }
 .g-cell.current { background: var(--accent-soft) !important; }
 
+/* ----- 🎯 목표 막대 영역 (간트 상단) ----- */
+.gm-goalbars, .gt-goalbars {
+  border-bottom: 2px solid var(--rule-strong);
+  background: var(--bg);
+}
+.gm-goalbars-head, .gt-goalbars-head {
+  height: 24px;
+  display: flex; align-items: center;
+  padding: 0 8px;
+  font-family: var(--font-mono);
+  font-size: 10px; color: var(--accent);
+  letter-spacing: 0.14em; text-transform: uppercase;
+  border-bottom: 1px solid var(--rule);
+  background: var(--bg-elev);
+}
+.gm-goalbar-row, .gt-goalbar-row {
+  height: 30px;
+  border-bottom: 1px solid var(--rule);
+}
+.gm-goalbar-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 10px; gap: 10px;
+  font-size: 12px; color: var(--text);
+}
+.gm-goalbar-title {
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  min-width: 0; flex: 1;
+}
+.gm-goalbar-period {
+  font-family: var(--font-mono);
+  font-size: 10.5px; color: var(--faint);
+  flex-shrink: 0;
+}
+
+.goalbar {
+  height: 16px;
+  display: flex; align-items: center; padding: 0 8px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-bright, var(--accent)));
+  color: var(--bg);
+  font-family: var(--font-mono);
+  font-size: 10.5px; font-weight: 500;
+  letter-spacing: 0.04em;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  border-radius: 2px;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.3);
+  cursor: default;
+}
+[data-theme="light"] .goalbar { color: #fff; }
+
 .g-bar {
   position: absolute; top: 50%; transform: translateY(-50%);
   height: 14px;
@@ -602,6 +651,95 @@
   letter-spacing: 0.08em;
 }
 .heat-legend-cell { width: 28px; height: 20px; font-size: 10px; }
+
+/* =========================================================
+   Goal board (목표 보드)
+   ========================================================= */
+.goal-board {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+  border-top: 1px solid var(--rule);
+  padding-top: 14px;
+}
+.goal-empty {
+  grid-column: 1 / -1;
+  display: flex; align-items: center; gap: 14px;
+  padding: 20px 16px;
+  border: 1px dashed var(--rule); border-radius: 4px;
+  color: var(--dim);
+}
+.goal-empty-icon { font-size: 20px; }
+.goal-empty-msg { flex: 1; font-size: 13px; }
+
+.goal-card {
+  padding: 12px 14px;
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--accent);
+  border-radius: 3px;
+  background: var(--bg);
+  transition: background 120ms;
+}
+.goal-card:hover { background: var(--bg-elev); }
+.goal-card-head {
+  display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+.goal-card-title {
+  margin: 0; font-size: 14px; font-weight: 500;
+  letter-spacing: -0.005em;
+  color: var(--text);
+}
+.goal-card-period {
+  font-family: var(--font-mono);
+  font-size: 11px; color: var(--faint);
+  letter-spacing: 0.04em;
+}
+.goal-card-desc {
+  margin: 4px 0 8px;
+  font-size: 12.5px; color: var(--dim); line-height: 1.5;
+}
+.goal-card-foot {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--rule);
+  font-family: var(--font-mono);
+  font-size: 11px; color: var(--faint);
+}
+.goal-card-foot .gc-actions {
+  display: flex; gap: 10px;
+  letter-spacing: 0.08em; text-transform: uppercase; font-size: 10.5px;
+}
+.goal-tag { background: rgba(196, 156, 88, 0.12); border: 1px solid rgba(196, 156, 88, 0.32); }
+
+/* 카드 매핑 모달 — 체크박스 리스트 */
+.mapping-list {
+  margin-top: 8px;
+  max-height: 50vh;
+  overflow-y: auto;
+  border: 1px solid var(--rule); border-radius: 3px;
+}
+.mapping-row {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--rule);
+  cursor: pointer;
+  transition: background 80ms;
+}
+.mapping-row:last-child { border-bottom: 0; }
+.mapping-row:hover { background: var(--bg-elev); }
+.mapping-row.on { background: rgba(196, 156, 88, 0.06); }
+.mapping-row input[type="checkbox"] { margin-top: 2px; }
+.mapping-row-main { display: flex; flex-direction: column; gap: 3px; min-width: 0; flex: 1; }
+.mapping-row-title {
+  font-size: 13px; color: var(--text);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.mapping-row-meta {
+  display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap;
+  font-family: var(--font-mono); font-size: 10.5px; color: var(--faint);
+}
 
 /* =========================================================
    Kanban (roadmap plan)

@@ -43,11 +43,21 @@
           <button type="button" class="tlink" data-group-by="subject">메인주제</button>
           <button type="button" class="tlink" data-group-by="none">없음</button>
           <span style="width:18px"></span>
+          <button type="button" class="btn ghost" id="btn-add-goal">🎯 목표 추가</button>
           <button type="button" class="btn ghost" id="btn-add-kw">＋ 카드 추가</button>
           <button type="button" class="btn ghost" id="btn-export">↓ JSON Export</button>
         </div>
       </div>
       <div class="filters" id="plan-filters"></div>
+    </section>
+
+    <!-- 목표 보드 -->
+    <section>
+      <div class="sec-head">
+        <h2>🎯 목표</h2>
+        <small>기간 한정 비즈니스 목표. 카드와 1:N 매핑 · 로드맵에서 막대로 시각화.</small>
+      </div>
+      <div class="goal-board" id="goal-board"></div>
     </section>
 
     <!-- 4분기 보드 -->

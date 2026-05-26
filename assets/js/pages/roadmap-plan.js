@@ -16,6 +16,10 @@ import { scoped } from '../storage.js';
 import { toast } from '../toast.js';
 import { escapeHtml, escapeAttr } from '../escape.js';
 import { attachModal } from '../modal.js';
+import {
+  newGoalId, isValidMonth, isValidPeriod, normalizeGoal,
+  fmtPeriod, sortGoals, invertCardGoals, cleanCardGoals,
+} from '../goals.js';
 
 const QUARTERS = ['Q1', 'Q2', 'Q3', 'Q4'];
 const SUBJECT_CLASS_MAP = {
@@ -42,6 +46,11 @@ let state = {
   // ticketKey → quarter ('Q1'|'Q2'|'Q3'|'Q4'|null). null = 사용자가 pool 로 옮김.
   jiraOverrides: {},
   overridesStore: null,
+  // 목표 (Goal)
+  goals: [],
+  cardGoals: {},        // cardId → goalId
+  goalsStore: null,
+  cardGoalsStore: null,
 };
 
 export async function renderRoadmapPlan({ rootRel = '' } = {}) {
@@ -60,6 +69,7 @@ export async function renderRoadmapPlan({ rootRel = '' } = {}) {
   refreshFiltersForValidity();
   renderFilters();
   renderHeader();
+  renderGoalBoard();
   renderBoard();
 }
 
@@ -71,6 +81,10 @@ async function loadAll() {
   state.cardsStore = scoped(`roadmapPlan.cards.${state.year}`);
   state.overridesStore = scoped(`roadmapPlan.jiraOverrides.${state.year}`);
   state.jiraOverrides = state.overridesStore.get({}) || {};
+  state.goalsStore = scoped(`roadmapPlan.goals.${state.year}`);
+  state.cardGoalsStore = scoped(`roadmapPlan.cardGoals.${state.year}`);
+  state.goals = (state.goalsStore.get([]) || []).map(normalizeGoal);
+  state.cardGoals = state.cardGoalsStore.get({}) || {};
 
   // Jira initiatives → year 매칭만, 그리고 LS override 우선 적용
   try {
@@ -98,6 +112,31 @@ async function loadAll() {
       persistCards();
     }
   }
+
+  // cardGoals stale 정리 — 존재하지 않는 cardId/goalId 매핑 제거
+  const allCardIds = new Set([
+    ...state.jiraCards.map(c => c.id),
+    ...state.keywordCards.map(c => c.id),
+  ]);
+  const { cleaned, removed } = cleanCardGoals(state.cardGoals, state.goals, allCardIds);
+  if (removed.length) {
+    state.cardGoals = cleaned;
+    persistCardGoals();
+  }
+}
+
+function persistGoals() {
+  return state.goalsStore.set(state.goals);
+}
+function persistCardGoals() {
+  return state.cardGoalsStore.set(state.cardGoals);
+}
+
+/** 카드 ID 로 카드 객체 찾기 (jira + 키워드 통합). */
+function findCard(cardId) {
+  return state.jiraCards.find(c => c.id === cardId) ||
+         state.keywordCards.find(c => c.id === cardId) ||
+         null;
 }
 
 /** state.jiraOverrides 를 jiraCards.quarter 에 반영 + stale 정리.
@@ -221,8 +260,10 @@ function renderYearSelect() {
 function bindTopActions() {
   const addBtn = document.getElementById('btn-add-kw');
   const exportBtn = document.getElementById('btn-export');
+  const addGoalBtn = document.getElementById('btn-add-goal');
   if (addBtn) addBtn.addEventListener('click', () => openCardModal(null));
   if (exportBtn) exportBtn.addEventListener('click', exportJson);
+  if (addGoalBtn) addGoalBtn.addEventListener('click', () => openGoalModal(null));
 }
 
 function bindGroupToggle() {
@@ -251,10 +292,13 @@ function renderHeader() {
   const filterNote = filtered
     ? ` · <strong class="num accent">${visible.length}</strong>장 표시 중 (필터 적용)`
     : '';
+  const goalPart = state.goals.length
+    ? ` · 목표 <strong class="num">${state.goals.length}</strong>개`
+    : '';
   lede.innerHTML =
     `<strong class="num">${state.year}</strong> 전체 <strong class="num">${total}</strong>장 ` +
     `(Jira <strong class="num">${state.jiraCards.length}</strong> · 키워드 <strong class="num">${state.keywordCards.length}</strong>)` +
-    `${filterNote}. 미배치 <strong class="num">${pool}</strong>장.`;
+    `${goalPart}${filterNote}. 미배치 <strong class="num">${pool}</strong>장.`;
 }
 
 /* ----- 필터 ------------------------------------------------ */
@@ -454,6 +498,11 @@ function cardEl(card) {
     const cls = priorityClass(card.priority);
     meta.push(`<span class="pri ${cls}">${escapeHtml(card.priority)}</span>`);
   }
+  const goalId = state.cardGoals[card.id];
+  if (goalId) {
+    const g = state.goals.find(x => x.id === goalId);
+    if (g) meta.push(`<span class="tag goal-tag" title="목표: ${escapeAttr(g.title)}">🎯 ${escapeHtml(g.title)}</span>`);
+  }
 
   el.innerHTML = `
     <h5>${escapeHtml(card.title || '(제목 없음)')}</h5>
@@ -599,6 +648,9 @@ function openCardModal(card, prefill = {}) {
   cardModalEl.querySelector('[data-modal-kicker]').textContent = isEdit ? 'EDIT' : 'NEW CARD';
   cardModalEl.querySelector('[data-modal-title]').textContent = isEdit ? '카드 편집' : '카드 추가';
 
+  // 목표 select 옵션은 현재 state.goals 기준으로 매번 재구성
+  refreshCardModalGoalOptions();
+
   const f = cardModalEl.querySelector('form');
   f.elements.title.value = card?.title || '';
   f.elements.notes.value = card?.notes || '';
@@ -607,9 +659,18 @@ function openCardModal(card, prefill = {}) {
   f.elements.projectKey.value = card?.projectKey || '';
   f.elements.ticketKey.value = card?.ticketKey || '';
   f.elements.quarter.value = card?.quarter ?? prefill.quarter ?? '';
+  f.elements.goalId.value = (card && state.cardGoals[card.id]) || '';
   f.dataset.editingId = card?.id || '';
 
   cardModalCtl.open();
+}
+
+function refreshCardModalGoalOptions() {
+  const sel = cardModalEl?.querySelector('select[name="goalId"]');
+  if (!sel) return;
+  const sorted = sortGoals(state.goals);
+  sel.innerHTML = '<option value="">— (없음)</option>' +
+    sorted.map(g => `<option value="${escapeAttr(g.id)}">${escapeHtml(g.title)}</option>`).join('');
 }
 
 function ensureCardModal() {
@@ -680,7 +741,12 @@ function ensureCardModal() {
                 <option value="Q4">Q4</option>
               </select>
             </div>
-            <div class="field"></div>
+            <div class="field">
+              <label class="field-label" for="kw-goal">🎯 목표 (선택)</label>
+              <select class="select" id="kw-goal" name="goalId">
+                <option value="">— (없음)</option>
+              </select>
+            </div>
           </div>
         </div>
         <div class="modal-foot">
@@ -730,6 +796,7 @@ function saveCardFromForm(form) {
     toast({ kicker: '입력 필요', msg: '제목은 비울 수 없습니다.', kind: 'alert' });
     return;
   }
+  let savedCardId = id;
   if (id) {
     const i = state.keywordCards.findIndex(c => c.id === id);
     if (i >= 0) {
@@ -737,16 +804,32 @@ function saveCardFromForm(form) {
       toast({ kicker: '저장됨', msg: data.title, kind: 'success' });
     }
   } else {
+    const newId = newCardId();
     state.keywordCards.push(normalizeKeywordCard({
       ...data,
-      id: newCardId(),
+      id: newId,
       year: state.year,
       createdAt: now,
       updatedAt: now,
     }));
+    savedCardId = newId;
     toast({ kicker: '추가됨', msg: data.title, kind: 'success' });
   }
   persistCards();
+
+  // 목표 매핑 갱신 (1:N 정책)
+  const goalIdVal = form.elements.goalId.value || '';
+  const prevGoal = state.cardGoals[savedCardId];
+  if (goalIdVal && state.goals.some(g => g.id === goalIdVal)) {
+    state.cardGoals[savedCardId] = goalIdVal;
+  } else {
+    delete state.cardGoals[savedCardId];
+  }
+  if (prevGoal !== state.cardGoals[savedCardId]) {
+    persistCardGoals();
+    renderGoalBoard();
+  }
+
   cardModalCtl.close();
   renderFilters();
   renderBoard();
@@ -767,6 +850,12 @@ function confirmDelete(card) {
   confirmEl.querySelector('[data-confirm-yes]').onclick = () => {
     state.keywordCards = state.keywordCards.filter(c => c.id !== card.id);
     persistCards();
+    // 카드 삭제 시 목표 매핑도 해제
+    if (state.cardGoals[card.id]) {
+      delete state.cardGoals[card.id];
+      persistCardGoals();
+      renderGoalBoard();
+    }
     toast({ kicker: '삭제됨', msg: card.title || '(제목 없음)' });
     confirmCtl.close();
     renderFilters();
@@ -824,6 +913,8 @@ function exportJson() {
     schemaVersion: SCHEMA_VERSION,
     year: state.year,
     cards: sortCards(state.keywordCards),
+    goals: sortGoals(state.goals),
+    cardGoals: state.cardGoals,
   };
   const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
   const a = document.createElement('a');
@@ -840,6 +931,348 @@ function exportJson() {
     kind: 'success',
     hold: 6000,
   });
+}
+
+/* =========================================================
+   목표 (Goal) — 보드 / 모달 / 카드 매핑
+   ========================================================= */
+
+function renderGoalBoard() {
+  const host = document.getElementById('goal-board');
+  if (!host) return;
+  const sorted = sortGoals(state.goals);
+  if (!sorted.length) {
+    host.innerHTML = `
+      <div class="goal-empty">
+        <span class="goal-empty-icon">🎯</span>
+        <span class="goal-empty-msg">아직 등록된 목표가 없습니다.</span>
+        <button type="button" class="btn ghost" data-goal-add-here>＋ 첫 목표 추가</button>
+      </div>
+    `;
+    host.querySelector('[data-goal-add-here]')?.addEventListener('click', () => openGoalModal(null));
+    return;
+  }
+  const cardsByGoal = invertCardGoals(state.cardGoals);
+  host.innerHTML = '';
+  for (const g of sorted) {
+    const cardIds = cardsByGoal.get(g.id) || [];
+    host.appendChild(goalCardEl(g, cardIds));
+  }
+}
+
+function goalCardEl(goal, cardIds) {
+  const el = document.createElement('article');
+  el.className = 'goal-card';
+  el.dataset.goalId = goal.id;
+  const periodOk = isValidPeriod(goal.startMonth, goal.endMonth);
+  const period = periodOk ? fmtPeriod(goal) : '<span class="muted">기간 미설정</span>';
+  const validIds = cardIds.filter(id => !!findCard(id));
+  el.innerHTML = `
+    <div class="goal-card-head">
+      <h4 class="goal-card-title">${escapeHtml(goal.title || '(제목 없음)')}</h4>
+      <span class="goal-card-period">${period}</span>
+    </div>
+    ${goal.description ? `<p class="goal-card-desc">${escapeHtml(goal.description)}</p>` : ''}
+    <div class="goal-card-foot">
+      <span class="num">${validIds.length}건 매핑</span>
+      <span class="gc-actions">
+        <button type="button" class="tlink" data-action="map">＋ 카드</button>
+        <button type="button" class="tlink" data-action="edit">편집</button>
+        <button type="button" class="tlink alert-color" data-action="delete">삭제</button>
+      </span>
+    </div>
+  `;
+  el.querySelector('[data-action="map"]').addEventListener('click', e => {
+    e.stopPropagation();
+    openCardMappingModal(goal);
+  });
+  el.querySelector('[data-action="edit"]').addEventListener('click', e => {
+    e.stopPropagation();
+    openGoalModal(goal);
+  });
+  el.querySelector('[data-action="delete"]').addEventListener('click', e => {
+    e.stopPropagation();
+    confirmDeleteGoal(goal);
+  });
+  return el;
+}
+
+/* ----- 목표 추가/편집 모달 ----- */
+
+let goalModalEl = null;
+let goalModalCtl = null;
+
+function openGoalModal(goal) {
+  ensureGoalModal();
+  const isEdit = !!goal;
+  goalModalEl.querySelector('[data-modal-kicker]').textContent = isEdit ? 'EDIT GOAL' : 'NEW GOAL';
+  goalModalEl.querySelector('[data-modal-title]').textContent = isEdit ? '목표 편집' : '목표 추가';
+  const f = goalModalEl.querySelector('form');
+  f.elements.title.value = goal?.title || '';
+  f.elements.description.value = goal?.description || '';
+  f.elements.startMonth.value = goal?.startMonth || '';
+  f.elements.endMonth.value = goal?.endMonth || '';
+  f.dataset.editingId = goal?.id || '';
+  goalModalCtl.open();
+}
+
+function ensureGoalModal() {
+  if (goalModalEl) return;
+  goalModalEl = document.createElement('div');
+  goalModalEl.className = 'modal-backdrop';
+  goalModalEl.hidden = true;
+  const months = buildMonthOptions();
+  goalModalEl.innerHTML = `
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="goal-modal-title" style="width:520px">
+      <form>
+        <div class="modal-head">
+          <div>
+            <div class="modal-kicker" data-modal-kicker></div>
+            <h3 class="modal-title" id="goal-modal-title" data-modal-title></h3>
+          </div>
+          <button type="button" class="modal-close" data-modal-close aria-label="닫기">CLOSE</button>
+        </div>
+        <div class="modal-body">
+          <div class="field">
+            <label class="field-label" for="goal-title">제목</label>
+            <input class="input" id="goal-title" name="title" required maxlength="80" placeholder="예: 브랜드 탐색 강화" />
+          </div>
+          <div class="field">
+            <label class="field-label" for="goal-desc">설명 (선택)</label>
+            <textarea class="textarea" id="goal-desc" name="description" maxlength="500"></textarea>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label class="field-label" for="goal-start">시작월</label>
+              <select class="select" id="goal-start" name="startMonth" required>
+                <option value="">선택</option>
+                ${months}
+              </select>
+            </div>
+            <div class="field">
+              <label class="field-label" for="goal-end">끝월</label>
+              <select class="select" id="goal-end" name="endMonth" required>
+                <option value="">선택</option>
+                ${months}
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="modal-foot">
+          <button type="button" class="btn ghost" data-modal-close>취소</button>
+          <button type="submit" class="btn primary">저장</button>
+        </div>
+      </form>
+    </div>
+  `;
+  document.body.appendChild(goalModalEl);
+  goalModalCtl = attachModal(goalModalEl, {
+    initialFocus: () => goalModalEl.querySelector('input[name="title"]'),
+  });
+  goalModalEl.querySelector('form').addEventListener('submit', e => {
+    e.preventDefault();
+    saveGoalFromForm(e.currentTarget);
+  });
+}
+
+/** 이전/올해/내년 ±1 → 36개월. YYYY-MM 포맷. */
+function buildMonthOptions() {
+  const opts = [];
+  const baseYear = state.year - 1;
+  for (let y = baseYear; y <= baseYear + 2; y++) {
+    for (let m = 1; m <= 12; m++) {
+      const mm = String(m).padStart(2, '0');
+      const v = `${y}-${mm}`;
+      opts.push(`<option value="${v}">${y}.${mm}</option>`);
+    }
+  }
+  return opts.join('');
+}
+
+function saveGoalFromForm(form) {
+  const id = form.dataset.editingId;
+  const title = form.elements.title.value.trim();
+  const description = form.elements.description.value.trim();
+  const startMonth = form.elements.startMonth.value;
+  const endMonth = form.elements.endMonth.value;
+  if (!title) {
+    toast({ kicker: '입력 필요', msg: '제목은 비울 수 없습니다.', kind: 'alert' });
+    return;
+  }
+  if (!isValidPeriod(startMonth, endMonth)) {
+    toast({ kicker: '기간 오류', msg: '시작월 ≤ 끝월 이어야 합니다.', kind: 'alert' });
+    return;
+  }
+  const now = new Date().toISOString();
+  if (id) {
+    const i = state.goals.findIndex(g => g.id === id);
+    if (i >= 0) {
+      state.goals[i] = { ...state.goals[i], title, description, startMonth, endMonth, updatedAt: now };
+      toast({ kicker: '저장됨', msg: title, kind: 'success' });
+    }
+  } else {
+    state.goals.push(normalizeGoal({
+      id: newGoalId(),
+      title, description, startMonth, endMonth,
+      createdAt: now, updatedAt: now,
+    }));
+    toast({ kicker: '추가됨', msg: title, kind: 'success' });
+  }
+  persistGoals();
+  goalModalCtl.close();
+  renderGoalBoard();
+  renderHeader();
+  renderBoard(); // 카드의 목표 표시 갱신
+}
+
+/* ----- 목표 삭제 ----- */
+
+function confirmDeleteGoal(goal) {
+  ensureConfirmModal();
+  const cardCount = Object.values(state.cardGoals).filter(gid => gid === goal.id).length;
+  confirmEl.querySelector('[data-modal-title]').textContent = '목표 삭제';
+  confirmEl.querySelector('[data-modal-body]').innerHTML =
+    `정말 <strong>${escapeHtml(goal.title || '(제목 없음)')}</strong> 목표를 삭제할까요?` +
+    (cardCount > 0 ? `<br><span class="muted">${cardCount}건의 카드 매핑도 함께 해제됩니다.</span>` : '') +
+    `<br>되돌릴 수 없습니다.`;
+  confirmCtl.open();
+  confirmEl.querySelector('[data-confirm-yes]').onclick = () => {
+    state.goals = state.goals.filter(g => g.id !== goal.id);
+    // 관련 카드 매핑 해제
+    for (const cid of Object.keys(state.cardGoals)) {
+      if (state.cardGoals[cid] === goal.id) delete state.cardGoals[cid];
+    }
+    persistGoals();
+    persistCardGoals();
+    toast({ kicker: '삭제됨', msg: goal.title || '(제목 없음)' });
+    confirmCtl.close();
+    renderGoalBoard();
+    renderHeader();
+    renderBoard();
+  };
+}
+
+/* ----- 카드 매핑 sub-modal ----- */
+
+let mappingModalEl = null;
+let mappingModalCtl = null;
+let mappingState = { goalId: null, query: '', selected: new Set() };
+
+function openCardMappingModal(goal) {
+  ensureMappingModal();
+  mappingState.goalId = goal.id;
+  mappingState.query = '';
+  // 현재 이 목표에 매핑된 카드 = checked 초기값
+  mappingState.selected = new Set(
+    Object.entries(state.cardGoals)
+      .filter(([_, gid]) => gid === goal.id)
+      .map(([cid]) => cid)
+  );
+  mappingModalEl.querySelector('[data-mapping-goal-title]').textContent = goal.title || '(제목 없음)';
+  mappingModalEl.querySelector('[data-mapping-search]').value = '';
+  renderMappingList();
+  mappingModalCtl.open();
+}
+
+function ensureMappingModal() {
+  if (mappingModalEl) return;
+  mappingModalEl = document.createElement('div');
+  mappingModalEl.className = 'modal-backdrop';
+  mappingModalEl.hidden = true;
+  mappingModalEl.innerHTML = `
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="mapping-modal-title" style="width:640px">
+      <div class="modal-head">
+        <div>
+          <div class="modal-kicker">CARD MAPPING</div>
+          <h3 class="modal-title" id="mapping-modal-title">
+            카드 매핑 · <span class="accent" data-mapping-goal-title></span>
+          </h3>
+        </div>
+        <button type="button" class="modal-close" data-modal-close aria-label="닫기">CLOSE</button>
+      </div>
+      <div class="modal-body">
+        <div class="field">
+          <input class="input" type="search" placeholder="카드 검색 (제목 / Jira 키)" data-mapping-search />
+        </div>
+        <small class="muted">한 카드는 하나의 목표에만 속할 수 있습니다. 체크 시 다른 목표 매핑은 자동으로 옮겨집니다.</small>
+        <div class="mapping-list" data-mapping-list></div>
+      </div>
+      <div class="modal-foot">
+        <button type="button" class="btn ghost" data-modal-close>취소</button>
+        <button type="button" class="btn primary" data-mapping-save>저장</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(mappingModalEl);
+  mappingModalCtl = attachModal(mappingModalEl, {
+    initialFocus: () => mappingModalEl.querySelector('[data-mapping-search]'),
+  });
+  mappingModalEl.querySelector('[data-mapping-search]').addEventListener('input', e => {
+    mappingState.query = e.target.value.trim().toLowerCase();
+    renderMappingList();
+  });
+  mappingModalEl.querySelector('[data-mapping-save]').addEventListener('click', saveMapping);
+}
+
+function renderMappingList() {
+  const list = mappingModalEl.querySelector('[data-mapping-list]');
+  const q = mappingState.query;
+  const cards = [...state.jiraCards, ...state.keywordCards]
+    .filter(c => {
+      if (!q) return true;
+      const hay = `${c.ticketKey || ''} ${c.title || ''}`.toLowerCase();
+      return hay.includes(q);
+    })
+    .slice(0, 200);
+  if (!cards.length) {
+    list.innerHTML = '<div class="muted" style="padding:20px;text-align:center">매칭되는 카드가 없습니다.</div>';
+    return;
+  }
+  list.innerHTML = cards.map(c => {
+    const otherGoalId = state.cardGoals[c.id];
+    const otherGoal = otherGoalId && otherGoalId !== mappingState.goalId
+      ? state.goals.find(g => g.id === otherGoalId) : null;
+    const checked = mappingState.selected.has(c.id);
+    const typeTag = c.type === 'jira' ? 'Jira' : '키워드';
+    return `
+      <label class="mapping-row${checked ? ' on' : ''}">
+        <input type="checkbox" data-card-id="${escapeAttr(c.id)}" ${checked ? 'checked' : ''} />
+        <span class="mapping-row-main">
+          <span class="mapping-row-title">${escapeHtml(c.title || '(제목 없음)')}</span>
+          <span class="mapping-row-meta">
+            <span class="tag">${typeTag}</span>
+            ${c.ticketKey ? `<span class="num">${escapeHtml(c.ticketKey)}</span>` : ''}
+            ${c.mainSubject ? `<span class="muted">· ${escapeHtml(c.mainSubject)}</span>` : ''}
+            ${otherGoal ? `<span class="muted">· 현재: ${escapeHtml(otherGoal.title)}</span>` : ''}
+          </span>
+        </span>
+      </label>
+    `;
+  }).join('');
+  list.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+    cb.addEventListener('change', () => {
+      const id = cb.dataset.cardId;
+      if (cb.checked) mappingState.selected.add(id); else mappingState.selected.delete(id);
+      cb.closest('.mapping-row').classList.toggle('on', cb.checked);
+    });
+  });
+}
+
+function saveMapping() {
+  const gid = mappingState.goalId;
+  // 이 목표에 속해 있던 기존 매핑 모두 제거
+  for (const cid of Object.keys(state.cardGoals)) {
+    if (state.cardGoals[cid] === gid) delete state.cardGoals[cid];
+  }
+  // 선택된 카드들을 이 목표로 매핑 (다른 목표 매핑은 덮어씀 — 1:N 정책)
+  for (const cid of mappingState.selected) {
+    state.cardGoals[cid] = gid;
+  }
+  persistCardGoals();
+  toast({ kicker: '매핑 저장', msg: `${mappingState.selected.size}건` , kind: 'success' });
+  mappingModalCtl.close();
+  renderGoalBoard();
+  renderBoard();
 }
 
 /* ----- helpers --------------------------------------------- */

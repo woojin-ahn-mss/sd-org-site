@@ -7,6 +7,7 @@
 
 import { jiraUrl } from './jira-link.js';
 import { fmtDate } from './format.js';
+import { goalToAxisBar, fmtPeriod, sortGoals } from './goals.js';
 
 /** 메인주제 → b-* class (디자인 시스템) */
 const SUBJECT_CLASS = {
@@ -85,12 +86,25 @@ export function buildTimeAxis(mode, anchor = new Date()) {
 
 /** 메인 렌더 — 좌측 메타패널(고정) + 우측 시간패널(가로 스크롤) 분리 구조.
  *  같은 행 인덱스의 양쪽 row 는 동일한 min-height 로 수직 정렬됨.
+ *  opts:
+ *    mode: 'quarter' | 'month'
+ *    items: 카드 배열
+ *    columns: 활성 컬럼 id 배열
+ *    collapsedGroups: 접힌 그룹 이름 Set
+ *    onGroupToggle(name): 그룹 접기 콜백
+ *    groupBy: 'subject' | 'goal'  (기본 subject)
+ *    goals: Goal[]                (groupBy='goal' 또는 막대 영역에 사용)
+ *    cardGoals: { cardId: goalId }
+ *    showGoalBars: boolean        목표 막대 영역을 상단에 표시할지
  */
 export function renderGantt(host, opts) {
   const { mode = 'quarter', items, columns = COLUMNS.filter(c => c.default).map(c => c.id),
-          collapsedGroups = new Set(), onGroupToggle } = opts;
+          collapsedGroups = new Set(), onGroupToggle,
+          groupBy = 'subject', goals = [], cardGoals = {}, showGoalBars = false } = opts;
   const axis = buildTimeAxis(mode);
-  const grouped = groupBySubject(items);
+  const grouped = groupBy === 'goal'
+    ? groupByGoal(items, goals, cardGoals)
+    : groupBySubject(items);
   const activeCols = COLUMNS.filter(c => columns.includes(c.id) || c.required);
 
   const metaTemplate = activeCols.map(c => `${c.width}px`).join(' ');
@@ -123,6 +137,14 @@ export function renderGantt(host, opts) {
   // 헤더 (양쪽 패널)
   metaPane.appendChild(renderMetaHead(activeCols, metaTemplate));
   timePane.appendChild(renderTimeHead(axis, timeTemplate));
+
+  // 🎯 목표 막대 영역 (선택적, 헤더 직후 / 그룹 행 직전)
+  if (showGoalBars && goals.length) {
+    const goalBarsMeta = renderGoalBarsMetaSection(goals);
+    const goalBarsTime = renderGoalBarsTimeSection(goals, axis, timeTemplate);
+    metaPane.appendChild(goalBarsMeta);
+    timePane.appendChild(goalBarsTime);
+  }
 
   // 그룹/데이터 행 (양쪽 패널 동시에 push — 수직 정렬 유지)
   for (const group of grouped) {
@@ -161,15 +183,39 @@ function groupBySubject(items) {
     return a.subject.localeCompare(b.subject, 'ko');
   });
   // 그룹 내 정렬: dueDate asc, null 뒤
-  for (const g of groups) {
-    g.items.sort((a, b) => {
-      if (!a.dueDate && !b.dueDate) return 0;
-      if (!a.dueDate) return 1;
-      if (!b.dueDate) return -1;
-      return a.dueDate < b.dueDate ? -1 : 1;
-    });
-  }
+  for (const g of groups) sortItemsForGroup(g.items);
   return groups;
+}
+
+/** 목표별 그룹핑. cardGoals[key=ticketKey or jiraCardId] → goalId. items 는 Initiative 객체. */
+function groupByGoal(items, goals, cardGoals) {
+  const goalMap = new Map(goals.map(g => [g.id, g]));
+  const buckets = new Map();   // subject = goal.title, items = []
+  const noGoal = [];
+  for (const it of items) {
+    const cardId = `jira-${it.key}`;
+    const gid = cardGoals[cardId];
+    const g = gid && goalMap.get(gid);
+    if (g) {
+      if (!buckets.has(g.id)) buckets.set(g.id, { subject: g.title, items: [], _goal: g });
+      buckets.get(g.id).items.push(it);
+    } else {
+      noGoal.push(it);
+    }
+  }
+  const sorted = sortGoals(goals).map(g => buckets.get(g.id)).filter(Boolean);
+  if (noGoal.length) sorted.push({ subject: '— 목표 미지정', items: noGoal });
+  for (const g of sorted) sortItemsForGroup(g.items);
+  return sorted;
+}
+
+function sortItemsForGroup(items) {
+  items.sort((a, b) => {
+    if (!a.dueDate && !b.dueDate) return 0;
+    if (!a.dueDate) return 1;
+    if (!b.dueDate) return -1;
+    return a.dueDate < b.dueDate ? -1 : 1;
+  });
 }
 
 /* ----------------- 헤더 (좌/우 패널 분리) ----------------- */
@@ -198,6 +244,68 @@ function renderTimeHead(axis, template) {
     row.appendChild(d);
   }
   return row;
+}
+
+/* ----------------- 🎯 목표 막대 영역 ----------------- */
+
+function renderGoalBarsMetaSection(goals) {
+  const wrap = document.createElement('div');
+  wrap.className = 'gm-goalbars';
+  // 헤더 + 각 목표 1행
+  const head = document.createElement('div');
+  head.className = 'gm-goalbars-head';
+  head.textContent = '🎯 GOALS';
+  wrap.appendChild(head);
+  for (const g of sortGoals(goals)) {
+    const row = document.createElement('div');
+    row.className = 'gm-goalbar-row';
+    row.dataset.goalId = g.id;
+    row.innerHTML = `
+      <span class="gm-goalbar-title">${escapeHtml(g.title || '(제목 없음)')}</span>
+      <span class="gm-goalbar-period">${escapeHtml(fmtPeriod(g))}</span>
+    `;
+    wrap.appendChild(row);
+  }
+  return wrap;
+}
+
+function renderGoalBarsTimeSection(goals, axis, timeTemplate) {
+  const wrap = document.createElement('div');
+  wrap.className = 'gt-goalbars';
+  // 헤더 한 줄 (메타의 'GOALS' 와 높이 맞춤)
+  const head = document.createElement('div');
+  head.className = 'gt-goalbars-head';
+  wrap.appendChild(head);
+  for (const g of sortGoals(goals)) {
+    const row = document.createElement('div');
+    row.className = 'gt-goalbar-row';
+    row.style.position = 'relative';
+    row.style.gridTemplateColumns = timeTemplate;
+    row.style.display = 'grid';
+    // 빈 셀 (axis cells 만큼) — 시각적 grid 유지
+    for (const cell of axis.cells) {
+      const c = document.createElement('div');
+      c.className = 'g-cell' + (cell.isCurrent ? ' current' : '');
+      row.appendChild(c);
+    }
+    // 막대
+    const pos = goalToAxisBar(g, axis.totalStart, axis.totalEnd);
+    if (pos) {
+      const bar = document.createElement('div');
+      bar.className = 'goalbar';
+      bar.style.position = 'absolute';
+      bar.style.top = '50%';
+      bar.style.transform = 'translateY(-50%)';
+      bar.style.left = `${(pos.leftFrac * 100).toFixed(3)}%`;
+      bar.style.width = `${Math.max(pos.widthFrac * 100, 1.5).toFixed(3)}%`;
+      bar.textContent = g.title;
+      bar.setAttribute('data-tip', `${g.title} · ${fmtPeriod(g)}`);
+      bar.setAttribute('data-tip-wide', '');
+      row.appendChild(bar);
+    }
+    wrap.appendChild(row);
+  }
+  return wrap;
 }
 
 /* ----------------- 그룹 헤더 (양쪽 패널 한 줄씩) ----------------- */
