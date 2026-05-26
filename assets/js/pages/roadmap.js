@@ -34,6 +34,7 @@ const DEFAULT_STATE = {
   filters: {},        // { project: ['CBP'], ... }
   collapsedGroups: [],
   groupBy: 'subject',  // 'subject' | 'goal'
+  excludeLaunched: false,  // 론치완료 상태 제외 토글
 };
 
 export async function renderRoadmap({ rootRel = '' }) {
@@ -89,11 +90,21 @@ export async function renderRoadmap({ rootRel = '' }) {
       state.groupBy = btn.dataset.groupBy;
       document.querySelectorAll('[data-group-by]').forEach(b =>
         b.classList.toggle('active', b.dataset.groupBy === state.groupBy));
-      // 그룹 모드 바뀌면 접힘 상태는 의미가 달라지므로 초기화
       state.collapsedGroups = [];
       persist(state); rerender();
     });
   });
+
+  // --- 론치완료 제외 토글 ---
+  const excludeBtn = document.querySelector('[data-exclude-launched]');
+  if (excludeBtn) {
+    excludeBtn.classList.toggle('active', !!state.excludeLaunched);
+    excludeBtn.addEventListener('click', () => {
+      state.excludeLaunched = !state.excludeLaunched;
+      excludeBtn.classList.toggle('active', !!state.excludeLaunched);
+      persist(state); rerender();
+    });
+  }
 
   document.querySelector('[data-toggle-advanced]')?.addEventListener('click', () => {
     const adv = document.querySelector('[data-filters="advanced"]');
@@ -108,7 +119,10 @@ export async function renderRoadmap({ rootRel = '' }) {
   });
 
   function rerender() {
-    const filtered = applyFilters(items, state.filters);
+    let filtered = applyFilters(items, state.filters);
+    if (state.excludeLaunched) {
+      filtered = filtered.filter(it => it.status !== '론치완료');
+    }
     document.querySelector('[data-cnt-total]').textContent = filtered.length;
     renderGantt(host, {
       mode: state.mode,

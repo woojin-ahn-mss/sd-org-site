@@ -455,6 +455,13 @@
   font-size: 11px; color: var(--faint);
   letter-spacing: 0.12em; text-transform: uppercase;
   font-weight: 500;
+  display: flex; align-items: baseline; gap: 8px;
+}
+.dwell-head .dwell-total {
+  color: var(--accent);
+  font-size: 12px;
+  letter-spacing: 0;
+  text-transform: none;
 }
 .dwell-tbl {
   width: 100%; border-collapse: collapse;
@@ -477,6 +484,30 @@
 .dwell-tbl .empty { color: var(--faint); padding: 16px 0; }
 @media (max-width: 768px) {
   .dwell-grid { grid-template-columns: 1fr; gap: 18px; }
+}
+
+/* ----- Weekly trend chart ----- */
+#weekly-chart {
+  border-top: 1px solid var(--rule);
+  padding-top: 14px;
+}
+.wc-legend {
+  display: flex; gap: 18px;
+  font-family: var(--font-mono); font-size: 11px; color: var(--dim);
+  margin-bottom: 8px;
+}
+.wc-key { display: inline-flex; align-items: center; gap: 6px; }
+.wc-sw { width: 12px; height: 10px; display: inline-block; }
+.wc-svg { width: 100%; height: 240px; display: block; }
+.wc-grid { stroke: var(--rule); stroke-width: 1; }
+.wc-xlabel, .wc-ylabel {
+  font-family: var(--font-mono); font-size: 10px; fill: var(--faint);
+  text-anchor: middle;
+}
+.wc-ylabel { text-anchor: end; }
+.wc-val {
+  font-family: var(--font-mono); font-size: 9.5px; fill: var(--dim);
+  text-anchor: middle;
 }
 
 /* =========================================================

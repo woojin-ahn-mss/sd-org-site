@@ -67,6 +67,7 @@ export async function renderFasttrack({ rootRel = '' } = {}) {
   renderStats();
   renderHeader();
   renderDwellTables();
+  renderWeeklyChart();
   renderFilters();
   renderTable();
 }
@@ -171,8 +172,12 @@ function renderHeader() {
 function renderDwellTables() {
   const etrTable = document.getElementById('dwell-etr');
   const ftTable = document.getElementById('dwell-ft');
+  const etrTotal = document.getElementById('dwell-etr-total');
+  const ftTotal = document.getElementById('dwell-ft-total');
   if (etrTable) renderDwellGroup(etrTable, dwellStats(state.items, ETR_STATUS_ORDER));
   if (ftTable)  renderDwellGroup(ftTable,  dwellStats(state.ftItems));
+  if (etrTotal) etrTotal.textContent = state.items.length ? `${state.items.length}건` : '—';
+  if (ftTotal)  ftTotal.textContent  = state.ftItems.length ? `${state.ftItems.length}건` : '—';
 }
 
 /**
@@ -223,6 +228,111 @@ function pickElapsedAnchor(it) {
     if (!isNaN(d)) return d.getTime();
   }
   return null;
+}
+
+/**
+ * 최근 N주의 ETR 인입(created) 과 FT 완료(resolutionDate) 카운트.
+ * KST 월~일 주차. 가장 오래된 주부터 최근 주 순서.
+ * @returns {Array<{label, start, end, intake, done}>}
+ */
+export function weeklyTrend(etrItems, ftItems, now = new Date(), weeks = 12) {
+  const { thisStart } = kstWeekRange(now);
+  const arr = [];
+  for (let i = weeks - 1; i >= 0; i--) {
+    const start = thisStart - i * 7 * 86400 * 1000;
+    const end = start + 7 * 86400 * 1000;
+    arr.push({ start, end, intake: 0, done: 0, label: weekLabel(start) });
+  }
+  for (const it of etrItems) {
+    if (!it.created) continue;
+    const t = new Date(it.created).getTime();
+    if (isNaN(t)) continue;
+    const w = arr.find(b => t >= b.start && t < b.end);
+    if (w) w.intake++;
+  }
+  for (const it of ftItems) {
+    // FT 완료 = statusCategory === 'done' + resolutionDate 가 그 주
+    if (it.statusCategory !== 'done') continue;
+    const rd = it.resolutionDate || it.updated;
+    if (!rd) continue;
+    const t = new Date(rd).getTime();
+    if (isNaN(t)) continue;
+    const w = arr.find(b => t >= b.start && t < b.end);
+    if (w) w.done++;
+  }
+  return arr;
+}
+
+function weekLabel(startMs) {
+  const d = new Date(startMs);
+  // KST 기준 라벨 (월요일)
+  const kst = new Date(d.getTime() + 9 * 3600 * 1000);
+  const m = kst.getUTCMonth() + 1;
+  const day = kst.getUTCDate();
+  return `${m}/${day}`;
+}
+
+function renderWeeklyChart() {
+  const host = document.getElementById('weekly-chart');
+  if (!host) return;
+  const data = weeklyTrend(state.items, state.ftItems, new Date(), 12);
+  const maxVal = Math.max(1, ...data.map(d => Math.max(d.intake, d.done)));
+
+  // SVG 크기
+  const W = 800, H = 220;
+  const padL = 32, padR = 12, padT = 12, padB = 36;
+  const innerW = W - padL - padR;
+  const innerH = H - padT - padB;
+  const groupW = innerW / data.length;
+  const barW = Math.max(6, groupW * 0.35);
+  const gap = 2;
+
+  // 색: accent(인입) + var(--success or accent-soft)
+  const colorIntake = 'var(--accent)';
+  const colorDone = 'var(--success, #6aa84f)';
+
+  let bars = '';
+  let xlabels = '';
+  for (let i = 0; i < data.length; i++) {
+    const d = data[i];
+    const cx = padL + i * groupW + groupW / 2;
+    const xIn = cx - barW - gap / 2;
+    const xDn = cx + gap / 2;
+    const hIn = (d.intake / maxVal) * innerH;
+    const hDn = (d.done / maxVal) * innerH;
+    bars += `
+      <rect x="${xIn.toFixed(1)}" y="${(padT + innerH - hIn).toFixed(1)}" width="${barW.toFixed(1)}" height="${hIn.toFixed(1)}"
+            fill="${colorIntake}" data-tip="인입 ${d.intake}건 · ${d.label} 주차" />
+      <rect x="${xDn.toFixed(1)}" y="${(padT + innerH - hDn).toFixed(1)}" width="${barW.toFixed(1)}" height="${hDn.toFixed(1)}"
+            fill="${colorDone}" opacity="0.7" data-tip="완료 ${d.done}건 · ${d.label} 주차" />
+      ${d.intake > 0 ? `<text x="${xIn + barW / 2}" y="${(padT + innerH - hIn - 3).toFixed(1)}" class="wc-val">${d.intake}</text>` : ''}
+      ${d.done > 0 ? `<text x="${xDn + barW / 2}" y="${(padT + innerH - hDn - 3).toFixed(1)}" class="wc-val">${d.done}</text>` : ''}
+    `;
+    xlabels += `<text x="${cx}" y="${H - padB + 14}" class="wc-xlabel">${d.label}</text>`;
+  }
+
+  // Y축 눈금 (0, mid, max)
+  const ticks = [0, Math.ceil(maxVal / 2), maxVal];
+  let yticks = '';
+  for (const t of ticks) {
+    const y = padT + innerH - (t / maxVal) * innerH;
+    yticks += `
+      <line x1="${padL}" x2="${W - padR}" y1="${y.toFixed(1)}" y2="${y.toFixed(1)}" class="wc-grid" />
+      <text x="${padL - 4}" y="${(y + 3).toFixed(1)}" class="wc-ylabel">${t}</text>
+    `;
+  }
+
+  host.innerHTML = `
+    <div class="wc-legend">
+      <span class="wc-key"><span class="wc-sw" style="background:${colorIntake}"></span>인입 (ETR created)</span>
+      <span class="wc-key"><span class="wc-sw" style="background:${colorDone};opacity:0.7"></span>완료 (FT resolutionDate)</span>
+    </div>
+    <svg class="wc-svg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="주별 인입/완료 추이">
+      ${yticks}
+      ${bars}
+      ${xlabels}
+    </svg>
+  `;
 }
 
 function renderDwellGroup(table, rows) {
@@ -478,4 +588,5 @@ export const _internal = {
   isItemDone, normalizeItem, PERIOD_DAYS,
   STATUS_TRIAGE, STATUS_NORMAL,
   dwellStats, weekBuckets, kstWeekRange, pickElapsedAnchor,
+  weeklyTrend,
 };

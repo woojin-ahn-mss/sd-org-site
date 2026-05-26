@@ -65,14 +65,23 @@
       </div>
       <div class="dwell-grid" id="dwell-grid">
         <div>
-          <h3 class="dwell-head">ETR (인입 / 검토)</h3>
+          <h3 class="dwell-head">ETR (인입 / 검토) <span class="dwell-total num" id="dwell-etr-total">—</span></h3>
           <table class="dwell-tbl" id="dwell-etr"><thead><tr><th>상태</th><th class="num">건수</th><th class="num">평균 일수</th></tr></thead><tbody></tbody></table>
         </div>
         <div>
-          <h3 class="dwell-head">FT (실제 진행)</h3>
+          <h3 class="dwell-head">FT (실제 진행) <span class="dwell-total num" id="dwell-ft-total">—</span></h3>
           <table class="dwell-tbl" id="dwell-ft"><thead><tr><th>상태</th><th class="num">건수</th><th class="num">평균 일수</th></tr></thead><tbody></tbody></table>
         </div>
       </div>
+    </section>
+
+    <!-- 주별 인입 / 완료 추이 -->
+    <section>
+      <div class="sec-head">
+        <h2>주별 인입 · 완료 추이</h2>
+        <small>최근 12주 — ETR 인입 (created) / FT 완료 (resolutionDate 기준)</small>
+      </div>
+      <div id="weekly-chart"></div>
     </section>
 
     <!-- 필터 (데이터 없으면 통째로 숨김) -->
