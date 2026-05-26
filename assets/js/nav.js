@@ -86,6 +86,12 @@ export function renderSidebar(opts = {}) {
            <span class="num" data-meta-last-sync>${meta.lastSync ? fmtDateTime(meta.lastSync) : '—'}</span></p>
         <p><span class="muted">next sync</span><br>
            <span class="num" data-meta-next-sync>${meta.nextSync ? fmtDateTime(meta.nextSync) : '—'}</span></p>
+        <p>
+          <a class="sb-sync-link"
+             href="https://github.com/woojin-ahn-mss/docs/actions/workflows/jira-sync.yml"
+             target="_blank" rel="noopener noreferrer"
+             title="GitHub Actions 에서 'Run workflow' 클릭하면 수동 sync 실행">↻ 수동 sync</a>
+        </p>
         <div class="sb-theme" role="group" aria-label="테마">
           <button type="button" data-theme-set="dark">Dark</button>
           <button type="button" data-theme-set="light">Light</button>
