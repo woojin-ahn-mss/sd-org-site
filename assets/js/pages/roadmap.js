@@ -124,7 +124,6 @@ export async function renderRoadmap({ rootRel = '' }) {
       groupBy: state.groupBy,
       goals: goalsData.goals,
       cardGoals: goalsData.cardGoals,
-      showGoalBars: goalsData.goals.length > 0,  // 목표가 하나라도 있으면 막대 영역 표시
     });
   }
   rerender();

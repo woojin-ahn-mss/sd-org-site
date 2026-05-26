@@ -93,14 +93,14 @@ export function buildTimeAxis(mode, anchor = new Date()) {
  *    collapsedGroups: 접힌 그룹 이름 Set
  *    onGroupToggle(name): 그룹 접기 콜백
  *    groupBy: 'subject' | 'goal'  (기본 subject)
- *    goals: Goal[]                (groupBy='goal' 또는 막대 영역에 사용)
+ *    goals: Goal[]                (groupBy='goal' 일 때 사용)
  *    cardGoals: { cardId: goalId }
- *    showGoalBars: boolean        목표 막대 영역을 상단에 표시할지
+ *  목표 그룹의 헤더 행에는 목표 기간(startMonth~endMonth) 막대가 우측 시간축에 함께 그려진다.
  */
 export function renderGantt(host, opts) {
   const { mode = 'quarter', items, columns = COLUMNS.filter(c => c.default).map(c => c.id),
           collapsedGroups = new Set(), onGroupToggle,
-          groupBy = 'subject', goals = [], cardGoals = {}, showGoalBars = false } = opts;
+          groupBy = 'subject', goals = [], cardGoals = {} } = opts;
   const axis = buildTimeAxis(mode);
   const grouped = groupBy === 'goal'
     ? groupByGoal(items, goals, cardGoals)
@@ -138,19 +138,12 @@ export function renderGantt(host, opts) {
   metaPane.appendChild(renderMetaHead(activeCols, metaTemplate));
   timePane.appendChild(renderTimeHead(axis, timeTemplate));
 
-  // 🎯 목표 막대 영역 (선택적, 헤더 직후 / 그룹 행 직전)
-  if (showGoalBars && goals.length) {
-    const goalBarsMeta = renderGoalBarsMetaSection(goals);
-    const goalBarsTime = renderGoalBarsTimeSection(goals, axis, timeTemplate);
-    metaPane.appendChild(goalBarsMeta);
-    timePane.appendChild(goalBarsTime);
-  }
-
-  // 그룹/데이터 행 (양쪽 패널 동시에 push — 수직 정렬 유지)
+  // 그룹/데이터 행 (양쪽 패널 동시에 push — 수직 정렬 유지).
+  // 목표 그룹(group._goal 보유) 의 헤더 행 시간축에는 목표 기간 막대가 함께 그려진다.
   for (const group of grouped) {
     const collapsed = collapsedGroups.has(group.subject);
     metaPane.appendChild(renderGroupMetaRow(group, collapsed, onGroupToggle));
-    timePane.appendChild(renderGroupTimeRow(timeTemplate));
+    timePane.appendChild(renderGroupTimeRow(timeTemplate, group, axis));
     if (!collapsed) {
       for (const item of group.items) {
         metaPane.appendChild(renderItemMetaRow(item, activeCols, metaTemplate));
@@ -246,68 +239,6 @@ function renderTimeHead(axis, template) {
   return row;
 }
 
-/* ----------------- 🎯 목표 막대 영역 ----------------- */
-
-function renderGoalBarsMetaSection(goals) {
-  const wrap = document.createElement('div');
-  wrap.className = 'gm-goalbars';
-  // 헤더 + 각 목표 1행
-  const head = document.createElement('div');
-  head.className = 'gm-goalbars-head';
-  head.textContent = '🎯 GOALS';
-  wrap.appendChild(head);
-  for (const g of sortGoals(goals)) {
-    const row = document.createElement('div');
-    row.className = 'gm-goalbar-row';
-    row.dataset.goalId = g.id;
-    row.innerHTML = `
-      <span class="gm-goalbar-title">${escapeHtml(g.title || '(제목 없음)')}</span>
-      <span class="gm-goalbar-period">${escapeHtml(fmtPeriod(g))}</span>
-    `;
-    wrap.appendChild(row);
-  }
-  return wrap;
-}
-
-function renderGoalBarsTimeSection(goals, axis, timeTemplate) {
-  const wrap = document.createElement('div');
-  wrap.className = 'gt-goalbars';
-  // 헤더 한 줄 (메타의 'GOALS' 와 높이 맞춤)
-  const head = document.createElement('div');
-  head.className = 'gt-goalbars-head';
-  wrap.appendChild(head);
-  for (const g of sortGoals(goals)) {
-    const row = document.createElement('div');
-    row.className = 'gt-goalbar-row';
-    row.style.position = 'relative';
-    row.style.gridTemplateColumns = timeTemplate;
-    row.style.display = 'grid';
-    // 빈 셀 (axis cells 만큼) — 시각적 grid 유지
-    for (const cell of axis.cells) {
-      const c = document.createElement('div');
-      c.className = 'g-cell' + (cell.isCurrent ? ' current' : '');
-      row.appendChild(c);
-    }
-    // 막대
-    const pos = goalToAxisBar(g, axis.totalStart, axis.totalEnd);
-    if (pos) {
-      const bar = document.createElement('div');
-      bar.className = 'goalbar';
-      bar.style.position = 'absolute';
-      bar.style.top = '50%';
-      bar.style.transform = 'translateY(-50%)';
-      bar.style.left = `${(pos.leftFrac * 100).toFixed(3)}%`;
-      bar.style.width = `${Math.max(pos.widthFrac * 100, 1.5).toFixed(3)}%`;
-      bar.textContent = g.title;
-      bar.setAttribute('data-tip', `${g.title} · ${fmtPeriod(g)}`);
-      bar.setAttribute('data-tip-wide', '');
-      row.appendChild(bar);
-    }
-    wrap.appendChild(row);
-  }
-  return wrap;
-}
-
 /* ----------------- 그룹 헤더 (양쪽 패널 한 줄씩) ----------------- */
 
 function renderGroupMetaRow(group, collapsed, onToggle) {
@@ -323,11 +254,29 @@ function renderGroupMetaRow(group, collapsed, onToggle) {
   return row;
 }
 
-function renderGroupTimeRow(template) {
-  // 시간 패널의 그룹 행은 빈 줄 — 메타 행과 높이만 맞춤
+function renderGroupTimeRow(template, group, axis) {
+  // 시간 패널의 그룹 행 — 메타 행과 높이 맞춤 + 목표 그룹이면 기간 막대
   const row = document.createElement('div');
   row.className = 'gt-group';
   row.style.gridTemplateColumns = template;
+  row.style.position = 'relative';
+  const goal = group && group._goal;
+  if (goal && axis) {
+    const pos = goalToAxisBar(goal, axis.totalStart, axis.totalEnd);
+    if (pos) {
+      const bar = document.createElement('div');
+      bar.className = 'goalbar';
+      bar.style.position = 'absolute';
+      bar.style.top = '50%';
+      bar.style.transform = 'translateY(-50%)';
+      bar.style.left = `${(pos.leftFrac * 100).toFixed(3)}%`;
+      bar.style.width = `${Math.max(pos.widthFrac * 100, 1.5).toFixed(3)}%`;
+      bar.textContent = goal.title;
+      bar.setAttribute('data-tip', `${goal.title} · ${fmtPeriod(goal)}`);
+      bar.setAttribute('data-tip-wide', '');
+      row.appendChild(bar);
+    }
+  }
   return row;
 }
 

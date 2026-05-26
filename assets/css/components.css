@@ -531,42 +531,9 @@
 .g-cell { border-left: 1px solid var(--faintest); position: relative; padding: 0 !important; }
 .g-cell.current { background: var(--accent-soft) !important; }
 
-/* ----- 🎯 목표 막대 영역 (간트 상단) ----- */
-.gm-goalbars, .gt-goalbars {
-  border-bottom: 2px solid var(--rule-strong);
-  background: var(--bg);
-}
-.gm-goalbars-head, .gt-goalbars-head {
-  height: 24px;
-  display: flex; align-items: center;
-  padding: 0 8px;
-  font-family: var(--font-mono);
-  font-size: 10px; color: var(--accent);
-  letter-spacing: 0.14em; text-transform: uppercase;
-  border-bottom: 1px solid var(--rule);
-  background: var(--bg-elev);
-}
-.gm-goalbar-row, .gt-goalbar-row {
-  height: 30px;
-  border-bottom: 1px solid var(--rule);
-}
-.gm-goalbar-row {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 10px; gap: 10px;
-  font-size: 12px; color: var(--text);
-}
-.gm-goalbar-title {
-  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-  min-width: 0; flex: 1;
-}
-.gm-goalbar-period {
-  font-family: var(--font-mono);
-  font-size: 10.5px; color: var(--faint);
-  flex-shrink: 0;
-}
-
+/* ----- 🎯 목표 막대 (목표 그룹 헤더 행의 시간축 우측) ----- */
 .goalbar {
-  height: 16px;
+  height: 18px;
   display: flex; align-items: center; padding: 0 8px;
   background: linear-gradient(90deg, var(--accent), var(--accent-bright, var(--accent)));
   color: var(--bg);
