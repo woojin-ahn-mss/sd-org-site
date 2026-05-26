@@ -19,6 +19,7 @@ import { attachModal } from '../modal.js';
 import {
   newGoalId, isValidMonth, isValidPeriod, normalizeGoal,
   fmtPeriod, sortGoals, invertCardGoals, cleanCardGoals, reassignOrder,
+  GOAL_COLORS,
 } from '../goals.js';
 
 const QUARTERS = ['Q1', 'Q2', 'Q3', 'Q4'];
@@ -1067,6 +1068,7 @@ function goalCardEl(goal, cardIds) {
   const el = document.createElement('article');
   el.className = 'goal-card';
   el.dataset.goalId = goal.id;
+  el.dataset.color = goal.color || 'accent';
   const periodOk = isValidPeriod(goal.startMonth, goal.endMonth);
   const period = periodOk ? fmtPeriod(goal) : '<span class="muted">기간 미설정</span>';
   const validCards = cardIds.map(id => findCard(id)).filter(Boolean);
@@ -1159,6 +1161,12 @@ function openGoalModal(goal) {
   f.elements.description.value = goal?.description || '';
   f.elements.startMonth.value = goal?.startMonth || '';
   f.elements.endMonth.value = goal?.endMonth || '';
+  // 색상: 현재 선택된 swatch 표시
+  const currentColor = goal?.color || 'accent';
+  goalModalEl.querySelectorAll('[data-color-swatch]').forEach(b => {
+    b.classList.toggle('on', b.dataset.colorSwatch === currentColor);
+  });
+  f.dataset.color = currentColor;
   f.dataset.editingId = goal?.id || '';
   goalModalCtl.open();
 }
@@ -1204,6 +1212,15 @@ function ensureGoalModal() {
               </select>
             </div>
           </div>
+          <div class="field">
+            <label class="field-label">색상</label>
+            <div class="color-swatches">
+              ${GOAL_COLORS.map(c => `
+                <button type="button" class="color-swatch" data-color-swatch="${c.key}"
+                        style="background: var(${c.var})" aria-label="${c.label}" title="${c.label}"></button>
+              `).join('')}
+            </div>
+          </div>
         </div>
         <div class="modal-foot">
           <button type="button" class="btn ghost" data-modal-close>취소</button>
@@ -1219,6 +1236,14 @@ function ensureGoalModal() {
   goalModalEl.querySelector('form').addEventListener('submit', e => {
     e.preventDefault();
     saveGoalFromForm(e.currentTarget);
+  });
+  // 색상 swatch 클릭
+  goalModalEl.querySelectorAll('[data-color-swatch]').forEach(b => {
+    b.addEventListener('click', () => {
+      const f = goalModalEl.querySelector('form');
+      f.dataset.color = b.dataset.colorSwatch;
+      goalModalEl.querySelectorAll('[data-color-swatch]').forEach(x => x.classList.toggle('on', x === b));
+    });
   });
 }
 
@@ -1242,6 +1267,7 @@ function saveGoalFromForm(form) {
   const description = form.elements.description.value.trim();
   const startMonth = form.elements.startMonth.value;
   const endMonth = form.elements.endMonth.value;
+  const color = form.dataset.color || 'accent';
   if (!title) {
     toast({ kicker: '입력 필요', msg: '제목은 비울 수 없습니다.', kind: 'alert' });
     return;
@@ -1254,13 +1280,13 @@ function saveGoalFromForm(form) {
   if (id) {
     const i = state.goals.findIndex(g => g.id === id);
     if (i >= 0) {
-      state.goals[i] = { ...state.goals[i], title, description, startMonth, endMonth, updatedAt: now };
+      state.goals[i] = { ...state.goals[i], title, description, startMonth, endMonth, color, updatedAt: now };
       toast({ kicker: '저장됨', msg: title, kind: 'success' });
     }
   } else {
     state.goals.push(normalizeGoal({
       id: newGoalId(),
-      title, description, startMonth, endMonth,
+      title, description, startMonth, endMonth, color,
       createdAt: now, updatedAt: now,
     }));
     toast({ kicker: '추가됨', msg: title, kind: 'success' });

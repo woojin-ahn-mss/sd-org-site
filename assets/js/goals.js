@@ -37,14 +37,27 @@ export function isValidPeriod(start, end) {
   return isValidMonth(start) && isValidMonth(end) && start <= end;
 }
 
+/** 사용 가능한 목표 색상 팔레트 — 디자인 시스템 토큰 재사용. */
+export const GOAL_COLORS = [
+  { key: 'accent',  label: 'Gold',   var: '--accent' },
+  { key: 'success', label: 'Green',  var: '--success' },
+  { key: 'info',    label: 'Blue',   var: '--info' },
+  { key: 'rank',    label: 'Orange', var: '--subj-rank' },
+  { key: 'pers',    label: 'Tan',    var: '--subj-pers' },
+  { key: 'misc',    label: 'Sage',   var: '--subj-misc' },
+];
+
 export function normalizeGoal(g) {
   const now = new Date().toISOString();
+  const colorKey = typeof g.color === 'string' && GOAL_COLORS.some(c => c.key === g.color)
+    ? g.color : 'accent';
   return {
     id: g.id || newGoalId(),
     title: g.title || '',
     description: g.description || '',
     startMonth: g.startMonth || '',
     endMonth: g.endMonth || '',
+    color: colorKey,                                       // 막대/카드 색
     order: typeof g.order === 'number' ? g.order : null,  // 사용자 D&D 순서
     createdAt: g.createdAt || now,
     updatedAt: g.updatedAt || now,

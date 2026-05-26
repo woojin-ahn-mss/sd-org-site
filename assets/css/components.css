@@ -653,7 +653,7 @@
 .goalbar {
   height: 18px;
   display: flex; align-items: center; padding: 0 8px;
-  background: linear-gradient(90deg, var(--accent), var(--accent-bright, var(--accent)));
+  background: var(--accent);   /* 기본 — data-color 로 override */
   color: var(--bg);
   font-family: var(--font-mono);
   font-size: 10.5px; font-weight: 500;
@@ -663,7 +663,39 @@
   box-shadow: 0 1px 0 rgba(0,0,0,0.3);
   cursor: default;
 }
+.goalbar[data-color="accent"]  { background: var(--accent); }
+.goalbar[data-color="success"] { background: var(--success); }
+.goalbar[data-color="info"]    { background: var(--info); }
+.goalbar[data-color="rank"]    { background: var(--subj-rank); }
+.goalbar[data-color="pers"]    { background: var(--subj-pers); }
+.goalbar[data-color="misc"]    { background: var(--subj-misc); }
 [data-theme="light"] .goalbar { color: #fff; }
+
+/* 목표 카드 좌측 border 도 동일 색 */
+.goal-card[data-color="success"] { border-left-color: var(--success); }
+.goal-card[data-color="info"]    { border-left-color: var(--info); }
+.goal-card[data-color="rank"]    { border-left-color: var(--subj-rank); }
+.goal-card[data-color="pers"]    { border-left-color: var(--subj-pers); }
+.goal-card[data-color="misc"]    { border-left-color: var(--subj-misc); }
+
+/* 색상 swatch picker — 목표 모달 */
+.color-swatches {
+  display: flex; gap: 8px; flex-wrap: wrap;
+  margin-top: 4px;
+}
+.color-swatch {
+  width: 28px; height: 28px;
+  border: 2px solid transparent;
+  border-radius: 3px;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 80ms, border-color 80ms;
+}
+.color-swatch:hover { transform: scale(1.08); }
+.color-swatch.on {
+  border-color: var(--text);
+  box-shadow: 0 0 0 1px var(--bg) inset;
+}
 
 .g-bar {
   position: absolute; top: 50%; transform: translateY(-50%);

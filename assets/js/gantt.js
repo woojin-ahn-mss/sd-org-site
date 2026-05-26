@@ -276,6 +276,7 @@ function renderGroupTimeRow(template, goal, axis, minWidth) {
     if (pos) {
       const bar = document.createElement('div');
       bar.className = 'goalbar';
+      bar.dataset.color = goal.color || 'accent';
       bar.style.position = 'absolute';
       bar.style.top = '50%';
       bar.style.transform = 'translateY(-50%)';
