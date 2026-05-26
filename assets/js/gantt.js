@@ -93,7 +93,10 @@ export function renderGantt(host, opts) {
 
   const metaCols = activeCols.map(c => `${c.width}px`).join(' ');
   const timeColsCount = axis.cells.length;
-  const gridTemplate = `${metaCols} repeat(${timeColsCount}, minmax(60px, 1fr))`;
+  // 월 모드: 셀당 최소 110px 보장 → 12셀 = 최소 1320px → 컨테이너 좁으면 가로 스크롤
+  // 분기 모드: 6셀이라 60px 최소면 충분
+  const timeCellSize = mode === 'month' ? 'minmax(110px, 1fr)' : 'minmax(60px, 1fr)';
+  const gridTemplate = `${metaCols} repeat(${timeColsCount}, ${timeCellSize})`;
 
   const root = document.createElement('div');
   root.className = 'gantt';

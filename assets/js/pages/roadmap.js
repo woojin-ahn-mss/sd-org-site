@@ -11,8 +11,12 @@ import { attachModal } from '../modal.js';
 
 const store = scoped('roadmap');
 
+// Search & Discovery 실이 관리하는 7개 Jira 프로젝트 (CLAUDE.md 기준).
+// 데이터에 없어도 chip 으로 노출 (사용자가 toggle 가능, count=0 표시).
+const SD_PROJECTS = ['TM', 'MSSCXTF', 'ETR', 'FT', 'PEL', 'CBP', 'PBO'];
+
 const FILTER_FIELDS = [
-  { id: 'project',     label: 'PROJECT',     pick: it => it.project },
+  { id: 'project', label: 'PROJECT', pick: it => it.project, fixedValues: SD_PROJECTS },
   { id: 'mainSubject', label: 'MAIN SUBJECT', pick: it => it.mainSubject },
   { id: 'labels',      label: 'LABELS',      pick: it => it.labels || [] },
   { id: 'yearQuarter', label: 'PERIOD',      pick: it => it.yearQuarter },
@@ -134,14 +138,19 @@ function buildFilterGroup(field, items, state, onChange) {
     const arr = Array.isArray(v) ? v : (v == null ? [] : [v]);
     for (const x of arr) counts.set(x, (counts.get(x) || 0) + 1);
   }
-  // 상위 12개만 (너무 많으면)
-  const sorted = [...counts.entries()].sort((a, b) => b[1] - a[1]).slice(0, 12);
+  // fixedValues 가 정의되면 그 순서대로 (count=0 도 노출), 아니면 데이터 기반 상위 12개
+  let sorted;
+  if (field.fixedValues && field.fixedValues.length) {
+    sorted = field.fixedValues.map(v => [v, counts.get(v) || 0]);
+  } else {
+    sorted = [...counts.entries()].sort((a, b) => b[1] - a[1]).slice(0, 12);
+  }
   const sel = new Set(state.filters[field.id] || []);
 
   for (const [val, ct] of sorted) {
     const chip = document.createElement('button');
     chip.type = 'button';
-    chip.className = 'fchip' + (sel.has(val) ? ' on' : '');
+    chip.className = 'fchip' + (sel.has(val) ? ' on' : '') + (ct === 0 ? ' fchip-empty' : '');
     chip.textContent = `${val} ${ct}`;
     chip.addEventListener('click', () => {
       if (sel.has(val)) sel.delete(val); else sel.add(val);
