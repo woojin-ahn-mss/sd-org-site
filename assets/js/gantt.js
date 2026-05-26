@@ -133,21 +133,25 @@ export function renderGantt(host, opts) {
 
   const timePane = document.createElement('div');
   timePane.className = 'gantt-time';
+  // 시간 패널 내부 행의 명시적 min-width — 절대위치 막대(%) 가 grid 실제 너비를 기준으로 계산되게.
+  // 이걸 안 잡으면 .gt-row 의 CSS 너비가 좁은 부모 너비 그대로라서 막대가 잘못된 컬럼에 위치함.
+  const minColPx = mode === 'month' ? 110 : 60;
+  const timeMinWidth = minColPx * axis.cells.length;
 
   // 헤더 (양쪽 패널)
   metaPane.appendChild(renderMetaHead(activeCols, metaTemplate));
-  timePane.appendChild(renderTimeHead(axis, timeTemplate));
+  timePane.appendChild(renderTimeHead(axis, timeTemplate, timeMinWidth));
 
   // 그룹/데이터 행 (양쪽 패널 동시에 push — 수직 정렬 유지).
   // 목표 그룹(group._goal 보유) 의 헤더 행 시간축에는 목표 기간 막대가 함께 그려진다.
   for (const group of grouped) {
     const collapsed = collapsedGroups.has(group.subject);
     metaPane.appendChild(renderGroupMetaRow(group, collapsed, onGroupToggle));
-    timePane.appendChild(renderGroupTimeRow(timeTemplate, group, axis));
+    timePane.appendChild(renderGroupTimeRow(timeTemplate, group, axis, timeMinWidth));
     if (!collapsed) {
       for (const item of group.items) {
         metaPane.appendChild(renderItemMetaRow(item, activeCols, metaTemplate));
-        timePane.appendChild(renderItemTimeRow(item, axis, mode, timeTemplate));
+        timePane.appendChild(renderItemTimeRow(item, axis, mode, timeTemplate, timeMinWidth));
       }
     }
   }
@@ -226,10 +230,11 @@ function renderMetaHead(cols, template) {
   return row;
 }
 
-function renderTimeHead(axis, template) {
+function renderTimeHead(axis, template, minWidth) {
   const row = document.createElement('div');
   row.className = 'gt-head';
   row.style.gridTemplateColumns = template;
+  if (minWidth) row.style.minWidth = `${minWidth}px`;
   for (const cell of axis.cells) {
     const d = document.createElement('div');
     d.className = 'gh-time' + (cell.isCurrent ? ' current' : '');
@@ -254,11 +259,12 @@ function renderGroupMetaRow(group, collapsed, onToggle) {
   return row;
 }
 
-function renderGroupTimeRow(template, group, axis) {
+function renderGroupTimeRow(template, group, axis, minWidth) {
   // 시간 패널의 그룹 행 — 메타 행과 높이 맞춤 + 목표 그룹이면 기간 막대
   const row = document.createElement('div');
   row.className = 'gt-group';
   row.style.gridTemplateColumns = template;
+  if (minWidth) row.style.minWidth = `${minWidth}px`;
   row.style.position = 'relative';
   const goal = group && group._goal;
   if (goal && axis) {
@@ -294,10 +300,11 @@ function renderItemMetaRow(item, cols, template) {
   return row;
 }
 
-function renderItemTimeRow(item, axis, mode, template) {
+function renderItemTimeRow(item, axis, mode, template, minWidth) {
   const row = document.createElement('div');
   row.className = 'gt-row';
   row.style.gridTemplateColumns = template;
+  if (minWidth) row.style.minWidth = `${minWidth}px`;
 
   if (mode === 'month') {
     row.style.position = 'relative';
