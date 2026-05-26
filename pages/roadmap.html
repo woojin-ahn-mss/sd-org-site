@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ko" data-theme="dark" data-depth="1">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>로드맵 — S&amp;D Console</title>
+
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" />
+
+  <link rel="stylesheet" href="../assets/css/tokens.css" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+
+  <script type="module">
+    import { initTheme } from '../assets/js/theme.js';
+    initTheme();
+  </script>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <p class="page-kicker">ROADMAP — INITIATIVES TIMELINE</p>
+      <h1 class="page-title">로드맵.</h1>
+      <p class="page-lede">메인주제별 Initiative 의 분기·월 단위 타임라인. <strong class="num" data-cnt-total>0</strong>건 표시.</p>
+    </header>
+
+    <!-- 필터바 -->
+    <section>
+      <div class="sec-head">
+        <h2>FILTERS</h2>
+        <div class="actions">
+          <button class="tlink" data-time-mode="quarter">분기</button>
+          <button class="tlink" data-time-mode="month">월</button>
+          <span style="width:18px"></span>
+          <button class="btn ghost" data-toggle-advanced>고급 필터</button>
+          <button class="btn ghost" data-reset>초기화</button>
+          <button class="btn ghost" data-cols>컬럼</button>
+        </div>
+      </div>
+      <div class="filters" data-filters="basic"></div>
+      <div class="filters" data-filters="advanced" hidden></div>
+    </section>
+
+    <!-- 컬럼 토글 (popover) -->
+    <div id="cols-pop" class="modal-backdrop" hidden>
+      <div class="modal" role="dialog" aria-label="컬럼 토글">
+        <div class="modal-head">
+          <div>
+            <div class="modal-kicker">COLUMNS</div>
+            <h3 class="modal-title">표시 컬럼</h3>
+          </div>
+          <button class="modal-close" data-close-cols>CLOSE</button>
+        </div>
+        <div class="modal-body" id="cols-body"></div>
+        <div class="modal-foot">
+          <button class="btn ghost" data-cols-default>기본값</button>
+          <button class="btn primary" data-close-cols>완료</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 간트 -->
+    <section>
+      <div class="sec-head">
+        <h2>TIMELINE</h2>
+        <small data-meta-last-sync>—</small>
+      </div>
+      <div id="gantt-host"></div>
+    </section>
+
+    <div class="page-meta">
+      <span class="muted">S&amp;D Console</span>
+      <span class="right num" data-meta-last-sync>—</span>
+    </div>
+  </div>
+
+  <script type="module">
+    import { renderSidebar, loadAndApplyMeta } from '../assets/js/nav.js';
+    import { renderRoadmap } from '../assets/js/pages/roadmap.js';
+
+    renderSidebar({ active: 'roadmap' });
+    loadAndApplyMeta('../');
+    renderRoadmap({ rootRel: '../' });
+  </script>
+</body>
+</html>

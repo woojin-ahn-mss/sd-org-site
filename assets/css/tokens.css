@@ -1,0 +1,64 @@
+/* =========================================================
+   S&D Console — Design Tokens (v2)
+   단일 진실 원천: design/styles.css 의 CSS custom properties 만 분리.
+   값 변경 금지. 모든 페이지는 이 토큰만 사용.
+   ========================================================= */
+
+:root,
+[data-theme="dark"] {
+  --bg: #0e0d0b;
+  --bg-elev: #15140f;
+  --text: #ece8df;
+  --dim: #8d887d;
+  --faint: #555148;
+  --faintest: #312e29;
+  --rule: #221f1b;
+  --rule-strong: #2f2c26;
+
+  --accent: #e3b340;          /* warm gold */
+  --accent-strong: #f5c75a;
+  --accent-soft: rgba(227, 179, 64, 0.10);
+  --accent-rule: rgba(227, 179, 64, 0.28);
+
+  --alert: #ee5a52;           /* danger / overdue */
+  --alert-soft: rgba(238, 90, 82, 0.10);
+  --success: #6cc486;         /* done only */
+  --info: #7aa7d9;            /* neutral cool, used rarely */
+
+  --shadow-row: 0 1px 0 var(--rule);
+
+  /* Subject palette — 간트 바 / 플랜 카드 전용, 무지개 금지 */
+  --subj-rec:  #e3b340; /* accent  — 추천 */
+  --subj-srch: #cbb88f; /*         — 검색 */
+  --subj-rank: #d68a5a; /*         — 랭킹 */
+  --subj-pers: #b89a78; /*         — 개인화 */
+  --subj-disc: #9c9c9c; /*         — 디스커버리 */
+  --subj-misc: #7a8a7a; /* muted sage — 6번째+ */
+
+  /* 간격 / 타이포 토큰 (값은 기존 컴포넌트 CSS에 내장된 값과 동일) */
+  --font-sans: "Pretendard Variable", "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --radius: 0;       /* sharp only — 디자인 룰 4 */
+}
+
+[data-theme="light"] {
+  --bg: #faf7f0;
+  --bg-elev: #f4f0e6;
+  --text: #1a1816;
+  --dim: #5f5b54;
+  --faint: #a39d92;
+  --faintest: #d5cfc3;
+  --rule: #e0dbcf;
+  --rule-strong: #c8c2b3;
+
+  --accent: #9c7400;
+  --accent-strong: #7d5c00;
+  --accent-soft: rgba(156, 116, 0, 0.08);
+  --accent-rule: rgba(156, 116, 0, 0.35);
+
+  --alert: #b8332b;
+  --alert-soft: rgba(184, 51, 43, 0.07);
+  --success: #2c7d4a;
+  --info: #2f5d8a;
+}

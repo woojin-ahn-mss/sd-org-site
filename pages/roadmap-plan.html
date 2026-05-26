@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ko" data-theme="dark" data-depth="1">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>로드맵 관리 — S&amp;D Console</title>
+
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" />
+
+  <link rel="stylesheet" href="../assets/css/tokens.css" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+
+  <script type="module">
+    import { initTheme } from '../assets/js/theme.js';
+    initTheme();
+  </script>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <p class="page-kicker">ROADMAP PLAN — 1Y QUARTER BOARD</p>
+      <h1 class="page-title">로드맵 관리.</h1>
+      <p class="page-lede" data-lede>데이터를 불러오는 중…</p>
+    </header>
+
+    <!-- 상단 컨트롤: 연도 + 액션 -->
+    <section>
+      <div class="sec-head">
+        <h2>보드 설정</h2>
+        <div class="actions">
+          <label class="muted dim-mono" for="plan-year" style="margin-right:6px">YEAR</label>
+          <select class="select" id="plan-year" style="width:auto;display:inline-block;padding:4px 28px 4px 10px;font-size:12px">
+            <option value="2026">2026</option>
+            <option value="2027">2027</option>
+          </select>
+          <span style="width:18px"></span>
+          <button type="button" class="btn ghost" id="btn-add-kw">＋ 키워드 카드</button>
+          <button type="button" class="btn ghost" id="btn-export">↓ JSON Export</button>
+        </div>
+      </div>
+      <div class="filters" id="plan-filters"></div>
+    </section>
+
+    <!-- 4분기 보드 -->
+    <section>
+      <div class="sec-head">
+        <h2>분기 보드</h2>
+        <small>드래그앤드롭으로 분기 이동 · 키워드는 즉시 저장 · Jira는 토스트 안내</small>
+      </div>
+      <div class="plan-board" id="plan-board"></div>
+    </section>
+
+    <div class="page-meta">
+      <span>
+        <span class="plan-legend-jira">실선 = Jira 티켓 (read-only)</span>
+        <span class="plan-legend-kw">점선 = 키워드 카드 (편집/저장)</span>
+      </span>
+      <span class="right num" data-meta-last-sync>—</span>
+    </div>
+  </div>
+
+  <script type="module">
+    import { renderSidebar, loadAndApplyMeta } from '../assets/js/nav.js';
+    import { renderRoadmapPlan } from '../assets/js/pages/roadmap-plan.js';
+
+    renderSidebar({ active: 'roadmap-plan' });
+    loadAndApplyMeta('../');
+    renderRoadmapPlan({ rootRel: '../' });
+  </script>
+</body>
+</html>

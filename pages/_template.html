@@ -1,0 +1,69 @@
+<!doctype html>
+<!--
+  _template.html — 새 페이지를 만들 때 복사해 사용.
+  주의:
+    - <html data-depth="1"> → pages/ 하위면 1, root index 면 0.
+    - <head>의 모든 상대경로는 "../" 또는 "" prefix.
+    - PRD: 사이드바는 nav.js 가 동적으로 마운트하므로 body 안에는 메인 콘텐츠만 둔다.
+-->
+<html lang="ko" data-theme="dark" data-depth="1">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>{{PAGE_TITLE}} — S&amp;D Console</title>
+
+  <!-- 폰트 -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" />
+
+  <!-- 디자인 토큰 → base → 컴포넌트 순 -->
+  <link rel="stylesheet" href="../assets/css/tokens.css" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+
+  <!-- 테마 초기 적용 (flash 방지): inline 으로 가장 먼저 -->
+  <script type="module">
+    import { initTheme } from '../assets/js/theme.js';
+    initTheme();
+  </script>
+</head>
+<body>
+  <!--
+    페이지 콘텐츠는 .page 안에 둔다. nav.js 가 이 영역을 <main class="main"> 으로 감싸고
+    좌측에 사이드바를 자동 삽입.
+  -->
+  <div class="page">
+    <header>
+      <p class="page-kicker">{{KICKER}}</p>
+      <h1 class="page-title">{{TITLE}}</h1>
+      <p class="page-lede">{{LEDE}}</p>
+    </header>
+
+    <!-- 본문 섹션은 .sec-head + 콘텐츠로 -->
+    <section>
+      <div class="sec-head"><h2>SECTION HEADER</h2></div>
+      <div id="content">
+        <!-- 동적 콘텐츠. JS 에서 states.js 의 showLoading() 등을 호출. -->
+      </div>
+    </section>
+
+    <div class="page-meta">
+      <span class="muted">S&amp;D Console</span>
+      <span class="right num" data-meta-last-sync>—</span>
+    </div>
+  </div>
+
+  <!-- 부트: 사이드바 마운트 + 페이지별 로직 -->
+  <script type="module">
+    import { renderSidebar, loadAndApplyMeta } from '../assets/js/nav.js';
+    renderSidebar({ active: '{{PAGE_ID}}' });  // PAGE_ID = home|roadmap|...
+    loadAndApplyMeta('../');
+  </script>
+  <!--
+  <script type="module" src="../assets/js/pages/{{PAGE_ID}}.js"></script>
+  -->
+</body>
+</html>

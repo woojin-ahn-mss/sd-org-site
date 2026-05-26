@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ko" data-theme="dark" data-depth="1">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>진행 현황 — S&amp;D Console</title>
+
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" />
+
+  <link rel="stylesheet" href="../assets/css/tokens.css" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+
+  <style>
+    /* progress 페이지 전용 — design system의 .donut + .summary-bar를 2컬럼 그리드로 */
+    .dist-grid {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 36px;
+      align-items: center;
+      padding: 8px 0 4px;
+    }
+    .dist-donut { display: flex; align-items: center; justify-content: center; }
+    .dist-bar { min-width: 0; }
+    @media (max-width: 768px) {
+      .dist-grid { grid-template-columns: 1fr; gap: 18px; }
+    }
+  </style>
+
+  <script type="module">
+    import { initTheme } from '../assets/js/theme.js';
+    initTheme();
+  </script>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <p class="page-kicker">PROGRESS — STATUS · FLOW · RISKS</p>
+      <h1 class="page-title">진행 현황.</h1>
+      <p class="page-lede" data-lede>데이터를 불러오는 중…</p>
+    </header>
+
+    <!-- 상단 4 카드 -->
+    <section class="impact-stats" aria-label="진행 현황 요약">
+      <div class="imp-stat">
+        <div class="imp-label">IN PROGRESS</div>
+        <div class="imp-val num" data-stat="in-progress">—<span class="u">건</span></div>
+        <div class="imp-delta" data-stat-foot="in-progress">진행 중 합계</div>
+      </div>
+      <div class="imp-stat">
+        <div class="imp-label">NEW THIS WEEK</div>
+        <div class="imp-val num" data-stat="new-week">—<span class="u">건</span></div>
+        <div class="imp-delta" data-stat-foot="new-week">이번 주 발의</div>
+      </div>
+      <div class="imp-stat">
+        <div class="imp-label">DONE THIS WEEK</div>
+        <div class="imp-val num" data-stat="done-week">—<span class="u">건</span></div>
+        <div class="imp-delta" data-stat-foot="done-week">이번 주 완료</div>
+      </div>
+      <div class="imp-stat">
+        <div class="imp-label">OVERDUE</div>
+        <div class="imp-val num" data-stat="overdue">—<span class="u">건</span></div>
+        <div class="imp-delta" data-stat-foot="overdue">마감 초과</div>
+      </div>
+    </section>
+
+    <!-- 상태 분포 (도넛 + 가로 막대 + 범례) -->
+    <section>
+      <div class="sec-head">
+        <h2>상태 분포</h2>
+        <small>도넛/세그먼트 클릭으로 드릴다운</small>
+      </div>
+      <div id="sec-dist"></div>
+    </section>
+
+    <!-- 프로젝트별 흐름 (스택 바) -->
+    <section>
+      <div class="sec-head">
+        <h2>프로젝트별 흐름</h2>
+        <small>세그먼트 클릭으로 드릴다운</small>
+      </div>
+      <div id="sec-flow"></div>
+    </section>
+
+    <!-- 리스크: 마감 초과 -->
+    <section>
+      <div class="sec-head">
+        <h2>리스크 · 마감 초과</h2>
+        <small><span class="num" data-count="cnt-overdue">0</span>건</small>
+      </div>
+      <div id="sec-overdue"></div>
+    </section>
+
+    <!-- 리스크: 임박 마감 (7일 이내) -->
+    <section>
+      <div class="sec-head">
+        <h2>리스크 · 임박 마감 (7일)</h2>
+        <small><span class="num" data-count="cnt-due-soon">0</span>건</small>
+      </div>
+      <div id="sec-due-soon"></div>
+    </section>
+
+    <!-- 리스크: 장기 정체 (30일+) -->
+    <section>
+      <div class="sec-head">
+        <h2>리스크 · 장기 정체 (30일+)</h2>
+        <small><span class="num" data-count="cnt-stale">0</span>건 · In Progress 상태</small>
+      </div>
+      <div id="sec-stale"></div>
+    </section>
+
+    <!-- 로딩 host (모든 섹션 데이터 로딩 시) -->
+    <div id="progress-host"></div>
+
+    <div class="page-meta">
+      <span class="muted">S&amp;D Console</span>
+      <span class="muted">last sync</span>
+      <span class="right num" data-meta-last-sync>—</span>
+    </div>
+  </div>
+
+  <script type="module">
+    import { renderSidebar, loadAndApplyMeta } from '../assets/js/nav.js';
+    import { renderProgress } from '../assets/js/pages/progress.js';
+
+    renderSidebar({ active: 'progress' });
+    loadAndApplyMeta('../');
+    renderProgress({ rootRel: '../' });
+  </script>
+</body>
+</html>
