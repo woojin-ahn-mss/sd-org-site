@@ -130,26 +130,6 @@ export function loadAll(year) {
   };
 }
 
-/** stale cardGoals 정리: 존재하지 않는 goalId / 존재하지 않는 cardId 매핑 제거.
- *  @param {Object} cardGoals
- *  @param {Goal[]} goals
- *  @param {Set<string>} validCardIds  현재 보드의 카드 ID 집합
- *  @returns {{cleaned:Object, removed:string[]}}
- */
-export function cleanCardGoals(cardGoals, goals, validCardIds) {
-  const goalIds = new Set(goals.map(g => g.id));
-  const cleaned = {};
-  const removed = [];
-  for (const [cid, gid] of Object.entries(cardGoals || {})) {
-    if (!validCardIds.has(cid) || !goalIds.has(gid)) {
-      removed.push(cid);
-      continue;
-    }
-    cleaned[cid] = gid;
-  }
-  return { cleaned, removed };
-}
-
 /** 정렬:
  *  1) order 필드가 있으면 그것 우선 (사용자 D&D 순서)
  *  2) order 없는 항목은 startMonth asc, endMonth asc, title asc 로 뒤에 붙음.
@@ -169,16 +149,6 @@ export function sortGoals(goals) {
 export function reassignOrder(goals) {
   goals.forEach((g, i) => { g.order = i; });
   return goals;
-}
-
-/** goalId 별 카드 ID 리스트 invert. */
-export function invertCardGoals(cardGoals) {
-  const out = new Map();
-  for (const [cid, gid] of Object.entries(cardGoals || {})) {
-    if (!out.has(gid)) out.set(gid, []);
-    out.get(gid).push(cid);
-  }
-  return out;
 }
 
 /** 현재 연도 (테스트 용으로 분리). */

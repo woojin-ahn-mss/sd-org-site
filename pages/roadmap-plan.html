@@ -23,50 +23,29 @@
 <body>
   <div class="page">
     <header>
-      <p class="page-kicker">ROADMAP PLAN — 1Y QUARTER BOARD</p>
+      <p class="page-kicker">ROADMAP PLAN — OBJECTIVE · SUBJECT · TICKET</p>
       <h1 class="page-title">로드맵 관리.</h1>
-      <p class="page-lede" data-lede>데이터를 불러오는 중…</p>
+      <p class="page-lede" data-lede>
+        Google Sheet 가 source of truth. Objective(큰 OKR) → 주제 → Jira 티켓/카드 3단으로 묶고, 분기 보드에서 D&amp;D 로 옮깁니다.
+      </p>
     </header>
 
-    <!-- Sheet 이관 패널 — LS 데이터가 있고 sheet 이관 전인 사용자에게 1회용으로 표시 -->
-    <section id="sec-migrate" class="poc-card" hidden style="border-color: var(--accent); margin-bottom: 12px;">
-      <div class="poc-row" style="justify-content:space-between; flex-wrap:wrap; gap:8px;">
-        <div>
-          <strong>🗂 Sheet 이관 필요</strong>
-          <span class="muted" id="migrate-summary"></span>
-        </div>
-        <div class="poc-row" style="gap:6px;">
-          <button type="button" class="btn ghost" id="btn-migrate-dismiss" title="이번 세션 동안 숨김">나중에</button>
-          <button type="button" class="btn primary" id="btn-migrate-open">이관 확인 →</button>
-        </div>
+    <!-- 인증 영역 (plan.html 패턴 재사용) -->
+    <section id="sec-auth" class="poc-card" aria-label="Google 로그인 상태">
+      <div class="poc-row">
+        <span class="poc-status" id="auth-status">인증 확인 중…</span>
+        <button id="btn-signin" type="button" hidden>Google 로그인</button>
+        <button id="btn-signout" type="button" hidden>로그아웃</button>
+        <span style="flex:1"></span>
+        <button id="btn-refresh" type="button" disabled title="Sheet 데이터를 다시 불러옵니다">🔄 새로고침</button>
       </div>
-      <p class="muted" style="font-size:12px; margin:8px 0 0;">
-        roadmap-plan 의 localStorage 데이터(카드/목표/override)를 Google Sheet 로 1회 이관합니다.
-        이관 후에도 localStorage 는 자동 삭제되지 않습니다 — 검증 후 직접 정리하세요.
+      <p id="auth-help" class="muted" style="font-size:12px; margin:8px 0 0;">
+        musinsa.com Google 계정으로 로그인하시면 자동으로 read/write 가 활성화됩니다.
       </p>
     </section>
 
-    <!-- 이관 모달 -->
-    <div id="migrate-pop" class="modal-backdrop" hidden>
-      <div class="modal" role="dialog" aria-label="Sheet 이관">
-        <div class="modal-head">
-          <div>
-            <div class="modal-kicker">MIGRATE</div>
-            <h3 class="modal-title">localStorage → Sheet 이관</h3>
-          </div>
-          <button class="modal-close" data-modal-close>CLOSE</button>
-        </div>
-        <div class="modal-body" id="migrate-body">데이터 수집 중…</div>
-        <div class="modal-foot">
-          <button class="btn ghost" data-modal-close>취소</button>
-          <button class="btn ghost" id="btn-migrate-backup" disabled title="LS 전체 + 현재 Sheet 전체를 새 backup 탭에 한 번에 적재">🛡 Sheet 에 백업</button>
-          <button class="btn primary" id="btn-migrate-run" disabled>이관 실행</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- 상단 컨트롤: 연도 + 액션 -->
-    <section>
+    <!-- 보드 설정: 연도 + GROUP + 추가 버튼 -->
+    <section id="sec-board-controls" hidden>
       <div class="sec-head">
         <h2>보드 설정</h2>
         <div class="actions">
@@ -77,41 +56,192 @@
           </select>
           <span style="width:18px"></span>
           <label class="muted dim-mono" style="margin-right:6px">GROUP</label>
-          <button type="button" class="tlink" data-group-by="subject">메인주제</button>
-          <button type="button" class="tlink" data-group-by="goal">목표</button>
+          <button type="button" class="tlink" data-group-by="subject">주제</button>
+          <button type="button" class="tlink" data-group-by="objective">Objective</button>
           <button type="button" class="tlink" data-group-by="none">없음</button>
           <span style="width:18px"></span>
-          <button type="button" class="btn ghost" id="btn-add-goal">🎯 목표 추가</button>
-          <button type="button" class="btn ghost" id="btn-add-kw">＋ 카드 추가</button>
-          <button type="button" class="btn ghost" id="btn-export">↓ JSON Export</button>
+          <button type="button" class="btn ghost" id="btn-add-obj">🎯 Objective</button>
+          <button type="button" class="btn ghost" id="btn-add-subj">📌 주제</button>
+          <button type="button" class="btn ghost" id="btn-add-card">＋ 카드</button>
         </div>
       </div>
       <div class="filters" id="plan-filters"></div>
     </section>
 
-    <!-- 목표 보드 -->
-    <section>
+    <!-- Objective 보드 -->
+    <section id="sec-objective" hidden>
       <div class="sec-head">
-        <h2>🎯 목표</h2>
-        <small>기간 한정 비즈니스 목표. 카드와 1:N 매핑 · 로드맵에서 막대로 시각화.</small>
+        <h2>🎯 Objective</h2>
+        <small>큰 방향성·OKR. 색상은 하위 주제·카드에 자동 상속.</small>
       </div>
-      <div class="goal-board" id="goal-board"></div>
+      <div class="objective-board" id="objective-board"></div>
     </section>
 
-    <!-- 4분기 보드 -->
-    <section>
+    <!-- Subject(주제) 보드 -->
+    <section id="sec-subject" hidden>
+      <div class="sec-head">
+        <h2>📌 주제</h2>
+        <small>Objective 아래 주제. 기간(startMonth ~ endMonth) 보유. D&amp;D 로 Objective 간 이동.</small>
+      </div>
+      <div class="subject-board" id="subject-board"></div>
+    </section>
+
+    <!-- 분기 보드 (카드 + Jira 티켓) -->
+    <section id="sec-cards" hidden>
       <div class="sec-head">
         <h2>분기 보드</h2>
-        <small>드래그앤드롭으로 분기 이동 · 키워드는 즉시 저장 · Jira는 토스트 안내</small>
+        <small>D&amp;D 로 분기 이동 / 주제 변경. Jira 티켓은 분기 override 와 주제 매핑이 자동 저장.</small>
       </div>
       <div class="plan-board" id="plan-board"></div>
     </section>
 
+    <!-- 모달: Objective add/edit -->
+    <div id="obj-pop" class="modal-backdrop" hidden>
+      <div class="modal" role="dialog" aria-label="Objective 편집">
+        <div class="modal-head">
+          <div>
+            <div class="modal-kicker">OBJECTIVE</div>
+            <h3 class="modal-title" id="obj-modal-title">Objective</h3>
+          </div>
+          <button class="modal-close" data-modal-close>CLOSE</button>
+        </div>
+        <form id="obj-form">
+          <div class="modal-body">
+            <input type="hidden" name="id" />
+            <label class="muted dim-mono" style="display:block;margin-top:8px">이름</label>
+            <input class="input" name="name" required maxlength="80" style="width:100%" />
+            <label class="muted dim-mono" style="display:block;margin-top:8px">설명</label>
+            <textarea class="input" name="description" rows="2" style="width:100%"></textarea>
+            <label class="muted dim-mono" style="display:block;margin-top:8px">색상</label>
+            <div id="obj-color-swatch" class="color-swatch"></div>
+            <input type="hidden" name="color" />
+            <label class="muted dim-mono" style="display:block;margin-top:8px">표시 순서 (낮을수록 앞)</label>
+            <input class="input" name="display_order" type="number" min="0" style="width:120px" />
+          </div>
+          <div class="modal-foot">
+            <button type="button" class="btn ghost" data-obj-delete hidden>삭제</button>
+            <span style="flex:1"></span>
+            <button type="button" class="btn ghost" data-modal-close>취소</button>
+            <button type="submit" class="btn primary">저장</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- 모달: Subject add/edit -->
+    <div id="subj-pop" class="modal-backdrop" hidden>
+      <div class="modal" role="dialog" aria-label="주제 편집">
+        <div class="modal-head">
+          <div>
+            <div class="modal-kicker">SUBJECT</div>
+            <h3 class="modal-title" id="subj-modal-title">주제</h3>
+          </div>
+          <button class="modal-close" data-modal-close>CLOSE</button>
+        </div>
+        <form id="subj-form">
+          <div class="modal-body">
+            <input type="hidden" name="id" />
+            <label class="muted dim-mono" style="display:block;margin-top:8px">Objective</label>
+            <select class="select" name="objective_id" required style="width:100%"></select>
+            <label class="muted dim-mono" style="display:block;margin-top:8px">이름</label>
+            <input class="input" name="name" required maxlength="80" style="width:100%" />
+            <label class="muted dim-mono" style="display:block;margin-top:8px">설명</label>
+            <textarea class="input" name="description" rows="2" style="width:100%"></textarea>
+            <label class="muted dim-mono" style="display:block;margin-top:8px">기간</label>
+            <div class="poc-row">
+              <select class="select" name="startMonth" style="width:auto"></select>
+              <span class="muted">~</span>
+              <select class="select" name="endMonth" style="width:auto"></select>
+            </div>
+            <label class="muted dim-mono" style="display:block;margin-top:8px">표시 순서</label>
+            <input class="input" name="display_order" type="number" min="0" style="width:120px" />
+          </div>
+          <div class="modal-foot">
+            <button type="button" class="btn ghost" data-subj-delete hidden>삭제</button>
+            <span style="flex:1"></span>
+            <button type="button" class="btn ghost" data-modal-close>취소</button>
+            <button type="submit" class="btn primary">저장</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- 모달: Card add/edit -->
+    <div id="card-pop" class="modal-backdrop" hidden>
+      <div class="modal" role="dialog" aria-label="카드 편집">
+        <div class="modal-head">
+          <div>
+            <div class="modal-kicker">CARD</div>
+            <h3 class="modal-title" id="card-modal-title">카드</h3>
+          </div>
+          <button class="modal-close" data-modal-close>CLOSE</button>
+        </div>
+        <form id="card-form">
+          <div class="modal-body">
+            <input type="hidden" name="id" />
+            <input type="hidden" name="year" />
+            <label class="muted dim-mono" style="display:block;margin-top:8px">주제</label>
+            <select class="select" name="subject_id" style="width:100%">
+              <option value="">— (미배치)</option>
+            </select>
+            <label class="muted dim-mono" style="display:block;margin-top:8px">제목</label>
+            <input class="input" name="title" required maxlength="120" style="width:100%" />
+            <label class="muted dim-mono" style="display:block;margin-top:8px">분기</label>
+            <select class="select" name="quarter" style="width:auto">
+              <option value="">미배치</option>
+              <option value="Q1">Q1</option>
+              <option value="Q2">Q2</option>
+              <option value="Q3">Q3</option>
+              <option value="Q4">Q4</option>
+            </select>
+            <label class="muted dim-mono" style="display:block;margin-top:8px">메인주제</label>
+            <input class="input" name="mainSubject" maxlength="40" style="width:100%" />
+            <label class="muted dim-mono" style="display:block;margin-top:8px">우선순위</label>
+            <select class="select" name="priority" style="width:auto">
+              <option value="">—</option>
+              <option value="P0">P0</option>
+              <option value="P1">P1</option>
+              <option value="P2">P2</option>
+              <option value="P3">P3</option>
+              <option value="Big-Rock">Big-Rock</option>
+              <option value="Backlog">Backlog</option>
+            </select>
+            <label class="muted dim-mono" style="display:block;margin-top:8px">프로젝트 키 (선택)</label>
+            <input class="input" name="projectKey" maxlength="12" style="width:200px" />
+            <label class="muted dim-mono" style="display:block;margin-top:8px">메모</label>
+            <textarea class="input" name="notes" rows="2" style="width:100%"></textarea>
+          </div>
+          <div class="modal-foot">
+            <button type="button" class="btn ghost" data-card-delete hidden>삭제</button>
+            <span style="flex:1"></span>
+            <button type="button" class="btn ghost" data-modal-close>취소</button>
+            <button type="submit" class="btn primary">저장</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- 모달: 삭제 확인 -->
+    <div id="confirm-pop" class="modal-backdrop" hidden>
+      <div class="modal" role="dialog" aria-label="삭제 확인">
+        <div class="modal-head">
+          <div>
+            <div class="modal-kicker">CONFIRM</div>
+            <h3 class="modal-title" id="confirm-title">삭제 확인</h3>
+          </div>
+          <button class="modal-close" data-modal-close>CLOSE</button>
+        </div>
+        <div class="modal-body" id="confirm-body"></div>
+        <div class="modal-foot">
+          <button type="button" class="btn ghost" data-modal-close>취소</button>
+          <button type="button" class="btn primary" id="confirm-ok">삭제</button>
+        </div>
+      </div>
+    </div>
+
     <div class="page-meta">
-      <span>
-        <span class="plan-legend-jira">실선 = Jira 티켓 (read-only)</span>
-        <span class="plan-legend-kw">점선 = 키워드 카드 (편집/저장)</span>
-      </span>
+      <span class="muted">S&amp;D Console</span>
+      <span class="muted">Roadmap Plan</span>
       <span class="right num" data-meta-last-sync>—</span>
     </div>
   </div>

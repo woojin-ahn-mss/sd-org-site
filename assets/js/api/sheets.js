@@ -353,6 +353,30 @@ export const sheets = {
       }),
     });
   },
+
+  /**
+   * 시트에서 행 1줄 삭제. sheetId 는 sheets.meta 의 properties.sheetId 사용.
+   * rowIndex 는 0-based — 헤더 = 0, 첫 데이터 = 1.
+   * 행 번호(1-based, sheet UI 와 동일) 를 가지고 있으면 rowIndex = rowNum - 1.
+   */
+  async deleteRow(spreadsheetId, sheetId, rowIndex) {
+    return apiFetch(`${spreadsheetId}:batchUpdate`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        requests: [{
+          deleteDimension: {
+            range: {
+              sheetId,
+              dimension: 'ROWS',
+              startIndex: rowIndex,
+              endIndex: rowIndex + 1,
+            },
+          },
+        }],
+      }),
+    });
+  },
 };
 
 // ─── 헬퍼 (Sheets API 호출과 무관, pure util) ─────────────────────────

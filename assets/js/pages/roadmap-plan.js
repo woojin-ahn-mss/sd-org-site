@@ -1,33 +1,35 @@
 /* =========================================================
-   pages/roadmap-plan.js — 로드맵 관리 (PRD 4.6)
-   1년치 보드: 미배치 / Q1 / Q2 / Q3 / Q4
-   - Jira 카드: initiatives.json 에서 자동 + **localStorage 의 override 우선**
-     · D&D 로 옮기면 ticketKey→quarter override 를 LS 에 저장
-     · 다음 sync 후 Jira yearQuarter 가 바뀌어도 사용자 위치 유지
-     · 단, 카드가 더 이상 jiraCards 에 없으면 (sync 에서 빠짐) override stale → 자동 정리
-   - 키워드 카드: **localStorage 가 SoT**, 파일은 첫 시드 + 백업
-     → 파일이 갱신돼도 LS 가 있으면 그대로 둠. "↓ JSON Export" 로 공유.
+   pages/roadmap-plan.js — 로드맵 관리
+   Google Sheet SoT · Objective(OKR/색상) → Subject(주제) → Card+Jira티켓 3단
+
+   인증/저장:
+     - sheets.js wrapper (사용자 본인 OAuth, musinsa.com 도메인 Internal)
+     - 진입 시 silent 로그인 시도 → 실패 시 로그인 버튼 노출 (plan.js 패턴)
+
+   데이터 모델 (PRD §3.3 v3):
+     objectives          : id, name, color, description, display_order, ...
+     subjects            : id, objective_id, name, startMonth, endMonth, ...
+     roadmap-plan-cards  : id, subject_id, year, quarter, title, notes, mainSubject, priority, projectKey, ...
+     roadmap-plan-overrides : jira_key, year, subject_id, quarter, ... (Jira 매핑+분기 통합)
    ========================================================= */
 
 import { loadJson } from '../fetch-data.js';
 import { showError, showLoading, emptyHtml } from '../states.js';
-import { jiraKeyHtml, jiraUrl } from '../jira-link.js';
+import { jiraKeyHtml, jiraUrl, bindJiraLinks } from '../jira-link.js';
 import { scoped } from '../storage.js';
 import { toast } from '../toast.js';
 import { escapeHtml, escapeAttr } from '../escape.js';
 import { attachModal } from '../modal.js';
 import { auth, AuthRequiredError } from '../api/sheets.js';
 import {
-  collectLocalStorageData,
-  importToSheets,
-  readSheetCounts,
-  backupAllToSheet,
-} from '../api/roadmap-plan-migration.js';
-import {
-  newGoalId, isValidMonth, isValidPeriod, normalizeGoal,
-  fmtPeriod, sortGoals, invertCardGoals, cleanCardGoals, reassignOrder,
-  GOAL_COLORS,
-} from '../goals.js';
+  verifySchema, loadAll,
+  createObjective, updateObjective, deleteObjective, validateObjectiveDelete,
+  createSubject, updateSubject, deleteSubject, validateSubjectDelete,
+  createCard, updateCard, deleteCard,
+  setTicketMapping, joinTicketsWithOverrides,
+  SchemaMismatchError,
+} from '../api/roadmap-plan-data.js';
+import { GOAL_COLORS, isValidMonth, isValidPeriod, fmtPeriod } from '../goals.js';
 
 const QUARTERS = ['Q1', 'Q2', 'Q3', 'Q4'];
 const SUBJECT_CLASS_MAP = {
@@ -37,351 +39,289 @@ const SUBJECT_CLASS_MAP = {
   '04.개인화': 's-pers',
   '05.디스커버리': 's-disc',
 };
+const PROJECT_KEY_RE = /^[A-Z][A-Z0-9]{1,11}$/;
 const FILTERS_KEY = 'roadmapPlan.filters';
-const SCHEMA_VERSION = 1;
-const PROJECT_KEY_RE = /^[A-Z][A-Z0-9]{1,11}$/; // Jira project key
+const GROUP_KEY   = 'roadmapPlan.groupBy';
 
-const GROUP_KEY = 'roadmapPlan.groupBy';
+const $ = (id) => document.getElementById(id);
 
-let state = {
+const state = {
   rootRel: '',
-  year: 2026,
-  jiraCards: [],
-  keywordCards: [],
-  filters: { mainSubject: null, priority: null, project: null },
-  groupBy: 'subject',  // 'subject' | 'none'
-  cardsStore: null,
-  // ticketKey → quarter ('Q1'|'Q2'|'Q3'|'Q4'|null). null = 사용자가 pool 로 옮김.
-  jiraOverrides: {},
-  overridesStore: null,
-  // 목표 (Goal)
-  goals: [],
-  cardGoals: {},        // cardId → goalId
-  goalsStore: null,
-  cardGoalsStore: null,
+  year: currentYear(),
+  signedIn: false,
+  email: null,
+  objectives: [],
+  subjects: [],
+  cards: [],
+  overrides: [],
+  jiraTickets: [],   // joined with overrides
+  filters: { objective: null, subject: null, mainSubject: null, priority: null, project: null },
+  groupBy: 'subject',  // 'subject' | 'objective' | 'none'
+  modals: {},
 };
+
+/* ─── 부트 ────────────────────────────────────────────────── */
 
 export async function renderRoadmapPlan({ rootRel = '' } = {}) {
   state.rootRel = rootRel;
   state.year = currentYear();
-  // Sheet 이관 패널 — LS 데이터 있는 경우만 노출 (기존 흐름과 독립)
-  initMigrationBanner();
-  state.filters = Object.assign({ mainSubject: null, priority: null, project: null },
-    scoped(FILTERS_KEY).get({}));
   const savedGroup = scoped(GROUP_KEY).get(null);
-  if (savedGroup === 'subject' || savedGroup === 'goal' || savedGroup === 'none') state.groupBy = savedGroup;
+  if (savedGroup === 'subject' || savedGroup === 'objective' || savedGroup === 'none') {
+    state.groupBy = savedGroup;
+  }
+  state.filters = Object.assign(
+    { objective: null, subject: null, mainSubject: null, priority: null, project: null },
+    scoped(FILTERS_KEY).get({}) || {}
+  );
 
-  renderYearSelect();
-  bindTopActions();
+  bindAuthUi();
+  bindRefresh();
+  bindYearSelect();
   bindGroupToggle();
+  bindAddButtons();
+  bindModals();
 
-  await loadAll();
-  refreshFiltersForValidity();
-  renderFilters();
-  renderHeader();
-  renderGoalBoard();
-  renderBoard();
+  try {
+    await auth.signIn({ silent: true });
+    state.signedIn = true;
+    state.email = auth.email();
+  } catch (e) {
+    state.signedIn = false;
+    if (e instanceof AuthRequiredError) {
+      renderAuthUi();
+      return;
+    }
+    console.error('[roadmap-plan] auth 예외', e);
+    renderAuthUi();
+    toast({ kicker: '로그인 실패', msg: e.message || String(e), kind: 'alert' });
+    return;
+  }
+  renderAuthUi();
+  await loadAndRender();
 }
 
-/* ----- 데이터 로드 ----------------------------------------- */
+async function loadAndRender() {
+  if (!state.signedIn) return;
+  const objectiveBoard = $('objective-board');
+  const subjectBoard = $('subject-board');
+  const planBoard = $('plan-board');
+  showLoading(planBoard, { rows: 3, title: false });
 
-async function loadAll() {
-  const boardHost = document.getElementById('plan-board');
-  showLoading(boardHost, { rows: 4, title: false });
-  state.cardsStore = scoped(`roadmapPlan.cards.${state.year}`);
-  state.overridesStore = scoped(`roadmapPlan.jiraOverrides.${state.year}`);
-  state.jiraOverrides = state.overridesStore.get({}) || {};
-  state.goalsStore = scoped(`roadmapPlan.goals.${state.year}`);
-  state.cardGoalsStore = scoped(`roadmapPlan.cardGoals.${state.year}`);
-  state.goals = (state.goalsStore.get([]) || []).map(normalizeGoal);
-  state.cardGoals = state.cardGoalsStore.get({}) || {};
-
-  // Jira initiatives → 한 ticket = 한 카드. 멀티 yearQuarter 면 state.year 매칭되는 분기에 위치
   try {
-    const data = await loadJson(`${state.rootRel}data/jira/initiatives.json`);
-    state.jiraCards = (data.items || [])
-      .map(it => initiativeToCard(it, state.year))
-      .filter(c => c && c.year === state.year);
-  } catch (err) {
-    console.warn('[roadmap-plan] initiatives load failed', err);
-    state.jiraCards = [];
-  }
-  applyJiraOverrides();
-
-  // 키워드 카드: LS 가 SoT — 없을 때만 파일에서 시드
-  const lsCards = state.cardsStore.get(null);
-  if (Array.isArray(lsCards)) {
-    state.keywordCards = lsCards.map(normalizeKeywordCard);
-  } else {
-    try {
-      const file = await loadJson(`${state.rootRel}data/plans/roadmap-${state.year}.json`);
-      state.keywordCards = (file.cards || []).map(normalizeKeywordCard);
-      persistCards();
-    } catch (_) {
-      state.keywordCards = [];
-      persistCards();
-    }
+    await verifySchema();
+  } catch (e) {
+    showSchemaIssue(e);
+    return;
   }
 
-  // cardGoals stale 정리 — 존재하지 않는 cardId/goalId 매핑 제거.
-  // ⚠ 보호: 카드 로딩 실패(jiraCards 와 keywordCards 모두 비어있음) 시 wipe 안 함.
-  //   이전 버그: initiatives.json fetch 실패하면 validCardIds 가 0 이라 모든 매핑이 stale 처리되어 LS 에서 통째로 삭제됨.
-  const hasAnyCard = state.jiraCards.length > 0 || state.keywordCards.length > 0;
-  const totalMappings = Object.keys(state.cardGoals || {}).length;
-  if (!hasAnyCard && totalMappings > 0) {
-    console.warn('[roadmap-plan] 카드 로딩 실패 + cardGoals 매핑 ' + totalMappings + '건 존재 — wipe 보호 모드 (cardGoals 보존)');
-  } else if (hasAnyCard) {
-    const allCardIds = new Set([
-      ...state.jiraCards.map(c => c.id),
-      ...state.keywordCards.map(c => c.id),
+  let sheetData, jiraData;
+  try {
+    [sheetData, jiraData] = await Promise.all([
+      loadAll(state.year),
+      loadJson(`${state.rootRel}data/jira/initiatives.json`).catch(() => ({ items: [] })),
     ]);
-    const { cleaned, removed } = cleanCardGoals(state.cardGoals, state.goals, allCardIds);
-    if (removed.length) {
-      // 추가 안전: 매핑의 50% 이상이 한 번에 제거되면 의심 — wipe 안 하고 경고만.
-      const removalRate = totalMappings > 0 ? removed.length / totalMappings : 0;
-      if (removalRate >= 0.5 && totalMappings >= 3) {
-        console.warn('[roadmap-plan] cleanCardGoals: ' + removed.length + '/' + totalMappings + ' (' + Math.round(removalRate * 100) + '%) 매핑이 한 번에 stale — wipe 안 함. 데이터 로딩/origin 점검 권장.');
-      } else {
-        state.cardGoals = cleaned;
-        persistCardGoals();
+  } catch (e) {
+    if (e instanceof AuthRequiredError) {
+      state.signedIn = false;
+      renderAuthUi();
+      return;
+    }
+    console.error('[roadmap-plan] load 실패', e);
+    showError(planBoard, e);
+    return;
+  }
+
+  state.objectives = sheetData.objectives;
+  state.subjects = sheetData.subjects;
+  state.cards = sheetData.cards;
+  state.overrides = sheetData.overrides;
+  state.jiraTickets = joinTicketsWithOverrides(jiraData.items || [], state.overrides, state.year);
+
+  showBoards(true);
+  renderFilters();
+  renderObjectiveBoard();
+  renderSubjectBoard();
+  renderCardBoard();
+  enableRefresh(true);
+  enableAddButtons(true);
+}
+
+function showBoards(on) {
+  $('sec-board-controls').hidden = !on;
+  $('sec-objective').hidden = !on;
+  $('sec-subject').hidden = !on;
+  $('sec-cards').hidden = !on;
+}
+
+function showSchemaIssue(e) {
+  showBoards(false);
+  const host = $('plan-board');
+  host.innerHTML = '';
+  host.parentElement.parentElement.parentElement.querySelector('#sec-cards').hidden = false;
+  $('sec-cards').hidden = false;
+  const msg = (e && e.message) ? e.message : String(e);
+  $('plan-board').innerHTML = `
+    <div class="poc-card" style="border-color: var(--alert);">
+      <strong>⚠ Sheet 스키마 초기화 필요</strong>
+      <pre style="white-space:pre-wrap;font-family:var(--font-mono);font-size:11px;margin-top:8px;">${escapeHtml(msg)}</pre>
+      <p class="muted" style="font-size:12px;margin-top:8px;">
+        운영자(우진님)에게 알려주세요. Sheet 의 다음 시트들에 정확한 헤더가 있어야 합니다:
+        objectives / subjects / roadmap-plan-cards / roadmap-plan-overrides.
+        헤더 갱신 후 새로고침.
+      </p>
+    </div>
+  `;
+}
+
+/* ─── 인증 UI ────────────────────────────────────────────── */
+
+function bindAuthUi() {
+  $('btn-signin')?.addEventListener('click', async () => {
+    const statusEl = $('auth-status');
+    if (statusEl) statusEl.textContent = '로그인 중…';
+    try {
+      await auth.signIn();
+      state.signedIn = true;
+      state.email = auth.email();
+      renderAuthUi();
+      await loadAndRender();
+    } catch (e) {
+      console.error('[roadmap-plan] signIn 실패', e);
+      if (statusEl) {
+        statusEl.textContent = '로그인 실패 — 다시 시도';
+        statusEl.classList.add('err');
       }
     }
-  }
+  });
+  $('btn-signout')?.addEventListener('click', () => {
+    auth.signOut();
+    state.signedIn = false;
+    state.email = null;
+    state.objectives = []; state.subjects = []; state.cards = []; state.overrides = []; state.jiraTickets = [];
+    renderAuthUi();
+    showBoards(false);
+    enableRefresh(false);
+    enableAddButtons(false);
+  });
 }
 
-function persistGoals() {
-  return state.goalsStore.set(state.goals);
-}
-function persistCardGoals() {
-  return state.cardGoalsStore.set(state.cardGoals);
-}
-
-/** 카드 ID 로 카드 객체 찾기 (jira + 키워드 통합). */
-function findCard(cardId) {
-  return state.jiraCards.find(c => c.id === cardId) ||
-         state.keywordCards.find(c => c.id === cardId) ||
-         null;
-}
-
-/** state.jiraOverrides 를 jiraCards.quarter 에 반영 + stale 정리.
- *  override 값 형식: { 'TM-1234': { quarter: 'Q3', jiraQuarter: 'Q2' } }
- *  - card.quarter 를 override.quarter 로 덮어씀
- *  - card.overridden = true (UI 마커용)
- *  - card.jiraQuarter = Jira 원본 quarter (revert / 표시용)
- *  - stale: override 가 있는데 jiraCards 에 해당 ticketKey 가 없으면 LS 에서 삭제
- *  - 또한 Jira 원본 quarter 가 override.quarter 와 같아지면 override 자동 해제
- */
-function applyJiraOverrides() {
-  const overrides = state.jiraOverrides || {};
-  const validKeys = new Set(state.jiraCards.map(c => c.ticketKey));
-  let mutated = false;
-
-  // stale 정리
-  for (const tk of Object.keys(overrides)) {
-    if (!validKeys.has(tk)) { delete overrides[tk]; mutated = true; }
-  }
-
-  for (const card of state.jiraCards) {
-    const ov = overrides[card.ticketKey];
-    if (!ov) continue;
-    const jiraQuarter = card.quarter;
-    // Jira 가 사용자 위치를 따라잡았으면 override 해제
-    if (jiraQuarter === ov.quarter) {
-      delete overrides[card.ticketKey];
-      mutated = true;
-      continue;
+function renderAuthUi() {
+  const statusEl = $('auth-status');
+  const signin = $('btn-signin');
+  const signout = $('btn-signout');
+  const help = $('auth-help');
+  if (state.signedIn) {
+    if (statusEl) {
+      statusEl.textContent = `로그인됨: ${state.email || '(이메일 미상)'}`;
+      statusEl.classList.remove('err');
+      statusEl.classList.add('ok');
     }
-    card.jiraQuarter = jiraQuarter;
-    card.quarter = ov.quarter;
-    card.overridden = true;
+    if (signin) signin.hidden = true;
+    if (signout) signout.hidden = false;
+    if (help) help.hidden = true;
+  } else {
+    if (statusEl) {
+      statusEl.textContent = '로그인이 필요합니다';
+      statusEl.classList.remove('ok');
+      statusEl.classList.remove('err');
+    }
+    if (signin) signin.hidden = false;
+    if (signout) signout.hidden = true;
+    if (help) help.hidden = false;
   }
-  if (mutated) state.overridesStore.set(overrides);
 }
 
-function persistOverrides() {
-  return state.overridesStore.set(state.jiraOverrides);
+function bindRefresh() {
+  const btn = $('btn-refresh');
+  if (!btn) return;
+  btn.addEventListener('click', async () => {
+    if (!state.signedIn) return;
+    btn.disabled = true;
+    const orig = btn.textContent;
+    btn.textContent = '⟳ 로딩 중…';
+    try { await loadAndRender(); }
+    finally { btn.disabled = false; btn.textContent = orig; }
+  });
 }
 
-/** 카드를 LS 에 저장. 실패 시 토스트 안내. */
-function persistCards() {
-  const ok = state.cardsStore.set(state.keywordCards);
-  if (!ok) {
-    toast({
-      kicker: '저장 실패',
-      msg: 'localStorage 에 저장하지 못했습니다 (용량/권한).',
-      meta: '메모리에만 보관됩니다. "↓ JSON Export" 로 즉시 백업하세요.',
-      kind: 'alert',
-      hold: 8000,
-    });
+function enableRefresh(on) {
+  const btn = $('btn-refresh');
+  if (btn) btn.disabled = !on;
+}
+
+function enableAddButtons(on) {
+  for (const id of ['btn-add-obj', 'btn-add-subj', 'btn-add-card']) {
+    const btn = $(id);
+    if (btn) btn.disabled = !on;
   }
-  return ok;
 }
 
-/** Initiative → 단일 카드. 멀티 yearQuarter 인 경우 preferredYear 에 매칭되는 분기에 위치,
- *  매칭 없으면 첫 분기. 모든 분기는 spans 로 보존 (UI 에 'Q4 ↔ Q1' 같이 표시).
- *  - 빈 yearQuarter: year=preferredYear(또는 currentYear), quarter=null (미배치 pool)
- *  - preferredYear 지정 없으면 첫 분기 그대로
- */
-function initiativeToCard(it, preferredYear) {
-  if (!it || !it.key) return null;
-  const yqs = (Array.isArray(it.yearQuarters) && it.yearQuarters.length
-    ? it.yearQuarters
-    : (it.yearQuarter ? [it.yearQuarter] : []))
-    .filter(Boolean)
-    .map(yq => {
-      const m = /^(\d{4})-(Q[1-4])$/.exec(yq);
-      return m ? { year: Number(m[1]), quarter: m[2], key: m[0] } : null;
-    })
-    .filter(Boolean)
-    .sort((a, b) => a.year !== b.year ? a.year - b.year : a.quarter.localeCompare(b.quarter));
+/* ─── 보드 상단 컨트롤 ───────────────────────────────────── */
 
-  let chosen = null;
-  if (preferredYear != null) chosen = yqs.find(y => y.year === preferredYear);
-  if (!chosen) chosen = yqs[0];
-
-  const year = chosen ? chosen.year : (preferredYear ?? currentYear());
-  const quarter = chosen ? chosen.quarter : null;
-
-  return {
-    id: 'jira-' + it.key,
-    type: 'jira',
-    year,
-    quarter,                    // null = 미배치
-    spans: yqs.map(y => y.key), // 모든 분기 — UI 멀티 표시용
-    ticketKey: it.key,
-    title: it.summary || '',
-    mainSubject: it.mainSubject || '',
-    priority: it.priority || '',
-    projectKey: it.project || '',
-    status: it.status || '',
-  };
-}
-
-function normalizeKeywordCard(c) {
-  return {
-    id: c.id || newCardId(),
-    type: 'keyword',
-    year: Number(c.year) || state.year,
-    quarter: c.quarter || null,
-    title: c.title || '',
-    mainSubject: c.mainSubject || '',
-    priority: c.priority || '',
-    projectKey: c.projectKey || '',
-    ticketKey: c.ticketKey || '',  // optional: 사용자가 직접 연결한 Jira 키
-    notes: c.notes || '',
-    createdAt: c.createdAt || new Date().toISOString(),
-    updatedAt: c.updatedAt || new Date().toISOString(),
-  };
-}
-
-// 메인주제 그룹 표시 순서 (디자인 시스템 5+ 기준)
-const SUBJECT_ORDER = ['01.추천', '02.검색', '03.랭킹', '04.개인화', '05.디스커버리'];
-const SUBJECT_UNCATEGORIZED = '(미분류)';
-
-function newCardId() {
-  if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
-    return 'kw-' + crypto.randomUUID();
-  }
-  // fallback (older browsers): ms timestamp + 8 base36 chars
-  return 'kw-' + Date.now().toString(36) + '-' +
-    Math.random().toString(36).slice(2, 10);
-}
-
-/* ----- 헤더 / 컨트롤 --------------------------------------- */
-
-function renderYearSelect() {
-  const sel = document.getElementById('plan-year');
+function bindYearSelect() {
+  const sel = $('plan-year');
   if (!sel) return;
   sel.value = String(state.year);
   sel.addEventListener('change', async () => {
-    state.year = Number(sel.value);
-    await loadAll();
-    refreshFiltersForValidity();
-    renderFilters();
-    renderHeader();
-    renderBoard();
+    const y = parseInt(sel.value, 10);
+    if (!Number.isFinite(y)) return;
+    state.year = y;
+    if (state.signedIn) await loadAndRender();
   });
-}
-
-function bindTopActions() {
-  const addBtn = document.getElementById('btn-add-kw');
-  const exportBtn = document.getElementById('btn-export');
-  const addGoalBtn = document.getElementById('btn-add-goal');
-  if (addBtn) addBtn.addEventListener('click', () => openCardModal(null));
-  if (exportBtn) exportBtn.addEventListener('click', exportJson);
-  if (addGoalBtn) addGoalBtn.addEventListener('click', () => openGoalModal(null));
 }
 
 function bindGroupToggle() {
-  document.querySelectorAll('[data-group-by]').forEach(btn => {
-    const updateActive = () => {
-      btn.classList.toggle('active', btn.dataset.groupBy === state.groupBy);
-    };
-    updateActive();
+  document.querySelectorAll('button[data-group-by]').forEach(btn => {
     btn.addEventListener('click', () => {
-      state.groupBy = btn.dataset.groupBy;
-      scoped(GROUP_KEY).set(state.groupBy);
-      document.querySelectorAll('[data-group-by]').forEach(b =>
-        b.classList.toggle('active', b.dataset.groupBy === state.groupBy));
-      renderBoard();
+      const v = btn.dataset.groupBy;
+      if (v !== 'subject' && v !== 'objective' && v !== 'none') return;
+      state.groupBy = v;
+      scoped(GROUP_KEY).set(v);
+      reflectGroupToggle();
+      renderCardBoard();
     });
+  });
+  reflectGroupToggle();
+}
+
+function reflectGroupToggle() {
+  document.querySelectorAll('button[data-group-by]').forEach(btn => {
+    btn.classList.toggle('on', btn.dataset.groupBy === state.groupBy);
   });
 }
 
-function renderHeader() {
-  const lede = document.querySelector('[data-lede]');
-  if (!lede) return;
-  const total = state.jiraCards.length + state.keywordCards.length;
-  const visible = filteredAll();
-  const filtered = visible.length !== total;
-  const pool = visible.filter(c => !c.quarter).length;
-  const filterNote = filtered
-    ? ` · <strong class="num accent">${visible.length}</strong>장 표시 중 (필터 적용)`
-    : '';
-  const goalPart = state.goals.length
-    ? ` · 목표 <strong class="num">${state.goals.length}</strong>개`
-    : '';
-  lede.innerHTML =
-    `<strong class="num">${state.year}</strong> 전체 <strong class="num">${total}</strong>장 ` +
-    `(Jira <strong class="num">${state.jiraCards.length}</strong> · 키워드 <strong class="num">${state.keywordCards.length}</strong>)` +
-    `${goalPart}${filterNote}. 미배치 <strong class="num">${pool}</strong>장.`;
+function bindAddButtons() {
+  $('btn-add-obj')?.addEventListener('click', () => openObjectiveModal(null));
+  $('btn-add-subj')?.addEventListener('click', () => openSubjectModal(null));
+  $('btn-add-card')?.addEventListener('click', () => openCardModal(null));
 }
 
-/* ----- 필터 ------------------------------------------------ */
-
-/** 현재 카드 풀에 없는 필터 값은 자동 해제 (연도 변경 시 핵심). */
-function refreshFiltersForValidity() {
-  const all = [...state.jiraCards, ...state.keywordCards];
-  const fields = ['mainSubject', 'priority', 'projectKey'];
-  const filterToField = { mainSubject: 'mainSubject', priority: 'priority', project: 'projectKey' };
-  let changed = false;
-  for (const [filter, field] of Object.entries(filterToField)) {
-    const v = state.filters[filter];
-    if (!v) continue;
-    const exists = all.some(c => c[field] === v);
-    if (!exists) { state.filters[filter] = null; changed = true; }
-  }
-  if (changed) {
-    scoped(FILTERS_KEY).set(state.filters);
-    toast({ kicker: '필터 정리됨', msg: '연도에 없는 필터값은 자동 해제했습니다.' });
-  }
-}
+/* ─── 필터 ─────────────────────────────────────────────── */
 
 function renderFilters() {
-  const host = document.getElementById('plan-filters');
+  const host = $('plan-filters');
   if (!host) return;
-  const allCards = [...state.jiraCards, ...state.keywordCards];
-  const subjects = [...new Set(allCards.map(c => c.mainSubject).filter(Boolean))].sort();
-  const priorities = [...new Set(allCards.map(c => c.priority).filter(Boolean))].sort();
-  const projects = [...new Set(allCards.map(c => c.projectKey).filter(Boolean))].sort();
 
-  const hasAny = state.filters.mainSubject || state.filters.priority || state.filters.project;
+  const objectiveOpts = state.objectives.map(o => ({ v: o.id, label: o.name || '(이름 없음)' }));
+  const subjectOpts = state.subjects.map(s => ({ v: s.id, label: s.name || '(이름 없음)' }));
+  const allItems = [...state.cards, ...state.jiraTickets];
+  const mainSubjects = uniqueSorted(allItems.map(x => x.mainSubject).filter(Boolean));
+  const priorities = uniqueSorted(allItems.map(x => x.priority).filter(Boolean));
+  const projects = uniqueSorted(allItems.map(x => x.projectKey || x.project).filter(Boolean));
+
+  const hasAny =
+    state.filters.objective || state.filters.subject ||
+    state.filters.mainSubject || state.filters.priority || state.filters.project;
+
   host.innerHTML = `
-    ${chipGroup('mainSubject', '메인주제', subjects, state.filters.mainSubject)}
-    ${chipGroup('priority', '우선순위', priorities, state.filters.priority)}
-    ${chipGroup('project', '프로젝트', projects, state.filters.project)}
+    ${chipGroup('objective',   'OBJECTIVE',    objectiveOpts, state.filters.objective)}
+    ${chipGroup('subject',     '주제',         subjectOpts,   state.filters.subject)}
+    ${chipGroup('mainSubject', '메인주제',     mainSubjects.map(v => ({ v, label: v })), state.filters.mainSubject)}
+    ${chipGroup('priority',    '우선순위',     priorities.map(v => ({ v, label: v })),   state.filters.priority)}
+    ${chipGroup('project',     '프로젝트',     projects.map(v => ({ v, label: v })),     state.filters.project)}
     ${hasAny ? '<button type="button" class="tlink" data-filter-reset>필터 초기화</button>' : ''}
   `;
+
   host.querySelectorAll('button.fchip').forEach(btn => {
     btn.addEventListener('click', () => {
       const f = btn.dataset.filter;
@@ -389,1313 +329,728 @@ function renderFilters() {
       state.filters[f] = state.filters[f] === v ? null : v;
       scoped(FILTERS_KEY).set(state.filters);
       renderFilters();
-      renderBoard();
-      renderHeader();
+      renderCardBoard();
     });
   });
-  const reset = host.querySelector('[data-filter-reset]');
-  if (reset) reset.addEventListener('click', () => {
-    state.filters = { mainSubject: null, priority: null, project: null };
+  host.querySelector('[data-filter-reset]')?.addEventListener('click', () => {
+    state.filters = { objective: null, subject: null, mainSubject: null, priority: null, project: null };
     scoped(FILTERS_KEY).set(state.filters);
     renderFilters();
-    renderBoard();
-    renderHeader();
+    renderCardBoard();
   });
 }
 
 function chipGroup(filterKey, label, options, current) {
   if (!options.length) return '';
   const chips = options.map(opt => {
-    const on = current === opt;
-    return `<button type="button" class="fchip ${on ? 'on' : ''}" data-filter="${escapeAttr(filterKey)}" data-value="${escapeAttr(opt)}">${escapeHtml(opt)}</button>`;
+    const on = current === opt.v;
+    return `<button type="button" class="fchip ${on ? 'on' : ''}"
+              data-filter="${escapeAttr(filterKey)}"
+              data-value="${escapeAttr(opt.v)}">${escapeHtml(opt.label)}</button>`;
   }).join('');
-  return `<div class="filter-group"><span class="flabel">${escapeHtml(label)}</span>${chips}</div>`;
+  return `<span class="flabel">${escapeHtml(label)}</span>${chips}`;
 }
 
-function isFilterActive() {
-  return !!(state.filters.mainSubject || state.filters.priority || state.filters.project);
+function uniqueSorted(arr) {
+  return [...new Set(arr)].sort((a, b) => String(a).localeCompare(String(b), 'ko'));
 }
 
-function filteredAll() {
-  const allCards = [...state.jiraCards, ...state.keywordCards];
-  return allCards.filter(c => {
-    if (state.filters.mainSubject && c.mainSubject !== state.filters.mainSubject) return false;
-    if (state.filters.priority && c.priority !== state.filters.priority) return false;
-    if (state.filters.project && c.projectKey !== state.filters.project) return false;
+/* ─── 색상 상속 ─────────────────────────────────────────── */
+
+function objectiveById(id) { return state.objectives.find(o => o.id === id) || null; }
+function subjectById(id)   { return state.subjects.find(s => s.id === id) || null; }
+
+function colorVarForObjective(obj) {
+  if (!obj) return 'var(--accent)';
+  const found = GOAL_COLORS.find(c => c.key === obj.color);
+  return `var(${found ? found.var : '--accent'})`;
+}
+
+function colorVarForSubject(subj) {
+  if (!subj) return 'var(--accent)';
+  return colorVarForObjective(objectiveById(subj.objective_id));
+}
+
+function colorVarForCard(card) {
+  if (!card || !card.subject_id) return 'var(--accent)';
+  return colorVarForSubject(subjectById(card.subject_id));
+}
+
+/* ─── Objective 보드 ────────────────────────────────────── */
+
+function renderObjectiveBoard() {
+  const host = $('objective-board');
+  if (!host) return;
+  if (!state.objectives.length) {
+    host.innerHTML = `<div class="muted" style="padding:14px;font-size:13px;">Objective 가 없습니다. 우측 상단 <strong>🎯 Objective</strong> 버튼으로 추가하세요.</div>`;
+    return;
+  }
+  host.innerHTML = state.objectives.map(o => objectiveCardEl(o)).join('');
+  host.querySelectorAll('[data-obj-id]').forEach(el => {
+    el.addEventListener('click', (ev) => {
+      if (ev.target.closest('button')) return;
+      const obj = objectiveById(el.dataset.objId);
+      if (obj) openObjectiveModal(obj);
+    });
+  });
+}
+
+function objectiveCardEl(obj) {
+  const color = colorVarForObjective(obj);
+  const subjCount = state.subjects.filter(s => s.objective_id === obj.id).length;
+  return `
+    <article class="obj-card" data-obj-id="${escapeAttr(obj.id)}" style="border-left: 3px solid ${color}; padding: 10px 12px; cursor: pointer;">
+      <div class="poc-row" style="justify-content:space-between;align-items:flex-start;">
+        <div>
+          <div style="font-weight:600;font-size:14px;color:${color};">${escapeHtml(obj.name || '(이름 없음)')}</div>
+          ${obj.description ? `<div class="muted" style="font-size:12px;margin-top:2px;">${escapeHtml(obj.description)}</div>` : ''}
+        </div>
+        <span class="muted dim-mono" style="font-size:11px;">주제 ${subjCount}</span>
+      </div>
+    </article>
+  `;
+}
+
+/* ─── Subject 보드 ──────────────────────────────────────── */
+
+function renderSubjectBoard() {
+  const host = $('subject-board');
+  if (!host) return;
+  if (!state.subjects.length) {
+    host.innerHTML = `<div class="muted" style="padding:14px;font-size:13px;">주제가 없습니다. <strong>📌 주제</strong> 버튼으로 추가하세요.</div>`;
+    return;
+  }
+  // Objective 별로 그룹핑
+  const groups = state.objectives.map(obj => ({
+    objective: obj,
+    subjects: state.subjects.filter(s => s.objective_id === obj.id),
+  }));
+  const orphans = state.subjects.filter(s => !s.objective_id || !objectiveById(s.objective_id));
+  const html = [
+    ...groups.map(g => subjectGroupEl(g.objective, g.subjects)),
+    orphans.length ? subjectGroupEl(null, orphans) : '',
+  ].filter(Boolean).join('');
+  host.innerHTML = html;
+  host.querySelectorAll('[data-subj-id]').forEach(el => {
+    el.addEventListener('click', (ev) => {
+      if (ev.target.closest('button')) return;
+      const subj = subjectById(el.dataset.subjId);
+      if (subj) openSubjectModal(subj);
+    });
+  });
+}
+
+function subjectGroupEl(objective, subjects) {
+  const color = colorVarForObjective(objective);
+  const head = objective
+    ? `<div class="muted dim-mono" style="font-size:11px;color:${color};margin-bottom:4px;">↳ ${escapeHtml(objective.name || '(Objective)')}</div>`
+    : `<div class="muted dim-mono" style="font-size:11px;margin-bottom:4px;">↳ (Objective 미배치)</div>`;
+  const body = subjects.map(s => subjectCardEl(s, color)).join('');
+  return `<div class="subj-group" style="margin-bottom:12px;">${head}<div style="display:flex;flex-wrap:wrap;gap:8px;">${body}</div></div>`;
+}
+
+function subjectCardEl(subj, color) {
+  const cardCount = state.cards.filter(c => c.subject_id === subj.id).length;
+  const ticketCount = state.jiraTickets.filter(t => t.subject_id === subj.id).length;
+  const period = (subj.startMonth && subj.endMonth) ? fmtPeriod({ startMonth: subj.startMonth, endMonth: subj.endMonth }) : '';
+  return `
+    <article class="subj-card" data-subj-id="${escapeAttr(subj.id)}"
+             style="border:1px solid var(--rule); border-left: 3px solid ${color}; padding:8px 10px; min-width:180px; cursor:pointer; background: var(--bg-elev);">
+      <div style="font-size:13px;font-weight:500;">${escapeHtml(subj.name || '(이름 없음)')}</div>
+      <div class="muted dim-mono" style="font-size:10.5px;margin-top:2px;">
+        ${period ? escapeHtml(period) + ' · ' : ''}카드 ${cardCount} · 티켓 ${ticketCount}
+      </div>
+    </article>
+  `;
+}
+
+/* ─── 카드 보드 (5컬럼 + D&D) ──────────────────────────── */
+
+function renderCardBoard() {
+  const host = $('plan-board');
+  if (!host) return;
+
+  const allItems = [
+    ...state.cards.map(c => ({ ...c, _kind: 'card' })),
+    ...state.jiraTickets.map(t => ({
+      _kind: 'jira',
+      id: `jira-${t.key}`,
+      jira_key: t.key,
+      summary: t.summary,
+      subject_id: t.subject_id,
+      quarter: t.quarter,
+      baseQuarter: t.baseQuarter,
+      _override: t._override,
+      title: t.summary,
+      mainSubject: t.mainSubject || '',
+      priority: t.priority || '',
+      projectKey: t.project || '',
+      status: t.status || '',
+    })),
+  ];
+
+  const filtered = applyFilters(allItems);
+
+  // 분기별 분류
+  const cols = {
+    pool: filtered.filter(it => !QUARTERS.includes(it.quarter)),
+    Q1: filtered.filter(it => it.quarter === 'Q1'),
+    Q2: filtered.filter(it => it.quarter === 'Q2'),
+    Q3: filtered.filter(it => it.quarter === 'Q3'),
+    Q4: filtered.filter(it => it.quarter === 'Q4'),
+  };
+
+  const html = `
+    ${columnEl('pool', '미배치', cols.pool, { pool: true })}
+    ${columnEl('Q1', 'Q1', cols.Q1, {})}
+    ${columnEl('Q2', 'Q2', cols.Q2, {})}
+    ${columnEl('Q3', 'Q3', cols.Q3, {})}
+    ${columnEl('Q4', 'Q4', cols.Q4, {})}
+  `;
+  host.innerHTML = `<div class="board-cols" style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;">${html}</div>`;
+
+  bindDnd(host);
+  bindJiraLinks(host);
+
+  // 클릭으로 카드 편집 (키워드만)
+  host.querySelectorAll('[data-card-id]').forEach(el => {
+    el.addEventListener('click', (ev) => {
+      if (ev.target.closest('a')) return;  // Jira 링크 클릭은 통과
+      const id = el.dataset.cardId;
+      const card = state.cards.find(c => c.id === id);
+      if (card) openCardModal(card);
+    });
+  });
+}
+
+function columnEl(colId, label, items, { pool }) {
+  const grouped = groupCards(items);
+  const inner = grouped.map(g => groupEl(g)).join('') || `<div class="muted" style="padding:10px;font-size:12px;">${pool ? '카드/티켓 없음' : '비어 있음'}</div>`;
+  return `
+    <div class="board-col" data-col="${escapeAttr(colId)}" style="border:1px solid var(--rule); background:var(--bg-elev); border-radius:4px; padding:8px; min-height:200px;">
+      <div class="muted dim-mono" style="font-size:11px;margin-bottom:6px;">${escapeHtml(label)} <span class="num">${items.length}</span></div>
+      <div class="board-drop" data-col-drop="${escapeAttr(colId)}" style="min-height:180px;">${inner}</div>
+    </div>
+  `;
+}
+
+function groupCards(items) {
+  if (state.groupBy === 'none') return [{ key: '__all__', label: '', items }];
+  if (state.groupBy === 'objective') {
+    const map = new Map();
+    for (const it of items) {
+      const subj = it.subject_id ? subjectById(it.subject_id) : null;
+      const objId = subj ? subj.objective_id : '';
+      const key = objId || '__none__';
+      if (!map.has(key)) map.set(key, []);
+      map.get(key).push(it);
+    }
+    return state.objectives
+      .filter(o => map.has(o.id))
+      .map(o => ({ key: o.id, label: o.name, color: colorVarForObjective(o), items: map.get(o.id) }))
+      .concat(map.has('__none__') ? [{ key: '__none__', label: '(미배치)', items: map.get('__none__') }] : []);
+  }
+  // 'subject'
+  const map = new Map();
+  for (const it of items) {
+    const key = it.subject_id || '__none__';
+    if (!map.has(key)) map.set(key, []);
+    map.get(key).push(it);
+  }
+  return state.subjects
+    .filter(s => map.has(s.id))
+    .map(s => ({ key: s.id, label: s.name, color: colorVarForSubject(s), items: map.get(s.id) }))
+    .concat(map.has('__none__') ? [{ key: '__none__', label: '(주제 미배치)', items: map.get('__none__') }] : []);
+}
+
+function groupEl(g) {
+  const head = g.label
+    ? `<div class="muted dim-mono" style="font-size:10.5px;${g.color ? `color:${g.color};` : ''}margin:4px 0 4px;">↳ ${escapeHtml(g.label)} · ${g.items.length}</div>`
+    : '';
+  return `<div class="group">${head}${g.items.map(cardEl).join('')}</div>`;
+}
+
+function cardEl(it) {
+  const subj = it.subject_id ? subjectById(it.subject_id) : null;
+  const color = subj ? colorVarForSubject(subj) : 'var(--rule)';
+  const isJira = it._kind === 'jira';
+  const titleHtml = isJira
+    ? `${jiraKeyHtml(it.jira_key)} <span style="font-size:12px;">${escapeHtml(it.title || '')}</span>`
+    : `<span style="font-size:13px;font-weight:500;">${escapeHtml(it.title || '(제목 없음)')}</span>`;
+  const meta = [
+    it.mainSubject ? `<span class="${SUBJECT_CLASS_MAP[it.mainSubject] || 's-misc'}" style="font-size:10px;padding:1px 4px;border-radius:2px;">${escapeHtml(it.mainSubject)}</span>` : '',
+    it.priority ? `<span class="pri pri-${escapeAttr(priorityClass(it.priority))}" style="font-size:10px;">${escapeHtml(it.priority)}</span>` : '',
+    it.projectKey ? `<span class="muted dim-mono" style="font-size:10px;">${escapeHtml(it.projectKey)}</span>` : '',
+  ].filter(Boolean).join(' ');
+  const overrideMark = isJira && it._override ? `<span title="분기/주제 override" style="font-size:9px;color:var(--accent);">⊘</span>` : '';
+  const dataAttrs = isJira
+    ? `data-jira-key="${escapeAttr(it.jira_key)}" draggable="true"`
+    : `data-card-id="${escapeAttr(it.id)}" draggable="true"`;
+  return `
+    <article class="rp-card" ${dataAttrs}
+             style="border-left: 3px solid ${color}; border:1px solid var(--rule); border-left-width:3px; padding:6px 8px; margin-bottom:6px; background:var(--bg-base); border-radius:3px; cursor:${isJira ? 'grab' : 'pointer'};">
+      <div class="poc-row" style="justify-content:space-between;align-items:flex-start;gap:6px;">
+        <div style="flex:1;min-width:0;">${titleHtml}</div>
+        ${overrideMark}
+      </div>
+      ${meta ? `<div class="poc-row" style="gap:4px;margin-top:3px;">${meta}</div>` : ''}
+    </article>
+  `;
+}
+
+function priorityClass(p) {
+  if (!p) return '';
+  return String(p).toLowerCase().replace(/[^a-z0-9]/g, '');
+}
+
+/* ─── 필터 적용 ──────────────────────────────────────── */
+
+function applyFilters(items) {
+  const f = state.filters;
+  return items.filter(it => {
+    if (f.objective) {
+      const subj = it.subject_id ? subjectById(it.subject_id) : null;
+      if (!subj || subj.objective_id !== f.objective) return false;
+    }
+    if (f.subject && it.subject_id !== f.subject) return false;
+    if (f.mainSubject && it.mainSubject !== f.mainSubject) return false;
+    if (f.priority && it.priority !== f.priority) return false;
+    if (f.project && (it.projectKey || it.project) !== f.project) return false;
     return true;
   });
 }
 
-/* ----- 보드 / 컬럼 / 카드 ---------------------------------- */
+/* ─── D&D ─────────────────────────────────────────────── */
 
-function renderBoard() {
-  const host = document.getElementById('plan-board');
-  if (!host) return;
-  const all = filteredAll();
-  const pool = all.filter(c => !c.quarter);
-  const byQ = q => all.filter(c => c.quarter === q);
-
-  host.innerHTML = '';
-  host.appendChild(columnEl('pool', '미배치', pool, { pool: true }));
-  QUARTERS.forEach(q => {
-    host.appendChild(columnEl(q, `${state.year} · ${q}`, byQ(q), {}));
-  });
-  if (isFilterActive()) {
-    host.classList.add('plan-board-filtered');
-  } else {
-    host.classList.remove('plan-board-filtered');
-  }
-  bindDnd(host);
-}
-
-function columnEl(colId, label, cards, { pool }) {
-  const col = document.createElement('div');
-  col.className = 'plan-col' + (pool ? ' pool' : '') + (cards.length === 0 ? ' empty' : '');
-  col.dataset.colId = colId;
-  col.innerHTML = `
-    <div class="plan-col-h">
-      <span>${escapeHtml(label)}</span>
-      <span class="ct num">${cards.length}</span>
-    </div>
-    ${cards.length === 0 ? '<div class="plan-col-drop">DROP HERE</div>' : ''}
-  `;
-
-  if (state.groupBy === 'subject') {
-    // 메인주제별 그룹 헤더 + 그룹 내 카드들
-    const groups = groupCardsBySubject(cards);
-    for (const [subject, gcards] of groups) {
-      const gh = document.createElement('div');
-      gh.className = 'plan-group-h';
-      gh.dataset.groupSubject = subject;
-      gh.innerHTML = `
-        <span class="plan-group-name">${escapeHtml(subject)}</span>
-        <span class="ct num">${gcards.length}</span>
-        <button type="button" class="plan-group-add" title="이 그룹에 카드 추가" aria-label="${escapeAttr(subject)} 그룹에 카드 추가">＋</button>
-      `;
-      gh.querySelector('.plan-group-add').addEventListener('click', () => {
-        openCardModal(null, {
-          mainSubject: subject === SUBJECT_UNCATEGORIZED ? '' : subject,
-          quarter: pool ? null : colId,
-        });
-      });
-      col.appendChild(gh);
-      gcards.forEach(c => col.appendChild(cardEl(c)));
-    }
-  } else if (state.groupBy === 'goal') {
-    // 목표별 그룹 헤더 + 그룹 내 카드들
-    const groups = groupCardsByGoal(cards);
-    for (const [groupLabel, gcards, goalId] of groups) {
-      const gh = document.createElement('div');
-      gh.className = 'plan-group-h plan-group-goal';
-      gh.dataset.groupGoalId = goalId || '';
-      gh.innerHTML = `
-        <span class="plan-group-name">🎯 ${escapeHtml(groupLabel)}</span>
-        <span class="ct num">${gcards.length}</span>
-        ${goalId ? '<button type="button" class="plan-group-add" title="이 목표 그룹에 키워드 카드 추가" aria-label="목표에 카드 추가">＋</button>' : ''}
-      `;
-      if (goalId) {
-        gh.querySelector('.plan-group-add').addEventListener('click', () => {
-          // 새 키워드 카드를 이 목표 + 이 분기 로 자동 매핑되게 prefill
-          openCardModal(null, { quarter: pool ? null : colId, goalId });
-        });
-      }
-      col.appendChild(gh);
-      gcards.forEach(c => col.appendChild(cardEl(c)));
-    }
-  } else {
-    cards.forEach(c => col.appendChild(cardEl(c)));
-  }
-
-  // 컬럼 하단 + 카드 추가 (분기 자동 채움)
-  const addBtn = document.createElement('button');
-  addBtn.type = 'button';
-  addBtn.className = 'tlink plan-add-btn';
-  addBtn.textContent = '＋ 카드 추가';
-  addBtn.addEventListener('click', () => {
-    openCardModal(null, { quarter: pool ? null : colId });
-  });
-  col.appendChild(addBtn);
-  return col;
-}
-
-/** 메인주제별로 카드를 묶음. 디자인 순서(SUBJECT_ORDER) → 그 외 알파벳 → 미분류. */
-function groupCardsBySubject(cards) {
-  const map = new Map();
-  for (const c of cards) {
-    const k = c.mainSubject || SUBJECT_UNCATEGORIZED;
-    if (!map.has(k)) map.set(k, []);
-    map.get(k).push(c);
-  }
-  const orderedKeys = SUBJECT_ORDER.filter(s => map.has(s));
-  const otherKeys = [...map.keys()].filter(s =>
-    !SUBJECT_ORDER.includes(s) && s !== SUBJECT_UNCATEGORIZED
-  ).sort();
-  const result = [];
-  for (const k of [...orderedKeys, ...otherKeys]) result.push([k, map.get(k)]);
-  if (map.has(SUBJECT_UNCATEGORIZED)) result.push([SUBJECT_UNCATEGORIZED, map.get(SUBJECT_UNCATEGORIZED)]);
-  return result;
-}
-
-/** 목표별 카드 그룹핑.
- *  @returns {Array<[label, cards[], goalId|null]>}  목표 정렬순(sortGoals) + 마지막에 (목표 미지정).
- */
-function groupCardsByGoal(cards) {
-  const byGoal = new Map();
-  const noGoal = [];
-  for (const c of cards) {
-    const gid = state.cardGoals[c.id];
-    if (gid && state.goals.some(g => g.id === gid)) {
-      if (!byGoal.has(gid)) byGoal.set(gid, []);
-      byGoal.get(gid).push(c);
-    } else {
-      noGoal.push(c);
-    }
-  }
-  const result = [];
-  for (const g of sortGoals(state.goals)) {
-    if (byGoal.has(g.id)) result.push([g.title, byGoal.get(g.id), g.id]);
-  }
-  if (noGoal.length) result.push(['(목표 미지정)', noGoal, null]);
-  return result;
-}
-
-function cardEl(card) {
-  const el = document.createElement('article');
-  const sc = SUBJECT_CLASS_MAP[card.mainSubject] || 's-misc';
-  el.className = 'plan-card ' + sc + (card.type === 'keyword' ? ' k' : '');
-  el.draggable = true;
-  el.dataset.cardId = card.id;
-  el.dataset.cardType = card.type;
-  el.setAttribute('role', 'listitem');
-  el.setAttribute('aria-label', card.title || card.ticketKey || '카드');
-
-  const meta = [];
-  if (card.type === 'jira') {
-    meta.push(jiraKeyHtml(card.ticketKey));
-    if (card.overridden) {
-      const jq = card.jiraQuarter || '미배치';
-      meta.push(`<span class="tag" title="Jira 원본: ${escapeAttr(jq)} — 사용자 위치로 덮어씀">✦ 사용자 위치</span>`);
-    }
-    // 멀티 분기 표시 — TM-1858 처럼 ['2025-Q4','2026-Q1'] 인 경우
-    if (Array.isArray(card.spans) && card.spans.length > 1) {
-      const spanLabel = card.spans.join(' ↔ ');
-      meta.push(`<span class="tag" title="멀티 분기: ${escapeAttr(spanLabel)}">↔ ${escapeHtml(spanLabel)}</span>`);
-    }
-  } else if (card.ticketKey) {
-    // 사용자가 직접 연결한 Jira 키 (키워드 카드 + 티켓)
-    meta.push(jiraKeyHtml(card.ticketKey));
-  } else {
-    meta.push(`<span class="tag">키워드</span>`);
-  }
-  if (card.mainSubject) meta.push(`<span>${escapeHtml(card.mainSubject)}</span>`);
-  if (card.projectKey) meta.push(`<span>· ${escapeHtml(card.projectKey)}</span>`);
-  if (card.priority) {
-    const cls = priorityClass(card.priority);
-    meta.push(`<span class="pri ${cls}">${escapeHtml(card.priority)}</span>`);
-  }
-  const goalId = state.cardGoals[card.id];
-  if (goalId) {
-    const g = state.goals.find(x => x.id === goalId);
-    if (g) meta.push(`<span class="tag goal-tag" title="목표: ${escapeAttr(g.title)}">🎯 ${escapeHtml(g.title)}</span>`);
-  }
-
-  el.innerHTML = `
-    <h5>${escapeHtml(card.title || '(제목 없음)')}</h5>
-    <div class="pc-meta">${meta.join(' ')}</div>
-    ${card.notes ? `<div class="pc-notes">${escapeHtml(card.notes)}</div>` : ''}
-    ${card.type === 'keyword'
-      ? `<div class="pc-actions">
-           <button type="button" class="tlink" data-action="edit">편집</button>
-           <button type="button" class="tlink alert-color" data-action="delete">삭제</button>
-         </div>`
-      : ''}
-  `;
-
-  if (card.type === 'keyword') {
-    el.querySelector('[data-action="edit"]').addEventListener('click', e => {
-      e.stopPropagation();
-      openCardModal(card);
-    });
-    el.querySelector('[data-action="delete"]').addEventListener('click', e => {
-      e.stopPropagation();
-      confirmDelete(card);
-    });
-  }
-  return el;
-}
-
-function priorityClass(p) {
-  const norm = String(p || '').toUpperCase();
-  if (norm === 'P0') return 'pri-p0';
-  if (norm === 'P1') return 'pri-p1';
-  if (norm === 'P2') return 'pri-p2';
-  if (norm === 'P3') return 'pri-p3';
-  return '';
-}
-
-/* ----- D&D ------------------------------------------------- */
+let dragInfo = null;  // { kind:'card'|'jira', id }
 
 function bindDnd(boardEl) {
-  let dragId = null;
-  boardEl.addEventListener('dragstart', e => {
-    // 필터 활성 시 D&D 비활성화 (리뷰 Critical #3 — 보이지 않는 카드가 잘못된 분기로 이동 방지)
-    if (isFilterActive()) {
-      e.preventDefault();
-      toast({
-        kicker: '필터 활성',
-        msg: '카드 이동은 필터 해제 후 가능합니다.',
-        meta: '필터 상태에서 이동하면 숨겨진 카드 위치가 의도와 다르게 바뀔 수 있습니다.',
-        kind: 'alert',
-      });
-      return;
-    }
-    const card = e.target.closest('.plan-card');
-    if (!card || !card.draggable) { e.preventDefault(); return; }
-    dragId = card.dataset.cardId;
-    e.dataTransfer.effectAllowed = 'move';
-    e.dataTransfer.setData('text/plain', dragId);
-    card.classList.add('dragging');
-  });
-  boardEl.addEventListener('dragend', e => {
-    const card = e.target.closest('.plan-card');
-    if (card) card.classList.remove('dragging');
-    boardEl.querySelectorAll('.plan-col.drag-over').forEach(c => c.classList.remove('drag-over'));
-    dragId = null;
-  });
-  boardEl.addEventListener('dragover', e => {
-    const col = e.target.closest('.plan-col');
-    if (!col) return;
-    e.preventDefault();
-    e.dataTransfer.dropEffect = 'move';
-    boardEl.querySelectorAll('.plan-col.drag-over').forEach(c => {
-      if (c !== col) c.classList.remove('drag-over');
-    });
-    col.classList.add('drag-over');
-  });
-  boardEl.addEventListener('dragleave', e => {
-    const col = e.target.closest('.plan-col');
-    if (col && !col.contains(e.relatedTarget)) col.classList.remove('drag-over');
-  });
-  boardEl.addEventListener('drop', e => {
-    const col = e.target.closest('.plan-col');
-    if (!col || !dragId) return;
-    e.preventDefault();
-    col.classList.remove('drag-over');
-    moveCard(dragId, col.dataset.colId);
-  });
-}
-
-function moveCard(cardId, colId) {
-  // dragId 검증 — 외부 payload 위변조 / 필터 외 카드 방어
-  const known = state.jiraCards.find(c => c.id === cardId)
-              || state.keywordCards.find(c => c.id === cardId);
-  if (!known) {
-    toast({ kicker: '무효', msg: '알 수 없는 카드입니다.', kind: 'alert' });
-    return;
-  }
-  const targetQuarter = colId === 'pool' ? null : colId;
-
-  // Jira 카드 — LS override 우선. Jira 원본은 건드리지 않음.
-  if (known.type === 'jira') {
-    if (known.quarter === targetQuarter) return;
-    const jiraQuarter = known.jiraQuarter ?? known.quarter; // override 안 된 카드면 현재 quarter 가 jira 원본
-    known.quarter = targetQuarter;
-    if (jiraQuarter === targetQuarter) {
-      // 사용자가 Jira 원본 위치로 되돌림 → override 해제
-      delete state.jiraOverrides[known.ticketKey];
-      known.overridden = false;
-      delete known.jiraQuarter;
-    } else {
-      state.jiraOverrides[known.ticketKey] = { quarter: targetQuarter, jiraQuarter };
-      known.overridden = true;
-      known.jiraQuarter = jiraQuarter;
-    }
-    persistOverrides();
-    toast({
-      kicker: '위치 저장',
-      msg: `${known.ticketKey} → ${targetQuarter || '미배치'}`,
-      meta: known.overridden ? `Jira 원본: ${jiraQuarter || '미배치'} (다음 sync 후에도 사용자 위치 유지)` : '',
-      kind: 'success',
-    });
-    renderBoard();
-    renderHeader();
-    return;
-  }
-
-  // 키워드 카드 — LS 갱신
-  if (known.quarter === targetQuarter) return;
-  known.quarter = targetQuarter;
-  known.updatedAt = new Date().toISOString();
-  persistCards();
-  toast({ kicker: '저장됨', msg: `${known.title} → ${targetQuarter || '미배치'}`, kind: 'success' });
-  renderBoard();
-  renderHeader();
-}
-
-/* ----- 카드 모달 (추가 / 편집) ----------------------------- */
-
-let cardModalEl = null;
-let cardModalCtl = null;
-
-function openCardModal(card, prefill = {}) {
-  ensureCardModal();
-  const isEdit = !!card;
-  cardModalEl.querySelector('[data-modal-kicker]').textContent = isEdit ? 'EDIT' : 'NEW CARD';
-  cardModalEl.querySelector('[data-modal-title]').textContent = isEdit ? '카드 편집' : '카드 추가';
-
-  // 목표 select 옵션은 현재 state.goals 기준으로 매번 재구성
-  refreshCardModalGoalOptions();
-
-  const f = cardModalEl.querySelector('form');
-  f.elements.title.value = card?.title || '';
-  f.elements.notes.value = card?.notes || '';
-  f.elements.mainSubject.value = card?.mainSubject ?? prefill.mainSubject ?? '';
-  f.elements.priority.value = card?.priority || '';
-  f.elements.projectKey.value = card?.projectKey || '';
-  f.elements.ticketKey.value = card?.ticketKey || '';
-  f.elements.quarter.value = card?.quarter ?? prefill.quarter ?? '';
-  f.elements.goalId.value = (card && state.cardGoals[card.id]) || prefill.goalId || '';
-  f.dataset.editingId = card?.id || '';
-
-  cardModalCtl.open();
-}
-
-function refreshCardModalGoalOptions() {
-  const sel = cardModalEl?.querySelector('select[name="goalId"]');
-  if (!sel) return;
-  const sorted = sortGoals(state.goals);
-  sel.innerHTML = '<option value="">— (없음)</option>' +
-    sorted.map(g => `<option value="${escapeAttr(g.id)}">${escapeHtml(g.title)}</option>`).join('');
-}
-
-function ensureCardModal() {
-  if (cardModalEl) return;
-  cardModalEl = document.createElement('div');
-  cardModalEl.className = 'modal-backdrop';
-  cardModalEl.hidden = true;
-  cardModalEl.innerHTML = `
-    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="plan-modal-title" style="width:520px">
-      <form>
-        <div class="modal-head">
-          <div>
-            <div class="modal-kicker" data-modal-kicker></div>
-            <h3 class="modal-title" id="plan-modal-title" data-modal-title></h3>
-          </div>
-          <button type="button" class="modal-close" data-modal-close aria-label="닫기">CLOSE</button>
-        </div>
-        <div class="modal-body">
-          <div class="field">
-            <label class="field-label" for="kw-title">제목</label>
-            <input class="input" id="kw-title" name="title" required maxlength="120" />
-          </div>
-          <div class="field">
-            <label class="field-label" for="kw-notes">메모</label>
-            <textarea class="textarea" id="kw-notes" name="notes" maxlength="500"></textarea>
-          </div>
-          <div class="field-row">
-            <div class="field">
-              <label class="field-label" for="kw-subject">메인주제</label>
-              <select class="select" id="kw-subject" name="mainSubject">
-                <option value="">—</option>
-                <option value="01.추천">01.추천</option>
-                <option value="02.검색">02.검색</option>
-                <option value="03.랭킹">03.랭킹</option>
-                <option value="04.개인화">04.개인화</option>
-                <option value="05.디스커버리">05.디스커버리</option>
-              </select>
-            </div>
-            <div class="field">
-              <label class="field-label" for="kw-priority">우선순위</label>
-              <select class="select" id="kw-priority" name="priority">
-                <option value="">—</option>
-                <option value="P0">P0</option>
-                <option value="P1">P1</option>
-                <option value="P2">P2</option>
-                <option value="P3">P3</option>
-              </select>
-            </div>
-          </div>
-          <div class="field-row">
-            <div class="field">
-              <label class="field-label" for="kw-project">프로젝트 키</label>
-              <input class="input" id="kw-project" name="projectKey" maxlength="12" placeholder="CBP" pattern="[A-Z][A-Z0-9]{1,11}" title="대문자로 시작 + 영숫자 2~12자" />
-            </div>
-            <div class="field">
-              <label class="field-label" for="kw-ticket">티켓 키 (선택)</label>
-              <input class="input" id="kw-ticket" name="ticketKey" maxlength="20" placeholder="TM-1234" pattern="[A-Z][A-Z0-9]{1,11}-[0-9]+" title="예: CBP-1234 — 비우면 키워드 전용" />
-            </div>
-          </div>
-          <div class="field-row">
-            <div class="field">
-              <label class="field-label" for="kw-quarter">분기</label>
-              <select class="select" id="kw-quarter" name="quarter">
-                <option value="">미배치</option>
-                <option value="Q1">Q1</option>
-                <option value="Q2">Q2</option>
-                <option value="Q3">Q3</option>
-                <option value="Q4">Q4</option>
-              </select>
-            </div>
-            <div class="field">
-              <label class="field-label" for="kw-goal">🎯 목표 (선택)</label>
-              <select class="select" id="kw-goal" name="goalId">
-                <option value="">— (없음)</option>
-              </select>
-            </div>
-          </div>
-        </div>
-        <div class="modal-foot">
-          <button type="button" class="btn ghost" data-modal-close>취소</button>
-          <button type="submit" class="btn primary">저장</button>
-        </div>
-      </form>
-    </div>
-  `;
-  document.body.appendChild(cardModalEl);
-  cardModalCtl = attachModal(cardModalEl, {
-    initialFocus: () => cardModalEl.querySelector('input[name="title"]'),
-  });
-  cardModalEl.querySelector('form').addEventListener('submit', e => {
-    e.preventDefault();
-    saveCardFromForm(e.currentTarget);
-  });
-}
-
-function saveCardFromForm(form) {
-  const id = form.dataset.editingId;
-  const now = new Date().toISOString();
-  const projectKeyRaw = form.elements.projectKey.value.trim().toUpperCase();
-  if (projectKeyRaw && !PROJECT_KEY_RE.test(projectKeyRaw)) {
-    toast({ kicker: '형식 오류', msg: '프로젝트 키는 대문자 영숫자 2~12자여야 합니다.', kind: 'alert' });
-    return;
-  }
-  const ticketKeyRaw = form.elements.ticketKey.value.trim().toUpperCase();
-  if (ticketKeyRaw && !/^[A-Z][A-Z0-9]{1,11}-[0-9]+$/.test(ticketKeyRaw)) {
-    toast({ kicker: '형식 오류', msg: '티켓 키는 PROJ-숫자 형식이어야 합니다 (예: TM-1234).', kind: 'alert' });
-    return;
-  }
-  // ticketKey 가 있으면 projectKey 자동 채움 (없을 때만)
-  let projectKey = projectKeyRaw;
-  if (ticketKeyRaw && !projectKey) projectKey = ticketKeyRaw.split('-', 1)[0];
-
-  const data = {
-    title: form.elements.title.value.trim(),
-    notes: form.elements.notes.value.trim(),
-    mainSubject: form.elements.mainSubject.value,
-    priority: form.elements.priority.value,
-    projectKey,
-    ticketKey: ticketKeyRaw,
-    quarter: form.elements.quarter.value || null,
-  };
-  if (!data.title) {
-    toast({ kicker: '입력 필요', msg: '제목은 비울 수 없습니다.', kind: 'alert' });
-    return;
-  }
-  let savedCardId = id;
-  if (id) {
-    const i = state.keywordCards.findIndex(c => c.id === id);
-    if (i >= 0) {
-      state.keywordCards[i] = { ...state.keywordCards[i], ...data, updatedAt: now };
-      toast({ kicker: '저장됨', msg: data.title, kind: 'success' });
-    }
-  } else {
-    const newId = newCardId();
-    state.keywordCards.push(normalizeKeywordCard({
-      ...data,
-      id: newId,
-      year: state.year,
-      createdAt: now,
-      updatedAt: now,
-    }));
-    savedCardId = newId;
-    toast({ kicker: '추가됨', msg: data.title, kind: 'success' });
-  }
-  persistCards();
-
-  // 목표 매핑 갱신 (1:N 정책)
-  const goalIdVal = form.elements.goalId.value || '';
-  const prevGoal = state.cardGoals[savedCardId];
-  if (goalIdVal && state.goals.some(g => g.id === goalIdVal)) {
-    state.cardGoals[savedCardId] = goalIdVal;
-  } else {
-    delete state.cardGoals[savedCardId];
-  }
-  if (prevGoal !== state.cardGoals[savedCardId]) {
-    persistCardGoals();
-    renderGoalBoard();
-  }
-
-  cardModalCtl.close();
-  renderFilters();
-  renderBoard();
-  renderHeader();
-}
-
-/* ----- 삭제 확인 ------------------------------------------- */
-
-let confirmEl = null;
-let confirmCtl = null;
-
-function confirmDelete(card) {
-  ensureConfirmModal();
-  confirmEl.querySelector('[data-modal-title]').textContent = '삭제 확인';
-  confirmEl.querySelector('[data-modal-body]').innerHTML =
-    `정말 <strong>${escapeHtml(card.title || '(제목 없음)')}</strong> 카드를 삭제할까요? 되돌릴 수 없습니다.`;
-  confirmCtl.open();
-  confirmEl.querySelector('[data-confirm-yes]').onclick = () => {
-    state.keywordCards = state.keywordCards.filter(c => c.id !== card.id);
-    persistCards();
-    // 카드 삭제 시 목표 매핑도 해제
-    if (state.cardGoals[card.id]) {
-      delete state.cardGoals[card.id];
-      persistCardGoals();
-      renderGoalBoard();
-    }
-    toast({ kicker: '삭제됨', msg: card.title || '(제목 없음)' });
-    confirmCtl.close();
-    renderFilters();
-    renderBoard();
-    renderHeader();
-  };
-}
-
-function ensureConfirmModal() {
-  if (confirmEl) return;
-  confirmEl = document.createElement('div');
-  confirmEl.className = 'modal-backdrop';
-  confirmEl.hidden = true;
-  confirmEl.innerHTML = `
-    <div class="modal confirm danger" role="alertdialog" aria-modal="true" aria-labelledby="plan-confirm-title">
-      <div class="modal-head">
-        <div>
-          <div class="modal-kicker">DELETE</div>
-          <h3 class="modal-title" id="plan-confirm-title" data-modal-title>삭제 확인</h3>
-        </div>
-        <button type="button" class="modal-close" data-modal-close aria-label="닫기">CLOSE</button>
-      </div>
-      <div class="modal-body" data-modal-body></div>
-      <div class="modal-foot">
-        <button type="button" class="btn ghost" data-modal-close>취소</button>
-        <button type="button" class="btn primary" data-confirm-yes>삭제</button>
-      </div>
-    </div>
-  `;
-  document.body.appendChild(confirmEl);
-  confirmCtl = attachModal(confirmEl, {
-    initialFocus: () => confirmEl.querySelector('[data-confirm-yes]'),
-  });
-}
-
-/* ----- Export --------------------------------------------- */
-
-/** git diff 안정성 위해 결정적 정렬 후 직렬화. */
-export function sortCards(cards) {
-  const qOrder = { 'Q1': 1, 'Q2': 2, 'Q3': 3, 'Q4': 4 };
-  const pOrder = { 'P0': 0, 'P1': 1, 'P2': 2, 'P3': 3 };
-  return [...cards].sort((a, b) => {
-    const qa = a.quarter == null ? 9 : (qOrder[a.quarter] || 8);
-    const qb = b.quarter == null ? 9 : (qOrder[b.quarter] || 8);
-    if (qa !== qb) return qa - qb;
-    const pa = pOrder[a.priority] != null ? pOrder[a.priority] : 9;
-    const pb = pOrder[b.priority] != null ? pOrder[b.priority] : 9;
-    if (pa !== pb) return pa - pb;
-    return String(a.id).localeCompare(String(b.id));
-  });
-}
-
-function exportJson() {
-  const payload = {
-    schemaVersion: SCHEMA_VERSION,
-    year: state.year,
-    cards: sortCards(state.keywordCards),
-    goals: sortGoals(state.goals),
-    cardGoals: state.cardGoals,
-  };
-  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = `roadmap-${state.year}.json`;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
-  toast({
-    kicker: 'EXPORTED',
-    msg: `roadmap-${state.year}.json`,
-    meta: `data/plans/ 에 commit 하면 영구 저장됩니다.`,
-    kind: 'success',
-    hold: 6000,
-  });
-}
-
-/* =========================================================
-   목표 (Goal) — 보드 / 모달 / 카드 매핑
-   ========================================================= */
-
-function renderGoalBoard() {
-  const host = document.getElementById('goal-board');
-  if (!host) return;
-  // state.goals 가 사용자가 정한 순서. sortGoals 는 order 필드 기준 정렬.
-  const sorted = sortGoals(state.goals);
-  if (!sorted.length) {
-    host.innerHTML = `
-      <div class="goal-empty">
-        <span class="goal-empty-icon">🎯</span>
-        <span class="goal-empty-msg">아직 등록된 목표가 없습니다.</span>
-        <button type="button" class="btn ghost" data-goal-add-here>＋ 첫 목표 추가</button>
-      </div>
-    `;
-    host.querySelector('[data-goal-add-here]')?.addEventListener('click', () => openGoalModal(null));
-    return;
-  }
-  const cardsByGoal = invertCardGoals(state.cardGoals);
-  host.innerHTML = '';
-  for (const g of sorted) {
-    const cardIds = cardsByGoal.get(g.id) || [];
-    host.appendChild(goalCardEl(g, cardIds));
-  }
-  bindGoalDnd(host);
-}
-
-/** 목표 카드 드래그앤드롭 — 순서 재배열 + state.goals 의 order 필드 갱신 + persist. */
-function bindGoalDnd(host) {
-  let draggedId = null;
-  host.querySelectorAll('.goal-card').forEach(card => {
-    card.draggable = true;
-    card.addEventListener('dragstart', e => {
-      // 액션 버튼 / 카드 리스트 안에서 시작된 드래그는 양보
-      if (e.target.closest('.gc-actions, .goal-card-list, .gcli-unmap, a, button')) {
-        e.preventDefault();
-        return;
-      }
-      draggedId = card.dataset.goalId;
-      card.classList.add('dragging');
+  boardEl.querySelectorAll('.rp-card[draggable="true"]').forEach(el => {
+    el.addEventListener('dragstart', (e) => {
+      if (el.dataset.cardId) dragInfo = { kind: 'card', id: el.dataset.cardId };
+      else if (el.dataset.jiraKey) dragInfo = { kind: 'jira', id: el.dataset.jiraKey };
       e.dataTransfer.effectAllowed = 'move';
-      e.dataTransfer.setData('text/plain', draggedId);
+      el.style.opacity = '0.5';
     });
-    card.addEventListener('dragend', () => {
-      card.classList.remove('dragging');
-      host.querySelectorAll('.goal-card.drag-over').forEach(c => c.classList.remove('drag-over'));
-      draggedId = null;
+    el.addEventListener('dragend', () => {
+      el.style.opacity = '';
+      dragInfo = null;
     });
-    card.addEventListener('dragover', e => {
-      if (!draggedId || card.dataset.goalId === draggedId) return;
+  });
+  boardEl.querySelectorAll('[data-col-drop]').forEach(drop => {
+    drop.addEventListener('dragover', (e) => {
+      if (!dragInfo) return;
       e.preventDefault();
       e.dataTransfer.dropEffect = 'move';
-      // 다른 카드의 over 표시 제거
-      host.querySelectorAll('.goal-card.drag-over').forEach(c => {
-        if (c !== card) c.classList.remove('drag-over');
-      });
-      card.classList.add('drag-over');
+      drop.style.background = 'var(--bg-elev)';
     });
-    card.addEventListener('dragleave', e => {
-      if (!card.contains(e.relatedTarget)) card.classList.remove('drag-over');
-    });
-    card.addEventListener('drop', e => {
-      const targetId = card.dataset.goalId;
-      if (!draggedId || targetId === draggedId) return;
+    drop.addEventListener('dragleave', () => { drop.style.background = ''; });
+    drop.addEventListener('drop', async (e) => {
       e.preventDefault();
-      moveGoal(draggedId, targetId);
+      drop.style.background = '';
+      if (!dragInfo) return;
+      const col = drop.dataset.colDrop;
+      const newQuarter = col === 'pool' ? '' : col;
+      await moveItem(dragInfo, newQuarter);
     });
   });
 }
 
-function moveGoal(draggedId, targetId) {
-  const sorted = sortGoals(state.goals);
-  const fromIdx = sorted.findIndex(g => g.id === draggedId);
-  const toIdx = sorted.findIndex(g => g.id === targetId);
-  if (fromIdx < 0 || toIdx < 0 || fromIdx === toIdx) return;
-  const [moved] = sorted.splice(fromIdx, 1);
-  sorted.splice(toIdx, 0, moved);
-  reassignOrder(sorted);
-  // state.goals 의 객체 참조를 update (sortGoals 가 shallow copy 라 원본 객체에 order 만 들어가 있음 — 그대로 OK)
-  persistGoals();
-  toast({ kicker: '순서 변경', msg: `${moved.title}`, kind: 'success' });
-  renderGoalBoard();
-}
-
-function goalCardEl(goal, cardIds) {
-  const el = document.createElement('article');
-  el.className = 'goal-card';
-  el.dataset.goalId = goal.id;
-  el.dataset.color = goal.color || 'accent';
-  const periodOk = isValidPeriod(goal.startMonth, goal.endMonth);
-  const period = periodOk ? fmtPeriod(goal) : '<span class="muted">기간 미설정</span>';
-  const validCards = cardIds.map(id => findCard(id)).filter(Boolean);
-
-  // 매핑 카드 리스트 렌더
-  let cardListHtml = '';
-  if (validCards.length) {
-    cardListHtml = `
-      <ul class="goal-card-list">
-        ${validCards.map(c => {
-          const isJira = c.type === 'jira';
-          const typeTag = isJira ? 'Jira' : '키워드';
-          const keyHtml = c.ticketKey
-            ? `<a class="key" href="${jiraUrl(c.ticketKey) || '#'}" target="_blank" rel="noopener noreferrer">${escapeHtml(c.ticketKey)}</a>`
-            : `<span class="tag">${typeTag}</span>`;
-          const quarter = c.quarter ? `<span class="muted">· ${escapeHtml(c.quarter)}</span>` : '';
-          const subject = c.mainSubject ? `<span class="muted">· ${escapeHtml(c.mainSubject)}</span>` : '';
-          return `
-            <li class="goal-card-list-item" data-card-id="${escapeAttr(c.id)}">
-              <span class="gcli-key">${keyHtml}</span>
-              <span class="gcli-title">${escapeHtml(c.title || '(제목 없음)')}</span>
-              <span class="gcli-meta">${quarter}${subject}</span>
-              <button type="button" class="tlink alert-color gcli-unmap" data-card-id="${escapeAttr(c.id)}" title="이 목표에서 해제">✕</button>
-            </li>
-          `;
-        }).join('')}
-      </ul>
-    `;
-  } else {
-    cardListHtml = '<p class="goal-card-empty muted">아직 매핑된 카드가 없습니다.</p>';
-  }
-
-  el.innerHTML = `
-    <div class="goal-card-head">
-      <h4 class="goal-card-title">${escapeHtml(goal.title || '(제목 없음)')}</h4>
-      <span class="goal-card-period">${period}</span>
-    </div>
-    ${goal.description ? `<p class="goal-card-desc">${escapeHtml(goal.description)}</p>` : ''}
-    ${cardListHtml}
-    <div class="goal-card-foot">
-      <span class="num">${validCards.length}건 매핑</span>
-      <span class="gc-actions">
-        <button type="button" class="tlink" data-action="map">＋ 카드</button>
-        <button type="button" class="tlink" data-action="edit">편집</button>
-        <button type="button" class="tlink alert-color" data-action="delete">삭제</button>
-      </span>
-    </div>
-  `;
-  el.querySelector('[data-action="map"]').addEventListener('click', e => {
-    e.stopPropagation();
-    openCardMappingModal(goal);
-  });
-  el.querySelector('[data-action="edit"]').addEventListener('click', e => {
-    e.stopPropagation();
-    openGoalModal(goal);
-  });
-  el.querySelector('[data-action="delete"]').addEventListener('click', e => {
-    e.stopPropagation();
-    confirmDeleteGoal(goal);
-  });
-  // 개별 카드 unmap 버튼
-  el.querySelectorAll('.gcli-unmap').forEach(btn => {
-    btn.addEventListener('click', e => {
-      e.stopPropagation();
-      const cid = btn.dataset.cardId;
-      if (state.cardGoals[cid]) {
-        delete state.cardGoals[cid];
-        persistCardGoals();
-        renderGoalBoard();
-        renderBoard();
-        toast({ kicker: '매핑 해제', msg: findCard(cid)?.title || cid, kind: 'success' });
+async function moveItem(info, newQuarter) {
+  try {
+    if (info.kind === 'card') {
+      const card = state.cards.find(c => c.id === info.id);
+      if (!card) return;
+      if ((card.quarter || '') === newQuarter) return;
+      const updated = await updateCard(card, { quarter: newQuarter });
+      Object.assign(card, updated);
+    } else {
+      const t = state.jiraTickets.find(x => x.key === info.id);
+      if (!t) return;
+      if ((t.quarter || '') === newQuarter) return;
+      // override 갱신 — subject_id 는 기존 그대로
+      const updated = await setTicketMapping(
+        t.key,
+        { year: state.year, subject_id: t.subject_id, quarter: newQuarter },
+        state.overrides
+      );
+      // overrides state 갱신
+      const idx = state.overrides.findIndex(o => o.jira_key === t.key);
+      if (updated) {
+        if (idx >= 0) state.overrides[idx] = updated;
+        else state.overrides.push(updated);
+      } else if (idx >= 0) {
+        state.overrides.splice(idx, 1);
       }
-    });
-  });
-  return el;
-}
-
-/* ----- 목표 추가/편집 모달 ----- */
-
-let goalModalEl = null;
-let goalModalCtl = null;
-
-function openGoalModal(goal) {
-  ensureGoalModal();
-  const isEdit = !!goal;
-  goalModalEl.querySelector('[data-modal-kicker]').textContent = isEdit ? 'EDIT GOAL' : 'NEW GOAL';
-  goalModalEl.querySelector('[data-modal-title]').textContent = isEdit ? '목표 편집' : '목표 추가';
-  const f = goalModalEl.querySelector('form');
-  f.elements.title.value = goal?.title || '';
-  f.elements.description.value = goal?.description || '';
-  f.elements.startMonth.value = goal?.startMonth || '';
-  f.elements.endMonth.value = goal?.endMonth || '';
-  // 색상: 현재 선택된 swatch 표시
-  const currentColor = goal?.color || 'accent';
-  goalModalEl.querySelectorAll('[data-color-swatch]').forEach(b => {
-    b.classList.toggle('on', b.dataset.colorSwatch === currentColor);
-  });
-  f.dataset.color = currentColor;
-  f.dataset.editingId = goal?.id || '';
-  goalModalCtl.open();
-}
-
-function ensureGoalModal() {
-  if (goalModalEl) return;
-  goalModalEl = document.createElement('div');
-  goalModalEl.className = 'modal-backdrop';
-  goalModalEl.hidden = true;
-  const months = buildMonthOptions();
-  goalModalEl.innerHTML = `
-    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="goal-modal-title" style="width:520px">
-      <form>
-        <div class="modal-head">
-          <div>
-            <div class="modal-kicker" data-modal-kicker></div>
-            <h3 class="modal-title" id="goal-modal-title" data-modal-title></h3>
-          </div>
-          <button type="button" class="modal-close" data-modal-close aria-label="닫기">CLOSE</button>
-        </div>
-        <div class="modal-body">
-          <div class="field">
-            <label class="field-label" for="goal-title">제목</label>
-            <input class="input" id="goal-title" name="title" required maxlength="80" placeholder="예: 브랜드 탐색 강화" />
-          </div>
-          <div class="field">
-            <label class="field-label" for="goal-desc">설명 (선택)</label>
-            <textarea class="textarea" id="goal-desc" name="description" maxlength="500"></textarea>
-          </div>
-          <div class="field-row">
-            <div class="field">
-              <label class="field-label" for="goal-start">시작월</label>
-              <select class="select" id="goal-start" name="startMonth" required>
-                <option value="">선택</option>
-                ${months}
-              </select>
-            </div>
-            <div class="field">
-              <label class="field-label" for="goal-end">끝월</label>
-              <select class="select" id="goal-end" name="endMonth" required>
-                <option value="">선택</option>
-                ${months}
-              </select>
-            </div>
-          </div>
-          <div class="field">
-            <label class="field-label">색상</label>
-            <div class="color-swatches">
-              ${GOAL_COLORS.map(c => `
-                <button type="button" class="color-swatch" data-color-swatch="${c.key}"
-                        style="background: var(${c.var})" aria-label="${c.label}" title="${c.label}"></button>
-              `).join('')}
-            </div>
-          </div>
-        </div>
-        <div class="modal-foot">
-          <button type="button" class="btn ghost" data-modal-close>취소</button>
-          <button type="submit" class="btn primary">저장</button>
-        </div>
-      </form>
-    </div>
-  `;
-  document.body.appendChild(goalModalEl);
-  goalModalCtl = attachModal(goalModalEl, {
-    initialFocus: () => goalModalEl.querySelector('input[name="title"]'),
-  });
-  goalModalEl.querySelector('form').addEventListener('submit', e => {
-    e.preventDefault();
-    saveGoalFromForm(e.currentTarget);
-  });
-  // 색상 swatch 클릭
-  goalModalEl.querySelectorAll('[data-color-swatch]').forEach(b => {
-    b.addEventListener('click', () => {
-      const f = goalModalEl.querySelector('form');
-      f.dataset.color = b.dataset.colorSwatch;
-      goalModalEl.querySelectorAll('[data-color-swatch]').forEach(x => x.classList.toggle('on', x === b));
-    });
-  });
-}
-
-/** 이전/올해/내년 ±1 → 36개월. YYYY-MM 포맷. */
-function buildMonthOptions() {
-  const opts = [];
-  const baseYear = state.year - 1;
-  for (let y = baseYear; y <= baseYear + 2; y++) {
-    for (let m = 1; m <= 12; m++) {
-      const mm = String(m).padStart(2, '0');
-      const v = `${y}-${mm}`;
-      opts.push(`<option value="${v}">${y}.${mm}</option>`);
+      t.quarter = newQuarter;
+      t._override = !!(t.subject_id || (newQuarter && newQuarter !== t.baseQuarter));
     }
+    renderCardBoard();
+  } catch (e) {
+    handleApiError(e, '이동 실패');
   }
-  return opts.join('');
 }
 
-function saveGoalFromForm(form) {
-  const id = form.dataset.editingId;
-  const title = form.elements.title.value.trim();
-  const description = form.elements.description.value.trim();
-  const startMonth = form.elements.startMonth.value;
-  const endMonth = form.elements.endMonth.value;
-  const color = form.dataset.color || 'accent';
-  if (!title) {
-    toast({ kicker: '입력 필요', msg: '제목은 비울 수 없습니다.', kind: 'alert' });
-    return;
+/* ─── 모달 바인딩 ───────────────────────────────────────── */
+
+function bindModals() {
+  state.modals.obj = attachModal($('obj-pop'));
+  state.modals.subj = attachModal($('subj-pop'));
+  state.modals.card = attachModal($('card-pop'));
+  state.modals.confirm = attachModal($('confirm-pop'));
+
+  $('obj-form')?.addEventListener('submit', onObjectiveSubmit);
+  $('subj-form')?.addEventListener('submit', onSubjectSubmit);
+  $('card-form')?.addEventListener('submit', onCardSubmit);
+
+  // 색상 swatch
+  const sw = $('obj-color-swatch');
+  if (sw) {
+    sw.style.cssText = 'display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;';
+    sw.innerHTML = GOAL_COLORS.map(c => `
+      <button type="button" data-color="${escapeAttr(c.key)}" title="${escapeAttr(c.label)}"
+              style="width:24px;height:24px;border-radius:50%;border:1px solid var(--rule);background:var(${c.var});cursor:pointer;"></button>
+    `).join('');
+    sw.addEventListener('click', (e) => {
+      const btn = e.target.closest('button[data-color]');
+      if (!btn) return;
+      const form = $('obj-form');
+      form.color.value = btn.dataset.color;
+      sw.querySelectorAll('button').forEach(b => b.style.outline = b === btn ? '2px solid var(--accent-strong)' : '');
+    });
   }
-  if (!isValidPeriod(startMonth, endMonth)) {
-    toast({ kicker: '기간 오류', msg: '시작월 ≤ 끝월 이어야 합니다.', kind: 'alert' });
-    return;
-  }
-  const now = new Date().toISOString();
-  if (id) {
-    const i = state.goals.findIndex(g => g.id === id);
-    if (i >= 0) {
-      state.goals[i] = { ...state.goals[i], title, description, startMonth, endMonth, color, updatedAt: now };
-      toast({ kicker: '저장됨', msg: title, kind: 'success' });
-    }
+}
+
+/* ─── Objective modal ───────────────────────────────────── */
+
+function openObjectiveModal(obj) {
+  const form = $('obj-form');
+  $('obj-modal-title').textContent = obj ? `Objective: ${obj.name}` : '새 Objective';
+  form.reset();
+  form.id.value = obj ? obj.id : '';
+  if (obj) {
+    form.name.value = obj.name || '';
+    form.description.value = obj.description || '';
+    form.color.value = obj.color || 'accent';
+    form.display_order.value = obj.display_order ?? 0;
   } else {
-    state.goals.push(normalizeGoal({
-      id: newGoalId(),
-      title, description, startMonth, endMonth, color,
-      createdAt: now, updatedAt: now,
-    }));
-    toast({ kicker: '추가됨', msg: title, kind: 'success' });
+    form.color.value = 'accent';
+    form.display_order.value = state.objectives.length;
   }
-  persistGoals();
-  goalModalCtl.close();
-  renderGoalBoard();
-  renderHeader();
-  renderBoard(); // 카드의 목표 표시 갱신
+  // 선택된 색상 표시
+  $('obj-color-swatch').querySelectorAll('button').forEach(b => {
+    b.style.outline = b.dataset.color === form.color.value ? '2px solid var(--accent-strong)' : '';
+  });
+  // 삭제 버튼
+  const delBtn = form.querySelector('[data-obj-delete]');
+  if (delBtn) {
+    delBtn.hidden = !obj;
+    delBtn.onclick = () => requestObjectiveDelete(obj);
+  }
+  state.modals.obj.open();
 }
 
-/* ----- 목표 삭제 ----- */
-
-function confirmDeleteGoal(goal) {
-  ensureConfirmModal();
-  const cardCount = Object.values(state.cardGoals).filter(gid => gid === goal.id).length;
-  confirmEl.querySelector('[data-modal-title]').textContent = '목표 삭제';
-  confirmEl.querySelector('[data-modal-body]').innerHTML =
-    `정말 <strong>${escapeHtml(goal.title || '(제목 없음)')}</strong> 목표를 삭제할까요?` +
-    (cardCount > 0 ? `<br><span class="muted">${cardCount}건의 카드 매핑도 함께 해제됩니다.</span>` : '') +
-    `<br>되돌릴 수 없습니다.`;
-  confirmCtl.open();
-  confirmEl.querySelector('[data-confirm-yes]').onclick = () => {
-    state.goals = state.goals.filter(g => g.id !== goal.id);
-    // 관련 카드 매핑 해제
-    for (const cid of Object.keys(state.cardGoals)) {
-      if (state.cardGoals[cid] === goal.id) delete state.cardGoals[cid];
-    }
-    persistGoals();
-    persistCardGoals();
-    toast({ kicker: '삭제됨', msg: goal.title || '(제목 없음)' });
-    confirmCtl.close();
-    renderGoalBoard();
-    renderHeader();
-    renderBoard();
+async function onObjectiveSubmit(e) {
+  e.preventDefault();
+  const form = e.currentTarget;
+  const fd = new FormData(form);
+  const patch = {
+    name: (fd.get('name') || '').toString().trim(),
+    description: (fd.get('description') || '').toString().trim(),
+    color: fd.get('color') || 'accent',
+    display_order: parseInt(fd.get('display_order'), 10) || 0,
   };
+  if (!patch.name) { toast({ kicker: '입력', msg: '이름은 필수입니다.', kind: 'alert' }); return; }
+
+  const id = fd.get('id');
+  try {
+    if (id) {
+      const obj = state.objectives.find(o => o.id === id);
+      if (!obj) return;
+      const updated = await updateObjective(obj, patch);
+      Object.assign(obj, updated);
+    } else {
+      const created = await createObjective(patch);
+      state.objectives.push(created);
+    }
+    state.objectives.sort((a, b) => (a.display_order || 0) - (b.display_order || 0));
+    state.modals.obj.close();
+    renderObjectiveBoard();
+    renderSubjectBoard();
+    renderCardBoard();
+    renderFilters();
+  } catch (err) {
+    handleApiError(err, 'Objective 저장 실패');
+  }
 }
 
-/* ----- 카드 매핑 sub-modal ----- */
-
-let mappingModalEl = null;
-let mappingModalCtl = null;
-let mappingState = { goalId: null, query: '', selected: new Set() };
-
-function openCardMappingModal(goal) {
-  ensureMappingModal();
-  mappingState.goalId = goal.id;
-  mappingState.query = '';
-  // 현재 이 목표에 매핑된 카드 = checked 초기값
-  mappingState.selected = new Set(
-    Object.entries(state.cardGoals)
-      .filter(([_, gid]) => gid === goal.id)
-      .map(([cid]) => cid)
-  );
-  mappingModalEl.querySelector('[data-mapping-goal-title]').textContent = goal.title || '(제목 없음)';
-  mappingModalEl.querySelector('[data-mapping-search]').value = '';
-  renderMappingList();
-  mappingModalCtl.open();
-}
-
-function ensureMappingModal() {
-  if (mappingModalEl) return;
-  mappingModalEl = document.createElement('div');
-  mappingModalEl.className = 'modal-backdrop';
-  mappingModalEl.hidden = true;
-  mappingModalEl.innerHTML = `
-    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="mapping-modal-title" style="width:640px">
-      <div class="modal-head">
-        <div>
-          <div class="modal-kicker">CARD MAPPING</div>
-          <h3 class="modal-title" id="mapping-modal-title">
-            카드 매핑 · <span class="accent" data-mapping-goal-title></span>
-          </h3>
-        </div>
-        <button type="button" class="modal-close" data-modal-close aria-label="닫기">CLOSE</button>
-      </div>
-      <div class="modal-body">
-        <div class="field">
-          <input class="input" type="search" placeholder="카드 검색 (제목 / Jira 키)" data-mapping-search />
-        </div>
-        <small class="muted">한 카드는 하나의 목표에만 속할 수 있습니다. 체크 시 다른 목표 매핑은 자동으로 옮겨집니다.</small>
-        <div class="mapping-list" data-mapping-list></div>
-      </div>
-      <div class="modal-foot">
-        <button type="button" class="btn ghost" data-modal-close>취소</button>
-        <button type="button" class="btn primary" data-mapping-save>저장</button>
-      </div>
-    </div>
-  `;
-  document.body.appendChild(mappingModalEl);
-  mappingModalCtl = attachModal(mappingModalEl, {
-    initialFocus: () => mappingModalEl.querySelector('[data-mapping-search]'),
-  });
-  mappingModalEl.querySelector('[data-mapping-search]').addEventListener('input', e => {
-    mappingState.query = e.target.value.trim().toLowerCase();
-    renderMappingList();
-  });
-  mappingModalEl.querySelector('[data-mapping-save]').addEventListener('click', saveMapping);
-}
-
-function renderMappingList() {
-  const list = mappingModalEl.querySelector('[data-mapping-list]');
-  const q = mappingState.query;
-  const cards = [...state.jiraCards, ...state.keywordCards]
-    .filter(c => {
-      if (!q) return true;
-      const hay = `${c.ticketKey || ''} ${c.title || ''}`.toLowerCase();
-      return hay.includes(q);
-    })
-    .slice(0, 200);
-  if (!cards.length) {
-    list.innerHTML = '<div class="muted" style="padding:20px;text-align:center">매칭되는 카드가 없습니다.</div>';
+function requestObjectiveDelete(obj) {
+  if (!obj) return;
+  const check = validateObjectiveDelete(obj.id, state.subjects);
+  if (!check.ok) {
+    toast({ kicker: '삭제 차단', msg: check.reason, kind: 'alert' });
     return;
   }
-  list.innerHTML = cards.map(c => {
-    const mappedGoalId = state.cardGoals[c.id];
-    const mappedGoal = mappedGoalId ? state.goals.find(g => g.id === mappedGoalId) : null;
-    const isCurrentGoal = mappedGoalId === mappingState.goalId;
-    const checked = mappingState.selected.has(c.id);
-    const typeTag = c.type === 'jira' ? 'Jira' : '키워드';
-    // 매핑된 목표 표시 — 현재 목표면 ✓ 마커, 다른 목표면 색다른 톤 (move 안내)
-    let goalBadge = '';
-    if (mappedGoal) {
-      if (isCurrentGoal) {
-        goalBadge = `<span class="tag goal-tag" title="이 목표에 이미 매핑됨">✓ ${escapeHtml(mappedGoal.title)}</span>`;
-      } else {
-        goalBadge = `<span class="tag goal-tag-other" title="다른 목표 — 체크 시 이 목표로 이동">↪ ${escapeHtml(mappedGoal.title)}</span>`;
+  openConfirm({
+    title: 'Objective 삭제',
+    body: `<p>"${escapeHtml(obj.name || obj.id)}" 을(를) 삭제합니다.</p><p class="muted" style="font-size:12px;">하위 주제·카드는 영향받지 않지만 (선행 차단됨) 이 Objective 행이 사라집니다.</p>`,
+    onOk: async () => {
+      try {
+        await deleteObjective(obj);
+        state.objectives = state.objectives.filter(o => o.id !== obj.id);
+        state.modals.obj.close();
+        state.modals.confirm.close();
+        renderObjectiveBoard();
+        renderSubjectBoard();
+        renderCardBoard();
+        renderFilters();
+      } catch (e) {
+        handleApiError(e, '삭제 실패');
       }
-    }
-    return `
-      <label class="mapping-row${checked ? ' on' : ''}${mappedGoal && !isCurrentGoal ? ' other-goal' : ''}">
-        <input type="checkbox" data-card-id="${escapeAttr(c.id)}" ${checked ? 'checked' : ''} />
-        <span class="mapping-row-main">
-          <span class="mapping-row-title">${escapeHtml(c.title || '(제목 없음)')}</span>
-          <span class="mapping-row-meta">
-            <span class="tag">${typeTag}</span>
-            ${c.ticketKey ? `<span class="num">${escapeHtml(c.ticketKey)}</span>` : ''}
-            ${c.mainSubject ? `<span class="muted">· ${escapeHtml(c.mainSubject)}</span>` : ''}
-            ${goalBadge}
-          </span>
-        </span>
-      </label>
-    `;
-  }).join('');
-  list.querySelectorAll('input[type="checkbox"]').forEach(cb => {
-    cb.addEventListener('change', () => {
-      const id = cb.dataset.cardId;
-      if (cb.checked) mappingState.selected.add(id); else mappingState.selected.delete(id);
-      cb.closest('.mapping-row').classList.toggle('on', cb.checked);
-    });
+    },
   });
 }
 
-function saveMapping() {
-  const gid = mappingState.goalId;
-  // 이 목표에 속해 있던 기존 매핑 모두 제거
-  for (const cid of Object.keys(state.cardGoals)) {
-    if (state.cardGoals[cid] === gid) delete state.cardGoals[cid];
+/* ─── Subject modal ─────────────────────────────────────── */
+
+function openSubjectModal(subj) {
+  const form = $('subj-form');
+  $('subj-modal-title').textContent = subj ? `주제: ${subj.name}` : '새 주제';
+  form.reset();
+  form.id.value = subj ? subj.id : '';
+
+  // objective select
+  form.objective_id.innerHTML = '<option value="">(선택)</option>' +
+    state.objectives.map(o => `<option value="${escapeAttr(o.id)}">${escapeHtml(o.name || o.id)}</option>`).join('');
+  // month options
+  fillMonthSelect(form.startMonth);
+  fillMonthSelect(form.endMonth);
+
+  if (subj) {
+    form.objective_id.value = subj.objective_id || '';
+    form.name.value = subj.name || '';
+    form.description.value = subj.description || '';
+    form.startMonth.value = subj.startMonth || '';
+    form.endMonth.value = subj.endMonth || '';
+    form.display_order.value = subj.display_order ?? 0;
+  } else {
+    form.display_order.value = state.subjects.length;
   }
-  // 선택된 카드들을 이 목표로 매핑 (다른 목표 매핑은 덮어씀 — 1:N 정책)
-  for (const cid of mappingState.selected) {
-    state.cardGoals[cid] = gid;
+  const delBtn = form.querySelector('[data-subj-delete]');
+  if (delBtn) {
+    delBtn.hidden = !subj;
+    delBtn.onclick = () => requestSubjectDelete(subj);
   }
-  persistCardGoals();
-  toast({ kicker: '매핑 저장', msg: `${mappingState.selected.size}건` , kind: 'success' });
-  mappingModalCtl.close();
-  renderGoalBoard();
-  renderBoard();
+  state.modals.subj.open();
 }
 
-/* ----- helpers --------------------------------------------- */
+function fillMonthSelect(sel) {
+  const y = state.year;
+  const opts = ['<option value="">—</option>'];
+  for (let yr = y - 1; yr <= y + 1; yr++) {
+    for (let m = 1; m <= 12; m++) {
+      const v = `${yr}-${String(m).padStart(2, '0')}`;
+      opts.push(`<option value="${v}">${v}</option>`);
+    }
+  }
+  sel.innerHTML = opts.join('');
+}
+
+async function onSubjectSubmit(e) {
+  e.preventDefault();
+  const form = e.currentTarget;
+  const fd = new FormData(form);
+  const patch = {
+    objective_id: fd.get('objective_id') || '',
+    name: (fd.get('name') || '').toString().trim(),
+    description: (fd.get('description') || '').toString().trim(),
+    startMonth: fd.get('startMonth') || '',
+    endMonth: fd.get('endMonth') || '',
+    display_order: parseInt(fd.get('display_order'), 10) || 0,
+  };
+  if (!patch.name) { toast({ kicker: '입력', msg: '이름은 필수입니다.', kind: 'alert' }); return; }
+  if (!patch.objective_id) { toast({ kicker: '입력', msg: 'Objective 를 선택하세요.', kind: 'alert' }); return; }
+  if (patch.startMonth && !isValidMonth(patch.startMonth)) { toast({ kicker: '입력', msg: '시작월 형식 오류 (YYYY-MM).', kind: 'alert' }); return; }
+  if (patch.endMonth && !isValidMonth(patch.endMonth)) { toast({ kicker: '입력', msg: '종료월 형식 오류.', kind: 'alert' }); return; }
+  if (patch.startMonth && patch.endMonth && !isValidPeriod(patch.startMonth, patch.endMonth)) {
+    toast({ kicker: '입력', msg: '시작월이 종료월보다 늦습니다.', kind: 'alert' });
+    return;
+  }
+
+  const id = fd.get('id');
+  try {
+    if (id) {
+      const subj = state.subjects.find(s => s.id === id);
+      if (!subj) return;
+      const updated = await updateSubject(subj, patch);
+      Object.assign(subj, updated);
+    } else {
+      const created = await createSubject(patch);
+      state.subjects.push(created);
+    }
+    state.subjects.sort((a, b) => (a.display_order || 0) - (b.display_order || 0));
+    state.modals.subj.close();
+    renderSubjectBoard();
+    renderCardBoard();
+    renderFilters();
+  } catch (err) {
+    handleApiError(err, '주제 저장 실패');
+  }
+}
+
+function requestSubjectDelete(subj) {
+  if (!subj) return;
+  const check = validateSubjectDelete(subj.id, state.cards, state.overrides);
+  if (!check.ok) {
+    toast({ kicker: '삭제 차단', msg: check.reason, kind: 'alert' });
+    return;
+  }
+  openConfirm({
+    title: '주제 삭제',
+    body: `<p>"${escapeHtml(subj.name || subj.id)}" 을(를) 삭제합니다.</p>`,
+    onOk: async () => {
+      try {
+        await deleteSubject(subj);
+        state.subjects = state.subjects.filter(s => s.id !== subj.id);
+        state.modals.subj.close();
+        state.modals.confirm.close();
+        renderSubjectBoard();
+        renderCardBoard();
+        renderFilters();
+      } catch (e) {
+        handleApiError(e, '삭제 실패');
+      }
+    },
+  });
+}
+
+/* ─── Card modal ────────────────────────────────────────── */
+
+function openCardModal(card) {
+  const form = $('card-form');
+  $('card-modal-title').textContent = card ? `카드: ${card.title}` : '새 카드';
+  form.reset();
+  form.id.value = card ? card.id : '';
+  form.year.value = String(state.year);
+
+  // subject select
+  form.subject_id.innerHTML = '<option value="">— (미배치)</option>' +
+    state.subjects.map(s => `<option value="${escapeAttr(s.id)}">${escapeHtml(s.name || s.id)}</option>`).join('');
+
+  if (card) {
+    form.subject_id.value = card.subject_id || '';
+    form.title.value = card.title || '';
+    form.quarter.value = card.quarter || '';
+    form.mainSubject.value = card.mainSubject || '';
+    form.priority.value = card.priority || '';
+    form.projectKey.value = card.projectKey || '';
+    form.notes.value = card.notes || '';
+  }
+  const delBtn = form.querySelector('[data-card-delete]');
+  if (delBtn) {
+    delBtn.hidden = !card;
+    delBtn.onclick = () => requestCardDelete(card);
+  }
+  state.modals.card.open();
+}
+
+async function onCardSubmit(e) {
+  e.preventDefault();
+  const form = e.currentTarget;
+  const fd = new FormData(form);
+  const projectKey = (fd.get('projectKey') || '').toString().trim();
+  if (projectKey && !PROJECT_KEY_RE.test(projectKey)) {
+    toast({ kicker: '입력', msg: '프로젝트 키 형식 오류 (예: CBP, TM, MSSCXTF).', kind: 'alert' });
+    return;
+  }
+  const patch = {
+    subject_id: fd.get('subject_id') || '',
+    title: (fd.get('title') || '').toString().trim(),
+    quarter: fd.get('quarter') || '',
+    mainSubject: (fd.get('mainSubject') || '').toString().trim(),
+    priority: fd.get('priority') || '',
+    projectKey,
+    notes: (fd.get('notes') || '').toString().trim(),
+    year: state.year,
+  };
+  if (!patch.title) { toast({ kicker: '입력', msg: '제목은 필수입니다.', kind: 'alert' }); return; }
+
+  const id = fd.get('id');
+  try {
+    if (id) {
+      const card = state.cards.find(c => c.id === id);
+      if (!card) return;
+      const updated = await updateCard(card, patch);
+      Object.assign(card, updated);
+    } else {
+      const created = await createCard(patch);
+      state.cards.push(created);
+    }
+    state.modals.card.close();
+    renderCardBoard();
+    renderFilters();
+    renderSubjectBoard();
+  } catch (err) {
+    handleApiError(err, '카드 저장 실패');
+  }
+}
+
+function requestCardDelete(card) {
+  if (!card) return;
+  openConfirm({
+    title: '카드 삭제',
+    body: `<p>"${escapeHtml(card.title || card.id)}" 을(를) 삭제합니다.</p>`,
+    onOk: async () => {
+      try {
+        await deleteCard(card);
+        state.cards = state.cards.filter(c => c.id !== card.id);
+        state.modals.card.close();
+        state.modals.confirm.close();
+        renderCardBoard();
+        renderSubjectBoard();
+      } catch (e) {
+        handleApiError(e, '삭제 실패');
+      }
+    },
+  });
+}
+
+/* ─── 삭제 확인 공통 ───────────────────────────────────── */
+
+function openConfirm({ title, body, onOk }) {
+  $('confirm-title').textContent = title;
+  $('confirm-body').innerHTML = body;
+  const ok = $('confirm-ok');
+  ok.onclick = onOk;
+  state.modals.confirm.open();
+}
+
+/* ─── 에러 처리 ────────────────────────────────────────── */
+
+function handleApiError(e, label) {
+  console.error(`[roadmap-plan] ${label}`, e);
+  if (e instanceof AuthRequiredError) {
+    state.signedIn = false;
+    renderAuthUi();
+    showBoards(false);
+    toast({ kicker: '재로그인 필요', msg: '세션이 만료되었습니다. 다시 로그인해 주세요.', kind: 'alert' });
+    return;
+  }
+  if (e instanceof SchemaMismatchError) {
+    showSchemaIssue(e);
+    return;
+  }
+  toast({ kicker: label, msg: e.message || String(e), kind: 'alert' });
+}
+
+/* ─── utils ───────────────────────────────────────────── */
 
 function currentYear(now = new Date()) {
   return now.getFullYear();
 }
 
-/* ----- §6-D Sheet 이관 패널 (1회용, 기존 흐름과 독립) -------------- */
-
-const MIGRATE_DISMISS_KEY = 'roadmapPlan.migrateDismissed';
-
-function initMigrationBanner() {
-  const sec = document.getElementById('sec-migrate');
-  if (!sec) return;
-  // 세션 dismiss 가 아니지만, 패널 자체는 LS 데이터 있을 때만 노출
-  const lsData = collectLocalStorageData();
-  const total = lsData.cards.length + lsData.goals.length + lsData.overrides.length;
-  if (total === 0) {
-    sec.hidden = true;
-    return;
-  }
-  const dismissed = scoped(MIGRATE_DISMISS_KEY).get(false);
-  if (dismissed) {
-    sec.hidden = true;
-    return;
-  }
-  sec.hidden = false;
-  const summary = document.getElementById('migrate-summary');
-  if (summary) {
-    summary.textContent = ` — 카드 ${lsData.cards.length} · 목표 ${lsData.goals.length} · override ${lsData.overrides.length}건`;
-  }
-  document.getElementById('btn-migrate-dismiss')?.addEventListener('click', () => {
-    scoped(MIGRATE_DISMISS_KEY).set(true);
-    sec.hidden = true;
-  });
-  bindMigrateModal(lsData);
-}
-
-function bindMigrateModal(lsData) {
-  const pop = document.getElementById('migrate-pop');
-  if (!pop) return;
-  const ctl = attachModal(pop);
-  const body = document.getElementById('migrate-body');
-  const runBtn = document.getElementById('btn-migrate-run');
-  const backupBtn = document.getElementById('btn-migrate-backup');
-  let backupDone = false;
-  let backupTabName = '';
-
-  function refreshButtons() {
-    if (backupBtn) backupBtn.disabled = false;
-    // 백업 안 한 상태로도 이관은 가능하나 confirm 추가 (사용자 책임)
-    if (runBtn) runBtn.disabled = false;
-  }
-
-  document.getElementById('btn-migrate-open')?.addEventListener('click', async () => {
-    body.innerHTML = '로그인 확인 중…';
-    runBtn.disabled = true;
-    if (backupBtn) backupBtn.disabled = true;
-    ctl.open();
-    try {
-      await auth.signIn({ silent: true });
-    } catch (e) {
-      if (e instanceof AuthRequiredError) {
-        // popup 으로 명시 로그인
-        try { await auth.signIn(); } catch (e2) {
-          body.innerHTML = `<p class="muted">로그인 실패 — Sheet 이관을 위해 musinsa.com 계정 로그인이 필요합니다.</p><p class="muted">${escapeHtml(e2.message || '')}</p>`;
-          return;
-        }
-      } else {
-        body.innerHTML = `<p class="muted">로그인 실패: ${escapeHtml(e.message || '')}</p>`;
-        return;
-      }
-    }
-    body.innerHTML = '현재 Sheet 상태 확인 중…';
-    let counts;
-    try {
-      counts = await readSheetCounts();
-    } catch (e) {
-      body.innerHTML = `<p class="muted">Sheet 읽기 실패: ${escapeHtml(e.message || '')}</p>`;
-      return;
-    }
-    const conflict = counts.objectives + counts.cards + counts.overrides > 0;
-    const mappingCount = Object.keys(lsData.cardGoals).length;
-    const noMappings = lsData.goals.length > 0 && mappingCount === 0;
-    body.innerHTML = `
-      <div style="font-size: 13px; line-height: 1.6;">
-        <p><strong>이관 대상 (localStorage):</strong></p>
-        <ul style="margin: 4px 0 12px; padding-left: 18px;">
-          <li>키워드 카드 — ${lsData.cards.length}건</li>
-          <li>목표(→ objectives) — ${lsData.goals.length}건 (cardGoals 매핑 <strong style="${noMappings ? 'color:#f87171' : ''}">${mappingCount}건</strong>)</li>
-          <li>Jira override — ${lsData.overrides.length}건</li>
-        </ul>
-        ${noMappings ? `
-          <p style="color:#f87171; background:#3b1818; padding:8px 10px; border-radius:6px; margin: 0 0 12px;">
-            <strong>⚠ 매핑 0건 감지</strong> — 목표는 ${lsData.goals.length}개 있는데 카드-목표 매핑이 비어있습니다.
-            이대로 이관하면 cards 의 objective_id 가 모두 빈 문자열이 됩니다.
-            <br>가능 원인: 카드 로딩 실패로 인한 LS wipe (이번 패치로 향후 차단), 다른 origin 의 데이터, 또는 처음부터 매핑 안 했음.
-            <br>이관 전에 확인 후 진행하세요.
-          </p>` : ''}
-        <p><strong>현재 Sheet:</strong></p>
-        <ul style="margin: 4px 0 12px; padding-left: 18px;">
-          <li>objectives — ${counts.objectives}건</li>
-          <li>roadmap-plan-cards — ${counts.cards}건</li>
-          <li>roadmap-plan-overrides — ${counts.overrides}건</li>
-        </ul>
-        ${conflict ? '<p style="color:#f87171;"><strong>⚠ Sheet 에 이미 데이터가 있습니다.</strong> 이관 시 append 됩니다 (중복 가능).</p>' : ''}
-        <p class="muted" style="font-size:12px;">
-          <strong>권장 순서:</strong> [🛡 Sheet 에 백업] 1회 클릭으로 LS + 현재 Sheet 전체를
-          새 <code>backup-{시각}</code> 탭에 한 번에 적재 → 그 다음 [이관 실행].
-          localStorage 는 자동 삭제되지 않으며, 검증 후 직접 정리하세요.
-        </p>
-        <div id="migrate-status"></div>
-      </div>
-    `;
-    refreshButtons();
-  });
-
-  backupBtn?.addEventListener('click', async () => {
-    backupBtn.disabled = true;
-    runBtn.disabled = true;
-    backupBtn.textContent = '백업 중…';
-    const status = document.getElementById('migrate-status');
-    try {
-      const result = await backupAllToSheet(lsData);
-      backupDone = true;
-      backupTabName = result.tabName;
-      backupBtn.textContent = `✓ 백업됨 (${result.tabName})`;
-      if (status) {
-        status.innerHTML = `
-          <p style="color:#4ade80; margin-top:8px;">
-            ✓ 백업 완료 — Spreadsheet 의 <code>${escapeHtml(result.tabName)}</code> 탭에 ${result.rowCount}행 적재.
-            (LS 5종 + 현재 Sheet 5종 = 10건 JSON row, 손실 없음)
-          </p>
-        `;
-      }
-      runBtn.disabled = false;
-    } catch (e) {
-      console.error('[backup]', e);
-      backupBtn.disabled = false;
-      backupBtn.textContent = '🛡 Sheet 에 백업 (재시도)';
-      runBtn.disabled = false;
-      if (status) {
-        status.innerHTML = `<p style="color:#f87171; margin-top:8px;">백업 실패: ${escapeHtml(e.message || String(e))}</p>`;
-      }
-    }
-  });
-
-  runBtn?.addEventListener('click', async () => {
-    if (!backupDone) {
-      const ok = window.confirm('백업 없이 이관을 진행할까요? [Sheet 에 백업] 버튼을 먼저 누르는 것을 권장합니다.');
-      if (!ok) return;
-    }
-    runBtn.disabled = true;
-    backupBtn && (backupBtn.disabled = true);
-    runBtn.textContent = '이관 중…';
-    try {
-      const result = await importToSheets(lsData);
-      body.innerHTML = `
-        <p style="color:#4ade80;"><strong>✓ 이관 완료</strong></p>
-        <ul style="margin: 8px 0; padding-left: 18px; font-size: 13px;">
-          <li>objectives — ${result.objectives}건 append</li>
-          <li>roadmap-plan-cards — ${result.cards}건 append</li>
-          <li>roadmap-plan-overrides — ${result.overrides}건 append</li>
-        </ul>
-        ${backupTabName ? `<p class="muted" style="font-size:12px;">백업 위치: <code>${escapeHtml(backupTabName)}</code> 탭 (문제 시 여기서 복구)</p>` : ''}
-        <p class="muted" style="font-size:12px;">
-          Sheet 에서 데이터 확인 후 이상 없으면 브라우저 DevTools 의 Application → localStorage 에서
-          <code>sd.roadmapPlan.cards.*</code>, <code>sd.roadmapPlan.goals.*</code> 등 키를 직접 삭제하세요.
-          이 패널을 다시 보지 않으려면 [나중에] 버튼을 누르세요.
-        </p>
-      `;
-      runBtn.textContent = '완료';
-    } catch (e) {
-      console.error('[migrate]', e);
-      body.innerHTML += `<p style="color:#f87171; margin-top:8px;">이관 실패: ${escapeHtml(e.message || String(e))}</p>`;
-      runBtn.disabled = false;
-      runBtn.textContent = '재시도';
-    }
-  });
-}
-
 /* test export */
 export const _internal = {
-  initiativeToCard,
-  normalizeKeywordCard,
-  priorityClass,
-  SUBJECT_CLASS_MAP,
-  SCHEMA_VERSION,
-  PROJECT_KEY_RE,
-  sortCards,
-  applyJiraOverrides,
-  _state: state,
+  applyFilters, groupCards, priorityClass, SUBJECT_CLASS_MAP, PROJECT_KEY_RE,
+  colorVarForObjective, colorVarForSubject, colorVarForCard,
 };
