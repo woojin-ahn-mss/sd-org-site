@@ -1,18 +1,68 @@
 {
-  "lastSync": "2026-05-27T09:17:54+09:00",
-  "count": 103,
+  "lastSync": "2026-05-27T18:48:36+09:00",
+  "count": 104,
   "items": [
     {
-      "key": "ETR-4531",
-      "url": "https://jira.team.musinsa.com/browse/ETR-4531",
-      "summary": "[검색] 상품/옵션 컬러 속성 매칭 개선 — 충전기 검색 결과 블랙 컬러 누락 사례",
+      "key": "ETR-4542",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4542",
+      "summary": "[design-driven][PLP] 퀵필터 아이콘 모션 적용 ",
       "issueType": "과제 발의",
       "project": "ETR",
       "status": "발의",
       "statusCategory": "new",
       "priority": "P0",
       "assignee": {
-        "name": "촤비스",
+        "name": "박준현",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "박준현",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-27T15:37:46.895+0900",
+      "updated": "2026-05-27T16:50:59.654+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null,
+      "linkedTickets": [
+        {
+          "key": "MSSCXTF-1115",
+          "summary": "[design-driven][PLP] 퀵필터 아이콘 모션 적용 ",
+          "status": "디자인완료",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-4531",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4531",
+      "summary": "[검색] 상품/옵션 컬러 속성 매칭 개선 — 충전기 검색 결과 블랙 컬러 누락 사례",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "PMO 검토 중",
+      "statusCategory": "indeterminate",
+      "priority": "P0",
+      "assignee": {
+        "name": "이승연",
         "email": null,
         "accountId": null
       },
@@ -32,11 +82,11 @@
       "yearQuarters": [],
       "subGroup": null,
       "startDate": null,
-      "dueDate": null,
+      "dueDate": "2026-06-01",
       "created": "2026-05-27T08:31:16.510+0900",
-      "updated": "2026-05-27T09:16:58.906+0900",
+      "updated": "2026-05-27T09:27:21.292+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": null,
+      "lastStatusChangedAt": "2026-05-27T09:27:13.083+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -49,11 +99,11 @@
       "summary": "[유즈드] 판매자 상품 관리 화면 상세 정보 노출 확대",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "발의",
-      "statusCategory": "new",
+      "status": "PMO 검토 중",
+      "statusCategory": "indeterminate",
       "priority": "P0",
       "assignee": {
-        "name": "촤비스",
+        "name": "이승연",
         "email": null,
         "accountId": null
       },
@@ -73,11 +123,11 @@
       "yearQuarters": [],
       "subGroup": null,
       "startDate": null,
-      "dueDate": null,
+      "dueDate": "2026-06-01",
       "created": "2026-05-27T08:29:52.356+0900",
-      "updated": "2026-05-27T08:32:54.461+0900",
+      "updated": "2026-05-27T09:25:56.477+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": null,
+      "lastStatusChangedAt": "2026-05-27T09:25:46.586+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -155,7 +205,7 @@
       "startDate": null,
       "dueDate": "2026-05-29",
       "created": "2026-05-26T08:46:31.680+0900",
-      "updated": "2026-05-27T09:00:45.535+0900",
+      "updated": "2026-05-27T10:32:15.915+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-05-26T11:34:26.226+0900",
       "linkedTickets": [],
@@ -261,8 +311,8 @@
       "summary": "전문관 PDP 내 전문관 로고 위치 앞으로 이동 및 풀 로고 디자인 적용 검토",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "Tech 검토 중",
-      "statusCategory": "indeterminate",
+      "status": "검토완료-우선착수",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
         "name": "이승연",
@@ -285,16 +335,16 @@
       "yearQuarters": [],
       "subGroup": null,
       "startDate": null,
-      "dueDate": "2026-06-05",
+      "dueDate": null,
       "created": "2026-05-22T10:50:44.165+0900",
-      "updated": "2026-05-26T16:45:00.462+0900",
+      "updated": "2026-05-27T09:28:33.415+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-05-22T13:50:15.650+0900",
+      "lastStatusChangedAt": "2026-05-27T09:27:54.236+0900",
       "linkedTickets": [
         {
           "key": "FT-27",
           "summary": "전문관 PDP 내 전문관 로고 위치 앞으로 이동 및 풀 로고 디자인 적용 검토",
-          "status": "Waiting For Review",
+          "status": "개발중",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
@@ -469,11 +519,11 @@
       "summary": "[PDP] 판매 지표 노출 - 신상품/유즈드",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "매니저 승인 대기",
-      "statusCategory": "indeterminate",
+      "status": "검토완료-백로그",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
-        "name": "안우진",
+        "name": "이승연",
         "email": null,
         "accountId": null
       },
@@ -491,11 +541,11 @@
       "yearQuarters": [],
       "subGroup": null,
       "startDate": null,
-      "dueDate": "2026-05-27",
+      "dueDate": null,
       "created": "2026-05-21T17:27:09.964+0900",
-      "updated": "2026-05-22T11:00:17.746+0900",
+      "updated": "2026-05-27T09:46:37.373+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-05-22T11:00:05.981+0900",
+      "lastStatusChangedAt": "2026-05-27T09:45:58.134+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -533,13 +583,23 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-21T17:10:33.776+0900",
-      "updated": "2026-05-21T23:48:46.346+0900",
+      "updated": "2026-05-27T15:41:10.898+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-05-21T22:57:01.657+0900",
-      "linkedTickets": [],
+      "linkedTickets": [
+        {
+          "key": "FT-34",
+          "summary": "[오프라인] 콘텐츠 하단 오프라인스토어 링크 추가",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        }
+      ],
       "progress": {
         "done": 0,
-        "total": 0
+        "total": 1
       }
     },
     {
@@ -588,11 +648,11 @@
       "summary": "[PLP] 옵션 보기 로그 추천 및 개인화 활용",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "PMO 검토 중",
-      "statusCategory": "indeterminate",
+      "status": "검토완료-백로그",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
-        "name": "이승연",
+        "name": "이광수",
         "email": null,
         "accountId": null
       },
@@ -610,11 +670,11 @@
       "yearQuarters": [],
       "subGroup": null,
       "startDate": null,
-      "dueDate": "2026-05-27",
+      "dueDate": null,
       "created": "2026-05-21T17:00:28.841+0900",
-      "updated": "2026-05-22T10:57:55.072+0900",
+      "updated": "2026-05-27T16:20:52.329+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-05-22T10:57:46.932+0900",
+      "lastStatusChangedAt": "2026-05-27T16:20:13.645+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -885,11 +945,11 @@
       "summary": "카테고리숍 검색 화면 밀도감 개선 및 하위 카테고리/다양한 정보 노출",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "매니저 승인 대기",
-      "statusCategory": "indeterminate",
+      "status": "검토완료-백로그",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
-        "name": "안우진",
+        "name": "이승연",
         "email": null,
         "accountId": null
       },
@@ -908,11 +968,11 @@
       "yearQuarters": [],
       "subGroup": null,
       "startDate": null,
-      "dueDate": "2026-05-26",
+      "dueDate": null,
       "created": "2026-05-21T10:30:13.056+0900",
-      "updated": "2026-05-22T02:26:28.945+0900",
+      "updated": "2026-05-27T09:30:30.232+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-05-21T11:36:48.701+0900",
+      "lastStatusChangedAt": "2026-05-27T09:29:48.227+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -1003,7 +1063,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-20T14:11:55.328+0900",
-      "updated": "2026-05-21T23:48:49.329+0900",
+      "updated": "2026-05-27T14:59:28.948+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-05-21T22:57:31.766+0900",
       "linkedTickets": [
@@ -1015,11 +1075,20 @@
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward"
+        },
+        {
+          "key": "FT-32",
+          "summary": "[design-driven] 브랜드 로고 비율별 사이즈 개선",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
         }
       ],
       "progress": {
         "done": 0,
-        "total": 1
+        "total": 2
       }
     },
     {
@@ -1145,7 +1214,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-19T16:42:42.947+0900",
-      "updated": "2026-05-21T23:48:42.043+0900",
+      "updated": "2026-05-27T15:36:18.854+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-05-21T23:08:44.508+0900",
       "linkedTickets": [
@@ -1443,8 +1512,8 @@
       "summary": "무신사 바지 카테고리 PLP 핏 필터를 바지 전용 핏으로 교체 및 다양화",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "Tech 검토 중",
-      "statusCategory": "indeterminate",
+      "status": "검토완료-우선착수",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
         "name": "안우진",
@@ -1467,11 +1536,11 @@
       "yearQuarters": [],
       "subGroup": null,
       "startDate": null,
-      "dueDate": "2026-06-03",
+      "dueDate": null,
       "created": "2026-05-18T17:12:39.125+0900",
-      "updated": "2026-05-21T23:48:58.253+0900",
+      "updated": "2026-05-27T09:30:39.832+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-05-20T09:11:29.595+0900",
+      "lastStatusChangedAt": "2026-05-27T09:29:58.587+0900",
       "linkedTickets": [
         {
           "key": "PPRD-13241",
@@ -1586,8 +1655,8 @@
         {
           "key": "FT-4",
           "summary": "콘텐츠·발매 상세 페이지 하단 관련 브랜드 상시 노출 (멀티브랜드 대응 포함)",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "개발중",
+          "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Clones",
           "direction": "inward"
@@ -2415,6 +2484,7 @@
         "accountId": null
       },
       "labels": [
+        "conveyor",
         "one"
       ],
       "mainSubject": null,
@@ -2425,7 +2495,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-13T18:23:39.606+0900",
-      "updated": "2026-05-22T00:02:24.886+0900",
+      "updated": "2026-05-27T15:39:53.243+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-05-13T18:24:09.900+0900",
       "linkedTickets": [
@@ -2437,11 +2507,20 @@
           "assignee": null,
           "linkType": "Clones",
           "direction": "inward"
+        },
+        {
+          "key": "FT-33",
+          "summary": "[스냅] 숏츠 영상 섬네일 생성기준 확인 및 카테고리숍/SRP 내 노출 방식 개선",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
         }
       ],
       "progress": {
         "done": 0,
-        "total": 1
+        "total": 2
       }
     },
     {
@@ -3141,11 +3220,11 @@
       "summary": "브랜드 상세 페이지 AI 브랜드 맵 기능 추가 — 로고 애니메이션 및 추천 브랜드 탐색 레이어",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "PMO 검토 중",
-      "statusCategory": "indeterminate",
+      "status": "검토완료-백로그",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
-        "name": "이승연",
+        "name": "이광수",
         "email": null,
         "accountId": null
       },
@@ -3166,11 +3245,11 @@
       "yearQuarters": [],
       "subGroup": null,
       "startDate": null,
-      "dueDate": "2026-05-11",
+      "dueDate": null,
       "created": "2026-05-05T12:48:45.727+0900",
-      "updated": "2026-05-14T15:22:18.184+0900",
+      "updated": "2026-05-27T16:14:18.347+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-05-06T14:07:56.194+0900",
+      "lastStatusChangedAt": "2026-05-27T16:12:08.960+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
