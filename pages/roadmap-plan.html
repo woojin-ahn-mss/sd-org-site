@@ -28,6 +28,43 @@
       <p class="page-lede" data-lede>데이터를 불러오는 중…</p>
     </header>
 
+    <!-- Sheet 이관 패널 — LS 데이터가 있고 sheet 이관 전인 사용자에게 1회용으로 표시 -->
+    <section id="sec-migrate" class="poc-card" hidden style="border-color: var(--accent); margin-bottom: 12px;">
+      <div class="poc-row" style="justify-content:space-between; flex-wrap:wrap; gap:8px;">
+        <div>
+          <strong>🗂 Sheet 이관 필요</strong>
+          <span class="muted" id="migrate-summary"></span>
+        </div>
+        <div class="poc-row" style="gap:6px;">
+          <button type="button" class="btn ghost" id="btn-migrate-dismiss" title="이번 세션 동안 숨김">나중에</button>
+          <button type="button" class="btn primary" id="btn-migrate-open">이관 확인 →</button>
+        </div>
+      </div>
+      <p class="muted" style="font-size:12px; margin:8px 0 0;">
+        roadmap-plan 의 localStorage 데이터(카드/목표/override)를 Google Sheet 로 1회 이관합니다.
+        이관 후에도 localStorage 는 자동 삭제되지 않습니다 — 검증 후 직접 정리하세요.
+      </p>
+    </section>
+
+    <!-- 이관 모달 -->
+    <div id="migrate-pop" class="modal-backdrop" hidden>
+      <div class="modal" role="dialog" aria-label="Sheet 이관">
+        <div class="modal-head">
+          <div>
+            <div class="modal-kicker">MIGRATE</div>
+            <h3 class="modal-title">localStorage → Sheet 이관</h3>
+          </div>
+          <button class="modal-close" data-modal-close>CLOSE</button>
+        </div>
+        <div class="modal-body" id="migrate-body">데이터 수집 중…</div>
+        <div class="modal-foot">
+          <button class="btn ghost" data-modal-close>취소</button>
+          <button class="btn ghost" id="btn-migrate-backup" disabled title="LS 전체 + 현재 Sheet 전체를 새 backup 탭에 한 번에 적재">🛡 Sheet 에 백업</button>
+          <button class="btn primary" id="btn-migrate-run" disabled>이관 실행</button>
+        </div>
+      </div>
+    </div>
+
     <!-- 상단 컨트롤: 연도 + 액션 -->
     <section>
       <div class="sec-head">

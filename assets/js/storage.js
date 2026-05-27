@@ -3,6 +3,11 @@
    - 네임스페이스 "sd.*" prefix
    - JSON 직렬화/역직렬화 자동
    - 저장 실패(quota/disabled) 시 silent fail (메모리 fallback)
+
+   ⚠ 데이터(다른 사람과 공유돼야 하는 콘텐츠) 저장 금지.
+   localStorage 는 본인 브라우저 한정의 UI state 만 (필터·컬럼·dismiss 등).
+   협업·SoT 데이터는 Google Sheet (`assets/js/api/sheets.js`) 를 사용.
+   참고: docs/sd-org-site/PRD.md §10, docs/plan/PRD.md §7.
    ========================================================= */
 
 const PREFIX = 'sd.';

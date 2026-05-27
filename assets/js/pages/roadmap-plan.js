@@ -16,6 +16,13 @@ import { scoped } from '../storage.js';
 import { toast } from '../toast.js';
 import { escapeHtml, escapeAttr } from '../escape.js';
 import { attachModal } from '../modal.js';
+import { auth, AuthRequiredError } from '../api/sheets.js';
+import {
+  collectLocalStorageData,
+  importToSheets,
+  readSheetCounts,
+  backupAllToSheet,
+} from '../api/roadmap-plan-migration.js';
 import {
   newGoalId, isValidMonth, isValidPeriod, normalizeGoal,
   fmtPeriod, sortGoals, invertCardGoals, cleanCardGoals, reassignOrder,
@@ -57,6 +64,8 @@ let state = {
 export async function renderRoadmapPlan({ rootRel = '' } = {}) {
   state.rootRel = rootRel;
   state.year = currentYear();
+  // Sheet 이관 패널 — LS 데이터 있는 경우만 노출 (기존 흐름과 독립)
+  initMigrationBanner();
   state.filters = Object.assign({ mainSubject: null, priority: null, project: null },
     scoped(FILTERS_KEY).get({}));
   const savedGroup = scoped(GROUP_KEY).get(null);
@@ -386,7 +395,7 @@ function chipGroup(filterKey, label, options, current) {
     const on = current === opt;
     return `<button type="button" class="fchip ${on ? 'on' : ''}" data-filter="${escapeAttr(filterKey)}" data-value="${escapeAttr(opt)}">${escapeHtml(opt)}</button>`;
   }).join('');
-  return `<span class="flabel">${escapeHtml(label)}</span>${chips}`;
+  return `<div class="filter-group"><span class="flabel">${escapeHtml(label)}</span>${chips}</div>`;
 }
 
 function isFilterActive() {
@@ -1488,6 +1497,171 @@ function saveMapping() {
 
 function currentYear(now = new Date()) {
   return now.getFullYear();
+}
+
+/* ----- §6-D Sheet 이관 패널 (1회용, 기존 흐름과 독립) -------------- */
+
+const MIGRATE_DISMISS_KEY = 'roadmapPlan.migrateDismissed';
+
+function initMigrationBanner() {
+  const sec = document.getElementById('sec-migrate');
+  if (!sec) return;
+  // 세션 dismiss 가 아니지만, 패널 자체는 LS 데이터 있을 때만 노출
+  const lsData = collectLocalStorageData();
+  const total = lsData.cards.length + lsData.goals.length + lsData.overrides.length;
+  if (total === 0) {
+    sec.hidden = true;
+    return;
+  }
+  const dismissed = scoped(MIGRATE_DISMISS_KEY).get(false);
+  if (dismissed) {
+    sec.hidden = true;
+    return;
+  }
+  sec.hidden = false;
+  const summary = document.getElementById('migrate-summary');
+  if (summary) {
+    summary.textContent = ` — 카드 ${lsData.cards.length} · 목표 ${lsData.goals.length} · override ${lsData.overrides.length}건`;
+  }
+  document.getElementById('btn-migrate-dismiss')?.addEventListener('click', () => {
+    scoped(MIGRATE_DISMISS_KEY).set(true);
+    sec.hidden = true;
+  });
+  bindMigrateModal(lsData);
+}
+
+function bindMigrateModal(lsData) {
+  const pop = document.getElementById('migrate-pop');
+  if (!pop) return;
+  const ctl = attachModal(pop);
+  const body = document.getElementById('migrate-body');
+  const runBtn = document.getElementById('btn-migrate-run');
+  const backupBtn = document.getElementById('btn-migrate-backup');
+  let backupDone = false;
+  let backupTabName = '';
+
+  function refreshButtons() {
+    if (backupBtn) backupBtn.disabled = false;
+    // 백업 안 한 상태로도 이관은 가능하나 confirm 추가 (사용자 책임)
+    if (runBtn) runBtn.disabled = false;
+  }
+
+  document.getElementById('btn-migrate-open')?.addEventListener('click', async () => {
+    body.innerHTML = '로그인 확인 중…';
+    runBtn.disabled = true;
+    if (backupBtn) backupBtn.disabled = true;
+    ctl.open();
+    try {
+      await auth.signIn({ silent: true });
+    } catch (e) {
+      if (e instanceof AuthRequiredError) {
+        // popup 으로 명시 로그인
+        try { await auth.signIn(); } catch (e2) {
+          body.innerHTML = `<p class="muted">로그인 실패 — Sheet 이관을 위해 musinsa.com 계정 로그인이 필요합니다.</p><p class="muted">${escapeHtml(e2.message || '')}</p>`;
+          return;
+        }
+      } else {
+        body.innerHTML = `<p class="muted">로그인 실패: ${escapeHtml(e.message || '')}</p>`;
+        return;
+      }
+    }
+    body.innerHTML = '현재 Sheet 상태 확인 중…';
+    let counts;
+    try {
+      counts = await readSheetCounts();
+    } catch (e) {
+      body.innerHTML = `<p class="muted">Sheet 읽기 실패: ${escapeHtml(e.message || '')}</p>`;
+      return;
+    }
+    const conflict = counts.objectives + counts.cards + counts.overrides > 0;
+    body.innerHTML = `
+      <div style="font-size: 13px; line-height: 1.6;">
+        <p><strong>이관 대상 (localStorage):</strong></p>
+        <ul style="margin: 4px 0 12px; padding-left: 18px;">
+          <li>키워드 카드 — ${lsData.cards.length}건</li>
+          <li>목표(→ objectives) — ${lsData.goals.length}건 (cardGoals 매핑 ${Object.keys(lsData.cardGoals).length})</li>
+          <li>Jira override — ${lsData.overrides.length}건</li>
+        </ul>
+        <p><strong>현재 Sheet:</strong></p>
+        <ul style="margin: 4px 0 12px; padding-left: 18px;">
+          <li>objectives — ${counts.objectives}건</li>
+          <li>roadmap-plan-cards — ${counts.cards}건</li>
+          <li>roadmap-plan-overrides — ${counts.overrides}건</li>
+        </ul>
+        ${conflict ? '<p style="color:#f87171;"><strong>⚠ Sheet 에 이미 데이터가 있습니다.</strong> 이관 시 append 됩니다 (중복 가능).</p>' : ''}
+        <p class="muted" style="font-size:12px;">
+          <strong>권장 순서:</strong> [🛡 Sheet 에 백업] 1회 클릭으로 LS + 현재 Sheet 전체를
+          새 <code>backup-{시각}</code> 탭에 한 번에 적재 → 그 다음 [이관 실행].
+          localStorage 는 자동 삭제되지 않으며, 검증 후 직접 정리하세요.
+        </p>
+        <div id="migrate-status"></div>
+      </div>
+    `;
+    refreshButtons();
+  });
+
+  backupBtn?.addEventListener('click', async () => {
+    backupBtn.disabled = true;
+    runBtn.disabled = true;
+    backupBtn.textContent = '백업 중…';
+    const status = document.getElementById('migrate-status');
+    try {
+      const result = await backupAllToSheet(lsData);
+      backupDone = true;
+      backupTabName = result.tabName;
+      backupBtn.textContent = `✓ 백업됨 (${result.tabName})`;
+      if (status) {
+        status.innerHTML = `
+          <p style="color:#4ade80; margin-top:8px;">
+            ✓ 백업 완료 — Spreadsheet 의 <code>${escapeHtml(result.tabName)}</code> 탭에 ${result.rowCount}행 적재.
+            (LS 5종 + 현재 Sheet 5종 = 10건 JSON row, 손실 없음)
+          </p>
+        `;
+      }
+      runBtn.disabled = false;
+    } catch (e) {
+      console.error('[backup]', e);
+      backupBtn.disabled = false;
+      backupBtn.textContent = '🛡 Sheet 에 백업 (재시도)';
+      runBtn.disabled = false;
+      if (status) {
+        status.innerHTML = `<p style="color:#f87171; margin-top:8px;">백업 실패: ${escapeHtml(e.message || String(e))}</p>`;
+      }
+    }
+  });
+
+  runBtn?.addEventListener('click', async () => {
+    if (!backupDone) {
+      const ok = window.confirm('백업 없이 이관을 진행할까요? [Sheet 에 백업] 버튼을 먼저 누르는 것을 권장합니다.');
+      if (!ok) return;
+    }
+    runBtn.disabled = true;
+    backupBtn && (backupBtn.disabled = true);
+    runBtn.textContent = '이관 중…';
+    try {
+      const result = await importToSheets(lsData);
+      body.innerHTML = `
+        <p style="color:#4ade80;"><strong>✓ 이관 완료</strong></p>
+        <ul style="margin: 8px 0; padding-left: 18px; font-size: 13px;">
+          <li>objectives — ${result.objectives}건 append</li>
+          <li>roadmap-plan-cards — ${result.cards}건 append</li>
+          <li>roadmap-plan-overrides — ${result.overrides}건 append</li>
+        </ul>
+        ${backupTabName ? `<p class="muted" style="font-size:12px;">백업 위치: <code>${escapeHtml(backupTabName)}</code> 탭 (문제 시 여기서 복구)</p>` : ''}
+        <p class="muted" style="font-size:12px;">
+          Sheet 에서 데이터 확인 후 이상 없으면 브라우저 DevTools 의 Application → localStorage 에서
+          <code>sd.roadmapPlan.cards.*</code>, <code>sd.roadmapPlan.goals.*</code> 등 키를 직접 삭제하세요.
+          이 패널을 다시 보지 않으려면 [나중에] 버튼을 누르세요.
+        </p>
+      `;
+      runBtn.textContent = '완료';
+    } catch (e) {
+      console.error('[migrate]', e);
+      body.innerHTML += `<p style="color:#f87171; margin-top:8px;">이관 실패: ${escapeHtml(e.message || String(e))}</p>`;
+      runBtn.disabled = false;
+      runBtn.textContent = '재시도';
+    }
+  });
 }
 
 /* test export */

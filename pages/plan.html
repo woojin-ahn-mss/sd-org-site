@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="ko" data-theme="dark" data-depth="1">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Plan — S&amp;D Console</title>
+
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" />
+
+  <link rel="stylesheet" href="../assets/css/tokens.css" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+
+  <script type="module">
+    import { initTheme } from '../assets/js/theme.js';
+    initTheme();
+  </script>
+
+  <style>
+    /* Plan 페이지 전용 — 편집 가능 셀 affordance */
+    .plan-tbl td[data-editable="1"] { position: relative; cursor: text; }
+    .plan-tbl td[data-editable="1"]:hover::after {
+      content: '✎';
+      position: absolute;
+      top: 4px; right: 6px;
+      font-size: 10px;
+      color: var(--muted);
+      opacity: 0.55;
+      pointer-events: none;
+    }
+    .plan-tbl td.cell-error { outline: 1px solid #f87171; outline-offset: -1px; }
+    .plan-tbl td input[type="text"]::placeholder,
+    .plan-tbl td input[type="date"]::placeholder { color: var(--muted); }
+    .plan-tbl .cell-ind { font-size: 11px; }
+    .plan-tbl .cell-ind.saved { animation: cellFade 1s ease-out forwards; }
+    @keyframes cellFade { 0%, 70% { opacity: 1; } 100% { opacity: 0; } }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <p class="page-kicker">PLAN — 인력 배치 · 일정</p>
+      <h1 class="page-title">📅 Plan.</h1>
+      <p class="page-lede">
+        다음 7일 마감 + 모든 미래 마감 티켓을 한 곳에서. 셀 클릭으로 PM/PD/BE/FE/ME/MD 와 시작·종료일을 인라인 편집.
+        Google Sheet 가 source of truth, S&amp;D 누구나 같은 값을 봅니다.
+      </p>
+    </header>
+
+    <!-- 인증 영역 -->
+    <section id="sec-auth" class="poc-card" aria-label="Google 로그인 상태">
+      <div class="poc-row">
+        <span class="poc-status" id="auth-status">인증 확인 중…</span>
+        <button id="btn-signin" type="button" hidden>Google 로그인</button>
+        <button id="btn-signout" type="button" hidden>로그아웃</button>
+        <span style="flex:1"></span>
+        <button id="btn-cols" type="button" data-cols title="표시 컬럼 토글">컬럼</button>
+        <button id="btn-refresh" type="button" disabled title="Plan 시트 데이터를 다시 불러옵니다">🔄 새로고침</button>
+      </div>
+      <p id="auth-help" class="muted" style="font-size:12px; margin:8px 0 0;">
+        musinsa.com Google 계정으로 로그인하시면 자동으로 read/write 가 활성화됩니다.
+      </p>
+    </section>
+
+    <!-- 상단 4 카드 (sub-cycle B 에서 채움) -->
+    <section class="impact-stats" id="sec-stats" aria-label="Plan 요약" hidden>
+      <div class="imp-stat">
+        <div class="imp-label">총 티켓</div>
+        <div class="imp-val num" data-stat="total">—</div>
+        <div class="imp-delta">필터 적용 전</div>
+      </div>
+      <div class="imp-stat">
+        <div class="imp-label">미배치</div>
+        <div class="imp-val num" data-stat="unassigned">—</div>
+        <div class="imp-delta">PM/PD/BE/FE/ME/MD 중 빈 칸</div>
+      </div>
+      <div class="imp-stat">
+        <div class="imp-label">시작일 미정</div>
+        <div class="imp-val num" data-stat="no-start">—</div>
+        <div class="imp-delta">plan_start 빈 티켓</div>
+      </div>
+      <div class="imp-stat">
+        <div class="imp-label">7일 이내 마감</div>
+        <div class="imp-val num" data-stat="due7d">—</div>
+        <div class="imp-delta">Jira 마감일 기준</div>
+      </div>
+    </section>
+
+    <!-- 필터 (sub-cycle B 에서 채움) -->
+    <section id="filter-section" hidden>
+      <div class="sec-head"><h2>필터</h2></div>
+      <div class="filters" id="sec-filters"></div>
+    </section>
+
+    <!-- 컬럼 토글 모달 -->
+    <div id="cols-pop" class="modal-backdrop" hidden>
+      <div class="modal" role="dialog" aria-label="컬럼 토글">
+        <div class="modal-head">
+          <div>
+            <div class="modal-kicker">COLUMNS</div>
+            <h3 class="modal-title">표시 컬럼</h3>
+          </div>
+          <button class="modal-close" data-modal-close>CLOSE</button>
+        </div>
+        <div class="modal-body" id="cols-body"></div>
+        <div class="modal-foot">
+          <button class="btn ghost" data-cols-default>기본값</button>
+          <button class="btn primary" data-modal-close>완료</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 메인 테이블 -->
+    <section>
+      <div class="sec-head">
+        <h2>대상 티켓</h2>
+        <small><span class="num" data-list-count>0</span>건 · duedate ≥ today − 7일</small>
+      </div>
+      <div id="sec-table"></div>
+    </section>
+
+    <div class="page-meta">
+      <span class="muted">S&amp;D Console</span>
+      <span class="muted">Plan</span>
+      <span class="right num" data-meta-last-sync>—</span>
+    </div>
+  </div>
+
+  <script type="module">
+    import { renderSidebar, loadAndApplyMeta } from '../assets/js/nav.js';
+    import { renderPlan } from '../assets/js/pages/plan.js';
+    import { bindJiraLinks } from '../assets/js/jira-link.js';
+
+    renderSidebar({ active: 'plan' });
+    loadAndApplyMeta('../');
+    renderPlan({ rootRel: '../' });
+    bindJiraLinks(document);
+  </script>
+</body>
+</html>
