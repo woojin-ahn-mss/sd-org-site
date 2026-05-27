@@ -123,15 +123,29 @@ async function loadAll() {
     }
   }
 
-  // cardGoals stale 정리 — 존재하지 않는 cardId/goalId 매핑 제거
-  const allCardIds = new Set([
-    ...state.jiraCards.map(c => c.id),
-    ...state.keywordCards.map(c => c.id),
-  ]);
-  const { cleaned, removed } = cleanCardGoals(state.cardGoals, state.goals, allCardIds);
-  if (removed.length) {
-    state.cardGoals = cleaned;
-    persistCardGoals();
+  // cardGoals stale 정리 — 존재하지 않는 cardId/goalId 매핑 제거.
+  // ⚠ 보호: 카드 로딩 실패(jiraCards 와 keywordCards 모두 비어있음) 시 wipe 안 함.
+  //   이전 버그: initiatives.json fetch 실패하면 validCardIds 가 0 이라 모든 매핑이 stale 처리되어 LS 에서 통째로 삭제됨.
+  const hasAnyCard = state.jiraCards.length > 0 || state.keywordCards.length > 0;
+  const totalMappings = Object.keys(state.cardGoals || {}).length;
+  if (!hasAnyCard && totalMappings > 0) {
+    console.warn('[roadmap-plan] 카드 로딩 실패 + cardGoals 매핑 ' + totalMappings + '건 존재 — wipe 보호 모드 (cardGoals 보존)');
+  } else if (hasAnyCard) {
+    const allCardIds = new Set([
+      ...state.jiraCards.map(c => c.id),
+      ...state.keywordCards.map(c => c.id),
+    ]);
+    const { cleaned, removed } = cleanCardGoals(state.cardGoals, state.goals, allCardIds);
+    if (removed.length) {
+      // 추가 안전: 매핑의 50% 이상이 한 번에 제거되면 의심 — wipe 안 하고 경고만.
+      const removalRate = totalMappings > 0 ? removed.length / totalMappings : 0;
+      if (removalRate >= 0.5 && totalMappings >= 3) {
+        console.warn('[roadmap-plan] cleanCardGoals: ' + removed.length + '/' + totalMappings + ' (' + Math.round(removalRate * 100) + '%) 매핑이 한 번에 stale — wipe 안 함. 데이터 로딩/origin 점검 권장.');
+      } else {
+        state.cardGoals = cleaned;
+        persistCardGoals();
+      }
+    }
   }
 }
 
@@ -1574,14 +1588,23 @@ function bindMigrateModal(lsData) {
       return;
     }
     const conflict = counts.objectives + counts.cards + counts.overrides > 0;
+    const mappingCount = Object.keys(lsData.cardGoals).length;
+    const noMappings = lsData.goals.length > 0 && mappingCount === 0;
     body.innerHTML = `
       <div style="font-size: 13px; line-height: 1.6;">
         <p><strong>이관 대상 (localStorage):</strong></p>
         <ul style="margin: 4px 0 12px; padding-left: 18px;">
           <li>키워드 카드 — ${lsData.cards.length}건</li>
-          <li>목표(→ objectives) — ${lsData.goals.length}건 (cardGoals 매핑 ${Object.keys(lsData.cardGoals).length})</li>
+          <li>목표(→ objectives) — ${lsData.goals.length}건 (cardGoals 매핑 <strong style="${noMappings ? 'color:#f87171' : ''}">${mappingCount}건</strong>)</li>
           <li>Jira override — ${lsData.overrides.length}건</li>
         </ul>
+        ${noMappings ? `
+          <p style="color:#f87171; background:#3b1818; padding:8px 10px; border-radius:6px; margin: 0 0 12px;">
+            <strong>⚠ 매핑 0건 감지</strong> — 목표는 ${lsData.goals.length}개 있는데 카드-목표 매핑이 비어있습니다.
+            이대로 이관하면 cards 의 objective_id 가 모두 빈 문자열이 됩니다.
+            <br>가능 원인: 카드 로딩 실패로 인한 LS wipe (이번 패치로 향후 차단), 다른 origin 의 데이터, 또는 처음부터 매핑 안 했음.
+            <br>이관 전에 확인 후 진행하세요.
+          </p>` : ''}
         <p><strong>현재 Sheet:</strong></p>
         <ul style="margin: 4px 0 12px; padding-left: 18px;">
           <li>objectives — ${counts.objectives}건</li>
