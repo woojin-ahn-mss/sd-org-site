@@ -87,11 +87,11 @@ async function loadAll() {
   state.goals = (state.goalsStore.get([]) || []).map(normalizeGoal);
   state.cardGoals = state.cardGoalsStore.get({}) || {};
 
-  // Jira initiatives → year 매칭만, 그리고 LS override 우선 적용
+  // Jira initiatives → 한 ticket = 한 카드. 멀티 yearQuarter 면 state.year 매칭되는 분기에 위치
   try {
     const data = await loadJson(`${state.rootRel}data/jira/initiatives.json`);
     state.jiraCards = (data.items || [])
-      .map(it => initiativeToCard(it))
+      .map(it => initiativeToCard(it, state.year))
       .filter(c => c && c.year === state.year);
   } catch (err) {
     console.warn('[roadmap-plan] initiatives load failed', err);
@@ -194,20 +194,37 @@ function persistCards() {
   return ok;
 }
 
-function initiativeToCard(it) {
+/** Initiative → 단일 카드. 멀티 yearQuarter 인 경우 preferredYear 에 매칭되는 분기에 위치,
+ *  매칭 없으면 첫 분기. 모든 분기는 spans 로 보존 (UI 에 'Q4 ↔ Q1' 같이 표시).
+ *  - 빈 yearQuarter: year=preferredYear(또는 currentYear), quarter=null (미배치 pool)
+ *  - preferredYear 지정 없으면 첫 분기 그대로
+ */
+function initiativeToCard(it, preferredYear) {
   if (!it || !it.key) return null;
-  // yearQuarter 가 있으면 그 year/quarter, 없으면 현재 연도 미배치 pool 로
-  let year = null, quarter = null;
-  if (it.yearQuarter) {
-    const m = /^(\d{4})-(Q[1-4])$/.exec(it.yearQuarter);
-    if (m) { year = Number(m[1]); quarter = m[2]; }
-  }
-  if (year == null) year = currentYear();
+  const yqs = (Array.isArray(it.yearQuarters) && it.yearQuarters.length
+    ? it.yearQuarters
+    : (it.yearQuarter ? [it.yearQuarter] : []))
+    .filter(Boolean)
+    .map(yq => {
+      const m = /^(\d{4})-(Q[1-4])$/.exec(yq);
+      return m ? { year: Number(m[1]), quarter: m[2], key: m[0] } : null;
+    })
+    .filter(Boolean)
+    .sort((a, b) => a.year !== b.year ? a.year - b.year : a.quarter.localeCompare(b.quarter));
+
+  let chosen = null;
+  if (preferredYear != null) chosen = yqs.find(y => y.year === preferredYear);
+  if (!chosen) chosen = yqs[0];
+
+  const year = chosen ? chosen.year : (preferredYear ?? currentYear());
+  const quarter = chosen ? chosen.quarter : null;
+
   return {
     id: 'jira-' + it.key,
     type: 'jira',
     year,
-    quarter,                // null = 미배치 (Jira 데이터에 yearQuarter 없음)
+    quarter,                    // null = 미배치
+    spans: yqs.map(y => y.key), // 모든 분기 — UI 멀티 표시용
     ticketKey: it.key,
     title: it.summary || '',
     mainSubject: it.mainSubject || '',
@@ -535,6 +552,11 @@ function cardEl(card) {
     if (card.overridden) {
       const jq = card.jiraQuarter || '미배치';
       meta.push(`<span class="tag" title="Jira 원본: ${escapeAttr(jq)} — 사용자 위치로 덮어씀">✦ 사용자 위치</span>`);
+    }
+    // 멀티 분기 표시 — TM-1858 처럼 ['2025-Q4','2026-Q1'] 인 경우
+    if (Array.isArray(card.spans) && card.spans.length > 1) {
+      const spanLabel = card.spans.join(' ↔ ');
+      meta.push(`<span class="tag" title="멀티 분기: ${escapeAttr(spanLabel)}">↔ ${escapeHtml(spanLabel)}</span>`);
     }
   } else if (card.ticketKey) {
     // 사용자가 직접 연결한 Jira 키 (키워드 카드 + 티켓)
