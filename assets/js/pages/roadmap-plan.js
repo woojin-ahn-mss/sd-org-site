@@ -1429,13 +1429,22 @@ function renderMappingList() {
     return;
   }
   list.innerHTML = cards.map(c => {
-    const otherGoalId = state.cardGoals[c.id];
-    const otherGoal = otherGoalId && otherGoalId !== mappingState.goalId
-      ? state.goals.find(g => g.id === otherGoalId) : null;
+    const mappedGoalId = state.cardGoals[c.id];
+    const mappedGoal = mappedGoalId ? state.goals.find(g => g.id === mappedGoalId) : null;
+    const isCurrentGoal = mappedGoalId === mappingState.goalId;
     const checked = mappingState.selected.has(c.id);
     const typeTag = c.type === 'jira' ? 'Jira' : '키워드';
+    // 매핑된 목표 표시 — 현재 목표면 ✓ 마커, 다른 목표면 색다른 톤 (move 안내)
+    let goalBadge = '';
+    if (mappedGoal) {
+      if (isCurrentGoal) {
+        goalBadge = `<span class="tag goal-tag" title="이 목표에 이미 매핑됨">✓ ${escapeHtml(mappedGoal.title)}</span>`;
+      } else {
+        goalBadge = `<span class="tag goal-tag-other" title="다른 목표 — 체크 시 이 목표로 이동">↪ ${escapeHtml(mappedGoal.title)}</span>`;
+      }
+    }
     return `
-      <label class="mapping-row${checked ? ' on' : ''}">
+      <label class="mapping-row${checked ? ' on' : ''}${mappedGoal && !isCurrentGoal ? ' other-goal' : ''}">
         <input type="checkbox" data-card-id="${escapeAttr(c.id)}" ${checked ? 'checked' : ''} />
         <span class="mapping-row-main">
           <span class="mapping-row-title">${escapeHtml(c.title || '(제목 없음)')}</span>
@@ -1443,7 +1452,7 @@ function renderMappingList() {
             <span class="tag">${typeTag}</span>
             ${c.ticketKey ? `<span class="num">${escapeHtml(c.ticketKey)}</span>` : ''}
             ${c.mainSubject ? `<span class="muted">· ${escapeHtml(c.mainSubject)}</span>` : ''}
-            ${otherGoal ? `<span class="muted">· 현재: ${escapeHtml(otherGoal.title)}</span>` : ''}
+            ${goalBadge}
           </span>
         </span>
       </label>

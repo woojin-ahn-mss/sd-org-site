@@ -913,7 +913,13 @@
 .mapping-row:last-child { border-bottom: 0; }
 .mapping-row:hover { background: var(--bg-elev); }
 .mapping-row.on { background: rgba(196, 156, 88, 0.06); }
+.mapping-row.other-goal { background: rgba(122, 167, 217, 0.06); }  /* info 톤 — 다른 목표 매핑됨 */
 .mapping-row input[type="checkbox"] { margin-top: 2px; }
+.mapping-row .goal-tag-other {
+  background: rgba(122, 167, 217, 0.14);
+  border: 1px solid rgba(122, 167, 217, 0.36);
+  color: var(--info);
+}
 .mapping-row-main { display: flex; flex-direction: column; gap: 3px; min-width: 0; flex: 1; }
 .mapping-row-title {
   font-size: 13px; color: var(--text);
