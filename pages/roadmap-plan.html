@@ -30,17 +30,19 @@
       </p>
     </header>
 
-    <!-- 인증 영역 (plan.html 패턴 재사용) -->
+    <!-- 인증 영역 -->
     <section id="sec-auth" class="poc-card" aria-label="Google 로그인 상태">
-      <div class="poc-row">
+      <div class="poc-row" style="gap:10px;align-items:center;">
         <span class="poc-status" id="auth-status">인증 확인 중…</span>
-        <button id="btn-signin" type="button" hidden>Google 로그인</button>
-        <button id="btn-signout" type="button" hidden>로그아웃</button>
         <span style="flex:1"></span>
-        <button id="btn-refresh" type="button" disabled title="Sheet 데이터를 다시 불러옵니다">🔄 새로고침</button>
+        <button id="btn-signin" type="button" class="btn primary" hidden>Google 로그인 →</button>
+        <button id="btn-signout" type="button" class="btn ghost" hidden>로그아웃</button>
+        <button id="btn-refresh" type="button" class="btn ghost" disabled title="Sheet 데이터를 다시 불러옵니다">🔄 새로고침</button>
       </div>
-      <p id="auth-help" class="muted" style="font-size:12px; margin:8px 0 0;">
-        musinsa.com Google 계정으로 로그인하시면 자동으로 read/write 가 활성화됩니다.
+      <p id="auth-help" class="muted" style="font-size:12px; margin:10px 0 0; line-height:1.55;">
+        <strong>musinsa.com Google 계정</strong>으로 로그인하면 Sheet 데이터가 자동으로 read/write 됩니다.<br>
+        버튼 클릭 시 <strong>Google 로그인 popup</strong> 이 뜹니다 — 브라우저가 popup 을 차단하면
+        주소창 우측의 차단 아이콘에서 <em>"이 사이트의 popup 허용"</em> 을 선택 후 다시 클릭하세요.
       </p>
     </section>
 
@@ -113,7 +115,7 @@
             <label class="muted dim-mono" style="display:block;margin-top:8px">설명</label>
             <textarea class="input" name="description" rows="2" style="width:100%"></textarea>
             <label class="muted dim-mono" style="display:block;margin-top:8px">색상</label>
-            <div id="obj-color-swatch" class="color-swatch"></div>
+            <div id="obj-color-swatch" class="color-swatches"></div>
             <input type="hidden" name="color" />
             <label class="muted dim-mono" style="display:block;margin-top:8px">표시 순서 (낮을수록 앞)</label>
             <input class="input" name="display_order" type="number" min="0" style="width:120px" />

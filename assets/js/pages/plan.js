@@ -291,8 +291,14 @@ export async function renderPlan({ rootRel = '' } = {}) {
   bindAuthUi();
   bindRefresh();
   bindColsModal();
+  // sessionStorage 캐시가 살아있으면 바로 통과 — 페이지 이동 시 popup 재발 차단.
+  if (auth.isSignedIn()) {
+    state.signedIn = true;
+    renderAuthUi();
+    await loadAndRender();
+    return;
+  }
   // 첫 진입은 silent 만 시도 — 실패 시 popup 자동 안 띄우고 "Google 로그인" 버튼 노출.
-  // (자동 popup 은 사용자에게 거슬리는 UX, PRD §4.2 의 "자동 silent" 만 적용)
   try {
     await auth.signIn({ silent: true });
     state.signedIn = true;

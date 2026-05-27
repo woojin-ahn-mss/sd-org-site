@@ -84,13 +84,22 @@ export async function renderRoadmapPlan({ rootRel = '' } = {}) {
   // 진입 즉시 "로그인 필요" UI 를 먼저 노출 — silent 응답 기다리는 동안 화면이 멈춰 보이지 않게.
   renderAuthUi();
 
-  // silent 시도. GIS 가 응답을 안 주는 경우(이미 동의 안 한 사용자 등)를 대비해 timeout.
-  //   → timeout 이면 AuthRequiredError 로 fallback, UI 는 이미 "로그인" 버튼 노출 상태.
+  // sessionStorage 캐시(같은 탭 내 plan / poc-sheets 등에서 로그인한 토큰)가 살아있으면 바로 통과.
+  if (auth.isSignedIn()) {
+    state.signedIn = true;
+    state.email = auth.email();
+    renderAuthUi();
+    await loadAndRender();
+    return;
+  }
+
+  // 캐시 없음 → silent 시도. GIS 가 응답 안 주는 경우 대비 timeout (5s — 캐시 활용으로 잦은 시도 줄어듦).
+  //   timeout 이면 AuthRequiredError 로 fallback, UI 는 이미 "로그인" 버튼 노출 상태.
   try {
     await Promise.race([
       auth.signIn({ silent: true }),
       new Promise((_, reject) =>
-        setTimeout(() => reject(new AuthRequiredError('silent timeout — popup 필요')), 2500),
+        setTimeout(() => reject(new AuthRequiredError('silent timeout — popup 필요')), 5000),
       ),
     ]);
     state.signedIn = true;
@@ -219,7 +228,7 @@ function renderAuthUi() {
   const help = $('auth-help');
   if (state.signedIn) {
     if (statusEl) {
-      statusEl.textContent = `로그인됨: ${state.email || '(이메일 미상)'}`;
+      statusEl.textContent = state.email ? `로그인됨 · ${state.email}` : '로그인됨';
       statusEl.classList.remove('err');
       statusEl.classList.add('ok');
     }
@@ -228,7 +237,7 @@ function renderAuthUi() {
     if (help) help.hidden = true;
   } else {
     if (statusEl) {
-      statusEl.textContent = '로그인이 필요합니다';
+      statusEl.textContent = 'Google 로그인이 필요합니다';
       statusEl.classList.remove('ok');
       statusEl.classList.remove('err');
     }
@@ -710,20 +719,19 @@ function bindModals() {
   $('subj-form')?.addEventListener('submit', onSubjectSubmit);
   $('card-form')?.addEventListener('submit', onCardSubmit);
 
-  // 색상 swatch
+  // 색상 swatch — 디자인 시스템 .color-swatches / .color-swatch / .on
   const sw = $('obj-color-swatch');
   if (sw) {
-    sw.style.cssText = 'display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;';
     sw.innerHTML = GOAL_COLORS.map(c => `
-      <button type="button" data-color="${escapeAttr(c.key)}" title="${escapeAttr(c.label)}"
-              style="width:24px;height:24px;border-radius:50%;border:1px solid var(--rule);background:var(${c.var});cursor:pointer;"></button>
+      <button type="button" class="color-swatch" data-color="${escapeAttr(c.key)}"
+              title="${escapeAttr(c.label)}" style="background:var(${c.var});"></button>
     `).join('');
     sw.addEventListener('click', (e) => {
       const btn = e.target.closest('button[data-color]');
       if (!btn) return;
       const form = $('obj-form');
       form.color.value = btn.dataset.color;
-      sw.querySelectorAll('button').forEach(b => b.style.outline = b === btn ? '2px solid var(--accent-strong)' : '');
+      sw.querySelectorAll('button').forEach(b => b.classList.toggle('on', b === btn));
     });
   }
 }
@@ -744,9 +752,9 @@ function openObjectiveModal(obj) {
     form.color.value = 'accent';
     form.display_order.value = state.objectives.length;
   }
-  // 선택된 색상 표시
+  // 선택된 색상 표시 (.on 토큰)
   $('obj-color-swatch').querySelectorAll('button').forEach(b => {
-    b.style.outline = b.dataset.color === form.color.value ? '2px solid var(--accent-strong)' : '';
+    b.classList.toggle('on', b.dataset.color === form.color.value);
   });
   // 삭제 버튼
   const delBtn = form.querySelector('[data-obj-delete]');

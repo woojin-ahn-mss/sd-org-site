@@ -82,6 +82,46 @@ const tokenState = {
 
 let inflightTokenPromise = null;  // 동시 호출 단일화
 
+/* ─── sessionStorage 캐시: 페이지 이동 시 로그인 유지 ─────────────────
+   - tab 단위 한정 (sessionStorage), localStorage 회피 — XSS 노출 면적 최소화
+   - Google access token 은 1시간 만료. 만료 후 자동 폐기.
+   - signOut() 호출 시 즉시 제거.
+   ─────────────────────────────────────────────────────────────────── */
+const TOKEN_CACHE_KEY = 'sd._gtoken';
+
+function saveTokenCache() {
+  if (!tokenState.accessToken) return;
+  try {
+    sessionStorage.setItem(TOKEN_CACHE_KEY, JSON.stringify({
+      accessToken: tokenState.accessToken,
+      expiresAt: tokenState.expiresAt,
+      email: tokenState.email,
+    }));
+  } catch (_) { /* private mode / quota */ }
+}
+
+function loadTokenCache() {
+  try {
+    const raw = sessionStorage.getItem(TOKEN_CACHE_KEY);
+    if (!raw) return;
+    const data = JSON.parse(raw);
+    if (data && data.accessToken && Date.now() < data.expiresAt) {
+      tokenState.accessToken = data.accessToken;
+      tokenState.expiresAt = data.expiresAt;
+      tokenState.email = data.email || null;
+    } else {
+      clearTokenCache();
+    }
+  } catch (_) { /* malformed */ }
+}
+
+function clearTokenCache() {
+  try { sessionStorage.removeItem(TOKEN_CACHE_KEY); } catch (_) {}
+}
+
+// 모듈 로드 시 1회 복원 시도 — page navigation 후 로그인 popup 재발 차단
+loadTokenCache();
+
 async function fetchUserEmail(accessToken) {
   try {
     const r = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
@@ -143,6 +183,7 @@ function requestToken({ prompt = '' } = {}) {
           const expiresInSec = Math.max(60, (resp.expires_in || 3600) - 60);
           tokenState.expiresAt = Date.now() + expiresInSec * 1000;
           tokenState.email = await fetchUserEmail(resp.access_token);
+          saveTokenCache();
           resolve({ accessToken: resp.access_token, email: tokenState.email });
         };
         try {
@@ -197,6 +238,7 @@ export const auth = {
     tokenState.accessToken = null;
     tokenState.expiresAt = 0;
     tokenState.email = null;
+    clearTokenCache();
     // in-flight 들 즉시 중단
     tokenState.abort.abort();
     tokenState.abort = new AbortController();
@@ -237,6 +279,7 @@ async function apiFetch(pathAndQuery, opts = {}, { retryAuth = true, retry429 = 
   if (r.status === 401 && retryAuth) {
     tokenState.accessToken = null;
     tokenState.expiresAt = 0;
+    clearTokenCache();
     try {
       await requestToken({ prompt: '' });
     } catch (e) {
