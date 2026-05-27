@@ -142,21 +142,20 @@
 .sb-theme button.on { color: var(--text); border-bottom: 1px solid var(--accent); padding-bottom: 3px; }
 .sb-theme button:hover { color: var(--text); }
 
-/* 수동 sync 링크 (GitHub Actions workflow_dispatch 페이지로 새 탭) */
+/* 수동 sync 버튼 — sb-theme 토글과 동일 스타일 (디자인 시스템) */
 .sb-sync-link {
   display: inline-flex; align-items: center; gap: 4px;
+  background: transparent; border: 0;
+  padding: 4px 0;
   color: var(--accent);
   font-family: var(--font-mono);
-  font-size: 11px;
-  text-decoration: none;
-  border-bottom: 1px dashed var(--accent-rule);
-  padding-bottom: 1px;
-  transition: color 80ms, border-color 80ms;
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: color 80ms;
 }
-.sb-sync-link:hover {
-  color: var(--text);
-  border-bottom-color: var(--accent);
-}
+.sb-sync-link:hover { color: var(--text); }
+.sb-sync-link:disabled { color: var(--faint); cursor: default; }
 .app[data-sidebar="collapsed"] .sb-sync-link { font-size: 0; }
 .app[data-sidebar="collapsed"] .sb-sync-link::before {
   content: '↻'; font-size: 12px; color: var(--accent);
