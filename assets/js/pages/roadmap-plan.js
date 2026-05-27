@@ -81,18 +81,25 @@ export async function renderRoadmapPlan({ rootRel = '' } = {}) {
   bindAddButtons();
   bindModals();
 
+  // 진입 즉시 "로그인 필요" UI 를 먼저 노출 — silent 응답 기다리는 동안 화면이 멈춰 보이지 않게.
+  renderAuthUi();
+
+  // silent 시도. GIS 가 응답을 안 주는 경우(이미 동의 안 한 사용자 등)를 대비해 timeout.
+  //   → timeout 이면 AuthRequiredError 로 fallback, UI 는 이미 "로그인" 버튼 노출 상태.
   try {
-    await auth.signIn({ silent: true });
+    await Promise.race([
+      auth.signIn({ silent: true }),
+      new Promise((_, reject) =>
+        setTimeout(() => reject(new AuthRequiredError('silent timeout — popup 필요')), 2500),
+      ),
+    ]);
     state.signedIn = true;
     state.email = auth.email();
   } catch (e) {
     state.signedIn = false;
-    if (e instanceof AuthRequiredError) {
-      renderAuthUi();
-      return;
-    }
-    console.error('[roadmap-plan] auth 예외', e);
     renderAuthUi();
+    if (e instanceof AuthRequiredError) return;
+    console.error('[roadmap-plan] auth 예외', e);
     toast({ kicker: '로그인 실패', msg: e.message || String(e), kind: 'alert' });
     return;
   }
