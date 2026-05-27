@@ -21,6 +21,7 @@ export const PAGES = [
   { id: 'roadmap-plan', num: '06', label: '로드맵 관리',    path: 'pages/roadmap-plan.html' },
   { id: 'fasttrack',    num: '07', label: '패스트트랙',     path: 'pages/fasttrack.html' },
   { id: 'etr',          num: '08', label: 'ETR',         path: 'pages/etr.html' },
+  { id: 'poc-sheets',   num: '09', label: '🧪 PoC Sheets', path: 'pages/poc-sheets.html' },
 ];
 
 /**
