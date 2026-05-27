@@ -1,5 +1,5 @@
 {
-  "lastSync": "2026-05-27T18:48:36+09:00",
+  "lastSync": "2026-05-28T07:27:51+09:00",
   "count": 104,
   "items": [
     {
@@ -40,7 +40,7 @@
         {
           "key": "MSSCXTF-1115",
           "summary": "[design-driven][PLP] 퀵필터 아이콘 모션 적용 ",
-          "status": "디자인완료",
+          "status": "개발중",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
@@ -80,11 +80,11 @@
       "mainSubjects": [],
       "yearQuarter": null,
       "yearQuarters": [],
-      "subGroup": null,
+      "subGroup": "29CM-P Customer Engagement",
       "startDate": null,
       "dueDate": "2026-06-01",
       "created": "2026-05-27T08:31:16.510+0900",
-      "updated": "2026-05-27T09:27:21.292+0900",
+      "updated": "2026-05-27T20:19:44.792+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-05-27T09:27:13.083+0900",
       "linkedTickets": [],
@@ -99,8 +99,8 @@
       "summary": "[유즈드] 판매자 상품 관리 화면 상세 정보 노출 확대",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "PMO 검토 중",
-      "statusCategory": "indeterminate",
+      "status": "발의",
+      "statusCategory": "new",
       "priority": "P0",
       "assignee": {
         "name": "이승연",
@@ -123,15 +123,25 @@
       "yearQuarters": [],
       "subGroup": null,
       "startDate": null,
-      "dueDate": "2026-06-01",
+      "dueDate": null,
       "created": "2026-05-27T08:29:52.356+0900",
-      "updated": "2026-05-27T09:25:56.477+0900",
+      "updated": "2026-05-28T00:16:36.376+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-05-27T09:25:46.586+0900",
-      "linkedTickets": [],
+      "lastStatusChangedAt": "2026-05-28T00:16:31.124+0900",
+      "linkedTickets": [
+        {
+          "key": "REC-4640",
+          "summary": "[유즈드] 판매관리 단계별 상품정보(브랜드/상품명) 노출 보강",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "outward"
+        }
+      ],
       "progress": {
         "done": 0,
-        "total": 0
+        "total": 1
       }
     },
     {
@@ -2502,8 +2512,8 @@
         {
           "key": "TM-3031",
           "summary": "[스냅] 숏츠 영상 섬네일 생성기준 확인 및 카테고리숍/SRP 내 노출 방식 개선",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "개발중",
+          "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Clones",
           "direction": "inward"
