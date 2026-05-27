@@ -16,12 +16,13 @@ export const PAGES = [
   { id: 'home',         num: '01', label: '홈',          path: '' },
   { id: 'roadmap',      num: '02', label: '로드맵',       path: 'pages/roadmap.html' },
   { id: 'progress',     num: '03', label: '진행 현황',     path: 'pages/progress.html' },
-  { id: 'resource',     num: '04', label: '리소스',        path: 'pages/resource.html' },
-  { id: 'performance',  num: '05', label: '성과',         path: 'pages/performance.html' },
-  { id: 'roadmap-plan', num: '06', label: '로드맵 관리',    path: 'pages/roadmap-plan.html' },
-  { id: 'fasttrack',    num: '07', label: '패스트트랙',     path: 'pages/fasttrack.html' },
-  { id: 'etr',          num: '08', label: 'ETR',         path: 'pages/etr.html' },
-  { id: 'poc-sheets',   num: '09', label: '🧪 PoC Sheets', path: 'pages/poc-sheets.html' },
+  { id: 'plan',         num: '04', label: '📅 Plan',      path: 'pages/plan.html' },
+  { id: 'resource',     num: '05', label: '리소스',        path: 'pages/resource.html' },
+  { id: 'performance',  num: '06', label: '성과',         path: 'pages/performance.html' },
+  { id: 'roadmap-plan', num: '07', label: '로드맵 관리',    path: 'pages/roadmap-plan.html' },
+  { id: 'fasttrack',    num: '08', label: '패스트트랙',     path: 'pages/fasttrack.html' },
+  { id: 'etr',          num: '09', label: 'ETR',         path: 'pages/etr.html' },
+  { id: 'poc-sheets',   num: '10', label: '🧪 PoC Sheets', path: 'pages/poc-sheets.html' },
 ];
 
 /**
@@ -206,7 +207,7 @@ function bindShortcuts() {
     if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
     if (e.metaKey || e.ctrlKey || e.altKey) return;
     const n = Number(e.key);
-    if (Number.isInteger(n) && n >= 1 && n <= 8) {
+    if (Number.isInteger(n) && n >= 1 && n <= 9) {
       const target = document.querySelector(`.sb-link[data-page="${PAGES[n - 1].id}"]`);
       if (target) { e.preventDefault(); target.click(); }
     }
