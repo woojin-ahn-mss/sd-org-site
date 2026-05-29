@@ -1,6 +1,6 @@
 {
-  "lastSync": "2026-05-29T19:12:43+09:00",
-  "count": 522,
+  "lastSync": "2026-05-29T19:30:31+09:00",
+  "count": 535,
   "items": [
     {
       "key": "TM-3151",
@@ -28,8 +28,10 @@
         "general-task",
         "one"
       ],
-      "mainSubject": null,
-      "mainSubjects": [],
+      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubjects": [
+        "03.랭킹/세일/커스텀판"
+      ],
       "subSubject": null,
       "subSubjects": [],
       "yearQuarter": null,
@@ -38,7 +40,7 @@
       "startDate": "2026-05-29",
       "dueDate": "2026-05-29",
       "created": "2026-05-29T17:16:45.959+0900",
-      "updated": "2026-05-29T17:16:55.616+0900",
+      "updated": "2026-05-29T19:29:45.211+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -13305,6 +13307,61 @@
       }
     },
     {
+      "key": "TM-2571",
+      "url": "https://jira.team.musinsa.com/browse/TM-2571",
+      "summary": "[OCMP] CIAP 무신사 온보딩",
+      "issueType": "Initiative",
+      "project": "TM",
+      "status": "준비중",
+      "statusCategory": "indeterminate",
+      "priority": "Big-Rock",
+      "assignee": {
+        "name": "김경훈",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "하헌영",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "one"
+      ],
+      "mainSubject": "80. Business Platform",
+      "mainSubjects": [
+        "80. Business Platform"
+      ],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2"
+      ],
+      "subGroup": "MSS-P Commerce Core",
+      "startDate": "2026-04-01",
+      "dueDate": "2026-10-21",
+      "created": "2026-03-25T21:47:10.141+0900",
+      "updated": "2026-05-29T19:24:42.026+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null,
+      "linkedTickets": [
+        {
+          "key": "TM-2570",
+          "summary": "[OCMP] CIAP 검증 파이프라인 구축 및 Data 마이그레이션 완료",
+          "status": "개발중",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "outward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
       "key": "MSSCXTF-1241",
       "url": "https://jira.team.musinsa.com/browse/MSSCXTF-1241",
       "summary": "[design-driven] 추천판 하이라이트 퀵메뉴 글자수 개선",
@@ -13880,6 +13937,47 @@
       }
     },
     {
+      "key": "MSSCXTF-1226",
+      "url": "https://jira.team.musinsa.com/browse/MSSCXTF-1226",
+      "summary": "각 카드사에서 무신사페이 간단 등록 기능제공",
+      "issueType": "Initiative",
+      "project": "MSSCXTF",
+      "status": "SUGGESTED",
+      "statusCategory": "new",
+      "priority": "P2",
+      "assignee": {
+        "name": "한신혜",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "한신혜",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-03-20T15:16:14.294+0900",
+      "updated": "2026-05-29T19:27:17.954+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null,
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
       "key": "MSSCXTF-1224",
       "url": "https://jira.team.musinsa.com/browse/MSSCXTF-1224",
       "summary": "[브랜드] 브랜드 인덱스, 추천판 등 브랜드 정보 뱃지 노출",
@@ -14349,6 +14447,49 @@
       "updated": "2026-05-22T00:19:18.659+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-04-07T16:28:46.086+0900",
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "MSSCXTF-1214",
+      "url": "https://jira.team.musinsa.com/browse/MSSCXTF-1214",
+      "summary": "구매내역 공개 서비스",
+      "issueType": "Initiative",
+      "project": "MSSCXTF",
+      "status": "SUGGESTED",
+      "statusCategory": "new",
+      "priority": "P2",
+      "assignee": {
+        "name": "한신혜",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "한신혜",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "one"
+      ],
+      "mainSubject": "31.마이",
+      "mainSubjects": [
+        "31.마이"
+      ],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": "MSS-P Commerce Core",
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-03-19T08:14:42.083+0900",
+      "updated": "2026-05-29T19:27:27.474+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null,
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -15017,6 +15158,49 @@
       "progress": {
         "done": 3,
         "total": 4
+      }
+    },
+    {
+      "key": "MSSCXTF-1198",
+      "url": "https://jira.team.musinsa.com/browse/MSSCXTF-1198",
+      "summary": "반품/교환 재접수 기능 추가",
+      "issueType": "Initiative",
+      "project": "MSSCXTF",
+      "status": "SUGGESTED",
+      "statusCategory": "new",
+      "priority": "P2",
+      "assignee": {
+        "name": "한신혜",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "한신혜",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "one"
+      ],
+      "mainSubject": "21.주문/배송/클레임",
+      "mainSubjects": [
+        "21.주문/배송/클레임"
+      ],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": "MSS-P Commerce Core",
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-03-13T20:35:51.566+0900",
+      "updated": "2026-05-29T19:27:36.706+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null,
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
       }
     },
     {
@@ -17011,6 +17195,47 @@
       "progress": {
         "done": 1,
         "total": 2
+      }
+    },
+    {
+      "key": "MSSCXTF-1181",
+      "url": "https://jira.team.musinsa.com/browse/MSSCXTF-1181",
+      "summary": "입점사 임직원 대상 혜택 제공",
+      "issueType": "Initiative",
+      "project": "MSSCXTF",
+      "status": "SUGGESTED",
+      "statusCategory": "new",
+      "priority": "P2",
+      "assignee": {
+        "name": "한신혜",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "한신혜",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": "MSS-P Commerce Core",
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-03-10T13:00:02.347+0900",
+      "updated": "2026-05-29T19:27:51.224+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null,
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
       }
     },
     {
@@ -21457,6 +21682,49 @@
       }
     },
     {
+      "key": "MSSCXTF-1072",
+      "url": "https://jira.team.musinsa.com/browse/MSSCXTF-1072",
+      "summary": "세일 표기 차별화",
+      "issueType": "Initiative",
+      "project": "MSSCXTF",
+      "status": "SUGGESTED",
+      "statusCategory": "new",
+      "priority": "P2",
+      "assignee": {
+        "name": "이루비",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "한신혜",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "one"
+      ],
+      "mainSubject": "20.쿠폰/세일/할인",
+      "mainSubjects": [
+        "20.쿠폰/세일/할인"
+      ],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": "MSS-P Commerce Core",
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-01-13T08:30:35.005+0900",
+      "updated": "2026-05-29T19:27:43.707+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null,
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
       "key": "MSSCXTF-1069",
       "url": "https://jira.team.musinsa.com/browse/MSSCXTF-1069",
       "summary": "[design-driven][알림] 개선 - 대화형 알림 UX",
@@ -21494,6 +21762,49 @@
       "dueDate": null,
       "created": "2026-01-09T14:48:51.099+0900",
       "updated": "2026-05-22T00:20:47.682+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null,
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "MSSCXTF-1067",
+      "url": "https://jira.team.musinsa.com/browse/MSSCXTF-1067",
+      "summary": "장바구니 내 탭 추가",
+      "issueType": "Initiative",
+      "project": "MSSCXTF",
+      "status": "SUGGESTED",
+      "statusCategory": "new",
+      "priority": "P2",
+      "assignee": {
+        "name": "한신혜",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "한신혜",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "one"
+      ],
+      "mainSubject": "21.주문/배송/클레임",
+      "mainSubjects": [
+        "21.주문/배송/클레임"
+      ],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": "MSS-P Commerce Core",
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-01-08T14:57:44.620+0900",
+      "updated": "2026-05-29T19:27:59.039+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [],
@@ -22010,6 +22321,53 @@
       "updated": "2026-05-22T00:20:54.900+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-02-12T12:33:35.221+0900",
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "TM-1946",
+      "url": "https://jira.team.musinsa.com/browse/TM-1946",
+      "summary": "Optimal Pricing 기획",
+      "issueType": "Initiative",
+      "project": "TM",
+      "status": "HOLD",
+      "statusCategory": "indeterminate",
+      "priority": "Big-Rock",
+      "assignee": {
+        "name": "이혜원",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "이루비",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "one",
+        "세일프라이싱"
+      ],
+      "mainSubject": "20.쿠폰/세일/할인",
+      "mainSubjects": [
+        "20.쿠폰/세일/할인"
+      ],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": "2026-Q1",
+      "yearQuarters": [
+        "2026-Q1",
+        "2026-Q2"
+      ],
+      "subGroup": "MSS-P Commerce Core",
+      "startDate": "2026-02-25",
+      "dueDate": "2026-03-31",
+      "created": "2025-12-23T11:42:16.368+0900",
+      "updated": "2026-05-29T19:24:26.118+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null,
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -23913,6 +24271,47 @@
       "updated": "2026-05-22T00:21:20.446+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-03-11T11:18:06.334+0900",
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "MSSCXTF-1009",
+      "url": "https://jira.team.musinsa.com/browse/MSSCXTF-1009",
+      "summary": "수량 입력 시 수기 입력 가능하도록 수정",
+      "issueType": "Initiative",
+      "project": "MSSCXTF",
+      "status": "SUGGESTED",
+      "statusCategory": "new",
+      "priority": "P2",
+      "assignee": {
+        "name": "서정명",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "한신혜",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": "MSS-P Commerce Core",
+      "startDate": null,
+      "dueDate": null,
+      "created": "2025-11-17T09:30:12.208+0900",
+      "updated": "2026-05-29T19:25:49.520+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null,
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -25839,6 +26238,70 @@
       }
     },
     {
+      "key": "MSSCXTF-789",
+      "url": "https://jira.team.musinsa.com/browse/MSSCXTF-789",
+      "summary": "주문 완료 3s 광고 구좌 개선",
+      "issueType": "Initiative",
+      "project": "MSSCXTF",
+      "status": "디자인완료",
+      "statusCategory": "indeterminate",
+      "priority": "P2",
+      "assignee": {
+        "name": "이지용",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "박영은",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "one"
+      ],
+      "mainSubject": "42.광고",
+      "mainSubjects": [
+        "42.광고"
+      ],
+      "subSubject": "주문완료",
+      "subSubjects": [
+        "주문완료"
+      ],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": "MSS-P Commerce Core",
+      "startDate": null,
+      "dueDate": null,
+      "created": "2025-09-15T17:12:09.220+0900",
+      "updated": "2026-05-29T19:28:24.061+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2025-11-18T09:01:46.642+0900",
+      "linkedTickets": [
+        {
+          "key": "PD-6617",
+          "summary": "주문 완료 3초 배너 인터랙션 개선",
+          "status": "완료",
+          "statusCategory": "done",
+          "assignee": null,
+          "linkType": "Blocks",
+          "direction": "outward"
+        },
+        {
+          "key": "TM-1273",
+          "summary": "[광고] 스플래시/주문완료 패키지 확대['25 Q1 기획완료]",
+          "status": "Backlog",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Blocks",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 1,
+        "total": 2
+      }
+    },
+    {
       "key": "MSSCXTF-782",
       "url": "https://jira.team.musinsa.com/browse/MSSCXTF-782",
       "summary": "[design-driven][공통] 바텀시트 버튼 유무 및 버튼명 정의",
@@ -27401,6 +27864,49 @@
       }
     },
     {
+      "key": "MSSCXTF-574",
+      "url": "https://jira.team.musinsa.com/browse/MSSCXTF-574",
+      "summary": "예약배송 기능의 현재 문제해결 및 고도화 (크라우드펀딩)",
+      "issueType": "Initiative",
+      "project": "MSSCXTF",
+      "status": "SUGGESTED",
+      "statusCategory": "new",
+      "priority": "P3",
+      "assignee": {
+        "name": "한신혜",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "이승연",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "one"
+      ],
+      "mainSubject": "21.주문/배송/클레임",
+      "mainSubjects": [
+        "21.주문/배송/클레임"
+      ],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": "MSS-P Commerce Core",
+      "startDate": null,
+      "dueDate": null,
+      "created": "2025-08-26T11:49:31.456+0900",
+      "updated": "2026-05-29T19:28:14.459+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null,
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
       "key": "MSSCXTF-525",
       "url": "https://jira.team.musinsa.com/browse/MSSCXTF-525",
       "summary": "[design-driven]상품상세 > 대표이미지 영역 > AI추천, 후기, 스냅 노출",
@@ -28216,6 +28722,94 @@
       "progress": {
         "done": 1,
         "total": 1
+      }
+    },
+    {
+      "key": "TM-132",
+      "url": "https://jira.team.musinsa.com/browse/TM-132",
+      "summary": "[HF 7] 무신사 부담 쿠폰에 대한 최대할인금액 정책 적용",
+      "issueType": "Initiative",
+      "project": "TM",
+      "status": "Backlog",
+      "statusCategory": "new",
+      "priority": "Backlog",
+      "assignee": {
+        "name": "이루비",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "강평구",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "one",
+        "세일프라이싱"
+      ],
+      "mainSubject": "20.쿠폰/세일/할인",
+      "mainSubjects": [
+        "20.쿠폰/세일/할인"
+      ],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": "MSS-P Commerce Core",
+      "startDate": null,
+      "dueDate": null,
+      "created": "2025-04-04T10:35:52.905+0900",
+      "updated": "2026-05-29T19:27:09.240+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2025-11-21T14:26:09.139+0900",
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "TM-129",
+      "url": "https://jira.team.musinsa.com/browse/TM-129",
+      "summary": "[HF 5] 브랜드/상품별 할인 컴포넌트 적용 정책 고도화",
+      "issueType": "Initiative",
+      "project": "TM",
+      "status": "Backlog",
+      "statusCategory": "new",
+      "priority": "Backlog",
+      "assignee": {
+        "name": "이루비",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "강평구",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "one",
+        "세일프라이싱"
+      ],
+      "mainSubject": "20.쿠폰/세일/할인",
+      "mainSubjects": [
+        "20.쿠폰/세일/할인"
+      ],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": "MSS-P Commerce Core",
+      "startDate": null,
+      "dueDate": null,
+      "created": "2025-04-04T10:35:35.454+0900",
+      "updated": "2026-05-29T19:27:00.052+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2025-11-21T14:26:09.966+0900",
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
       }
     }
   ]
