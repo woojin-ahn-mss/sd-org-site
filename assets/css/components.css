@@ -1216,6 +1216,7 @@
    ========================================================= */
 /* 셀 안 인라인 입력칸 — .input 보다 컴팩트 */
 .one-rank-input,
+.one-summary-input,
 .one-comment-input {
   background: transparent;
   border: 1px solid transparent;
@@ -1229,18 +1230,32 @@
   transition: border-color 80ms, background 80ms;
 }
 .one-rank-input { font-family: var(--font-mono); text-align: center; }
+.one-comment-input { resize: vertical; min-height: 38px; line-height: 1.45; }
 .one-rank-input::placeholder,
+.one-summary-input::placeholder,
 .one-comment-input::placeholder { color: var(--faint); }
 .one-rank-input:hover,
+.one-summary-input:hover,
 .one-comment-input:hover { border-color: var(--rule); }
 .one-rank-input:focus,
+.one-summary-input:focus,
 .one-comment-input:focus { border-color: var(--accent); background: var(--bg-elev); }
 .one-rank-input:disabled,
+.one-summary-input:disabled,
 .one-comment-input:disabled { color: var(--faint); cursor: not-allowed; }
 /* number input 스피너 제거 */
 .one-rank-input::-webkit-outer-spin-button,
 .one-rank-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
 .one-rank-input { -moz-appearance: textfield; }
+
+/* Quick fix 체크박스 셀 + 대시보드 수정 표식 */
+.one-qf-cell { text-align: center; }
+.one-quickfix { width: 15px; height: 15px; accent-color: var(--accent); cursor: pointer; }
+.one-quickfix:disabled { cursor: not-allowed; opacity: 0.5; }
+.one-edited {
+  display: inline-block; margin-left: 6px; vertical-align: middle;
+  font-size: 10px; color: var(--accent); white-space: nowrap;
+}
 
 /* 요약 셀 안 라벨 칩 */
 .one-labels { display: inline-flex; flex-wrap: wrap; gap: 4px; margin-left: 8px; vertical-align: middle; }

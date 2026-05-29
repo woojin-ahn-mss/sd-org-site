@@ -378,6 +378,7 @@ function theadHtml() {
         <th style="width:150px">상태</th>
         <th style="width:48px">우선</th>
         <th style="width:74px">순위</th>
+        <th style="width:64px" title="Quick fix 대상">Quick fix</th>
         <th style="width:220px">코멘트</th>
         <th style="width:20px"></th>
       </tr>
@@ -422,8 +423,6 @@ function rowHtml(it) {
   const open = state.expanded.has(it.key);
   const g = STATUS_GROUPS.find(x => x.id === statusGroup(it));
   const priCls = `pri-${(it.priority || '').toLowerCase() || 'p3'}`;
-  const labelChips = (it.labels || []).filter(l => l && l !== 'one')
-    .map(l => `<span class="one-label-chip">${escapeHtml(l)}</span>`).join('');
   const expandId = `one-expand-${cssId(it.key)}`;
 
   const rowAttrs = expandable
@@ -433,16 +432,48 @@ function rowHtml(it) {
   return `
     <tr ${rowAttrs}>
       <td>${jiraKeyHtml(it.key)}</td>
-      <td class="ft-summary">${escapeHtml(it.summary || '')}${labelChips ? `<span class="one-labels">${labelChips}</span>` : ''}</td>
+      <td class="ft-summary">${summaryCellHtml(it)}</td>
       <td><span class="dim dim-mono">${escapeHtml(it.project || '—')}</span></td>
       <td><span class="st ${g ? g.stClass : 'st-wait'}">${escapeHtml(it.status || '—')}</span></td>
       <td><span class="pri ${priCls}">${escapeHtml(it.priority || '—')}</span></td>
       <td>${rankCellHtml(it.key)}</td>
+      <td class="one-qf-cell">${quickFixCellHtml(it.key)}</td>
       <td>${commentCellHtml(it.key)}</td>
       <td>${expandable ? `<span class="caret ${open ? 'open' : ''}" aria-hidden="true">›</span>` : ''}</td>
     </tr>
     ${expandable && open ? expandHtml(it, expandId) : ''}
   `;
+}
+
+/** 라벨 칩(one 제외) HTML. */
+function labelChipsHtml(it) {
+  const chips = (it.labels || []).filter(l => l && l !== 'one')
+    .map(l => `<span class="one-label-chip">${escapeHtml(l)}</span>`).join('');
+  return chips ? `<span class="one-labels">${chips}</span>` : '';
+}
+
+/** 요약 셀 — 대시보드 전용 override(summary_override) 우선. 로그인 시 인라인 편집(Jira 미동기화). */
+function summaryCellHtml(it) {
+  const m = state.meta.get(it.key);
+  const override = m && m.summary_override ? String(m.summary_override) : '';
+  const display = override || it.summary || '';
+  const chips = labelChipsHtml(it);
+  if (!state.signedIn) {
+    return `${escapeHtml(display)}${override ? ' <span class="one-edited" title="대시보드에서 수정된 요약">✎</span>' : ''}${chips}`;
+  }
+  return `
+    <input type="text" class="one-summary-input" data-key="${escapeAttr(it.key)}"
+           value="${escapeAttr(display)}" placeholder="요약" aria-label="${escapeAttr(it.key)} 요약 (대시보드 전용)" />
+    ${override ? '<span class="one-edited" title="대시보드에서 수정된 요약 (Jira 미반영)">✎ 수정됨</span>' : ''}${chips}`;
+}
+
+/** Quick fix 체크박스 셀. */
+function quickFixCellHtml(key) {
+  const m = state.meta.get(key);
+  const checked = m && m.quick_fix ? 'checked' : '';
+  const dis = state.signedIn ? '' : 'disabled';
+  return `<input type="checkbox" class="one-quickfix" data-key="${escapeAttr(key)}" ${checked} ${dis}
+            aria-label="${escapeAttr(key)} Quick fix 대상" />`;
 }
 
 function rankCellHtml(key) {
@@ -460,9 +491,9 @@ function commentCellHtml(key) {
   const val = m && m.comment != null ? String(m.comment) : '';
   const dis = state.signedIn ? '' : 'disabled';
   const ph = state.signedIn ? '코멘트 입력…' : '로그인 필요';
-  return `<input type="text" class="one-comment-input"
-            data-key="${escapeAttr(key)}" value="${escapeAttr(val)}" placeholder="${ph}" ${dis}
-            aria-label="${escapeAttr(key)} 코멘트" />`;
+  return `<textarea class="one-comment-input" rows="2"
+            data-key="${escapeAttr(key)}" placeholder="${ph}" ${dis}
+            aria-label="${escapeAttr(key)} 코멘트">${escapeHtml(val)}</textarea>`;
 }
 
 function expandHtml(it, expandId) {
@@ -573,13 +604,27 @@ function bindMetaInputs(host) {
   host.querySelectorAll('.one-rank-input').forEach(inp => {
     inp.addEventListener('change', () => saveMeta(inp.dataset.key, { manual_rank: inp.value }, { resort: true }));
   });
+  // 요약 인라인 편집 (대시보드 전용). 원본 Jira 요약과 같거나 비우면 override 해제.
+  host.querySelectorAll('.one-summary-input').forEach(inp => {
+    inp.addEventListener('change', () => {
+      const key = inp.dataset.key;
+      const orig = (state.itemsByKey.get(key) || {}).summary || '';
+      const v = inp.value.trim();
+      saveMeta(key, { summary_override: v === orig ? '' : v }, { rerender: true });
+    });
+    inp.addEventListener('keydown', e => { if (e.key === 'Enter') inp.blur(); });
+  });
+  // Quick fix 체크박스
+  host.querySelectorAll('.one-quickfix').forEach(cb => {
+    cb.addEventListener('change', () => saveMeta(cb.dataset.key, { quick_fix: cb.checked }));
+  });
+  // 코멘트 textarea — Enter 는 줄바꿈 허용, 저장은 blur(change) 시점.
   host.querySelectorAll('.one-comment-input').forEach(inp => {
     inp.addEventListener('change', () => saveMeta(inp.dataset.key, { comment: inp.value }));
-    inp.addEventListener('keydown', e => { if (e.key === 'Enter') inp.blur(); });
   });
 }
 
-async function saveMeta(key, patch, { resort = false } = {}) {
+async function saveMeta(key, patch, { resort = false, rerender = false } = {}) {
   if (!key || !state.signedIn) return;
   try {
     const saved = await upsertOneMeta(key, patch, state.metaRows);
@@ -594,7 +639,7 @@ async function saveMeta(key, patch, { resort = false } = {}) {
       state.metaRows = state.metaRows.filter(r => String(r.jira_key) !== String(key));
     }
     toast({ kicker: key, msg: '저장됨', kind: 'success' });
-    if (resort && state.sort === 'rank') renderList();
+    if ((resort && state.sort === 'rank') || rerender) renderList();
   } catch (e) {
     if (e instanceof AuthRequiredError) {
       state.signedIn = false;

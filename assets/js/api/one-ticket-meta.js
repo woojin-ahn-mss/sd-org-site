@@ -13,7 +13,7 @@
 import { supabase, unwrap } from './supabase.js';
 
 /** 호환용 — 컬럼 표기(과거 Sheets 헤더). 페이지 안내 문구에서 참조. 섹션 6 페이지 정리 시 제거 예정. */
-export const ONE_META_HEADER = ['jira_key', 'manual_rank', 'comment', 'updated_at'];
+export const ONE_META_HEADER = ['jira_key', 'manual_rank', 'comment', 'summary_override', 'quick_fix', 'updated_at'];
 
 export class SchemaMismatchError extends Error {
   constructor(message, detail) {
@@ -67,10 +67,10 @@ function normRank(v) {
 }
 
 /**
- * jira_key 행 upsert. patch 는 {manual_rank?, comment?} — 지정 필드만 덮어쓰고 나머지 보존.
- * 둘 다 비면 행 삭제.
+ * jira_key 행 upsert. patch 는 {manual_rank?, comment?, summary_override?, quick_fix?} —
+ * 지정 필드만 덮어쓰고 나머지 보존. 모든 편집 필드가 비면 행 삭제.
  * @param {string} jiraKey
- * @param {{manual_rank?: string|number, comment?: string}} patch
+ * @param {{manual_rank?: string|number, comment?: string, summary_override?: string, quick_fix?: boolean}} patch
  * @param {Array} [currentRows] loadOneMeta 결과 — 미지정 필드 보존용(없으면 patch 만 반영)
  * @returns {Promise<object|null>}
  */
@@ -81,21 +81,35 @@ export async function upsertOneMeta(jiraKey, patch = {}, currentRows = []) {
   const manual_rank = ('manual_rank' in patch)
     ? normRank(patch.manual_rank)
     : (existing ? normRank(existing.manual_rank) : null);
+  // 코멘트는 멀티라인(textarea) — 의도된 줄바꿈 보존. 빈 값(공백뿐)만 ''로 정규화.
   const commentRaw = ('comment' in patch)
     ? String(patch.comment ?? '')
     : (existing ? String(existing.comment ?? '') : '');
-  // store 와 emptiness 판정을 동일 값(trim)으로 — "   " 가 저장됐다 다음 편집에서 오삭제되는 문제 차단.
-  const comment = commentRaw.trim();
+  const comment = commentRaw.trim() === '' ? '' : commentRaw;
+  const summary_override = (('summary_override' in patch)
+    ? String(patch.summary_override ?? '')
+    : (existing ? String(existing.summary_override ?? '') : '')).trim();
+  const quick_fix = ('quick_fix' in patch)
+    ? !!patch.quick_fix
+    : (existing ? !!existing.quick_fix : false);
 
   const rankEmpty = manual_rank == null;
   const commentEmpty = comment === '';
+  const summaryEmpty = summary_override === '';
 
-  if (rankEmpty && commentEmpty) {
+  // 편집 필드가 모두 비면(순위 없음·코멘트 없음·서머리 없음·quick_fix off) 행 삭제(stale 정리).
+  if (rankEmpty && commentEmpty && summaryEmpty && !quick_fix) {
     unwrap(await supabase.from('one_ticket_meta').delete().eq('jira_key', jiraKey));
     return null;
   }
 
-  const row = { jira_key: jiraKey, manual_rank, comment };
+  const row = {
+    jira_key: jiraKey,
+    manual_rank,
+    comment,
+    summary_override: summaryEmpty ? null : summary_override,
+    quick_fix,
+  };
   return unwrap(await supabase.from('one_ticket_meta').upsert(row, { onConflict: 'jira_key' }).select().single());
 }
 
