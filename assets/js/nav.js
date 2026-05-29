@@ -21,8 +21,9 @@ export const PAGES = [
   { id: 'performance',  num: '06', label: '성과',         path: 'pages/performance.html' },
   { id: 'roadmap-plan', num: '07', label: '로드맵 관리',    path: 'pages/roadmap-plan.html' },
   { id: 'fasttrack',    num: '08', label: '패스트트랙',     path: 'pages/fasttrack.html' },
-  { id: 'etr',          num: '09', label: 'ETR',         path: 'pages/etr.html' },
-  { id: 'poc-sheets',   num: '10', label: '🧪 PoC Sheets', path: 'pages/poc-sheets.html' },
+  { id: 'one-tickets',  num: '09', label: 'One 티켓',      path: 'pages/one-tickets.html' },
+  { id: 'etr',          num: '10', label: 'ETR',         path: 'pages/etr.html' },
+  { id: 'poc-sheets',   num: '11', label: '🧪 PoC Sheets', path: 'pages/poc-sheets.html' },
 ];
 
 /**

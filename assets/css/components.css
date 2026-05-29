@@ -1202,6 +1202,62 @@
 .spark { stroke-width: 1.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
 
 /* =========================================================
+   One 티켓 관리 (one-tickets.html)
+   ========================================================= */
+/* 셀 안 인라인 입력칸 — .input 보다 컴팩트 */
+.one-rank-input,
+.one-comment-input {
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 12px;
+  padding: 4px 6px;
+  width: 100%;
+  outline: none;
+  transition: border-color 80ms, background 80ms;
+}
+.one-rank-input { font-family: var(--font-mono); text-align: center; }
+.one-rank-input::placeholder,
+.one-comment-input::placeholder { color: var(--faint); }
+.one-rank-input:hover,
+.one-comment-input:hover { border-color: var(--rule); }
+.one-rank-input:focus,
+.one-comment-input:focus { border-color: var(--accent); background: var(--bg-elev); }
+.one-rank-input:disabled,
+.one-comment-input:disabled { color: var(--faint); cursor: not-allowed; }
+/* number input 스피너 제거 */
+.one-rank-input::-webkit-outer-spin-button,
+.one-rank-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.one-rank-input { -moz-appearance: textfield; }
+
+/* 요약 셀 안 라벨 칩 */
+.one-labels { display: inline-flex; flex-wrap: wrap; gap: 4px; margin-left: 8px; vertical-align: middle; }
+.one-label-chip {
+  font-family: var(--font-mono);
+  font-size: 10px; color: var(--faint);
+  letter-spacing: 0.04em;
+  padding: 1px 6px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+}
+
+/* Main Subject 그룹 카드 */
+.one-group { margin-bottom: 18px; }
+.one-group-head {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 0; cursor: pointer;
+  border-bottom: 1px solid var(--rule-strong);
+}
+.one-group-head:hover .one-group-name { color: var(--accent); }
+.one-group-name { font-size: 13.5px; font-weight: 600; color: var(--text); }
+.one-group-count {
+  font-family: var(--font-mono); font-size: 11px; color: var(--faint);
+  padding: 1px 8px; border: 1px solid var(--rule); border-radius: 999px;
+}
+
+/* =========================================================
    Misc utility
    ========================================================= */
 .muted { color: var(--faint); }

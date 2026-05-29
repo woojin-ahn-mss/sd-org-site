@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ko" data-theme="dark" data-depth="1">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>One 티켓 — S&amp;D Console</title>
+
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" />
+
+  <link rel="stylesheet" href="../assets/css/tokens.css" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/components.css" />
+
+  <script type="module">
+    import { initTheme } from '../assets/js/theme.js';
+    initTheme();
+  </script>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <p class="page-kicker">ONE TICKETS — ETR · MSSCXTF · FT · TM · CBP · PBO</p>
+      <h1 class="page-title">One 티켓 관리.</h1>
+      <p class="page-lede" data-lede>데이터를 불러오는 중…</p>
+    </header>
+
+    <!-- 인증 (비차단형 — 리스트는 로그인 없이도 보임) -->
+    <section id="sec-auth" class="poc-card" aria-label="Google 로그인 상태">
+      <div class="poc-row" style="gap:10px;align-items:center;">
+        <span class="poc-status" id="auth-status">인증 확인 중…</span>
+        <span style="flex:1"></span>
+        <button id="btn-create-sheet" type="button" class="btn ghost" hidden title="one-ticket-meta 시트를 생성합니다">＋ 시트 생성</button>
+        <button id="btn-signin" type="button" class="btn primary" hidden>Google 로그인 →</button>
+        <button id="btn-signout" type="button" class="btn ghost" hidden>로그아웃</button>
+        <button id="btn-refresh" type="button" class="btn ghost" disabled title="Sheet 의 코멘트·우선순위를 다시 불러옵니다">🔄 새로고침</button>
+      </div>
+      <p id="auth-help" class="muted" style="font-size:12px; margin:10px 0 0; line-height:1.55;">
+        리스트는 로그인 없이도 볼 수 있습니다. 편집하려면 musinsa.com Google 계정으로 로그인하세요.
+      </p>
+    </section>
+
+    <!-- 컨트롤: 뷰 / 정렬 + 필터 -->
+    <section>
+      <div class="sec-head">
+        <h2>티켓 리스트</h2>
+        <div class="actions">
+          <span class="muted dim-mono" style="margin-right:6px">VIEW</span>
+          <button type="button" class="tlink active" data-view="all">전체</button>
+          <button type="button" class="tlink" data-view="subject">Main Subject</button>
+          <span style="width:18px"></span>
+          <span class="muted dim-mono" style="margin-right:6px">SORT</span>
+          <button type="button" class="tlink active" data-sort="rank">우선순위</button>
+          <button type="button" class="tlink" data-sort="created">등록순</button>
+        </div>
+      </div>
+      <div class="filters" id="one-filters"></div>
+    </section>
+
+    <!-- 리스트 -->
+    <section>
+      <div id="one-table"></div>
+    </section>
+
+    <div class="page-meta">
+      <span class="muted">S&amp;D Console</span>
+      <span class="muted">last sync</span>
+      <span class="right num" data-meta-last-sync>—</span>
+    </div>
+  </div>
+
+  <script type="module">
+    import { renderSidebar, loadAndApplyMeta } from '../assets/js/nav.js';
+    import { renderOneTickets } from '../assets/js/pages/one-tickets.js';
+    import { bindJiraLinks } from '../assets/js/jira-link.js';
+
+    renderSidebar({ active: 'one-tickets' });
+    loadAndApplyMeta('../');
+    renderOneTickets({ rootRel: '../' });
+    bindJiraLinks(document);
+  </script>
+</body>
+</html>
