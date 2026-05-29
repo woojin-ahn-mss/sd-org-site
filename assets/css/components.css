@@ -1240,6 +1240,8 @@
 .one-rank-input { font-family: var(--font-mono); text-align: center; }
 .one-comment-input { resize: vertical; min-height: 38px; line-height: 1.45; }
 .one-comment-input.drag-over { border-color: var(--accent); background: var(--accent-soft); }
+/* 요약 — 줄바꿈 표시(자동 높이, 내용 높이는 JS autoGrowTextarea 가 설정) */
+.one-summary-input { resize: none; overflow: hidden; line-height: 1.45; white-space: pre-wrap; word-break: break-word; }
 .one-rank-input::placeholder,
 .one-summary-input::placeholder,
 .one-comment-input::placeholder { color: var(--faint); }

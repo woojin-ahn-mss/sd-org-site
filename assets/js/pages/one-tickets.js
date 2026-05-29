@@ -778,8 +778,8 @@ function summaryCellHtml(it) {
     return `${escapeHtml(display)}${override ? ' <span class="one-edited" title="대시보드에서 수정된 요약">✎</span>' : ''}${chips}`;
   }
   return `
-    <input type="text" class="one-summary-input" data-key="${escapeAttr(it.key)}"
-           value="${escapeAttr(display)}" placeholder="요약" aria-label="${escapeAttr(it.key)} 요약 (대시보드 전용)" />
+    <textarea class="one-summary-input" rows="1" data-key="${escapeAttr(it.key)}"
+              placeholder="요약" aria-label="${escapeAttr(it.key)} 요약 (대시보드 전용)">${escapeHtml(display)}</textarea>
     ${override ? '<span class="one-edited" title="대시보드에서 수정된 요약 (Jira 미반영)">✎ 수정됨</span>' : ''}${chips}`;
 }
 
@@ -862,6 +862,12 @@ function cssId(s) {
   return String(s || '').replace(/[^a-zA-Z0-9_-]/g, '_');
 }
 
+/** textarea 높이를 내용에 맞춰 자동 조정 (요약 줄바꿈 표시). */
+function autoGrowTextarea(el) {
+  el.style.height = 'auto';
+  el.style.height = `${el.scrollHeight}px`;
+}
+
 /* ─── 행 펼침 / 그룹 펼침 ─────────────────────────────────── */
 
 function bindRowToggle(host) {
@@ -941,15 +947,18 @@ function bindMetaInputs(host) {
   host.querySelectorAll('.one-rank-input').forEach(inp => {
     inp.addEventListener('change', () => saveMeta(inp.dataset.key, { manual_rank: inp.value }, { resort: true }));
   });
-  // 요약 인라인 편집 (대시보드 전용). 원본 Jira 요약과 같거나 비우면 override 해제.
+  // 요약 인라인 편집 (대시보드 전용, 줄바꿈 자동 높이). 원본 Jira 요약과 같거나 비우면 override 해제.
   host.querySelectorAll('.one-summary-input').forEach(inp => {
+    autoGrowTextarea(inp);                                   // 초기 높이 = 내용 높이
+    inp.addEventListener('input', () => autoGrowTextarea(inp));
     inp.addEventListener('change', () => {
       const key = inp.dataset.key;
       const orig = (state.itemsByKey.get(key) || {}).summary || '';
       const v = inp.value.trim();
       saveMeta(key, { summary_override: v === orig ? '' : v }, { rerender: true });
     });
-    inp.addEventListener('keydown', e => { if (e.key === 'Enter') inp.blur(); });
+    // Enter 는 저장(줄바꿈 삽입 방지) — 요약은 한 줄 텍스트가 wrap 되는 형태.
+    inp.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); inp.blur(); } });
   });
   // Quick fix 체크박스
   host.querySelectorAll('.one-quickfix').forEach(cb => {
