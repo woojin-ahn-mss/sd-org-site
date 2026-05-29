@@ -247,6 +247,16 @@
 .btn.ghost { border-color: transparent; }
 .btn.ghost:hover { background: var(--bg-elev); }
 
+/* 사이드바 로그인 상태 + 로그아웃 (전역 auth-gate) */
+.sb-auth .auth-email { display: inline-block; word-break: break-all; font-size: 10px; }
+.sb-logout {
+  display: inline-block; margin-top: 4px;
+  background: none; border: none; padding: 0;
+  color: var(--accent); font: inherit; font-size: 11px;
+  cursor: pointer; text-decoration: underline;
+}
+.sb-logout:hover { color: var(--accent-strong); }
+
 .tlink {
   background: transparent; border: 0; padding: 0;
   font-size: 12px; color: var(--dim); cursor: pointer;

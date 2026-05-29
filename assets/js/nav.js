@@ -7,6 +7,7 @@
 
 import { fmtDateTime } from './format.js';
 import { bindThemeButtons } from './theme.js';
+import { ensureAuthGate } from './auth-gate.js';
 import { scoped } from './storage.js';
 
 const SIDEBAR_STATE_KEY = 'sidebar.collapsed';
@@ -85,6 +86,7 @@ export function renderSidebar(opts = {}) {
       <nav class="sb-list" aria-label="사이트 내비게이션">${links}</nav>
 
       <div class="sb-foot">
+        <p class="sb-auth" data-auth-slot></p>
         <p><span class="muted">last sync</span><br>
            <span class="num" data-meta-last-sync>${meta.lastSync ? fmtDateTime(meta.lastSync) : '—'}</span></p>
         <p><span class="muted">next sync</span><br>
@@ -127,6 +129,9 @@ export function renderSidebar(opts = {}) {
   bindShortcuts();
   bindThemeButtons(sb);
   bindSidebarToggle(app, sb);
+
+  // 전역 로그인 게이트 (모든 페이지 공통 진입점). fire-and-forget.
+  ensureAuthGate();
 }
 
 /** 사이드바 접기/펼치기. localStorage 에 상태 저장. 키보드 단축키 '[' */

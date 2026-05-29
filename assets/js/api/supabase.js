@@ -61,8 +61,10 @@ let initPromise = null;
 const changeListeners = new Set();
 
 // module 최상단에서 먼저 등록 — INITIAL_SESSION / SIGNED_IN / SIGNED_OUT 이벤트로 캐시 갱신.
-supabase.auth.onAuthStateChange((_event, session) => {
+supabase.auth.onAuthStateChange((event, session) => {
   currentSession = session;
+  // 초기 상태(INITIAL_SESSION)는 init()/getSession() 로 읽는다 — onChange 는 전이(로그인/로그아웃)만 통지.
+  if (event === 'INITIAL_SESSION') return;
   for (const cb of changeListeners) {
     try { cb(session); } catch (e) { console.warn('[supabase.js] onChange 리스너 에러', e); }
   }

@@ -26,7 +26,7 @@
       <p class="page-kicker">ROADMAP PLAN — OBJECTIVE · SUBJECT · TICKET</p>
       <h1 class="page-title">로드맵 관리.</h1>
       <p class="page-lede" data-lede>
-        Google Sheet 가 source of truth. Objective(큰 OKR) → 주제 → Jira 티켓/카드 3단으로 묶고, 분기 보드에서 D&amp;D 로 옮깁니다.
+        Supabase 가 source of truth. Objective(큰 OKR) → 주제 → Jira 티켓/카드 3단으로 묶고, 분기 보드에서 D&amp;D 로 옮깁니다.
       </p>
     </header>
 
@@ -37,12 +37,11 @@
         <span style="flex:1"></span>
         <button id="btn-signin" type="button" class="btn primary" hidden>Google 로그인 →</button>
         <button id="btn-signout" type="button" class="btn ghost" hidden>로그아웃</button>
-        <button id="btn-refresh" type="button" class="btn ghost" disabled title="Sheet 데이터를 다시 불러옵니다">🔄 새로고침</button>
+        <button id="btn-refresh" type="button" class="btn ghost" disabled title="데이터를 다시 불러옵니다">🔄 새로고침</button>
       </div>
       <p id="auth-help" class="muted" style="font-size:12px; margin:10px 0 0; line-height:1.55;">
-        <strong>musinsa.com Google 계정</strong>으로 로그인하면 Sheet 데이터가 자동으로 read/write 됩니다.<br>
-        버튼 클릭 시 <strong>Google 로그인 popup</strong> 이 뜹니다 — 브라우저가 popup 을 차단하면
-        주소창 우측의 차단 아이콘에서 <em>"이 사이트의 popup 허용"</em> 을 선택 후 다시 클릭하세요.
+        <strong>musinsa.com Google 계정</strong>으로 로그인하면 데이터가 자동으로 read/write 됩니다 (Supabase).<br>
+        버튼 클릭 시 <strong>Google 로그인 페이지로 이동</strong>했다가 돌아옵니다.
       </p>
     </section>
 
