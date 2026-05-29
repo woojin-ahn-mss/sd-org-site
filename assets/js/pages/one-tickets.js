@@ -294,7 +294,7 @@ function renderFilters() {
   const row = (inner) => (inner ? `<div class="filter-row">${inner}</div>` : '');
   const launchToggle =
     `<span class="flabel">보기</span>` +
-    `<button type="button" class="fchip ${f.hideLaunched ? 'on' : ''}" data-toggle="hideLaunched">론치완료 제외</button>`;
+    `<button type="button" class="fchip ${f.hideLaunched ? 'on' : ''}" data-toggle="hideLaunched">론치완료·Dropped 제외</button>`;
 
   host.innerHTML = `
     ${row(chipGroup('project', '프로젝트', projects.map(v => ({ v, label: v })), f.project))}
@@ -352,9 +352,12 @@ function chipGroup(key, label, options, current) {
 
 /* ─── 필터 / 정렬 (pure) ──────────────────────────────────── */
 
+/** "론치완료 제외" 토글이 숨기는 상태값 (완료/드랍 계열). */
+export const HIDDEN_WHEN_LAUNCHED = new Set(['론치완료', 'Dropped']);
+
 /** 단일 항목이 필터에 매칭되는지. */
 export function itemMatchesFilters(it, filters) {
-  if (filters.hideLaunched && it.status === '론치완료') return false;
+  if (filters.hideLaunched && HIDDEN_WHEN_LAUNCHED.has(it.status)) return false;
   if (filters.project && it.project !== filters.project) return false;
   if (filters.subSubject && !subSubjectsOf(it).includes(filters.subSubject)) return false;
   if (filters.label && !(it.labels || []).includes(filters.label)) return false;
