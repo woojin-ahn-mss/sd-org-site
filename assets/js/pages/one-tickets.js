@@ -301,8 +301,8 @@ function renderFilters() {
   for (const m of state.meta.values()) if (m && m.hidden) hiddenCount++;
   const viewToggles =
     `<span class="flabel">보기</span>` +
-    `<button type="button" class="fchip ${f.hideLaunched ? 'on' : ''}" data-toggle="hideLaunched">론치완료·Dropped 제외</button>` +
-    `<button type="button" class="fchip ${f.showHidden ? 'on' : ''}" data-toggle="showHidden">숨긴 과제 보기${hiddenCount ? ` (${hiddenCount})` : ''}</button>`;
+    `<button type="button" class="fchip ${f.hideLaunched ? 'on' : ''}" data-toggle="hideLaunched" role="switch" aria-checked="${f.hideLaunched ? 'true' : 'false'}">론치완료·Dropped 제외</button>` +
+    `<button type="button" class="fchip ${f.showHidden ? 'on' : ''}" data-toggle="showHidden" role="switch" aria-checked="${f.showHidden ? 'true' : 'false'}">숨긴 과제 보기${hiddenCount ? ` (${hiddenCount})` : ''}</button>`;
 
   host.innerHTML = `
     ${row(chipGroup('project', '프로젝트', projects.map(v => ({ v, label: v })), f.project))}
@@ -538,7 +538,7 @@ function theadHtml() {
         <th style="width:74px">순위</th>
         <th style="width:64px" title="Quick fix 대상">Quick fix</th>
         <th style="width:40%">코멘트</th>
-        <th style="width:48px"></th>
+        <th style="width:56px" title="체크 시 목록에서 숨김">숨김</th>
       </tr>
     </thead>`;
 }
@@ -607,11 +607,11 @@ function rowHtml(it) {
   `;
 }
 
-/** 행 숨기기/해제 버튼 (로그인 시). */
+/** 행 숨김 on/off 체크박스 (로그인 시). 체크=숨김, 해제=복원. */
 function hideBtnHtml(key, isHidden) {
   if (!state.signedIn) return '';
-  return `<button type="button" class="one-hide-btn" data-key="${escapeAttr(key)}" data-hidden="${isHidden}"
-            title="${isHidden ? '숨김 해제' : '이 과제 숨기기'}" aria-label="${isHidden ? '숨김 해제' : '숨기기'}">${isHidden ? '↩' : '✕'}</button>`;
+  return `<input type="checkbox" class="one-hide-cb" data-key="${escapeAttr(key)}" ${isHidden ? 'checked' : ''}
+            title="${isHidden ? '숨김 해제' : '이 과제 숨기기'}" aria-label="${escapeAttr(key)} 숨김" />`;
 }
 
 /** 라벨 칩(one 제외) HTML. */
@@ -793,12 +793,10 @@ function bindMetaInputs(host) {
   host.querySelectorAll('.one-comment-input').forEach(inp => {
     inp.addEventListener('change', () => saveMeta(inp.dataset.key, { comment: inp.value }));
   });
-  // 행 숨기기/해제 — 현재 상태 토글, 재렌더로 즉시 반영.
-  host.querySelectorAll('.one-hide-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      saveMeta(btn.dataset.key, { hidden: btn.dataset.hidden !== 'true' }, { rerender: true });
-    });
+  // 행 숨김 on/off 체크박스 — 체크=숨김, 해제=복원. 재렌더로 즉시 반영.
+  host.querySelectorAll('.one-hide-cb').forEach(cb => {
+    cb.addEventListener('click', (e) => e.stopPropagation());
+    cb.addEventListener('change', () => saveMeta(cb.dataset.key, { hidden: cb.checked }, { rerender: true }));
   });
 }
 

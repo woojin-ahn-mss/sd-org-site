@@ -1213,6 +1213,7 @@
 .fchip-empty { opacity: 0.45; }
 .fchip-empty.on { opacity: 1; }
 
+
 /* =========================================================
    Sparkline
    ========================================================= */
@@ -1268,13 +1269,9 @@
   font-size: 10px; color: var(--faint); border: 1px solid var(--rule);
   border-radius: var(--radius); padding: 0 5px; white-space: nowrap;
 }
-/* 행 숨기기/해제 버튼 + 숨김 행 dim */
-.one-row-actions { white-space: nowrap; text-align: right; }
-.one-hide-btn {
-  background: none; border: 0; cursor: pointer; padding: 2px 4px;
-  color: var(--faint); font-size: 12px; line-height: 1;
-}
-.one-hide-btn:hover { color: var(--accent); }
+/* 행 숨김 on/off 체크박스 + 숨김 행 dim */
+.one-row-actions { white-space: nowrap; text-align: center; }
+.one-hide-cb { width: 14px; height: 14px; accent-color: var(--accent); cursor: pointer; vertical-align: middle; margin-right: 4px; }
 .one-hidden-row { opacity: 0.45; }
 .one-hidden-row:hover { opacity: 0.7; }
 
