@@ -20,7 +20,7 @@ import { toast } from '../toast.js';
 import { auth, AuthRequiredError, subscribe } from '../api/supabase.js';
 import {
   loadOneMeta, metaByKey, upsertOneMeta,
-  uploadTicketImage, uploadTicketImageBlob, signedImageUrl, removeTicketImage,
+  uploadTicketImageBlob, signedImageUrl, removeTicketImage,
 } from '../api/one-ticket-meta.js';
 
 const TOP_PROJECTS = ['ETR', 'MSSCXTF', 'FT', 'TM', 'CBP', 'PBO', 'MSS'];
@@ -628,28 +628,6 @@ function applySavedMeta(key, saved) {
   }
 }
 
-/** 이미지 추가 — URL 입력 → Storage 복사 → image_path 저장. */
-async function onAddImage(key) {
-  if (!state.signedIn || state.imgBusy) return;
-  const url = window.prompt('이미지 URL 을 붙여넣으세요 (Jira 미디어 링크 등)');
-  if (!url || !url.trim()) return;
-  state.imgBusy = true;
-  try {
-    const path = await uploadTicketImage(key, url.trim());
-    try {
-      applySavedMeta(key, await upsertOneMeta(key, { image_path: path }, state.metaRows));
-    } catch (e) {
-      await removeTicketImage(path);   // DB 반영 실패 시 업로드된 객체 롤백(orphan 방지)
-      throw e;
-    }
-    toast({ kicker: key, msg: '이미지 등록됨', kind: 'success' });
-    renderList();
-  } catch (e) {
-    if (e instanceof AuthRequiredError) { state.signedIn = false; renderAuthUi('signedOut'); renderList(); }
-    else { console.error('[one-tickets] 이미지 등록 실패', e); toast({ kicker: '이미지 등록 실패', msg: e.message || String(e), kind: 'alert' }); }
-  } finally { state.imgBusy = false; }
-}
-
 /** 코멘트에 드롭한 이미지 파일 → Storage 업로드 → image_path 저장. */
 async function onDropImage(key, file) {
   if (!state.signedIn || state.imgBusy) return;
@@ -829,8 +807,9 @@ function commentCellHtml(key) {
   const val = m && m.comment != null ? String(m.comment) : '';
   const dis = state.signedIn ? '' : 'disabled';
   const ph = state.signedIn ? '코멘트 입력…' : '로그인 필요';
+  const tip = state.signedIn ? ' title="이미지 파일을 끌어다 놓으면 첨부됩니다"' : '';
   return `<textarea class="one-comment-input" rows="2"
-            data-key="${escapeAttr(key)}" placeholder="${ph}" ${dis}
+            data-key="${escapeAttr(key)}" placeholder="${ph}" ${dis}${tip}
             aria-label="${escapeAttr(key)} 코멘트">${escapeHtml(val)}</textarea>${imageAreaHtml(key)}`;
 }
 
@@ -849,8 +828,7 @@ function imageAreaHtml(key) {
       ${btn}
     </div>`;
   }
-  if (!state.signedIn) return '';
-  return `<div class="one-img-area"><button type="button" class="one-img-add tlink" data-key="${escapeAttr(key)}" title="이미지 URL 등록 (또는 코멘트에 이미지 파일을 드래그)">＋ 이미지 (드래그 가능)</button></div>`;
+  return '';   // 이미지 없을 땐 버튼 없음 — 코멘트에 이미지 파일을 드래그하면 첨부됨
 }
 
 function expandHtml(it, expandId) {
@@ -1006,10 +984,6 @@ function bindMetaInputs(host) {
       cb.closest('tr')?.classList.toggle('one-hidden-row', cb.checked);   // live dim
       renderHideControls();   // 저장 버튼의 변경 건수 갱신
     });
-  });
-  // 이미지 추가 — URL 입력 → Storage 복사 → 경로 저장
-  host.querySelectorAll('.one-img-add').forEach(btn => {
-    btn.addEventListener('click', (e) => { e.stopPropagation(); onAddImage(btn.dataset.key); });
   });
   host.querySelectorAll('.one-img-del').forEach(btn => {
     btn.addEventListener('click', (e) => { e.stopPropagation(); onDeleteImage(btn.dataset.key); });
