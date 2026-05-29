@@ -237,6 +237,25 @@ function cmpRep(a, b) {
   return String(a.key) < String(b.key) ? -1 : 1;
 }
 
+/** 표시상 숨겨야 할 항목(종료 계열 상태 또는 수동 숨김). 선택 필터(프로젝트/상태/우선순위)는 제외. */
+function isDisplayHidden(it, eff = {}, hiddenKeys) {
+  if (eff.hideLaunched && HIDDEN_WHEN_LAUNCHED.has(it.status)) return true;
+  if (!eff.showHidden && hiddenKeys && hiddenKeys.has(it.key)) return true;
+  return false;
+}
+
+/**
+ * 클러스터의 화면 표시 대표 선정.
+ * 종료(론치완료·Dropped·철회)·수동 숨김이 아닌 멤버 중 cmpRep 최선(=비-ETR 우선)을 대표로.
+ * 프로젝트/상태/우선순위 선택 필터로는 대표를 바꾸지 않는다 — 연결된 실제 작업 티켓이 항상 메인.
+ * (모두 숨김 대상이면 전체에서 최선.)
+ */
+export function pickDisplayRep(all, eff = {}, hiddenKeys) {
+  const list = Array.isArray(all) ? all : [];
+  const visible = list.filter(it => !isDisplayHidden(it, eff, hiddenKeys));
+  return (visible.length ? visible : list).slice().sort(cmpRep)[0];
+}
+
 /** 대표↔멤버 사이 직접 링크의 linkType (transitive 면 '연결'). 펼침 표식용. */
 function linkRelation(rep, member) {
   for (const l of (rep.linkedTickets || [])) if (l && l.key === member.key) return l.linkType || '';
@@ -588,18 +607,13 @@ function renderList() {
   const eff = { ...state.filters, showHidden: state.hideManageMode };
 
   const filtered = filterClusters(state.topLevel, eff, state.clusterMembers, hiddenKeys);
-  // 표시 대표 재선정: 대표가 필터를 통과 못 하면(론치완료/숨김 등) 통과하는 멤버를 대표로 승격.
-  // → 묶음은 유지하되 화면 상단에 필터에 맞는 티켓이 오게.
+  // 표시 대표 선정: 종료(론치완료·Dropped·철회)·숨김이 아닌 멤버 중 비-ETR 우선(cmpRep).
+  // 프로젝트/상태/우선순위 선택 필터로는 대표를 바꾸지 않는다 — 연결된 실제 작업 티켓이 항상 메인.
   state.displayMembers = new Map();
   const displayReps = filtered.map(origRep => {
     const members = state.clusterMembers.get(origRep.key) || [];
-    if (itemMatchesFilters(origRep, eff, hiddenKeys)) {
-      state.displayMembers.set(origRep.key, members);
-      return origRep;
-    }
     const all = [origRep, ...members];
-    const passing = all.filter(it => itemMatchesFilters(it, eff, hiddenKeys));
-    const rep = passing.length ? passing.slice().sort(cmpRep)[0] : origRep;
+    const rep = pickDisplayRep(all, eff, hiddenKeys);
     state.displayMembers.set(rep.key, all.filter(it => it.key !== rep.key));
     return rep;
   });
@@ -1243,5 +1257,5 @@ export const _internal = {
   TOP_PROJECTS, PAGE_SIZE, NO_SUBJECT,
   normalizeItem, isInitiative, buildFromFallback, clusterItems, pickRepresentative, MERGE_EXCLUDE_LINKS,
   filterItems, itemMatchesFilters, filterClusters, sortItems, sortClusters,
-  groupByMainSubject, rankOf, cssId, subSubjectsOf, linkifyComment,
+  groupByMainSubject, rankOf, cssId, subSubjectsOf, linkifyComment, pickDisplayRep,
 };
