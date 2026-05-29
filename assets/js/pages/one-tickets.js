@@ -41,7 +41,7 @@ const state = {
   email: null,
   meta: new Map(),    // jira_key → {manual_rank, comment, _rowNum}
   metaRows: [],       // loadOneMeta 원본 (upsert 시 _rowNum 탐색)
-  filters: { project: null, label: null, status: null, priority: null, subSubject: null, hideLaunched: true },
+  filters: { projects: [], label: null, status: null, priority: null, subSubject: null, hideLaunched: true },
   hideManageMode: false,   // 숨김 관리 모드 (체크박스 노출 + 전체 표시)
   hidePending: new Map(),  // 관리 모드 중 변경 대기 (key → bool)
   hideSaving: false,       // 저장 진행 중 (중복 저장 방지)
@@ -59,9 +59,15 @@ const state = {
 export async function renderOneTickets({ rootRel = '' } = {}) {
   state.rootRel = rootRel;
   state.filters = Object.assign(
-    { project: null, status: null, priority: null, subSubject: null, hideLaunched: true },
+    { projects: [], status: null, priority: null, subSubject: null, hideLaunched: true },
     scoped(FILTERS_KEY).get({}) || {},
   );
+  // 프로젝트 복수 선택 마이그레이션 — 레거시 단일 project 문자열 → projects 배열.
+  if (!Array.isArray(state.filters.projects)) state.filters.projects = [];
+  if (state.filters.project) {
+    if (!state.filters.projects.includes(state.filters.project)) state.filters.projects.push(state.filters.project);
+    delete state.filters.project;
+  }
   delete state.filters.showHidden;  // 폐지된 토글 — 잔존 값 무력화 (숨김 표시는 관리 모드로 대체)
   state.filters.label = null;  // 라벨 필터 폐지 — 저장된 잔존 값으로 인한 숨은 필터 방지
   const savedView = scoped(VIEW_KEY).get(null);
@@ -378,14 +384,14 @@ function renderFilters() {
   const priorities = [...new Set(base.map(it => it.priority).filter(Boolean))].sort();
 
   const f = state.filters;
-  const hasAny = f.project || f.status || f.priority || f.subSubject;
+  const hasAny = (f.projects && f.projects.length) || f.status || f.priority || f.subSubject;
   const row = (inner) => (inner ? `<div class="filter-row">${inner}</div>` : '');
   const viewToggles =
     `<span class="flabel">보기</span>` +
     `<button type="button" class="fchip ${f.hideLaunched ? 'on' : ''}" data-toggle="hideLaunched" role="switch" aria-checked="${f.hideLaunched ? 'true' : 'false'}">론치완료·Dropped·철회 제외</button>`;
 
   host.innerHTML = `
-    ${row(chipGroup('project', '프로젝트', projects.map(v => ({ v, label: v })), f.project))}
+    ${row(chipGroup('projects', '프로젝트', projects.map(v => ({ v, label: v })), f.projects, true))}
     ${row(chipGroup('subSubject', 'Sub Subject', subSubjects.map(v => ({ v, label: v })), f.subSubject))}
     ${row(chipGroup('priority', '우선순위', priorities.map(v => ({ v, label: v })), f.priority))}
     ${row(chipGroup('status', '상태', statuses.map(v => ({ v, label: v })), f.status))}
@@ -396,7 +402,15 @@ function renderFilters() {
   host.querySelectorAll('button.fchip[data-filter]').forEach(btn => {
     btn.addEventListener('click', () => {
       const k = btn.dataset.filter, v = btn.dataset.value;
-      state.filters[k] = state.filters[k] === v ? null : v;
+      if (btn.dataset.multi) {
+        // 복수 선택(OR) — 토글로 추가/제거.
+        const arr = Array.isArray(state.filters[k]) ? state.filters[k].slice() : [];
+        const i = arr.indexOf(v);
+        if (i >= 0) arr.splice(i, 1); else arr.push(v);
+        state.filters[k] = arr;
+      } else {
+        state.filters[k] = state.filters[k] === v ? null : v;
+      }
       scoped(FILTERS_KEY).set(state.filters);
       state.page = 1;
       renderFilters();
@@ -416,7 +430,8 @@ function renderFilters() {
   const reset = host.querySelector('[data-filter-reset]');
   if (reset) reset.addEventListener('click', () => {
     // chip 필터만 초기화 (론치완료 토글은 보기 설정이라 유지)
-    state.filters.project = state.filters.subSubject = state.filters.status = state.filters.priority = null;
+    state.filters.projects = [];
+    state.filters.subSubject = state.filters.status = state.filters.priority = null;
     scoped(FILTERS_KEY).set(state.filters);
     state.page = 1;
     renderFilters();
@@ -431,11 +446,13 @@ export function subSubjectsOf(it) {
   return [];
 }
 
-function chipGroup(key, label, options, current) {
+function chipGroup(key, label, options, current, multi = false) {
   if (!options.length) return '';
+  const sel = multi ? new Set(Array.isArray(current) ? current : []) : null;
   const chips = options.map(opt => {
-    const on = current === opt.v;
-    return `<button type="button" class="fchip ${on ? 'on' : ''}" data-filter="${escapeAttr(key)}" data-value="${escapeAttr(opt.v)}">${escapeHtml(opt.label)}</button>`;
+    const on = multi ? sel.has(opt.v) : current === opt.v;
+    const multiAttr = multi ? ` data-multi="1" aria-pressed="${on ? 'true' : 'false'}"` : '';
+    return `<button type="button" class="fchip ${on ? 'on' : ''}" data-filter="${escapeAttr(key)}" data-value="${escapeAttr(opt.v)}"${multiAttr}>${escapeHtml(opt.label)}</button>`;
   }).join('');
   return `<span class="flabel">${escapeHtml(label)}</span>${chips}`;
 }
@@ -449,7 +466,9 @@ export const HIDDEN_WHEN_LAUNCHED = new Set(['론치완료', 'Dropped', '철회/
 export function itemMatchesFilters(it, filters, hiddenKeys) {
   if (filters.hideLaunched && HIDDEN_WHEN_LAUNCHED.has(it.status)) return false;
   if (!filters.showHidden && hiddenKeys && hiddenKeys.has(it.key)) return false;
-  if (filters.project && it.project !== filters.project) return false;
+  // 프로젝트: 복수 선택(projects 배열) OR 매칭. 레거시 단일 project 도 지원.
+  const projSel = Array.isArray(filters.projects) ? filters.projects : (filters.project ? [filters.project] : []);
+  if (projSel.length && !projSel.includes(it.project)) return false;
   if (filters.subSubject && !subSubjectsOf(it).includes(filters.subSubject)) return false;
   if (filters.label && !(it.labels || []).includes(filters.label)) return false;
   if (filters.status && it.status !== filters.status) return false;
