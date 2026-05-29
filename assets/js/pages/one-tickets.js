@@ -904,7 +904,7 @@ function autoGrowTextarea(el) {
 function bindRowToggle(host) {
   host.querySelectorAll('tr.ft-row').forEach(tr => {
     tr.addEventListener('click', e => {
-      if (e.target.closest('a, input, textarea, button')) return;
+      if (e.target.closest('a, input, textarea, button, .one-comment-cell')) return;
       toggleRow(tr);
     });
     tr.addEventListener('keydown', onRowKeydown);
