@@ -17,7 +17,7 @@ export const PAGES = [
   { id: 'home',         num: '01', label: '홈',          path: '' },
   { id: 'roadmap',      num: '02', label: '로드맵',       path: 'pages/roadmap.html' },
   { id: 'progress',     num: '03', label: '진행 현황',     path: 'pages/progress.html' },
-  { id: 'plan',         num: '04', label: '📅 Plan',      path: 'pages/plan.html' },
+  { id: 'plan',         num: '04', label: 'Plan',         path: 'pages/plan.html' },
   { id: 'resource',     num: '05', label: '리소스',        path: 'pages/resource.html' },
   { id: 'performance',  num: '06', label: '성과',         path: 'pages/performance.html' },
   { id: 'roadmap-plan', num: '07', label: '로드맵 관리',    path: 'pages/roadmap-plan.html' },
