@@ -41,7 +41,7 @@ const state = {
   email: null,
   meta: new Map(),    // jira_key → {manual_rank, comment, _rowNum}
   metaRows: [],       // loadOneMeta 원본 (upsert 시 _rowNum 탐색)
-  filters: { project: null, label: null, status: null, priority: null },
+  filters: { project: null, label: null, status: null, priority: null, subSubject: null },
   view: 'all',        // 'all' | 'subject'
   sort: 'rank',       // 'rank' | 'created'
   expanded: new Set(),
@@ -54,7 +54,7 @@ const state = {
 export async function renderOneTickets({ rootRel = '' } = {}) {
   state.rootRel = rootRel;
   state.filters = Object.assign(
-    { project: null, label: null, status: null, priority: null },
+    { project: null, label: null, status: null, priority: null, subSubject: null },
     scoped(FILTERS_KEY).get({}) || {},
   );
   const savedView = scoped(VIEW_KEY).get(null);
@@ -140,6 +140,8 @@ function normalizeItem(raw) {
     labels: Array.isArray(raw.labels) ? raw.labels : [],
     linkedTickets: Array.isArray(raw.linkedTickets) ? raw.linkedTickets : [],
     mainSubjects: Array.isArray(raw.mainSubjects) ? raw.mainSubjects : [],
+    subSubject: raw.subSubject || '',
+    subSubjects: Array.isArray(raw.subSubjects) ? raw.subSubjects : (raw.subSubject ? [raw.subSubject] : []),
   };
 }
 
@@ -224,16 +226,19 @@ function renderFilters() {
   if (!base.length) { host.innerHTML = ''; return; }
 
   const projects = TOP_PROJECTS.filter(p => base.some(it => it.project === p));
+  const subSubjects = [...new Set(base.flatMap(subSubjectsOf).filter(Boolean))]
+    .sort((a, b) => a.localeCompare(b, 'ko'));
   const labels = [...new Set(base.flatMap(it => it.labels).filter(l => l && l !== 'one'))]
     .sort((a, b) => a.localeCompare(b, 'ko'));
   const statuses = [...new Set(base.map(it => it.status).filter(Boolean))].sort();
   const priorities = [...new Set(base.map(it => it.priority).filter(Boolean))].sort();
 
   const f = state.filters;
-  const hasAny = f.project || f.label || f.status || f.priority;
+  const hasAny = f.project || f.label || f.status || f.priority || f.subSubject;
 
   host.innerHTML = `
     ${chipGroup('project', '프로젝트', projects.map(v => ({ v, label: v })), f.project)}
+    ${chipGroup('subSubject', 'Sub Subject', subSubjects.map(v => ({ v, label: v })), f.subSubject)}
     ${chipGroup('label', '라벨', labels.map(v => ({ v, label: v })), f.label)}
     ${chipGroup('status', '상태', statuses.map(v => ({ v, label: v })), f.status)}
     ${chipGroup('priority', '우선순위', priorities.map(v => ({ v, label: v })), f.priority)}
@@ -252,12 +257,19 @@ function renderFilters() {
   });
   const reset = host.querySelector('[data-filter-reset]');
   if (reset) reset.addEventListener('click', () => {
-    state.filters = { project: null, label: null, status: null, priority: null };
+    state.filters = { project: null, label: null, status: null, priority: null, subSubject: null };
     scoped(FILTERS_KEY).set(state.filters);
     state.page = 1;
     renderFilters();
     renderList();
   });
+}
+
+/** 항목의 Sub Subjects 배열 (subSubjects 우선, 없으면 subSubject 단일값). */
+export function subSubjectsOf(it) {
+  if (Array.isArray(it.subSubjects) && it.subSubjects.length) return it.subSubjects;
+  if (it.subSubject) return [it.subSubject];
+  return [];
 }
 
 function chipGroup(key, label, options, current) {
@@ -274,6 +286,7 @@ function chipGroup(key, label, options, current) {
 export function filterItems(items, filters) {
   return items.filter(it => {
     if (filters.project && it.project !== filters.project) return false;
+    if (filters.subSubject && !subSubjectsOf(it).includes(filters.subSubject)) return false;
     if (filters.label && !(it.labels || []).includes(filters.label)) return false;
     if (filters.status && it.status !== filters.status) return false;
     if (filters.priority && it.priority !== filters.priority) return false;
@@ -674,29 +687,29 @@ async function loadMeta() {
   const refresh = $('btn-refresh');
   if (refresh) refresh.disabled = true;
   try {
-    await verifyOneMetaSchema();
-  } catch (e) {
-    if (e instanceof SchemaMismatchError) {
-      renderAuthUi('schemaMissing', e);
-      return;
+    try {
+      await verifyOneMetaSchema();
+    } catch (e) {
+      // 시트가 아예 없으면 자동 생성 후 진행 (편집을 위해 로그인한 것이므로 바로 만들어 준다).
+      // 헤더가 다른(=기존 데이터 있는) 경우는 파괴 위험 → 수동 처리.
+      if (e instanceof SchemaMismatchError && e.detail && e.detail.missing) {
+        await ensureOneMetaSheet();
+        toast({ kicker: 'one-ticket-meta', msg: '편집 시트 자동 생성됨', kind: 'success' });
+      } else {
+        throw e;
+      }
     }
-    if (e instanceof AuthRequiredError) { state.signedIn = false; renderAuthUi('signedOut'); return; }
-    console.error('[one-tickets] schema 검증 실패', e);
-    toast({ kicker: '스키마 오류', msg: e.message || String(e), kind: 'alert' });
-    return;
-  } finally {
-    if (refresh) refresh.disabled = false;
-  }
-
-  try {
     state.metaRows = await loadOneMeta();
     state.meta = metaByKey(state.metaRows);
     renderAuthUi('signedIn');
     renderList();
   } catch (e) {
-    if (e instanceof AuthRequiredError) { state.signedIn = false; renderAuthUi('signedOut'); return; }
+    if (e instanceof AuthRequiredError) { state.signedIn = false; renderAuthUi('signedOut'); renderList(); return; }
+    if (e instanceof SchemaMismatchError) { renderAuthUi('schemaMissing', e); return; }
     console.error('[one-tickets] meta 로드 실패', e);
     toast({ kicker: '메타 로드 실패', msg: e.message || String(e), kind: 'alert' });
+  } finally {
+    if (refresh) refresh.disabled = false;
   }
 }
 
@@ -749,5 +762,5 @@ function renderAuthUi(phase, err) {
 export const _internal = {
   TOP_PROJECTS, PAGE_SIZE, NO_SUBJECT,
   normalizeItem, buildFromFallback, linkedKeySet, topLevelItems,
-  filterItems, sortItems, groupByMainSubject, rankOf, cssId,
+  filterItems, sortItems, groupByMainSubject, rankOf, cssId, subSubjectsOf,
 };
