@@ -34,7 +34,7 @@ const state = {
   rootRel: '',
   items: [],          // 정규화된 one 티켓 전체 (linkedTickets 포함)
   itemsByKey: new Map(),
-  linkedSet: new Set(),
+  clusterMembers: new Map(),
   topLevel: [],       // dedup 된 top-level (ETR + 비연결)
   signedIn: false,
   email: null,
@@ -146,25 +146,75 @@ function normalizeItem(raw) {
 
 function recompute() {
   state.itemsByKey = new Map(state.items.map(it => [it.key, it]));
-  state.linkedSet = linkedKeySet(state.items);
-  state.topLevel = topLevelItems(state.items, state.linkedSet);
+  const { reps, membersByRep } = clusterItems(state.items);
+  state.topLevel = reps;            // 클러스터 대표(top-level)
+  state.clusterMembers = membersByRep;  // repKey → [member items] (펼침에 표시)
 }
 
-/** 모든 ETR 항목의 연결 티켓 key 집합. */
-export function linkedKeySet(items) {
-  const set = new Set();
-  for (const it of items) {
-    if (it.project !== 'ETR') continue;
+/** 병합 제외 링크 타입 — Blocks 는 별도 과제로 보아 묶지 않는다. */
+export const MERGE_EXCLUDE_LINKS = new Set(['Blocks']);
+
+/**
+ * 연결 티켓을 하나의 항목으로 병합 (union-find 클러스터링).
+ * - 셋(itemsByKey) 안의 티켓끼리, Blocks 제외 모든 링크 타입으로 연결되면 같은 클러스터.
+ * - 양방향/transitive(A-B-C) 모두 한 묶음. 클러스터당 대표 1개만 top-level, 나머지는 펼침.
+ * @returns {{ reps: Object[], membersByRep: Map<string, Object[]> }}
+ */
+export function clusterItems(items) {
+  const list = Array.isArray(items) ? items : [];
+  const byKey = new Map(list.map(it => [it.key, it]));
+  const parent = new Map(list.map(it => [it.key, it.key]));
+  const find = (k) => {
+    let r = k;
+    while (parent.get(r) !== r) r = parent.get(r);
+    while (parent.get(k) !== r) { const n = parent.get(k); parent.set(k, r); k = n; }
+    return r;
+  };
+  const union = (a, b) => { const ra = find(a), rb = find(b); if (ra !== rb) parent.set(ra, rb); };
+
+  for (const it of list) {
     for (const l of (it.linkedTickets || [])) {
-      if (l && l.key) set.add(l.key);
+      if (!l || !l.key || !byKey.has(l.key)) continue;      // 셋 안의 티켓끼리만
+      if (MERGE_EXCLUDE_LINKS.has(l.linkType)) continue;     // Blocks 제외
+      union(it.key, l.key);
     }
   }
-  return set;
+
+  const byRoot = new Map();
+  for (const it of list) {
+    const r = find(it.key);
+    if (!byRoot.has(r)) byRoot.set(r, []);
+    byRoot.get(r).push(it);
+  }
+
+  const reps = [];
+  const membersByRep = new Map();
+  for (const members of byRoot.values()) {
+    const rep = pickRepresentative(members);
+    reps.push(rep);
+    membersByRep.set(rep.key, members.filter(m => m.key !== rep.key));
+  }
+  return { reps, membersByRep };
 }
 
-/** ETR 이거나, 어떤 ETR 의 연결 티켓이 아닌 항목만 top-level. */
-export function topLevelItems(items, linked) {
-  return items.filter(it => it.project === 'ETR' || !linked.has(it.key));
+/** 클러스터 대표 선정: 프로젝트 우선순위(TOP_PROJECTS, ETR 먼저) → 생성 빠른 순 → key. */
+export function pickRepresentative(members) {
+  return members.slice().sort(cmpRep)[0];
+}
+function cmpRep(a, b) {
+  const pa = TOP_PROJECTS.indexOf(a.project), pb = TOP_PROJECTS.indexOf(b.project);
+  const na = pa < 0 ? 99 : pa, nb = pb < 0 ? 99 : pb;
+  if (na !== nb) return na - nb;
+  const ca = a.created || '', cb = b.created || '';
+  if (ca !== cb) return ca < cb ? -1 : 1;
+  return String(a.key) < String(b.key) ? -1 : 1;
+}
+
+/** 대표↔멤버 사이 직접 링크의 linkType (transitive 면 '연결'). 펼침 표식용. */
+function linkRelation(rep, member) {
+  for (const l of (rep.linkedTickets || [])) if (l && l.key === member.key) return l.linkType || '';
+  for (const l of (member.linkedTickets || [])) if (l && l.key === rep.key) return l.linkType || '';
+  return '';
 }
 
 /* ─── 헤더 ────────────────────────────────────────────────── */
@@ -177,11 +227,11 @@ function renderHeader() {
     lede.innerHTML = '동기화 대기 중 — Jira sync 후 표시됩니다.';
     return;
   }
-  const etr = state.topLevel.filter(it => it.project === 'ETR').length;
+  const merged = state.topLevel.filter(it => (state.clusterMembers.get(it.key) || []).length > 0).length;
   lede.innerHTML =
     `<strong class="num">${total}</strong>개 묶음 ` +
-    `(전체 <span class="num">${state.items.length}</span>건, ETR <span class="num">${etr}</span>건). ` +
-    `ETR 행 클릭 시 연결 티켓 펼침. 로그인하면 코멘트·우선순위 편집.`;
+    `(전체 <span class="num">${state.items.length}</span>건, 병합 <span class="num">${merged}</span>묶음). ` +
+    `연결 티켓(Blocks 제외) 행 클릭 시 펼침. 로그인하면 요약·코멘트·우선순위 편집.`;
 }
 
 /* ─── 컨트롤 (뷰/정렬 토글 + 필터) ────────────────────────── */
@@ -282,15 +332,59 @@ function chipGroup(key, label, options, current) {
 
 /* ─── 필터 / 정렬 (pure) ──────────────────────────────────── */
 
+/** 단일 항목이 필터에 매칭되는지. */
+export function itemMatchesFilters(it, filters) {
+  if (filters.project && it.project !== filters.project) return false;
+  if (filters.subSubject && !subSubjectsOf(it).includes(filters.subSubject)) return false;
+  if (filters.label && !(it.labels || []).includes(filters.label)) return false;
+  if (filters.status && it.status !== filters.status) return false;
+  if (filters.priority && it.priority !== filters.priority) return false;
+  return true;
+}
+
 export function filterItems(items, filters) {
-  return items.filter(it => {
-    if (filters.project && it.project !== filters.project) return false;
-    if (filters.subSubject && !subSubjectsOf(it).includes(filters.subSubject)) return false;
-    if (filters.label && !(it.labels || []).includes(filters.label)) return false;
-    if (filters.status && it.status !== filters.status) return false;
-    if (filters.priority && it.priority !== filters.priority) return false;
-    return true;
+  return items.filter(it => itemMatchesFilters(it, filters));
+}
+
+/**
+ * 클러스터 필터 — 대표 또는 멤버 중 하나라도 매칭되면 그 묶음을 노출.
+ * (병합된 멤버가 필터에 걸려도 묶음이 사라지지 않게.)
+ */
+export function filterClusters(reps, filters, membersByRep = new Map()) {
+  return reps.filter(rep => {
+    if (itemMatchesFilters(rep, filters)) return true;
+    return (membersByRep.get(rep.key) || []).some(m => itemMatchesFilters(m, filters));
   });
+}
+
+/** 클러스터의 최선(최소) 수동순위 — 멤버 포함. 없으면 null. */
+function clusterBestRank(rep, members, metaMap) {
+  const ranks = [rep, ...members].map(it => rankOf(it.key, metaMap)).filter(r => r != null);
+  return ranks.length ? Math.min(...ranks) : null;
+}
+/** 클러스터의 최신 created(ms) — 멤버 포함. */
+function clusterNewest(rep, members) {
+  return Math.max(0, ...[rep, ...members].map(it => (it.created ? new Date(it.created).getTime() : 0)));
+}
+
+/** 클러스터 정렬 — rank: 묶음 최선순위 asc, 없으면 최신순. created: 묶음 최신순. */
+export function sortClusters(reps, sort, metaMap = new Map(), membersByRep = new Map()) {
+  const arr = reps.slice();
+  const mem = (r) => membersByRep.get(r.key) || [];
+  const newest = (r) => clusterNewest(r, mem(r));
+  if (sort === 'created') {
+    arr.sort((a, b) => newest(b) - newest(a));
+    return arr;
+  }
+  arr.sort((a, b) => {
+    const ra = clusterBestRank(a, mem(a), metaMap);
+    const rb = clusterBestRank(b, mem(b), metaMap);
+    if (ra != null && rb != null) return ra - rb || (newest(b) - newest(a));
+    if (ra != null) return -1;
+    if (rb != null) return 1;
+    return newest(b) - newest(a);
+  });
+  return arr;
 }
 
 function rankOf(key, metaMap) {
@@ -345,7 +439,8 @@ export function groupByMainSubject(items) {
 function renderList() {
   const host = $('one-table');
   if (!host) return;
-  const rows = sortItems(filterItems(state.topLevel, state.filters), state.sort, state.meta);
+  const filtered = filterClusters(state.topLevel, state.filters, state.clusterMembers);
+  const rows = sortClusters(filtered, state.sort, state.meta, state.clusterMembers);
 
   if (!rows.length) {
     host.innerHTML = emptyHtml({
@@ -366,7 +461,7 @@ function renderList() {
   bindGroupToggle(host);
 }
 
-const COLS = 8;
+const COLS = 9;
 
 function theadHtml() {
   return `
@@ -419,7 +514,8 @@ function renderSubjectView(host, rows) {
 }
 
 function rowHtml(it) {
-  const expandable = it.project === 'ETR' && (it.linkedTickets || []).length > 0;
+  const members = (state.clusterMembers && state.clusterMembers.get(it.key)) || [];
+  const expandable = members.length > 0;
   const open = state.expanded.has(it.key);
   const g = STATUS_GROUPS.find(x => x.id === statusGroup(it));
   const priCls = `pri-${(it.priority || '').toLowerCase() || 'p3'}`;
@@ -497,24 +593,26 @@ function commentCellHtml(key) {
 }
 
 function expandHtml(it, expandId) {
-  const linked = it.linkedTickets || [];
-  const rows = linked.map(l => {
-    const full = state.itemsByKey.get(l.key) || l;
-    const g = STATUS_GROUPS.find(x => x.id === statusGroup(full));
-    const assignee = (full.assignee && full.assignee.name) || (l.assignee && l.assignee.name) || '—';
+  const members = (state.clusterMembers && state.clusterMembers.get(it.key)) || [];
+  const rows = members.map(m => {
+    const g = STATUS_GROUPS.find(x => x.id === statusGroup(m));
+    const assignee = (m.assignee && m.assignee.name) || '—';
+    const rel = linkRelation(it, m);
     return `
       <div class="linked-row">
-        ${jiraKeyHtml(l.key)}
-        <span class="ft-link-summary">${escapeHtml(full.summary || l.summary || '')}</span>
-        <span class="st ${g ? g.stClass : 'st-wait'}">${escapeHtml(full.status || l.status || '—')}</span>
+        ${jiraKeyHtml(m.key)}
+        <span class="dim dim-mono">${escapeHtml(m.project || '')}</span>
+        <span class="ft-link-summary">${escapeHtml(m.summary || '')}</span>
+        ${rel ? `<span class="one-rel">${escapeHtml(rel)}</span>` : ''}
+        <span class="st ${g ? g.stClass : 'st-wait'}">${escapeHtml(m.status || '—')}</span>
         <span class="who"><span class="who-dot"></span>${escapeHtml(assignee)}</span>
       </div>
     `;
   }).join('');
   return `
     <tr class="ft-expand" role="presentation"><td colspan="${COLS}" role="presentation" class="ft-expand-cell">
-      <section id="${expandId}" class="expand" role="region" aria-label="연결 티켓 ${linked.length}건">
-        <div class="expand-label">연결 티켓 · ${linked.length}건 (하나로 관리)</div>
+      <section id="${expandId}" class="expand" role="region" aria-label="연결 티켓 ${members.length}건">
+        <div class="expand-label">연결 티켓 · ${members.length}건 (하나로 병합 · Blocks 제외)</div>
         ${rows}
       </section>
     </td></tr>
@@ -791,6 +889,7 @@ function renderAuthUi(phase, err) {
 
 export const _internal = {
   TOP_PROJECTS, PAGE_SIZE, NO_SUBJECT,
-  normalizeItem, buildFromFallback, linkedKeySet, topLevelItems,
-  filterItems, sortItems, groupByMainSubject, rankOf, cssId, subSubjectsOf,
+  normalizeItem, buildFromFallback, clusterItems, pickRepresentative, MERGE_EXCLUDE_LINKS,
+  filterItems, itemMatchesFilters, filterClusters, sortItems, sortClusters,
+  groupByMainSubject, rankOf, cssId, subSubjectsOf,
 };

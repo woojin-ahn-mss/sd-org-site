@@ -1256,6 +1256,11 @@
   display: inline-block; margin-left: 6px; vertical-align: middle;
   font-size: 10px; color: var(--accent); white-space: nowrap;
 }
+/* 펼침 내 연결 티켓의 링크 타입(Relates/Clones 등) 라벨 */
+.one-rel {
+  font-size: 10px; color: var(--faint); border: 1px solid var(--rule);
+  border-radius: var(--radius); padding: 0 5px; white-space: nowrap;
+}
 
 /* 요약 셀 안 라벨 칩 */
 .one-labels { display: inline-flex; flex-wrap: wrap; gap: 4px; margin-left: 8px; vertical-align: middle; }
