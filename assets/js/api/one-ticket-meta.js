@@ -60,11 +60,13 @@ export function metaByKey(rows) {
 /* ─── upsert / delete ─────────────────────────────────────── */
 
 /** 편집 메타가 모두 비었는지 (모두 비면 행 삭제 대상). 순수 — 테스트 대상. */
-export function metaIsEmpty({ manual_rank, comment, summary_override, quick_fix, hidden, image_path } = {}) {
+export function metaIsEmpty({ manual_rank, comment, summary_override, quick_fix, hidden, image_path, content, content_image_path } = {}) {
   return manual_rank == null
     && (comment == null || String(comment).trim() === '')
     && (summary_override == null || String(summary_override).trim() === '')
     && (image_path == null || String(image_path).trim() === '')
+    && (content == null || String(content).trim() === '')
+    && (content_image_path == null || String(content_image_path).trim() === '')
     && !quick_fix && !hidden;
 }
 
@@ -157,12 +159,21 @@ export async function upsertOneMeta(jiraKey, patch = {}, currentRows = []) {
   const image_path = (('image_path' in patch)
     ? String(patch.image_path ?? '')
     : (existing ? String(existing.image_path ?? '') : '')).trim();
+  // 내용도 멀티라인 — 의도된 줄바꿈 보존. 빈 값(공백뿐)만 ''로.
+  const contentRaw = ('content' in patch)
+    ? String(patch.content ?? '')
+    : (existing ? String(existing.content ?? '') : '');
+  const content = contentRaw.trim() === '' ? '' : contentRaw;
+  const content_image_path = (('content_image_path' in patch)
+    ? String(patch.content_image_path ?? '')
+    : (existing ? String(existing.content_image_path ?? '') : '')).trim();
 
   const summaryEmpty = summary_override === '';
   const imageEmpty = image_path === '';
+  const contentImageEmpty = content_image_path === '';
 
   // 편집 필드가 모두 비면 행 삭제(stale 정리).
-  if (metaIsEmpty({ manual_rank, comment, summary_override, quick_fix, hidden, image_path })) {
+  if (metaIsEmpty({ manual_rank, comment, summary_override, quick_fix, hidden, image_path, content, content_image_path })) {
     unwrap(await supabase.from('one_ticket_meta').delete().eq('jira_key', jiraKey));
     return null;
   }
@@ -175,6 +186,8 @@ export async function upsertOneMeta(jiraKey, patch = {}, currentRows = []) {
     quick_fix,
     hidden,
     image_path: imageEmpty ? null : image_path,
+    content: content === '' ? null : content,
+    content_image_path: contentImageEmpty ? null : content_image_path,
   };
   return unwrap(await supabase.from('one_ticket_meta').upsert(row, { onConflict: 'jira_key' }).select().single());
 }

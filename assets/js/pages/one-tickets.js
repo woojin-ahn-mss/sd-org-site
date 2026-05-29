@@ -111,6 +111,12 @@ async function loadList() {
   }
   // 과제 유형(Initiative + 과제 발의)만 표시 — Epic·Design·기타(KTLO/BAU) 제외.
   state.items = items.map(normalizeItem).filter(isInitiative);
+  // "내용" 기본값(커밋된 AI 생성 요약) — 편집 시 meta.content 가 override.
+  state.contentDefaults = new Map();
+  try {
+    const cj = await loadJson(`${state.rootRel}data/jira/one-content.json`);
+    for (const [k, v] of Object.entries(cj || {})) state.contentDefaults.set(String(k), String(v ?? ''));
+  } catch (_) { /* 파일 없으면 기본값 없음 — 빈 칸 */ }
   recompute();
 }
 
@@ -618,6 +624,7 @@ function renderList() {
     return rep;
   });
   const rows = sortClusters(displayReps, state.sort, state.meta, state.displayMembers);
+  updateListCount(rows.length);
 
   if (!rows.length) {
     host.innerHTML = emptyHtml({
@@ -637,6 +644,12 @@ function renderList() {
   bindPager(host);
   bindGroupToggle(host);
   resolveImages(host);   // 첨부 이미지 서명 URL 주입 (비동기)
+}
+
+/** "티켓 리스트" 제목 옆 필터 결과 묶음 수 갱신. */
+function updateListCount(n) {
+  const el = document.querySelector('[data-one-count]');
+  if (el) el.textContent = `${n}`;
 }
 
 /** 렌더된 첨부 이미지(data-img-path)에 서명 URL 을 비동기 주입. 재렌더 시 stale 무시. */
@@ -661,14 +674,14 @@ function applySavedMeta(key, saved) {
   }
 }
 
-/** 코멘트에 드롭한 이미지 파일 → Storage 업로드 → image_path 저장. */
-async function onDropImage(key, file) {
+/** 코멘트/내용에 드롭한 이미지 파일 → Storage 업로드 → 해당 field(image_path|content_image_path) 저장. */
+async function onDropImage(key, file, field = 'image_path') {
   if (!state.signedIn || state.imgBusy) return;
   state.imgBusy = true;
   try {
     const path = await uploadTicketImageBlob(key, file);
     try {
-      applySavedMeta(key, await upsertOneMeta(key, { image_path: path }, state.metaRows));
+      applySavedMeta(key, await upsertOneMeta(key, { [field]: path }, state.metaRows));
     } catch (e) {
       await removeTicketImage(path);   // DB 반영 실패 시 업로드 객체 롤백
       throw e;
@@ -681,15 +694,15 @@ async function onDropImage(key, file) {
   } finally { state.imgBusy = false; }
 }
 
-/** 이미지 삭제 — image_path 비우고 Storage 객체 제거. */
-async function onDeleteImage(key) {
+/** 이미지 삭제 — 해당 field 비우고 Storage 객체 제거. */
+async function onDeleteImage(key, field = 'image_path') {
   if (!state.signedIn || state.imgBusy) return;
   if (!window.confirm('첨부 이미지를 삭제할까요?')) return;
   const prev = state.meta.get(key);
-  const path = prev && prev.image_path;
+  const path = prev && prev[field];
   state.imgBusy = true;
   try {
-    applySavedMeta(key, await upsertOneMeta(key, { image_path: '' }, state.metaRows));
+    applySavedMeta(key, await upsertOneMeta(key, { [field]: '' }, state.metaRows));
     if (path) await removeTicketImage(path);
     toast({ kicker: key, msg: '이미지 삭제됨', kind: 'success' });
     renderList();
@@ -699,20 +712,19 @@ async function onDeleteImage(key) {
   } finally { state.imgBusy = false; }
 }
 
-const COLS = 9;
+const COLS = 8;
 
 function theadHtml() {
   return `
     <thead>
       <tr>
         <th style="width:92px">키</th>
-        <th style="width:34%">요약</th>
-        <th style="width:64px">프로젝트</th>
+        <th style="width:24%">요약</th>
+        <th style="width:24%">내용</th>
         <th style="width:150px">상태</th>
-        <th style="width:48px">우선</th>
         <th style="width:74px">순위</th>
         <th style="width:64px" title="Quick fix 대상">Quick fix</th>
-        <th style="width:40%">코멘트</th>
+        <th style="width:30%">코멘트</th>
         <th style="width:${state.hideManageMode ? 56 : 20}px">${state.hideManageMode ? '숨김' : ''}</th>
       </tr>
     </thead>`;
@@ -756,7 +768,6 @@ function rowHtml(it) {
   const expandable = members.length > 0;
   const open = state.expanded.has(it.key);
   const g = STATUS_GROUPS.find(x => x.id === statusGroup(it));
-  const priCls = `pri-${(it.priority || '').toLowerCase() || 'p3'}`;
   const expandId = `one-expand-${cssId(it.key)}`;
   const m = state.meta.get(it.key);
   const isHidden = !!(m && m.hidden);
@@ -773,9 +784,8 @@ function rowHtml(it) {
     <tr ${rowAttrs}>
       <td>${jiraKeyHtml(it.key)}</td>
       <td class="ft-summary">${summaryCellHtml(it)}</td>
-      <td><span class="dim dim-mono">${escapeHtml(it.project || '—')}</span></td>
+      <td class="one-content-td">${contentCellHtml(it.key)}</td>
       <td><span class="st ${g ? g.stClass : 'st-wait'}">${escapeHtml(it.status || '—')}</span></td>
-      <td><span class="pri ${priCls}">${escapeHtml(it.priority || '—')}</span></td>
       <td>${rankCellHtml(it.key)}</td>
       <td class="one-qf-cell">${quickFixCellHtml(it.key)}</td>
       <td>${commentCellHtml(it.key)}</td>
@@ -814,6 +824,23 @@ function summaryCellHtml(it) {
     <textarea class="one-summary-input" rows="1" data-key="${escapeAttr(it.key)}"
               placeholder="요약" aria-label="${escapeAttr(it.key)} 요약 (대시보드 전용)">${escapeHtml(display)}</textarea>
     ${override ? '<span class="one-edited" title="대시보드에서 수정된 요약 (Jira 미반영)">✎ 수정됨</span>' : ''}${chips}`;
+}
+
+/** 내용 셀 — 대시보드 전용 간략 내용(편집형). 기본값은 one-content.json, 편집 시 meta.content override. 이미지 첨부 지원. */
+function contentCellHtml(key) {
+  const m = state.meta.get(key);
+  const override = m && m.content != null ? String(m.content) : '';
+  const def = (state.contentDefaults && state.contentDefaults.get(key)) || '';
+  const val = override || def;
+  if (!state.signedIn) {
+    const body = val ? escapeHtml(val).replace(/\n/g, '<br>') : '<span class="muted">—</span>';
+    return `<div class="one-content-view readonly">${body}</div>${imageAreaHtml(key, 'content_image_path')}`;
+  }
+  return `<div class="one-content-cell" data-key="${escapeAttr(key)}">
+    <textarea class="one-content-input" rows="1" data-key="${escapeAttr(key)}"
+              placeholder="내용" title="이미지 파일을 끌어다 놓으면 첨부됩니다"
+              aria-label="${escapeAttr(key)} 내용 (대시보드 전용)">${escapeHtml(val)}</textarea>
+  </div>${imageAreaHtml(key, 'content_image_path')}`;
 }
 
 /** Quick fix 체크박스 셀. */
@@ -877,13 +904,13 @@ function commentCellHtml(key) {
   </div>${imageAreaHtml(key)}`;
 }
 
-/** 코멘트 하단 이미지 영역 — 첨부 이미지(서명 URL은 렌더 후 주입) + 추가/삭제. */
-function imageAreaHtml(key) {
+/** 코멘트/내용 하단 이미지 영역 — 첨부 이미지(서명 URL은 렌더 후 주입) + 삭제. field 로 대상 구분. */
+function imageAreaHtml(key, field = 'image_path') {
   const m = state.meta.get(key);
-  const path = m && m.image_path ? String(m.image_path) : '';
+  const path = m && m[field] ? String(m[field]) : '';
   if (path) {
     const btn = state.signedIn
-      ? `<button type="button" class="one-img-del tlink" data-key="${escapeAttr(key)}">이미지 삭제</button>`
+      ? `<button type="button" class="one-img-del tlink" data-key="${escapeAttr(key)}" data-field="${escapeAttr(field)}">이미지 삭제</button>`
       : '';
     return `<div class="one-img-area">
       <a class="one-img-link" data-img-path="${escapeAttr(path)}" target="_blank" rel="noopener noreferrer">
@@ -892,7 +919,7 @@ function imageAreaHtml(key) {
       ${btn}
     </div>`;
   }
-  return '';   // 이미지 없을 땐 버튼 없음 — 코멘트에 이미지 파일을 드래그하면 첨부됨
+  return '';   // 이미지 없을 땐 버튼 없음 — 코멘트/내용에 이미지 파일을 드래그하면 첨부됨
 }
 
 function expandHtml(it, expandId) {
@@ -937,7 +964,7 @@ function autoGrowTextarea(el) {
 function bindRowToggle(host) {
   host.querySelectorAll('tr.ft-row').forEach(tr => {
     tr.addEventListener('click', e => {
-      if (e.target.closest('a, input, textarea, button, .one-comment-cell')) return;
+      if (e.target.closest('a, input, textarea, button, .one-comment-cell, .one-content-cell')) return;
       toggleRow(tr);
     });
     tr.addEventListener('keydown', onRowKeydown);
@@ -1078,8 +1105,35 @@ function bindMetaInputs(host) {
       renderHideControls();   // 저장 버튼의 변경 건수 갱신
     });
   });
+  // 내용 — 편집형(자동 높이 textarea). 기본값(one-content.json)과 같거나 비우면 override 해제. 이미지 드래그앤드랍.
+  host.querySelectorAll('.one-content-cell').forEach(cell => {
+    const ta = cell.querySelector('.one-content-input');
+    if (!ta) return;
+    autoGrowTextarea(ta);
+    ta.addEventListener('input', () => autoGrowTextarea(ta));
+    ta.addEventListener('change', () => {
+      const key = ta.dataset.key;
+      const def = ((state.contentDefaults && state.contentDefaults.get(key)) || '').trim();
+      const v = ta.value.trim();
+      saveMeta(key, { content: v === def ? '' : ta.value });   // 기본값과 동일/공백 → override 해제
+    });
+    // 이미지 파일 드래그앤드랍 → content_image_path
+    const draggingFile = (e) => [...(e.dataTransfer?.items || [])].some(it => it.kind === 'file');
+    cell.addEventListener('dragover', (e) => {
+      if (!draggingFile(e)) return;
+      e.preventDefault(); e.dataTransfer.dropEffect = 'copy';
+      cell.classList.add('drag-over');
+    });
+    cell.addEventListener('dragleave', () => cell.classList.remove('drag-over'));
+    cell.addEventListener('drop', (e) => {
+      const file = [...(e.dataTransfer?.files || [])].find(f => /^image\//.test(f.type));
+      if (!file) return;
+      e.preventDefault(); cell.classList.remove('drag-over');
+      onDropImage(cell.dataset.key, file, 'content_image_path');
+    });
+  });
   host.querySelectorAll('.one-img-del').forEach(btn => {
-    btn.addEventListener('click', (e) => { e.stopPropagation(); onDeleteImage(btn.dataset.key); });
+    btn.addEventListener('click', (e) => { e.stopPropagation(); onDeleteImage(btn.dataset.key, btn.dataset.field || 'image_path'); });
   });
 }
 
