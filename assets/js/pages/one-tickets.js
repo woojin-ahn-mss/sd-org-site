@@ -20,6 +20,7 @@ import { toast } from '../toast.js';
 import { auth, AuthRequiredError, subscribe } from '../api/supabase.js';
 import {
   loadOneMeta, metaByKey, upsertOneMeta,
+  uploadTicketImage, signedImageUrl, removeTicketImage,
 } from '../api/one-ticket-meta.js';
 
 const TOP_PROJECTS = ['ETR', 'MSSCXTF', 'FT', 'TM', 'CBP', 'PBO', 'MSS'];
@@ -44,6 +45,8 @@ const state = {
   hideManageMode: false,   // 숨김 관리 모드 (체크박스 노출 + 전체 표시)
   hidePending: new Map(),  // 관리 모드 중 변경 대기 (key → bool)
   hideSaving: false,       // 저장 진행 중 (중복 저장 방지)
+  imgBusy: false,          // 이미지 업로드/삭제 진행 중 (중복 제출 방지)
+  renderToken: 0,          // 렌더 식별 (서명 URL stale 주입 방지)
   view: 'all',        // 'all' | 'subject'
   sort: 'rank',       // 'rank' | 'created'
   expanded: new Set(),
@@ -600,6 +603,69 @@ function renderList() {
   bindMetaInputs(host);
   bindPager(host);
   bindGroupToggle(host);
+  resolveImages(host);   // 첨부 이미지 서명 URL 주입 (비동기)
+}
+
+/** 렌더된 첨부 이미지(data-img-path)에 서명 URL 을 비동기 주입. 재렌더 시 stale 무시. */
+async function resolveImages(host) {
+  const token = (state.renderToken = (state.renderToken || 0) + 1);
+  const imgs = [...host.querySelectorAll('img.one-img[data-img-path]')];
+  await Promise.all(imgs.map(async (img) => {
+    const url = await signedImageUrl(img.dataset.imgPath);
+    if (state.renderToken !== token || !img.isConnected) return;   // 더 새 렌더가 시작됨 → skip
+    if (url) { img.src = url; const a = img.closest('a.one-img-link'); if (a) a.href = url; }
+  }));
+}
+
+function applySavedMeta(key, saved) {
+  if (saved) {
+    state.meta.set(key, saved);
+    const i = state.metaRows.findIndex(r => String(r.jira_key) === String(key));
+    if (i >= 0) state.metaRows[i] = saved; else state.metaRows.push(saved);
+  } else {
+    state.meta.delete(key);
+    state.metaRows = state.metaRows.filter(r => String(r.jira_key) !== String(key));
+  }
+}
+
+/** 이미지 추가 — URL 입력 → Storage 복사 → image_path 저장. */
+async function onAddImage(key) {
+  if (!state.signedIn || state.imgBusy) return;
+  const url = window.prompt('이미지 URL 을 붙여넣으세요 (Jira 미디어 링크 등)');
+  if (!url || !url.trim()) return;
+  state.imgBusy = true;
+  try {
+    const path = await uploadTicketImage(key, url.trim());
+    try {
+      applySavedMeta(key, await upsertOneMeta(key, { image_path: path }, state.metaRows));
+    } catch (e) {
+      await removeTicketImage(path);   // DB 반영 실패 시 업로드된 객체 롤백(orphan 방지)
+      throw e;
+    }
+    toast({ kicker: key, msg: '이미지 등록됨', kind: 'success' });
+    renderList();
+  } catch (e) {
+    if (e instanceof AuthRequiredError) { state.signedIn = false; renderAuthUi('signedOut'); renderList(); }
+    else { console.error('[one-tickets] 이미지 등록 실패', e); toast({ kicker: '이미지 등록 실패', msg: e.message || String(e), kind: 'alert' }); }
+  } finally { state.imgBusy = false; }
+}
+
+/** 이미지 삭제 — image_path 비우고 Storage 객체 제거. */
+async function onDeleteImage(key) {
+  if (!state.signedIn || state.imgBusy) return;
+  if (!window.confirm('첨부 이미지를 삭제할까요?')) return;
+  const prev = state.meta.get(key);
+  const path = prev && prev.image_path;
+  state.imgBusy = true;
+  try {
+    applySavedMeta(key, await upsertOneMeta(key, { image_path: '' }, state.metaRows));
+    if (path) await removeTicketImage(path);
+    toast({ kicker: key, msg: '이미지 삭제됨', kind: 'success' });
+    renderList();
+  } catch (e) {
+    if (e instanceof AuthRequiredError) { state.signedIn = false; renderAuthUi('signedOut'); renderList(); }
+    else { console.error('[one-tickets] 이미지 삭제 실패', e); toast({ kicker: '이미지 삭제 실패', msg: e.message || String(e), kind: 'alert' }); }
+  } finally { state.imgBusy = false; }
 }
 
 const COLS = 9;
@@ -745,7 +811,26 @@ function commentCellHtml(key) {
   const ph = state.signedIn ? '코멘트 입력…' : '로그인 필요';
   return `<textarea class="one-comment-input" rows="2"
             data-key="${escapeAttr(key)}" placeholder="${ph}" ${dis}
-            aria-label="${escapeAttr(key)} 코멘트">${escapeHtml(val)}</textarea>`;
+            aria-label="${escapeAttr(key)} 코멘트">${escapeHtml(val)}</textarea>${imageAreaHtml(key)}`;
+}
+
+/** 코멘트 하단 이미지 영역 — 첨부 이미지(서명 URL은 렌더 후 주입) + 추가/삭제. */
+function imageAreaHtml(key) {
+  const m = state.meta.get(key);
+  const path = m && m.image_path ? String(m.image_path) : '';
+  if (path) {
+    const btn = state.signedIn
+      ? `<button type="button" class="one-img-del tlink" data-key="${escapeAttr(key)}">이미지 삭제</button>`
+      : '';
+    return `<div class="one-img-area">
+      <a class="one-img-link" data-img-path="${escapeAttr(path)}" target="_blank" rel="noopener noreferrer">
+        <img class="one-img" data-img-path="${escapeAttr(path)}" alt="첨부 이미지" loading="lazy" />
+      </a>
+      ${btn}
+    </div>`;
+  }
+  if (!state.signedIn) return '';
+  return `<div class="one-img-area"><button type="button" class="one-img-add tlink" data-key="${escapeAttr(key)}">＋ 이미지 추가</button></div>`;
 }
 
 function expandHtml(it, expandId) {
@@ -884,6 +969,13 @@ function bindMetaInputs(host) {
       cb.closest('tr')?.classList.toggle('one-hidden-row', cb.checked);   // live dim
       renderHideControls();   // 저장 버튼의 변경 건수 갱신
     });
+  });
+  // 이미지 추가 — URL 입력 → Storage 복사 → 경로 저장
+  host.querySelectorAll('.one-img-add').forEach(btn => {
+    btn.addEventListener('click', (e) => { e.stopPropagation(); onAddImage(btn.dataset.key); });
+  });
+  host.querySelectorAll('.one-img-del').forEach(btn => {
+    btn.addEventListener('click', (e) => { e.stopPropagation(); onDeleteImage(btn.dataset.key); });
   });
 }
 

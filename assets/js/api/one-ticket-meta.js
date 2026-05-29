@@ -60,11 +60,56 @@ export function metaByKey(rows) {
 /* ─── upsert / delete ─────────────────────────────────────── */
 
 /** 편집 메타가 모두 비었는지 (모두 비면 행 삭제 대상). 순수 — 테스트 대상. */
-export function metaIsEmpty({ manual_rank, comment, summary_override, quick_fix, hidden } = {}) {
+export function metaIsEmpty({ manual_rank, comment, summary_override, quick_fix, hidden, image_path } = {}) {
   return manual_rank == null
     && (comment == null || String(comment).trim() === '')
     && (summary_override == null || String(summary_override).trim() === '')
+    && (image_path == null || String(image_path).trim() === '')
     && !quick_fix && !hidden;
+}
+
+const IMG_BUCKET = 'one-ticket-images';
+
+/**
+ * 이미지 URL(만료 가능)을 받아 Storage 로 복사하고 object path 반환.
+ * 브라우저에서 fetch → blob → upload (Atlassian CDN 은 CORS 허용).
+ */
+const IMG_EXT = { 'image/png': 'png', 'image/jpeg': 'jpg', 'image/gif': 'gif', 'image/webp': 'webp' };
+
+export async function uploadTicketImage(jiraKey, srcUrl) {
+  // 행이 멈추지 않게 20초 타임아웃 (CORS/응답 지연 대비).
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), 20000);
+  let blob;
+  try {
+    const res = await fetch(srcUrl, { signal: ctrl.signal });
+    if (!res.ok) throw new Error(`이미지 fetch 실패: HTTP ${res.status}`);
+    blob = await res.blob();
+  } catch (e) {
+    throw new Error(e.name === 'AbortError' ? '이미지 요청 시간 초과(20초)' : (`이미지 가져오기 실패: ${e.message || e}`));
+  } finally { clearTimeout(timer); }
+  const ext = IMG_EXT[blob.type];
+  if (!ext) throw new Error(`지원하지 않는 형식입니다 (${blob.type || 'unknown'}) — png/jpg/gif/webp 만 가능`);
+  const rand = (typeof crypto !== 'undefined' && crypto.randomUUID) ? crypto.randomUUID() : String(Date.now());
+  const path = `${String(jiraKey).replace(/[^A-Za-z0-9_-]/g, '_')}/${rand}.${ext}`;
+  const up = await supabase.storage.from(IMG_BUCKET).upload(path, blob, { contentType: blob.type, upsert: false });
+  if (up.error) throw new Error(`업로드 실패: ${up.error.message}`);
+  return up.data.path;
+}
+
+/** object path → 서명 URL (기본 1시간). 실패 시 null. */
+export async function signedImageUrl(path, expiresIn = 3600) {
+  if (!path) return null;
+  const { data, error } = await supabase.storage.from(IMG_BUCKET).createSignedUrl(path, expiresIn);
+  if (error) { console.warn('[one-ticket-meta] signed url 실패', error); return null; }
+  return data.signedUrl;
+}
+
+/** Storage 에서 이미지 삭제 (실패해도 throw 안 함 — best effort). */
+export async function removeTicketImage(path) {
+  if (!path) return;
+  try { await supabase.storage.from(IMG_BUCKET).remove([path]); }
+  catch (e) { console.warn('[one-ticket-meta] 이미지 삭제 실패', e); }
 }
 
 /** 순위 정규화: 숫자/숫자문자열만 통과(int), 그 외/빈값은 null. */
@@ -103,11 +148,15 @@ export async function upsertOneMeta(jiraKey, patch = {}, currentRows = []) {
   const hidden = ('hidden' in patch)
     ? !!patch.hidden
     : (existing ? !!existing.hidden : false);
+  const image_path = (('image_path' in patch)
+    ? String(patch.image_path ?? '')
+    : (existing ? String(existing.image_path ?? '') : '')).trim();
 
   const summaryEmpty = summary_override === '';
+  const imageEmpty = image_path === '';
 
-  // 편집 필드가 모두 비면(순위·코멘트·서머리 없음 + quick_fix·hidden off) 행 삭제(stale 정리).
-  if (metaIsEmpty({ manual_rank, comment, summary_override, quick_fix, hidden })) {
+  // 편집 필드가 모두 비면 행 삭제(stale 정리).
+  if (metaIsEmpty({ manual_rank, comment, summary_override, quick_fix, hidden, image_path })) {
     unwrap(await supabase.from('one_ticket_meta').delete().eq('jira_key', jiraKey));
     return null;
   }
@@ -119,6 +168,7 @@ export async function upsertOneMeta(jiraKey, patch = {}, currentRows = []) {
     summary_override: summaryEmpty ? null : summary_override,
     quick_fix,
     hidden,
+    image_path: imageEmpty ? null : image_path,
   };
   return unwrap(await supabase.from('one_ticket_meta').upsert(row, { onConflict: 'jira_key' }).select().single());
 }
