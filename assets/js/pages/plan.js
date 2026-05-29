@@ -7,7 +7,7 @@
 
 import { showLoading, showError, emptyHtml } from '../states.js';
 import { loadJson } from '../fetch-data.js';
-import { auth, sheets, rowsToObjects, nowIso, AuthRequiredError, SPREADSHEET_ID } from '../api/sheets.js';
+import { auth, AuthRequiredError, supabase, unwrap, nowIso, subscribe } from '../api/supabase.js';
 import { jiraKeyHtml } from '../jira-link.js';
 import { fmtDate } from '../format.js';
 import { STATUS_GROUPS, statusGroup } from '../charts.js';
@@ -15,7 +15,6 @@ import { escapeHtml, escapeAttr } from '../escape.js';
 import { scoped } from '../storage.js';
 import { attachModal } from '../modal.js';
 
-const PLAN_RANGE = 'plan!A1:Z2000';
 const PLAN_KEY = 'jira_key';
 const ROLE_FIELDS = ['pm', 'pd', 'be', 'fe', 'me', 'md'];
 
@@ -48,7 +47,6 @@ const state = {
   rootRel: '',
   signedIn: false,
   items: [],          // joined+filtered+sorted items (Jira + plan), duedate ≥ today-7d 적용 후
-  planHeader: [],     // plan sheet 헤더 (실시간 fetch)
   jiraLastSync: null,
   filters: { ...DEFAULT_FILTERS },
   visibleCols: null,  // null = 기본값 (DEFAULT_VISIBLE_COLS) 사용
@@ -60,30 +58,24 @@ const state = {
    ========================================================= */
 
 /**
- * Jira 티켓과 plan sheet 행을 jira_key 기준으로 left join.
+ * Jira 티켓과 plan 테이블 행을 jira_key 기준으로 left join.
  * Jira 티켓 모두 유지, plan 정보는 매칭되는 행이 있으면 채우고 없으면 빈 문자열.
  *
  * @param {Array<object>} jiraItems data/jira/all-tickets.json 의 items
- * @param {Array<Array<any>>} planRows sheet API 가 돌려준 2D values (헤더 포함)
- * @returns {Array<object>} { jiraKey, summary, project, status, statusCategory, priority, dueDate, pm, pd, be, fe, me, md, plan_start, plan_end, last_updated_at, _planRowIndex }
+ * @param {Array<object>} planObjects Supabase plan 테이블 select 결과 ([{jira_key, pm, ...}])
+ * @returns {Array<object>} { jiraKey, summary, project, status, statusCategory, priority, dueDate, pm..md, plan_start, plan_end, last_updated_at }
  */
-export function joinJiraWithPlan(jiraItems, planRows) {
+export function joinJiraWithPlan(jiraItems, planObjects) {
   if (!Array.isArray(jiraItems)) return [];
-  const rows = Array.isArray(planRows) ? planRows : [];
-  const header = rows[0] || [];
-  const dataRows = rows.slice(1);
-  const planObjects = rowsToObjects(dataRows, header);
+  const rows = Array.isArray(planObjects) ? planObjects : [];
 
-  // jira_key → planObject + 행 인덱스 (sheet rowNum = index + 2, 헤더가 row 1)
   const planIdx = new Map();
-  for (let i = 0; i < planObjects.length; i++) {
-    const k = planObjects[i][PLAN_KEY];
-    if (k) planIdx.set(String(k), { obj: planObjects[i], rowNum: i + 2 });
+  for (const p of rows) {
+    if (p && p[PLAN_KEY]) planIdx.set(String(p[PLAN_KEY]), p);
   }
 
   return jiraItems.map((j) => {
-    const match = planIdx.get(String(j.key));
-    const p = match ? match.obj : {};
+    const p = planIdx.get(String(j.key)) || {};
     return {
       jiraKey: j.key,
       summary: j.summary || '',
@@ -93,7 +85,7 @@ export function joinJiraWithPlan(jiraItems, planRows) {
       priority: j.priority || '',
       dueDate: j.dueDate || null,
       mainSubject: j.mainSubject || '',
-      // plan fields
+      // plan fields (date 컬럼은 null → '' 로 normalize)
       pm: p.pm || '',
       pd: p.pd || '',
       be: p.be || '',
@@ -102,8 +94,7 @@ export function joinJiraWithPlan(jiraItems, planRows) {
       md: p.md || '',
       plan_start: p.plan_start || '',
       plan_end: p.plan_end || '',
-      last_updated_at: p.last_updated_at || '',
-      _planRowNum: match ? match.rowNum : null,  // 미존재 = append 대상
+      last_updated_at: p.updated_at || p.last_updated_at || '',
     };
   });
 }
@@ -154,52 +145,6 @@ export function availableStatusGroups(items) {
 }
 
 /* ─── 편집 헬퍼 (pure, 테스트 대상) ───────────────────────────────── */
-
-/**
- * 0-based 컬럼 인덱스 → 스프레드시트 컬럼 letter ('A', 'B', ..., 'Z', 'AA', ...).
- * 음수는 빈 문자열.
- */
-export function columnIndexToLetter(n) {
-  if (typeof n !== 'number' || n < 0 || !Number.isFinite(n)) return '';
-  n = Math.floor(n);
-  let s = '';
-  // 1-based 변환: 0→A, 25→Z, 26→AA
-  while (true) {
-    s = String.fromCharCode(65 + (n % 26)) + s;
-    n = Math.floor(n / 26) - 1;
-    if (n < 0) break;
-  }
-  return s;
-}
-
-/** 헤더 배열에서 field 의 시트 컬럼 letter 를 구함. 없으면 null. */
-export function sheetColLetter(field, planHeader) {
-  if (!Array.isArray(planHeader)) return null;
-  const idx = planHeader.indexOf(field);
-  if (idx < 0) return null;
-  return columnIndexToLetter(idx);
-}
-
-/**
- * 새 plan 행 append 시 보낼 값 배열. planHeader 순서대로.
- * editedField 자리에 editedValue, last_updated_at 에 now, jira_key 에 item.jiraKey, 그 외는 item 의 기존 plan 필드.
- */
-export function buildRowForAppend(item, planHeader, editedField, editedValue, now) {
-  if (!Array.isArray(planHeader)) return [];
-  return planHeader.map((field) => {
-    if (field === 'jira_key') return item.jiraKey || '';
-    if (field === 'last_updated_at') return now;
-    if (field === editedField) return editedValue;
-    return item[field] != null ? String(item[field]) : '';
-  });
-}
-
-/** sheets API 응답의 updatedRange ("plan!A5:J5") 에서 행 번호 파싱. 실패 시 null. */
-export function parseRowFromRange(range) {
-  if (typeof range !== 'string') return null;
-  const m = /![A-Z]+(\d+)/.exec(range);
-  return m ? parseInt(m[1], 10) : null;
-}
 
 /**
  * 편집 셀 값 검증. valid 면 null, invalid 면 사용자 메시지.
@@ -291,52 +236,39 @@ export async function renderPlan({ rootRel = '' } = {}) {
   bindAuthUi();
   bindRefresh();
   bindColsModal();
-  // sessionStorage 캐시가 살아있으면 바로 통과 — 페이지 이동 시 popup 재발 차단.
+  // Supabase 세션 복원 (localStorage + OAuth redirect 복귀 흡수). 없으면 로그인 게이트.
+  await auth.init();
   if (auth.isSignedIn()) {
     state.signedIn = true;
     renderAuthUi();
     await loadAndRender();
     return;
   }
-  // 첫 진입은 silent 만 시도 — 실패 시 popup 자동 안 띄우고 "Google 로그인" 버튼 노출.
-  try {
-    await auth.signIn({ silent: true });
-    state.signedIn = true;
-  } catch (e) {
-    state.signedIn = false;
-    if (e instanceof AuthRequiredError) {
-      renderAuthUi();
-      showAuthGated(tableHost);
-      return;
-    }
-    console.error('[plan] auth 예외', e);
-    showError(tableHost, e);
-    renderAuthUi();
-    return;
-  }
+  state.signedIn = false;
   renderAuthUi();
-  await loadAndRender();
+  showAuthGated(tableHost);
 }
 
 async function loadAndRender() {
   const tableHost = $('sec-table');
   showLoading(tableHost, { rows: 6, title: false });
 
-  let jiraData, planRes;
+  let jiraData, planRows;
   try {
-    [jiraData, planRes] = await Promise.all([
+    const [jd, pr] = await Promise.all([
       loadJson(`${state.rootRel}data/jira/all-tickets.json`),
-      sheets.read(SPREADSHEET_ID, PLAN_RANGE),
+      supabase.from('plan').select('*'),
     ]);
+    jiraData = jd;
+    planRows = unwrap(pr);
   } catch (e) {
     console.error('[plan] 데이터 로드 실패', e);
+    if (e instanceof AuthRequiredError) { state.signedIn = false; renderAuthUi(); showAuthGated(tableHost); return; }
     showError(tableHost, e);
     return;
   }
 
   state.jiraLastSync = jiraData.lastSync || null;
-  state.planHeader = (planRes.values && planRes.values[0]) || [];
-  const planRows = planRes.values || [];
   const joined = joinJiraWithPlan(jiraData.items || [], planRows);
   const filtered = filterByDuedate(joined, new Date(), 7);
   const sorted = sortByDuedate(filtered);
@@ -346,6 +278,45 @@ async function loadAndRender() {
   renderFilters();
   updateTableView();
   enableRefresh(true);
+  startRealtime();
+}
+
+/* ─── Realtime ───────────────────────────────────────────────
+   plan 테이블 변경 구독 → 디바운스 reload. 인라인 셀 편집 중(활성 input)이면
+   닫힐 때까지 재시도(입력 clobber 방지). 자기 echo 는 멱등 reload 라 무해. */
+let rtHandle = null;
+let rtTimer = null;
+let rtRetries = 0;
+
+function startRealtime() {
+  if (rtHandle) return;
+  rtHandle = subscribe('plan-page', ['plan'], (payload) => {
+    // self-echo 스킵 — 내 셀 편집 echo 면 reload 안 함(플리커/에러마커 손실 방지).
+    const who = payload?.new?.updated_by ?? payload?.old?.updated_by;
+    if (who && who === auth.email()) return;
+    clearTimeout(rtTimer);
+    rtRetries = 0;
+    rtTimer = setTimeout(attemptRealtimeReload, 500);
+  });
+}
+
+function attemptRealtimeReload() {
+  if (!state.signedIn) return;
+  // 편집 중 input 이 포커스돼 있으면 보류 (테이블 재렌더로 입력 날아가는 것 방지). 최대 ~8s 후 보류.
+  const ae = document.activeElement;
+  if (ae && ae.tagName === 'INPUT' && ae.closest('#sec-table')) {
+    if (rtRetries++ < 10) { rtTimer = setTimeout(attemptRealtimeReload, 800); }
+    else { rtRetries = 0; console.warn('[plan] realtime reload 보류 — 편집 중. 다음 변경/새로고침 시 반영'); }
+    return;
+  }
+  rtRetries = 0;
+  loadAndRender();
+}
+
+function stopRealtime() {
+  if (rtHandle) { rtHandle.unsubscribe(); rtHandle = null; }
+  clearTimeout(rtTimer);
+  rtRetries = 0;
 }
 
 function updateTableView() {
@@ -502,16 +473,14 @@ function bindAuthUi() {
   if (signin) {
     signin.addEventListener('click', async () => {
       const statusEl = $('auth-status');
-      if (statusEl) statusEl.textContent = '로그인 중…';
+      if (statusEl) statusEl.textContent = 'Google 로 이동 중…';
       try {
+        // OAuth redirect — 복귀 후 bootstrap(auth.init)이 세션 흡수 → 자동 로드.
         await auth.signIn();
-        state.signedIn = true;
-        renderAuthUi();
-        await loadAndRender();
       } catch (e) {
         console.error('[plan] signIn 실패', e);
         if (statusEl) {
-          statusEl.textContent = '로그인 실패 — 다시 시도';
+          statusEl.textContent = '로그인 시작 실패 — 다시 시도';
           statusEl.classList.add('err');
         }
       }
@@ -520,6 +489,7 @@ function bindAuthUi() {
   if (signout) {
     signout.addEventListener('click', () => {
       auth.signOut();
+      stopRealtime();
       state.signedIn = false;
       state.items = [];
       renderAuthUi();
@@ -777,25 +747,13 @@ async function commitEdit(td, item, col, newValue, oldValue) {
 
   const now = nowIso();
   try {
-    const isNewRow = !item._planRowNum;
-    if (isNewRow) {
-      // 헤더 없으면 fetch
-      if (!state.planHeader.length) await refreshPlanHeader();
-      const row = buildRowForAppend(item, state.planHeader, col.id, newValue, now);
-      const res = await sheets.append(SPREADSHEET_ID, 'plan!A1', [row]);
-      const rowNum = parseRowFromRange(res?.updates?.updatedRange);
-      if (rowNum) item._planRowNum = rowNum;
-    } else {
-      if (!state.planHeader.length) await refreshPlanHeader();
-      const colLetter = sheetColLetter(col.id, state.planHeader);
-      const lastUpdLetter = sheetColLetter('last_updated_at', state.planHeader);
-      if (!colLetter) throw new Error(`planHeader 에 ${col.id} 컬럼 없음`);
-      const ranges = [{ range: `plan!${colLetter}${item._planRowNum}`, values: [[newValue]] }];
-      if (lastUpdLetter) {
-        ranges.push({ range: `plan!${lastUpdLetter}${item._planRowNum}`, values: [[now]] });
-      }
-      await sheets.batchUpdate(SPREADSHEET_ID, ranges);
-    }
+    // date 컬럼은 빈 값을 null 로 (Postgres date 캐스팅 오류 방지). text 컬럼은 '' 허용.
+    const value = (col.type === 'date' && (newValue === '' || newValue == null)) ? null : newValue;
+    // jira_key 충돌 시 해당 컬럼만 update, 없으면 insert. updated_at/updated_by 는 트리거가 기록.
+    unwrap(await supabase.from('plan').upsert(
+      { jira_key: item.jiraKey, [col.id]: value },
+      { onConflict: 'jira_key' },
+    ));
     item.last_updated_at = now;
     setCellIndicator(td, 'saved');
     renderCellInner(td, item, col, 'saved');
@@ -821,11 +779,6 @@ async function commitEdit(td, item, col, newValue, oldValue) {
     setCellIndicator(td, 'error', e.message || '저장 실패');
     renderCellInner(td, item, col, 'error', e.message || '저장 실패');
   }
-}
-
-async function refreshPlanHeader() {
-  const res = await sheets.read(SPREADSHEET_ID, 'plan!A1:Z1');
-  state.planHeader = (res.values && res.values[0]) || state.planHeader;
 }
 
 /** 같은 행 (TR) 의 다음/이전 편집 가능한 td 로 포커스. 없으면 stop. */

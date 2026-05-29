@@ -92,7 +92,7 @@
     <section id="sec-cards" hidden>
       <div class="sec-head">
         <h2>분기 보드</h2>
-        <small>D&amp;D 로 분기 이동 / 주제 변경. Jira 티켓은 분기 override 와 주제 매핑이 자동 저장.</small>
+        <small>D&amp;D 로 분기 이동. Jira 티켓을 클릭하면 주제(복수)를 매핑할 수 있고, 매핑된 주제는 티켓에 칩으로 표시됩니다.</small>
       </div>
       <div class="plan-board" id="plan-board"></div>
     </section>
@@ -215,6 +215,32 @@
           </div>
           <div class="modal-foot">
             <button type="button" class="btn ghost" data-card-delete hidden>삭제</button>
+            <span style="flex:1"></span>
+            <button type="button" class="btn ghost" data-modal-close>취소</button>
+            <button type="submit" class="btn primary">저장</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- 모달: Jira 티켓 주제(복수) 매핑 -->
+    <div id="ticket-pop" class="modal-backdrop" hidden>
+      <div class="modal" role="dialog" aria-label="티켓 주제 매핑">
+        <div class="modal-head">
+          <div>
+            <div class="modal-kicker">TICKET</div>
+            <h3 class="modal-title" id="ticket-modal-title">티켓</h3>
+          </div>
+          <button class="modal-close" data-modal-close>CLOSE</button>
+        </div>
+        <form id="ticket-form">
+          <div class="modal-body">
+            <input type="hidden" name="jira_key" />
+            <p id="ticket-modal-summary" class="muted" style="font-size:12px;margin:0 0 12px;line-height:1.5;"></p>
+            <label class="muted dim-mono" style="display:block;margin-bottom:6px">주제 (복수 선택 가능)</label>
+            <div id="ticket-subj-list" style="max-height:46vh;overflow:auto;border:1px solid var(--rule);border-radius:4px;padding:10px;"></div>
+          </div>
+          <div class="modal-foot">
             <span style="flex:1"></span>
             <button type="button" class="btn ghost" data-modal-close>취소</button>
             <button type="submit" class="btn primary">저장</button>

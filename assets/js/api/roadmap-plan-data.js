@@ -1,81 +1,26 @@
 /* =========================================================
-   roadmap-plan-data.js — Sheet 가 SoT 인 roadmap-plan 데이터 레이어
-   PRD §3.3 (2026-05-27 v3) — Objective → Subject(주제) → Card(키워드)
-   Jira 티켓의 subject 매핑 + 분기 override 는 roadmap-plan-overrides 시트.
+   roadmap-plan-data.js — Supabase 가 SoT 인 roadmap-plan 데이터 레이어
+   PRD docs/supabase-migration §4, §6.3 — Objective → Subject(주제) → Card(키워드)
+   Jira 티켓의 subject 매핑(ticket_subjects) + 분기 override(ticket_overrides).
+
+   Sheets 판(_rowNum/헤더 기반)을 대체. **export 시그니처는 그대로 보존**하여
+   페이지(roadmap-plan.js) 변경을 최소화한다.
 
    호출 패턴:
      await auth.ensureSignedIn();
-     await verifySchema();
-     const data = await loadAll(2026);
+     await verifySchema();             // 연결 확인 (Sheets 헤더 검증을 대체)
+     const data = await loadAll(2026); // { objectives, subjects, cards, overrides }
      await createObjective({ name: '검색 품질', color: 'accent' });
 
-   행번호 (_rowNum):
-     - 1-based, Sheet UI 와 동일. 헤더 = row 1, 첫 데이터 = row 2.
-     - read 시 객체에 부여. update/delete 는 이 값으로 range/index 계산.
+   id:
+     - Postgres uuid PK (gen_random_uuid). 클라이언트는 생성하지 않고 insert 후 반환받음.
+   컬럼명 매핑:
+     - DB(snake_case) ↔ 페이지(camelCase): start_month↔startMonth, main_subject↔mainSubject, project_key↔projectKey.
    ========================================================= */
 
-import {
-  sheets,
-  rowsToObjects,
-  objectToRow,
-  nowIso,
-  SPREADSHEET_ID,
-} from './sheets.js';
+import { supabase, unwrap } from './supabase.js';
 
-/* ─── 스키마 (PRD §3.3 표) ────────────────────────────────── */
-
-export const OBJECTIVES_SHEET = 'objectives';
-export const SUBJECTS_SHEET   = 'subjects';
-export const CARDS_SHEET      = 'roadmap-plan-cards';
-export const OVERRIDES_SHEET  = 'roadmap-plan-overrides';
-
-export const OBJECTIVES_HEADER = [
-  'id', 'name', 'color', 'description', 'display_order',
-  'created_at', 'last_updated_at',
-];
-
-export const SUBJECTS_HEADER = [
-  'id', 'objective_id', 'name', 'description',
-  'startMonth', 'endMonth', 'display_order',
-  'created_at', 'last_updated_at',
-];
-
-export const CARDS_HEADER = [
-  'id', 'subject_id', 'year', 'quarter',
-  'title', 'notes', 'mainSubject', 'priority', 'projectKey',
-  'created_at', 'last_updated_at',
-];
-
-export const OVERRIDES_HEADER = [
-  'jira_key', 'year', 'subject_id', 'quarter', 'last_updated_at',
-];
-
-const SHEETS_SPEC = [
-  { name: OBJECTIVES_SHEET, header: OBJECTIVES_HEADER },
-  { name: SUBJECTS_SHEET,   header: SUBJECTS_HEADER   },
-  { name: CARDS_SHEET,      header: CARDS_HEADER      },
-  { name: OVERRIDES_SHEET,  header: OVERRIDES_HEADER  },
-];
-
-/* ─── 시트 메타 캐시 (sheetId — deleteRow 용) ──────────────── */
-
-let sheetIdCache = null;  // { [sheetTitle]: number }
-
-async function ensureSheetIds() {
-  if (sheetIdCache) return sheetIdCache;
-  const meta = await sheets.meta(SPREADSHEET_ID, { fields: 'sheets.properties(sheetId,title)' });
-  const map = {};
-  for (const s of meta.sheets || []) {
-    if (s.properties) map[s.properties.title] = s.properties.sheetId;
-  }
-  sheetIdCache = map;
-  return map;
-}
-
-function resetSheetIdCache() { sheetIdCache = null; }
-
-/* ─── 스키마 검증 ─────────────────────────────────────────── */
-
+/* ─── 호환용: 시트 시절 명칭/에러 (페이지가 import) ───────── */
 export class SchemaMismatchError extends Error {
   constructor(message, detail) {
     super(message);
@@ -84,335 +29,242 @@ export class SchemaMismatchError extends Error {
   }
 }
 
-/**
- * 4 시트의 첫 행(헤더) 이 상수 헤더와 정확히 일치하는지 검증.
- * 시트 없음 / 헤더 불일치 시 SchemaMismatchError throw.
- */
+/** 연결/스키마 확인. Sheets 의 헤더 검증을 대체 — 테이블 read 가능 여부만 확인. */
 export async function verifySchema() {
-  const ranges = SHEETS_SPEC.map(s => `${s.name}!A1:Z1`);
-  const results = await Promise.all(
-    ranges.map(r => sheets.read(SPREADSHEET_ID, r).catch(e => ({ error: e })))
-  );
-  const issues = [];
-  for (let i = 0; i < SHEETS_SPEC.length; i++) {
-    const spec = SHEETS_SPEC[i];
-    const r = results[i];
-    if (r.error) {
-      issues.push(`시트 "${spec.name}" 을 읽을 수 없습니다 (${r.error.status || 'unknown'}).`);
-      continue;
-    }
-    const actual = (r.values && r.values[0]) || [];
-    const expected = spec.header;
-    const mismatch = expected.some((col, idx) => (actual[idx] || '') !== col);
-    if (mismatch || actual.length < expected.length) {
-      issues.push(
-        `시트 "${spec.name}" 헤더 불일치.\n  예상: ${expected.join(' | ')}\n  실제: ${actual.join(' | ') || '(빈 행)'}`
-      );
-    }
+  try {
+    unwrap(await supabase.from('objectives').select('id').limit(1));
+    return true;
+  } catch (e) {
+    throw new SchemaMismatchError('Supabase 스키마/연결 확인 실패: ' + (e.message || e), { cause: e });
   }
-  if (issues.length) {
-    throw new SchemaMismatchError(
-      'Sheet 스키마 초기화가 필요합니다.\n\n' + issues.join('\n\n'),
-      { issues }
-    );
+}
+
+/* ─── subject_id 멀티값 헬퍼 (pure, 페이지·테스트 사용) ──────
+   UI 입력은 단일/콤마구분/배열 모두 허용. 저장은 ticket_subjects 행으로. */
+export function parseSubjectIds(v) {
+  const raw = Array.isArray(v) ? v : (v == null ? [] : String(v).split(','));
+  const out = [];
+  for (const s of raw) {
+    const id = String(s).trim();
+    if (id && !out.includes(id)) out.push(id);
   }
-  return true;
+  return out;
+}
+export function joinSubjectIds(v) {
+  return parseSubjectIds(v).join(',');
 }
 
-/* ─── 전체 read ───────────────────────────────────────────── */
+/* ─── 컬럼명 매핑 (DB snake ↔ app camel) ──────────────────── */
+function mapKeys(obj, mapping) {
+  const out = {};
+  for (const [k, v] of Object.entries(obj || {})) out[mapping[k] || k] = v;
+  return out;
+}
+const SUBJ_S2C = { start_month: 'startMonth', end_month: 'endMonth' };
+const SUBJ_C2S = { startMonth: 'start_month', endMonth: 'end_month' };
+const CARD_S2C = { main_subject: 'mainSubject', project_key: 'projectKey' };
+const CARD_C2S = { mainSubject: 'main_subject', projectKey: 'project_key' };
 
-/**
- * 4 시트 병렬 read → 객체 배열로 반환. 각 객체에 `_rowNum` (1-based) 부여.
- * year 인자로 cards/overrides 를 해당 연도만 필터링.
- *
- * @param {number} year
- * @returns {Promise<{ objectives:Object[], subjects:Object[], cards:Object[], overrides:Object[] }>}
- */
-export async function loadAll(year) {
-  const ranges = [
-    `${OBJECTIVES_SHEET}!A1:Z2000`,
-    `${SUBJECTS_SHEET}!A1:Z2000`,
-    `${CARDS_SHEET}!A1:Z5000`,
-    `${OVERRIDES_SHEET}!A1:Z5000`,
-  ];
-  const [oRes, sRes, cRes, ovRes] = await Promise.all(
-    ranges.map(r => sheets.read(SPREADSHEET_ID, r))
-  );
+const subjFromDb = (r) => mapKeys(r, SUBJ_S2C);
+const cardFromDb = (r) => mapKeys(r, CARD_S2C);
 
-  const objectives = parseRows(oRes, OBJECTIVES_HEADER);
-  const subjects   = parseRows(sRes, SUBJECTS_HEADER);
-  const cards      = parseRows(cRes, CARDS_HEADER).filter(c => normalizeYear(c.year) === year);
-  const overrides  = parseRows(ovRes, OVERRIDES_HEADER).filter(o => normalizeYear(o.year) === year);
+/* insert/update 시 테이블에 실제 존재하는 컬럼만 추려 보냄 (불필요 키·_rowNum 차단). */
+const OBJ_COLS  = ['name', 'color', 'description', 'display_order'];
+const SUBJ_COLS = ['objective_id', 'name', 'description', 'start_month', 'end_month', 'display_order'];
+const CARD_COLS = ['subject_id', 'year', 'quarter', 'title', 'notes', 'main_subject', 'priority', 'project_key'];
 
-  // display_order 정렬 (숫자 강제, 없으면 뒤)
-  objectives.sort((a, b) => orderVal(a) - orderVal(b));
-  subjects.sort((a, b) => orderVal(a) - orderVal(b));
-
-  return { objectives, subjects, cards, overrides };
+function pick(obj, cols) {
+  const out = {};
+  for (const c of cols) if (obj[c] !== undefined) out[c] = obj[c];
+  return out;
 }
 
-function parseRows(res, header) {
-  const rows = res.values || [];
-  if (!rows.length) return [];
-  const dataRows = rows.slice(1);  // 헤더 제외
-  const objs = rowsToObjects(dataRows, header);
-  // _rowNum 부여: 0번 데이터는 row 2 (헤더가 row 1).
-  return objs.map((obj, i) => ({ ...obj, _rowNum: i + 2 }));
-}
-
+/* ─── 정렬/정규화 (pure) ──────────────────────────────────── */
 function orderVal(obj) {
   const n = parseInt(obj.display_order, 10);
   return Number.isFinite(n) ? n : 9999;
 }
-
 function normalizeYear(v) {
   if (typeof v === 'number') return v;
   const n = parseInt(v, 10);
   return Number.isFinite(n) ? n : null;
 }
 
-/* ─── ID 생성 ─────────────────────────────────────────────── */
+/* ─── 전체 read ───────────────────────────────────────────── */
 
-function uid(prefix) {
-  if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
-    return `${prefix}-${crypto.randomUUID()}`;
+/**
+ * 5 테이블(objectives, subjects, cards, ticket_overrides, ticket_subjects) 병렬 read →
+ * 페이지가 기대하던 형태로 조립. `overrides` 는 ticket_overrides(quarter) + ticket_subjects(subject_id)
+ * 를 (jira_key) 기준으로 합쳐 콤마구분 subject_id 를 가진 행으로 재구성 (Sheets 시절 shape 보존).
+ *
+ * @param {number} year
+ * @returns {Promise<{ objectives:Object[], subjects:Object[], cards:Object[], overrides:Object[] }>}
+ */
+export async function loadAll(year) {
+  const y = normalizeYear(year);
+  // 진짜 병렬: 쿼리 promise 들을 먼저 만들고 Promise.all 후 unwrap.
+  const res = await Promise.all([
+    supabase.from('objectives').select('*'),
+    supabase.from('subjects').select('*'),
+    supabase.from('cards').select('*').eq('year', y),
+    supabase.from('ticket_overrides').select('*').eq('year', y),
+    supabase.from('ticket_subjects').select('*').eq('year', y),
+  ]);
+  const [objs, subs, cards, ovs, tss] = res.map(unwrap);
+
+  const objectives = objs.slice().sort((a, b) => orderVal(a) - orderVal(b));
+  const subjects = subs.map(subjFromDb).sort((a, b) => orderVal(a) - orderVal(b));
+  const cardList = cards.map(cardFromDb);
+
+  // overrides 재구성: jira_key → { jira_key, year, quarter, subject_id(콤마) }
+  const map = new Map();
+  for (const o of ovs) {
+    if (!o.quarter) continue;  // quarter 없는 override 행은 정보가 없음 (RPC 도 생성 안 함) — skip
+    map.set(o.jira_key, { jira_key: o.jira_key, year: y, quarter: o.quarter, subject_id: '' });
   }
-  return `${prefix}-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
-}
-
-export function newObjectiveId() { return uid('obj'); }
-export function newSubjectId()   { return uid('sub'); }
-export function newCardId()      { return uid('card'); }
-
-/* ─── append/update/delete 공통 ───────────────────────────── */
-
-function parseRowNumFromRange(range) {
-  if (typeof range !== 'string') return null;
-  const m = /![A-Z]+(\d+)/.exec(range);
-  return m ? parseInt(m[1], 10) : null;
-}
-
-function rowRange(sheetName, rowNum, header) {
-  const lastCol = colLetter(header.length - 1);
-  return `${sheetName}!A${rowNum}:${lastCol}${rowNum}`;
-}
-
-function colLetter(n) {
-  if (typeof n !== 'number' || n < 0 || !Number.isFinite(n)) return '';
-  n = Math.floor(n);
-  let s = '';
-  while (true) {
-    s = String.fromCharCode(65 + (n % 26)) + s;
-    n = Math.floor(n / 26) - 1;
-    if (n < 0) break;
+  for (const t of tss) {
+    const e = map.get(t.jira_key) || { jira_key: t.jira_key, year: y, quarter: '', subject_id: '' };
+    const ids = e.subject_id ? e.subject_id.split(',') : [];
+    ids.push(t.subject_id);
+    e.subject_id = ids.join(',');
+    map.set(t.jira_key, e);
   }
-  return s;
-}
+  const overrides = [...map.values()];
 
-async function appendRow(sheetName, header, obj) {
-  const row = objectToRow(obj, header);
-  const res = await sheets.append(SPREADSHEET_ID, `${sheetName}!A1`, [row]);
-  return parseRowNumFromRange(res?.updates?.updatedRange);
-}
-
-async function updateRow(sheetName, header, obj) {
-  if (!obj._rowNum) throw new Error('updateRow: _rowNum 누락');
-  const range = rowRange(sheetName, obj._rowNum, header);
-  const row = objectToRow(obj, header);
-  await sheets.update(SPREADSHEET_ID, range, [row]);
-}
-
-async function deleteRow(sheetName, rowNum) {
-  if (!rowNum) throw new Error('deleteRow: rowNum 누락');
-  const ids = await ensureSheetIds();
-  const sheetId = ids[sheetName];
-  if (sheetId === undefined) throw new Error(`deleteRow: 시트 "${sheetName}" 의 sheetId 미상`);
-  // rowNum (1-based, 헤더 포함) → rowIndex (0-based) = rowNum - 1
-  await sheets.deleteRow(SPREADSHEET_ID, sheetId, rowNum - 1);
+  return { objectives, subjects, cards: cardList, overrides };
 }
 
 /* ─── Objective CRUD ─────────────────────────────────────── */
 
 export async function createObjective(input) {
-  const now = nowIso();
-  const obj = {
-    id: input.id || newObjectiveId(),
+  const row = pick({
     name: input.name || '',
     color: input.color || 'accent',
     description: input.description || '',
     display_order: Number.isFinite(input.display_order) ? input.display_order : 0,
-    created_at: now,
-    last_updated_at: now,
-  };
-  const rowNum = await appendRow(OBJECTIVES_SHEET, OBJECTIVES_HEADER, obj);
-  return { ...obj, _rowNum: rowNum };
+  }, OBJ_COLS);
+  return unwrap(await supabase.from('objectives').insert(row).select().single());
 }
 
 export async function updateObjective(obj, patch = {}) {
-  const merged = {
-    ...obj,
-    ...patch,
-    last_updated_at: nowIso(),
-  };
-  // _rowNum 보존
-  merged._rowNum = obj._rowNum;
-  await updateRow(OBJECTIVES_SHEET, OBJECTIVES_HEADER, merged);
-  return merged;
+  const row = pick(patch, OBJ_COLS);
+  unwrap(await supabase.from('objectives').update(row).eq('id', obj.id));
+  return { ...obj, ...patch };
 }
 
-/** 삭제 가능 여부 검증. 매핑된 subject 있으면 false. */
+/** 삭제 가능 여부 client 사전검증 (FK restrict 가 최종 차단). */
 export function validateObjectiveDelete(id, subjects) {
   if (!Array.isArray(subjects)) return { ok: true };
   const using = subjects.filter(s => s.objective_id === id);
   if (using.length) {
-    return {
-      ok: false,
-      reason: `이 Objective 에 속한 주제(${using.length}개)가 있습니다. 먼저 주제를 이동하거나 삭제하세요.`,
-      using,
-    };
+    return { ok: false, reason: `이 Objective 에 속한 주제(${using.length}개)가 있습니다. 먼저 주제를 이동하거나 삭제하세요.`, using };
   }
   return { ok: true };
 }
 
 export async function deleteObjective(obj) {
-  await deleteRow(OBJECTIVES_SHEET, obj._rowNum);
+  unwrap(await supabase.from('objectives').delete().eq('id', obj.id));
 }
 
 /* ─── Subject CRUD ───────────────────────────────────────── */
 
 export async function createSubject(input) {
-  const now = nowIso();
-  const subj = {
-    id: input.id || newSubjectId(),
-    objective_id: input.objective_id || '',
-    name: input.name || '',
-    description: input.description || '',
-    startMonth: input.startMonth || '',
-    endMonth: input.endMonth || '',
-    display_order: Number.isFinite(input.display_order) ? input.display_order : 0,
-    created_at: now,
-    last_updated_at: now,
-  };
-  const rowNum = await appendRow(SUBJECTS_SHEET, SUBJECTS_HEADER, subj);
-  return { ...subj, _rowNum: rowNum };
+  const db = mapKeys(input, SUBJ_C2S);
+  const row = pick({
+    objective_id: db.objective_id || null,
+    name: db.name || '',
+    description: db.description || '',
+    start_month: db.start_month || null,
+    end_month: db.end_month || null,
+    display_order: Number.isFinite(db.display_order) ? db.display_order : 0,
+  }, SUBJ_COLS);
+  const created = unwrap(await supabase.from('subjects').insert(row).select().single());
+  return subjFromDb(created);
 }
 
 export async function updateSubject(subj, patch = {}) {
-  const merged = {
-    ...subj,
-    ...patch,
-    last_updated_at: nowIso(),
-  };
-  merged._rowNum = subj._rowNum;
-  await updateRow(SUBJECTS_SHEET, SUBJECTS_HEADER, merged);
-  return merged;
+  const row = pick(mapKeys(patch, SUBJ_C2S), SUBJ_COLS);
+  unwrap(await supabase.from('subjects').update(row).eq('id', subj.id));
+  return { ...subj, ...patch };
 }
 
-/** cards/overrides 가 가리키는 subject 면 삭제 차단. */
+/** cards/overrides 가 가리키는 subject 면 삭제 차단.
+ *  cards 는 DB FK(restrict)도 차단하지만, ticket 매핑은 FK 가 cascade 라 client 에서만 막는다(매핑 유실 방지). */
 export function validateSubjectDelete(id, cards, overrides) {
   const cardUsing = (cards || []).filter(c => c.subject_id === id);
-  const ovUsing   = (overrides || []).filter(o => o.subject_id === id);
+  const ovUsing = (overrides || []).filter(o => parseSubjectIds(o.subject_id).includes(id));
   if (cardUsing.length || ovUsing.length) {
-    return {
-      ok: false,
-      reason: `이 주제에 속한 카드(${cardUsing.length}) / 티켓 매핑(${ovUsing.length})이 있습니다. 먼저 정리하세요.`,
-      cardUsing, ovUsing,
-    };
+    return { ok: false, reason: `이 주제에 속한 카드(${cardUsing.length}) / 티켓 매핑(${ovUsing.length})이 있습니다. 먼저 정리하세요.`, cardUsing, ovUsing };
   }
   return { ok: true };
 }
 
 export async function deleteSubject(subj) {
-  await deleteRow(SUBJECTS_SHEET, subj._rowNum);
+  unwrap(await supabase.from('subjects').delete().eq('id', subj.id));
 }
 
-/* ─── Card CRUD (키워드 카드 전용) ──────────────────────── */
+/* ─── Card CRUD (키워드 카드) ───────────────────────────── */
 
 export async function createCard(input) {
-  const now = nowIso();
-  const card = {
-    id: input.id || newCardId(),
-    subject_id: input.subject_id || '',
-    year: Number.isFinite(input.year) ? input.year : (parseInt(input.year, 10) || new Date().getFullYear()),
-    quarter: input.quarter || '',
-    title: input.title || '',
-    notes: input.notes || '',
-    mainSubject: input.mainSubject || '',
-    priority: input.priority || '',
-    projectKey: input.projectKey || '',
-    created_at: now,
-    last_updated_at: now,
-  };
-  const rowNum = await appendRow(CARDS_SHEET, CARDS_HEADER, card);
-  return { ...card, _rowNum: rowNum };
+  const db = mapKeys(input, CARD_C2S);
+  const row = pick({
+    subject_id: db.subject_id || null,
+    year: normalizeYear(db.year) ?? new Date().getFullYear(),
+    quarter: db.quarter || '',
+    title: db.title || '',
+    notes: db.notes || '',
+    main_subject: db.main_subject || '',
+    priority: db.priority || '',
+    project_key: db.project_key || '',
+  }, CARD_COLS);
+  const created = unwrap(await supabase.from('cards').insert(row).select().single());
+  return cardFromDb(created);
 }
 
 export async function updateCard(card, patch = {}) {
-  const merged = {
-    ...card,
-    ...patch,
-    last_updated_at: nowIso(),
-  };
-  merged._rowNum = card._rowNum;
-  await updateRow(CARDS_SHEET, CARDS_HEADER, merged);
-  return merged;
+  const row = pick(mapKeys(patch, CARD_C2S), CARD_COLS);
+  unwrap(await supabase.from('cards').update(row).eq('id', card.id));
+  return { ...card, ...patch };
 }
 
 export async function deleteCard(card) {
-  await deleteRow(CARDS_SHEET, card._rowNum);
+  unwrap(await supabase.from('cards').delete().eq('id', card.id));
 }
 
-/* ─── Jira 티켓 override (subject 매핑 + 분기) ──────────── */
+/* ─── Jira 티켓 매핑 (분기 override + 주제) — RPC 원자 처리 ── */
 
 /**
- * jira_key 의 override 행을 upsert. 분기를 비우려면 quarter='', subject_id 도 ''.
- * 둘 다 '' 면 행 자체를 삭제(stale 정리).
+ * jira_key 의 분기 override + 주제 매핑을 한 번에 갱신 (set_ticket_mapping RPC).
  * @param {string} jiraKey
- * @param {{year:number, subject_id?:string, quarter?:string}} patch
- * @param {Object[]} currentOverrides loadAll 의 overrides — 기존 행 탐색용 (_rowNum 필요)
+ * @param {{year:number, subject_id?:string|string[], quarter?:string}} patch
+ * @param {Object[]} [_currentOverrides] (호환용, 미사용 — 서버 upsert)
+ * @returns {Promise<{jira_key, year, subject_id, quarter}|null>}
  */
-export async function setTicketMapping(jiraKey, patch, currentOverrides = []) {
-  const year = Number.isFinite(patch.year) ? patch.year : (parseInt(patch.year, 10) || new Date().getFullYear());
-  const subject_id = patch.subject_id || '';
+export async function setTicketMapping(jiraKey, patch, _currentOverrides) {
+  const year = normalizeYear(patch.year) ?? new Date().getFullYear();
+  const subjectIds = parseSubjectIds(patch.subject_id);
   const quarter = patch.quarter || '';
-  const existing = currentOverrides.find(o => o.jira_key === jiraKey && normalizeYear(o.year) === year);
-
-  // 비어 있으면 행 삭제 (stale 방지)
-  if (!subject_id && !quarter) {
-    if (existing) await deleteRow(OVERRIDES_SHEET, existing._rowNum);
-    return null;
-  }
-
-  const row = {
-    jira_key: jiraKey,
-    year,
-    subject_id,
-    quarter,
-    last_updated_at: nowIso(),
-  };
-  if (existing) {
-    row._rowNum = existing._rowNum;
-    await updateRow(OVERRIDES_SHEET, OVERRIDES_HEADER, row);
-    return row;
-  }
-  const rowNum = await appendRow(OVERRIDES_SHEET, OVERRIDES_HEADER, row);
-  return { ...row, _rowNum: rowNum };
+  unwrap(await supabase.rpc('set_ticket_mapping', {
+    p_jira_key: jiraKey,
+    p_year: year,
+    p_quarter: quarter,
+    p_subject_ids: subjectIds,
+  }));
+  if (!subjectIds.length && !quarter) return null;
+  return { jira_key: jiraKey, year, subject_id: subjectIds.join(','), quarter };
 }
 
-export async function clearTicketOverride(jiraKey, currentOverrides = []) {
-  return setTicketMapping(jiraKey, { year: new Date().getFullYear() }, currentOverrides);
+export async function clearTicketOverride(jiraKey, year = new Date().getFullYear()) {
+  return setTicketMapping(jiraKey, { year, subject_id: '', quarter: '' });
 }
 
 /* ─── Jira 티켓에 override 결합 (pure, 테스트 대상) ─────── */
 
 /**
  * Jira 티켓 배열에 overrides 의 subject_id/quarter 를 덮어씌움.
- * Jira 자체 yearQuarter 도 보존. override 없으면 원본 그대로.
- *
- * @param {Object[]} jiraTickets initiatives.json items (mainSubject/yearQuarter/priority/...)
- * @param {Object[]} overrides loadAll 의 overrides (year 필터 적용된 상태)
+ * @param {Object[]} jiraTickets
+ * @param {Object[]} overrides loadAll 의 overrides (year 필터 적용됨)
  * @param {number} year
- * @returns {Object[]} {key, summary, yearQuarter, ..., subject_id, quarter, _override:boolean}
  */
 export function joinTicketsWithOverrides(jiraTickets, overrides, year) {
   if (!Array.isArray(jiraTickets)) return [];
@@ -424,25 +276,21 @@ export function joinTicketsWithOverrides(jiraTickets, overrides, year) {
     const o = idx.get(String(t.key));
     const baseQuarter = parseQuarterFromYearQuarter(t.yearQuarter, year);
     if (!o) {
-      return {
-        ...t,
-        subject_id: '',
-        quarter: baseQuarter,
-        baseQuarter,
-        _override: false,
-      };
+      return { ...t, subject_id: '', subjectIds: [], quarter: baseQuarter, baseQuarter, _override: false };
     }
+    const subjectIds = parseSubjectIds(o.subject_id);
     return {
       ...t,
-      subject_id: o.subject_id || '',
+      subject_id: subjectIds.join(','),
+      subjectIds,
       quarter: o.quarter || baseQuarter,
       baseQuarter,
-      _override: !!(o.subject_id || (o.quarter && o.quarter !== baseQuarter)),
+      _override: !!(subjectIds.length || (o.quarter && o.quarter !== baseQuarter)),
     };
   });
 }
 
-/** "2026-Q3" 같은 string 에서 해당 연도면 'Q3' 반환, 아니면 ''. */
+/** "2026-Q3" → 해당 연도면 'Q3', 아니면 ''. */
 function parseQuarterFromYearQuarter(yq, year) {
   if (typeof yq !== 'string') return '';
   const m = /^(\d{4})-(Q[1-4])$/.exec(yq.trim());
@@ -452,10 +300,9 @@ function parseQuarterFromYearQuarter(yq, year) {
 }
 
 /* ─── test export ─────────────────────────────────────────── */
-
 export const _internal = {
-  parseRows, orderVal, normalizeYear,
-  parseRowNumFromRange, rowRange, colLetter,
-  parseQuarterFromYearQuarter,
-  resetSheetIdCache,
+  orderVal, normalizeYear, parseQuarterFromYearQuarter,
+  parseSubjectIds, joinSubjectIds,
+  mapKeys, pick, subjFromDb, cardFromDb,
+  SUBJ_C2S, SUBJ_S2C, CARD_C2S, CARD_S2C,
 };

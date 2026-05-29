@@ -1,16 +1,16 @@
 /* =========================================================
    pages/roadmap-plan.js — 로드맵 관리
-   Google Sheet SoT · Objective(OKR/색상) → Subject(주제) → Card+Jira티켓 3단
+   Supabase SoT · Objective(OKR/색상) → Subject(주제) → Card+Jira티켓 3단
 
    인증/저장:
-     - sheets.js wrapper (사용자 본인 OAuth, musinsa.com 도메인 Internal)
-     - 진입 시 silent 로그인 시도 → 실패 시 로그인 버튼 노출 (plan.js 패턴)
+     - supabase.js wrapper (Supabase Auth Google OAuth, RLS is_musinsa 게이팅)
+     - 진입 시 세션 복원(auth.init) → 없으면 로그인 버튼 노출
 
-   데이터 모델 (PRD §3.3 v3):
-     objectives          : id, name, color, description, display_order, ...
-     subjects            : id, objective_id, name, startMonth, endMonth, ...
-     roadmap-plan-cards  : id, subject_id, year, quarter, title, notes, mainSubject, priority, projectKey, ...
-     roadmap-plan-overrides : jira_key, year, subject_id, quarter, ... (Jira 매핑+분기 통합)
+   데이터 모델 (PRD docs/supabase-migration §4):
+     objectives      : id, name, color, description, display_order, ...
+     subjects        : id, objective_id, name, startMonth/endMonth(↔start_month/end_month), ...
+     cards           : id, subject_id, year, quarter, title, notes, mainSubject/projectKey(↔snake), ...
+     ticket_overrides + ticket_subjects : Jira 분기 override + 주제 매핑(N:N)
    ========================================================= */
 
 import { loadJson } from '../fetch-data.js';
@@ -20,13 +20,14 @@ import { scoped } from '../storage.js';
 import { toast } from '../toast.js';
 import { escapeHtml, escapeAttr } from '../escape.js';
 import { attachModal } from '../modal.js';
-import { auth, AuthRequiredError } from '../api/sheets.js';
+import { auth, AuthRequiredError, subscribe } from '../api/supabase.js';
 import {
   verifySchema, loadAll,
   createObjective, updateObjective, deleteObjective, validateObjectiveDelete,
   createSubject, updateSubject, deleteSubject, validateSubjectDelete,
   createCard, updateCard, deleteCard,
   setTicketMapping, joinTicketsWithOverrides,
+  parseSubjectIds, joinSubjectIds,
   SchemaMismatchError,
 } from '../api/roadmap-plan-data.js';
 import { GOAL_COLORS, isValidMonth, isValidPeriod, fmtPeriod } from '../goals.js';
@@ -84,7 +85,8 @@ export async function renderRoadmapPlan({ rootRel = '' } = {}) {
   // 진입 즉시 "로그인 필요" UI 를 먼저 노출 — silent 응답 기다리는 동안 화면이 멈춰 보이지 않게.
   renderAuthUi();
 
-  // sessionStorage 캐시(같은 탭 내 plan / poc-sheets 등에서 로그인한 토큰)가 살아있으면 바로 통과.
+  // Supabase 세션 복원 (localStorage 보관 + OAuth redirect 복귀 흡수). 없으면 로그인 버튼 노출.
+  await auth.init();
   if (auth.isSignedIn()) {
     state.signedIn = true;
     state.email = auth.email();
@@ -92,28 +94,8 @@ export async function renderRoadmapPlan({ rootRel = '' } = {}) {
     await loadAndRender();
     return;
   }
-
-  // 캐시 없음 → silent 시도. GIS 가 응답 안 주는 경우 대비 timeout (5s — 캐시 활용으로 잦은 시도 줄어듦).
-  //   timeout 이면 AuthRequiredError 로 fallback, UI 는 이미 "로그인" 버튼 노출 상태.
-  try {
-    await Promise.race([
-      auth.signIn({ silent: true }),
-      new Promise((_, reject) =>
-        setTimeout(() => reject(new AuthRequiredError('silent timeout — popup 필요')), 5000),
-      ),
-    ]);
-    state.signedIn = true;
-    state.email = auth.email();
-  } catch (e) {
-    state.signedIn = false;
-    renderAuthUi();
-    if (e instanceof AuthRequiredError) return;
-    console.error('[roadmap-plan] auth 예외', e);
-    toast({ kicker: '로그인 실패', msg: e.message || String(e), kind: 'alert' });
-    return;
-  }
+  state.signedIn = false;
   renderAuthUi();
-  await loadAndRender();
 }
 
 async function loadAndRender() {
@@ -160,6 +142,46 @@ async function loadAndRender() {
   renderCardBoard();
   enableRefresh(true);
   enableAddButtons(true);
+  startRealtime();
+}
+
+/* ─── Realtime ───────────────────────────────────────────────
+   다른 사용자의 편집을 자동 반영. 변경 수신 → 디바운스 후 loadAndRender.
+   자기 echo 는 reload 가 멱등이라 무해(같은 데이터 재렌더). 편집 모달이 열려 있으면
+   닫힐 때까지 재시도(클로버 방지). 전체 페이지 네비게이션 사이트라 ws 는 unload 시 자동 종료. */
+let rtHandle = null;
+let rtTimer = null;
+let rtRetries = 0;
+
+function startRealtime() {
+  if (rtHandle) return;
+  rtHandle = subscribe('roadmap-plan', ['objectives', 'subjects', 'cards', 'ticket_overrides', 'ticket_subjects'], (payload) => {
+    // self-echo 스킵 — 내가 쓴 변경(updated_by=내 이메일)이면 reload 안 함(플리커/마커 손실 방지).
+    // (ticket_subjects 는 updated_by 없음 → 매핑 변경은 reload; modal 흐름이라 무해)
+    const who = payload?.new?.updated_by ?? payload?.old?.updated_by;
+    if (who && who === auth.email()) return;
+    clearTimeout(rtTimer);
+    rtRetries = 0;
+    rtTimer = setTimeout(attemptRealtimeReload, 500);
+  });
+}
+
+function attemptRealtimeReload() {
+  if (!state.signedIn) return;
+  // 편집 모달이 열려 있으면 닫힐 때까지 재시도 (입력 중 재렌더 방지). 최대 ~8s 후 보류.
+  if (document.querySelector('.modal-backdrop:not([hidden])')) {
+    if (rtRetries++ < 10) { rtTimer = setTimeout(attemptRealtimeReload, 800); }
+    else { rtRetries = 0; console.warn('[roadmap-plan] realtime reload 보류 — 편집 중. 다음 변경/새로고침 시 반영'); }
+    return;
+  }
+  rtRetries = 0;
+  loadAndRender();
+}
+
+function stopRealtime() {
+  if (rtHandle) { rtHandle.unsubscribe(); rtHandle = null; }
+  clearTimeout(rtTimer);
+  rtRetries = 0;
 }
 
 function showBoards(on) {
@@ -178,12 +200,10 @@ function showSchemaIssue(e) {
   const msg = (e && e.message) ? e.message : String(e);
   $('plan-board').innerHTML = `
     <div class="poc-card" style="border-color: var(--alert);">
-      <strong>⚠ Sheet 스키마 초기화 필요</strong>
+      <strong>⚠ 데이터 연결 오류</strong>
       <pre style="white-space:pre-wrap;font-family:var(--font-mono);font-size:11px;margin-top:8px;">${escapeHtml(msg)}</pre>
       <p class="muted" style="font-size:12px;margin-top:8px;">
-        운영자(우진님)에게 알려주세요. Sheet 의 다음 시트들에 정확한 헤더가 있어야 합니다:
-        objectives / subjects / roadmap-plan-cards / roadmap-plan-overrides.
-        헤더 갱신 후 새로고침.
+        Supabase 연결/권한 문제일 수 있습니다. 잠시 후 새로고침하거나 운영자(우진님)에게 알려주세요.
       </p>
     </div>
   `;
@@ -194,23 +214,21 @@ function showSchemaIssue(e) {
 function bindAuthUi() {
   $('btn-signin')?.addEventListener('click', async () => {
     const statusEl = $('auth-status');
-    if (statusEl) statusEl.textContent = '로그인 중…';
+    if (statusEl) statusEl.textContent = 'Google 로 이동 중…';
     try {
+      // OAuth redirect — 페이지가 Google 로 이동했다가 복귀. 복귀 후 init() 가 세션을 흡수해 자동 로드된다.
       await auth.signIn();
-      state.signedIn = true;
-      state.email = auth.email();
-      renderAuthUi();
-      await loadAndRender();
     } catch (e) {
       console.error('[roadmap-plan] signIn 실패', e);
       if (statusEl) {
-        statusEl.textContent = '로그인 실패 — 다시 시도';
+        statusEl.textContent = '로그인 시작 실패 — 다시 시도';
         statusEl.classList.add('err');
       }
     }
   });
   $('btn-signout')?.addEventListener('click', () => {
     auth.signOut();
+    stopRealtime();
     state.signedIn = false;
     state.email = null;
     state.objectives = []; state.subjects = []; state.cards = []; state.overrides = []; state.jiraTickets = [];
@@ -467,7 +485,7 @@ function subjectGroupEl(objective, subjects) {
 
 function subjectCardEl(subj, color) {
   const cardCount = state.cards.filter(c => c.subject_id === subj.id).length;
-  const ticketCount = state.jiraTickets.filter(t => t.subject_id === subj.id).length;
+  const ticketCount = state.jiraTickets.filter(t => (t.subjectIds || parseSubjectIds(t.subject_id)).includes(subj.id)).length;
   const period = (subj.startMonth && subj.endMonth) ? fmtPeriod({ startMonth: subj.startMonth, endMonth: subj.endMonth }) : '';
   return `
     <article class="subj-card" data-subj-id="${escapeAttr(subj.id)}"
@@ -494,6 +512,7 @@ function renderCardBoard() {
       jira_key: t.key,
       summary: t.summary,
       subject_id: t.subject_id,
+      subjectIds: t.subjectIds || parseSubjectIds(t.subject_id),
       quarter: t.quarter,
       baseQuarter: t.baseQuarter,
       _override: t._override,
@@ -537,6 +556,15 @@ function renderCardBoard() {
       if (card) openCardModal(card);
     });
   });
+
+  // Jira 티켓 클릭 → 주제(복수) 매핑 모달. Jira 키 링크 클릭은 통과.
+  host.querySelectorAll('[data-jira-key]').forEach(el => {
+    el.addEventListener('click', (ev) => {
+      if (ev.target.closest('a')) return;
+      const t = state.jiraTickets.find(x => x.key === el.dataset.jiraKey);
+      if (t) openTicketModal(t);
+    });
+  });
 }
 
 function columnEl(colId, label, items, { pool }) {
@@ -550,33 +578,50 @@ function columnEl(colId, label, items, { pool }) {
   `;
 }
 
+/** 보드 아이템(카드/티켓)이 매핑된 subject id 배열. 티켓은 멀티, 카드는 단일. */
+function itemSubjectIds(it) {
+  if (Array.isArray(it.subjectIds)) return it.subjectIds;
+  return it.subject_id ? [it.subject_id] : [];
+}
+
 function groupCards(items) {
   if (state.groupBy === 'none') return [{ key: '__all__', label: '', items }];
   if (state.groupBy === 'objective') {
     const map = new Map();
+    const noneItems = [];
     for (const it of items) {
-      const subj = it.subject_id ? subjectById(it.subject_id) : null;
-      const objId = subj ? subj.objective_id : '';
-      const key = objId || '__none__';
-      if (!map.has(key)) map.set(key, []);
-      map.get(key).push(it);
+      const objIds = new Set();
+      for (const sid of itemSubjectIds(it)) {
+        const subj = subjectById(sid);
+        if (subj && subj.objective_id) objIds.add(subj.objective_id);
+      }
+      if (!objIds.size) { noneItems.push(it); continue; }
+      // 여러 Objective 에 걸친 티켓은 각 그룹에 모두 노출.
+      for (const oid of objIds) {
+        if (!map.has(oid)) map.set(oid, []);
+        map.get(oid).push(it);
+      }
     }
     return state.objectives
       .filter(o => map.has(o.id))
       .map(o => ({ key: o.id, label: o.name, color: colorVarForObjective(o), items: map.get(o.id) }))
-      .concat(map.has('__none__') ? [{ key: '__none__', label: '(미배치)', items: map.get('__none__') }] : []);
+      .concat(noneItems.length ? [{ key: '__none__', label: '(미배치)', items: noneItems }] : []);
   }
-  // 'subject'
+  // 'subject' — 멀티 주제 티켓은 각 주제 그룹에 모두 노출.
   const map = new Map();
+  const noneItems = [];
   for (const it of items) {
-    const key = it.subject_id || '__none__';
-    if (!map.has(key)) map.set(key, []);
-    map.get(key).push(it);
+    const ids = itemSubjectIds(it);
+    if (!ids.length) { noneItems.push(it); continue; }
+    for (const sid of ids) {
+      if (!map.has(sid)) map.set(sid, []);
+      map.get(sid).push(it);
+    }
   }
   return state.subjects
     .filter(s => map.has(s.id))
     .map(s => ({ key: s.id, label: s.name, color: colorVarForSubject(s), items: map.get(s.id) }))
-    .concat(map.has('__none__') ? [{ key: '__none__', label: '(주제 미배치)', items: map.get('__none__') }] : []);
+    .concat(noneItems.length ? [{ key: '__none__', label: '(주제 미배치)', items: noneItems }] : []);
 }
 
 function groupEl(g) {
@@ -587,7 +632,8 @@ function groupEl(g) {
 }
 
 function cardEl(it) {
-  const subj = it.subject_id ? subjectById(it.subject_id) : null;
+  const ids = itemSubjectIds(it);
+  const subj = ids.length ? subjectById(ids[0]) : null;
   const color = subj ? colorVarForSubject(subj) : 'var(--rule)';
   const isJira = it._kind === 'jira';
   const titleHtml = isJira
@@ -598,20 +644,33 @@ function cardEl(it) {
     it.priority ? `<span class="pri pri-${escapeAttr(priorityClass(it.priority))}" style="font-size:10px;">${escapeHtml(it.priority)}</span>` : '',
     it.projectKey ? `<span class="muted dim-mono" style="font-size:10px;">${escapeHtml(it.projectKey)}</span>` : '',
   ].filter(Boolean).join(' ');
+  // 매핑된 주제를 칩으로 노출 (티켓 위주 — 어떤 주제에 묶였는지 한눈에).
+  const chips = isJira ? subjectChipsHtml(ids) : '';
   const overrideMark = isJira && it._override ? `<span title="분기/주제 override" style="font-size:9px;color:var(--accent);">⊘</span>` : '';
   const dataAttrs = isJira
     ? `data-jira-key="${escapeAttr(it.jira_key)}" draggable="true"`
     : `data-card-id="${escapeAttr(it.id)}" draggable="true"`;
   return `
     <article class="rp-card" ${dataAttrs}
-             style="border-left: 3px solid ${color}; border:1px solid var(--rule); border-left-width:3px; padding:6px 8px; margin-bottom:6px; background:var(--bg-base); border-radius:3px; cursor:${isJira ? 'grab' : 'pointer'};">
+             style="border-left: 3px solid ${color}; border:1px solid var(--rule); border-left-width:3px; padding:6px 8px; margin-bottom:6px; background:var(--bg-base); border-radius:3px; cursor:pointer;">
       <div class="poc-row" style="justify-content:space-between;align-items:flex-start;gap:6px;">
         <div style="flex:1;min-width:0;">${titleHtml}</div>
         ${overrideMark}
       </div>
       ${meta ? `<div class="poc-row" style="gap:4px;margin-top:3px;">${meta}</div>` : ''}
+      ${chips ? `<div class="poc-row" style="gap:4px;margin-top:4px;flex-wrap:wrap;">${chips}</div>` : ''}
     </article>
   `;
+}
+
+/** 주제 id 배열 → 주제명 칩 HTML (Objective 색상 적용). */
+function subjectChipsHtml(subjectIds) {
+  return (subjectIds || []).map(id => {
+    const s = subjectById(id);
+    if (!s) return '';
+    const color = colorVarForSubject(s);
+    return `<span class="subj-chip" style="font-size:9.5px;line-height:1.4;padding:1px 6px;border-radius:9px;border:1px solid ${color};color:${color};">${escapeHtml(s.name || id)}</span>`;
+  }).filter(Boolean).join('');
 }
 
 function priorityClass(p) {
@@ -624,11 +683,15 @@ function priorityClass(p) {
 function applyFilters(items) {
   const f = state.filters;
   return items.filter(it => {
+    const ids = itemSubjectIds(it);
     if (f.objective) {
-      const subj = it.subject_id ? subjectById(it.subject_id) : null;
-      if (!subj || subj.objective_id !== f.objective) return false;
+      const ok = ids.some(sid => {
+        const subj = subjectById(sid);
+        return subj && subj.objective_id === f.objective;
+      });
+      if (!ok) return false;
     }
-    if (f.subject && it.subject_id !== f.subject) return false;
+    if (f.subject && !ids.includes(f.subject)) return false;
     if (f.mainSubject && it.mainSubject !== f.mainSubject) return false;
     if (f.priority && it.priority !== f.priority) return false;
     if (f.project && (it.projectKey || it.project) !== f.project) return false;
@@ -713,11 +776,13 @@ function bindModals() {
   state.modals.obj = attachModal($('obj-pop'));
   state.modals.subj = attachModal($('subj-pop'));
   state.modals.card = attachModal($('card-pop'));
+  state.modals.ticket = attachModal($('ticket-pop'));
   state.modals.confirm = attachModal($('confirm-pop'));
 
   $('obj-form')?.addEventListener('submit', onObjectiveSubmit);
   $('subj-form')?.addEventListener('submit', onSubjectSubmit);
   $('card-form')?.addEventListener('submit', onCardSubmit);
+  $('ticket-form')?.addEventListener('submit', onTicketSubmit);
 
   // 색상 swatch — 디자인 시스템 .color-swatches / .color-swatch / .on
   const sw = $('obj-color-swatch');
@@ -1028,6 +1093,80 @@ function requestCardDelete(card) {
       }
     },
   });
+}
+
+/* ─── Ticket(주제 매핑) modal ───────────────────────────── */
+
+function openTicketModal(ticket) {
+  const form = $('ticket-form');
+  $('ticket-modal-title').textContent = ticket.key || '티켓';
+  $('ticket-modal-summary').textContent = ticket.summary || ticket.title || '';
+  form.jira_key.value = ticket.key;
+
+  const current = new Set(ticket.subjectIds || parseSubjectIds(ticket.subject_id));
+  const host = $('ticket-subj-list');
+  if (!state.subjects.length) {
+    host.innerHTML = `<div class="muted" style="font-size:12px;">주제가 없습니다. 먼저 <strong>📌 주제</strong> 를 추가하세요.</div>`;
+  } else {
+    const groups = state.objectives
+      .map(o => ({ label: o.name || '(Objective)', subs: state.subjects.filter(s => s.objective_id === o.id) }))
+      .filter(g => g.subs.length);
+    const orphans = state.subjects.filter(s => !s.objective_id || !objectiveById(s.objective_id));
+    if (orphans.length) groups.push({ label: '(Objective 미배치)', subs: orphans });
+    host.innerHTML = groups.map(g => ticketSubjGroupEl(g.label, g.subs, current)).join('');
+  }
+  state.modals.ticket.open();
+}
+
+function ticketSubjGroupEl(label, subs, currentSet) {
+  const opts = subs.map(s => {
+    const color = colorVarForSubject(s);
+    const checked = currentSet.has(s.id) ? 'checked' : '';
+    return `
+      <label style="display:flex;align-items:center;gap:7px;padding:4px 2px;cursor:pointer;font-size:13px;">
+        <input type="checkbox" name="subject_ids" value="${escapeAttr(s.id)}" ${checked} />
+        <span style="width:9px;height:9px;border-radius:2px;background:${color};display:inline-block;flex:none;"></span>
+        <span>${escapeHtml(s.name || s.id)}</span>
+      </label>`;
+  }).join('');
+  return `<div style="margin-bottom:10px;">
+    <div class="muted dim-mono" style="font-size:10.5px;margin-bottom:2px;">↳ ${escapeHtml(label)}</div>
+    ${opts}
+  </div>`;
+}
+
+async function onTicketSubmit(e) {
+  e.preventDefault();
+  const form = e.currentTarget;
+  const key = form.jira_key.value;
+  const t = state.jiraTickets.find(x => x.key === key);
+  if (!t) { state.modals.ticket.close(); return; }
+
+  const ids = Array.from(form.querySelectorAll('input[name="subject_ids"]:checked')).map(i => i.value);
+  try {
+    const updated = await setTicketMapping(
+      key,
+      { year: state.year, subject_id: ids, quarter: t.quarter },
+      state.overrides,
+    );
+    // overrides state 갱신 (분기 D&D 와 동일 패턴)
+    const idx = state.overrides.findIndex(o => o.jira_key === key);
+    if (updated) {
+      if (idx >= 0) state.overrides[idx] = updated; else state.overrides.push(updated);
+    } else if (idx >= 0) {
+      state.overrides.splice(idx, 1);
+    }
+    t.subject_id = joinSubjectIds(ids);
+    t.subjectIds = parseSubjectIds(ids);
+    t._override = !!(ids.length || (t.quarter && t.quarter !== t.baseQuarter));
+
+    state.modals.ticket.close();
+    renderCardBoard();
+    renderSubjectBoard();
+    renderFilters();
+  } catch (err) {
+    handleApiError(err, '티켓 주제 매핑 저장 실패');
+  }
 }
 
 /* ─── 삭제 확인 공통 ───────────────────────────────────── */

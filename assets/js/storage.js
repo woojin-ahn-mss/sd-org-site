@@ -6,8 +6,8 @@
 
    ⚠ 데이터(다른 사람과 공유돼야 하는 콘텐츠) 저장 금지.
    localStorage 는 본인 브라우저 한정의 UI state 만 (필터·컬럼·dismiss 등).
-   협업·SoT 데이터는 Google Sheet (`assets/js/api/sheets.js`) 를 사용.
-   참고: docs/sd-org-site/PRD.md §10, docs/plan/PRD.md §7.
+   협업·SoT 데이터는 Supabase (`assets/js/api/supabase.js`) 를 사용.
+   참고: docs/sd-org-site/PRD.md §10, docs/supabase-migration/PRD.md.
    ========================================================= */
 
 const PREFIX = 'sd.';

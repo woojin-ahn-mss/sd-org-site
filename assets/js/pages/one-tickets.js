@@ -6,7 +6,7 @@
    - ETR 티켓에 연결된 PEL·MSSCXTF·FT·TM 은 top-level 중복 제거 + 펼침으로 "하나로" 관리
    - 뷰: 전체 리스트 / Main Subject 그룹
    - 필터: 프로젝트 / 라벨 / 상태 / 우선순위 (localStorage UI state)
-   - 편집 데이터(코멘트·수동순위): Google Sheet one-ticket-meta (로그인 시)
+   - 편집 데이터(코멘트·수동순위): Supabase one_ticket_meta 테이블 (로그인 시)
    ========================================================= */
 
 import { loadJson } from '../fetch-data.js';
@@ -17,10 +17,9 @@ import { STATUS_GROUPS, statusGroup } from '../charts.js';
 import { scoped } from '../storage.js';
 import { escapeHtml, escapeAttr } from '../escape.js';
 import { toast } from '../toast.js';
-import { auth, AuthRequiredError } from '../api/sheets.js';
+import { auth, AuthRequiredError, subscribe } from '../api/supabase.js';
 import {
-  verifyOneMetaSchema, ensureOneMetaSheet, loadOneMeta, metaByKey, upsertOneMeta,
-  SchemaMismatchError, ONE_META_HEADER,
+  loadOneMeta, metaByKey, upsertOneMeta,
 } from '../api/one-ticket-meta.js';
 
 const TOP_PROJECTS = ['ETR', 'MSSCXTF', 'FT', 'TM', 'CBP', 'PBO'];
@@ -614,14 +613,13 @@ function bindAuthUi() {
   const signin = $('btn-signin');
   const signout = $('btn-signout');
   const refresh = $('btn-refresh');
-  const create = $('btn-create-sheet');
   if (signin) signin.addEventListener('click', onSignInClick);
   if (signout) signout.addEventListener('click', onSignOutClick);
   if (refresh) refresh.addEventListener('click', () => loadMeta());
-  if (create) create.addEventListener('click', onCreateSheetClick);
 }
 
 async function bootAuth() {
+  await auth.init();   // Supabase 세션 복원 (localStorage + OAuth redirect 복귀)
   if (auth.isSignedIn()) {
     state.signedIn = true;
     state.email = auth.email();
@@ -629,40 +627,22 @@ async function bootAuth() {
     await loadMeta();
     return;
   }
-  try {
-    await Promise.race([
-      auth.signIn({ silent: true }),
-      new Promise((_, reject) => setTimeout(() => reject(new AuthRequiredError('silent timeout')), 5000)),
-    ]);
-    state.signedIn = true;
-    state.email = auth.email();
-    renderAuthUi('signedIn');
-    await loadMeta();
-  } catch (e) {
-    state.signedIn = false;
-    renderAuthUi('signedOut');
-    if (!(e instanceof AuthRequiredError)) console.warn('[one-tickets] silent auth', e);
-  }
+  state.signedIn = false;
+  renderAuthUi('signedOut');
 }
 
 async function onSignInClick() {
   try {
+    // OAuth redirect — 페이지가 Google 로 이동했다가 복귀. 복귀 후 bootAuth(auth.init)가 세션 흡수.
     await auth.signIn();
-    state.signedIn = true;
-    state.email = auth.email();
-    renderAuthUi('signedIn');
-    await loadMeta();
   } catch (e) {
-    if (e instanceof AuthRequiredError) {
-      toast({ kicker: '로그인 필요', msg: 'popup 이 차단되었을 수 있습니다.', kind: 'alert' });
-    } else {
-      toast({ kicker: '로그인 실패', msg: e.message || String(e), kind: 'alert' });
-    }
+    toast({ kicker: '로그인 시작 실패', msg: e.message || String(e), kind: 'alert' });
   }
 }
 
 function onSignOutClick() {
   auth.signOut();
+  stopRealtime();
   state.signedIn = false;
   state.email = null;
   state.meta = new Map();
@@ -671,41 +651,18 @@ function onSignOutClick() {
   renderList();
 }
 
-async function onCreateSheetClick() {
-  try {
-    await ensureOneMetaSheet();
-    toast({ kicker: 'one-ticket-meta', msg: '시트 생성 완료', kind: 'success' });
-    await loadMeta();
-  } catch (e) {
-    console.error('[one-tickets] 시트 생성 실패', e);
-    toast({ kicker: '시트 생성 실패', msg: e.message || String(e), kind: 'alert' });
-  }
-}
-
 async function loadMeta() {
   if (!state.signedIn) return;
   const refresh = $('btn-refresh');
   if (refresh) refresh.disabled = true;
   try {
-    try {
-      await verifyOneMetaSchema();
-    } catch (e) {
-      // 시트가 아예 없으면 자동 생성 후 진행 (편집을 위해 로그인한 것이므로 바로 만들어 준다).
-      // 헤더가 다른(=기존 데이터 있는) 경우는 파괴 위험 → 수동 처리.
-      if (e instanceof SchemaMismatchError && e.detail && e.detail.missing) {
-        await ensureOneMetaSheet();
-        toast({ kicker: 'one-ticket-meta', msg: '편집 시트 자동 생성됨', kind: 'success' });
-      } else {
-        throw e;
-      }
-    }
     state.metaRows = await loadOneMeta();
     state.meta = metaByKey(state.metaRows);
     renderAuthUi('signedIn');
     renderList();
+    startRealtime();
   } catch (e) {
-    if (e instanceof AuthRequiredError) { state.signedIn = false; renderAuthUi('signedOut'); renderList(); return; }
-    if (e instanceof SchemaMismatchError) { renderAuthUi('schemaMissing', e); return; }
+    if (e instanceof AuthRequiredError) { state.signedIn = false; stopRealtime(); renderAuthUi('signedOut'); renderList(); return; }
     console.error('[one-tickets] meta 로드 실패', e);
     toast({ kicker: '메타 로드 실패', msg: e.message || String(e), kind: 'alert' });
   } finally {
@@ -713,15 +670,51 @@ async function loadMeta() {
   }
 }
 
+/* ─── Realtime ───────────────────────────────────────────────
+   one_ticket_meta 변경 구독 → 디바운스 후 meta 재로드. 코멘트 입력 중이면 보류. */
+let rtHandle = null;
+let rtTimer = null;
+let rtRetries = 0;
+
+function startRealtime() {
+  if (rtHandle) return;
+  rtHandle = subscribe('one-tickets-meta', ['one_ticket_meta'], (payload) => {
+    // self-echo 스킵 — 내 코멘트/순위 편집 echo 면 reload 안 함.
+    const who = payload?.new?.updated_by ?? payload?.old?.updated_by;
+    if (who && who === auth.email()) return;
+    clearTimeout(rtTimer);
+    rtRetries = 0;
+    rtTimer = setTimeout(attemptRealtimeReload, 500);
+  });
+}
+
+function attemptRealtimeReload() {
+  if (!state.signedIn) return;
+  // 입력 중이면 보류(편집 clobber 방지). 최대 ~8s 후 보류.
+  const ae = document.activeElement;
+  if (ae && (ae.tagName === 'INPUT' || ae.tagName === 'TEXTAREA')) {
+    if (rtRetries++ < 10) { rtTimer = setTimeout(attemptRealtimeReload, 800); }
+    else { rtRetries = 0; console.warn('[one-tickets] realtime reload 보류 — 편집 중. 다음 변경/새로고침 시 반영'); }
+    return;
+  }
+  rtRetries = 0;
+  loadMeta();
+}
+
+function stopRealtime() {
+  if (rtHandle) { rtHandle.unsubscribe(); rtHandle = null; }
+  clearTimeout(rtTimer);
+  rtRetries = 0;
+}
+
 /**
- * @param {'checking'|'signedIn'|'signedOut'|'schemaMissing'} phase
+ * @param {'checking'|'signedIn'|'signedOut'} phase
  */
 function renderAuthUi(phase, err) {
   const status = $('auth-status');
   const signin = $('btn-signin');
   const signout = $('btn-signout');
   const refresh = $('btn-refresh');
-  const create = $('btn-create-sheet');
   const help = $('auth-help');
   if (!status) return;
 
@@ -730,27 +723,19 @@ function renderAuthUi(phase, err) {
   switch (phase) {
     case 'checking':
       status.textContent = '인증 확인 중…';
-      show(signin, false); show(signout, false); show(create, false);
+      show(signin, false); show(signout, false);
       if (refresh) refresh.disabled = true;
       break;
     case 'signedIn':
       status.textContent = `로그인됨${state.email ? ' · ' + state.email : ''}`;
-      show(signin, false); show(signout, true); show(create, false);
+      show(signin, false); show(signout, true);
       if (refresh) refresh.disabled = false;
-      if (help) help.textContent = '코멘트·수동 우선순위가 Sheet 에 자동 저장됩니다.';
-      break;
-    case 'schemaMissing':
-      status.textContent = 'one-ticket-meta 시트 초기화 필요';
-      show(signin, false); show(signout, true); show(create, true);
-      if (refresh) refresh.disabled = false;
-      if (help) {
-        help.textContent = `편집 데이터를 저장할 시트가 없습니다. "시트 생성" 을 누르면 헤더(${ONE_META_HEADER.join(' | ')})와 함께 자동 생성됩니다.`;
-      }
+      if (help) help.textContent = '코멘트·수동 우선순위가 Supabase 에 자동 저장됩니다.';
       break;
     case 'signedOut':
     default:
       status.textContent = '로그인하면 코멘트·우선순위 편집';
-      show(signin, true); show(signout, false); show(create, false);
+      show(signin, true); show(signout, false);
       if (refresh) refresh.disabled = true;
       if (help) help.textContent = '리스트는 로그인 없이도 볼 수 있습니다. 편집하려면 musinsa.com Google 계정으로 로그인하세요.';
       break;
