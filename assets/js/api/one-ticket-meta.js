@@ -76,6 +76,18 @@ const IMG_BUCKET = 'one-ticket-images';
  */
 const IMG_EXT = { 'image/png': 'png', 'image/jpeg': 'jpg', 'image/gif': 'gif', 'image/webp': 'webp' };
 
+/** blob/File 을 Storage 에 업로드하고 object path 반환. (드래그앤드랍·붙여넣기·URL 공통 코어) */
+export async function uploadTicketImageBlob(jiraKey, blob) {
+  const ext = IMG_EXT[blob.type];
+  if (!ext) throw new Error(`지원하지 않는 형식입니다 (${blob.type || 'unknown'}) — png/jpg/gif/webp 만 가능`);
+  const rand = (typeof crypto !== 'undefined' && crypto.randomUUID) ? crypto.randomUUID() : String(Date.now());
+  const path = `${String(jiraKey).replace(/[^A-Za-z0-9_-]/g, '_')}/${rand}.${ext}`;
+  const up = await supabase.storage.from(IMG_BUCKET).upload(path, blob, { contentType: blob.type, upsert: false });
+  if (up.error) throw new Error(`업로드 실패: ${up.error.message}`);
+  return up.data.path;
+}
+
+/** 이미지 URL(만료 가능)을 받아 fetch → Storage 복사 → object path 반환. */
 export async function uploadTicketImage(jiraKey, srcUrl) {
   // 행이 멈추지 않게 20초 타임아웃 (CORS/응답 지연 대비).
   const ctrl = new AbortController();
@@ -88,13 +100,7 @@ export async function uploadTicketImage(jiraKey, srcUrl) {
   } catch (e) {
     throw new Error(e.name === 'AbortError' ? '이미지 요청 시간 초과(20초)' : (`이미지 가져오기 실패: ${e.message || e}`));
   } finally { clearTimeout(timer); }
-  const ext = IMG_EXT[blob.type];
-  if (!ext) throw new Error(`지원하지 않는 형식입니다 (${blob.type || 'unknown'}) — png/jpg/gif/webp 만 가능`);
-  const rand = (typeof crypto !== 'undefined' && crypto.randomUUID) ? crypto.randomUUID() : String(Date.now());
-  const path = `${String(jiraKey).replace(/[^A-Za-z0-9_-]/g, '_')}/${rand}.${ext}`;
-  const up = await supabase.storage.from(IMG_BUCKET).upload(path, blob, { contentType: blob.type, upsert: false });
-  if (up.error) throw new Error(`업로드 실패: ${up.error.message}`);
-  return up.data.path;
+  return uploadTicketImageBlob(jiraKey, blob);
 }
 
 /** object path → 서명 URL (기본 1시간). 실패 시 null. */

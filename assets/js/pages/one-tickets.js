@@ -20,7 +20,7 @@ import { toast } from '../toast.js';
 import { auth, AuthRequiredError, subscribe } from '../api/supabase.js';
 import {
   loadOneMeta, metaByKey, upsertOneMeta,
-  uploadTicketImage, signedImageUrl, removeTicketImage,
+  uploadTicketImage, uploadTicketImageBlob, signedImageUrl, removeTicketImage,
 } from '../api/one-ticket-meta.js';
 
 const TOP_PROJECTS = ['ETR', 'MSSCXTF', 'FT', 'TM', 'CBP', 'PBO', 'MSS'];
@@ -650,6 +650,26 @@ async function onAddImage(key) {
   } finally { state.imgBusy = false; }
 }
 
+/** 코멘트에 드롭한 이미지 파일 → Storage 업로드 → image_path 저장. */
+async function onDropImage(key, file) {
+  if (!state.signedIn || state.imgBusy) return;
+  state.imgBusy = true;
+  try {
+    const path = await uploadTicketImageBlob(key, file);
+    try {
+      applySavedMeta(key, await upsertOneMeta(key, { image_path: path }, state.metaRows));
+    } catch (e) {
+      await removeTicketImage(path);   // DB 반영 실패 시 업로드 객체 롤백
+      throw e;
+    }
+    toast({ kicker: key, msg: '이미지 등록됨', kind: 'success' });
+    renderList();
+  } catch (e) {
+    if (e instanceof AuthRequiredError) { state.signedIn = false; renderAuthUi('signedOut'); renderList(); }
+    else { console.error('[one-tickets] 이미지 드롭 실패', e); toast({ kicker: '이미지 등록 실패', msg: e.message || String(e), kind: 'alert' }); }
+  } finally { state.imgBusy = false; }
+}
+
 /** 이미지 삭제 — image_path 비우고 Storage 객체 제거. */
 async function onDeleteImage(key) {
   if (!state.signedIn || state.imgBusy) return;
@@ -830,7 +850,7 @@ function imageAreaHtml(key) {
     </div>`;
   }
   if (!state.signedIn) return '';
-  return `<div class="one-img-area"><button type="button" class="one-img-add tlink" data-key="${escapeAttr(key)}">＋ 이미지 추가</button></div>`;
+  return `<div class="one-img-area"><button type="button" class="one-img-add tlink" data-key="${escapeAttr(key)}" title="이미지 URL 등록 (또는 코멘트에 이미지 파일을 드래그)">＋ 이미지 (드래그 가능)</button></div>`;
 }
 
 function expandHtml(it, expandId) {
@@ -957,9 +977,26 @@ function bindMetaInputs(host) {
   host.querySelectorAll('.one-quickfix').forEach(cb => {
     cb.addEventListener('change', () => saveMeta(cb.dataset.key, { quick_fix: cb.checked }));
   });
-  // 코멘트 textarea — Enter 는 줄바꿈 허용, 저장은 blur(change) 시점.
+  // 코멘트 textarea — Enter 는 줄바꿈 허용, 저장은 blur(change) 시점. 이미지 파일 드래그앤드랍 지원.
   host.querySelectorAll('.one-comment-input').forEach(inp => {
     inp.addEventListener('change', () => saveMeta(inp.dataset.key, { comment: inp.value }));
+    if (!state.signedIn) return;
+    // dragover 시점엔 브라우저가 type 을 안 주는 경우가 있어 "파일이면" 허용, 드롭에서 이미지 검증.
+    const draggingFile = (e) => [...(e.dataTransfer?.items || [])].some(it => it.kind === 'file');
+    inp.addEventListener('dragover', (e) => {
+      if (!draggingFile(e)) return;
+      e.preventDefault();                       // 파일 드롭 허용 (브라우저 기본 동작 차단)
+      e.dataTransfer.dropEffect = 'copy';
+      inp.classList.add('drag-over');
+    });
+    inp.addEventListener('dragleave', () => inp.classList.remove('drag-over'));
+    inp.addEventListener('drop', (e) => {
+      const file = [...(e.dataTransfer?.files || [])].find(f => /^image\//.test(f.type));
+      if (!file) return;                        // 이미지 아니면 기본 동작(텍스트 등)
+      e.preventDefault();
+      inp.classList.remove('drag-over');
+      onDropImage(inp.dataset.key, file);
+    });
   });
   // 숨김 관리 모드 체크박스 — 변경은 pending 에만(저장 시 일괄 반영). 행 펼침 토글 방지.
   host.querySelectorAll('.one-hide-cb').forEach(cb => {
