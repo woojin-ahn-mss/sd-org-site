@@ -1,7 +1,136 @@
 {
-  "lastSync": "2026-05-29T19:29:34+09:00",
-  "count": 114,
+  "lastSync": "2026-05-30T07:25:25+09:00",
+  "count": 117,
   "items": [
+    {
+      "key": "ETR-4597",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4597",
+      "summary": "[무신사 퀵픽스] 전문가 아이콘 노출 디자인 통일성 개선",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "발의",
+      "statusCategory": "new",
+      "priority": "P0",
+      "assignee": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-29T20:44:25.625+0900",
+      "updated": "2026-05-29T20:44:47.158+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null,
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-4595",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4595",
+      "summary": "[퀵픽스] 미판매 상품 대상 가격 자동할인 기능 및 가격 인하 권유 알림",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "발의",
+      "statusCategory": "new",
+      "priority": "P0",
+      "assignee": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-29T20:08:28.338+0900",
+      "updated": "2026-05-29T20:08:54.938+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null,
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-4594",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4594",
+      "summary": "[퀵픽스] 판매 알림 고도화 — 개별 판매 발생 시 실시간 알림 제공",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "발의",
+      "statusCategory": "new",
+      "priority": "P0",
+      "assignee": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-29T20:07:58.023+0900",
+      "updated": "2026-05-29T20:08:54.799+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null,
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
     {
       "key": "ETR-4579",
       "url": "https://jira.team.musinsa.com/browse/ETR-4579",
@@ -900,8 +1029,8 @@
         {
           "key": "MSSCXTF-1319",
           "summary": "[최근본] 최근본에서 상품내 브랜드숍 이동 경로 제공",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "개발중",
+          "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward"
@@ -3596,15 +3725,15 @@
       "startDate": "2026-05-12",
       "dueDate": "2026-05-27",
       "created": "2026-05-08T22:00:24.030+0900",
-      "updated": "2026-05-21T23:49:16.011+0900",
+      "updated": "2026-05-30T00:46:08.229+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-05-12T09:10:38.042+0900",
       "linkedTickets": [
         {
           "key": "MSSCXTF-1355",
           "summary": "무신사 퀵픽스 특정 화면 광고 문구 n초 자동 전환 및 개인화 적용",
-          "status": "배포완료",
-          "statusCategory": "indeterminate",
+          "status": "론치완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Clones",
           "direction": "inward"
@@ -3612,8 +3741,8 @@
         {
           "key": "MSSCXTF-1355",
           "summary": "무신사 퀵픽스 특정 화면 광고 문구 n초 자동 전환 및 개인화 적용",
-          "status": "배포완료",
-          "statusCategory": "indeterminate",
+          "status": "론치완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward"
@@ -3647,7 +3776,7 @@
         }
       ],
       "progress": {
-        "done": 3,
+        "done": 5,
         "total": 5
       }
     },
