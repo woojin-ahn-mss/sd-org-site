@@ -5,7 +5,7 @@
    - 읽기 데이터: data/jira/one-tickets.json (없으면 기존 파일 union fallback)
    - 연결 티켓(Blocks 제외)은 union-find 로 한 묶음 병합 + 펼침으로 "하나로" 관리
    - 뷰: 전체 리스트 / Main Subject 그룹(번호 오름차순)
-   - 필터: 프로젝트 / Sub Subject / 우선순위 / 상태 + 론치완료 제외 토글 (localStorage UI state)
+   - 필터: 프로젝트 / Sub Subject / 우선순위 / 상태 + 론치완료·Dropped·철회 제외 토글 (localStorage UI state)
    - 편집 데이터(코멘트·수동순위): Supabase one_ticket_meta 테이블 (로그인 시)
    ========================================================= */
 
@@ -382,7 +382,7 @@ function renderFilters() {
   const row = (inner) => (inner ? `<div class="filter-row">${inner}</div>` : '');
   const viewToggles =
     `<span class="flabel">보기</span>` +
-    `<button type="button" class="fchip ${f.hideLaunched ? 'on' : ''}" data-toggle="hideLaunched" role="switch" aria-checked="${f.hideLaunched ? 'true' : 'false'}">론치완료·Dropped 제외</button>`;
+    `<button type="button" class="fchip ${f.hideLaunched ? 'on' : ''}" data-toggle="hideLaunched" role="switch" aria-checked="${f.hideLaunched ? 'true' : 'false'}">론치완료·Dropped·철회 제외</button>`;
 
   host.innerHTML = `
     ${row(chipGroup('project', '프로젝트', projects.map(v => ({ v, label: v })), f.project))}
@@ -442,8 +442,8 @@ function chipGroup(key, label, options, current) {
 
 /* ─── 필터 / 정렬 (pure) ──────────────────────────────────── */
 
-/** "론치완료 제외" 토글이 숨기는 상태값 (완료/드랍 계열). */
-export const HIDDEN_WHEN_LAUNCHED = new Set(['론치완료', 'Dropped']);
+/** "론치완료 제외" 토글이 숨기는 상태값 (완료/드랍/철회 계열). */
+export const HIDDEN_WHEN_LAUNCHED = new Set(['론치완료', 'Dropped', '철회/반려/취소']);
 
 /** 단일 항목이 필터에 매칭되는지. hiddenKeys 가 주어지면 showHidden off 일 때 숨긴 항목 제외. */
 export function itemMatchesFilters(it, filters, hiddenKeys) {
