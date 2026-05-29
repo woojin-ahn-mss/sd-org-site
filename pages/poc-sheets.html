@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex, nofollow" />
-  <title>PoC — Google Sheets API 직접 호출</title>
+  <title>Raw Data — S&amp;D Console</title>
 
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -21,103 +21,69 @@
   </script>
 
   <style>
-    .poc-grid { display: grid; gap: 16px; }
-    .poc-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
-    .poc-row button { padding: 6px 14px; border-radius: 6px; border: 1px solid var(--border); background: var(--bg-elev); color: var(--text); cursor: pointer; font-size: 13px; }
-    .poc-row button:hover:not([disabled]) { background: var(--accent); color: #fff; border-color: var(--accent); }
-    .poc-row button[disabled] { opacity: .45; cursor: not-allowed; }
-    .poc-status { font-size: 13px; color: var(--text-muted); }
-    .poc-status.ok { color: #4ade80; }
-    .poc-status.err { color: #f87171; }
-    .poc-log { background: #0c0c0c; border: 1px solid var(--border); border-radius: 8px; padding: 12px; max-height: 360px; overflow: auto; font-family: 'JetBrains Mono', monospace; font-size: 11px; line-height: 1.55; white-space: pre-wrap; word-break: break-all; }
-    .poc-log .ts { color: #888; }
-    .poc-log .ok { color: #4ade80; }
-    .poc-log .err { color: #f87171; }
-    .poc-card { background: var(--bg-elev); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
-    .poc-card h3 { margin: 0 0 10px; font-size: 14px; font-weight: 600; }
-    .poc-card p { margin: 6px 0; font-size: 12px; color: var(--text-muted); }
-    code.kv { background: #111; padding: 1px 6px; border-radius: 4px; font-size: 11px; font-family: 'JetBrains Mono', monospace; }
+    /* Raw Data 전용 — 넓은 시트 가로 스크롤 + 조밀한 셀 */
+    .raw-scroll { overflow: auto; max-width: 100%; border: 1px solid var(--rule); border-radius: var(--radius); }
+    .raw-tbl { border-collapse: collapse; font-family: var(--font-mono); font-size: 11.5px; white-space: nowrap; min-width: 100%; }
+    .raw-tbl th, .raw-tbl td { border: 1px solid var(--rule); padding: 5px 9px; text-align: left; vertical-align: top; }
+    .raw-tbl thead th { position: sticky; top: 0; background: var(--bg-elev); color: var(--text); font-weight: 600; z-index: 1; }
+    .raw-tbl td.rownum, .raw-tbl th.rownum { color: var(--faint); text-align: right; background: var(--bg-elev); position: sticky; left: 0; }
+    .raw-tbl tbody tr:hover td { background: color-mix(in srgb, var(--accent) 6%, transparent); }
+    .raw-tbl td.empty-cell { color: var(--faint); }
   </style>
 </head>
 <body>
   <div class="page">
     <header>
-      <p class="page-kicker">PoC</p>
-      <h1 class="page-title">Google Sheets API 직접 호출 — PoC</h1>
-      <p class="page-lede">
-        github.io 정적 페이지에서 사용자 본인 OAuth 로 Google Sheets 를 read/write 합니다. 백엔드 0개.
-        Apps Script 안 씀, Service Account 안 씀.
-        <strong>"Google 로그인" 1번 클릭 → 자동으로 read / append / update 3종 검증 실행.</strong>
+      <p class="page-kicker">RAW DATA — GOOGLE SHEET SoT</p>
+      <h1 class="page-title">Raw Data.</h1>
+      <p class="page-lede" data-lede>
+        편집 데이터의 원천인 Google Sheet 를 탭별로 읽기전용으로 봅니다. musinsa.com 계정 로그인 필요.
       </p>
     </header>
 
-    <section>
-      <div class="sec-head"><h2>0. 인증</h2></div>
-      <div class="poc-card poc-grid">
-        <div class="poc-row">
-          <button id="btn-signin">Google 로그인</button>
-          <button id="btn-signout" disabled>로그아웃</button>
-          <span class="poc-status" id="auth-status">로그인 안 됨</span>
-        </div>
-        <p>
-          첫 클릭 시 Google 동의 화면 popup → musinsa.com 계정 선택 →
-          Sheets 권한 동의. 다음부터는 1시간 동안 자동 통과.
-        </p>
+    <!-- 인증 + 스프레드시트 링크 -->
+    <section id="sec-auth" class="poc-card" aria-label="Google 로그인 상태">
+      <div class="poc-row" style="gap:10px;align-items:center;">
+        <span class="poc-status" id="auth-status">인증 확인 중…</span>
+        <span style="flex:1"></span>
+        <a id="sheet-link" class="btn ghost" href="#" target="_blank" rel="noopener noreferrer" title="Google Sheet 를 새 탭에서 엽니다">스프레드시트 열기 ↗</a>
+        <button id="btn-signin" type="button" class="btn primary" hidden>Google 로그인 →</button>
+        <button id="btn-signout" type="button" class="btn ghost" hidden>로그아웃</button>
+        <button id="btn-refresh" type="button" class="btn ghost" disabled title="시트 목록·데이터를 다시 불러옵니다">🔄 새로고침</button>
       </div>
+      <p id="auth-help" class="muted" style="font-size:12px; margin:10px 0 0; line-height:1.55;">
+        musinsa.com Google 계정으로 로그인하면 스프레드시트의 각 탭 데이터를 표로 확인할 수 있습니다. (읽기 전용)
+      </p>
     </section>
 
+    <!-- 탭 선택 -->
     <section>
-      <div class="sec-head"><h2>1. plan 시트 read</h2></div>
-      <div class="poc-card poc-grid">
-        <div class="poc-row">
-          <button id="btn-read" disabled>plan!A1:Z 읽기</button>
-          <span class="poc-status" id="read-status">대기</span>
-        </div>
-        <p>
-          Sheet ID: <code class="kv">1lRm-xfEz...QSSM</code> · 범위: <code class="kv">plan!A1:Z1000</code>
-        </p>
+      <div class="sec-head">
+        <h2>탭</h2>
+        <small id="tab-meta">로그인 후 표시</small>
       </div>
+      <div class="filters" id="sheet-tabs"></div>
     </section>
 
+    <!-- 데이터 -->
     <section>
-      <div class="sec-head"><h2>2. 테스트 행 append</h2></div>
-      <div class="poc-card poc-grid">
-        <div class="poc-row">
-          <button id="btn-append" disabled>plan 시트에 TEST-{timestamp} 행 추가</button>
-          <span class="poc-status" id="append-status">대기</span>
-        </div>
-        <p>
-          jira_key: <code class="kv" id="next-key">TEST-?</code> ·
-          pm: <code class="kv">PoC</code> ·
-          plan_start: <code class="kv" id="today-iso">today</code>
-        </p>
-      </div>
-    </section>
-
-    <section>
-      <div class="sec-head"><h2>3. 마지막 테스트 행 update</h2></div>
-      <div class="poc-card poc-grid">
-        <div class="poc-row">
-          <button id="btn-update" disabled>방금 추가한 행의 pm 컬럼 → "PoC 수정됨"</button>
-          <span class="poc-status" id="update-status">대기 (먼저 append 필요)</span>
-        </div>
-        <p>
-          revision history (Sheet 의 파일 → 버전 기록) 에 본인 이름이 찍히는지 직접 확인.
-        </p>
-      </div>
-    </section>
-
-    <section>
-      <div class="sec-head"><h2>로그</h2></div>
-      <div class="poc-log" id="log"></div>
+      <div id="raw-table"></div>
     </section>
 
     <div class="page-meta">
-      <span class="muted">S&amp;D Console — PoC</span>
-      <span class="right num">2026-05-27</span>
+      <span class="muted">S&amp;D Console</span>
+      <span class="muted">last sync</span>
+      <span class="right num" data-meta-last-sync>—</span>
     </div>
   </div>
 
-  <script type="module" src="../assets/js/pages/poc-sheets.js"></script>
+  <script type="module">
+    import { renderSidebar, loadAndApplyMeta } from '../assets/js/nav.js';
+    import { renderRawData } from '../assets/js/pages/poc-sheets.js';
+
+    renderSidebar({ active: 'poc-sheets' });
+    loadAndApplyMeta('../');
+    renderRawData({ rootRel: '../' });
+  </script>
 </body>
 </html>

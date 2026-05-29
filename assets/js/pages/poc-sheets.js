@@ -1,216 +1,263 @@
 /* =========================================================
-   pages/poc-sheets.js
-   Google Sheets API 직접 호출 PoC.
+   pages/poc-sheets.js — Raw Data
+   편집 데이터 원천인 Google Sheet 를 탭별 읽기전용으로 표시.
+   - 사용자 본인 OAuth (sheets.js). 백엔드 0개.
+   - 시트 목록(탭) 조회 → 탭 선택 → 해당 탭 raw 행을 표로.
+   - "스프레드시트 열기" 로 실제 Sheet 새 탭 열기.
    ========================================================= */
 
-import { auth, sheets, SPREADSHEET_ID } from '../api/sheets.js';
+import { auth, sheets, SPREADSHEET_ID, AuthRequiredError } from '../api/sheets.js';
+import { showLoading, showError, emptyHtml } from '../states.js';
+import { escapeHtml, escapeAttr } from '../escape.js';
+import { scoped } from '../storage.js';
+import { toast } from '../toast.js';
 
-// ─── DOM refs ─────────────────────────────────────────────────────────
+const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/edit`;
+const TAB_KEY = 'rawData.tab';
+const MAX_ROWS = 2000;
+
 const $ = (id) => document.getElementById(id);
-const els = {
-  signin: $('btn-signin'),
-  signout: $('btn-signout'),
-  authStatus: $('auth-status'),
-  read: $('btn-read'),
-  readStatus: $('read-status'),
-  append: $('btn-append'),
-  appendStatus: $('append-status'),
-  nextKey: $('next-key'),
-  todayIso: $('today-iso'),
-  update: $('btn-update'),
-  updateStatus: $('update-status'),
-  log: $('log'),
+
+const state = {
+  rootRel: '',
+  signedIn: false,
+  email: null,
+  tabs: [],          // [{title, index, sheetId, gridProperties}]
+  activeTab: null,
 };
 
-// ─── helpers ──────────────────────────────────────────────────────────
-function ts() {
-  const d = new Date();
-  return d.toTimeString().slice(0, 8) + '.' + String(d.getMilliseconds()).padStart(3, '0');
-}
+export async function renderRawData({ rootRel = '' } = {}) {
+  state.rootRel = rootRel;
+  const link = $('sheet-link');
+  if (link) link.href = SHEET_URL;
 
-function log(level, msg, payload) {
-  const line = document.createElement('div');
-  const tsSpan = `<span class="ts">[${ts()}]</span> `;
-  const cls = level === 'ok' ? 'ok' : level === 'err' ? 'err' : '';
-  line.innerHTML = `${tsSpan}<span class="${cls}">${msg}</span>`;
-  if (payload !== undefined) {
-    line.innerHTML += '\n' + escapeHtml(JSON.stringify(payload, null, 2));
-  }
-  els.log.appendChild(line);
-  els.log.scrollTop = els.log.scrollHeight;
-}
+  bindAuthUi();
+  renderAuthUi('checking');
 
-function escapeHtml(s) {
-  return String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-}
-
-function setStatus(el, level, text) {
-  el.className = 'poc-status ' + level;
-  el.textContent = text;
-}
-
-function refreshAuthButtons() {
-  const signedIn = auth.isSignedIn();
-  els.signin.disabled = signedIn;
-  els.signout.disabled = !signedIn;
-  els.read.disabled = !signedIn;
-  els.append.disabled = !signedIn;
-  // update 는 append 가 한 번 성공한 뒤에만 활성화 — 별도 state 로 관리
-  if (!signedIn) els.update.disabled = true;
-  if (signedIn) {
-    setStatus(els.authStatus, 'ok', `로그인됨: ${auth.email() || '(이메일 미상)'}`);
-  } else {
-    setStatus(els.authStatus, '', '로그인 안 됨');
-  }
-}
-
-function todayYmd() {
-  const d = new Date();
-  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
-}
-
-let lastAppendedKey = null;
-
-function nextTestKey() {
-  return `TEST-${Date.now()}`;
-}
-
-function refreshPreview() {
-  els.nextKey.textContent = nextTestKey();
-  els.todayIso.textContent = todayYmd();
-}
-
-// ─── handlers ─────────────────────────────────────────────────────────
-async function runFullCheck() {
-  log('info', '─── 자동 검증 시작 ───');
-  // 1. read
-  setStatus(els.readStatus, '', '읽는 중…');
-  try {
-    const res = await sheets.read(SPREADSHEET_ID, 'plan!A1:Z1000');
-    const rows = (res.values || []).length;
-    setStatus(els.readStatus, 'ok', `OK — ${rows} 행 (헤더 포함)`);
-    log('ok', `1. read plan!A1:Z1000 — ${rows} 행`);
-  } catch (e) {
-    setStatus(els.readStatus, 'err', 'FAIL: ' + e.message);
-    log('err', '1. read 실패', { error: e.message, status: e.status, body: e.body });
-    log('err', '─── read 실패로 중단 ───');
+  if (auth.isSignedIn()) {
+    state.signedIn = true;
+    state.email = auth.email();
+    renderAuthUi('signedIn');
+    await loadTabs();
     return;
   }
-  // 2. append
-  setStatus(els.appendStatus, '', 'append 중…');
-  const key = nextTestKey();
-  const today = todayYmd();
-  const row = [key, 'PoC', '', '', '', '', '', today, '', new Date().toISOString()];
+
   try {
-    const res = await sheets.append(SPREADSHEET_ID, 'plan!A1', [row]);
-    lastAppendedKey = key;
-    setStatus(els.appendStatus, 'ok', `OK — ${key} 행 추가`);
-    log('ok', `2. append plan — key=${key}`);
-    refreshPreview();
+    await Promise.race([
+      auth.signIn({ silent: true }),
+      new Promise((_, reject) => setTimeout(() => reject(new AuthRequiredError('silent timeout')), 5000)),
+    ]);
+    state.signedIn = true;
+    state.email = auth.email();
+    renderAuthUi('signedIn');
+    await loadTabs();
   } catch (e) {
-    setStatus(els.appendStatus, 'err', 'FAIL: ' + e.message);
-    log('err', '2. append 실패', { error: e.message, status: e.status, body: e.body });
-    log('err', '─── append 실패로 중단 ───');
-    return;
+    state.signedIn = false;
+    renderAuthUi('signedOut');
+    showSignedOutHint();
+    if (!(e instanceof AuthRequiredError)) console.warn('[raw-data] silent auth', e);
   }
-  // 3. update
-  setStatus(els.updateStatus, '', 'update 중…');
-  try {
-    const readRes = await sheets.read(SPREADSHEET_ID, 'plan!A:A');
-    const keys = (readRes.values || []).map((r) => r[0]);
-    const idx = keys.indexOf(lastAppendedKey);
-    if (idx === -1) throw new Error(`키 ${lastAppendedKey} 를 plan!A 열에서 찾지 못함`);
-    const rowNum = idx + 1;
-    const range = `plan!B${rowNum}`;
-    const res = await sheets.update(SPREADSHEET_ID, range, [['PoC 수정됨']]);
-    setStatus(els.updateStatus, 'ok', `OK — ${range} ← "PoC 수정됨"`);
-    els.update.disabled = false;
-    log('ok', `3. update ${range}`);
-  } catch (e) {
-    setStatus(els.updateStatus, 'err', 'FAIL: ' + e.message);
-    log('err', '3. update 실패', { error: e.message, status: e.status, body: e.body });
-    return;
-  }
-  log('ok', '─── 자동 검증 모두 통과 — read / append / update 3종 ✓ ───');
-  log('info', `Sheet 의 파일→버전 기록에서 본인 이름 + "${lastAppendedKey}" 확인하세요.`);
 }
 
-els.signin.addEventListener('click', async () => {
-  setStatus(els.authStatus, '', '로그인 중…');
-  try {
-    const res = await auth.signIn();
-    log('ok', 'OAuth 토큰 발급 성공', { email: res.email, tokenPrefix: (res.accessToken || '').slice(0, 12) + '…' });
-    refreshAuthButtons();
-    refreshPreview();
-    // 로그인 성공 시 자동으로 read → append → update 순차 검증.
-    await runFullCheck();
-  } catch (e) {
-    setStatus(els.authStatus, 'err', '로그인 실패: ' + e.message);
-    log('err', '로그인 실패', { error: e.message });
-  }
-});
+/* ─── 탭 목록 + 데이터 ────────────────────────────────────── */
 
-els.signout.addEventListener('click', () => {
+async function loadTabs() {
+  const host = $('raw-table');
+  showLoading(host, { rows: 4, title: false });
+  let meta;
+  try {
+    meta = await sheets.meta(SPREADSHEET_ID, {
+      fields: 'sheets.properties(title,index,sheetId,gridProperties(rowCount,columnCount))',
+    });
+  } catch (e) {
+    if (e instanceof AuthRequiredError) { state.signedIn = false; renderAuthUi('signedOut'); showSignedOutHint(); return; }
+    console.error('[raw-data] meta 실패', e);
+    showError(host, e);
+    return;
+  }
+  state.tabs = (meta.sheets || []).map(s => s.properties).filter(Boolean)
+    .sort((a, b) => (a.index ?? 0) - (b.index ?? 0));
+
+  const tabMeta = $('tab-meta');
+  if (tabMeta) tabMeta.textContent = `${state.tabs.length}개 탭`;
+
+  // 활성 탭 결정: 저장값 → 첫 탭
+  const saved = scoped(TAB_KEY).get(null);
+  state.activeTab = state.tabs.some(t => t.title === saved) ? saved
+    : (state.tabs[0] && state.tabs[0].title) || null;
+
+  renderTabs();
+  if (state.activeTab) await loadActiveTab();
+  else host.innerHTML = emptyHtml({ kicker: 'NO TABS', msg: '시트에 탭이 없습니다.' });
+}
+
+function renderTabs() {
+  const host = $('sheet-tabs');
+  if (!host) return;
+  if (!state.tabs.length) { host.innerHTML = ''; return; }
+  host.innerHTML = `<span class="flabel">탭</span>` + state.tabs.map(t => {
+    const on = t.title === state.activeTab;
+    return `<button type="button" class="fchip ${on ? 'on' : ''}" data-tab="${escapeAttr(t.title)}">${escapeHtml(t.title)}</button>`;
+  }).join('');
+  host.querySelectorAll('button.fchip').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      state.activeTab = btn.dataset.tab;
+      scoped(TAB_KEY).set(state.activeTab);
+      renderTabs();
+      await loadActiveTab();
+    });
+  });
+}
+
+/** 시트 탭 이름을 안전한 A1 range 로 (작은따옴표 escape). */
+function tabRange(title) {
+  const t = String(title).replace(/'/g, "''");
+  return `'${t}'!A1:AZ${MAX_ROWS}`;
+}
+
+async function loadActiveTab() {
+  const host = $('raw-table');
+  if (!host || !state.activeTab) return;
+  showLoading(host, { rows: 4, title: false });
+  try {
+    const res = await sheets.read(SPREADSHEET_ID, tabRange(state.activeTab));
+    renderTable(host, res.values || []);
+  } catch (e) {
+    if (e instanceof AuthRequiredError) { state.signedIn = false; renderAuthUi('signedOut'); showSignedOutHint(); return; }
+    console.error('[raw-data] read 실패', e);
+    showError(host, e);
+  }
+}
+
+function renderTable(host, values) {
+  if (!values.length) {
+    host.innerHTML = emptyHtml({ kicker: 'EMPTY', msg: `"${state.activeTab}" 탭에 데이터가 없습니다.` });
+    return;
+  }
+  const header = values[0] || [];
+  const body = values.slice(1);
+  const colCount = values.reduce((m, r) => Math.max(m, (r || []).length), 0);
+
+  const headCells = ['<th class="rownum">#</th>']
+    .concat(Array.from({ length: colCount }, (_, c) =>
+      `<th>${escapeHtml(header[c] != null && header[c] !== '' ? header[c] : colLabel(c))}</th>`))
+    .join('');
+
+  const bodyRows = body.map((row, i) => {
+    const cells = Array.from({ length: colCount }, (_, c) => {
+      const v = row ? row[c] : '';
+      const empty = v == null || v === '';
+      return `<td class="${empty ? 'empty-cell' : ''}">${empty ? '·' : escapeHtml(v)}</td>`;
+    }).join('');
+    return `<tr><td class="rownum">${i + 2}</td>${cells}</tr>`;
+  }).join('');
+
+  host.innerHTML = `
+    <div class="sec-head" style="margin-bottom:8px">
+      <small><span class="num">${body.length}</span> 행 · <span class="num">${colCount}</span> 열 · 탭 <strong>${escapeHtml(state.activeTab)}</strong> (읽기 전용)</small>
+    </div>
+    <div class="raw-scroll">
+      <table class="raw-tbl">
+        <thead><tr>${headCells}</tr></thead>
+        <tbody>${bodyRows}</tbody>
+      </table>
+    </div>
+  `;
+}
+
+/** 0→A, 1→B … (헤더 비었을 때 컬럼 라벨). */
+function colLabel(n) {
+  let s = '';
+  n = Math.floor(n);
+  while (true) {
+    s = String.fromCharCode(65 + (n % 26)) + s;
+    n = Math.floor(n / 26) - 1;
+    if (n < 0) break;
+  }
+  return s;
+}
+
+function showSignedOutHint() {
+  const host = $('raw-table');
+  if (host) host.innerHTML = emptyHtml({
+    kicker: 'LOGIN REQUIRED',
+    msg: 'Google 로그인하면 스프레드시트 데이터가 표시됩니다.',
+    hint: '우측 상단 "Google 로그인" 클릭',
+  });
+  const tabs = $('sheet-tabs');
+  if (tabs) tabs.innerHTML = '';
+}
+
+/* ─── 인증 UI ─────────────────────────────────────────────── */
+
+function bindAuthUi() {
+  const signin = $('btn-signin');
+  const signout = $('btn-signout');
+  const refresh = $('btn-refresh');
+  if (signin) signin.addEventListener('click', onSignInClick);
+  if (signout) signout.addEventListener('click', onSignOutClick);
+  if (refresh) refresh.addEventListener('click', () => loadTabs());
+}
+
+async function onSignInClick() {
+  renderAuthUi('checking');
+  try {
+    await auth.signIn();
+    state.signedIn = true;
+    state.email = auth.email();
+    renderAuthUi('signedIn');
+    await loadTabs();
+  } catch (e) {
+    state.signedIn = false;
+    renderAuthUi('signedOut');
+    showSignedOutHint();
+    if (e instanceof AuthRequiredError) {
+      toast({ kicker: '로그인 필요', msg: 'popup 이 차단되었을 수 있습니다.', kind: 'alert' });
+    } else {
+      toast({ kicker: '로그인 실패', msg: e.message || String(e), kind: 'alert' });
+    }
+  }
+}
+
+function onSignOutClick() {
   auth.signOut();
-  log('info', '로그아웃 + 토큰 revoke');
-  refreshAuthButtons();
-});
+  state.signedIn = false;
+  state.email = null;
+  state.tabs = [];
+  state.activeTab = null;
+  renderAuthUi('signedOut');
+  showSignedOutHint();
+  const tabMeta = $('tab-meta');
+  if (tabMeta) tabMeta.textContent = '로그인 후 표시';
+}
 
-els.read.addEventListener('click', async () => {
-  setStatus(els.readStatus, '', '읽는 중…');
-  try {
-    const res = await sheets.read(SPREADSHEET_ID, 'plan!A1:Z1000');
-    const rows = (res.values || []).length;
-    setStatus(els.readStatus, 'ok', `OK — ${rows} 행 (헤더 포함)`);
-    log('ok', `read plan!A1:Z1000 — ${rows} 행`, res);
-  } catch (e) {
-    setStatus(els.readStatus, 'err', 'FAIL: ' + e.message);
-    log('err', 'read 실패', { error: e.message, status: e.status, body: e.body });
+/** @param {'checking'|'signedIn'|'signedOut'} phase */
+function renderAuthUi(phase) {
+  const status = $('auth-status');
+  const signin = $('btn-signin');
+  const signout = $('btn-signout');
+  const refresh = $('btn-refresh');
+  if (!status) return;
+  const show = (el, on) => { if (el) el.hidden = !on; };
+
+  switch (phase) {
+    case 'checking':
+      status.textContent = '인증 확인 중…';
+      show(signin, false); show(signout, false);
+      if (refresh) refresh.disabled = true;
+      break;
+    case 'signedIn':
+      status.textContent = `로그인됨${state.email ? ' · ' + state.email : ''}`;
+      show(signin, false); show(signout, true);
+      if (refresh) refresh.disabled = false;
+      break;
+    case 'signedOut':
+    default:
+      status.textContent = '로그인 안 됨';
+      show(signin, true); show(signout, false);
+      if (refresh) refresh.disabled = true;
+      break;
   }
-});
+}
 
-els.append.addEventListener('click', async () => {
-  setStatus(els.appendStatus, '', 'append 중…');
-  const key = nextTestKey();
-  const today = todayYmd();
-  // plan 시트 컬럼: jira_key, pm, pd, be, fe, me, md, plan_start, plan_end, last_updated_at
-  const row = [key, 'PoC', '', '', '', '', '', today, '', new Date().toISOString()];
-  try {
-    const res = await sheets.append(SPREADSHEET_ID, 'plan!A1', [row]);
-    lastAppendedKey = key;
-    setStatus(els.appendStatus, 'ok', `OK — ${key} 행 추가`);
-    els.update.disabled = false;
-    setStatus(els.updateStatus, '', `대기 — ${key} 의 pm 셀 수정 가능`);
-    log('ok', `append plan — key=${key}`, res);
-    refreshPreview();
-  } catch (e) {
-    setStatus(els.appendStatus, 'err', 'FAIL: ' + e.message);
-    log('err', 'append 실패', { error: e.message, status: e.status, body: e.body });
-  }
-});
-
-els.update.addEventListener('click', async () => {
-  if (!lastAppendedKey) return;
-  setStatus(els.updateStatus, '', 'update 중…');
-  try {
-    // 행 찾기: plan!A:A read → key 일치하는 행 번호 계산.
-    const readRes = await sheets.read(SPREADSHEET_ID, 'plan!A:A');
-    const keys = (readRes.values || []).map((r) => r[0]);
-    const idx = keys.indexOf(lastAppendedKey);
-    if (idx === -1) throw new Error(`키 ${lastAppendedKey} 를 plan!A 열에서 찾지 못함`);
-    const rowNum = idx + 1; // 1-based, 헤더가 row 1
-    // pm 은 B 열
-    const range = `plan!B${rowNum}`;
-    const res = await sheets.update(SPREADSHEET_ID, range, [['PoC 수정됨']]);
-    setStatus(els.updateStatus, 'ok', `OK — ${range} ← "PoC 수정됨"`);
-    log('ok', `update ${range}`, res);
-  } catch (e) {
-    setStatus(els.updateStatus, 'err', 'FAIL: ' + e.message);
-    log('err', 'update 실패', { error: e.message, status: e.status, body: e.body });
-  }
-});
-
-// ─── init ─────────────────────────────────────────────────────────────
-refreshAuthButtons();
-refreshPreview();
-log('info', 'PoC 페이지 로드 완료. "Google 로그인" 부터 시작하세요.');
+export const _internal = { tabRange, colLabel };

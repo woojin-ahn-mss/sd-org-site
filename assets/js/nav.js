@@ -23,7 +23,7 @@ export const PAGES = [
   { id: 'fasttrack',    num: '08', label: '패스트트랙',     path: 'pages/fasttrack.html' },
   { id: 'one-tickets',  num: '09', label: 'One 티켓',      path: 'pages/one-tickets.html' },
   { id: 'etr',          num: '10', label: 'ETR',         path: 'pages/etr.html' },
-  { id: 'poc-sheets',   num: '11', label: '🧪 PoC Sheets', path: 'pages/poc-sheets.html' },
+  { id: 'poc-sheets',   num: '11', label: 'Raw Data',     path: 'pages/poc-sheets.html' },
 ];
 
 /**
