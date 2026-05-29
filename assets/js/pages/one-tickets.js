@@ -40,7 +40,10 @@ const state = {
   email: null,
   meta: new Map(),    // jira_key → {manual_rank, comment, _rowNum}
   metaRows: [],       // loadOneMeta 원본 (upsert 시 _rowNum 탐색)
-  filters: { project: null, label: null, status: null, priority: null, subSubject: null, hideLaunched: true, showHidden: false },
+  filters: { project: null, label: null, status: null, priority: null, subSubject: null, hideLaunched: true },
+  hideManageMode: false,   // 숨김 관리 모드 (체크박스 노출 + 전체 표시)
+  hidePending: new Map(),  // 관리 모드 중 변경 대기 (key → bool)
+  hideSaving: false,       // 저장 진행 중 (중복 저장 방지)
   view: 'all',        // 'all' | 'subject'
   sort: 'rank',       // 'rank' | 'created'
   expanded: new Set(),
@@ -53,9 +56,10 @@ const state = {
 export async function renderOneTickets({ rootRel = '' } = {}) {
   state.rootRel = rootRel;
   state.filters = Object.assign(
-    { project: null, status: null, priority: null, subSubject: null, hideLaunched: true, showHidden: false },
+    { project: null, status: null, priority: null, subSubject: null, hideLaunched: true },
     scoped(FILTERS_KEY).get({}) || {},
   );
+  delete state.filters.showHidden;  // 폐지된 토글 — 잔존 값 무력화 (숨김 표시는 관리 모드로 대체)
   state.filters.label = null;  // 라벨 필터 폐지 — 저장된 잔존 값으로 인한 숨은 필터 방지
   const savedView = scoped(VIEW_KEY).get(null);
   if (savedView && typeof savedView === 'object') {
@@ -280,6 +284,82 @@ function renderControls() {
   document.querySelectorAll('[data-sort]').forEach(b =>
     b.classList.toggle('active', b.dataset.sort === state.sort));
   renderFilters();
+  renderHideControls();
+}
+
+/* ─── 숨김 관리 모드 ──────────────────────────────────────── */
+
+function renderHideControls() {
+  const host = $('hide-manage-controls');
+  if (!host) return;
+  if (!state.signedIn) { host.innerHTML = ''; return; }
+  if (state.hideManageMode) {
+    const n = state.hidePending.size;
+    host.innerHTML =
+      `<span class="muted dim-mono" style="margin-right:6px">숨김 관리</span>` +
+      `<button type="button" class="tlink" data-hide-cancel>취소</button>` +
+      `<button type="button" class="btn primary" data-hide-save ${state.hideSaving ? 'disabled' : ''}>${state.hideSaving ? '저장 중…' : `저장${n ? ` (${n})` : ''}`}</button>`;
+    host.querySelector('[data-hide-cancel]').addEventListener('click', exitHideManage);
+    host.querySelector('[data-hide-save]').addEventListener('click', saveHideManage);
+  } else {
+    host.innerHTML = `<button type="button" class="btn ghost" data-hide-manage>숨김 관리</button>`;
+    host.querySelector('[data-hide-manage]').addEventListener('click', enterHideManage);
+  }
+}
+
+function enterHideManage() {
+  state.hideManageMode = true;
+  state.hidePending = new Map();
+  renderHideControls();
+  renderList();   // 전체(숨김 포함) + 체크박스 노출
+}
+
+function exitHideManage() {
+  state.hideManageMode = false;
+  state.hidePending = new Map();
+  renderHideControls();
+  renderList();
+}
+
+async function saveHideManage() {
+  if (state.hideSaving) return;
+  // pending 중 실제로 바뀐 것만 반영.
+  const changes = [];
+  for (const [key, val] of state.hidePending) {
+    const cur = !!(state.meta.get(key) && state.meta.get(key).hidden);
+    if (val !== cur) changes.push([key, val]);
+  }
+  if (!changes.length) { exitHideManage(); return; }
+
+  state.hideSaving = true;
+  renderHideControls();   // 저장 버튼 disabled 반영
+  let done = 0;
+  try {
+    for (const [key, val] of changes) {
+      const saved = await upsertOneMeta(key, { hidden: val }, state.metaRows);
+      if (saved) {
+        state.meta.set(key, saved);
+        const i = state.metaRows.findIndex(r => String(r.jira_key) === String(key));
+        if (i >= 0) state.metaRows[i] = saved; else state.metaRows.push(saved);
+      } else {
+        state.meta.delete(key);
+        state.metaRows = state.metaRows.filter(r => String(r.jira_key) !== String(key));
+      }
+      state.hidePending.delete(key);   // 적용 완료분은 pending 에서 제거(부분 실패 시 재시도 대상에서 빠짐)
+      done++;
+    }
+    state.hideSaving = false;
+    toast({ kicker: '숨김 관리', msg: `${done}건 반영`, kind: 'success' });
+    exitHideManage();   // 성공 시에만 모드 종료 + 재렌더(숨김 필터 반영)
+  } catch (e) {
+    state.hideSaving = false;
+    if (e instanceof AuthRequiredError) {
+      state.signedIn = false; renderAuthUi('signedOut'); exitHideManage(); return;
+    }
+    console.error('[one-tickets] 숨김 저장 실패', e);
+    toast({ kicker: '숨김 저장 실패', msg: `${done}/${changes.length}건 반영 후 실패 — 다시 저장하세요`, kind: 'alert' });
+    renderHideControls();   // 모드 유지 + 남은 pending 으로 재시도 가능
+  }
 }
 
 function renderFilters() {
@@ -297,12 +377,9 @@ function renderFilters() {
   const f = state.filters;
   const hasAny = f.project || f.status || f.priority || f.subSubject;
   const row = (inner) => (inner ? `<div class="filter-row">${inner}</div>` : '');
-  let hiddenCount = 0;
-  for (const m of state.meta.values()) if (m && m.hidden) hiddenCount++;
   const viewToggles =
     `<span class="flabel">보기</span>` +
-    `<button type="button" class="fchip ${f.hideLaunched ? 'on' : ''}" data-toggle="hideLaunched" role="switch" aria-checked="${f.hideLaunched ? 'true' : 'false'}">론치완료·Dropped 제외</button>` +
-    `<button type="button" class="fchip ${f.showHidden ? 'on' : ''}" data-toggle="showHidden" role="switch" aria-checked="${f.showHidden ? 'true' : 'false'}">숨긴 과제 보기${hiddenCount ? ` (${hiddenCount})` : ''}</button>`;
+    `<button type="button" class="fchip ${f.hideLaunched ? 'on' : ''}" data-toggle="hideLaunched" role="switch" aria-checked="${f.hideLaunched ? 'true' : 'false'}">론치완료·Dropped 제외</button>`;
 
   host.innerHTML = `
     ${row(chipGroup('project', '프로젝트', projects.map(v => ({ v, label: v })), f.project))}
@@ -325,7 +402,7 @@ function renderFilters() {
   });
   host.querySelectorAll('[data-toggle]').forEach(btn => {
     btn.addEventListener('click', () => {
-      const k = btn.dataset.toggle;            // hideLaunched | showHidden
+      const k = btn.dataset.toggle;            // hideLaunched
       state.filters[k] = !state.filters[k];
       scoped(FILTERS_KEY).set(state.filters);
       state.page = 1;
@@ -483,22 +560,23 @@ function subjectOrder(s) {
 function renderList() {
   const host = $('one-table');
   if (!host) return;
-  // 수동 숨김 키 집합 (meta.hidden) — showHidden off 면 제외.
+  // 수동 숨김 키 집합 (meta.hidden). 관리 모드에선 전체 표시(숨김 포함)해 체크/해제할 수 있게.
   const hiddenKeys = new Set();
   for (const [k, m] of state.meta) if (m && m.hidden) hiddenKeys.add(String(k));
+  const eff = { ...state.filters, showHidden: state.hideManageMode };
 
-  const filtered = filterClusters(state.topLevel, state.filters, state.clusterMembers, hiddenKeys);
+  const filtered = filterClusters(state.topLevel, eff, state.clusterMembers, hiddenKeys);
   // 표시 대표 재선정: 대표가 필터를 통과 못 하면(론치완료/숨김 등) 통과하는 멤버를 대표로 승격.
   // → 묶음은 유지하되 화면 상단에 필터에 맞는 티켓이 오게.
   state.displayMembers = new Map();
   const displayReps = filtered.map(origRep => {
     const members = state.clusterMembers.get(origRep.key) || [];
-    if (itemMatchesFilters(origRep, state.filters, hiddenKeys)) {
+    if (itemMatchesFilters(origRep, eff, hiddenKeys)) {
       state.displayMembers.set(origRep.key, members);
       return origRep;
     }
     const all = [origRep, ...members];
-    const passing = all.filter(it => itemMatchesFilters(it, state.filters, hiddenKeys));
+    const passing = all.filter(it => itemMatchesFilters(it, eff, hiddenKeys));
     const rep = passing.length ? passing.slice().sort(cmpRep)[0] : origRep;
     state.displayMembers.set(rep.key, all.filter(it => it.key !== rep.key));
     return rep;
@@ -538,7 +616,7 @@ function theadHtml() {
         <th style="width:74px">순위</th>
         <th style="width:64px" title="Quick fix 대상">Quick fix</th>
         <th style="width:40%">코멘트</th>
-        <th style="width:56px" title="체크 시 목록에서 숨김">숨김</th>
+        <th style="width:${state.hideManageMode ? 56 : 20}px">${state.hideManageMode ? '숨김' : ''}</th>
       </tr>
     </thead>`;
 }
@@ -585,8 +663,11 @@ function rowHtml(it) {
   const expandId = `one-expand-${cssId(it.key)}`;
   const m = state.meta.get(it.key);
   const isHidden = !!(m && m.hidden);
-
-  const cls = `${expandable ? 'ft-row ' : ''}one-row${isHidden ? ' one-hidden-row' : ''}`;
+  // 관리 모드에선 pending(체크박스) 상태를 dim 에 반영해 체크박스와 일치.
+  const dimHidden = state.hideManageMode && state.hidePending.has(it.key)
+    ? state.hidePending.get(it.key)
+    : isHidden;
+  const cls = `${expandable ? 'ft-row ' : ''}one-row${dimHidden ? ' one-hidden-row' : ''}`;
   const rowAttrs = expandable
     ? `class="${cls}" data-key="${escapeAttr(it.key)}" role="button" tabindex="0" aria-expanded="${open ? 'true' : 'false'}" aria-controls="${expandId}"`
     : `class="${cls}" data-key="${escapeAttr(it.key)}"`;
@@ -601,17 +682,19 @@ function rowHtml(it) {
       <td>${rankCellHtml(it.key)}</td>
       <td class="one-qf-cell">${quickFixCellHtml(it.key)}</td>
       <td>${commentCellHtml(it.key)}</td>
-      <td class="one-row-actions">${hideBtnHtml(it.key, isHidden)}${expandable ? `<span class="caret ${open ? 'open' : ''}" aria-hidden="true">›</span>` : ''}</td>
+      <td class="one-row-actions">${hideBtnHtml(it.key)}${expandable ? `<span class="caret ${open ? 'open' : ''}" aria-hidden="true">›</span>` : ''}</td>
     </tr>
     ${expandable && open ? expandHtml(it, expandId) : ''}
   `;
 }
 
-/** 행 숨김 on/off 체크박스 (로그인 시). 체크=숨김, 해제=복원. */
-function hideBtnHtml(key, isHidden) {
-  if (!state.signedIn) return '';
-  return `<input type="checkbox" class="one-hide-cb" data-key="${escapeAttr(key)}" ${isHidden ? 'checked' : ''}
-            title="${isHidden ? '숨김 해제' : '이 과제 숨기기'}" aria-label="${escapeAttr(key)} 숨김" />`;
+/** 행 숨김 체크박스 — 숨김 관리 모드에서만 노출. 체크=숨김 예정. (저장 시 반영) */
+function hideBtnHtml(key) {
+  if (!state.signedIn || !state.hideManageMode) return '';
+  const cur = !!(state.meta.get(key) && state.meta.get(key).hidden);
+  const checked = state.hidePending.has(key) ? state.hidePending.get(key) : cur;
+  return `<input type="checkbox" class="one-hide-cb" data-key="${escapeAttr(key)}" ${checked ? 'checked' : ''}
+            aria-label="${escapeAttr(key)} 숨김 선택" />`;
 }
 
 /** 라벨 칩(one 제외) HTML. */
@@ -793,10 +876,14 @@ function bindMetaInputs(host) {
   host.querySelectorAll('.one-comment-input').forEach(inp => {
     inp.addEventListener('change', () => saveMeta(inp.dataset.key, { comment: inp.value }));
   });
-  // 행 숨김 on/off 체크박스 — 체크=숨김, 해제=복원. 재렌더로 즉시 반영.
+  // 숨김 관리 모드 체크박스 — 변경은 pending 에만(저장 시 일괄 반영). 행 펼침 토글 방지.
   host.querySelectorAll('.one-hide-cb').forEach(cb => {
     cb.addEventListener('click', (e) => e.stopPropagation());
-    cb.addEventListener('change', () => saveMeta(cb.dataset.key, { hidden: cb.checked }, { rerender: true }));
+    cb.addEventListener('change', () => {
+      state.hidePending.set(cb.dataset.key, cb.checked);
+      cb.closest('tr')?.classList.toggle('one-hidden-row', cb.checked);   // live dim
+      renderHideControls();   // 저장 버튼의 변경 건수 갱신
+    });
   });
 }
 
@@ -815,7 +902,6 @@ async function saveMeta(key, patch, { resort = false, rerender = false } = {}) {
       state.metaRows = state.metaRows.filter(r => String(r.jira_key) !== String(key));
     }
     toast({ kicker: key, msg: '저장됨', kind: 'success' });
-    if ('hidden' in patch) renderFilters();   // 숨김 카운트(N) 갱신
     if ((resort && state.sort === 'rank') || rerender) renderList();
   } catch (e) {
     if (e instanceof AuthRequiredError) {
@@ -869,7 +955,10 @@ function onSignOutClick() {
   state.email = null;
   state.meta = new Map();
   state.metaRows = [];
+  state.hideManageMode = false;
+  state.hidePending = new Map();
   renderAuthUi('signedOut');
+  renderHideControls();
   renderList();
 }
 
@@ -881,8 +970,8 @@ async function loadMeta() {
     state.metaRows = await loadOneMeta();
     state.meta = metaByKey(state.metaRows);
     renderAuthUi('signedIn');
-    renderFilters();   // 로그인 후 숨김 카운트 + 토글 상태 반영
-    renderList();      // signedIn=true 로 숨기기 버튼도 렌더
+    renderHideControls();   // 로그인 후 "숨김 관리" 버튼 노출
+    renderList();
     startRealtime();
   } catch (e) {
     if (e instanceof AuthRequiredError) { state.signedIn = false; stopRealtime(); renderAuthUi('signedOut'); renderList(); return; }
@@ -913,11 +1002,12 @@ function startRealtime() {
 
 function attemptRealtimeReload() {
   if (!state.signedIn) return;
-  // 입력 중이면 보류(편집 clobber 방지). 최대 ~8s 후 보류.
+  // 입력 중이거나 숨김 관리 모드면 보류(편집/pending clobber 방지). 최대 ~8s 후 포기.
   const ae = document.activeElement;
-  if (ae && (ae.tagName === 'INPUT' || ae.tagName === 'TEXTAREA')) {
+  const busy = state.hideManageMode || (ae && (ae.tagName === 'INPUT' || ae.tagName === 'TEXTAREA'));
+  if (busy) {
     if (rtRetries++ < 10) { rtTimer = setTimeout(attemptRealtimeReload, 800); }
-    else { rtRetries = 0; console.warn('[one-tickets] realtime reload 보류 — 편집 중. 다음 변경/새로고침 시 반영'); }
+    else { rtRetries = 0; console.warn('[one-tickets] realtime reload 보류 — 편집/숨김관리 중. 다음 변경/새로고침 시 반영'); }
     return;
   }
   rtRetries = 0;
