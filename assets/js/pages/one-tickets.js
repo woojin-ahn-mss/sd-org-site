@@ -206,14 +206,19 @@ export function clusterItems(items) {
   return { reps, membersByRep };
 }
 
-/** 클러스터 대표 선정: 프로젝트 우선순위(TOP_PROJECTS, ETR 먼저) → 생성 빠른 순 → key. */
+/** 클러스터 대표 선정: ETR 은 후순위(연결/복사된 실제 작업 티켓을 메인으로),
+ *  그 외는 TOP_PROJECTS 순 → 생성 빠른 순 → key. */
 export function pickRepresentative(members) {
   return members.slice().sort(cmpRep)[0];
 }
+function repRank(it) {
+  if (it.project === 'ETR') return 1000;        // ETR 은 대표에서 가장 뒤로
+  const pi = TOP_PROJECTS.indexOf(it.project);
+  return pi < 0 ? 99 : pi;
+}
 function cmpRep(a, b) {
-  const pa = TOP_PROJECTS.indexOf(a.project), pb = TOP_PROJECTS.indexOf(b.project);
-  const na = pa < 0 ? 99 : pa, nb = pb < 0 ? 99 : pb;
-  if (na !== nb) return na - nb;
+  const ra = repRank(a), rb = repRank(b);
+  if (ra !== rb) return ra - rb;
   const ca = a.created || '', cb = b.created || '';
   if (ca !== cb) return ca < cb ? -1 : 1;
   return String(a.key) < String(b.key) ? -1 : 1;
