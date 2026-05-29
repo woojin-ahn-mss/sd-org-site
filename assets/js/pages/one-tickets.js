@@ -96,8 +96,14 @@ async function loadList() {
   } catch (_) {
     items = await loadFallbackUnion(state.rootRel);
   }
-  state.items = items.map(normalizeItem);
+  // 과제(Initiative) 유형만 표시 — Epic·과제발의·Design·기타 하위/타 유형 제외.
+  state.items = items.map(normalizeItem).filter(isInitiative);
   recompute();
+}
+
+/** 과제(Initiative) 유형 여부. One 티켓 목록은 Initiative 만 노출. */
+export function isInitiative(it) {
+  return !!it && it.issueType === 'Initiative';
 }
 
 /** one-tickets.json 부재 시 기존 파일들을 union 해서 동등한 리스트 구성. */
@@ -926,7 +932,7 @@ function renderAuthUi(phase, err) {
 
 export const _internal = {
   TOP_PROJECTS, PAGE_SIZE, NO_SUBJECT,
-  normalizeItem, buildFromFallback, clusterItems, pickRepresentative, MERGE_EXCLUDE_LINKS,
+  normalizeItem, isInitiative, buildFromFallback, clusterItems, pickRepresentative, MERGE_EXCLUDE_LINKS,
   filterItems, itemMatchesFilters, filterClusters, sortItems, sortClusters,
   groupByMainSubject, rankOf, cssId, subSubjectsOf,
 };
