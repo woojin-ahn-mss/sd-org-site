@@ -51,19 +51,10 @@
       </p>
     </header>
 
-    <!-- 인증 영역 -->
-    <section id="sec-auth" class="poc-card" aria-label="Google 로그인 상태">
-      <div class="poc-row">
-        <span class="poc-status" id="auth-status">인증 확인 중…</span>
-        <button id="btn-signin" type="button" hidden>Google 로그인</button>
-        <button id="btn-signout" type="button" hidden>로그아웃</button>
-        <span style="flex:1"></span>
-        <button id="btn-cols" type="button" data-cols title="표시 컬럼 토글">컬럼</button>
-        <button id="btn-refresh" type="button" disabled title="Plan 데이터를 다시 불러옵니다">🔄 새로고침</button>
-      </div>
-      <p id="auth-help" class="muted" style="font-size:12px; margin:8px 0 0;">
-        musinsa.com Google 계정으로 로그인하시면 자동으로 read/write 가 활성화됩니다.
-      </p>
+    <!-- 컨트롤 (로그인/로그아웃은 사이드바 전역 인증으로 대체) -->
+    <section id="sec-auth" class="poc-row" aria-label="Plan 컨트롤" style="display:flex; align-items:center; justify-content:flex-end; gap:8px; padding:0 0 10px;">
+      <button id="btn-cols" type="button" data-cols title="표시 컬럼 토글">컬럼</button>
+      <button id="btn-refresh" type="button" disabled title="Plan 데이터를 다시 불러옵니다">🔄 새로고침</button>
     </section>
 
     <!-- 상단 4 카드 (sub-cycle B 에서 채움) -->

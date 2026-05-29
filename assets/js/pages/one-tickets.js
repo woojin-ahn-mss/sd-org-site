@@ -96,14 +96,16 @@ async function loadList() {
   } catch (_) {
     items = await loadFallbackUnion(state.rootRel);
   }
-  // 과제(Initiative) 유형만 표시 — Epic·과제발의·Design·기타 하위/타 유형 제외.
+  // 과제 유형(Initiative + 과제 발의)만 표시 — Epic·Design·기타(KTLO/BAU) 제외.
   state.items = items.map(normalizeItem).filter(isInitiative);
   recompute();
 }
 
-/** 과제(Initiative) 유형 여부. One 티켓 목록은 Initiative 만 노출. */
+/** One 티켓 목록에 노출할 과제 유형. */
+export const SHOWN_ISSUE_TYPES = new Set(['Initiative', '과제 발의']);
+/** 노출 대상 과제 유형 여부 (Initiative 또는 과제 발의). Epic/Design/기타 제외. */
 export function isInitiative(it) {
-  return !!it && it.issueType === 'Initiative';
+  return !!it && SHOWN_ISSUE_TYPES.has(it.issueType);
 }
 
 /** one-tickets.json 부재 시 기존 파일들을 union 해서 동등한 리스트 구성. */
@@ -238,7 +240,7 @@ function renderHeader() {
   lede.innerHTML =
     `<strong class="num">${total}</strong>개 묶음 ` +
     `(전체 <span class="num">${state.items.length}</span>건, 병합 <span class="num">${merged}</span>묶음). ` +
-    `연결 티켓(Blocks 제외) 행 클릭 시 펼침. 로그인하면 요약·코멘트·우선순위 편집.`;
+    `연결 티켓(Blocks 제외) 행 클릭 시 펼침. 셀에서 요약·코멘트·우선순위 편집.`;
 }
 
 /* ─── 컨트롤 (뷰/정렬 토글 + 필터) ────────────────────────── */
@@ -511,13 +513,13 @@ function theadHtml() {
     <thead>
       <tr>
         <th style="width:92px">키</th>
-        <th>요약</th>
+        <th style="width:34%">요약</th>
         <th style="width:64px">프로젝트</th>
         <th style="width:150px">상태</th>
         <th style="width:48px">우선</th>
         <th style="width:74px">순위</th>
         <th style="width:64px" title="Quick fix 대상">Quick fix</th>
-        <th style="width:220px">코멘트</th>
+        <th style="width:40%">코멘트</th>
         <th style="width:20px"></th>
       </tr>
     </thead>`;
