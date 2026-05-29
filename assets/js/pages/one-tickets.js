@@ -22,7 +22,7 @@ import {
   loadOneMeta, metaByKey, upsertOneMeta,
 } from '../api/one-ticket-meta.js';
 
-const TOP_PROJECTS = ['ETR', 'MSSCXTF', 'FT', 'TM', 'CBP', 'PBO'];
+const TOP_PROJECTS = ['ETR', 'MSSCXTF', 'FT', 'TM', 'CBP', 'PBO', 'MSS'];
 const PAGE_SIZE = 25;
 const NO_SUBJECT = '(미지정)';
 const FILTERS_KEY = 'oneTickets.filters';
@@ -40,7 +40,7 @@ const state = {
   email: null,
   meta: new Map(),    // jira_key → {manual_rank, comment, _rowNum}
   metaRows: [],       // loadOneMeta 원본 (upsert 시 _rowNum 탐색)
-  filters: { project: null, label: null, status: null, priority: null, subSubject: null, hideLaunched: true },
+  filters: { project: null, label: null, status: null, priority: null, subSubject: null, hideLaunched: true, showHidden: false },
   view: 'all',        // 'all' | 'subject'
   sort: 'rank',       // 'rank' | 'created'
   expanded: new Set(),
@@ -53,7 +53,7 @@ const state = {
 export async function renderOneTickets({ rootRel = '' } = {}) {
   state.rootRel = rootRel;
   state.filters = Object.assign(
-    { project: null, status: null, priority: null, subSubject: null, hideLaunched: true },
+    { project: null, status: null, priority: null, subSubject: null, hideLaunched: true, showHidden: false },
     scoped(FILTERS_KEY).get({}) || {},
   );
   state.filters.label = null;  // 라벨 필터 폐지 — 저장된 잔존 값으로 인한 숨은 필터 방지
@@ -292,16 +292,19 @@ function renderFilters() {
   const f = state.filters;
   const hasAny = f.project || f.status || f.priority || f.subSubject;
   const row = (inner) => (inner ? `<div class="filter-row">${inner}</div>` : '');
-  const launchToggle =
+  let hiddenCount = 0;
+  for (const m of state.meta.values()) if (m && m.hidden) hiddenCount++;
+  const viewToggles =
     `<span class="flabel">보기</span>` +
-    `<button type="button" class="fchip ${f.hideLaunched ? 'on' : ''}" data-toggle="hideLaunched">론치완료·Dropped 제외</button>`;
+    `<button type="button" class="fchip ${f.hideLaunched ? 'on' : ''}" data-toggle="hideLaunched">론치완료·Dropped 제외</button>` +
+    `<button type="button" class="fchip ${f.showHidden ? 'on' : ''}" data-toggle="showHidden">숨긴 과제 보기${hiddenCount ? ` (${hiddenCount})` : ''}</button>`;
 
   host.innerHTML = `
     ${row(chipGroup('project', '프로젝트', projects.map(v => ({ v, label: v })), f.project))}
     ${row(chipGroup('subSubject', 'Sub Subject', subSubjects.map(v => ({ v, label: v })), f.subSubject))}
     ${row(chipGroup('priority', '우선순위', priorities.map(v => ({ v, label: v })), f.priority))}
     ${row(chipGroup('status', '상태', statuses.map(v => ({ v, label: v })), f.status))}
-    ${row(launchToggle)}
+    ${row(viewToggles)}
     ${hasAny ? '<div class="filter-row"><button type="button" class="tlink" data-filter-reset>필터 초기화</button></div>' : ''}
   `;
 
@@ -315,13 +318,15 @@ function renderFilters() {
       renderList();
     });
   });
-  const toggle = host.querySelector('[data-toggle="hideLaunched"]');
-  if (toggle) toggle.addEventListener('click', () => {
-    state.filters.hideLaunched = !state.filters.hideLaunched;
-    scoped(FILTERS_KEY).set(state.filters);
-    state.page = 1;
-    renderFilters();
-    renderList();
+  host.querySelectorAll('[data-toggle]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const k = btn.dataset.toggle;            // hideLaunched | showHidden
+      state.filters[k] = !state.filters[k];
+      scoped(FILTERS_KEY).set(state.filters);
+      state.page = 1;
+      renderFilters();
+      renderList();
+    });
   });
   const reset = host.querySelector('[data-filter-reset]');
   if (reset) reset.addEventListener('click', () => {
@@ -355,9 +360,10 @@ function chipGroup(key, label, options, current) {
 /** "론치완료 제외" 토글이 숨기는 상태값 (완료/드랍 계열). */
 export const HIDDEN_WHEN_LAUNCHED = new Set(['론치완료', 'Dropped']);
 
-/** 단일 항목이 필터에 매칭되는지. */
-export function itemMatchesFilters(it, filters) {
+/** 단일 항목이 필터에 매칭되는지. hiddenKeys 가 주어지면 showHidden off 일 때 숨긴 항목 제외. */
+export function itemMatchesFilters(it, filters, hiddenKeys) {
   if (filters.hideLaunched && HIDDEN_WHEN_LAUNCHED.has(it.status)) return false;
+  if (!filters.showHidden && hiddenKeys && hiddenKeys.has(it.key)) return false;
   if (filters.project && it.project !== filters.project) return false;
   if (filters.subSubject && !subSubjectsOf(it).includes(filters.subSubject)) return false;
   if (filters.label && !(it.labels || []).includes(filters.label)) return false;
@@ -374,10 +380,10 @@ export function filterItems(items, filters) {
  * 클러스터 필터 — 대표 또는 멤버 중 하나라도 매칭되면 그 묶음을 노출.
  * (병합된 멤버가 필터에 걸려도 묶음이 사라지지 않게.)
  */
-export function filterClusters(reps, filters, membersByRep = new Map()) {
+export function filterClusters(reps, filters, membersByRep = new Map(), hiddenKeys) {
   return reps.filter(rep => {
-    if (itemMatchesFilters(rep, filters)) return true;
-    return (membersByRep.get(rep.key) || []).some(m => itemMatchesFilters(m, filters));
+    if (itemMatchesFilters(rep, filters, hiddenKeys)) return true;
+    return (membersByRep.get(rep.key) || []).some(m => itemMatchesFilters(m, filters, hiddenKeys));
   });
 }
 
@@ -472,18 +478,22 @@ function subjectOrder(s) {
 function renderList() {
   const host = $('one-table');
   if (!host) return;
-  const filtered = filterClusters(state.topLevel, state.filters, state.clusterMembers);
-  // 표시 대표 재선정: 대표가 필터를 통과 못 하면(예: 론치완료 제외 on) 통과하는 멤버를 대표로 승격.
+  // 수동 숨김 키 집합 (meta.hidden) — showHidden off 면 제외.
+  const hiddenKeys = new Set();
+  for (const [k, m] of state.meta) if (m && m.hidden) hiddenKeys.add(String(k));
+
+  const filtered = filterClusters(state.topLevel, state.filters, state.clusterMembers, hiddenKeys);
+  // 표시 대표 재선정: 대표가 필터를 통과 못 하면(론치완료/숨김 등) 통과하는 멤버를 대표로 승격.
   // → 묶음은 유지하되 화면 상단에 필터에 맞는 티켓이 오게.
   state.displayMembers = new Map();
   const displayReps = filtered.map(origRep => {
     const members = state.clusterMembers.get(origRep.key) || [];
-    if (itemMatchesFilters(origRep, state.filters)) {
+    if (itemMatchesFilters(origRep, state.filters, hiddenKeys)) {
       state.displayMembers.set(origRep.key, members);
       return origRep;
     }
     const all = [origRep, ...members];
-    const passing = all.filter(it => itemMatchesFilters(it, state.filters));
+    const passing = all.filter(it => itemMatchesFilters(it, state.filters, hiddenKeys));
     const rep = passing.length ? passing.slice().sort(cmpRep)[0] : origRep;
     state.displayMembers.set(rep.key, all.filter(it => it.key !== rep.key));
     return rep;
@@ -523,7 +533,7 @@ function theadHtml() {
         <th style="width:74px">순위</th>
         <th style="width:64px" title="Quick fix 대상">Quick fix</th>
         <th style="width:40%">코멘트</th>
-        <th style="width:20px"></th>
+        <th style="width:48px"></th>
       </tr>
     </thead>`;
 }
@@ -568,10 +578,13 @@ function rowHtml(it) {
   const g = STATUS_GROUPS.find(x => x.id === statusGroup(it));
   const priCls = `pri-${(it.priority || '').toLowerCase() || 'p3'}`;
   const expandId = `one-expand-${cssId(it.key)}`;
+  const m = state.meta.get(it.key);
+  const isHidden = !!(m && m.hidden);
 
+  const cls = `${expandable ? 'ft-row ' : ''}one-row${isHidden ? ' one-hidden-row' : ''}`;
   const rowAttrs = expandable
-    ? `class="ft-row one-row" data-key="${escapeAttr(it.key)}" role="button" tabindex="0" aria-expanded="${open ? 'true' : 'false'}" aria-controls="${expandId}"`
-    : `class="one-row" data-key="${escapeAttr(it.key)}"`;
+    ? `class="${cls}" data-key="${escapeAttr(it.key)}" role="button" tabindex="0" aria-expanded="${open ? 'true' : 'false'}" aria-controls="${expandId}"`
+    : `class="${cls}" data-key="${escapeAttr(it.key)}"`;
 
   return `
     <tr ${rowAttrs}>
@@ -583,10 +596,17 @@ function rowHtml(it) {
       <td>${rankCellHtml(it.key)}</td>
       <td class="one-qf-cell">${quickFixCellHtml(it.key)}</td>
       <td>${commentCellHtml(it.key)}</td>
-      <td>${expandable ? `<span class="caret ${open ? 'open' : ''}" aria-hidden="true">›</span>` : ''}</td>
+      <td class="one-row-actions">${hideBtnHtml(it.key, isHidden)}${expandable ? `<span class="caret ${open ? 'open' : ''}" aria-hidden="true">›</span>` : ''}</td>
     </tr>
     ${expandable && open ? expandHtml(it, expandId) : ''}
   `;
+}
+
+/** 행 숨기기/해제 버튼 (로그인 시). */
+function hideBtnHtml(key, isHidden) {
+  if (!state.signedIn) return '';
+  return `<button type="button" class="one-hide-btn" data-key="${escapeAttr(key)}" data-hidden="${isHidden}"
+            title="${isHidden ? '숨김 해제' : '이 과제 숨기기'}" aria-label="${isHidden ? '숨김 해제' : '숨기기'}">${isHidden ? '↩' : '✕'}</button>`;
 }
 
 /** 라벨 칩(one 제외) HTML. */
@@ -768,6 +788,13 @@ function bindMetaInputs(host) {
   host.querySelectorAll('.one-comment-input').forEach(inp => {
     inp.addEventListener('change', () => saveMeta(inp.dataset.key, { comment: inp.value }));
   });
+  // 행 숨기기/해제 — 현재 상태 토글, 재렌더로 즉시 반영.
+  host.querySelectorAll('.one-hide-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      saveMeta(btn.dataset.key, { hidden: btn.dataset.hidden !== 'true' }, { rerender: true });
+    });
+  });
 }
 
 async function saveMeta(key, patch, { resort = false, rerender = false } = {}) {
@@ -785,6 +812,7 @@ async function saveMeta(key, patch, { resort = false, rerender = false } = {}) {
       state.metaRows = state.metaRows.filter(r => String(r.jira_key) !== String(key));
     }
     toast({ kicker: key, msg: '저장됨', kind: 'success' });
+    if ('hidden' in patch) renderFilters();   // 숨김 카운트(N) 갱신
     if ((resort && state.sort === 'rank') || rerender) renderList();
   } catch (e) {
     if (e instanceof AuthRequiredError) {
@@ -850,7 +878,8 @@ async function loadMeta() {
     state.metaRows = await loadOneMeta();
     state.meta = metaByKey(state.metaRows);
     renderAuthUi('signedIn');
-    renderList();
+    renderFilters();   // 로그인 후 숨김 카운트 + 토글 상태 반영
+    renderList();      // signedIn=true 로 숨기기 버튼도 렌더
     startRealtime();
   } catch (e) {
     if (e instanceof AuthRequiredError) { state.signedIn = false; stopRealtime(); renderAuthUi('signedOut'); renderList(); return; }

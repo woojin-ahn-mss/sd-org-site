@@ -59,6 +59,14 @@ export function metaByKey(rows) {
 
 /* ─── upsert / delete ─────────────────────────────────────── */
 
+/** 편집 메타가 모두 비었는지 (모두 비면 행 삭제 대상). 순수 — 테스트 대상. */
+export function metaIsEmpty({ manual_rank, comment, summary_override, quick_fix, hidden } = {}) {
+  return manual_rank == null
+    && (comment == null || String(comment).trim() === '')
+    && (summary_override == null || String(summary_override).trim() === '')
+    && !quick_fix && !hidden;
+}
+
 /** 순위 정규화: 숫자/숫자문자열만 통과(int), 그 외/빈값은 null. */
 function normRank(v) {
   if (v == null || v === '') return null;
@@ -92,13 +100,14 @@ export async function upsertOneMeta(jiraKey, patch = {}, currentRows = []) {
   const quick_fix = ('quick_fix' in patch)
     ? !!patch.quick_fix
     : (existing ? !!existing.quick_fix : false);
+  const hidden = ('hidden' in patch)
+    ? !!patch.hidden
+    : (existing ? !!existing.hidden : false);
 
-  const rankEmpty = manual_rank == null;
-  const commentEmpty = comment === '';
   const summaryEmpty = summary_override === '';
 
-  // 편집 필드가 모두 비면(순위 없음·코멘트 없음·서머리 없음·quick_fix off) 행 삭제(stale 정리).
-  if (rankEmpty && commentEmpty && summaryEmpty && !quick_fix) {
+  // 편집 필드가 모두 비면(순위·코멘트·서머리 없음 + quick_fix·hidden off) 행 삭제(stale 정리).
+  if (metaIsEmpty({ manual_rank, comment, summary_override, quick_fix, hidden })) {
     unwrap(await supabase.from('one_ticket_meta').delete().eq('jira_key', jiraKey));
     return null;
   }
@@ -109,9 +118,10 @@ export async function upsertOneMeta(jiraKey, patch = {}, currentRows = []) {
     comment,
     summary_override: summaryEmpty ? null : summary_override,
     quick_fix,
+    hidden,
   };
   return unwrap(await supabase.from('one_ticket_meta').upsert(row, { onConflict: 'jira_key' }).select().single());
 }
 
 /* ─── test export ─────────────────────────────────────────── */
-export const _internal = { normRank };
+export const _internal = { normRank, metaIsEmpty };
