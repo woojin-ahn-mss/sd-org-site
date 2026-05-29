@@ -3,9 +3,9 @@
    ETR / MSSCXTF / FT / TM / CBP / PBO 의 'one' 라벨 티켓을 한 화면에서 관리.
 
    - 읽기 데이터: data/jira/one-tickets.json (없으면 기존 파일 union fallback)
-   - ETR 티켓에 연결된 PEL·MSSCXTF·FT·TM 은 top-level 중복 제거 + 펼침으로 "하나로" 관리
-   - 뷰: 전체 리스트 / Main Subject 그룹
-   - 필터: 프로젝트 / 라벨 / 상태 / 우선순위 (localStorage UI state)
+   - 연결 티켓(Blocks 제외)은 union-find 로 한 묶음 병합 + 펼침으로 "하나로" 관리
+   - 뷰: 전체 리스트 / Main Subject 그룹(번호 오름차순)
+   - 필터: 프로젝트 / Sub Subject / 우선순위 / 상태 + 론치완료 제외 토글 (localStorage UI state)
    - 편집 데이터(코멘트·수동순위): Supabase one_ticket_meta 테이블 (로그인 시)
    ========================================================= */
 
@@ -40,7 +40,7 @@ const state = {
   email: null,
   meta: new Map(),    // jira_key → {manual_rank, comment, _rowNum}
   metaRows: [],       // loadOneMeta 원본 (upsert 시 _rowNum 탐색)
-  filters: { project: null, label: null, status: null, priority: null, subSubject: null },
+  filters: { project: null, label: null, status: null, priority: null, subSubject: null, hideLaunched: true },
   view: 'all',        // 'all' | 'subject'
   sort: 'rank',       // 'rank' | 'created'
   expanded: new Set(),
@@ -53,9 +53,10 @@ const state = {
 export async function renderOneTickets({ rootRel = '' } = {}) {
   state.rootRel = rootRel;
   state.filters = Object.assign(
-    { project: null, label: null, status: null, priority: null, subSubject: null },
+    { project: null, status: null, priority: null, subSubject: null, hideLaunched: true },
     scoped(FILTERS_KEY).get({}) || {},
   );
+  state.filters.label = null;  // 라벨 필터 폐지 — 저장된 잔존 값으로 인한 숨은 필터 방지
   const savedView = scoped(VIEW_KEY).get(null);
   if (savedView && typeof savedView === 'object') {
     if (savedView.view === 'all' || savedView.view === 'subject') state.view = savedView.view;
@@ -277,26 +278,28 @@ function renderFilters() {
   const projects = TOP_PROJECTS.filter(p => base.some(it => it.project === p));
   const subSubjects = [...new Set(base.flatMap(subSubjectsOf).filter(Boolean))]
     .sort((a, b) => a.localeCompare(b, 'ko'));
-  const labels = [...new Set(base.flatMap(it => it.labels).filter(l => l && l !== 'one'))]
-    .sort((a, b) => a.localeCompare(b, 'ko'));
   const statuses = [...new Set(base.map(it => it.status).filter(Boolean))].sort();
   const priorities = [...new Set(base.map(it => it.priority).filter(Boolean))].sort();
 
   const f = state.filters;
-  const hasAny = f.project || f.label || f.status || f.priority || f.subSubject;
+  const hasAny = f.project || f.status || f.priority || f.subSubject;
+  const row = (inner) => (inner ? `<div class="filter-row">${inner}</div>` : '');
+  const launchToggle =
+    `<span class="flabel">보기</span>` +
+    `<button type="button" class="fchip ${f.hideLaunched ? 'on' : ''}" data-toggle="hideLaunched">론치완료 제외</button>`;
 
   host.innerHTML = `
-    ${chipGroup('project', '프로젝트', projects.map(v => ({ v, label: v })), f.project)}
-    ${chipGroup('subSubject', 'Sub Subject', subSubjects.map(v => ({ v, label: v })), f.subSubject)}
-    ${chipGroup('label', '라벨', labels.map(v => ({ v, label: v })), f.label)}
-    ${chipGroup('status', '상태', statuses.map(v => ({ v, label: v })), f.status)}
-    ${chipGroup('priority', '우선순위', priorities.map(v => ({ v, label: v })), f.priority)}
-    ${hasAny ? '<button type="button" class="tlink" data-filter-reset>필터 초기화</button>' : ''}
+    ${row(chipGroup('project', '프로젝트', projects.map(v => ({ v, label: v })), f.project))}
+    ${row(chipGroup('subSubject', 'Sub Subject', subSubjects.map(v => ({ v, label: v })), f.subSubject))}
+    ${row(chipGroup('priority', '우선순위', priorities.map(v => ({ v, label: v })), f.priority))}
+    ${row(chipGroup('status', '상태', statuses.map(v => ({ v, label: v })), f.status))}
+    ${row(launchToggle)}
+    ${hasAny ? '<div class="filter-row"><button type="button" class="tlink" data-filter-reset>필터 초기화</button></div>' : ''}
   `;
-  host.querySelectorAll('button.fchip').forEach(btn => {
+
+  host.querySelectorAll('button.fchip[data-filter]').forEach(btn => {
     btn.addEventListener('click', () => {
-      const k = btn.dataset.filter;
-      const v = btn.dataset.value;
+      const k = btn.dataset.filter, v = btn.dataset.value;
       state.filters[k] = state.filters[k] === v ? null : v;
       scoped(FILTERS_KEY).set(state.filters);
       state.page = 1;
@@ -304,9 +307,18 @@ function renderFilters() {
       renderList();
     });
   });
+  const toggle = host.querySelector('[data-toggle="hideLaunched"]');
+  if (toggle) toggle.addEventListener('click', () => {
+    state.filters.hideLaunched = !state.filters.hideLaunched;
+    scoped(FILTERS_KEY).set(state.filters);
+    state.page = 1;
+    renderFilters();
+    renderList();
+  });
   const reset = host.querySelector('[data-filter-reset]');
   if (reset) reset.addEventListener('click', () => {
-    state.filters = { project: null, label: null, status: null, priority: null, subSubject: null };
+    // chip 필터만 초기화 (론치완료 토글은 보기 설정이라 유지)
+    state.filters.project = state.filters.subSubject = state.filters.status = state.filters.priority = null;
     scoped(FILTERS_KEY).set(state.filters);
     state.page = 1;
     renderFilters();
@@ -334,6 +346,7 @@ function chipGroup(key, label, options, current) {
 
 /** 단일 항목이 필터에 매칭되는지. */
 export function itemMatchesFilters(it, filters) {
+  if (filters.hideLaunched && it.status === '론치완료') return false;
   if (filters.project && it.project !== filters.project) return false;
   if (filters.subSubject && !subSubjectsOf(it).includes(filters.subSubject)) return false;
   if (filters.label && !(it.labels || []).includes(filters.label)) return false;
@@ -417,7 +430,7 @@ export function sortItems(items, sort, metaMap = new Map()) {
   return arr;
 }
 
-/** mainSubject 기준 그룹핑. subject 없으면 NO_SUBJECT. 건수 desc, 미지정 마지막. */
+/** mainSubject 기준 그룹핑. subject 없으면 NO_SUBJECT. 번호 프리픽스(01., 02.…) 오름차순, 미지정 마지막. */
 export function groupByMainSubject(items) {
   const map = new Map();
   for (const it of items) {
@@ -429,9 +442,18 @@ export function groupByMainSubject(items) {
   groups.sort((a, b) => {
     if (a.subject === NO_SUBJECT) return 1;
     if (b.subject === NO_SUBJECT) return -1;
-    return b.items.length - a.items.length || a.subject.localeCompare(b.subject, 'ko');
+    // "03.랭킹…" 의 앞 번호 기준 오름차순(01→). 번호 없으면 뒤로, 동순위는 한글 가나다.
+    const na = subjectOrder(a.subject), nb = subjectOrder(b.subject);
+    if (na !== nb) return na - nb;
+    return a.subject.localeCompare(b.subject, 'ko');
   });
   return groups;
+}
+
+/** mainSubject 앞 번호("03.…")를 정수로. 없으면 큰 값(뒤). */
+function subjectOrder(s) {
+  const m = /^\s*(\d+)/.exec(String(s || ''));
+  return m ? parseInt(m[1], 10) : 9999;
 }
 
 /* ─── 리스트 렌더 ─────────────────────────────────────────── */
@@ -440,7 +462,22 @@ function renderList() {
   const host = $('one-table');
   if (!host) return;
   const filtered = filterClusters(state.topLevel, state.filters, state.clusterMembers);
-  const rows = sortClusters(filtered, state.sort, state.meta, state.clusterMembers);
+  // 표시 대표 재선정: 대표가 필터를 통과 못 하면(예: 론치완료 제외 on) 통과하는 멤버를 대표로 승격.
+  // → 묶음은 유지하되 화면 상단에 필터에 맞는 티켓이 오게.
+  state.displayMembers = new Map();
+  const displayReps = filtered.map(origRep => {
+    const members = state.clusterMembers.get(origRep.key) || [];
+    if (itemMatchesFilters(origRep, state.filters)) {
+      state.displayMembers.set(origRep.key, members);
+      return origRep;
+    }
+    const all = [origRep, ...members];
+    const passing = all.filter(it => itemMatchesFilters(it, state.filters));
+    const rep = passing.length ? passing.slice().sort(cmpRep)[0] : origRep;
+    state.displayMembers.set(rep.key, all.filter(it => it.key !== rep.key));
+    return rep;
+  });
+  const rows = sortClusters(displayReps, state.sort, state.meta, state.displayMembers);
 
   if (!rows.length) {
     host.innerHTML = emptyHtml({
@@ -514,7 +551,7 @@ function renderSubjectView(host, rows) {
 }
 
 function rowHtml(it) {
-  const members = (state.clusterMembers && state.clusterMembers.get(it.key)) || [];
+  const members = (state.displayMembers && state.displayMembers.get(it.key)) || [];
   const expandable = members.length > 0;
   const open = state.expanded.has(it.key);
   const g = STATUS_GROUPS.find(x => x.id === statusGroup(it));
@@ -593,7 +630,7 @@ function commentCellHtml(key) {
 }
 
 function expandHtml(it, expandId) {
-  const members = (state.clusterMembers && state.clusterMembers.get(it.key)) || [];
+  const members = (state.displayMembers && state.displayMembers.get(it.key)) || [];
   const rows = members.map(m => {
     const g = STATUS_GROUPS.find(x => x.id === statusGroup(m));
     const assignee = (m.assignee && m.assignee.name) || '—';

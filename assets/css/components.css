@@ -1181,16 +1181,23 @@
    Filter chips (text)
    ========================================================= */
 .filters {
-  display: flex; flex-wrap: wrap; gap: 4px 18px; align-items: baseline;
-  padding: 0 0 14px;
+  display: flex; flex-direction: column;
+  padding: 0 0 12px;
   margin-bottom: 4px;
 }
 .filters[hidden] { display: none !important; }
+/* 필터 카테고리별 행 — 하단 구분선으로 그룹 구분 */
+.filter-row {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 14px;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.filter-row:last-child { border-bottom: 0; }
 .filters .flabel {
   font-family: var(--font-mono);
   font-size: 10.5px; color: var(--faint);
   letter-spacing: 0.12em; text-transform: uppercase;
-  margin-right: 2px;
+  flex: 0 0 88px;   /* 라벨 고정폭 → 각 행 칩 시작점 정렬 */
 }
 .fchip {
   border: 0; background: transparent;
