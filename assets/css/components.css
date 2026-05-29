@@ -1272,24 +1272,13 @@
 }
 /* 코멘트 하단 첨부 이미지 */
 .one-img-area { margin-top: 6px; display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
-.one-img-wrap { position: relative; display: inline-block; line-height: 0; }
 .one-img-link { display: inline-block; line-height: 0; }
 .one-img {
   max-width: 100%; max-height: 160px;
   border: 1px solid var(--rule); border-radius: var(--radius);
   background: var(--bg-elev);
 }
-.one-img-add { font-size: 11px; }
-/* 이미지 우상단 삭제 버튼 (항상 노출) */
-.one-img-del {
-  position: absolute; top: 5px; right: 5px; z-index: 2;
-  width: 20px; height: 20px; padding: 0;
-  display: inline-flex; align-items: center; justify-content: center;
-  background: var(--bg); color: var(--text);
-  border: 1px solid var(--rule-strong); border-radius: var(--radius);
-  font-size: 11px; line-height: 1; cursor: pointer;
-}
-.one-img-del:hover { border-color: var(--accent); color: var(--accent); }
+.one-img-add, .one-img-del { font-size: 11px; }
 
 /* 행 숨김 on/off 체크박스 + 숨김 행 dim */
 .one-row-actions { white-space: nowrap; text-align: center; }

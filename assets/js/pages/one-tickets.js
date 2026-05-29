@@ -839,16 +839,14 @@ function imageAreaHtml(key) {
   const m = state.meta.get(key);
   const path = m && m.image_path ? String(m.image_path) : '';
   if (path) {
-    const del = state.signedIn
-      ? `<button type="button" class="one-img-del" data-key="${escapeAttr(key)}" title="이미지 삭제" aria-label="이미지 삭제">✕</button>`
+    const btn = state.signedIn
+      ? `<button type="button" class="one-img-del tlink" data-key="${escapeAttr(key)}">이미지 삭제</button>`
       : '';
     return `<div class="one-img-area">
-      <div class="one-img-wrap">
-        <a class="one-img-link" data-img-path="${escapeAttr(path)}" target="_blank" rel="noopener noreferrer">
-          <img class="one-img" data-img-path="${escapeAttr(path)}" alt="첨부 이미지" loading="lazy" />
-        </a>
-        ${del}
-      </div>
+      <a class="one-img-link" data-img-path="${escapeAttr(path)}" target="_blank" rel="noopener noreferrer">
+        <img class="one-img" data-img-path="${escapeAttr(path)}" alt="첨부 이미지" loading="lazy" />
+      </a>
+      ${btn}
     </div>`;
   }
   if (!state.signedIn) return '';
