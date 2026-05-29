@@ -802,15 +802,46 @@ function rankCellHtml(key) {
             aria-label="${escapeAttr(key)} 수동 우선순위" />`;
 }
 
+/** 코멘트 텍스트의 URL 을 클릭 가능한 링크로(그 텍스트에만). 나머지는 escape + 줄바꿈 보존. */
+function linkifyComment(text) {
+  const s = String(text ?? '');
+  const re = /(https?:\/\/[^\s<]+)/g;
+  let out = '', last = 0, m;
+  while ((m = re.exec(s)) !== null) {
+    let url = m[0];
+    // 끝에 붙은 문장부호는 링크에서 제외(예: "...page).")
+    const trail = url.match(/[.,;:!?)\]]+$/);
+    const tail = trail ? trail[0] : '';
+    if (tail) url = url.slice(0, url.length - tail.length);
+    out += escapeHtml(s.slice(last, m.index));
+    if (url) {
+      out += `<a href="${escapeAttr(url)}" target="_blank" rel="noopener noreferrer" class="one-comment-link">${escapeHtml(url)}</a>`;
+    }
+    out += escapeHtml(tail);
+    last = m.index + m[0].length;
+  }
+  out += escapeHtml(s.slice(last));
+  return out.replace(/\n/g, '<br>');
+}
+
+const COMMENT_PH = '<span class="muted">코멘트 입력…</span>';
+
 function commentCellHtml(key) {
   const m = state.meta.get(key);
   const val = m && m.comment != null ? String(m.comment) : '';
-  const dis = state.signedIn ? '' : 'disabled';
-  const ph = state.signedIn ? '코멘트 입력…' : '로그인 필요';
-  const tip = state.signedIn ? ' title="이미지 파일을 끌어다 놓으면 첨부됩니다"' : '';
-  return `<textarea class="one-comment-input" rows="2"
-            data-key="${escapeAttr(key)}" placeholder="${ph}" ${dis}${tip}
-            aria-label="${escapeAttr(key)} 코멘트">${escapeHtml(val)}</textarea>${imageAreaHtml(key)}`;
+  const linked = val ? linkifyComment(val) : '';
+  // 표시: URL 링크. 미로그인은 표시 전용.
+  if (!state.signedIn) {
+    return `<div class="one-comment-view readonly">${linked || '<span class="muted">—</span>'}</div>${imageAreaHtml(key)}`;
+  }
+  // 로그인: 표시(클릭→편집) + 숨김 textarea(편집). 이미지는 셀에 끌어다 놓기.
+  return `<div class="one-comment-cell" data-key="${escapeAttr(key)}">
+    <div class="one-comment-view" data-key="${escapeAttr(key)}" tabindex="0" role="button"
+         title="클릭하여 편집 · 이미지 파일을 끌어다 놓으면 첨부됩니다">${linked || COMMENT_PH}</div>
+    <textarea class="one-comment-input" rows="2" hidden
+              data-key="${escapeAttr(key)}" placeholder="코멘트 입력…"
+              aria-label="${escapeAttr(key)} 코멘트">${escapeHtml(val)}</textarea>
+  </div>${imageAreaHtml(key)}`;
 }
 
 /** 코멘트 하단 이미지 영역 — 첨부 이미지(서명 URL은 렌더 후 주입) + 추가/삭제. */
@@ -964,25 +995,45 @@ function bindMetaInputs(host) {
   host.querySelectorAll('.one-quickfix').forEach(cb => {
     cb.addEventListener('change', () => saveMeta(cb.dataset.key, { quick_fix: cb.checked }));
   });
-  // 코멘트 textarea — Enter 는 줄바꿈 허용, 저장은 blur(change) 시점. 이미지 파일 드래그앤드랍 지원.
-  host.querySelectorAll('.one-comment-input').forEach(inp => {
-    inp.addEventListener('change', () => saveMeta(inp.dataset.key, { comment: inp.value }));
-    if (!state.signedIn) return;
-    // dragover 시점엔 브라우저가 type 을 안 주는 경우가 있어 "파일이면" 허용, 드롭에서 이미지 검증.
+  // 코멘트 — 표시(URL 링크 클릭 가능) / 편집(textarea) 분리. 클릭→편집, blur→표시 복귀.
+  host.querySelectorAll('.one-comment-cell').forEach(cell => {
+    const view = cell.querySelector('.one-comment-view');
+    const ta = cell.querySelector('.one-comment-input');
+    if (!view || !ta) return;
+    const enterEdit = () => {
+      view.hidden = true;
+      ta.hidden = false;
+      ta.focus();
+      const n = ta.value.length;
+      try { ta.setSelectionRange(n, n); } catch { /* noop */ }
+    };
+    // 표시 → 편집 (링크 클릭은 편집 진입 대신 링크 이동)
+    view.addEventListener('click', (e) => { if (e.target.closest('a')) return; enterEdit(); });
+    view.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); enterEdit(); }
+    });
+    ta.addEventListener('change', () => saveMeta(ta.dataset.key, { comment: ta.value }));
+    // 편집 종료 → 표시 갱신(링크 반영)
+    ta.addEventListener('blur', () => {
+      view.innerHTML = ta.value ? linkifyComment(ta.value) : COMMENT_PH;
+      ta.hidden = true;
+      view.hidden = false;
+    });
+    // 이미지 파일 드래그앤드랍 — 셀에 드롭(편집 진입 불필요).
     const draggingFile = (e) => [...(e.dataTransfer?.items || [])].some(it => it.kind === 'file');
-    inp.addEventListener('dragover', (e) => {
+    cell.addEventListener('dragover', (e) => {
       if (!draggingFile(e)) return;
       e.preventDefault();                       // 파일 드롭 허용 (브라우저 기본 동작 차단)
       e.dataTransfer.dropEffect = 'copy';
-      inp.classList.add('drag-over');
+      cell.classList.add('drag-over');
     });
-    inp.addEventListener('dragleave', () => inp.classList.remove('drag-over'));
-    inp.addEventListener('drop', (e) => {
+    cell.addEventListener('dragleave', () => cell.classList.remove('drag-over'));
+    cell.addEventListener('drop', (e) => {
       const file = [...(e.dataTransfer?.files || [])].find(f => /^image\//.test(f.type));
       if (!file) return;                        // 이미지 아니면 기본 동작(텍스트 등)
       e.preventDefault();
-      inp.classList.remove('drag-over');
-      onDropImage(inp.dataset.key, file);
+      cell.classList.remove('drag-over');
+      onDropImage(cell.dataset.key, file);
     });
   });
   // 숨김 관리 모드 체크박스 — 변경은 pending 에만(저장 시 일괄 반영). 행 펼침 토글 방지.
@@ -1173,5 +1224,5 @@ export const _internal = {
   TOP_PROJECTS, PAGE_SIZE, NO_SUBJECT,
   normalizeItem, isInitiative, buildFromFallback, clusterItems, pickRepresentative, MERGE_EXCLUDE_LINKS,
   filterItems, itemMatchesFilters, filterClusters, sortItems, sortClusters,
-  groupByMainSubject, rankOf, cssId, subSubjectsOf,
+  groupByMainSubject, rankOf, cssId, subSubjectsOf, linkifyComment,
 };
