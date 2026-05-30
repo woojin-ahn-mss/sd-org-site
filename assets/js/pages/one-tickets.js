@@ -836,10 +836,16 @@ function contentCellHtml(key) {
     const body = val ? escapeHtml(val).replace(/\n/g, '<br>') : '<span class="muted">—</span>';
     return `<div class="one-content-view readonly">${body}</div>${imageAreaHtml(key, 'content_image_path')}`;
   }
+  const hasImg = !!(m && m.content_image_path);
+  const addBtn = hasImg ? '' :
+    `<button type="button" class="one-img-add tlink" data-key="${escapeAttr(key)}" data-field="content_image_path">+ 이미지</button>
+     <input type="file" class="one-img-file" data-key="${escapeAttr(key)}" data-field="content_image_path"
+            accept="image/png,image/jpeg,image/gif,image/webp" hidden />`;
   return `<div class="one-content-cell" data-key="${escapeAttr(key)}">
     <textarea class="one-content-input" rows="1" data-key="${escapeAttr(key)}"
-              placeholder="내용" title="이미지 파일을 끌어다 놓으면 첨부됩니다"
+              placeholder="내용" title="이미지 파일을 끌어다 놓거나 '+ 이미지'로 첨부"
               aria-label="${escapeAttr(key)} 내용 (대시보드 전용)">${escapeHtml(val)}</textarea>
+    ${addBtn}
   </div>${imageAreaHtml(key, 'content_image_path')}`;
 }
 
@@ -1131,6 +1137,17 @@ function bindMetaInputs(host) {
       e.preventDefault(); cell.classList.remove('drag-over');
       onDropImage(cell.dataset.key, file, 'content_image_path');
     });
+    // "+ 이미지" 버튼 → 파일 선택 → 업로드
+    const addBtn = cell.querySelector('.one-img-add');
+    const fileInput = cell.querySelector('.one-img-file');
+    if (addBtn && fileInput) {
+      addBtn.addEventListener('click', (e) => { e.stopPropagation(); fileInput.click(); });
+      fileInput.addEventListener('change', () => {
+        const f = fileInput.files && fileInput.files[0];
+        if (f) onDropImage(fileInput.dataset.key, f, fileInput.dataset.field || 'content_image_path');
+        fileInput.value = '';   // 같은 파일 재선택 허용
+      });
+    }
   });
   host.querySelectorAll('.one-img-del').forEach(btn => {
     btn.addEventListener('click', (e) => { e.stopPropagation(); onDeleteImage(btn.dataset.key, btn.dataset.field || 'image_path'); });
