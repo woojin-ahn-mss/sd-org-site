@@ -776,23 +776,27 @@ function rowHtml(it) {
     ? state.hidePending.get(it.key)
     : isHidden;
   const cls = `${expandable ? 'ft-row ' : ''}one-row${dimHidden ? ' one-hidden-row' : ''}`;
-  const rowAttrs = expandable
-    ? `class="${cls}" data-key="${escapeAttr(it.key)}" role="button" tabindex="0" aria-expanded="${open ? 'true' : 'false'}" aria-controls="${expandId}"`
-    : `class="${cls}" data-key="${escapeAttr(it.key)}"`;
 
   return `
-    <tr ${rowAttrs}>
-      <td>${jiraKeyHtml(it.key)}</td>
+    <tr class="${cls}" data-key="${escapeAttr(it.key)}">
+      <td>${jiraKeyHtml(it.key)}${expandable ? expandToggleHtml(it.key, open, expandId, members.length) : ''}</td>
       <td class="ft-summary">${summaryCellHtml(it)}</td>
       <td class="one-content-td">${contentCellHtml(it.key)}</td>
       <td><span class="st ${g ? g.stClass : 'st-wait'}">${escapeHtml(it.status || '—')}</span></td>
       <td>${rankCellHtml(it.key)}</td>
       <td class="one-qf-cell">${quickFixCellHtml(it.key)}</td>
       <td>${commentCellHtml(it.key)}</td>
-      <td class="one-row-actions">${hideBtnHtml(it.key)}${expandable ? `<span class="caret ${open ? 'open' : ''}" aria-hidden="true">›</span>` : ''}</td>
+      <td class="one-row-actions">${hideBtnHtml(it.key)}</td>
     </tr>
     ${expandable && open ? expandHtml(it, expandId) : ''}
   `;
+}
+
+/** 키 번호 밑 연결 티켓 펼치기/접기 버튼. */
+function expandToggleHtml(key, open, expandId, count) {
+  return `<button type="button" class="one-expand-btn tlink" data-key="${escapeAttr(key)}"
+            aria-expanded="${open ? 'true' : 'false'}" aria-controls="${escapeAttr(expandId)}">
+            <span class="caret ${open ? 'open' : ''}" aria-hidden="true">›</span>연결 ${count}건 ${open ? '접기' : '펼치기'}</button>`;
 }
 
 /** 행 숨김 체크박스 — 숨김 관리 모드에서만 노출. 체크=숨김 예정. (저장 시 반영) */
@@ -968,24 +972,16 @@ function autoGrowTextarea(el) {
 /* ─── 행 펼침 / 그룹 펼침 ─────────────────────────────────── */
 
 function bindRowToggle(host) {
-  host.querySelectorAll('tr.ft-row').forEach(tr => {
-    tr.addEventListener('click', e => {
-      if (e.target.closest('a, input, textarea, button, .one-comment-cell, .one-content-cell')) return;
-      toggleRow(tr);
+  // 행 전체 클릭 대신 키 번호 밑 '연결 N건 펼치기/접기' 버튼으로만 토글.
+  host.querySelectorAll('.one-expand-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleRow(btn.dataset.key);
     });
-    tr.addEventListener('keydown', onRowKeydown);
   });
 }
 
-export function onRowKeydown(e) {
-  if (e.currentTarget !== e.target) return;
-  if (e.key !== 'Enter' && e.key !== ' ') return;
-  e.preventDefault();
-  toggleRow(e.currentTarget);
-}
-
-function toggleRow(tr) {
-  const key = tr.dataset.key;
+function toggleRow(key) {
   if (!key) return;
   if (state.expanded.has(key)) state.expanded.delete(key);
   else state.expanded.add(key);
