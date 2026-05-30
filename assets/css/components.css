@@ -1255,7 +1255,7 @@
 .one-content-cell { display: block; }
 .one-content-cell.drag-over { outline: 1px solid var(--accent); background: var(--accent-soft); }
 .one-content-input { resize: none; overflow: hidden; line-height: 1.45; white-space: pre-wrap; word-break: break-word; }
-.one-content-view { min-height: 38px; padding: 4px 6px; line-height: 1.45; font-size: 12px; white-space: pre-wrap; word-break: break-word; }
+.one-content-view { min-height: 38px; padding: 4px 6px; line-height: 1.45; font-size: 12px; white-space: pre-wrap; word-break: break-word; cursor: text; }
 .one-content-view.readonly { cursor: default; }
 .one-rank-input::placeholder,
 .one-summary-input::placeholder,

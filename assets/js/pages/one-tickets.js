@@ -836,22 +836,26 @@ function contentCellHtml(key) {
   const override = m && m.content != null ? String(m.content) : '';
   const def = (state.contentDefaults && state.contentDefaults.get(key)) || '';
   const val = override || def;
+  const linked = val ? linkifyComment(val) : '';
   if (!state.signedIn) {
-    const body = val ? escapeHtml(val).replace(/\n/g, '<br>') : '<span class="muted">—</span>';
-    return `<div class="one-content-view readonly">${body}</div>${imageAreaHtml(key, 'content_image_path')}`;
+    return `<div class="one-content-view readonly">${linked || '<span class="muted">—</span>'}</div>${imageAreaHtml(key, 'content_image_path')}`;
   }
   const hasImg = !!(m && m.content_image_path);
   const addBtn = hasImg ? '' :
     `<button type="button" class="one-img-add tlink" data-key="${escapeAttr(key)}" data-field="content_image_path">+ 이미지</button>
      <input type="file" class="one-img-file" data-key="${escapeAttr(key)}" data-field="content_image_path"
             accept="image/png,image/jpeg,image/gif,image/webp" hidden />`;
+  // 표시(URL 링크, 클릭→편집) + 숨김 textarea(편집).
   return `<div class="one-content-cell" data-key="${escapeAttr(key)}">
-    <textarea class="one-content-input" rows="1" data-key="${escapeAttr(key)}"
-              placeholder="내용" title="이미지 파일을 끌어다 놓거나 '+ 이미지'로 첨부"
-              aria-label="${escapeAttr(key)} 내용 (대시보드 전용)">${escapeHtml(val)}</textarea>
+    <div class="one-content-view" data-key="${escapeAttr(key)}" tabindex="0" role="button"
+         title="클릭하여 편집 · 이미지 파일을 끌어다 놓으면 첨부됩니다">${linked || CONTENT_PH}</div>
+    <textarea class="one-content-input" rows="1" hidden data-key="${escapeAttr(key)}"
+              placeholder="내용" aria-label="${escapeAttr(key)} 내용 (대시보드 전용)">${escapeHtml(val)}</textarea>
     ${addBtn}
   </div>${imageAreaHtml(key, 'content_image_path')}`;
 }
+
+const CONTENT_PH = '<span class="muted">내용 입력…</span>';
 
 /** Quick fix 체크박스 셀. */
 function quickFixCellHtml(key) {
@@ -1111,7 +1115,27 @@ function bindMetaInputs(host) {
   host.querySelectorAll('.one-content-cell').forEach(cell => {
     const ta = cell.querySelector('.one-content-input');
     if (!ta) return;
-    autoGrowTextarea(ta);
+    const view = cell.querySelector('.one-content-view');
+    // 표시 → 편집 (링크 클릭은 편집 진입 대신 링크 이동)
+    if (view) {
+      const enterEdit = () => {
+        view.hidden = true;
+        ta.hidden = false;
+        autoGrowTextarea(ta);
+        ta.focus();
+        const n = ta.value.length;
+        try { ta.setSelectionRange(n, n); } catch { /* noop */ }
+      };
+      view.addEventListener('click', (e) => { if (e.target.closest('a')) return; enterEdit(); });
+      view.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); enterEdit(); }
+      });
+      ta.addEventListener('blur', () => {
+        view.innerHTML = ta.value ? linkifyComment(ta.value) : CONTENT_PH;
+        ta.hidden = true;
+        view.hidden = false;
+      });
+    }
     ta.addEventListener('input', () => autoGrowTextarea(ta));
     ta.addEventListener('change', () => {
       const key = ta.dataset.key;
