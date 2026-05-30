@@ -1,5 +1,5 @@
 {
-  "lastSync": "2026-05-30T07:25:25+09:00",
+  "lastSync": "2026-05-30T12:13:30+09:00",
   "count": 117,
   "items": [
     {
@@ -701,11 +701,11 @@
       "summary": "[유즈드] 판매자 상품 관리 화면 상세 정보 노출 확대",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "PMO 검토 중",
-      "statusCategory": "indeterminate",
+      "status": "Tech 검토 대기 중",
+      "statusCategory": "new",
       "priority": "P0",
       "assignee": {
-        "name": "이승연",
+        "name": "이창연",
         "email": null,
         "accountId": null
       },
@@ -727,11 +727,11 @@
       "yearQuarters": [],
       "subGroup": null,
       "startDate": null,
-      "dueDate": "2026-06-03",
+      "dueDate": "2026-06-12",
       "created": "2026-05-27T08:29:52.356+0900",
-      "updated": "2026-05-29T14:37:50.772+0900",
+      "updated": "2026-05-30T09:12:56.728+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-05-29T14:37:42.223+0900",
+      "lastStatusChangedAt": "2026-05-30T09:12:26.047+0900",
       "linkedTickets": [
         {
           "key": "REC-4640",
@@ -1233,8 +1233,8 @@
         {
           "key": "FT-34",
           "summary": "[오프라인] 콘텐츠 하단 오프라인스토어 링크 추가",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "개발중",
+          "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward"
@@ -3242,8 +3242,8 @@
         {
           "key": "FT-33",
           "summary": "[스냅] 숏츠 영상 섬네일 생성기준 확인 및 카테고리숍/SRP 내 노출 방식 개선",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "개발중",
+          "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward"
@@ -4459,7 +4459,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-01T18:16:36.071+0900",
-      "updated": "2026-05-22T00:13:04.544+0900",
+      "updated": "2026-05-30T10:55:09.716+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-05-14T15:38:53.183+0900",
       "linkedTickets": [
@@ -4471,11 +4471,29 @@
           "assignee": null,
           "linkType": "Clones",
           "direction": "inward"
+        },
+        {
+          "key": "MSSCXTF-1334",
+          "summary": "기획전 페이지 한페이지 구성 및 퀵구매 UI",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "outward"
+        },
+        {
+          "key": "MSSCXTF-1326",
+          "summary": "이벤트딜 추천 페이지 UX 개선 — 탭 방식에서 단일 스크롤 페이지로 전환 및 퀵구매 UI 적용",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "outward"
         }
       ],
       "progress": {
         "done": 0,
-        "total": 1
+        "total": 3
       }
     },
     {
