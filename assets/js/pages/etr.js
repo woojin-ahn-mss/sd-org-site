@@ -176,10 +176,11 @@ function renderControls() {
   if (!state.items.length) { host.innerHTML = ''; return; }
 
   const isDefault = state.filters.status === 'all' && state.filters.sort === 'updated';
+  const row = (inner) => (inner ? `<div class="filter-row">${inner}</div>` : '');
   host.innerHTML = `
-    ${chipGroup('status', '상태', STATUS_FILTERS, state.filters.status)}
-    ${chipGroup('sort', '정렬', SORT_OPTIONS, state.filters.sort)}
-    ${!isDefault ? '<button type="button" class="tlink" data-filter-reset>필터 초기화</button>' : ''}
+    ${row(chipGroup('status', '상태', STATUS_FILTERS, state.filters.status))}
+    ${row(chipGroup('sort', '정렬', SORT_OPTIONS, state.filters.sort))}
+    ${!isDefault ? '<div class="filter-row"><button type="button" class="tlink" data-filter-reset>필터 초기화</button></div>' : ''}
   `;
   host.querySelectorAll('button.fchip').forEach(btn => {
     btn.addEventListener('click', () => {

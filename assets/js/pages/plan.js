@@ -585,13 +585,14 @@ function renderFilters() {
     (state.filters.assignment && state.filters.assignment !== 'all') ||
     (state.filters.duedate && state.filters.duedate !== 'all');
 
+  const row = (inner) => (inner ? `<div class="filter-row">${inner}</div>` : '');
   host.innerHTML = `
-    ${chipGroup('project',     '프로젝트', projects.map((v) => ({ v, label: v })), state.filters.project)}
-    ${chipGroup('statusGroup', '상태',     statusGroups.map((g) => ({ v: g.id, label: g.label })), state.filters.statusGroup)}
-    ${chipGroup('mainSubject', '메인주제', subjects.map((v) => ({ v, label: v })), state.filters.mainSubject)}
-    ${chipGroup('assignment',  '인력 배치', ASSIGNMENT_OPTIONS, state.filters.assignment || 'all', { mode: 'radio' })}
-    ${chipGroup('duedate',     '기한',      DUEDATE_OPTIONS,     state.filters.duedate || 'all',     { mode: 'radio' })}
-    ${hasAny ? '<button type="button" class="tlink" data-filter-reset>필터 초기화</button>' : ''}
+    ${row(chipGroup('project',     '프로젝트', projects.map((v) => ({ v, label: v })), state.filters.project))}
+    ${row(chipGroup('statusGroup', '상태',     statusGroups.map((g) => ({ v: g.id, label: g.label })), state.filters.statusGroup))}
+    ${row(chipGroup('mainSubject', '메인주제', subjects.map((v) => ({ v, label: v })), state.filters.mainSubject))}
+    ${row(chipGroup('assignment',  '인력 배치', ASSIGNMENT_OPTIONS, state.filters.assignment || 'all', { mode: 'radio' }))}
+    ${row(chipGroup('duedate',     '기한',      DUEDATE_OPTIONS,     state.filters.duedate || 'all',     { mode: 'radio' }))}
+    ${hasAny ? '<div class="filter-row"><button type="button" class="tlink" data-filter-reset>필터 초기화</button></div>' : ''}
   `;
 
   host.querySelectorAll('button.fchip').forEach((btn) => {

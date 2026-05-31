@@ -95,10 +95,10 @@ function renderTabs() {
   const host = $('sheet-tabs');
   if (!host) return;
   if (!state.tabs.length) { host.innerHTML = ''; return; }
-  host.innerHTML = `<span class="flabel">탭</span>` + state.tabs.map(t => {
+  host.innerHTML = `<div class="filter-row"><span class="flabel">탭</span>` + state.tabs.map(t => {
     const on = t.title === state.activeTab;
     return `<button type="button" class="fchip ${on ? 'on' : ''}" data-tab="${escapeAttr(t.title)}">${escapeHtml(t.title)}</button>`;
-  }).join('');
+  }).join('') + `</div>`;
   host.querySelectorAll('button.fchip').forEach(btn => {
     btn.addEventListener('click', async () => {
       state.activeTab = btn.dataset.tab;

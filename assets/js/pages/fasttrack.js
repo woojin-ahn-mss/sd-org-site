@@ -416,11 +416,12 @@ function renderFilters() {
 
   const hasAny = state.filters.status || state.filters.reporter || (state.filters.period && state.filters.period !== 'all');
 
+  const row = (inner) => (inner ? `<div class="filter-row">${inner}</div>` : '');
   host.innerHTML = `
-    ${chipGroup('status', '상태', statuses.map(s => ({ v: s, label: s })), state.filters.status)}
-    ${chipGroup('reporter', '요청자', reporters.map(r => ({ v: r, label: r })), state.filters.reporter)}
-    ${chipGroup('period', '기간', periods, state.filters.period)}
-    ${hasAny ? '<button type="button" class="tlink" data-filter-reset>필터 초기화</button>' : ''}
+    ${row(chipGroup('status', '상태', statuses.map(s => ({ v: s, label: s })), state.filters.status))}
+    ${row(chipGroup('reporter', '요청자', reporters.map(r => ({ v: r, label: r })), state.filters.reporter))}
+    ${row(chipGroup('period', '기간', periods, state.filters.period))}
+    ${hasAny ? '<div class="filter-row"><button type="button" class="tlink" data-filter-reset>필터 초기화</button></div>' : ''}
   `;
   host.querySelectorAll('button.fchip').forEach(btn => {
     btn.addEventListener('click', () => {

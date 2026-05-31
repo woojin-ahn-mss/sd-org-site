@@ -347,13 +347,14 @@ function renderFilters() {
     state.filters.objective || state.filters.subject ||
     state.filters.mainSubject || state.filters.priority || state.filters.project;
 
+  const row = (inner) => (inner ? `<div class="filter-row">${inner}</div>` : '');
   host.innerHTML = `
-    ${chipGroup('objective',   'OBJECTIVE',    objectiveOpts, state.filters.objective)}
-    ${chipGroup('subject',     '주제',         subjectOpts,   state.filters.subject)}
-    ${chipGroup('mainSubject', '메인주제',     mainSubjects.map(v => ({ v, label: v })), state.filters.mainSubject)}
-    ${chipGroup('priority',    '우선순위',     priorities.map(v => ({ v, label: v })),   state.filters.priority)}
-    ${chipGroup('project',     '프로젝트',     projects.map(v => ({ v, label: v })),     state.filters.project)}
-    ${hasAny ? '<button type="button" class="tlink" data-filter-reset>필터 초기화</button>' : ''}
+    ${row(chipGroup('objective',   'OBJECTIVE',    objectiveOpts, state.filters.objective))}
+    ${row(chipGroup('subject',     '주제',         subjectOpts,   state.filters.subject))}
+    ${row(chipGroup('mainSubject', '메인주제',     mainSubjects.map(v => ({ v, label: v })), state.filters.mainSubject))}
+    ${row(chipGroup('priority',    '우선순위',     priorities.map(v => ({ v, label: v })),   state.filters.priority))}
+    ${row(chipGroup('project',     '프로젝트',     projects.map(v => ({ v, label: v })),     state.filters.project))}
+    ${hasAny ? '<div class="filter-row"><button type="button" class="tlink" data-filter-reset>필터 초기화</button></div>' : ''}
   `;
 
   host.querySelectorAll('button.fchip').forEach(btn => {
