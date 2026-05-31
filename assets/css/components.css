@@ -1257,6 +1257,18 @@
 .one-content-input { resize: none; overflow: hidden; line-height: 1.45; white-space: pre-wrap; word-break: break-word; }
 .one-content-view { min-height: 38px; padding: 4px 6px; line-height: 1.45; font-size: 12px; white-space: pre-wrap; word-break: break-word; cursor: text; }
 .one-content-view.readonly { cursor: default; }
+/* One 티켓 표 가독성 — 표(#one-table) 내용 폰트만 상향. 필터/컨트롤은 그대로 */
+#one-table .tbl { font-size: 13.5px; }
+#one-table .tbl thead th { font-size: 11px; }
+#one-table .one-summary-input,
+#one-table .one-content-input,
+#one-table .one-comment-input,
+#one-table .one-content-view,
+#one-table .one-comment-view { font-size: 13.5px; }
+#one-table .st { font-size: 12.5px; }
+#one-table .pri { font-size: 12.5px; }
+#one-table .one-expand-btn { font-size: 12px; }
+#one-table .ft-link-summary { font-size: 13px; }
 .one-rank-input::placeholder,
 .one-summary-input::placeholder,
 .one-content-input::placeholder,
