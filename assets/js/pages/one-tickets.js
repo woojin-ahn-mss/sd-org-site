@@ -41,7 +41,7 @@ const state = {
   email: null,
   meta: new Map(),    // jira_key → {manual_rank, comment, _rowNum}
   metaRows: [],       // loadOneMeta 원본 (upsert 시 _rowNum 탐색)
-  filters: { projects: [], label: null, status: null, priority: null, subSubject: null, hideLaunched: true },
+  filters: { projects: [], subSubjects: [], priorities: [], statuses: [], hideLaunched: true },
   hideManageMode: false,   // 숨김 관리 모드 (체크박스 노출 + 전체 표시)
   hidePending: new Map(),  // 관리 모드 중 변경 대기 (key → bool)
   hideSaving: false,       // 저장 진행 중 (중복 저장 방지)
@@ -59,17 +59,19 @@ const state = {
 export async function renderOneTickets({ rootRel = '' } = {}) {
   state.rootRel = rootRel;
   state.filters = Object.assign(
-    { projects: [], status: null, priority: null, subSubject: null, hideLaunched: true },
+    { projects: [], subSubjects: [], priorities: [], statuses: [], hideLaunched: true },
     scoped(FILTERS_KEY).get({}) || {},
   );
-  // 프로젝트 복수 선택 마이그레이션 — 레거시 단일 project 문자열 → projects 배열.
-  if (!Array.isArray(state.filters.projects)) state.filters.projects = [];
-  if (state.filters.project) {
-    if (!state.filters.projects.includes(state.filters.project)) state.filters.projects.push(state.filters.project);
-    delete state.filters.project;
+  // 복수 선택(OR) 마이그레이션 — 레거시 단일값 → 배열. 모든 chip 필터 공통.
+  for (const [arrKey, singleKey] of [['projects', 'project'], ['subSubjects', 'subSubject'], ['priorities', 'priority'], ['statuses', 'status']]) {
+    if (!Array.isArray(state.filters[arrKey])) state.filters[arrKey] = [];
+    if (state.filters[singleKey]) {
+      if (!state.filters[arrKey].includes(state.filters[singleKey])) state.filters[arrKey].push(state.filters[singleKey]);
+      delete state.filters[singleKey];
+    }
   }
   delete state.filters.showHidden;  // 폐지된 토글 — 잔존 값 무력화 (숨김 표시는 관리 모드로 대체)
-  state.filters.label = null;  // 라벨 필터 폐지 — 저장된 잔존 값으로 인한 숨은 필터 방지
+  delete state.filters.label;  // 라벨 필터 폐지 — 저장된 잔존 값으로 인한 숨은 필터 방지
   const savedView = scoped(VIEW_KEY).get(null);
   if (savedView && typeof savedView === 'object') {
     if (savedView.view === 'all' || savedView.view === 'subject') state.view = savedView.view;
@@ -409,7 +411,8 @@ function renderFilters() {
   const priorities = [...new Set(base.map(it => it.priority).filter(Boolean))].sort();
 
   const f = state.filters;
-  const hasAny = (f.projects && f.projects.length) || f.status || f.priority || f.subSubject;
+  const len = (a) => (Array.isArray(a) ? a.length : 0);
+  const hasAny = len(f.projects) || len(f.subSubjects) || len(f.priorities) || len(f.statuses);
   const row = (inner) => (inner ? `<div class="filter-row">${inner}</div>` : '');
   const viewToggles =
     `<span class="flabel">보기</span>` +
@@ -417,9 +420,9 @@ function renderFilters() {
 
   host.innerHTML = `
     ${row(chipGroup('projects', '프로젝트', projects.map(v => ({ v, label: v })), f.projects, true))}
-    ${row(chipGroup('subSubject', 'Sub Subject', subSubjects.map(v => ({ v, label: v })), f.subSubject))}
-    ${row(chipGroup('priority', '우선순위', priorities.map(v => ({ v, label: v })), f.priority))}
-    ${row(chipGroup('status', '상태', statuses.map(v => ({ v, label: v })), f.status))}
+    ${row(chipGroup('subSubjects', 'Sub Subject', subSubjects.map(v => ({ v, label: v })), f.subSubjects, true))}
+    ${row(chipGroup('priorities', '우선순위', priorities.map(v => ({ v, label: v })), f.priorities, true))}
+    ${row(chipGroup('statuses', '상태', statuses.map(v => ({ v, label: v })), f.statuses, true))}
     ${row(viewToggles)}
     ${hasAny ? '<div class="filter-row"><button type="button" class="tlink" data-filter-reset>필터 초기화</button></div>' : ''}
   `;
@@ -456,7 +459,9 @@ function renderFilters() {
   if (reset) reset.addEventListener('click', () => {
     // chip 필터만 초기화 (론치완료 토글은 보기 설정이라 유지)
     state.filters.projects = [];
-    state.filters.subSubject = state.filters.status = state.filters.priority = null;
+    state.filters.subSubjects = [];
+    state.filters.priorities = [];
+    state.filters.statuses = [];
     scoped(FILTERS_KEY).set(state.filters);
     state.page = 1;
     renderFilters();
@@ -491,13 +496,21 @@ export const HIDDEN_WHEN_LAUNCHED = new Set(['론치완료', 'Dropped', '철회/
 export function itemMatchesFilters(it, filters, hiddenKeys) {
   if (filters.hideLaunched && HIDDEN_WHEN_LAUNCHED.has(it.status)) return false;
   if (!filters.showHidden && hiddenKeys && hiddenKeys.has(it.key)) return false;
-  // 프로젝트: 복수 선택(projects 배열) OR 매칭. 레거시 단일 project 도 지원.
-  const projSel = Array.isArray(filters.projects) ? filters.projects : (filters.project ? [filters.project] : []);
+  // 모든 chip 필터: 복수 선택(배열) OR 매칭. 레거시 단일값도 지원.
+  const sel = (arrKey, singleKey) => {
+    const a = filters[arrKey];
+    if (Array.isArray(a)) return a;
+    const s = filters[singleKey];
+    return s ? [s] : [];
+  };
+  const projSel = sel('projects', 'project');
   if (projSel.length && !projSel.includes(it.project)) return false;
-  if (filters.subSubject && !subSubjectsOf(it).includes(filters.subSubject)) return false;
-  if (filters.label && !(it.labels || []).includes(filters.label)) return false;
-  if (filters.status && it.status !== filters.status) return false;
-  if (filters.priority && it.priority !== filters.priority) return false;
+  const subSel = sel('subSubjects', 'subSubject');
+  if (subSel.length && !subSubjectsOf(it).some(s => subSel.includes(s))) return false;
+  const priSel = sel('priorities', 'priority');
+  if (priSel.length && !priSel.includes(it.priority)) return false;
+  const statSel = sel('statuses', 'status');
+  if (statSel.length && !statSel.includes(it.status)) return false;
   return true;
 }
 
@@ -712,13 +725,14 @@ async function onDeleteImage(key, field = 'image_path') {
   } finally { state.imgBusy = false; }
 }
 
-const COLS = 8;
+const COLS = 9;
 
 function theadHtml() {
   return `
     <thead>
       <tr>
         <th style="width:92px">키</th>
+        <th style="width:88px">생성일</th>
         <th style="width:24%">요약</th>
         <th style="width:24%">내용</th>
         <th style="width:150px">상태</th>
@@ -780,6 +794,7 @@ function rowHtml(it) {
   return `
     <tr class="${cls}" data-key="${escapeAttr(it.key)}">
       <td>${jiraKeyHtml(it.key)}${expandable ? expandToggleHtml(it.key, open, expandId, members.length) : ''}</td>
+      <td><span class="dim num">${escapeHtml(fmtDate(it.created))}</span></td>
       <td class="ft-summary">${summaryCellHtml(it)}</td>
       <td class="one-content-td">${contentCellHtml(it.key)}</td>
       <td><span class="st ${g ? g.stClass : 'st-wait'}">${escapeHtml(it.status || '—')}</span></td>
