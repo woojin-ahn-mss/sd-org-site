@@ -49,6 +49,7 @@ const state = {
   renderToken: 0,          // 렌더 식별 (서명 URL stale 주입 방지)
   view: 'all',        // 'all' | 'subject'
   sort: 'rank',       // 'rank' | 'created'
+  sortDir: 'desc',    // 생성일 정렬 방향: 'desc'(최근순) | 'asc'(오래된순)
   expanded: new Set(),
   collapsedGroups: new Set(),
   page: 1,
@@ -76,6 +77,7 @@ export async function renderOneTickets({ rootRel = '' } = {}) {
   if (savedView && typeof savedView === 'object') {
     if (savedView.view === 'all' || savedView.view === 'subject') state.view = savedView.view;
     if (savedView.sort === 'rank' || savedView.sort === 'created') state.sort = savedView.sort;
+    if (savedView.sortDir === 'asc' || savedView.sortDir === 'desc') state.sortDir = savedView.sortDir;
   }
 
   bindAuthUi();
@@ -302,7 +304,14 @@ function bindControls() {
   });
   document.querySelectorAll('[data-sort]').forEach(btn => {
     btn.addEventListener('click', () => {
-      state.sort = btn.dataset.sort;
+      const s = btn.dataset.sort;
+      if (s === 'created') {
+        // 이미 생성일 정렬이면 방향 토글(최근↔오래된), 아니면 생성일·최근순으로 진입.
+        if (state.sort === 'created') state.sortDir = state.sortDir === 'desc' ? 'asc' : 'desc';
+        else { state.sort = 'created'; state.sortDir = 'desc'; }
+      } else {
+        state.sort = s;
+      }
       persistView();
       renderControls();
       renderList();
@@ -311,7 +320,7 @@ function bindControls() {
 }
 
 function persistView() {
-  scoped(VIEW_KEY).set({ view: state.view, sort: state.sort });
+  scoped(VIEW_KEY).set({ view: state.view, sort: state.sort, sortDir: state.sortDir });
 }
 
 function renderControls() {
@@ -319,6 +328,15 @@ function renderControls() {
     b.classList.toggle('active', b.dataset.view === state.view));
   document.querySelectorAll('[data-sort]').forEach(b =>
     b.classList.toggle('active', b.dataset.sort === state.sort));
+  // 생성일 버튼: 활성 시 정렬 방향 화살표(↓ 최근순 / ↑ 오래된순) 표시.
+  const createdBtn = document.querySelector('[data-sort="created"]');
+  if (createdBtn) {
+    const active = state.sort === 'created';
+    createdBtn.textContent = '생성일' + (active ? (state.sortDir === 'desc' ? ' ↓' : ' ↑') : '');
+    createdBtn.title = active
+      ? (state.sortDir === 'desc' ? '최근순 — 다시 누르면 오래된 순' : '오래된 순 — 다시 누르면 최근순')
+      : '생성일순 정렬 (최근순부터)';
+  }
   renderFilters();
   renderHideControls();
 }
@@ -552,12 +570,12 @@ function clusterNewest(rep, members) {
 }
 
 /** 클러스터 정렬 — rank: 묶음 최선순위 asc, 없으면 최신순. created: 묶음 최신순. */
-export function sortClusters(reps, sort, metaMap = new Map(), membersByRep = new Map()) {
+export function sortClusters(reps, sort, metaMap = new Map(), membersByRep = new Map(), dir = 'desc') {
   const arr = reps.slice();
   const mem = (r) => membersByRep.get(r.key) || [];
   const newest = (r) => clusterNewest(r, mem(r));
   if (sort === 'created') {
-    arr.sort((a, b) => newest(b) - newest(a));
+    arr.sort((a, b) => (dir === 'asc' ? newest(a) - newest(b) : newest(b) - newest(a)));
     return arr;
   }
   arr.sort((a, b) => {
@@ -578,7 +596,7 @@ function rankOf(key, metaMap) {
   return Number.isFinite(n) ? n : null;
 }
 
-export function sortItems(items, sort, metaMap = new Map()) {
+export function sortItems(items, sort, metaMap = new Map(), dir = 'desc') {
   const arr = items.slice();
   const createdDesc = (a, b) => {
     const ta = a.created ? new Date(a.created).getTime() : 0;
@@ -586,7 +604,7 @@ export function sortItems(items, sort, metaMap = new Map()) {
     return tb - ta;
   };
   if (sort === 'created') {
-    arr.sort(createdDesc);
+    arr.sort((a, b) => (dir === 'asc' ? -createdDesc(a, b) : createdDesc(a, b)));
     return arr;
   }
   // rank: 숫자 순위 있는 것 먼저(asc), 나머지는 created desc
@@ -648,7 +666,7 @@ function renderList() {
     state.displayMembers.set(rep.key, all.filter(it => it.key !== rep.key));
     return rep;
   });
-  const rows = sortClusters(displayReps, state.sort, state.meta, state.displayMembers);
+  const rows = sortClusters(displayReps, state.sort, state.meta, state.displayMembers, state.sortDir);
   updateListCount(rows.length);
 
   if (!rows.length) {
