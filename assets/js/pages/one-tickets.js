@@ -41,7 +41,7 @@ const state = {
   email: null,
   meta: new Map(),    // jira_key → {manual_rank, comment, _rowNum}
   metaRows: [],       // loadOneMeta 원본 (upsert 시 _rowNum 탐색)
-  filters: { projects: [], subSubjects: [], priorities: [], statuses: [], hideLaunched: true },
+  filters: { projects: [], subSubjects: [], priorities: [], statuses: [], hideLaunched: true, fasttrackOnly: false, fasttrackExclude: false },
   hideManageMode: false,   // 숨김 관리 모드 (체크박스 노출 + 전체 표시)
   hidePending: new Map(),  // 관리 모드 중 변경 대기 (key → bool)
   hideSaving: false,       // 저장 진행 중 (중복 저장 방지)
@@ -59,7 +59,7 @@ const state = {
 export async function renderOneTickets({ rootRel = '' } = {}) {
   state.rootRel = rootRel;
   state.filters = Object.assign(
-    { projects: [], subSubjects: [], priorities: [], statuses: [], hideLaunched: true },
+    { projects: [], subSubjects: [], priorities: [], statuses: [], hideLaunched: true, fasttrackOnly: false, fasttrackExclude: false },
     scoped(FILTERS_KEY).get({}) || {},
   );
   // 복수 선택(OR) 마이그레이션 — 레거시 단일값 → 배열. 모든 chip 필터 공통.
@@ -416,7 +416,9 @@ function renderFilters() {
   const row = (inner) => (inner ? `<div class="filter-row">${inner}</div>` : '');
   const viewToggles =
     `<span class="flabel">보기</span>` +
-    `<button type="button" class="fchip ${f.hideLaunched ? 'on' : ''}" data-toggle="hideLaunched" role="switch" aria-checked="${f.hideLaunched ? 'true' : 'false'}">론치완료·Dropped·철회 제외</button>`;
+    `<button type="button" class="fchip ${f.hideLaunched ? 'on' : ''}" data-toggle="hideLaunched" role="switch" aria-checked="${f.hideLaunched ? 'true' : 'false'}">론치완료·Dropped·철회 제외</button>` +
+    `<button type="button" class="fchip ${f.fasttrackOnly ? 'on' : ''}" data-toggle="fasttrackOnly" role="switch" aria-checked="${f.fasttrackOnly ? 'true' : 'false'}">fasttrack만</button>` +
+    `<button type="button" class="fchip ${f.fasttrackExclude ? 'on' : ''}" data-toggle="fasttrackExclude" role="switch" aria-checked="${f.fasttrackExclude ? 'true' : 'false'}">fasttrack 제외</button>`;
 
   host.innerHTML = `
     ${row(chipGroup('projects', '프로젝트', projects.map(v => ({ v, label: v })), f.projects, true))}
@@ -449,6 +451,9 @@ function renderFilters() {
     btn.addEventListener('click', () => {
       const k = btn.dataset.toggle;            // hideLaunched
       state.filters[k] = !state.filters[k];
+      // fasttrack '만' 과 '제외' 는 상호 배타 — 하나를 켜면 다른 하나는 끈다.
+      if (k === 'fasttrackOnly' && state.filters.fasttrackOnly) state.filters.fasttrackExclude = false;
+      if (k === 'fasttrackExclude' && state.filters.fasttrackExclude) state.filters.fasttrackOnly = false;
       scoped(FILTERS_KEY).set(state.filters);
       state.page = 1;
       renderFilters();
@@ -492,9 +497,16 @@ function chipGroup(key, label, options, current, multi = false) {
 /** "론치완료 제외" 토글이 숨기는 상태값 (완료/드랍/철회 계열). */
 export const HIDDEN_WHEN_LAUNCHED = new Set(['론치완료', 'Dropped', '철회/반려/취소']);
 
+/** fasttrack 라벨 보유 여부 (대소문자 무시, fast-track 변형 허용 · fast-track-away 등은 제외). */
+export function hasFasttrackLabel(it) {
+  return Array.isArray(it.labels) && it.labels.some(l => /^fast-?track$/i.test(String(l).trim()));
+}
+
 /** 단일 항목이 필터에 매칭되는지. hiddenKeys 가 주어지면 showHidden off 일 때 숨긴 항목 제외. */
 export function itemMatchesFilters(it, filters, hiddenKeys) {
   if (filters.hideLaunched && HIDDEN_WHEN_LAUNCHED.has(it.status)) return false;
+  if (filters.fasttrackOnly && !hasFasttrackLabel(it)) return false;
+  if (filters.fasttrackExclude && hasFasttrackLabel(it)) return false;
   if (!filters.showHidden && hiddenKeys && hiddenKeys.has(it.key)) return false;
   // 모든 chip 필터: 복수 선택(배열) OR 매칭. 레거시 단일값도 지원.
   const sel = (arrKey, singleKey) => {
