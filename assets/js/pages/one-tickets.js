@@ -752,7 +752,6 @@ function renderList() {
 
   bindRowToggle(host);
   bindMetaInputs(host);
-  bindPager(host);
   bindGroupToggle(host);
   resolveImages(host);   // 첨부 이미지 서명 URL 주입 (비동기)
 }
@@ -844,18 +843,13 @@ function theadHtml() {
 }
 
 function renderFlat(host, rows) {
-  const totalPages = Math.max(1, Math.ceil(rows.length / PAGE_SIZE));
-  if (state.page > totalPages) state.page = totalPages;
-  if (state.page < 1) state.page = 1;
-  const start = (state.page - 1) * PAGE_SIZE;
-  const slice = rows.slice(start, start + PAGE_SIZE);
-
+  // 페이징 없이 전체 렌더 (개수만 하단 표기).
   host.innerHTML = `
     <table class="tbl">
       ${theadHtml()}
-      <tbody>${slice.map(rowHtml).join('')}</tbody>
+      <tbody>${rows.map(rowHtml).join('')}</tbody>
     </table>
-    ${pagerHtml(rows.length, totalPages, state.page, start, slice.length)}
+    <div class="pager"><span class="pager-info"><span class="num">${rows.length}</span>개 묶음</span></div>
   `;
 }
 
@@ -1132,35 +1126,6 @@ function bindGroupToggle(host) {
 }
 
 /* ─── 페이저 ──────────────────────────────────────────────── */
-
-function pagerHtml(total, totalPages, cur, start, sliceLen) {
-  if (totalPages <= 1) {
-    return `<div class="pager"><span class="pager-info"><span class="num">${total}</span>개 묶음</span></div>`;
-  }
-  return `
-    <nav class="pager" role="navigation" aria-label="페이지네이션">
-      <button type="button" data-pg="prev" ${cur === 1 ? 'disabled' : ''}>‹ 이전</button>
-      <span class="num">${start + 1}–${start + sliceLen}</span>
-      <span class="pager-sep">/</span>
-      <span class="num">${total}</span>
-      <button type="button" data-pg="next" ${cur === totalPages ? 'disabled' : ''}>다음 ›</button>
-      <span class="pager-info"><span class="num">${cur}</span>/<span class="num">${totalPages}</span></span>
-    </nav>
-  `;
-}
-
-function bindPager(host) {
-  host.querySelectorAll('button[data-pg]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      if (btn.disabled) return;
-      if (btn.dataset.pg === 'prev') state.page--;
-      else state.page++;
-      renderList();
-      const reduce = typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
-      host.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
-    });
-  });
-}
 
 /* ─── 코멘트 / 순위 입력 ──────────────────────────────────── */
 
