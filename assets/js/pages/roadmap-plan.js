@@ -473,6 +473,14 @@ function renderSubjectBoard() {
       if (subj) openSubjectModal(subj);
     });
   });
+  // 주제 → 티켓 할당 버튼
+  host.querySelectorAll('[data-subj-assign]').forEach(btn => {
+    btn.addEventListener('click', (ev) => {
+      ev.stopPropagation();
+      const subj = subjectById(btn.dataset.subjAssign);
+      if (subj) openSubjTicketsModal(subj);
+    });
+  });
 }
 
 function subjectGroupEl(objective, subjects) {
@@ -495,6 +503,8 @@ function subjectCardEl(subj, color) {
       <div class="muted dim-mono" style="font-size:10.5px;margin-top:2px;">
         ${period ? escapeHtml(period) + ' · ' : ''}카드 ${cardCount} · 티켓 ${ticketCount}
       </div>
+      <button type="button" class="tlink" data-subj-assign="${escapeAttr(subj.id)}"
+              style="margin-top:5px;font-size:11px;">+ 티켓 할당</button>
     </article>
   `;
 }
@@ -778,12 +788,19 @@ function bindModals() {
   state.modals.subj = attachModal($('subj-pop'));
   state.modals.card = attachModal($('card-pop'));
   state.modals.ticket = attachModal($('ticket-pop'));
+  state.modals.subjTickets = attachModal($('subj-tickets-pop'));
   state.modals.confirm = attachModal($('confirm-pop'));
 
   $('obj-form')?.addEventListener('submit', onObjectiveSubmit);
   $('subj-form')?.addEventListener('submit', onSubjectSubmit);
   $('card-form')?.addEventListener('submit', onCardSubmit);
   $('ticket-form')?.addEventListener('submit', onTicketSubmit);
+  $('subj-tickets-form')?.addEventListener('submit', onSubjTicketsSubmit);
+  $('subj-tickets-search')?.addEventListener('input', (e) => applySubjTicketsSearch(e.target.value));
+  // 체크 변경 → 선택 카운트 갱신 (리스트는 재렌더되므로 컨테이너 위임)
+  $('subj-tickets-list')?.addEventListener('change', (e) => {
+    if (e.target && e.target.name === 'ticket_key') updateSubjTicketsCount();
+  });
 
   // 색상 swatch — 디자인 시스템 .color-swatches / .color-swatch / .on
   const sw = $('obj-color-swatch');
@@ -1167,6 +1184,114 @@ async function onTicketSubmit(e) {
     renderFilters();
   } catch (err) {
     handleApiError(err, '티켓 주제 매핑 저장 실패');
+  }
+}
+
+/* ─── 주제 → 티켓 할당 모달 (주제에서 여러 티켓 붙이기) ── */
+
+function openSubjTicketsModal(subj) {
+  const form = $('subj-tickets-form');
+  if (!form) return;
+  form.subject_id.value = subj.id;
+  $('subj-tickets-title').textContent = `${subj.name || '주제'} · 티켓 할당`;
+  const search = $('subj-tickets-search');
+  if (search) search.value = '';
+  renderSubjTicketsList(subj.id);
+  state.modals.subjTickets.open();
+}
+
+/** subjId 에 할당된 티켓 여부. */
+function ticketHasSubject(t, subjId) {
+  return (t.subjectIds || parseSubjectIds(t.subject_id)).includes(subjId);
+}
+
+function renderSubjTicketsList(subjId) {
+  const host = $('subj-tickets-list');
+  if (!host) return;
+  const tickets = state.jiraTickets || [];
+  if (!tickets.length) {
+    host.innerHTML = `<div class="muted" style="font-size:12px;">할당할 Jira 티켓이 없습니다.</div>`;
+    updateSubjTicketsCount();
+    return;
+  }
+  // 이미 할당된 티켓을 위로, 그다음 키 순.
+  const sorted = tickets.slice().sort((a, b) => {
+    const aa = ticketHasSubject(a, subjId), ba = ticketHasSubject(b, subjId);
+    if (aa !== ba) return aa ? -1 : 1;
+    return String(a.key).localeCompare(String(b.key));
+  });
+  host.innerHTML = sorted.map(t => {
+    const checked = ticketHasSubject(t, subjId) ? 'checked' : '';
+    const hay = `${t.key} ${t.summary || ''}`.toLowerCase();
+    return `<label class="subj-ticket-row" data-hay="${escapeAttr(hay)}"
+                   style="display:flex;align-items:center;gap:8px;padding:4px 2px;cursor:pointer;font-size:12.5px;">
+      <input type="checkbox" name="ticket_key" value="${escapeAttr(t.key)}" ${checked} />
+      <span class="num" style="flex:none;color:var(--faint);min-width:78px;">${escapeHtml(t.key)}</span>
+      <span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${escapeHtml(t.summary || '')}</span>
+    </label>`;
+  }).join('');
+  applySubjTicketsSearch($('subj-tickets-search')?.value || '');
+  updateSubjTicketsCount();
+}
+
+function applySubjTicketsSearch(query) {
+  const q = (query || '').trim().toLowerCase();
+  $('subj-tickets-list')?.querySelectorAll('.subj-ticket-row').forEach(row => {
+    row.style.display = (!q || (row.dataset.hay || '').includes(q)) ? '' : 'none';
+  });
+}
+
+function updateSubjTicketsCount() {
+  const el = $('subj-tickets-count');
+  if (!el) return;
+  const n = $('subj-tickets-list')?.querySelectorAll('input[name="ticket_key"]:checked').length || 0;
+  el.textContent = `${n}개 선택됨`;
+}
+
+async function onSubjTicketsSubmit(e) {
+  e.preventDefault();
+  const form = e.currentTarget;
+  const subjId = form.subject_id.value;
+  if (!subjId) { state.modals.subjTickets.close(); return; }
+  const checked = new Set(
+    Array.from(form.querySelectorAll('input[name="ticket_key"]:checked')).map(i => i.value)
+  );
+  // 이 주제에 대한 멤버십이 바뀐 티켓만 추려서 갱신.
+  const changes = [];
+  for (const t of state.jiraTickets) {
+    const was = ticketHasSubject(t, subjId);
+    const now = checked.has(t.key);
+    if (was !== now) changes.push({ t, now });
+  }
+  if (!changes.length) { state.modals.subjTickets.close(); return; }
+
+  try {
+    for (const { t, now } of changes) {
+      const cur = new Set(t.subjectIds || parseSubjectIds(t.subject_id));
+      if (now) cur.add(subjId); else cur.delete(subjId);
+      const ids = Array.from(cur);
+      const updated = await setTicketMapping(
+        t.key,
+        { year: state.year, subject_id: ids, quarter: t.quarter },
+        state.overrides,
+      );
+      // overrides state 갱신 (onTicketSubmit 과 동일 패턴)
+      const idx = state.overrides.findIndex(o => o.jira_key === t.key);
+      if (updated) {
+        if (idx >= 0) state.overrides[idx] = updated; else state.overrides.push(updated);
+      } else if (idx >= 0) {
+        state.overrides.splice(idx, 1);
+      }
+      t.subject_id = joinSubjectIds(ids);
+      t.subjectIds = parseSubjectIds(ids);
+      t._override = !!(ids.length || (t.quarter && t.quarter !== t.baseQuarter));
+    }
+    state.modals.subjTickets.close();
+    renderCardBoard();
+    renderSubjectBoard();
+    renderFilters();
+  } catch (err) {
+    handleApiError(err, '주제 티켓 할당 저장 실패');
   }
 }
 

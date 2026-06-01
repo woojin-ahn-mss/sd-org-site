@@ -41,7 +41,7 @@ const state = {
   email: null,
   meta: new Map(),    // jira_key → {manual_rank, comment, _rowNum}
   metaRows: [],       // loadOneMeta 원본 (upsert 시 _rowNum 탐색)
-  filters: { projects: [], subSubjects: [], priorities: [], statuses: [], hideLaunched: true, fasttrackOnly: false, fasttrackExclude: false },
+  filters: { projects: [], subSubjects: [], priorities: [], statuses: [], hideLaunched: true, fasttrackOnly: false, fasttrackExclude: false, quickFixOnly: false, specUnset: false },
   hideManageMode: false,   // 숨김 관리 모드 (체크박스 노출 + 전체 표시)
   hidePending: new Map(),  // 관리 모드 중 변경 대기 (key → bool)
   hideSaving: false,       // 저장 진행 중 (중복 저장 방지)
@@ -60,7 +60,7 @@ const state = {
 export async function renderOneTickets({ rootRel = '' } = {}) {
   state.rootRel = rootRel;
   state.filters = Object.assign(
-    { projects: [], subSubjects: [], priorities: [], statuses: [], hideLaunched: true, fasttrackOnly: false, fasttrackExclude: false },
+    { projects: [], subSubjects: [], priorities: [], statuses: [], hideLaunched: true, fasttrackOnly: false, fasttrackExclude: false, quickFixOnly: false, specUnset: false },
     scoped(FILTERS_KEY).get({}) || {},
   );
   // 복수 선택(OR) 마이그레이션 — 레거시 단일값 → 배열. 모든 chip 필터 공통.
@@ -436,7 +436,9 @@ function renderFilters() {
     `<span class="flabel">보기</span>` +
     `<button type="button" class="fchip ${f.hideLaunched ? 'on' : ''}" data-toggle="hideLaunched" role="switch" aria-checked="${f.hideLaunched ? 'true' : 'false'}">론치완료·Dropped·철회 제외</button>` +
     `<button type="button" class="fchip ${f.fasttrackOnly ? 'on' : ''}" data-toggle="fasttrackOnly" role="switch" aria-checked="${f.fasttrackOnly ? 'true' : 'false'}">fasttrack만</button>` +
-    `<button type="button" class="fchip ${f.fasttrackExclude ? 'on' : ''}" data-toggle="fasttrackExclude" role="switch" aria-checked="${f.fasttrackExclude ? 'true' : 'false'}">fasttrack 제외</button>`;
+    `<button type="button" class="fchip ${f.fasttrackExclude ? 'on' : ''}" data-toggle="fasttrackExclude" role="switch" aria-checked="${f.fasttrackExclude ? 'true' : 'false'}">fasttrack 제외</button>` +
+    `<button type="button" class="fchip ${f.quickFixOnly ? 'on' : ''}" data-toggle="quickFixOnly" role="switch" aria-checked="${f.quickFixOnly ? 'true' : 'false'}">quick fix만</button>` +
+    `<button type="button" class="fchip ${f.specUnset ? 'on' : ''}" data-toggle="specUnset" role="switch" aria-checked="${f.specUnset ? 'true' : 'false'}">spec 미지정</button>`;
 
   host.innerHTML = `
     ${row(chipGroup('projects', '프로젝트', projects.map(v => ({ v, label: v })), f.projects, true))}
@@ -520,11 +522,17 @@ export function hasFasttrackLabel(it) {
   return Array.isArray(it.labels) && it.labels.some(l => /^fast-?track$/i.test(String(l).trim()));
 }
 
-/** 단일 항목이 필터에 매칭되는지. hiddenKeys 가 주어지면 showHidden off 일 때 숨긴 항목 제외. */
-export function itemMatchesFilters(it, filters, hiddenKeys) {
+/**
+ * 단일 항목이 필터에 매칭되는지. hiddenKeys 가 주어지면 showHidden off 일 때 숨긴 항목 제외.
+ * quickFixKeys: quick_fix 메타가 켜진 키 집합 — quickFixOnly 토글 시 그 집합만 통과.
+ * specKeys: spec 메타가 켜진 키 집합 — specUnset 토글 시 그 집합(=spec 지정됨)을 제외.
+ */
+export function itemMatchesFilters(it, filters, hiddenKeys, quickFixKeys, specKeys) {
   if (filters.hideLaunched && HIDDEN_WHEN_LAUNCHED.has(it.status)) return false;
   if (filters.fasttrackOnly && !hasFasttrackLabel(it)) return false;
   if (filters.fasttrackExclude && hasFasttrackLabel(it)) return false;
+  if (filters.quickFixOnly && !(quickFixKeys && quickFixKeys.has(it.key))) return false;
+  if (filters.specUnset && specKeys && specKeys.has(it.key)) return false;
   if (!filters.showHidden && hiddenKeys && hiddenKeys.has(it.key)) return false;
   // 모든 chip 필터: 복수 선택(배열) OR 매칭. 레거시 단일값도 지원.
   const sel = (arrKey, singleKey) => {
@@ -552,10 +560,10 @@ export function filterItems(items, filters) {
  * 클러스터 필터 — 대표 또는 멤버 중 하나라도 매칭되면 그 묶음을 노출.
  * (병합된 멤버가 필터에 걸려도 묶음이 사라지지 않게.)
  */
-export function filterClusters(reps, filters, membersByRep = new Map(), hiddenKeys) {
+export function filterClusters(reps, filters, membersByRep = new Map(), hiddenKeys, quickFixKeys, specKeys) {
   return reps.filter(rep => {
-    if (itemMatchesFilters(rep, filters, hiddenKeys)) return true;
-    return (membersByRep.get(rep.key) || []).some(m => itemMatchesFilters(m, filters, hiddenKeys));
+    if (itemMatchesFilters(rep, filters, hiddenKeys, quickFixKeys, specKeys)) return true;
+    return (membersByRep.get(rep.key) || []).some(m => itemMatchesFilters(m, filters, hiddenKeys, quickFixKeys, specKeys));
   });
 }
 
@@ -652,10 +660,16 @@ function renderList() {
   if (!host) return;
   // 수동 숨김 키 집합 (meta.hidden). 관리 모드에선 전체 표시(숨김 포함)해 체크/해제할 수 있게.
   const hiddenKeys = new Set();
-  for (const [k, m] of state.meta) if (m && m.hidden) hiddenKeys.add(String(k));
+  const quickFixKeys = new Set();
+  const specKeys = new Set();
+  for (const [k, m] of state.meta) {
+    if (m && m.hidden) hiddenKeys.add(String(k));
+    if (m && m.quick_fix) quickFixKeys.add(String(k));
+    if (m && m.spec) specKeys.add(String(k));
+  }
   const eff = { ...state.filters, showHidden: state.hideManageMode };
 
-  const filtered = filterClusters(state.topLevel, eff, state.clusterMembers, hiddenKeys);
+  const filtered = filterClusters(state.topLevel, eff, state.clusterMembers, hiddenKeys, quickFixKeys, specKeys);
   // 표시 대표 선정: 종료(론치완료·Dropped·철회)·숨김이 아닌 멤버 중 비-ETR 우선(cmpRep).
   // 프로젝트/상태/우선순위 선택 필터로는 대표를 바꾸지 않는다 — 연결된 실제 작업 티켓이 항상 메인.
   state.displayMembers = new Map();
@@ -768,6 +782,7 @@ function theadHtml() {
         <th style="width:150px">상태</th>
         <th style="width:74px">순위</th>
         <th style="width:64px" title="Quick fix 대상">Quick fix</th>
+        <th style="width:48px" title="Spec 작성 대상">Spec</th>
         <th style="width:30%">코멘트</th>
         <th style="width:${state.hideManageMode ? 56 : 20}px">${state.hideManageMode ? '숨김' : ''}</th>
       </tr>
@@ -830,6 +845,7 @@ function rowHtml(it) {
       <td><span class="st ${g ? g.stClass : 'st-wait'}">${escapeHtml(it.status || '—')}</span></td>
       <td>${rankCellHtml(it.key)}</td>
       <td class="one-qf-cell">${quickFixCellHtml(it.key)}</td>
+      <td class="one-spec-cell">${specCellHtml(it.key)}</td>
       <td>${commentCellHtml(it.key)}</td>
       <td class="one-row-actions">${hideBtnHtml(it.key)}</td>
     </tr>
@@ -909,6 +925,15 @@ function quickFixCellHtml(key) {
   const dis = state.signedIn ? '' : 'disabled';
   return `<input type="checkbox" class="one-quickfix" data-key="${escapeAttr(key)}" ${checked} ${dis}
             aria-label="${escapeAttr(key)} Quick fix 대상" />`;
+}
+
+/** Spec 작성 대상 체크박스 셀. */
+function specCellHtml(key) {
+  const m = state.meta.get(key);
+  const checked = m && m.spec ? 'checked' : '';
+  const dis = state.signedIn ? '' : 'disabled';
+  return `<input type="checkbox" class="one-spec" data-key="${escapeAttr(key)}" ${checked} ${dis}
+            aria-label="${escapeAttr(key)} Spec 작성 대상" />`;
 }
 
 function rankCellHtml(key) {
@@ -1105,6 +1130,10 @@ function bindMetaInputs(host) {
   // Quick fix 체크박스
   host.querySelectorAll('.one-quickfix').forEach(cb => {
     cb.addEventListener('change', () => saveMeta(cb.dataset.key, { quick_fix: cb.checked }));
+  });
+  // Spec 체크박스
+  host.querySelectorAll('.one-spec').forEach(cb => {
+    cb.addEventListener('change', () => saveMeta(cb.dataset.key, { spec: cb.checked }));
   });
   // 코멘트 — 표시(URL 링크 클릭 가능) / 편집(textarea) 분리. 클릭→편집, blur→표시 복귀.
   host.querySelectorAll('.one-comment-cell').forEach(cell => {

@@ -78,6 +78,7 @@ export async function renderFasttrack({ rootRel = '' } = {}) {
   renderHeader();
   renderDwellTables();
   renderWeeklyChart();
+  renderForecastChart();
   renderFilters();
   renderTable();
   renderFtTable();
@@ -274,6 +275,31 @@ export function weeklyTrend(etrItems, ftItems, now = new Date(), weeks = 12) {
   return arr;
 }
 
+/**
+ * 완료 예정(기한 기준) — 미완료 티켓을 마감일(dueDate) 주차로 집계.
+ * 첫 버킷은 "기한 초과"(이번 주 시작 이전 마감 · 미완료), 이후 향후 N주.
+ * @returns {Array<{label, start, end, count, overdue}>}
+ */
+export function weeklyForecast(ftItems, now = new Date(), weeks = 12) {
+  const { thisStart } = kstWeekRange(now);
+  const buckets = [{ label: '초과', start: 0, end: thisStart, count: 0, overdue: true }];
+  for (let i = 0; i < weeks; i++) {
+    const start = thisStart + i * 7 * 86400 * 1000;
+    const end = start + 7 * 86400 * 1000;
+    buckets.push({ label: weekLabel(start), start, end, count: 0, overdue: false });
+  }
+  for (const it of (ftItems || [])) {
+    // 열린(미완료) 티켓만 — done 카테고리(완료·Dropped·취소·반려) 전부 제외.
+    if (it.statusCategory === 'done') continue;
+    if (!it.dueDate) continue;
+    const t = new Date(it.dueDate).getTime();
+    if (isNaN(t)) continue;
+    const b = buckets.find(x => t >= x.start && t < x.end);
+    if (b) b.count++;
+  }
+  return buckets;
+}
+
 function weekLabel(startMs) {
   const d = new Date(startMs);
   // KST 기준 라벨 (월요일)
@@ -289,8 +315,9 @@ function renderWeeklyChart() {
   const data = weeklyTrend(state.items, state.ftItems, new Date(), 12);
   const maxVal = Math.max(1, ...data.map(d => Math.max(d.intake, d.done)));
 
-  // SVG 크기
-  const W = 800, H = 220;
+  // SVG 크기 — W 를 컨테이너 실제 폭에 맞춰 viewBox 비율을 유지(글자 가로 찌그러짐 방지).
+  // CSS: .wc-svg { width:100%; height:auto } → viewBox 종횡비대로 균일 스케일.
+  const W = Math.max(360, Math.round(host.clientWidth) || 800), H = 220;
   const padL = 32, padR = 12, padT = 12, padB = 36;
   const innerW = W - padL - padR;
   const innerH = H - padT - padB;
@@ -341,7 +368,7 @@ function renderWeeklyChart() {
       <span class="wc-key"><span class="wc-sw" style="background:${colorDone};opacity:0.7"></span>완료 (MSSCXTF+FT Initiative resolutionDate)</span>
       <span class="wc-key muted dim-mono" style="margin-left:auto">막대 클릭 → 해당 주 티켓 보기</span>
     </div>
-    <svg class="wc-svg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="주별 인입/완료 추이">
+    <svg class="wc-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="주별 인입/완료 추이">
       ${yticks}
       ${bars}
       ${xlabels}
@@ -374,6 +401,98 @@ function openWeekDrilldown(data, weekIdx, kind) {
   openDrilldown(tickets, {
     kicker,
     title: `${bucket.label} 주차 · ${kicker} ${tickets.length}건`,
+  });
+}
+
+/* ----- 완료 예정 (기한 기준) 차트 ------------------------- */
+
+function renderForecastChart() {
+  const host = document.getElementById('forecast-chart');
+  if (!host) return;
+  const buckets = weeklyForecast(state.ftItems, new Date(), 12);
+  const total = buckets.reduce((s, b) => s + b.count, 0);
+  if (!total) {
+    host.innerHTML = `<div class="muted" style="padding:14px 0;font-size:13px;">기한(dueDate)이 설정된 미완료 티켓이 없습니다.</div>`;
+    return;
+  }
+  const maxVal = Math.max(1, ...buckets.map(b => b.count));
+
+  const W = Math.max(360, Math.round(host.clientWidth) || 800), H = 220;
+  const padL = 32, padR = 12, padT = 12, padB = 36;
+  const innerW = W - padL - padR;
+  const innerH = H - padT - padB;
+  const groupW = innerW / buckets.length;
+  const barW = Math.max(8, groupW * 0.55);
+
+  const colorUp = 'var(--success, #6aa84f)';
+  const colorOver = 'var(--danger, #c0392b)';
+
+  let bars = '';
+  let xlabels = '';
+  for (let i = 0; i < buckets.length; i++) {
+    const b = buckets[i];
+    const cx = padL + i * groupW + groupW / 2;
+    const x = cx - barW / 2;
+    const h = (b.count / maxVal) * innerH;
+    const fill = b.overdue ? colorOver : colorUp;
+    const tipKind = b.overdue ? '기한 초과(미완료)' : '완료 예정';
+    const tipLabel = b.overdue ? '기한 초과' : `${b.label} 주차`;
+    bars += `
+      <rect x="${x.toFixed(1)}" y="${(padT + innerH - h).toFixed(1)}" width="${barW.toFixed(1)}" height="${h.toFixed(1)}"
+            fill="${fill}" ${b.overdue ? '' : 'opacity="0.8"'} class="wc-bar" data-fc-idx="${i}"
+            data-tip="${tipKind} ${b.count}건 · ${tipLabel} (클릭: 티켓 보기)" tabindex="0" role="button"
+            aria-label="${tipLabel} ${tipKind} ${b.count}건" />
+      ${b.count > 0 ? `<text x="${cx.toFixed(1)}" y="${(padT + innerH - h - 3).toFixed(1)}" class="wc-val">${b.count}</text>` : ''}
+    `;
+    xlabels += `<text x="${cx.toFixed(1)}" y="${H - padB + 14}" class="wc-xlabel">${b.label}</text>`;
+  }
+
+  const ticks = [0, Math.ceil(maxVal / 2), maxVal];
+  let yticks = '';
+  for (const t of ticks) {
+    const y = padT + innerH - (t / maxVal) * innerH;
+    yticks += `
+      <line x1="${padL}" x2="${W - padR}" y1="${y.toFixed(1)}" y2="${y.toFixed(1)}" class="wc-grid" />
+      <text x="${padL - 4}" y="${(y + 3).toFixed(1)}" class="wc-ylabel">${t}</text>
+    `;
+  }
+
+  host.innerHTML = `
+    <div class="wc-legend">
+      <span class="wc-key"><span class="wc-sw" style="background:${colorOver}"></span>기한 초과 (미완료)</span>
+      <span class="wc-key"><span class="wc-sw" style="background:${colorUp};opacity:0.8"></span>완료 예정 (주별 마감)</span>
+      <span class="wc-key muted dim-mono" style="margin-left:auto">막대 클릭 → 해당 주 티켓 보기</span>
+    </div>
+    <svg class="wc-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="기한 기준 완료 예정 추이">
+      ${yticks}
+      ${bars}
+      ${xlabels}
+    </svg>
+  `;
+
+  host.querySelectorAll('.wc-bar').forEach(rect => {
+    const open = () => openForecastDrilldown(buckets, +rect.dataset.fcIdx);
+    rect.addEventListener('click', open);
+    rect.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
+    });
+  });
+}
+
+function openForecastDrilldown(buckets, idx) {
+  const b = buckets[idx];
+  if (!b) return;
+  const tickets = state.ftItems.filter(it => {
+    if (it.statusCategory === 'done' || !it.dueDate) return false;
+    const t = new Date(it.dueDate).getTime();
+    return !isNaN(t) && t >= b.start && t < b.end;
+  });
+  const kicker = b.overdue ? '기한 초과 (미완료)' : '완료 예정';
+  openDrilldown(tickets, {
+    kicker,
+    title: b.overdue
+      ? `기한 초과 · ${kicker} ${tickets.length}건`
+      : `${b.label} 주차 · ${kicker} ${tickets.length}건`,
   });
 }
 
@@ -734,5 +853,5 @@ export const _internal = {
   isItemDone, normalizeItem, PERIOD_DAYS, PAGE_SIZE,
   STATUS_TRIAGE, STATUS_NORMAL,
   dwellStats, weekBuckets, kstWeekRange, pickElapsedAnchor,
-  weeklyTrend,
+  weeklyTrend, weeklyForecast, isRealDone,
 };

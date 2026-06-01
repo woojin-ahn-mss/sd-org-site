@@ -238,6 +238,31 @@
       </div>
     </div>
 
+    <!-- 모달: 주제 → 티켓 할당 (주제에서 여러 티켓 붙이기) -->
+    <div id="subj-tickets-pop" class="modal-backdrop" hidden>
+      <div class="modal" role="dialog" aria-label="주제 티켓 할당">
+        <div class="modal-head">
+          <div>
+            <div class="modal-kicker">SUBJECT · TICKETS</div>
+            <h3 class="modal-title" id="subj-tickets-title">티켓 할당</h3>
+          </div>
+          <button class="modal-close" data-modal-close>CLOSE</button>
+        </div>
+        <form id="subj-tickets-form">
+          <div class="modal-body">
+            <input type="hidden" name="subject_id" />
+            <input type="search" id="subj-tickets-search" class="input" placeholder="티켓 키·요약 검색…" autocomplete="off" style="width:100%;margin-bottom:10px;" />
+            <div id="subj-tickets-list" style="max-height:46vh;overflow:auto;border:1px solid var(--rule);border-radius:4px;padding:10px;"></div>
+          </div>
+          <div class="modal-foot">
+            <span id="subj-tickets-count" class="muted dim-mono" style="flex:1;font-size:11px;"></span>
+            <button type="button" class="btn ghost" data-modal-close>취소</button>
+            <button type="submit" class="btn primary">저장</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
     <!-- 모달: 삭제 확인 -->
     <div id="confirm-pop" class="modal-backdrop" hidden>
       <div class="modal" role="dialog" aria-label="삭제 확인">
