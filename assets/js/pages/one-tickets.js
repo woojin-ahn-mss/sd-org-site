@@ -41,7 +41,7 @@ const state = {
   email: null,
   meta: new Map(),    // jira_key → {manual_rank, comment, _rowNum}
   metaRows: [],       // loadOneMeta 원본 (upsert 시 _rowNum 탐색)
-  filters: { projects: [], subSubjects: [], priorities: [], statuses: [], hideLaunched: true, fasttrackOnly: false, fasttrackExclude: false, quickFixOnly: false, specUnset: false },
+  filters: { projects: [], subSubjects: [], priorities: [], statuses: [], hideLaunched: true, fasttrackOnly: false, fasttrackExclude: false, quickFixOnly: false, quickFixExclude: false, specUnset: false },
   hideManageMode: false,   // 숨김 관리 모드 (체크박스 노출 + 전체 표시)
   hidePending: new Map(),  // 관리 모드 중 변경 대기 (key → bool)
   hideSaving: false,       // 저장 진행 중 (중복 저장 방지)
@@ -60,7 +60,7 @@ const state = {
 export async function renderOneTickets({ rootRel = '' } = {}) {
   state.rootRel = rootRel;
   state.filters = Object.assign(
-    { projects: [], subSubjects: [], priorities: [], statuses: [], hideLaunched: true, fasttrackOnly: false, fasttrackExclude: false, quickFixOnly: false, specUnset: false },
+    { projects: [], subSubjects: [], priorities: [], statuses: [], hideLaunched: true, fasttrackOnly: false, fasttrackExclude: false, quickFixOnly: false, quickFixExclude: false, specUnset: false },
     scoped(FILTERS_KEY).get({}) || {},
   );
   // 복수 선택(OR) 마이그레이션 — 레거시 단일값 → 배열. 모든 chip 필터 공통.
@@ -347,6 +347,7 @@ function syncUrl() {
   if (f.fasttrackOnly) p.set('ft', '1');
   if (f.fasttrackExclude) p.set('ftx', '1');
   if (f.quickFixOnly) p.set('qf', '1');
+  if (f.quickFixExclude) p.set('qfx', '1');
   if (f.specUnset) p.set('sx', '1');
   if (state.view === 'subject') p.set('view', 'subject');
   if (state.sort === 'created') { p.set('sort', 'created'); if (state.sortDir === 'asc') p.set('dir', 'asc'); }
@@ -357,7 +358,7 @@ function syncUrl() {
 /** URL 쿼리 → state.filters/뷰. 파람이 하나라도 있으면 필터를 URL 기준으로 재구성(공유 링크 결정적). */
 function applyUrlParams() {
   const p = new URLSearchParams(location.search);
-  const KEYS = ['proj', 'sub', 'pri', 'st', 'hl', 'ft', 'ftx', 'qf', 'sx', 'view', 'sort', 'dir'];
+  const KEYS = ['proj', 'sub', 'pri', 'st', 'hl', 'ft', 'ftx', 'qf', 'qfx', 'sx', 'view', 'sort', 'dir'];
   if (!KEYS.some(k => p.has(k))) return;     // 파람 없음 → localStorage 유지
   state.filters = {
     projects: p.getAll('proj'),
@@ -368,9 +369,11 @@ function applyUrlParams() {
     fasttrackOnly: p.get('ft') === '1',
     fasttrackExclude: p.get('ftx') === '1',
     quickFixOnly: p.get('qf') === '1',
+    quickFixExclude: p.get('qfx') === '1',
     specUnset: p.get('sx') === '1',
   };
   if (state.filters.fasttrackOnly) state.filters.fasttrackExclude = false;
+  if (state.filters.quickFixOnly) state.filters.quickFixExclude = false;
   if (p.get('view') === 'subject') state.view = 'subject';
   else if (p.get('view') === 'all') state.view = 'all';
   if (p.get('sort') === 'created') { state.sort = 'created'; state.sortDir = p.get('dir') === 'asc' ? 'asc' : 'desc'; }
@@ -492,6 +495,7 @@ function renderFilters() {
     `<button type="button" class="fchip ${f.fasttrackOnly ? 'on' : ''}" data-toggle="fasttrackOnly" role="switch" aria-checked="${f.fasttrackOnly ? 'true' : 'false'}">fasttrack만</button>` +
     `<button type="button" class="fchip ${f.fasttrackExclude ? 'on' : ''}" data-toggle="fasttrackExclude" role="switch" aria-checked="${f.fasttrackExclude ? 'true' : 'false'}">fasttrack 제외</button>` +
     `<button type="button" class="fchip ${f.quickFixOnly ? 'on' : ''}" data-toggle="quickFixOnly" role="switch" aria-checked="${f.quickFixOnly ? 'true' : 'false'}">quick fix만</button>` +
+    `<button type="button" class="fchip ${f.quickFixExclude ? 'on' : ''}" data-toggle="quickFixExclude" role="switch" aria-checked="${f.quickFixExclude ? 'true' : 'false'}">quick fix 제외</button>` +
     `<button type="button" class="fchip ${f.specUnset ? 'on' : ''}" data-toggle="specUnset" role="switch" aria-checked="${f.specUnset ? 'true' : 'false'}">spec 미지정</button>`;
 
   host.innerHTML = `
@@ -528,6 +532,9 @@ function renderFilters() {
       // fasttrack '만' 과 '제외' 는 상호 배타 — 하나를 켜면 다른 하나는 끈다.
       if (k === 'fasttrackOnly' && state.filters.fasttrackOnly) state.filters.fasttrackExclude = false;
       if (k === 'fasttrackExclude' && state.filters.fasttrackExclude) state.filters.fasttrackOnly = false;
+      // quick fix '만' 과 '제외' 도 상호 배타.
+      if (k === 'quickFixOnly' && state.filters.quickFixOnly) state.filters.quickFixExclude = false;
+      if (k === 'quickFixExclude' && state.filters.quickFixExclude) state.filters.quickFixOnly = false;
       persistFilters();
       state.page = 1;
       renderFilters();
@@ -586,6 +593,7 @@ export function itemMatchesFilters(it, filters, hiddenKeys, quickFixKeys, specKe
   if (filters.fasttrackOnly && !hasFasttrackLabel(it)) return false;
   if (filters.fasttrackExclude && hasFasttrackLabel(it)) return false;
   if (filters.quickFixOnly && !(quickFixKeys && quickFixKeys.has(it.key))) return false;
+  if (filters.quickFixExclude && quickFixKeys && quickFixKeys.has(it.key)) return false;
   if (filters.specUnset && specKeys && specKeys.has(it.key)) return false;
   if (!filters.showHidden && hiddenKeys && hiddenKeys.has(it.key)) return false;
   // 모든 chip 필터: 복수 선택(배열) OR 매칭. 레거시 단일값도 지원.
