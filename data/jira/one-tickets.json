@@ -1,7 +1,206 @@
 {
-  "lastSync": "2026-06-01T12:50:14+09:00",
-  "count": 549,
+  "lastSync": "2026-06-01T18:36:31+09:00",
+  "count": 553,
   "items": [
+    {
+      "key": "ETR-4637",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4637",
+      "summary": "[무신사 메인/전문관] 상단 메인메뉴 이미지·텍스트 운영 자동화 및 간단 모션 내재화",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "발의",
+      "statusCategory": "new",
+      "priority": "P0",
+      "assignee": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-06-01T17:31:39.277+0900",
+      "updated": "2026-06-01T17:31:59.598+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null,
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-4632",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4632",
+      "summary": "[추천판] 지금 주목할 만한 브랜드 내에 전문관 파비콘 추가",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "발의",
+      "statusCategory": "new",
+      "priority": "P0",
+      "assignee": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-06-01T16:02:31.355+0900",
+      "updated": "2026-06-01T16:02:33.331+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null,
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-4617",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4617",
+      "summary": "[브랜드] 브랜드 관련 노출 정비",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "발의",
+      "statusCategory": "new",
+      "priority": "P0",
+      "assignee": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-06-01T13:05:45.484+0900",
+      "updated": "2026-06-01T13:24:05.766+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null,
+      "linkedTickets": [
+        {
+          "key": "MSSCXTF-1215",
+          "summary": "[PDP] 브랜드명 옆 전문관 파비콘 + 전문관 붙이기",
+          "status": "디자인중",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        },
+        {
+          "key": "TM-3095",
+          "summary": "[브랜드] 브랜드 정보 노출 강화",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 2
+      }
+    },
+    {
+      "key": "TM-3164",
+      "url": "https://jira.team.musinsa.com/browse/TM-3164",
+      "summary": "[무신사 메인] 브랜드 카드 정보 밀도 강화 및 비주얼 개선 (쿠폰/랭킹/좋아요/대표이미지)",
+      "issueType": "Initiative",
+      "project": "TM",
+      "status": "SUGGESTED",
+      "statusCategory": "new",
+      "priority": "P0",
+      "assignee": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "박준현",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "conveyor-bot",
+        "general-task",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": "2026-06-01",
+      "dueDate": "2026-06-02",
+      "created": "2026-06-01T13:04:02.633+0900",
+      "updated": "2026-06-01T13:04:08.632+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null,
+      "linkedTickets": [
+        {
+          "key": "ETR-4607",
+          "summary": "[무신사 메인] 브랜드 카드 정보 밀도 강화 및 비주얼 개선 (쿠폰/랭킹/좋아요/대표이미지)",
+          "status": "발의",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "outward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
     {
       "key": "ETR-4612",
       "url": "https://jira.team.musinsa.com/browse/ETR-4612",
@@ -134,7 +333,7 @@
       "startDate": "2026-06-01",
       "dueDate": "2026-06-02",
       "created": "2026-06-01T10:33:26.046+0900",
-      "updated": "2026-06-01T11:01:02.379+0900",
+      "updated": "2026-06-01T13:53:39.640+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -249,13 +448,23 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-01T09:23:06.239+0900",
-      "updated": "2026-06-01T10:26:32.630+0900",
+      "updated": "2026-06-01T13:04:08.689+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
-      "linkedTickets": [],
+      "linkedTickets": [
+        {
+          "key": "TM-3164",
+          "summary": "[무신사 메인] 브랜드 카드 정보 밀도 강화 및 비주얼 개선 (쿠폰/랭킹/좋아요/대표이미지)",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        }
+      ],
       "progress": {
         "done": 0,
-        "total": 0
+        "total": 1
       }
     },
     {
@@ -292,13 +501,23 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-01T09:22:49.891+0900",
-      "updated": "2026-06-01T10:26:49.929+0900",
+      "updated": "2026-06-01T15:24:29.429+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
-      "linkedTickets": [],
+      "linkedTickets": [
+        {
+          "key": "PD-8318",
+          "summary": "[PD][퀵윈][랭킹판] 검색창 급상승 키워드 '더보기' 클릭 시 랭킹판/검색어 탭 랜딩 개선",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Blocks",
+          "direction": "outward"
+        }
+      ],
       "progress": {
         "done": 0,
-        "total": 0
+        "total": 1
       }
     },
     {
@@ -378,13 +597,23 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-01T09:22:32.122+0900",
-      "updated": "2026-06-01T09:23:08.901+0900",
+      "updated": "2026-06-01T17:12:25.084+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
-      "linkedTickets": [],
+      "linkedTickets": [
+        {
+          "key": "TM-1674",
+          "summary": "[랭킹판] 검색어탭 - 검색어 내 필터 고도화 : 연령 필터 추가",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Blocks",
+          "direction": "outward"
+        }
+      ],
       "progress": {
         "done": 0,
-        "total": 0
+        "total": 1
       }
     },
     {
@@ -560,8 +789,8 @@
       "summary": "[퀵픽스] 미판매 상품 대상 가격 자동할인 기능 및 가격 인하 권유 알림",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "발의",
-      "statusCategory": "new",
+      "status": "반려",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
         "name": "촤비스",
@@ -588,13 +817,23 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-29T20:08:28.338+0900",
-      "updated": "2026-05-29T20:08:54.938+0900",
+      "updated": "2026-06-01T14:14:55.957+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": null,
-      "linkedTickets": [],
+      "lastStatusChangedAt": "2026-06-01T14:14:42.051+0900",
+      "linkedTickets": [
+        {
+          "key": "ETR-4594",
+          "summary": "[퀵픽스] 판매 알림 고도화 — 개별 판매 발생 시 실시간 알림 제공",
+          "status": "발의",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Duplicate",
+          "direction": "outward"
+        }
+      ],
       "progress": {
         "done": 0,
-        "total": 0
+        "total": 1
       }
     },
     {
@@ -631,7 +870,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-29T20:07:58.023+0900",
-      "updated": "2026-06-01T10:34:40.184+0900",
+      "updated": "2026-06-01T14:14:38.294+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -643,11 +882,20 @@
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward"
+        },
+        {
+          "key": "ETR-4595",
+          "summary": "[퀵픽스] 미판매 상품 대상 가격 자동할인 기능 및 가격 인하 권유 알림",
+          "status": "반려",
+          "statusCategory": "done",
+          "assignee": null,
+          "linkType": "Duplicate",
+          "direction": "inward"
         }
       ],
       "progress": {
-        "done": 0,
-        "total": 1
+        "done": 1,
+        "total": 2
       }
     },
     {
@@ -803,7 +1051,7 @@
     {
       "key": "ETR-4577",
       "url": "https://jira.team.musinsa.com/browse/ETR-4577",
-      "summary": "이벤트 유형 분류 체계 구축 및 썸네일 아이콘 구분 (댓글이벤트/체험단)",
+      "summary": "이벤트 유형 분류 체계 구축 (댓글이벤트/체험단)",
       "issueType": "과제 발의",
       "project": "ETR",
       "status": "발의",
@@ -834,7 +1082,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-29T09:03:52.397+0900",
-      "updated": "2026-05-29T11:30:01.545+0900",
+      "updated": "2026-06-01T14:16:06.906+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [],
@@ -1116,7 +1364,7 @@
       "startDate": "2026-05-28",
       "dueDate": "2026-06-05",
       "created": "2026-05-28T14:42:54.326+0900",
-      "updated": "2026-05-31T13:59:24.557+0900",
+      "updated": "2026-06-01T15:21:57.303+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-05-29T08:46:38.810+0900",
       "linkedTickets": [
@@ -1177,7 +1425,7 @@
       "startDate": "2026-05-28",
       "dueDate": "2026-07-01",
       "created": "2026-05-28T13:02:35.389+0900",
-      "updated": "2026-06-01T10:41:53.285+0900",
+      "updated": "2026-06-01T16:41:29.880+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-01T09:36:41.390+0900",
       "linkedTickets": [
@@ -1448,15 +1696,15 @@
         {
           "key": "ETR-4355",
           "summary": "필터(상세옵션) 그룹핑을 페이지에서 어떻게 보여줄지 리뷰 ",
-          "status": "Tech 검토 중",
-          "statusCategory": "indeterminate",
+          "status": "검토완료-우선착수",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward"
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 1
       }
     },
@@ -1871,13 +2119,23 @@
       "startDate": null,
       "dueDate": "2026-06-01",
       "created": "2026-05-27T08:31:16.510+0900",
-      "updated": "2026-05-28T16:14:11.156+0900",
+      "updated": "2026-06-01T15:05:36.245+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-05-27T09:27:13.083+0900",
-      "linkedTickets": [],
+      "linkedTickets": [
+        {
+          "key": "TM-3139",
+          "summary": "[29CM] 검색 컬러 패싯 커버리지 및 구조 개선",
+          "status": "준비중",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Blocks",
+          "direction": "outward"
+        }
+      ],
       "progress": {
         "done": 0,
-        "total": 0
+        "total": 1
       }
     },
     {
@@ -1890,7 +2148,7 @@
       "statusCategory": "new",
       "priority": "P0",
       "assignee": {
-        "name": "이창연",
+        "name": "이영진",
         "email": null,
         "accountId": null
       },
@@ -1915,15 +2173,15 @@
       "startDate": null,
       "dueDate": "2026-06-12",
       "created": "2026-05-27T08:29:52.356+0900",
-      "updated": "2026-05-31T13:59:17.053+0900",
+      "updated": "2026-06-01T13:43:53.363+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-05-30T09:12:26.047+0900",
       "linkedTickets": [
         {
           "key": "REC-4640",
           "summary": "[유즈드] 판매관리 단계별 상품정보(브랜드/상품명) 노출 보강",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "In Progress",
+          "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
           "direction": "outward"
@@ -2554,7 +2812,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-22T09:51:30.706+0900",
-      "updated": "2026-05-26T15:07:29.587+0900",
+      "updated": "2026-06-01T13:24:05.703+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-05-22T09:52:31.834+0900",
       "linkedTickets": [
@@ -2566,11 +2824,20 @@
           "assignee": null,
           "linkType": "Clones",
           "direction": "outward"
+        },
+        {
+          "key": "ETR-4617",
+          "summary": "[브랜드] 브랜드 관련 노출 정비",
+          "status": "발의",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "outward"
         }
       ],
       "progress": {
         "done": 1,
-        "total": 1
+        "total": 2
       }
     },
     {
@@ -2868,7 +3135,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-21T17:10:33.776+0900",
-      "updated": "2026-05-31T13:50:06.576+0900",
+      "updated": "2026-06-01T15:36:59.311+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-05-21T22:57:01.657+0900",
       "linkedTickets": [
@@ -7074,7 +7341,7 @@
       "startDate": "2026-05-04",
       "dueDate": "2026-05-27",
       "created": "2026-05-11T13:20:48.491+0900",
-      "updated": "2026-06-01T10:46:54.221+0900",
+      "updated": "2026-06-01T16:49:12.034+0900",
       "resolutionDate": "2026-05-26T09:36:59.860+0900",
       "lastStatusChangedAt": "2026-05-30T00:42:36.109+0900",
       "linkedTickets": [
@@ -9299,7 +9566,7 @@
       "summary": "[검색][MSS] 유즈드 전용 추천순 정렬 구축  ",
       "issueType": "Initiative",
       "project": "TM",
-      "status": "기획완료",
+      "status": "개발중",
       "statusCategory": "indeterminate",
       "priority": "Big-Rock",
       "assignee": {
@@ -9328,9 +9595,9 @@
       "startDate": "2026-04-28",
       "dueDate": "2026-06-29",
       "created": "2026-04-30T11:08:09.186+0900",
-      "updated": "2026-06-01T10:50:14.100+0900",
+      "updated": "2026-06-01T17:23:26.528+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-05-18T16:59:17.189+0900",
+      "lastStatusChangedAt": "2026-06-01T17:23:26.528+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -11377,7 +11644,7 @@
       "summary": "[Partner Growth][MSS][카테고리] SP > 캐러셀 광고",
       "issueType": "Initiative",
       "project": "TM",
-      "status": "개발중",
+      "status": "개발완료",
       "statusCategory": "indeterminate",
       "priority": "Big-Rock",
       "assignee": {
@@ -11409,11 +11676,11 @@
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": "2026-04-21",
-      "dueDate": "2026-05-14",
+      "dueDate": "2026-06-08",
       "created": "2026-04-21T11:55:06.699+0900",
-      "updated": "2026-06-01T06:01:15.272+0900",
+      "updated": "2026-06-01T16:02:48.585+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-05-18T10:25:10.807+0900",
+      "lastStatusChangedAt": "2026-06-01T14:27:04.971+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -12080,11 +12347,11 @@
       "subSubjects": [],
       "yearQuarter": null,
       "yearQuarters": [],
-      "subGroup": null,
+      "subGroup": "MSS-P Commerce Core",
       "startDate": null,
       "dueDate": "2026-05-29",
       "created": "2026-04-18T13:59:48.486+0900",
-      "updated": "2026-05-22T00:18:30.396+0900",
+      "updated": "2026-06-01T17:42:54.253+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-05-08T14:46:15.191+0900",
       "linkedTickets": [
@@ -12842,7 +13109,7 @@
       "startDate": "2026-04-24",
       "dueDate": "2026-06-05",
       "created": "2026-04-03T11:44:16.772+0900",
-      "updated": "2026-06-01T10:19:19.338+0900",
+      "updated": "2026-06-01T18:06:02.901+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-05-27T11:06:15.268+0900",
       "linkedTickets": [
@@ -12912,7 +13179,7 @@
       "summary": "[디스플레이최적화] 주문완료 전면배너 광고도입",
       "issueType": "Initiative",
       "project": "TM",
-      "status": "기획완료",
+      "status": "디자인중",
       "statusCategory": "indeterminate",
       "priority": "P0",
       "assignee": {
@@ -12947,9 +13214,9 @@
       "startDate": "2026-04-06",
       "dueDate": "2026-06-30",
       "created": "2026-04-01T16:57:23.778+0900",
-      "updated": "2026-06-01T06:01:22.664+0900",
+      "updated": "2026-06-01T16:08:10.449+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-05-31T15:13:07.435+0900",
+      "lastStatusChangedAt": "2026-06-01T16:08:10.449+0900",
       "linkedTickets": [
         {
           "key": "ETR-3441",
@@ -13378,7 +13645,7 @@
       "startDate": "2026-04-24",
       "dueDate": "2026-06-09",
       "created": "2026-03-30T14:54:22.276+0900",
-      "updated": "2026-06-01T11:33:36.653+0900",
+      "updated": "2026-06-01T15:18:19.872+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-05-31T14:52:47.037+0900",
       "linkedTickets": [
@@ -15405,13 +15672,23 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-19T08:33:47.849+0900",
-      "updated": "2026-06-01T12:01:37.357+0900",
+      "updated": "2026-06-01T13:06:25.013+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-04-07T16:28:46.086+0900",
-      "linkedTickets": [],
+      "linkedTickets": [
+        {
+          "key": "ETR-4617",
+          "summary": "[브랜드] 브랜드 관련 노출 정비",
+          "status": "발의",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "outward"
+        }
+      ],
       "progress": {
         "done": 0,
-        "total": 0
+        "total": 1
       }
     },
     {
@@ -16081,7 +16358,7 @@
       "startDate": "2026-05-01",
       "dueDate": "2026-06-05",
       "created": "2026-03-16T10:50:04.465+0900",
-      "updated": "2026-06-01T09:45:42.961+0900",
+      "updated": "2026-06-01T16:09:25.743+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -16130,7 +16407,7 @@
     {
       "key": "MSSCXTF-1198",
       "url": "https://jira.team.musinsa.com/browse/MSSCXTF-1198",
-      "summary": "반품/교환 재접수 기능 추가",
+      "summary": "반품/교환 수거 재접수 기능 추가",
       "issueType": "Initiative",
       "project": "MSSCXTF",
       "status": "SUGGESTED",
@@ -16161,13 +16438,23 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-13T20:35:51.566+0900",
-      "updated": "2026-06-01T08:14:02.036+0900",
+      "updated": "2026-06-01T18:14:40.010+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
-      "linkedTickets": [],
+      "linkedTickets": [
+        {
+          "key": "PD-8322",
+          "summary": "반품/교환 수거 재접수 기능 추가",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "outward"
+        }
+      ],
       "progress": {
         "done": 0,
-        "total": 0
+        "total": 1
       }
     },
     {
@@ -18947,13 +19234,14 @@
       "subSubjects": [],
       "yearQuarter": "2026-Q2",
       "yearQuarters": [
-        "2026-Q2"
+        "2026-Q2",
+        "2026-Q3"
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": "2026-05-11",
       "dueDate": "2026-07-20",
       "created": "2026-03-05T15:56:13.147+0900",
-      "updated": "2026-06-01T10:40:06.700+0900",
+      "updated": "2026-06-01T16:48:40.847+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -19382,8 +19670,8 @@
       "summary": "[design-driven][공통]스토어홈 앱바 이벤트/회원혜택 진입점 아이콘 모션 ",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "SUGGESTED",
-      "statusCategory": "new",
+      "status": "론치완료",
+      "statusCategory": "done",
       "priority": "P3",
       "assignee": {
         "name": "유정선",
@@ -19419,9 +19707,9 @@
       "startDate": null,
       "dueDate": "2026-09-30",
       "created": "2026-03-03T09:04:51.049+0900",
-      "updated": "2026-05-31T13:55:47.163+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-05-19T15:49:47.692+0900",
+      "updated": "2026-06-01T12:56:18.970+0900",
+      "resolutionDate": "2026-06-01T12:56:18.947+0900",
+      "lastStatusChangedAt": "2026-06-01T12:56:18.970+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -19465,13 +19753,23 @@
       "startDate": null,
       "dueDate": "2026-04-30",
       "created": "2026-02-28T19:07:47.750+0900",
-      "updated": "2026-06-01T11:08:02.344+0900",
+      "updated": "2026-06-01T18:09:39.368+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
-      "linkedTickets": [],
+      "linkedTickets": [
+        {
+          "key": "PD-8321",
+          "summary": "주문취소 후 바로 재결제 등 액션 추가",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "outward"
+        }
+      ],
       "progress": {
         "done": 0,
-        "total": 0
+        "total": 1
       }
     },
     {
@@ -19518,7 +19816,7 @@
       "startDate": "2026-02-23",
       "dueDate": "2026-06-30",
       "created": "2026-02-27T16:50:57.625+0900",
-      "updated": "2026-06-01T06:01:45.788+0900",
+      "updated": "2026-06-01T13:54:20.721+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -20318,7 +20616,7 @@
         {
           "key": "ETR-2439",
           "summary": "제품 상세페이지 함께 매칭한 상품 중복 등록 문의",
-          "status": "반려",
+          "status": "검토완료-백로그",
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
@@ -20909,7 +21207,7 @@
       "startDate": null,
       "dueDate": "2026-05-31",
       "created": "2026-02-12T18:30:47.123+0900",
-      "updated": "2026-05-31T13:53:11.278+0900",
+      "updated": "2026-06-01T14:23:59.688+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-05-27T18:54:40.196+0900",
       "linkedTickets": [
@@ -20984,7 +21282,7 @@
         {
           "key": "ETR-2439",
           "summary": "제품 상세페이지 함께 매칭한 상품 중복 등록 문의",
-          "status": "반려",
+          "status": "검토완료-백로그",
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
@@ -21169,7 +21467,7 @@
       "startDate": "2026-04-15",
       "dueDate": "2026-06-30",
       "created": "2026-02-12T15:40:21.888+0900",
-      "updated": "2026-06-01T06:01:46.757+0900",
+      "updated": "2026-06-01T14:30:08.974+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-05-18T10:22:05.803+0900",
       "linkedTickets": [
@@ -21251,7 +21549,7 @@
       "startDate": "2026-02-25",
       "dueDate": "2026-06-08",
       "created": "2026-02-12T14:28:04.898+0900",
-      "updated": "2026-06-01T11:15:17.963+0900",
+      "updated": "2026-06-01T16:25:06.892+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-05-26T13:44:53.123+0900",
       "linkedTickets": [],
@@ -21568,7 +21866,7 @@
       "startDate": "2026-02-25",
       "dueDate": "2026-06-10",
       "created": "2026-02-11T21:36:04.217+0900",
-      "updated": "2026-06-01T11:59:21.073+0900",
+      "updated": "2026-06-01T16:48:00.080+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -21627,9 +21925,9 @@
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": "2026-04-06",
-      "dueDate": "2026-06-16",
+      "dueDate": "2026-06-22",
       "created": "2026-02-11T10:17:32.634+0900",
-      "updated": "2026-06-01T11:49:30.231+0900",
+      "updated": "2026-06-01T16:31:32.835+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -22595,7 +22893,7 @@
       "startDate": "2026-04-01",
       "dueDate": "2026-06-08",
       "created": "2026-01-19T17:28:43.938+0900",
-      "updated": "2026-06-01T11:01:06.117+0900",
+      "updated": "2026-06-01T18:36:22.219+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-01T10:43:50.847+0900",
       "linkedTickets": [
@@ -23577,15 +23875,15 @@
         {
           "key": "TM-2391",
           "summary": "[앱테크] 온보딩 세그먼트 Audience_API 연동",
-          "status": "배포완료",
-          "statusCategory": "indeterminate",
+          "status": "론치완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward"
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 1
       }
     },
@@ -23751,7 +24049,7 @@
       "startDate": "2026-05-01",
       "dueDate": "2026-06-05",
       "created": "2025-11-23T14:32:23.131+0900",
-      "updated": "2026-06-01T11:22:50.221+0900",
+      "updated": "2026-06-01T13:26:59.021+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-05-26T16:50:06.028+0900",
       "linkedTickets": [
@@ -23818,9 +24116,9 @@
       "startDate": "2026-01-20",
       "dueDate": "2026-04-27",
       "created": "2025-11-21T16:08:25.663+0900",
-      "updated": "2026-05-29T13:26:45.391+0900",
+      "updated": "2026-06-01T16:34:40.968+0900",
       "resolutionDate": "2026-05-12T17:30:24.237+0900",
-      "lastStatusChangedAt": "2026-05-12T17:30:24.393+0900",
+      "lastStatusChangedAt": null,
       "linkedTickets": [
         {
           "key": "ETR-2131",
@@ -24374,13 +24672,23 @@
       "startDate": null,
       "dueDate": null,
       "created": "2025-11-20T17:52:59.328+0900",
-      "updated": "2026-05-22T00:21:10.873+0900",
+      "updated": "2026-06-01T17:12:58.600+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
-      "linkedTickets": [],
+      "linkedTickets": [
+        {
+          "key": "ETR-4604",
+          "summary": "[랭킹판] 검색어 랭킹 세부화 — 연령대별 필터 추가",
+          "status": "발의",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Blocks",
+          "direction": "inward"
+        }
+      ],
       "progress": {
         "done": 0,
-        "total": 0
+        "total": 1
       }
     },
     {
@@ -29014,9 +29322,9 @@
       ],
       "subGroup": null,
       "startDate": null,
-      "dueDate": "2026-06-12",
+      "dueDate": null,
       "created": "2025-08-13T15:21:32.308+0900",
-      "updated": "2026-05-28T10:51:15.145+0900",
+      "updated": "2026-06-01T14:28:45.508+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-05-26T18:18:02.295+0900",
       "linkedTickets": [],
