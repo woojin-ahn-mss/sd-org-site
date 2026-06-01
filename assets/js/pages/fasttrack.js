@@ -327,7 +327,7 @@ function weekLabel(startMs) {
 function renderWeeklyChart() {
   const host = document.getElementById('weekly-chart');
   if (!host) return;
-  const data = weeklyCombined(state.items, state.ftItems, new Date(), 12, 12);
+  const data = weeklyCombined(state.items, state.ftItems, new Date(), 12, 4);
   const maxVal = Math.max(1, ...data.map(d => Math.max(d.intake, d.done, d.forecast)));
 
   // SVG 크기 — W 를 컨테이너 실제 폭에 맞춰 viewBox 비율을 유지(글자 가로 찌그러짐 방지).

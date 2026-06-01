@@ -79,6 +79,9 @@ export async function renderOneTickets({ rootRel = '' } = {}) {
     if (savedView.sort === 'rank' || savedView.sort === 'created') state.sort = savedView.sort;
     if (savedView.sortDir === 'asc' || savedView.sortDir === 'desc') state.sortDir = savedView.sortDir;
   }
+  // URL 쿼리 파람이 있으면 필터/뷰를 그 기준으로 덮어씀(공유 링크). 이후 주소창을 현재 상태로 정규화.
+  applyUrlParams();
+  syncUrl();
 
   bindAuthUi();
   bindControls();
@@ -321,6 +324,57 @@ function bindControls() {
 
 function persistView() {
   scoped(VIEW_KEY).set({ view: state.view, sort: state.sort, sortDir: state.sortDir });
+  syncUrl();
+}
+
+/** 필터 변경 저장 — localStorage(개인) + URL 쿼리(공유) 동시 반영. */
+function persistFilters() {
+  scoped(FILTERS_KEY).set(state.filters);
+  syncUrl();
+}
+
+/* ─── URL 쿼리 동기화 (필터 걸린 채 공유) ──────────────────
+ * 배열 필터는 반복 키(proj=A&proj=B)로 — 값에 콤마/슬래시 있어도 안전.
+ * 불리언은 기본값과 다를 때만 기록. 읽을 때 URL 파람이 하나라도 있으면 URL 이 권위(공유 링크 결정적). */
+function syncUrl() {
+  const f = state.filters || {};
+  const p = new URLSearchParams();
+  for (const v of f.projects || []) p.append('proj', v);
+  for (const v of f.subSubjects || []) p.append('sub', v);
+  for (const v of f.priorities || []) p.append('pri', v);
+  for (const v of f.statuses || []) p.append('st', v);
+  if (!f.hideLaunched) p.set('hl', '0');     // 기본 true → false 일 때만
+  if (f.fasttrackOnly) p.set('ft', '1');
+  if (f.fasttrackExclude) p.set('ftx', '1');
+  if (f.quickFixOnly) p.set('qf', '1');
+  if (f.specUnset) p.set('sx', '1');
+  if (state.view === 'subject') p.set('view', 'subject');
+  if (state.sort === 'created') { p.set('sort', 'created'); if (state.sortDir === 'asc') p.set('dir', 'asc'); }
+  const qs = p.toString();
+  history.replaceState(null, '', location.pathname + (qs ? `?${qs}` : '') + location.hash);
+}
+
+/** URL 쿼리 → state.filters/뷰. 파람이 하나라도 있으면 필터를 URL 기준으로 재구성(공유 링크 결정적). */
+function applyUrlParams() {
+  const p = new URLSearchParams(location.search);
+  const KEYS = ['proj', 'sub', 'pri', 'st', 'hl', 'ft', 'ftx', 'qf', 'sx', 'view', 'sort', 'dir'];
+  if (!KEYS.some(k => p.has(k))) return;     // 파람 없음 → localStorage 유지
+  state.filters = {
+    projects: p.getAll('proj'),
+    subSubjects: p.getAll('sub'),
+    priorities: p.getAll('pri'),
+    statuses: p.getAll('st'),
+    hideLaunched: p.get('hl') !== '0',
+    fasttrackOnly: p.get('ft') === '1',
+    fasttrackExclude: p.get('ftx') === '1',
+    quickFixOnly: p.get('qf') === '1',
+    specUnset: p.get('sx') === '1',
+  };
+  if (state.filters.fasttrackOnly) state.filters.fasttrackExclude = false;
+  if (p.get('view') === 'subject') state.view = 'subject';
+  else if (p.get('view') === 'all') state.view = 'all';
+  if (p.get('sort') === 'created') { state.sort = 'created'; state.sortDir = p.get('dir') === 'asc' ? 'asc' : 'desc'; }
+  else if (p.get('sort') === 'rank') state.sort = 'rank';
 }
 
 function renderControls() {
@@ -461,7 +515,7 @@ function renderFilters() {
       } else {
         state.filters[k] = state.filters[k] === v ? null : v;
       }
-      scoped(FILTERS_KEY).set(state.filters);
+      persistFilters();
       state.page = 1;
       renderFilters();
       renderList();
@@ -474,7 +528,7 @@ function renderFilters() {
       // fasttrack '만' 과 '제외' 는 상호 배타 — 하나를 켜면 다른 하나는 끈다.
       if (k === 'fasttrackOnly' && state.filters.fasttrackOnly) state.filters.fasttrackExclude = false;
       if (k === 'fasttrackExclude' && state.filters.fasttrackExclude) state.filters.fasttrackOnly = false;
-      scoped(FILTERS_KEY).set(state.filters);
+      persistFilters();
       state.page = 1;
       renderFilters();
       renderList();
@@ -487,7 +541,7 @@ function renderFilters() {
     state.filters.subSubjects = [];
     state.filters.priorities = [];
     state.filters.statuses = [];
-    scoped(FILTERS_KEY).set(state.filters);
+    persistFilters();
     state.page = 1;
     renderFilters();
     renderList();
