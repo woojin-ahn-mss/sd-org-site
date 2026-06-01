@@ -149,18 +149,32 @@ export function renderGantt(host, opts) {
   // 그룹 헤더 행 시간축에 목표 기간 막대:
   //   1) group._goal 이 있으면 (groupBy='goal' 분기)
   //   2) 없더라도 group.subject 와 동일 제목의 목표가 있으면 (메인주제 그룹이지만 같은 이름의 목표가 존재)
+  const renderItems = (items) => {
+    for (const item of items) {
+      metaPane.appendChild(renderItemMetaRow(item, activeCols, metaTemplate));
+      timePane.appendChild(renderItemTimeRow(item, axis, mode, timeTemplate, timeMinWidth));
+    }
+  };
   for (const group of grouped) {
-    const collapsed = collapsedGroups.has(group.subject);
+    const gkey = group.key || group.subject;
+    const collapsed = collapsedGroups.has(gkey);
     const matchedGoal = group._goal
       || (goals && goals.find(g => g.title === group.subject))
       || null;
-    metaPane.appendChild(renderGroupMetaRow(group, collapsed, onGroupToggle));
+    metaPane.appendChild(renderGroupMetaRow(group, collapsed, onGroupToggle, { key: gkey }));
     timePane.appendChild(renderGroupTimeRow(timeTemplate, matchedGoal, axis, timeMinWidth));
-    if (!collapsed) {
-      for (const item of group.items) {
-        metaPane.appendChild(renderItemMetaRow(item, activeCols, metaTemplate));
-        timePane.appendChild(renderItemTimeRow(item, axis, mode, timeTemplate, timeMinWidth));
+    if (collapsed) continue;
+    if (group.subGroups) {
+      // 2단 중첩: 목표 → 주제 → 티켓
+      for (const sg of group.subGroups) {
+        const skey = sg.key || sg.subject;
+        const sCollapsed = collapsedGroups.has(skey);
+        metaPane.appendChild(renderGroupMetaRow(sg, sCollapsed, onGroupToggle, { key: skey, isSub: true }));
+        timePane.appendChild(renderGroupTimeRow(timeTemplate, sg._goal || null, axis, timeMinWidth, true));
+        if (!sCollapsed) renderItems(sg.items);
       }
+    } else {
+      renderItems(group.items);
     }
   }
 
@@ -254,23 +268,25 @@ function renderTimeHead(axis, template, minWidth) {
 
 /* ----------------- 그룹 헤더 (양쪽 패널 한 줄씩) ----------------- */
 
-function renderGroupMetaRow(group, collapsed, onToggle) {
+function renderGroupMetaRow(group, collapsed, onToggle, opts = {}) {
   const row = document.createElement('div');
-  row.className = 'gm-group';
-  row.dataset.subject = group.subject;
+  row.className = 'gm-group' + (opts.isSub ? ' gm-subgroup' : '');
+  const key = opts.key || group.subject;
+  row.dataset.subject = key;
+  const count = group.count != null ? group.count : (group.items ? group.items.length : 0);
   row.innerHTML = `
     <span class="caret ${collapsed ? '' : 'open'}">▸</span>
     <span>${escapeHtml(group.subject)}</span>
-    <span class="ct">${group.items.length}건</span>
+    <span class="ct">${count}건</span>
   `;
-  row.addEventListener('click', () => onToggle && onToggle(group.subject));
+  row.addEventListener('click', () => onToggle && onToggle(key));
   return row;
 }
 
-function renderGroupTimeRow(template, goal, axis, minWidth) {
+function renderGroupTimeRow(template, goal, axis, minWidth, isSub = false) {
   // 시간 패널의 그룹 행 — 메타 행과 높이 맞춤 + 매칭된 목표가 있으면 기간 막대
   const row = document.createElement('div');
-  row.className = 'gt-group';
+  row.className = 'gt-group' + (isSub ? ' gt-subgroup' : '');
   row.style.gridTemplateColumns = template;
   if (minWidth) row.style.minWidth = `${minWidth}px`;
   row.style.position = 'relative';

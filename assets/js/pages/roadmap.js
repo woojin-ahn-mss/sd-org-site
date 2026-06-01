@@ -149,7 +149,7 @@ export async function renderRoadmap({ rootRel = '' }) {
     document.querySelector('[data-cnt-total]').textContent = filtered.length;
     // 목표/주제 모드는 계위(DB) 기반으로 사전 그룹핑해 전달. 메인주제는 gantt 내부 그룹핑.
     const groups = state.groupBy === 'objective'
-      ? groupByObjective(filtered, objectives, subjById)
+      ? groupByObjective(filtered, objectives, subjects, subjById)
       : state.groupBy === 'subject'
         ? groupBySubjectEntity(filtered, objectives, subjects, objById)
         : null;
@@ -186,28 +186,46 @@ function sortByDue(items) {
   });
 }
 
-/** 목표 그룹 — 티켓의 주제들이 속한 Objective 별로 묶음. 기간 막대는 하위 주제 기간의 min~max. */
-function groupByObjective(items, objectives, subjById) {
-  const buckets = new Map();   // objId → { subject, items }
-  const none = [];
+/** 목표 그룹 — 목표 → 주제 2단 중첩. 티켓을 주제별로 모은 뒤 그 주제를 Objective 아래 묶음. */
+function groupByObjective(items, objectives, subjects, subjById) {
+  const bySubject = new Map();   // sid → items
+  const none = [];               // 매핑된 주제가 없는 티켓
   for (const it of items) {
-    const objIds = new Set();
-    for (const sid of (it.subjectIds || [])) {
-      const s = subjById.get(sid);
-      if (s && s.objective_id) objIds.add(s.objective_id);
-    }
-    if (!objIds.size) { none.push(it); continue; }
-    for (const oid of objIds) {
-      if (!buckets.has(oid)) buckets.set(oid, []);
-      buckets.get(oid).push(it);
+    const sids = (it.subjectIds || []).filter(sid => subjById.has(sid));
+    if (!sids.length) { none.push(it); continue; }
+    for (const sid of sids) {
+      if (!bySubject.has(sid)) bySubject.set(sid, []);
+      bySubject.get(sid).push(it);
     }
   }
-  const out = objectives.filter(o => buckets.has(o.id)).map(o => {
-    const its = buckets.get(o.id);
-    sortByDue(its);
-    return { subject: o.name || '(목표)', items: its, _goal: objectivePeriod(o, subjById) };
-  });
-  if (none.length) { sortByDue(none); out.push({ subject: '— 목표 미지정', items: none }); }
+  const out = [];
+  for (const o of objectives) {
+    const subs = subjects.filter(s => s.objective_id === o.id && bySubject.has(s.id));
+    if (!subs.length) continue;
+    const subGroups = subs.map(s => {
+      const its = bySubject.get(s.id);
+      sortByDue(its);
+      return {
+        subject: s.name || '(주제)',
+        key: `obj:${o.id}|sub:${s.id}`,
+        items: its,
+        _goal: (s.startMonth && s.endMonth)
+          ? { title: s.name, startMonth: s.startMonth, endMonth: s.endMonth, color: o.color }
+          : null,
+      };
+    });
+    // 목표 내 distinct 티켓 수 (한 티켓이 같은 목표의 여러 주제에 걸쳐도 1건).
+    const seen = new Set();
+    for (const sg of subGroups) for (const it of sg.items) seen.add(it.key);
+    out.push({
+      subject: o.name || '(목표)',
+      key: `obj:${o.id}`,
+      count: seen.size,
+      subGroups,
+      _goal: objectivePeriod(o, subjById),
+    });
+  }
+  if (none.length) { sortByDue(none); out.push({ subject: '— 목표 미지정', key: 'obj:none', items: none }); }
   return out;
 }
 
