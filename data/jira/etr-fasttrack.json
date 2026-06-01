@@ -1,7 +1,50 @@
 {
-  "lastSync": "2026-06-01T19:00:29+09:00",
-  "count": 128,
+  "lastSync": "2026-06-02T06:51:17+09:00",
+  "count": 129,
   "items": [
+    {
+      "key": "ETR-4648",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4648",
+      "summary": "[PLP] 정렬 옵션 순서 개선 — 좋아요 급상승 하단 이동 및 매출 관련 정렬 상단 배치",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "발의",
+      "statusCategory": "new",
+      "priority": "P0",
+      "assignee": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-06-01T21:30:06.617+0900",
+      "updated": "2026-06-01T21:30:25.272+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null,
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
     {
       "key": "ETR-4637",
       "url": "https://jira.team.musinsa.com/browse/ETR-4637",
@@ -51,8 +94,8 @@
       "summary": "[추천판] 지금 주목할 만한 브랜드 내에 전문관 파비콘 추가",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "발의",
-      "statusCategory": "new",
+      "status": "매니저 승인 대기",
+      "statusCategory": "indeterminate",
       "priority": "P0",
       "assignee": {
         "name": "안우진",
@@ -75,11 +118,11 @@
       "yearQuarters": [],
       "subGroup": null,
       "startDate": null,
-      "dueDate": null,
+      "dueDate": "2026-06-04",
       "created": "2026-06-01T16:02:31.355+0900",
-      "updated": "2026-06-01T16:02:33.331+0900",
+      "updated": "2026-06-02T06:41:51.833+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": null,
+      "lastStatusChangedAt": "2026-06-02T06:41:41.080+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -405,11 +448,11 @@
       "summary": "[랭킹판] 검색어 랭킹 세부화 — 연령대별 필터 추가",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "발의",
-      "statusCategory": "new",
+      "status": "PMO 검토 중",
+      "statusCategory": "indeterminate",
       "priority": "P0",
       "assignee": {
-        "name": "촤비스",
+        "name": "이승연",
         "email": null,
         "accountId": null
       },
@@ -431,11 +474,11 @@
       "yearQuarters": [],
       "subGroup": null,
       "startDate": null,
-      "dueDate": null,
+      "dueDate": "2026-06-04",
       "created": "2026-06-01T09:22:32.122+0900",
-      "updated": "2026-06-01T17:12:25.084+0900",
+      "updated": "2026-06-01T19:19:28.307+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": null,
+      "lastStatusChangedAt": "2026-06-01T19:19:16.804+0900",
       "linkedTickets": [
         {
           "key": "TM-1674",
@@ -511,11 +554,11 @@
       "summary": "[부티크] 부티크 바로가기 배너 추가",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "발의",
-      "statusCategory": "new",
+      "status": "PMO 검토 중",
+      "statusCategory": "indeterminate",
       "priority": "P0",
       "assignee": {
-        "name": "촤비스",
+        "name": "이승연",
         "email": null,
         "accountId": null
       },
@@ -537,11 +580,11 @@
       "yearQuarters": [],
       "subGroup": null,
       "startDate": null,
-      "dueDate": null,
+      "dueDate": "2026-06-04",
       "created": "2026-06-01T09:19:44.439+0900",
-      "updated": "2026-06-01T10:33:31.901+0900",
+      "updated": "2026-06-01T19:18:38.433+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": null,
+      "lastStatusChangedAt": "2026-06-01T19:18:27.647+0900",
       "linkedTickets": [
         {
           "key": "TM-2824",
@@ -564,8 +607,8 @@
         {
           "key": "FT-36",
           "summary": "[부티크] 부티크 바로가기 배너 추가",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "개발중",
+          "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward"
@@ -579,11 +622,11 @@
     {
       "key": "ETR-4597",
       "url": "https://jira.team.musinsa.com/browse/ETR-4597",
-      "summary": "[무신사 퀵픽스] 전문가 아이콘 노출 디자인 통일성 개선",
+      "summary": "[무신사 퀵픽스] 전문관 아이콘 노출 디자인 통일성 개선",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "발의",
-      "statusCategory": "new",
+      "status": "반려",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
         "name": "촤비스",
@@ -610,9 +653,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-29T20:44:25.625+0900",
-      "updated": "2026-05-29T20:44:47.158+0900",
+      "updated": "2026-06-01T19:17:56.087+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": null,
+      "lastStatusChangedAt": "2026-06-01T19:17:56.087+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -660,8 +703,8 @@
         {
           "key": "ETR-4594",
           "summary": "[퀵픽스] 판매 알림 고도화 — 개별 판매 발생 시 실시간 알림 제공",
-          "status": "발의",
-          "statusCategory": "new",
+          "status": "PMO 검토 중",
+          "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Duplicate",
           "direction": "outward"
@@ -678,11 +721,11 @@
       "summary": "[퀵픽스] 판매 알림 고도화 — 개별 판매 발생 시 실시간 알림 제공",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "발의",
-      "statusCategory": "new",
+      "status": "PMO 검토 중",
+      "statusCategory": "indeterminate",
       "priority": "P0",
       "assignee": {
-        "name": "촤비스",
+        "name": "이승연",
         "email": null,
         "accountId": null
       },
@@ -704,11 +747,11 @@
       "yearQuarters": [],
       "subGroup": null,
       "startDate": null,
-      "dueDate": null,
+      "dueDate": "2026-06-04",
       "created": "2026-05-29T20:07:58.023+0900",
-      "updated": "2026-06-01T14:14:38.294+0900",
+      "updated": "2026-06-01T19:15:55.625+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": null,
+      "lastStatusChangedAt": "2026-06-01T19:15:47.135+0900",
       "linkedTickets": [
         {
           "key": "FT-37",
@@ -740,11 +783,11 @@
       "summary": "[브숍] 각 브랜드샵 AI 탭 신설 — 브랜드 인사이트·고객 취향 분석 제공",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "매니저 승인 대기",
+      "status": "PMO 검토 중",
       "statusCategory": "indeterminate",
       "priority": "P0",
       "assignee": {
-        "name": "촤비스",
+        "name": "이승연",
         "email": null,
         "accountId": null
       },
@@ -766,11 +809,11 @@
       "yearQuarters": [],
       "subGroup": null,
       "startDate": null,
-      "dueDate": "2026-06-03",
+      "dueDate": "2026-06-04",
       "created": "2026-05-29T09:42:20.373+0900",
-      "updated": "2026-05-29T14:49:39.428+0900",
+      "updated": "2026-06-01T19:14:13.963+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-05-29T14:49:27.869+0900",
+      "lastStatusChangedAt": "2026-06-01T19:14:03.172+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -783,11 +826,11 @@
       "summary": "이벤트 유형 분류 체계 구축 (댓글이벤트/체험단)",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "발의",
-      "statusCategory": "new",
+      "status": "PMO 검토 중",
+      "statusCategory": "indeterminate",
       "priority": "P0",
       "assignee": {
-        "name": "촤비스",
+        "name": "이승연",
         "email": null,
         "accountId": null
       },
@@ -809,11 +852,11 @@
       "yearQuarters": [],
       "subGroup": null,
       "startDate": null,
-      "dueDate": null,
+      "dueDate": "2026-06-04",
       "created": "2026-05-29T09:03:52.397+0900",
-      "updated": "2026-06-01T14:16:06.906+0900",
+      "updated": "2026-06-01T19:14:28.731+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": null,
+      "lastStatusChangedAt": "2026-06-01T19:14:19.383+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -912,11 +955,11 @@
       "summary": "[기획전/전문관] 기획전·캠페인 페이지·전문관 성별 분리 운영",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "매니저 승인 대기",
+      "status": "PMO 검토 중",
       "statusCategory": "indeterminate",
       "priority": "P0",
       "assignee": {
-        "name": "촤비스",
+        "name": "이승연",
         "email": null,
         "accountId": null
       },
@@ -940,9 +983,9 @@
       "startDate": null,
       "dueDate": "2026-06-04",
       "created": "2026-05-29T09:01:27.576+0900",
-      "updated": "2026-06-01T18:59:52.381+0900",
+      "updated": "2026-06-01T19:03:20.430+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-01T18:59:41.938+0900",
+      "lastStatusChangedAt": "2026-06-01T19:03:09.381+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -1262,11 +1305,11 @@
       "summary": "[검색] 상품/옵션 컬러 속성 매칭 개선 — 충전기 검색 결과 블랙 컬러 누락 사례",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "PMO 검토 중",
-      "statusCategory": "indeterminate",
+      "status": "Tech 검토 대기 중",
+      "statusCategory": "new",
       "priority": "P0",
       "assignee": {
-        "name": "이승연",
+        "name": "김지혜",
         "email": null,
         "accountId": null
       },
@@ -1288,11 +1331,11 @@
       "yearQuarters": [],
       "subGroup": "29CM-P Customer Engagement",
       "startDate": null,
-      "dueDate": "2026-06-01",
+      "dueDate": "2026-06-15",
       "created": "2026-05-27T08:31:16.510+0900",
-      "updated": "2026-06-01T15:05:36.245+0900",
+      "updated": "2026-06-01T20:32:55.570+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-05-27T09:27:13.083+0900",
+      "lastStatusChangedAt": "2026-06-01T19:06:12.307+0900",
       "linkedTickets": [
         {
           "key": "TM-3139",
