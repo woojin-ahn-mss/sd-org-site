@@ -250,22 +250,26 @@ function cmpRep(a, b) {
   return String(a.key) < String(b.key) ? -1 : 1;
 }
 
-/** 표시상 숨겨야 할 항목(종료 계열 상태 또는 수동 숨김). 선택 필터(프로젝트/상태/우선순위)는 제외. */
-function isDisplayHidden(it, eff = {}, hiddenKeys) {
+/** 표시상 숨겨야 할 항목 — 종료 계열·수동 숨김 + 제외형 토글(fasttrack/quick fix 제외·spec 미지정).
+ * 선택형 필터(프로젝트/상태/우선순위)는 대표를 바꾸지 않으므로 여기서 보지 않는다. */
+function isDisplayHidden(it, eff = {}, hiddenKeys, quickFixKeys, specKeys) {
   if (eff.hideLaunched && HIDDEN_WHEN_LAUNCHED.has(it.status)) return true;
+  if (eff.fasttrackExclude && hasFasttrackLabel(it)) return true;
+  if (eff.quickFixExclude && quickFixKeys && quickFixKeys.has(it.key)) return true;
+  if (eff.specUnset && specKeys && specKeys.has(it.key)) return true;
   if (!eff.showHidden && hiddenKeys && hiddenKeys.has(it.key)) return true;
   return false;
 }
 
 /**
  * 클러스터의 화면 표시 대표 선정.
- * 종료(론치완료·Dropped·철회)·수동 숨김이 아닌 멤버 중 cmpRep 최선(=비-ETR 우선)을 대표로.
+ * 종료·수동 숨김·제외형 토글 대상이 아닌 멤버 중 cmpRep 최선(=비-ETR 우선)을 대표로.
  * 프로젝트/상태/우선순위 선택 필터로는 대표를 바꾸지 않는다 — 연결된 실제 작업 티켓이 항상 메인.
  * (모두 숨김 대상이면 전체에서 최선.)
  */
-export function pickDisplayRep(all, eff = {}, hiddenKeys) {
+export function pickDisplayRep(all, eff = {}, hiddenKeys, quickFixKeys, specKeys) {
   const list = Array.isArray(all) ? all : [];
-  const visible = list.filter(it => !isDisplayHidden(it, eff, hiddenKeys));
+  const visible = list.filter(it => !isDisplayHidden(it, eff, hiddenKeys, quickFixKeys, specKeys));
   return (visible.length ? visible : list).slice().sort(cmpRep)[0];
 }
 
@@ -738,7 +742,7 @@ function renderList() {
   const displayReps = filtered.map(origRep => {
     const members = state.clusterMembers.get(origRep.key) || [];
     const all = [origRep, ...members];
-    const rep = pickDisplayRep(all, eff, hiddenKeys);
+    const rep = pickDisplayRep(all, eff, hiddenKeys, quickFixKeys, specKeys);
     state.displayMembers.set(rep.key, all.filter(it => it.key !== rep.key));
     return rep;
   });
