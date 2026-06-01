@@ -100,11 +100,14 @@ export function buildTimeAxis(mode, anchor = new Date()) {
 export function renderGantt(host, opts) {
   const { mode = 'quarter', items, columns = COLUMNS.filter(c => c.default).map(c => c.id),
           collapsedGroups = new Set(), onGroupToggle,
-          groupBy = 'subject', goals = [], cardGoals = {} } = opts;
+          groupBy = 'subject', goals = [], cardGoals = {}, groups = null } = opts;
   const axis = buildTimeAxis(mode);
-  const grouped = groupBy === 'goal'
-    ? groupByGoal(items, goals, cardGoals)
-    : groupBySubject(items);
+  // groups 가 주어지면(예: 목표/주제 — DB 기반 사전 그룹핑) 그대로 사용. 아니면 내부 그룹핑.
+  const grouped = groups
+    ? groups
+    : groupBy === 'goal'
+      ? groupByGoal(items, goals, cardGoals)
+      : groupBySubject(items);
   const activeCols = COLUMNS.filter(c => columns.includes(c.id) || c.required);
 
   const metaTemplate = activeCols.map(c => `${c.width}px`).join(' ');

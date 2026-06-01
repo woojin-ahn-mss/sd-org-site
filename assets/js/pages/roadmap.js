@@ -8,7 +8,9 @@ import { showError, showLoading } from '../states.js';
 import { renderGantt, COLUMNS } from '../gantt.js';
 import { scoped } from '../storage.js';
 import { attachModal } from '../modal.js';
-import { loadAll as loadGoals, currentYear } from '../goals.js';
+import { currentYear } from '../goals.js';
+import { loadAll as loadPlanData, joinTicketsWithOverrides } from '../api/roadmap-plan-data.js';
+import { auth } from '../api/supabase.js';
 
 const store = scoped('roadmap');
 
@@ -33,31 +35,52 @@ const DEFAULT_STATE = {
   cols: COLUMNS.filter(c => c.default).map(c => c.id),
   filters: {},        // { project: ['CBP'], ... }
   collapsedGroups: [],
-  groupBy: 'subject',  // 'subject' | 'goal'
+  groupBy: 'objective',  // 'objective'(목표·DB) | 'subject'(주제·DB) | 'mainSubject'(Jira 메인주제)
   excludeLaunched: false,  // 론치완료 상태 제외 토글
 };
+const GROUP_MODES = ['objective', 'subject', 'mainSubject'];
 
 export async function renderRoadmap({ rootRel = '' }) {
   const host = document.getElementById('gantt-host');
   showLoading(host, { rows: 6, title: true });
 
-  let data;
+  const year = currentYear();
+  // 다른 페이지와 동일하게 Supabase 세션을 먼저 복원 — 그래야 계위 쿼리에 인증 토큰이 붙는다.
+  // (localStorage 보관 세션 자동 복원, 로그인 UI 별도 노출 안 함)
+  await auth.init();
+
+  let data, planData;
   try {
-    data = await loadJson(`${rootRel}data/jira/initiatives.json`);
+    // initiatives 는 필수, 계위(objectives/subjects/ticket_subjects)는 Supabase.
+    // 미로그인/RLS 로 계위 로드 실패 시 빈 값으로 degrade (메인주제 그룹은 계속 동작).
+    [data, planData] = await Promise.all([
+      loadJson(`${rootRel}data/jira/initiatives.json`),
+      loadPlanData(year).catch(err => {
+        console.warn('[roadmap] 계위(Supabase) 로드 실패 — 메인주제 그룹만 가능:', err);
+        return { objectives: [], subjects: [], overrides: [] };
+      }),
+    ]);
   } catch (err) {
     showError(host, err);
     return;
   }
 
-  const items = data.items || [];
-  // 목표 데이터 — roadmap-plan 페이지의 LS 와 cross-page 공유
-  const year = currentYear();
-  const goalsData = loadGoals(year);  // { goals: [], cardGoals: {} }
+  const objectives = planData.objectives || [];
+  const subjects = planData.subjects || [];
+  const objById = new Map(objectives.map(o => [o.id, o]));
+  const subjById = new Map(subjects.map(s => [s.id, s]));
+  const subjectsAvailable = subjects.length > 0;
+  // 티켓에 subjectIds 부여 (ticket_subjects 매핑).
+  const items = joinTicketsWithOverrides(data.items || [], planData.overrides || [], year);
 
   let state = { ...DEFAULT_STATE, ...(store.get() || {}), ...stateFromUrl() };
   if (!state.cols || !state.cols.length) state.cols = DEFAULT_STATE.cols;
   if (!state.filters) state.filters = {};
-  if (state.groupBy !== 'subject' && state.groupBy !== 'goal') state.groupBy = 'subject';
+  // 레거시 groupBy 마이그레이션: 'goal'(LS) → 'objective', 옛 'subject'(메인주제) → 'mainSubject'.
+  if (state.groupBy === 'goal') state.groupBy = 'objective';
+  if (!GROUP_MODES.includes(state.groupBy)) state.groupBy = 'objective';
+  // 계위가 없으면(미로그인 등) 메인주제로 폴백.
+  if (!subjectsAvailable && state.groupBy !== 'mainSubject') state.groupBy = 'mainSubject';
 
   // 마이그레이션: 새로 추가된 default 컬럼은 기존 saved state 에 없어도 자동 켜기
   const colsSet = new Set(state.cols);
@@ -124,6 +147,12 @@ export async function renderRoadmap({ rootRel = '' }) {
       filtered = filtered.filter(it => it.status !== '론치완료');
     }
     document.querySelector('[data-cnt-total]').textContent = filtered.length;
+    // 목표/주제 모드는 계위(DB) 기반으로 사전 그룹핑해 전달. 메인주제는 gantt 내부 그룹핑.
+    const groups = state.groupBy === 'objective'
+      ? groupByObjective(filtered, objectives, subjById)
+      : state.groupBy === 'subject'
+        ? groupBySubjectEntity(filtered, objectives, subjects, objById)
+        : null;
     renderGantt(host, {
       mode: state.mode,
       items: filtered,
@@ -135,12 +164,94 @@ export async function renderRoadmap({ rootRel = '' }) {
         state.collapsedGroups = [...set];
         persist(state); rerender();
       },
-      groupBy: state.groupBy,
-      goals: goalsData.goals,
-      cardGoals: goalsData.cardGoals,
+      groupBy: state.groupBy === 'mainSubject' ? 'subject' : state.groupBy,
+      groups,
     });
   }
   rerender();
+}
+
+/* ----------------- 계위 그룹핑 (목표/주제) -----------------
+ * 티켓 → subjectIds(ticket_subjects) → subject.objective_id 로 목표/주제를 도출.
+ * gantt 는 group = { subject(라벨), items, _goal? } 형태를 기대.
+ */
+
+/** dueDate asc(없으면 뒤) 정렬 — gantt 내부 sortItemsForGroup 과 동일 규칙. */
+function sortByDue(items) {
+  items.sort((a, b) => {
+    if (!a.dueDate && !b.dueDate) return 0;
+    if (!a.dueDate) return 1;
+    if (!b.dueDate) return -1;
+    return a.dueDate < b.dueDate ? -1 : 1;
+  });
+}
+
+/** 목표 그룹 — 티켓의 주제들이 속한 Objective 별로 묶음. 기간 막대는 하위 주제 기간의 min~max. */
+function groupByObjective(items, objectives, subjById) {
+  const buckets = new Map();   // objId → { subject, items }
+  const none = [];
+  for (const it of items) {
+    const objIds = new Set();
+    for (const sid of (it.subjectIds || [])) {
+      const s = subjById.get(sid);
+      if (s && s.objective_id) objIds.add(s.objective_id);
+    }
+    if (!objIds.size) { none.push(it); continue; }
+    for (const oid of objIds) {
+      if (!buckets.has(oid)) buckets.set(oid, []);
+      buckets.get(oid).push(it);
+    }
+  }
+  const out = objectives.filter(o => buckets.has(o.id)).map(o => {
+    const its = buckets.get(o.id);
+    sortByDue(its);
+    return { subject: o.name || '(목표)', items: its, _goal: objectivePeriod(o, subjById) };
+  });
+  if (none.length) { sortByDue(none); out.push({ subject: '— 목표 미지정', items: none }); }
+  return out;
+}
+
+/** 주제 그룹 — 티켓의 subjectIds 별로 묶음. 라벨은 "목표 ↳ 주제", 목표→주제 순. */
+function groupBySubjectEntity(items, objectives, subjects, objById) {
+  const buckets = new Map();   // sid → items
+  const none = [];
+  for (const it of items) {
+    const sids = (it.subjectIds || []).filter(sid => subjects.some(s => s.id === sid));
+    if (!sids.length) { none.push(it); continue; }
+    for (const sid of sids) {
+      if (!buckets.has(sid)) buckets.set(sid, []);
+      buckets.get(sid).push(it);
+    }
+  }
+  // 목표 순서 → 그 안의 주제 순서(이미 display_order 정렬됨).
+  const objOrder = new Map(objectives.map((o, i) => [o.id, i]));
+  const ordered = subjects.filter(s => buckets.has(s.id)).sort((a, b) => {
+    const oa = objOrder.has(a.objective_id) ? objOrder.get(a.objective_id) : 1e9;
+    const ob = objOrder.has(b.objective_id) ? objOrder.get(b.objective_id) : 1e9;
+    return oa - ob;
+  });
+  const out = ordered.map(s => {
+    const its = buckets.get(s.id);
+    sortByDue(its);
+    const o = objById.get(s.objective_id);
+    const label = o ? `${o.name} ↳ ${s.name}` : (s.name || '(주제)');
+    const _goal = (s.startMonth && s.endMonth)
+      ? { title: s.name, startMonth: s.startMonth, endMonth: s.endMonth, color: o ? o.color : 'accent' }
+      : null;
+    return { subject: label, items: its, _goal };
+  });
+  if (none.length) { sortByDue(none); out.push({ subject: '— 주제 미지정', items: none }); }
+  return out;
+}
+
+/** Objective 기간 막대 — 하위 주제들의 startMonth min ~ endMonth max. 기간 없으면 null. */
+function objectivePeriod(o, subjById) {
+  if (!o) return null;
+  const subs = [...subjById.values()].filter(s => s.objective_id === o.id && s.startMonth && s.endMonth);
+  if (!subs.length) return null;
+  const starts = subs.map(s => s.startMonth).sort();
+  const ends = subs.map(s => s.endMonth).sort();
+  return { title: o.name, startMonth: starts[0], endMonth: ends[ends.length - 1], color: o.color };
 }
 
 /* ----------------- 필터 ----------------- */

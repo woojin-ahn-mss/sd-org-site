@@ -1248,7 +1248,7 @@ function updateSubjTicketsCount() {
   const el = $('subj-tickets-count');
   if (!el) return;
   const n = $('subj-tickets-list')?.querySelectorAll('input[name="ticket_key"]:checked').length || 0;
-  el.textContent = `${n}개 선택됨`;
+  el.textContent = `이 주제 할당: ${n}개 (저장 시 반영)`;
 }
 
 async function onSubjTicketsSubmit(e) {
@@ -1293,6 +1293,18 @@ async function onSubjTicketsSubmit(e) {
     renderCardBoard();
     renderSubjectBoard();
     renderFilters();
+    // 할당 결과 노출 — 이 주제에 현재 매핑된 티켓 총 개수.
+    const subj = subjectById(subjId);
+    const total = state.jiraTickets.filter(t => ticketHasSubject(t, subjId)).length;
+    const added = changes.filter(c => c.now).length;
+    const removed = changes.filter(c => !c.now).length;
+    const delta = [added ? `+${added}` : '', removed ? `-${removed}` : ''].filter(Boolean).join(' ');
+    toast({
+      kicker: '티켓 할당',
+      msg: `${subj?.name || '주제'} · 티켓 ${total}개`,
+      meta: delta ? `이번 변경 ${delta}` : '',
+      kind: 'success',
+    });
   } catch (err) {
     handleApiError(err, '주제 티켓 할당 저장 실패');
   }
