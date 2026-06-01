@@ -681,17 +681,21 @@
   letter-spacing: 0.08em; text-transform: uppercase;
 }
 .gm-group .ct { color: var(--faint); margin-left: 8px; font-size: 10.5px; }
-/* 주제 하위그룹 헤더 (목표 아래 들여쓰기) */
+/* 주제 하위그룹 헤더 (목표 → 주제 한 단계 들여쓰기 + 좌측 포함선) */
 .gm-subgroup {
-  padding-left: 24px;
+  padding-left: 30px;
   background: var(--bg-elev);
   border-bottom: 1px solid var(--rule);
+  border-left: 2px solid var(--accent-rule);
   text-transform: none;
   letter-spacing: 0;
   color: var(--dim);
 }
 .gm-subgroup .caret { opacity: 0.7; }
 .gt-group.gt-subgroup { background: var(--bg-elev); }
+/* 주제 하위의 티켓 행 — 한 단계 더 들여쓰기(KEY 셀) + 좌측 포함선 */
+.gm-row-nested { border-left: 2px solid var(--accent-rule); }
+.gm-row-nested > div:first-child { padding-left: 46px; }
 
 .g-cell { border-left: 1px solid var(--faintest); position: relative; padding: 0 !important; }
 .g-cell.current { background: var(--accent-soft) !important; }

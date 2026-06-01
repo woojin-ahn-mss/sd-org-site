@@ -149,9 +149,9 @@ export function renderGantt(host, opts) {
   // 그룹 헤더 행 시간축에 목표 기간 막대:
   //   1) group._goal 이 있으면 (groupBy='goal' 분기)
   //   2) 없더라도 group.subject 와 동일 제목의 목표가 있으면 (메인주제 그룹이지만 같은 이름의 목표가 존재)
-  const renderItems = (items) => {
+  const renderItems = (items, nested = false) => {
     for (const item of items) {
-      metaPane.appendChild(renderItemMetaRow(item, activeCols, metaTemplate));
+      metaPane.appendChild(renderItemMetaRow(item, activeCols, metaTemplate, nested));
       timePane.appendChild(renderItemTimeRow(item, axis, mode, timeTemplate, timeMinWidth));
     }
   };
@@ -171,7 +171,7 @@ export function renderGantt(host, opts) {
         const sCollapsed = collapsedGroups.has(skey);
         metaPane.appendChild(renderGroupMetaRow(sg, sCollapsed, onGroupToggle, { key: skey, isSub: true }));
         timePane.appendChild(renderGroupTimeRow(timeTemplate, sg._goal || null, axis, timeMinWidth, true));
-        if (!sCollapsed) renderItems(sg.items);
+        if (!sCollapsed) renderItems(sg.items, true);
       }
     } else {
       renderItems(group.items);
@@ -312,9 +312,9 @@ function renderGroupTimeRow(template, goal, axis, minWidth, isSub = false) {
 
 /* ----------------- 데이터 행 (양쪽 패널 한 줄씩) ----------------- */
 
-function renderItemMetaRow(item, cols, template) {
+function renderItemMetaRow(item, cols, template, nested = false) {
   const row = document.createElement('div');
-  row.className = 'gm-row';
+  row.className = 'gm-row' + (nested ? ' gm-row-nested' : '');
   row.style.gridTemplateColumns = template;
   for (const c of cols) {
     const cell = document.createElement('div');
