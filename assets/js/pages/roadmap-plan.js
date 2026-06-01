@@ -1221,13 +1221,15 @@ function renderSubjTicketsList(subjId) {
     return String(a.key).localeCompare(String(b.key));
   });
   host.innerHTML = sorted.map(t => {
-    const checked = ticketHasSubject(t, subjId) ? 'checked' : '';
+    const ids = t.subjectIds || parseSubjectIds(t.subject_id);
+    const checked = ids.includes(subjId) ? 'checked' : '';
     const hay = `${t.key} ${t.summary || ''}`.toLowerCase();
-    return `<label class="subj-ticket-row" data-hay="${escapeAttr(hay)}"
-                   style="display:flex;align-items:center;gap:8px;padding:4px 2px;cursor:pointer;font-size:12.5px;">
+    const chips = subjectChipsHtml(ids);
+    return `<label class="subj-ticket-row" data-hay="${escapeAttr(hay)}">
       <input type="checkbox" name="ticket_key" value="${escapeAttr(t.key)}" ${checked} />
-      <span class="num" style="flex:none;color:var(--faint);min-width:78px;">${escapeHtml(t.key)}</span>
-      <span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${escapeHtml(t.summary || '')}</span>
+      <span class="num subj-ticket-key">${escapeHtml(t.key)}</span>
+      <span class="subj-ticket-sum">${escapeHtml(t.summary || '')}</span>
+      <span class="subj-ticket-chips">${chips}</span>
     </label>`;
   }).join('');
   applySubjTicketsSearch($('subj-tickets-search')?.value || '');
@@ -1236,8 +1238,9 @@ function renderSubjTicketsList(subjId) {
 
 function applySubjTicketsSearch(query) {
   const q = (query || '').trim().toLowerCase();
+  // 표시/숨김은 hidden 속성으로만 토글 — style.display 를 건드리면 .subj-ticket-row 의 flex 가 깨짐.
   $('subj-tickets-list')?.querySelectorAll('.subj-ticket-row').forEach(row => {
-    row.style.display = (!q || (row.dataset.hay || '').includes(q)) ? '' : 'none';
+    row.hidden = !(!q || (row.dataset.hay || '').includes(q));
   });
 }
 

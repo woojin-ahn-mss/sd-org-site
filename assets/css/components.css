@@ -516,7 +516,7 @@
 }
 
 /* ----- Weekly trend chart ----- */
-#weekly-chart, #forecast-chart {
+#weekly-chart {
   border-top: 1px solid var(--rule);
   padding-top: 14px;
 }
@@ -538,6 +538,11 @@
 .wc-ylabel { text-anchor: end; }
 .wc-val {
   font-family: var(--font-mono); font-size: 9.5px; fill: var(--dim);
+  text-anchor: middle;
+}
+.wc-divider { stroke: var(--accent-rule); stroke-width: 1; stroke-dasharray: 3 3; }
+.wc-divider-label {
+  font-family: var(--font-mono); font-size: 9px; fill: var(--faint);
   text-anchor: middle;
 }
 .wc-bar { cursor: pointer; transition: opacity 80ms; }
@@ -1513,6 +1518,18 @@ hr.rule { border: 0; border-top: 1px solid var(--rule); margin: 18px 0; }
   background: var(--bg-elev);
 }
 .modal-foot .left { margin-right: auto; }
+
+/* 주제 → 티켓 할당 모달: 티켓 행 (한 줄, 좌측 정렬·요약 말줄임·우측 주제 칩) */
+.subj-ticket-row {
+  display: flex; align-items: center; gap: 8px;
+  padding: 4px 2px; cursor: pointer; font-size: 12.5px;
+}
+.subj-ticket-key { flex: none; color: var(--faint); min-width: 92px; }
+.subj-ticket-sum { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.subj-ticket-chips {
+  flex: none; display: flex; gap: 4px; flex-wrap: wrap;
+  justify-content: flex-end; max-width: 42%;
+}
 
 .modal.confirm { width: 380px; }
 .modal.confirm .modal-body { font-size: 13.5px; color: var(--text); }
