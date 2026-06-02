@@ -580,7 +580,7 @@ function chipGroup(key, label, options, current, multi = false) {
 /* ─── 필터 / 정렬 (pure) ──────────────────────────────────── */
 
 /** "론치완료 제외" 토글이 숨기는 상태값 (완료/드랍/철회 계열). */
-export const HIDDEN_WHEN_LAUNCHED = new Set(['론치완료', 'Done', 'Dropped', '철회/반려/취소']);
+export const HIDDEN_WHEN_LAUNCHED = new Set(['론치완료', 'Done', 'Dropped', '철회/반려/취소', '반려']);
 
 /** fasttrack 라벨 보유 여부 (대소문자 무시, fast-track 변형 허용 · fast-track-away 등은 제외). */
 export function hasFasttrackLabel(it) {
