@@ -832,6 +832,25 @@
 .heat-legend-cell { width: 28px; height: 20px; font-size: 10px; }
 
 /* =========================================================
+   Objective 보드 (roadmap-plan 목표 리스트)
+   goal-board 와 동일 패턴 — 세로 스택 + gap, 카드는 rule 보더 + hover.
+   (subject-board 는 .subj-group 가 자체 margin 으로 간격 처리)
+   ========================================================= */
+.objective-board {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 14px;
+}
+.obj-card {
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  background: var(--bg);
+  transition: background 120ms;
+}
+.obj-card:hover { background: var(--bg-elev); }
+
+/* =========================================================
    Goal board (목표 보드)
    ========================================================= */
 .goal-board {
