@@ -2,7 +2,7 @@
    pages/fasttrack.js — 패스트트랙 (PRD 4.7 + 리뉴얼 2026-05-26)
    ETR + 'one' 레이블 = 인입 / status '검토완료-우선착수' = 트리아지
    - 1행 = 1 ETR, 행 클릭으로 연결 티켓 펼침
-   - 상단 5 카드: 총인입 / 트리아지 / 일반과제 / 지난주 인입 / 금주 인입(+트리아지N)
+   - 상단 6 카드: 총인입 / 트리아지 / 일반과제 / 지난주 인입 / 금주 인입(+트리아지N) / 진행중(FT·MSSCXTF one·개발중)
    - 진행 상태 · 평균 경과 시간 표 (ETR | FT 두 컬럼)
    - 필터, 메인 테이블, 펼침 영역 유지
    ========================================================= */
@@ -23,6 +23,7 @@ const PAGE_SIZE = 20;
 // 상태 분류 (사용자 정의)
 const STATUS_TRIAGE = '검토완료-우선착수';   // 패스트트랙 트리아지
 const STATUS_NORMAL = '검토완료-백로그';     // 일반 과제 (패스트트랙 진행 X)
+const STATUS_DEV = '개발중';                 // 실제 진행중 (FT·MSSCXTF Initiative)
 const STATUS_DROPPED = new Set(['반려', '검토완료-미진행', '철회']);
 
 // statusCategory='done' 중 '실제 완료' 가 아닌 상태 (취소/반려/Dropped) — 주별 차트 완료 카운트에서 제외
@@ -111,6 +112,14 @@ function renderStats() {
   setStat('normal', normal.length, '검토완료-백로그');
   setStat('lastweek', lastWeek.length, 'created 기준');
   setStat('thisweek', thisWeek.length, `트리아지 ${thisWeekTriage.length}건`);
+
+  // 금주 진행중 — FT·MSSCXTF 의 'one' 레이블 + 상태 '개발중' 현재 스냅샷
+  const inProgressOne = state.ftItems.filter(it =>
+    (it.project === 'FT' || it.project === 'MSSCXTF') &&
+    it.status === STATUS_DEV &&
+    (it.labels || []).includes('one')
+  ).length;
+  setStatRaw('inprogress', inProgressOne, '개발중 · one (FT+MSSCXTF)', state.ftItems.length === 0);
 }
 
 /** KST 월~일 기준으로 created 를 금주/지난주 버킷에 배정.
@@ -148,11 +157,17 @@ export function kstWeekRange(now) {
 }
 
 function setStat(id, val, foot) {
+  setStatRaw(id, val, foot, state.items.length === 0);
+}
+
+/** setStat 변형 — '—' 표시 조건(blank)을 호출부에서 직접 지정.
+ *  FT 기반 카드는 ETR(state.items) 가 아니라 FT 데이터 적재 여부로 판단해야 하므로 분리. */
+function setStatRaw(id, val, foot, blank) {
   const v = document.querySelector(`[data-stat="${id}"]`);
   const f = document.querySelector(`[data-stat-foot="${id}"]`);
   if (v) {
     const unit = v.querySelector('.u');
-    v.textContent = state.items.length === 0 ? '—' : val;
+    v.textContent = blank ? '—' : val;
     if (unit) v.appendChild(unit);
   }
   if (f) f.textContent = foot;

@@ -440,6 +440,7 @@
   border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
 }
 .impact-stats.five { grid-template-columns: repeat(5, 1fr); }
+.impact-stats.six { grid-template-columns: repeat(6, 1fr); }
 .imp-stat {
   padding: 22px 24px 22px 0; border-right: 1px solid var(--rule);
   position: relative;
