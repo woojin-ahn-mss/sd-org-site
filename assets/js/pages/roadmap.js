@@ -209,9 +209,7 @@ function groupByObjective(items, objectives, subjects, subjById) {
         subject: s.name || '(주제)',
         key: `obj:${o.id}|sub:${s.id}`,
         items: its,
-        _goal: (s.startMonth && s.endMonth)
-          ? { title: s.name, startMonth: s.startMonth, endMonth: s.endMonth, color: o.color }
-          : null,
+        _goal: subjectPeriod(s, its, o.color),
       };
     });
     // 목표 내 distinct 티켓 수 (한 티켓이 같은 목표의 여러 주제에 걸쳐도 1건).
@@ -253,13 +251,28 @@ function groupBySubjectEntity(items, objectives, subjects, objById) {
     sortByDue(its);
     const o = objById.get(s.objective_id);
     const label = o ? `${o.name} ↳ ${s.name}` : (s.name || '(주제)');
-    const _goal = (s.startMonth && s.endMonth)
-      ? { title: s.name, startMonth: s.startMonth, endMonth: s.endMonth, color: o ? o.color : 'accent' }
-      : null;
+    const _goal = subjectPeriod(s, its, o ? o.color : 'accent');
     return { subject: label, items: its, _goal };
   });
   if (none.length) { sortByDue(none); out.push({ subject: '— 주제 미지정', items: none }); }
   return out;
+}
+
+/** 주제 막대 기간 — 명시적 start/endMonth 우선, 없으면 티켓들의 날짜 범위(startDate/dueDate)에서 도출.
+ *  티켓에도 날짜가 하나도 없으면 null (막대 생략). */
+function subjectPeriod(s, items, color) {
+  if (s.startMonth && s.endMonth) {
+    return { title: s.name, startMonth: s.startMonth, endMonth: s.endMonth, color };
+  }
+  const months = [];
+  for (const it of items || []) {
+    for (const d of [it.startDate, it.dueDate]) {
+      if (d && /^\d{4}-\d{2}/.test(d)) months.push(d.slice(0, 7));
+    }
+  }
+  if (!months.length) return null;
+  months.sort();
+  return { title: s.name, startMonth: months[0], endMonth: months[months.length - 1], color };
 }
 
 /** Objective 기간 막대 — 하위 주제들의 startMonth min ~ endMonth max. 기간 없으면 null. */

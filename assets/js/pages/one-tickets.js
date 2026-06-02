@@ -1,6 +1,6 @@
 /* =========================================================
    pages/one-tickets.js — One 티켓 관리
-   ETR / MSSCXTF / FT / TM / CBP / PBO 의 'one' 라벨 티켓을 한 화면에서 관리.
+   ETR / MSSCXTF / FT / TM / CBP / PBO / PD 의 'one' 라벨 티켓을 한 화면에서 관리.
 
    - 읽기 데이터: data/jira/one-tickets.json (없으면 기존 파일 union fallback)
    - 연결 티켓(Blocks 제외)은 union-find 로 한 묶음 병합 + 펼침으로 "하나로" 관리
@@ -23,7 +23,7 @@ import {
   uploadTicketImageBlob, signedImageUrl, removeTicketImage,
 } from '../api/one-ticket-meta.js';
 
-const TOP_PROJECTS = ['ETR', 'MSSCXTF', 'FT', 'TM', 'CBP', 'PBO', 'MSS'];
+const TOP_PROJECTS = ['ETR', 'MSSCXTF', 'FT', 'TM', 'CBP', 'PBO', 'PD', 'MSS'];
 const PAGE_SIZE = 25;
 const NO_SUBJECT = '(미지정)';
 const FILTERS_KEY = 'oneTickets.filters';
@@ -580,7 +580,7 @@ function chipGroup(key, label, options, current, multi = false) {
 /* ─── 필터 / 정렬 (pure) ──────────────────────────────────── */
 
 /** "론치완료 제외" 토글이 숨기는 상태값 (완료/드랍/철회 계열). */
-export const HIDDEN_WHEN_LAUNCHED = new Set(['론치완료', 'Dropped', '철회/반려/취소']);
+export const HIDDEN_WHEN_LAUNCHED = new Set(['론치완료', 'Done', 'Dropped', '철회/반려/취소']);
 
 /** fasttrack 라벨 보유 여부 (대소문자 무시, fast-track 변형 허용 · fast-track-away 등은 제외). */
 export function hasFasttrackLabel(it) {
