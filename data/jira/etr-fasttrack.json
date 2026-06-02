@@ -1,7 +1,50 @@
 {
-  "lastSync": "2026-06-02T13:05:33+09:00",
-  "count": 131,
+  "lastSync": "2026-06-02T14:46:36+09:00",
+  "count": 132,
   "items": [
+    {
+      "key": "ETR-4657",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4657",
+      "summary": "[UI] 투명도 처리 전체 지면 확대 적용",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "발의",
+      "statusCategory": "new",
+      "priority": "P0",
+      "assignee": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-06-02T13:57:36.039+0900",
+      "updated": "2026-06-02T13:57:54.754+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null,
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
     {
       "key": "ETR-4655",
       "url": "https://jira.team.musinsa.com/browse/ETR-4655",
@@ -23,8 +66,7 @@
       },
       "labels": [
         "conveyor",
-        "one",
-        "ux-ft"
+        "one"
       ],
       "mainSubject": null,
       "mainSubjects": [],
@@ -36,13 +78,23 @@
       "startDate": null,
       "dueDate": "2026-06-16",
       "created": "2026-06-02T11:20:44.444+0900",
-      "updated": "2026-06-02T11:38:24.612+0900",
+      "updated": "2026-06-02T14:41:06.267+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-02T11:21:03.805+0900",
-      "linkedTickets": [],
+      "linkedTickets": [
+        {
+          "key": "FT-41",
+          "summary": "PLP/랭킹판 무진장 로고 탭 로티 반영",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        }
+      ],
       "progress": {
         "done": 0,
-        "total": 0
+        "total": 1
       }
     },
     {
@@ -226,13 +278,23 @@
       "startDate": null,
       "dueDate": "2026-06-04",
       "created": "2026-06-01T16:02:31.355+0900",
-      "updated": "2026-06-02T11:18:37.944+0900",
+      "updated": "2026-06-02T14:45:29.628+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-02T06:41:41.080+0900",
-      "linkedTickets": [],
+      "linkedTickets": [
+        {
+          "key": "PD-8336",
+          "summary": "[PD][추천판] 지금 주목할 만한 브랜드 내에 전문관 파비콘 추가",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Blocks",
+          "direction": "outward"
+        }
+      ],
       "progress": {
         "done": 0,
-        "total": 0
+        "total": 1
       }
     },
     {
@@ -1021,7 +1083,7 @@
       "startDate": null,
       "dueDate": "2026-06-16",
       "created": "2026-05-29T09:03:30.079+0900",
-      "updated": "2026-06-02T09:01:15.284+0900",
+      "updated": "2026-06-02T14:31:37.932+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-02T09:00:35.312+0900",
       "linkedTickets": [],
@@ -1378,8 +1440,8 @@
         {
           "key": "TM-3126",
           "summary": "[추천판] 전문관별 브랜드 분류 탭 기준 신설",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "HOLD",
+          "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward"
