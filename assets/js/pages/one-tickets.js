@@ -445,9 +445,17 @@ function exitHideManage() {
 
 async function saveHideManage() {
   if (state.hideSaving) return;
-  // pending 중 실제로 바뀐 것만 반영.
-  const changes = [];
+  // 클러스터 단위 숨김 — 대표 행을 숨기면(또는 해제하면) 연결(병합)된 티켓 전체에 동일 적용.
+  // 멤버는 체크박스가 없으므로(대표만 토글) 대표의 pending 값을 멤버로 전파한다.
+  // (전파 안 하면 대표만 숨겨도 멤버가 대표로 승격돼 클러스터가 그대로 보임 = "숨김 안 됨")
+  const targets = new Map();
   for (const [key, val] of state.hidePending) {
+    targets.set(String(key), val);
+    for (const m of (state.displayMembers.get(key) || [])) targets.set(String(m.key), val);
+  }
+  // pending(+전파) 중 실제로 바뀐 것만 반영.
+  const changes = [];
+  for (const [key, val] of targets) {
     const cur = !!(state.meta.get(key) && state.meta.get(key).hidden);
     if (val !== cur) changes.push([key, val]);
   }
@@ -939,8 +947,10 @@ function hideBtnHtml(key) {
   if (!state.signedIn || !state.hideManageMode) return '';
   const cur = !!(state.meta.get(key) && state.meta.get(key).hidden);
   const checked = state.hidePending.has(key) ? state.hidePending.get(key) : cur;
+  const linked = (state.displayMembers.get(key) || []).length;
+  const tip = linked ? `${key} 외 연결 티켓 ${linked}건 포함 숨김` : `${key} 숨김 선택`;
   return `<input type="checkbox" class="one-hide-cb" data-key="${escapeAttr(key)}" ${checked ? 'checked' : ''}
-            aria-label="${escapeAttr(key)} 숨김 선택" />`;
+            aria-label="${escapeAttr(tip)}" title="${escapeAttr(tip)}" />`;
 }
 
 /** 라벨 칩(one 제외) HTML. */
@@ -1239,7 +1249,10 @@ function bindMetaInputs(host) {
     cb.addEventListener('click', (e) => e.stopPropagation());
     cb.addEventListener('change', () => {
       state.hidePending.set(cb.dataset.key, cb.checked);
-      cb.closest('tr')?.classList.toggle('one-hidden-row', cb.checked);   // live dim
+      cb.closest('tr')?.classList.toggle('one-hidden-row', cb.checked);   // live dim (대표)
+      // 연결(병합) 티켓 펼침 영역도 함께 dim — 클러스터 단위 숨김임을 시각화.
+      document.getElementById(`one-expand-${cssId(cb.dataset.key)}`)
+        ?.classList.toggle('one-hidden-row', cb.checked);
       renderHideControls();   // 저장 버튼의 변경 건수 갱신
     });
   });
