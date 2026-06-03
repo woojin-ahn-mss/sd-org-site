@@ -607,7 +607,7 @@ export function itemMatchesFilters(it, filters, hiddenKeys, quickFixKeys, specKe
   if (filters.quickFixOnly && !(quickFixKeys && quickFixKeys.has(it.key))) return false;
   if (filters.quickFixExclude && quickFixKeys && quickFixKeys.has(it.key)) return false;
   if (filters.specUnset && specKeys && specKeys.has(it.key)) return false;
-  // 채널 미개설만 — 채널 개선 체크된(=개설/개선 완료) 항목 숨김 → 미개설만 노출.
+  // 채널 미개설만 — 채널 개설 체크된(=개설 완료) 항목 숨김 → 미개설만 노출.
   if (filters.channelUnset && channelKeys && channelKeys.has(it.key)) return false;
   if (!filters.showHidden && hiddenKeys && hiddenKeys.has(it.key)) return false;
   // 모든 chip 필터: 복수 선택(배열) OR 매칭. 레거시 단일값도 지원.
@@ -860,7 +860,7 @@ function theadHtml() {
         <th style="width:74px">순위</th>
         <th style="width:64px" title="Quick fix 대상">Quick fix</th>
         <th style="width:48px" title="Spec 작성 대상">Spec</th>
-        <th style="width:64px" title="채널 개선 대상">채널 개선</th>
+        <th style="width:64px" title="채널 개설 대상">채널 개설</th>
         <th style="width:30%">코멘트</th>
         <th style="width:${state.hideManageMode ? 56 : 20}px">${state.hideManageMode ? '숨김' : ''}</th>
       </tr>
@@ -1010,13 +1010,13 @@ function specCellHtml(key) {
             aria-label="${escapeAttr(key)} Spec 작성 대상" />`;
 }
 
-/** 채널 개선 대상 체크박스 셀. 체크=채널 개설/개선 완료. (미체크 = "채널 미개설") */
+/** 채널 개설 대상 체크박스 셀. 체크=채널 개설 완료. (미체크 = "채널 미개설") */
 function channelCellHtml(key) {
   const m = state.meta.get(key);
   const checked = m && m.channel ? 'checked' : '';
   const dis = state.signedIn ? '' : 'disabled';
   return `<input type="checkbox" class="one-channel" data-key="${escapeAttr(key)}" ${checked} ${dis}
-            aria-label="${escapeAttr(key)} 채널 개선 대상" />`;
+            aria-label="${escapeAttr(key)} 채널 개설 대상" />`;
 }
 
 function rankCellHtml(key) {
@@ -1189,7 +1189,7 @@ function bindMetaInputs(host) {
   host.querySelectorAll('.one-spec').forEach(cb => {
     cb.addEventListener('change', () => saveMeta(cb.dataset.key, { spec: cb.checked }));
   });
-  // 채널 개선 체크박스
+  // 채널 개설 체크박스
   host.querySelectorAll('.one-channel').forEach(cb => {
     cb.addEventListener('change', () => saveMeta(cb.dataset.key, { channel: cb.checked }));
   });
