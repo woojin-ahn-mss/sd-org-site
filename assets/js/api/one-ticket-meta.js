@@ -13,7 +13,7 @@
 import { supabase, unwrap } from './supabase.js';
 
 /** 호환용 — 컬럼 표기(과거 Sheets 헤더). 페이지 안내 문구에서 참조. 섹션 6 페이지 정리 시 제거 예정. */
-export const ONE_META_HEADER = ['jira_key', 'manual_rank', 'comment', 'summary_override', 'quick_fix', 'spec', 'updated_at'];
+export const ONE_META_HEADER = ['jira_key', 'manual_rank', 'comment', 'summary_override', 'quick_fix', 'spec', 'channel', 'updated_at'];
 
 export class SchemaMismatchError extends Error {
   constructor(message, detail) {
@@ -60,14 +60,14 @@ export function metaByKey(rows) {
 /* ─── upsert / delete ─────────────────────────────────────── */
 
 /** 편집 메타가 모두 비었는지 (모두 비면 행 삭제 대상). 순수 — 테스트 대상. */
-export function metaIsEmpty({ manual_rank, comment, summary_override, quick_fix, spec, hidden, image_path, content, content_image_path } = {}) {
+export function metaIsEmpty({ manual_rank, comment, summary_override, quick_fix, spec, channel, hidden, image_path, content, content_image_path } = {}) {
   return manual_rank == null
     && (comment == null || String(comment).trim() === '')
     && (summary_override == null || String(summary_override).trim() === '')
     && (image_path == null || String(image_path).trim() === '')
     && (content == null || String(content).trim() === '')
     && (content_image_path == null || String(content_image_path).trim() === '')
-    && !quick_fix && !spec && !hidden;
+    && !quick_fix && !spec && !channel && !hidden;
 }
 
 const IMG_BUCKET = 'one-ticket-images';
@@ -128,10 +128,10 @@ function normRank(v) {
 }
 
 /**
- * jira_key 행 upsert. patch 는 {manual_rank?, comment?, summary_override?, quick_fix?, spec?} —
+ * jira_key 행 upsert. patch 는 {manual_rank?, comment?, summary_override?, quick_fix?, spec?, channel?} —
  * 지정 필드만 덮어쓰고 나머지 보존. 모든 편집 필드가 비면 행 삭제.
  * @param {string} jiraKey
- * @param {{manual_rank?: string|number, comment?: string, summary_override?: string, quick_fix?: boolean, spec?: boolean}} patch
+ * @param {{manual_rank?: string|number, comment?: string, summary_override?: string, quick_fix?: boolean, spec?: boolean, channel?: boolean}} patch
  * @param {Array} [currentRows] loadOneMeta 결과 — 미지정 필드 보존용(없으면 patch 만 반영)
  * @returns {Promise<object|null>}
  */
@@ -156,6 +156,9 @@ export async function upsertOneMeta(jiraKey, patch = {}, currentRows = []) {
   const spec = ('spec' in patch)
     ? !!patch.spec
     : (existing ? !!existing.spec : false);
+  const channel = ('channel' in patch)
+    ? !!patch.channel
+    : (existing ? !!existing.channel : false);
   const hidden = ('hidden' in patch)
     ? !!patch.hidden
     : (existing ? !!existing.hidden : false);
@@ -176,7 +179,7 @@ export async function upsertOneMeta(jiraKey, patch = {}, currentRows = []) {
   const contentImageEmpty = content_image_path === '';
 
   // 편집 필드가 모두 비면 행 삭제(stale 정리).
-  if (metaIsEmpty({ manual_rank, comment, summary_override, quick_fix, spec, hidden, image_path, content, content_image_path })) {
+  if (metaIsEmpty({ manual_rank, comment, summary_override, quick_fix, spec, channel, hidden, image_path, content, content_image_path })) {
     unwrap(await supabase.from('one_ticket_meta').delete().eq('jira_key', jiraKey));
     return null;
   }
@@ -188,6 +191,7 @@ export async function upsertOneMeta(jiraKey, patch = {}, currentRows = []) {
     summary_override: summaryEmpty ? null : summary_override,
     quick_fix,
     spec,
+    channel,
     hidden,
     image_path: imageEmpty ? null : image_path,
     content: content === '' ? null : content,

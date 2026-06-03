@@ -987,7 +987,10 @@
 /* =========================================================
    Kanban (roadmap plan)
    ========================================================= */
-.plan-board { display: grid; grid-template-columns: 220px repeat(4, 1fr); gap: 0; border-top: 1px solid var(--rule); }
+/* 컬럼 그리드는 내부 .board-cols(repeat(5,1fr)) 가 담당. 바깥은 전체폭 블록 컨테이너.
+   (과거 .plan-col 직접 자식 구조용 220px+4열 그리드는 제거 — 단일 .board-cols 자식을
+    220px 트랙에 가둬 보드가 좁아지던 버그) */
+.plan-board { display: block; border-top: 1px solid var(--rule); padding-top: 12px; }
 .plan-col {
   padding: 14px 16px 16px;
   border-right: 1px solid var(--rule);
@@ -1332,9 +1335,9 @@
 .one-rank-input { -moz-appearance: textfield; }
 
 /* Quick fix 체크박스 셀 + 대시보드 수정 표식 */
-.one-qf-cell, .one-spec-cell { text-align: center; }
-.one-quickfix, .one-spec { width: 15px; height: 15px; accent-color: var(--accent); cursor: pointer; }
-.one-quickfix:disabled, .one-spec:disabled { cursor: not-allowed; opacity: 0.5; }
+.one-qf-cell, .one-spec-cell, .one-channel-cell { text-align: center; }
+.one-quickfix, .one-spec, .one-channel { width: 15px; height: 15px; accent-color: var(--accent); cursor: pointer; }
+.one-quickfix:disabled, .one-spec:disabled, .one-channel:disabled { cursor: not-allowed; opacity: 0.5; }
 .one-edited {
   display: inline-block; margin-left: 6px; vertical-align: middle;
   font-size: 10px; color: var(--accent); white-space: nowrap;

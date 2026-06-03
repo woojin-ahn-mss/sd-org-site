@@ -22,6 +22,9 @@ import {
   loadOneMeta, metaByKey, upsertOneMeta,
   uploadTicketImageBlob, signedImageUrl, removeTicketImage,
 } from '../api/one-ticket-meta.js';
+import {
+  loadManualTickets, addManualTicket, removeManualTicket, extractJiraKey,
+} from '../api/one-manual-tickets.js';
 
 const TOP_PROJECTS = ['ETR', 'MSSCXTF', 'FT', 'TM', 'CBP', 'PBO', 'PD', 'MSS'];
 const PAGE_SIZE = 25;
@@ -41,7 +44,7 @@ const state = {
   email: null,
   meta: new Map(),    // jira_key → {manual_rank, comment, _rowNum}
   metaRows: [],       // loadOneMeta 원본 (upsert 시 _rowNum 탐색)
-  filters: { projects: [], subSubjects: [], priorities: [], statuses: [], hideLaunched: true, fasttrackOnly: false, fasttrackExclude: false, quickFixOnly: false, quickFixExclude: false, specUnset: false },
+  filters: { projects: [], subSubjects: [], priorities: [], statuses: [], hideLaunched: true, fasttrackOnly: false, fasttrackExclude: false, quickFixOnly: false, quickFixExclude: false, specUnset: false, channelUnset: false },
   hideManageMode: false,   // 숨김 관리 모드 (체크박스 노출 + 전체 표시)
   hidePending: new Map(),  // 관리 모드 중 변경 대기 (key → bool)
   hideSaving: false,       // 저장 진행 중 (중복 저장 방지)
@@ -60,7 +63,7 @@ const state = {
 export async function renderOneTickets({ rootRel = '' } = {}) {
   state.rootRel = rootRel;
   state.filters = Object.assign(
-    { projects: [], subSubjects: [], priorities: [], statuses: [], hideLaunched: true, fasttrackOnly: false, fasttrackExclude: false, quickFixOnly: false, quickFixExclude: false, specUnset: false },
+    { projects: [], subSubjects: [], priorities: [], statuses: [], hideLaunched: true, fasttrackOnly: false, fasttrackExclude: false, quickFixOnly: false, quickFixExclude: false, specUnset: false, channelUnset: false },
     scoped(FILTERS_KEY).get({}) || {},
   );
   // 복수 선택(OR) 마이그레이션 — 레거시 단일값 → 배열. 모든 chip 필터 공통.
@@ -117,7 +120,8 @@ async function loadList() {
     items = await loadFallbackUnion(state.rootRel);
   }
   // 과제 유형(Initiative + 과제 발의)만 표시 — Epic·Design·기타(KTLO/BAU) 제외.
-  state.items = items.map(normalizeItem).filter(isInitiative);
+  // 단, 수동 등록(manual) 티켓은 유형 무관 노출 (링크로 직접 등록한 건 — 예: PD Design).
+  state.items = items.map(normalizeItem).filter(it => isInitiative(it) || it.manual);
   // "내용" 기본값(커밋된 AI 생성 요약) — 편집 시 meta.content 가 override.
   state.contentDefaults = new Map();
   try {
@@ -252,11 +256,12 @@ function cmpRep(a, b) {
 
 /** 표시상 숨겨야 할 항목 — 종료 계열·수동 숨김 + 제외형 토글(fasttrack/quick fix 제외·spec 미지정).
  * 선택형 필터(프로젝트/상태/우선순위)는 대표를 바꾸지 않으므로 여기서 보지 않는다. */
-function isDisplayHidden(it, eff = {}, hiddenKeys, quickFixKeys, specKeys) {
+function isDisplayHidden(it, eff = {}, hiddenKeys, quickFixKeys, specKeys, channelKeys) {
   if (eff.hideLaunched && HIDDEN_WHEN_LAUNCHED.has(it.status)) return true;
   if (eff.fasttrackExclude && hasFasttrackLabel(it)) return true;
   if (eff.quickFixExclude && quickFixKeys && quickFixKeys.has(it.key)) return true;
   if (eff.specUnset && specKeys && specKeys.has(it.key)) return true;
+  if (eff.channelUnset && channelKeys && channelKeys.has(it.key)) return true;
   if (!eff.showHidden && hiddenKeys && hiddenKeys.has(it.key)) return true;
   return false;
 }
@@ -267,9 +272,9 @@ function isDisplayHidden(it, eff = {}, hiddenKeys, quickFixKeys, specKeys) {
  * 프로젝트/상태/우선순위 선택 필터로는 대표를 바꾸지 않는다 — 연결된 실제 작업 티켓이 항상 메인.
  * (모두 숨김 대상이면 전체에서 최선.)
  */
-export function pickDisplayRep(all, eff = {}, hiddenKeys, quickFixKeys, specKeys) {
+export function pickDisplayRep(all, eff = {}, hiddenKeys, quickFixKeys, specKeys, channelKeys) {
   const list = Array.isArray(all) ? all : [];
-  const visible = list.filter(it => !isDisplayHidden(it, eff, hiddenKeys, quickFixKeys, specKeys));
+  const visible = list.filter(it => !isDisplayHidden(it, eff, hiddenKeys, quickFixKeys, specKeys, channelKeys));
   return (visible.length ? visible : list).slice().sort(cmpRep)[0];
 }
 
@@ -353,6 +358,7 @@ function syncUrl() {
   if (f.quickFixOnly) p.set('qf', '1');
   if (f.quickFixExclude) p.set('qfx', '1');
   if (f.specUnset) p.set('sx', '1');
+  if (f.channelUnset) p.set('chu', '1');
   if (state.view === 'subject') p.set('view', 'subject');
   if (state.sort === 'created') { p.set('sort', 'created'); if (state.sortDir === 'asc') p.set('dir', 'asc'); }
   const qs = p.toString();
@@ -362,7 +368,7 @@ function syncUrl() {
 /** URL 쿼리 → state.filters/뷰. 파람이 하나라도 있으면 필터를 URL 기준으로 재구성(공유 링크 결정적). */
 function applyUrlParams() {
   const p = new URLSearchParams(location.search);
-  const KEYS = ['proj', 'sub', 'pri', 'st', 'hl', 'ft', 'ftx', 'qf', 'qfx', 'sx', 'view', 'sort', 'dir'];
+  const KEYS = ['proj', 'sub', 'pri', 'st', 'hl', 'ft', 'ftx', 'qf', 'qfx', 'sx', 'chu', 'view', 'sort', 'dir'];
   if (!KEYS.some(k => p.has(k))) return;     // 파람 없음 → localStorage 유지
   state.filters = {
     projects: p.getAll('proj'),
@@ -375,6 +381,7 @@ function applyUrlParams() {
     quickFixOnly: p.get('qf') === '1',
     quickFixExclude: p.get('qfx') === '1',
     specUnset: p.get('sx') === '1',
+    channelUnset: p.get('chu') === '1',
   };
   if (state.filters.fasttrackOnly) state.filters.fasttrackExclude = false;
   if (state.filters.quickFixOnly) state.filters.quickFixExclude = false;
@@ -500,7 +507,8 @@ function renderFilters() {
     `<button type="button" class="fchip ${f.fasttrackExclude ? 'on' : ''}" data-toggle="fasttrackExclude" role="switch" aria-checked="${f.fasttrackExclude ? 'true' : 'false'}">fasttrack 제외</button>` +
     `<button type="button" class="fchip ${f.quickFixOnly ? 'on' : ''}" data-toggle="quickFixOnly" role="switch" aria-checked="${f.quickFixOnly ? 'true' : 'false'}">quick fix만</button>` +
     `<button type="button" class="fchip ${f.quickFixExclude ? 'on' : ''}" data-toggle="quickFixExclude" role="switch" aria-checked="${f.quickFixExclude ? 'true' : 'false'}">quick fix 제외</button>` +
-    `<button type="button" class="fchip ${f.specUnset ? 'on' : ''}" data-toggle="specUnset" role="switch" aria-checked="${f.specUnset ? 'true' : 'false'}">spec 미지정</button>`;
+    `<button type="button" class="fchip ${f.specUnset ? 'on' : ''}" data-toggle="specUnset" role="switch" aria-checked="${f.specUnset ? 'true' : 'false'}">spec 미지정</button>` +
+    `<button type="button" class="fchip ${f.channelUnset ? 'on' : ''}" data-toggle="channelUnset" role="switch" aria-checked="${f.channelUnset ? 'true' : 'false'}">채널 미개설</button>`;
 
   host.innerHTML = `
     ${row(chipGroup('projects', '프로젝트', projects.map(v => ({ v, label: v })), f.projects, true))}
@@ -592,13 +600,15 @@ export function hasFasttrackLabel(it) {
  * quickFixKeys: quick_fix 메타가 켜진 키 집합 — quickFixOnly 토글 시 그 집합만 통과.
  * specKeys: spec 메타가 켜진 키 집합 — specUnset 토글 시 그 집합(=spec 지정됨)을 제외.
  */
-export function itemMatchesFilters(it, filters, hiddenKeys, quickFixKeys, specKeys) {
+export function itemMatchesFilters(it, filters, hiddenKeys, quickFixKeys, specKeys, channelKeys) {
   if (filters.hideLaunched && HIDDEN_WHEN_LAUNCHED.has(it.status)) return false;
   if (filters.fasttrackOnly && !hasFasttrackLabel(it)) return false;
   if (filters.fasttrackExclude && hasFasttrackLabel(it)) return false;
   if (filters.quickFixOnly && !(quickFixKeys && quickFixKeys.has(it.key))) return false;
   if (filters.quickFixExclude && quickFixKeys && quickFixKeys.has(it.key)) return false;
   if (filters.specUnset && specKeys && specKeys.has(it.key)) return false;
+  // 채널 미개설만 — 채널 개선 체크된(=개설/개선 완료) 항목 숨김 → 미개설만 노출.
+  if (filters.channelUnset && channelKeys && channelKeys.has(it.key)) return false;
   if (!filters.showHidden && hiddenKeys && hiddenKeys.has(it.key)) return false;
   // 모든 chip 필터: 복수 선택(배열) OR 매칭. 레거시 단일값도 지원.
   const sel = (arrKey, singleKey) => {
@@ -626,10 +636,10 @@ export function filterItems(items, filters) {
  * 클러스터 필터 — 대표 또는 멤버 중 하나라도 매칭되면 그 묶음을 노출.
  * (병합된 멤버가 필터에 걸려도 묶음이 사라지지 않게.)
  */
-export function filterClusters(reps, filters, membersByRep = new Map(), hiddenKeys, quickFixKeys, specKeys) {
+export function filterClusters(reps, filters, membersByRep = new Map(), hiddenKeys, quickFixKeys, specKeys, channelKeys) {
   return reps.filter(rep => {
-    if (itemMatchesFilters(rep, filters, hiddenKeys, quickFixKeys, specKeys)) return true;
-    return (membersByRep.get(rep.key) || []).some(m => itemMatchesFilters(m, filters, hiddenKeys, quickFixKeys, specKeys));
+    if (itemMatchesFilters(rep, filters, hiddenKeys, quickFixKeys, specKeys, channelKeys)) return true;
+    return (membersByRep.get(rep.key) || []).some(m => itemMatchesFilters(m, filters, hiddenKeys, quickFixKeys, specKeys, channelKeys));
   });
 }
 
@@ -728,21 +738,23 @@ function renderList() {
   const hiddenKeys = new Set();
   const quickFixKeys = new Set();
   const specKeys = new Set();
+  const channelKeys = new Set();
   for (const [k, m] of state.meta) {
     if (m && m.hidden) hiddenKeys.add(String(k));
     if (m && m.quick_fix) quickFixKeys.add(String(k));
     if (m && m.spec) specKeys.add(String(k));
+    if (m && m.channel) channelKeys.add(String(k));
   }
   const eff = { ...state.filters, showHidden: state.hideManageMode };
 
-  const filtered = filterClusters(state.topLevel, eff, state.clusterMembers, hiddenKeys, quickFixKeys, specKeys);
+  const filtered = filterClusters(state.topLevel, eff, state.clusterMembers, hiddenKeys, quickFixKeys, specKeys, channelKeys);
   // 표시 대표 선정: 종료(론치완료·Dropped·철회)·숨김이 아닌 멤버 중 비-ETR 우선(cmpRep).
   // 프로젝트/상태/우선순위 선택 필터로는 대표를 바꾸지 않는다 — 연결된 실제 작업 티켓이 항상 메인.
   state.displayMembers = new Map();
   const displayReps = filtered.map(origRep => {
     const members = state.clusterMembers.get(origRep.key) || [];
     const all = [origRep, ...members];
-    const rep = pickDisplayRep(all, eff, hiddenKeys, quickFixKeys, specKeys);
+    const rep = pickDisplayRep(all, eff, hiddenKeys, quickFixKeys, specKeys, channelKeys);
     state.displayMembers.set(rep.key, all.filter(it => it.key !== rep.key));
     return rep;
   });
@@ -848,6 +860,7 @@ function theadHtml() {
         <th style="width:74px">순위</th>
         <th style="width:64px" title="Quick fix 대상">Quick fix</th>
         <th style="width:48px" title="Spec 작성 대상">Spec</th>
+        <th style="width:64px" title="채널 개선 대상">채널 개선</th>
         <th style="width:30%">코멘트</th>
         <th style="width:${state.hideManageMode ? 56 : 20}px">${state.hideManageMode ? '숨김' : ''}</th>
       </tr>
@@ -906,6 +919,7 @@ function rowHtml(it) {
       <td>${rankCellHtml(it.key)}</td>
       <td class="one-qf-cell">${quickFixCellHtml(it.key)}</td>
       <td class="one-spec-cell">${specCellHtml(it.key)}</td>
+      <td class="one-channel-cell">${channelCellHtml(it.key)}</td>
       <td>${commentCellHtml(it.key)}</td>
       <td class="one-row-actions">${hideBtnHtml(it.key)}</td>
     </tr>
@@ -994,6 +1008,15 @@ function specCellHtml(key) {
   const dis = state.signedIn ? '' : 'disabled';
   return `<input type="checkbox" class="one-spec" data-key="${escapeAttr(key)}" ${checked} ${dis}
             aria-label="${escapeAttr(key)} Spec 작성 대상" />`;
+}
+
+/** 채널 개선 대상 체크박스 셀. 체크=채널 개설/개선 완료. (미체크 = "채널 미개설") */
+function channelCellHtml(key) {
+  const m = state.meta.get(key);
+  const checked = m && m.channel ? 'checked' : '';
+  const dis = state.signedIn ? '' : 'disabled';
+  return `<input type="checkbox" class="one-channel" data-key="${escapeAttr(key)}" ${checked} ${dis}
+            aria-label="${escapeAttr(key)} 채널 개선 대상" />`;
 }
 
 function rankCellHtml(key) {
@@ -1166,6 +1189,10 @@ function bindMetaInputs(host) {
   host.querySelectorAll('.one-spec').forEach(cb => {
     cb.addEventListener('change', () => saveMeta(cb.dataset.key, { spec: cb.checked }));
   });
+  // 채널 개선 체크박스
+  host.querySelectorAll('.one-channel').forEach(cb => {
+    cb.addEventListener('change', () => saveMeta(cb.dataset.key, { channel: cb.checked }));
+  });
   // 코멘트 — 표시(URL 링크 클릭 가능) / 편집(textarea) 분리. 클릭→편집, blur→표시 복귀.
   host.querySelectorAll('.one-comment-cell').forEach(cell => {
     const view = cell.querySelector('.one-comment-view');
@@ -1316,6 +1343,8 @@ function bindAuthUi() {
   if (signin) signin.addEventListener('click', onSignInClick);
   if (signout) signout.addEventListener('click', onSignOutClick);
   if (refresh) refresh.addEventListener('click', () => loadMeta());
+  const manual = $('btn-manual-tickets');
+  if (manual) manual.addEventListener('click', openManualModal);
 }
 
 async function bootAuth() {
@@ -1421,9 +1450,11 @@ function renderAuthUi(phase, err) {
   const signout = $('btn-signout');
   const refresh = $('btn-refresh');
   const help = $('auth-help');
+  const manual = $('btn-manual-tickets');
   if (!status) return;
 
   const show = (el, on) => { if (el) el.hidden = !on; };
+  show(manual, phase === 'signedIn');   // 수동 티켓 등록은 로그인 시에만
 
   switch (phase) {
     case 'checking':
@@ -1445,6 +1476,108 @@ function renderAuthUi(phase, err) {
       if (help) help.textContent = '리스트는 로그인 없이도 볼 수 있습니다. 편집하려면 musinsa.com Google 계정으로 로그인하세요.';
       break;
   }
+}
+
+/* ─── 수동 티켓 등록(링크) 모달 ──────────────────────────────
+   링크/키로 Jira 티켓을 one_manual_tickets 에 등록 → 다음 sync 가 issuekey IN(...)
+   로 조회해 리스트에 manual:true 로 포함. 등록 즉시 목록 반영 안 됨(동기화 필요). */
+async function openManualModal() {
+  if (!state.signedIn) { toast({ kicker: '로그인 필요', msg: '먼저 로그인하세요.', kind: 'alert' }); return; }
+
+  const backdrop = document.createElement('div');
+  backdrop.className = 'modal-backdrop';
+  backdrop.innerHTML = `
+    <div class="modal" role="dialog" aria-label="링크로 티켓 추가" style="max-width:480px;">
+      <div class="modal-head">
+        <div>
+          <div class="modal-kicker">MANUAL TICKET</div>
+          <h3 class="modal-title">링크로 티켓 추가</h3>
+        </div>
+        <button class="modal-close" type="button" data-mt-close>CLOSE</button>
+      </div>
+      <div class="modal-body">
+        <div style="display:flex; gap:8px; align-items:center;">
+          <input type="text" data-mt-input placeholder="Jira URL 또는 키 (예: PD-7711)"
+                 style="flex:1; min-width:0;" aria-label="Jira URL 또는 키" />
+          <button type="button" class="btn primary" data-mt-add>추가</button>
+        </div>
+        <p class="muted" style="font-size:11.5px; margin:8px 0 0;">
+          자동 동기화에 안 잡히는 티켓(예: PD Design)을 명시 노출합니다.
+          등록한 티켓은 <strong>다음 동기화(매일 06:00 KST) 후</strong> 목록에 반영됩니다.
+        </p>
+        <div data-mt-list style="margin-top:14px; display:flex; flex-direction:column; gap:6px;">
+          <div class="muted" style="font-size:12px;">불러오는 중…</div>
+        </div>
+      </div>
+      <div class="modal-foot" style="justify-content:flex-end;">
+        <button type="button" class="btn ghost" data-mt-close>닫기</button>
+      </div>
+    </div>`;
+  document.body.appendChild(backdrop);
+
+  const input = backdrop.querySelector('[data-mt-input]');
+  const listHost = backdrop.querySelector('[data-mt-list]');
+  const close = () => { backdrop.remove(); document.removeEventListener('keydown', onKey); };
+  const onKey = (e) => { if (e.key === 'Escape') close(); };
+  document.addEventListener('keydown', onKey);
+  backdrop.addEventListener('click', (e) => { if (e.target === backdrop) close(); });
+  backdrop.querySelectorAll('[data-mt-close]').forEach(b => b.addEventListener('click', close));
+
+  const renderList = (rows) => {
+    if (!rows || !rows.length) {
+      listHost.innerHTML = `<div class="muted" style="font-size:12px;">등록된 수동 티켓이 없습니다.</div>`;
+      return;
+    }
+    listHost.innerHTML = rows.map(r => {
+      const k = escapeAttr(r.jira_key);
+      return `<div style="display:flex; align-items:center; gap:8px; justify-content:space-between;">
+        <span>${jiraKeyHtml(r.jira_key)}${r.note ? ` <span class="muted" style="font-size:11px;">${escapeHtml(r.note)}</span>` : ''}</span>
+        <button type="button" class="tlink" data-mt-remove="${k}" title="등록 해제">✕</button>
+      </div>`;
+    }).join('');
+    listHost.querySelectorAll('[data-mt-remove]').forEach(b => {
+      b.addEventListener('click', () => doRemove(b.dataset.mtRemove));
+    });
+  };
+
+  const reload = async () => {
+    try {
+      renderList(await loadManualTickets());
+    } catch (e) {
+      if (e instanceof AuthRequiredError) { state.signedIn = false; renderAuthUi('signedOut'); close(); return; }
+      listHost.innerHTML = `<div class="muted" style="font-size:12px;">목록 로드 실패: ${escapeHtml(e.message || String(e))}</div>`;
+    }
+  };
+
+  const doAdd = async () => {
+    const key = extractJiraKey(input.value);
+    if (!key) { toast({ kicker: '형식 오류', msg: '유효한 Jira 키/링크가 아닙니다 (예: PD-7711).', kind: 'alert' }); return; }
+    try {
+      await addManualTicket(key);
+      input.value = '';
+      toast({ kicker: '등록됨', msg: `${key} · 다음 동기화 후 목록에 반영됩니다.`, kind: 'success' });
+      await reload();
+    } catch (e) {
+      if (e instanceof AuthRequiredError) { state.signedIn = false; renderAuthUi('signedOut'); close(); return; }
+      toast({ kicker: '등록 실패', msg: e.message || String(e), kind: 'alert' });
+    }
+  };
+
+  const doRemove = async (key) => {
+    try {
+      await removeManualTicket(key);
+      toast({ kicker: '해제됨', msg: `${key} 등록 해제 · 다음 동기화 후 목록에서 제외됩니다.`, kind: 'success' });
+      await reload();
+    } catch (e) {
+      if (e instanceof AuthRequiredError) { state.signedIn = false; renderAuthUi('signedOut'); close(); return; }
+      toast({ kicker: '해제 실패', msg: e.message || String(e), kind: 'alert' });
+    }
+  };
+
+  backdrop.querySelector('[data-mt-add]').addEventListener('click', doAdd);
+  input.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); doAdd(); } });
+  setTimeout(() => input.focus(), 0);
+  reload();
 }
 
 /* ─── test export ─────────────────────────────────────────── */
