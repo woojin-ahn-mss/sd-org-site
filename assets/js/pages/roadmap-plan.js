@@ -133,7 +133,7 @@ async function loadAndRender() {
   state.subjects = sheetData.subjects;
   state.cards = sheetData.cards;
   state.overrides = sheetData.overrides;
-  state.jiraTickets = joinTicketsWithOverrides(jiraData.items || [], state.overrides, state.year);
+  state.jiraTickets = clusterEtrTickets(joinTicketsWithOverrides(jiraData.items || [], state.overrides, state.year));
 
   showBoards(true);
   renderFilters();
@@ -143,6 +143,27 @@ async function loadAndRender() {
   enableRefresh(true);
   enableAddButtons(true);
   startRealtime();
+}
+
+/* ─── ETR ↔ 연동 Initiative 묶음 ──────────────────────────────
+   ETR 외부요청 티켓이 연동(issuelinks)된 Initiative(TM 등)와 함께 보드에 있으면
+   ETR 을 그 Initiative(대표)로 흡수한다 — ETR 카드는 숨기고, 대표 카드에 🔗 배지로 표기.
+   연동 Initiative 가 보드에 없으면(미연동 외부요청) ETR 은 그대로 단독 노출.
+   대표는 항상 비-ETR(=Initiative) — 사용자 정책 2026-06-05 "TM 티켓 우선". */
+function clusterEtrTickets(tickets) {
+  const byKey = new Map(tickets.map(t => [String(t.key), t]));
+  const absorbed = new Set();          // 대표로 흡수돼 숨길 ETR 키
+  for (const t of tickets) {
+    if (t.project !== 'ETR') continue;
+    const links = Array.isArray(t.linkedTickets) ? t.linkedTickets : [];
+    // 보드에 함께 있는 비-ETR 연동 티켓 = 대표 Initiative (첫 번째).
+    const rep = links.map(l => byKey.get(String(l && l.key)))
+                     .find(r => r && r.project !== 'ETR');
+    if (!rep) continue;
+    (rep._linkedEtr || (rep._linkedEtr = [])).push({ key: t.key, summary: t.summary });
+    absorbed.add(String(t.key));
+  }
+  return tickets.filter(t => !absorbed.has(String(t.key)));
 }
 
 /* ─── Realtime ───────────────────────────────────────────────
@@ -532,6 +553,7 @@ function renderCardBoard() {
       priority: t.priority || '',
       projectKey: t.project || '',
       status: t.status || '',
+      linkedEtr: Array.isArray(t._linkedEtr) ? t._linkedEtr : null,
     })),
   ];
 
@@ -650,10 +672,16 @@ function cardEl(it) {
   const titleHtml = isJira
     ? `${jiraKeyHtml(it.jira_key)} <span style="font-size:12px;">${escapeHtml(it.title || '')}</span>`
     : `<span style="font-size:13px;font-weight:500;">${escapeHtml(it.title || '(제목 없음)')}</span>`;
+  // 연동 흡수된 ETR 외부요청 — 대표(Initiative) 카드에 🔗 배지로 표기.
+  const linkedEtr = isJira && Array.isArray(it.linkedEtr) ? it.linkedEtr : [];
+  const linkBadge = linkedEtr.length
+    ? `<span class="muted dim-mono" title="연동 외부요청&#10;${escapeAttr(linkedEtr.map(e => `${e.key} ${e.summary || ''}`).join('\n'))}" style="font-size:10px;border:1px solid var(--rule);border-radius:9px;padding:0 5px;">🔗 ${linkedEtr.map(e => escapeHtml(e.key)).join(', ')}</span>`
+    : '';
   const meta = [
     it.mainSubject ? `<span class="${SUBJECT_CLASS_MAP[it.mainSubject] || 's-misc'}" style="font-size:10px;padding:1px 4px;border-radius:2px;">${escapeHtml(it.mainSubject)}</span>` : '',
     it.priority ? `<span class="pri pri-${escapeAttr(priorityClass(it.priority))}" style="font-size:10px;">${escapeHtml(it.priority)}</span>` : '',
     it.projectKey ? `<span class="muted dim-mono" style="font-size:10px;">${escapeHtml(it.projectKey)}</span>` : '',
+    linkBadge,
   ].filter(Boolean).join(' ');
   // 매핑된 주제를 칩으로 노출 (티켓 위주 — 어떤 주제에 묶였는지 한눈에).
   const chips = isJira ? subjectChipsHtml(ids) : '';
@@ -1348,4 +1376,5 @@ function currentYear(now = new Date()) {
 export const _internal = {
   applyFilters, groupCards, priorityClass, SUBJECT_CLASS_MAP, PROJECT_KEY_RE,
   colorVarForObjective, colorVarForSubject, colorVarForCard,
+  clusterEtrTickets,
 };
