@@ -1,5 +1,5 @@
 {
-  "lastSync": "2026-06-05T07:17:52+09:00",
+  "lastSync": "2026-06-06T07:12:20+09:00",
   "count": 142,
   "items": [
     {
@@ -145,7 +145,7 @@
       "lastStatusChangedAt": "2026-06-04T17:52:17.885+0900",
       "linkedTickets": [
         {
-          "key": "TM-3198",
+          "key": "REC-4712",
           "summary": "[USED] 정산 완료 알림 및 앱 내 정산 내역 상세 표기 강화",
           "status": "SUGGESTED",
           "statusCategory": "new",
@@ -318,7 +318,7 @@
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
-        "name": "이승연",
+        "name": "옥여경",
         "email": null,
         "accountId": null
       },
@@ -338,11 +338,11 @@
       "subSubjects": [],
       "yearQuarter": null,
       "yearQuarters": [],
-      "subGroup": null,
+      "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": "2026-06-18",
       "created": "2026-06-03T21:14:03.700+0900",
-      "updated": "2026-06-04T17:49:52.935+0900",
+      "updated": "2026-06-05T16:29:41.253+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-04T17:49:13.957+0900",
       "linkedTickets": [
@@ -1538,7 +1538,7 @@
       "lastStatusChangedAt": "2026-06-04T23:52:44.444+0900",
       "linkedTickets": [
         {
-          "key": "FT-48",
+          "key": "TM-3216",
           "summary": "[브숍] 각 브랜드샵 AI 탭 신설 — 브랜드 인사이트·고객 취향 분석 제공",
           "status": "SUGGESTED",
           "statusCategory": "new",
@@ -1848,8 +1848,8 @@
         {
           "key": "PD-8300",
           "summary": "[PD][랭킹판] 상품탭 상단 상품 카드에 좋아요 수·후기 수·평점 노출로 정보 밀도 개선",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Blocks",
           "direction": "outward"
@@ -1865,7 +1865,7 @@
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 2
       }
     },
@@ -1903,7 +1903,7 @@
       "startDate": null,
       "dueDate": "2026-06-18",
       "created": "2026-05-28T12:50:11.251+0900",
-      "updated": "2026-06-04T23:47:14.448+0900",
+      "updated": "2026-06-05T12:06:42.781+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-04T23:46:05.841+0900",
       "linkedTickets": [
@@ -2069,15 +2069,15 @@
         {
           "key": "MSSCXTF-1115",
           "summary": "[design-driven][PLP] 퀵필터 아이콘 모션 적용 ",
-          "status": "배포완료",
-          "statusCategory": "indeterminate",
+          "status": "론치완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward"
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 1
       }
     },
@@ -2272,7 +2272,7 @@
       "startDate": null,
       "dueDate": "2026-06-16",
       "created": "2026-05-26T08:46:31.680+0900",
-      "updated": "2026-06-02T09:26:49.751+0900",
+      "updated": "2026-06-05T13:15:53.483+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-02T09:25:44.288+0900",
       "linkedTickets": [],
@@ -2418,7 +2418,7 @@
         {
           "key": "FT-27",
           "summary": "[공통] 전문관 PDP 내 전문관 로고 위치 앞으로 이동 및 풀 로고 디자인 적용 검토",
-          "status": "개발중",
+          "status": "QA중",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
@@ -2882,8 +2882,8 @@
         {
           "key": "TM-3098",
           "summary": "[추천판] 눈에 띄는 신규 입점 브랜드 섹션 브랜드 모듈로 개선",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "개발중",
+          "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward"
@@ -4463,7 +4463,7 @@
       "statusCategory": "done",
       "priority": "P2",
       "assignee": {
-        "name": "이승연",
+        "name": "박승현",
         "email": null,
         "accountId": null
       },
@@ -4487,23 +4487,32 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-14T15:13:33.132+0900",
-      "updated": "2026-05-31T13:46:09.607+0900",
+      "updated": "2026-06-05T11:14:58.303+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-05-14T15:14:17.614+0900",
       "linkedTickets": [
         {
           "key": "FT-1",
           "summary": "주문완료 이메일 무신사 로고 다크모드 고려해 수정",
-          "status": "디자인중",
+          "status": "디자인완료",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Clones",
           "direction": "inward"
+        },
+        {
+          "key": "COMCO-3290",
+          "summary": "이메일 다크모드 대응 - 로고 이미지 표시 개선",
+          "status": "In Progress",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Problem/Incident",
+          "direction": "outward"
         }
       ],
       "progress": {
         "done": 0,
-        "total": 1
+        "total": 2
       }
     },
     {
@@ -4692,7 +4701,7 @@
         },
         {
           "key": "FT-33",
-          "summary": "[스냅] 숏츠 영상 섬네일 생성기준 확인 및 카테고리숍/SRP 내 노출 방식 개선",
+          "summary": "[스냅] 숏츠 영상 썸네일 카테고리PLP/PDP 내 노출 방식 개선",
           "status": "개발중",
           "statusCategory": "indeterminate",
           "assignee": null,
@@ -4808,7 +4817,7 @@
       "statusCategory": "indeterminate",
       "priority": "P0",
       "assignee": {
-        "name": "전장호",
+        "name": "안태훈",
         "email": null,
         "accountId": null
       },
@@ -4832,7 +4841,7 @@
       "startDate": null,
       "dueDate": "2026-06-03",
       "created": "2026-05-13T18:08:42.037+0900",
-      "updated": "2026-06-04T20:09:53.548+0900",
+      "updated": "2026-06-05T09:03:43.369+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-04T20:09:53.548+0900",
       "linkedTickets": [],
@@ -4903,7 +4912,7 @@
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
-        "name": "이승연",
+        "name": "옥여경",
         "email": null,
         "accountId": null
       },
@@ -4927,7 +4936,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-13T16:39:39.081+0900",
-      "updated": "2026-05-21T23:49:08.598+0900",
+      "updated": "2026-06-05T16:29:57.804+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-05-14T14:53:59.887+0900",
       "linkedTickets": [
@@ -4952,7 +4961,7 @@
       "summary": "[유즈드] 추천판>인기브랜드 섹션 내 '유즈드'탭 추가",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-우선착수",
+      "status": "완료",
       "statusCategory": "done",
       "priority": "Big-Rock",
       "assignee": {
@@ -4984,9 +4993,9 @@
       "startDate": null,
       "dueDate": "2026-05-26",
       "created": "2026-05-13T09:03:00.544+0900",
-      "updated": "2026-05-31T13:45:58.261+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-05-13T14:30:30.542+0900",
+      "updated": "2026-06-05T09:24:02.903+0900",
+      "resolutionDate": "2026-06-05T09:24:02.777+0900",
+      "lastStatusChangedAt": "2026-06-05T09:24:02.903+0900",
       "linkedTickets": [
         {
           "key": "PEL-917",
@@ -5416,7 +5425,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-05T16:22:01.396+0900",
-      "updated": "2026-05-28T15:29:34.488+0900",
+      "updated": "2026-06-05T13:16:05.735+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-05-18T09:22:27.055+0900",
       "linkedTickets": [],
@@ -5617,15 +5626,15 @@
         {
           "key": "TM-3008",
           "summary": "[추천] 유즈드 추천 시나리오 구축 : 유즈드 PDP 추천 모듈",
-          "status": "배포완료",
-          "statusCategory": "indeterminate",
+          "status": "론치완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Blocks",
           "direction": "inward"
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 1
       }
     },
@@ -5664,7 +5673,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-04T11:32:30.984+0900",
-      "updated": "2026-05-28T15:29:31.040+0900",
+      "updated": "2026-06-05T13:16:09.408+0900",
       "resolutionDate": "2026-05-13T14:20:02.612+0900",
       "lastStatusChangedAt": "2026-05-13T14:20:02.715+0900",
       "linkedTickets": [],
@@ -5714,7 +5723,7 @@
         {
           "key": "TM-3038",
           "summary": "브랜드 맞춤형 설문형 앱테크 미션 개발 — 브랜드 구매자 대상 제품 개선 의견 수렴",
-          "status": "SUGGESTED",
+          "status": "Backlog",
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Clones",
