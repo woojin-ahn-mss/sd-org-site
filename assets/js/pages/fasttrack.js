@@ -113,13 +113,14 @@ function renderStats() {
   setStat('lastweek', lastWeek.length, 'created 기준');
   setStat('thisweek', thisWeek.length, `트리아지 ${thisWeekTriage.length}건`);
 
-  // 금주 진행중 — FT·MSSCXTF 의 'one' 레이블 + 상태 '개발중' 현재 스냅샷
+  // 금주 진행중 — FT·MSSCXTF·PEL·TM 의 'one' 레이블 + 상태 '개발중' 현재 스냅샷
+  const FT_PROJECTS = new Set(['FT', 'MSSCXTF', 'PEL', 'TM']);
   const inProgressOne = state.ftItems.filter(it =>
-    (it.project === 'FT' || it.project === 'MSSCXTF') &&
+    FT_PROJECTS.has(it.project) &&
     it.status === STATUS_DEV &&
     (it.labels || []).includes('one')
   ).length;
-  setStatRaw('inprogress', inProgressOne, '개발중 · one (FT+MSSCXTF)', state.ftItems.length === 0);
+  setStatRaw('inprogress', inProgressOne, '개발중 · one (FT+MSSCXTF+PEL+TM)', state.ftItems.length === 0);
 }
 
 /** KST 월~일 기준으로 created 를 금주/지난주 버킷에 배정.
@@ -409,7 +410,7 @@ function renderWeeklyChart() {
   host.innerHTML = `
     <div class="wc-legend">
       <span class="wc-key"><span class="wc-sw" style="background:${colorIntake}"></span>인입 (ETR created)</span>
-      <span class="wc-key"><span class="wc-sw" style="background:${colorDone};opacity:0.75"></span>완료 (MSSCXTF+FT resolutionDate)</span>
+      <span class="wc-key"><span class="wc-sw" style="background:${colorDone};opacity:0.75"></span>완료 (MSSCXTF+FT+PEL+TM resolutionDate)</span>
       <span class="wc-key"><span class="wc-sw" style="background:${colorFore};opacity:0.85"></span>완료 예정 (미완료 dueDate)</span>
       <span class="wc-key muted dim-mono" style="margin-left:auto">막대 클릭 → 해당 주 티켓 보기</span>
     </div>
