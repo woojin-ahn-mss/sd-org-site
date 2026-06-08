@@ -15,6 +15,9 @@ import { STATUS_GROUPS, statusGroup } from '../charts.js';
 import { scoped } from '../storage.js';
 import { escapeHtml, escapeAttr } from '../escape.js';
 import { openDrilldown } from '../drilldown.js';
+import { toast } from '../toast.js';
+import { AuthRequiredError } from '../api/supabase.js';
+import { addManualTicket, removeManualTicket, loadManualTickets, extractJiraKey } from '../api/ft-manual-tickets.js';
 
 const FILTERS_KEY = 'fasttrack.filters';
 const PERIOD_DAYS = { '1m': 30, '3m': 90, 'all': Infinity };
@@ -25,6 +28,42 @@ const STATUS_TRIAGE = '검토완료-우선착수';   // 패스트트랙 트리�
 const STATUS_NORMAL = '검토완료-백로그';     // 일반 과제 (패스트트랙 진행 X)
 const STATUS_DEV = '개발중';                 // 실제 진행중 (FT·MSSCXTF Initiative)
 const STATUS_DROPPED = new Set(['반려', '검토완료-미진행', '철회']);
+
+// 패스트트랙 실제 진행 Initiative 가 사는 프로젝트 (TM 은 자동 제외 — 수동 등록분만 it.manual 로 포함)
+const FT_PROJECTS = new Set(['FT', 'MSSCXTF', 'PEL', 'TF']);
+
+/* ── 진행 칸반 (2026-06-08) ──────────────────────────────────
+   인입 컬럼 = ETR 인입 단계 티켓. 그 외 컬럼 = ETR 에 연결/복사된 Initiative
+   (MSSCXTF·TM·PEL·FT·TF) 의 상태로 배치. 매핑/제외 정책은 사용자 확정(2026-06-08):
+   - 미착수(SUGGESTED·Backlog·HOLD) → '대기/백로그' 컬럼
+   - 종료(철회/반려/취소·Dropped·반려) → 보드 제외
+   - 'X완료' 중간상태 → 다음 단계로 (기획완료→디자인중, 디자인완료→개발중) */
+const KANBAN_PROJECTS = new Set(['MSSCXTF', 'TM', 'PEL', 'FT', 'TF']);
+const INTAKE_STATUSES = new Set(['발의', '매니저 승인 대기', 'PMO 검토 중', 'Tech 검토 대기 중', 'Tech 검토 중']);
+const KANBAN_TERMINAL = new Set(['철회/반려/취소', 'Dropped', '반려', '취소', '철회', '검토완료-미진행']);
+const STATUS_TO_COL = {
+  'SUGGESTED': 'backlog', 'Backlog': 'backlog', 'HOLD': 'backlog',
+  '준비중': 'plan', '기획중': 'plan',
+  '기획완료': 'design', '디자인중': 'design', 'Design Finalization': 'design',
+  '디자인완료': 'dev', '개발중': 'dev', 'In Progress': 'dev', 'QA중': 'dev', 'Waiting For Review': 'dev',
+  '개발완료': 'devdone',
+  '배포완료': 'deployed',
+  '론치완료': 'launched', '완료': 'launched',
+};
+const KANBAN_COLS = [
+  { id: 'intake',   label: '요구사항 인입' },
+  { id: 'backlog',  label: '대기/백로그' },
+  { id: 'plan',     label: '기획중' },
+  { id: 'design',   label: '디자인중' },
+  { id: 'dev',      label: '개발중' },
+  { id: 'devdone',  label: '개발완료' },
+  { id: 'deployed', label: '배포완료' },
+  { id: 'launched', label: '론치완료' },
+];
+
+function projectOfKey(key) {
+  return key && key.includes('-') ? key.split('-')[0] : '';
+}
 
 // statusCategory='done' 중 '실제 완료' 가 아닌 상태 (취소/반려/Dropped) — 주별 차트 완료 카운트에서 제외
 const EXCLUDED_FROM_DONE = new Set(['Dropped', '철회/반려/취소', '취소', '반려', '철회']);
@@ -79,9 +118,21 @@ export async function renderFasttrack({ rootRel = '' } = {}) {
   renderHeader();
   renderDwellTables();
   renderWeeklyChart();
+  renderKanban();
   renderFilters();
   renderTable();
   renderFtTable();
+  bindManualBtn();
+}
+
+/** FT 섹션 헤더의 '티켓 추가' 버튼 → 수동 등록 모달.
+ *  전역 auth-gate 가 페이지를 로그인으로 막으므로 별도 로그인 흐름 불필요. */
+function bindManualBtn() {
+  const btn = document.getElementById('btn-ft-manual');
+  if (btn && !btn.dataset.bound) {
+    btn.dataset.bound = '1';
+    btn.addEventListener('click', openManualModal);
+  }
 }
 
 /** linkedTickets 진척률 보정 + missing progress 계산 */
@@ -113,14 +164,13 @@ function renderStats() {
   setStat('lastweek', lastWeek.length, 'created 기준');
   setStat('thisweek', thisWeek.length, `트리아지 ${thisWeekTriage.length}건`);
 
-  // 금주 진행중 — FT·MSSCXTF·PEL·TM 의 'one' 레이블 + 상태 '개발중' 현재 스냅샷
-  const FT_PROJECTS = new Set(['FT', 'MSSCXTF', 'PEL', 'TM']);
+  // 금주 진행중 — FT·MSSCXTF·PEL·TF + 수동 등록분의 'one' 레이블 + 상태 '개발중' 현재 스냅샷
   const inProgressOne = state.ftItems.filter(it =>
-    FT_PROJECTS.has(it.project) &&
+    (FT_PROJECTS.has(it.project) || it.manual) &&
     it.status === STATUS_DEV &&
     (it.labels || []).includes('one')
   ).length;
-  setStatRaw('inprogress', inProgressOne, '개발중 · one (FT+MSSCXTF+PEL+TM)', state.ftItems.length === 0);
+  setStatRaw('inprogress', inProgressOne, '개발중 · one (FT·MSSCXTF·PEL·TF + 수동)', state.ftItems.length === 0);
 }
 
 /** KST 월~일 기준으로 created 를 금주/지난주 버킷에 배정.
@@ -410,7 +460,7 @@ function renderWeeklyChart() {
   host.innerHTML = `
     <div class="wc-legend">
       <span class="wc-key"><span class="wc-sw" style="background:${colorIntake}"></span>인입 (ETR created)</span>
-      <span class="wc-key"><span class="wc-sw" style="background:${colorDone};opacity:0.75"></span>완료 (MSSCXTF+FT+PEL+TM resolutionDate)</span>
+      <span class="wc-key"><span class="wc-sw" style="background:${colorDone};opacity:0.75"></span>완료 (MSSCXTF·FT·PEL·TF + 수동 resolutionDate)</span>
       <span class="wc-key"><span class="wc-sw" style="background:${colorFore};opacity:0.85"></span>완료 예정 (미완료 dueDate)</span>
       <span class="wc-key muted dim-mono" style="margin-left:auto">막대 클릭 → 해당 주 티켓 보기</span>
     </div>
@@ -808,6 +858,196 @@ function isItemDone(it) {
   const p = it.progress || { done: 0, total: 0 };
   if (p.total > 0 && p.done === p.total) return true;
   return false;
+}
+
+/* ─── 진행 칸반 ──────────────────────────────────────────── */
+
+/** 인입(ETR) + 연결/복사 Initiative 를 컬럼별로 분류.
+ *  @returns {Record<string, object[]>} 컬럼 id → 카드 배열 */
+export function buildKanban(etrItems = state.items, ftItems = state.ftItems) {
+  const cols = {};
+  for (const c of KANBAN_COLS) cols[c.id] = [];
+
+  // 1) 요구사항 인입 — ETR 인입 단계 티켓
+  for (const it of etrItems) {
+    if (INTAKE_STATUSES.has(it.status)) cols.intake.push(kanbanCard(it, it.project || 'ETR'));
+  }
+
+  // 2) 다운스트림 — ft-tickets(풀필드) + ETR linkedTickets(stub), 패스트트랙 프로젝트만, 키로 dedup
+  const seen = new Set();
+  const consider = (raw, proj) => {
+    const key = raw && raw.key;
+    if (!key || seen.has(key) || !KANBAN_PROJECTS.has(proj)) return;
+    seen.add(key);
+    if (KANBAN_TERMINAL.has(raw.status)) return;           // 종료 — 보드 제외
+    const col = STATUS_TO_COL[raw.status] || 'backlog';    // 미매핑 비종료 상태는 대기로(누락 방지)
+    cols[col].push(kanbanCard(raw, proj));
+  };
+  for (const it of ftItems) consider(it, it.project || projectOfKey(it.key));
+  for (const etr of etrItems) {
+    for (const l of (etr.linkedTickets || [])) consider(l, projectOfKey(l.key));
+  }
+  return cols;
+}
+
+function kanbanCard(raw, proj) {
+  return {
+    key: raw.key,
+    summary: raw.summary || '',
+    status: raw.status || '',
+    statusCategory: raw.statusCategory,
+    project: proj,
+    assignee: (raw.assignee && raw.assignee.name) || null,
+    manual: !!raw.manual,
+  };
+}
+
+function renderKanban() {
+  const host = document.getElementById('ft-kanban');
+  if (!host) return;
+  if (!state.items.length && !state.ftItems.length) {
+    host.innerHTML = emptyHtml({ kicker: 'NO DATA', msg: '데이터 동기화 대기 중.' });
+    return;
+  }
+  const cols = buildKanban();
+  host.innerHTML = `
+    <div class="ftk-board">
+      ${KANBAN_COLS.map(c => {
+        const cards = cols[c.id] || [];
+        return `
+          <div class="ftk-col" data-col="${c.id}">
+            <div class="ftk-col-h">
+              <span class="ftk-col-name">${escapeHtml(c.label)}</span>
+              <span class="ct num">${cards.length}</span>
+            </div>
+            <div class="ftk-col-body">
+              ${cards.length ? cards.map(kanbanCardHtml).join('') : '<div class="ftk-empty">—</div>'}
+            </div>
+          </div>`;
+      }).join('')}
+    </div>`;
+}
+
+function kanbanCardHtml(c) {
+  const g = STATUS_GROUPS.find(x => x.id === statusGroup(c));
+  const stCls = g ? g.stClass : 'st-wait';
+  const who = c.assignee
+    ? `<span class="who"><span class="who-dot"></span>${escapeHtml(c.assignee)}</span>`
+    : '<span class="who muted">미배정</span>';
+  const manualTag = c.manual ? '<span class="ftk-tag">수동</span>' : '';
+  return `
+    <div class="ftk-card">
+      <div class="ftk-card-top">
+        <span class="ftk-proj">${escapeHtml(c.project)}</span>${manualTag}
+        ${jiraKeyHtml(c.key)}
+      </div>
+      <div class="ftk-card-sum">${escapeHtml(c.summary)}</div>
+      <div class="ftk-card-meta">
+        <span class="st ${stCls}">${escapeHtml(c.status)}</span>
+        ${who}
+      </div>
+    </div>`;
+}
+
+/* ─── 수동 티켓 등록(키) 모달 ──────────────────────────────
+   키/링크로 Jira 티켓을 ft_manual_tickets 에 등록 → 다음 sync 가 issuekey IN(...)
+   로 조회해 ft-tickets.json 에 manual:true 로 포함. 등록 즉시 반영 안 됨(동기화 필요).
+   one-tickets 의 동일 모달을 패스트트랙용 테이블로 옮긴 것. */
+async function openManualModal() {
+  const backdrop = document.createElement('div');
+  backdrop.className = 'modal-backdrop';
+  backdrop.innerHTML = `
+    <div class="modal" role="dialog" aria-label="키로 티켓 추가" style="max-width:480px;">
+      <div class="modal-head">
+        <div>
+          <div class="modal-kicker">MANUAL TICKET</div>
+          <h3 class="modal-title">키로 패스트트랙 티켓 추가</h3>
+        </div>
+        <button class="modal-close" type="button" data-mt-close>CLOSE</button>
+      </div>
+      <div class="modal-body">
+        <div style="display:flex; gap:8px; align-items:center;">
+          <input type="text" data-mt-input placeholder="Jira URL 또는 키 (예: TM-1234)"
+                 style="flex:1; min-width:0;" aria-label="Jira URL 또는 키" />
+          <button type="button" class="btn primary" data-mt-add>추가</button>
+        </div>
+        <p class="muted" style="font-size:11.5px; margin:8px 0 0;">
+          자동 동기화(MSSCXTF·FT·PEL·TF Initiative)에 안 잡히는 티켓(예: 특정 TM Initiative)을 명시 노출합니다.
+          등록한 티켓은 <strong>다음 동기화(매일 06:00 KST) 후</strong> 목록에 반영됩니다.
+        </p>
+        <div data-mt-list style="margin-top:14px; display:flex; flex-direction:column; gap:6px;">
+          <div class="muted" style="font-size:12px;">불러오는 중…</div>
+        </div>
+      </div>
+      <div class="modal-foot" style="justify-content:flex-end;">
+        <button type="button" class="btn ghost" data-mt-close>닫기</button>
+      </div>
+    </div>`;
+  document.body.appendChild(backdrop);
+
+  const input = backdrop.querySelector('[data-mt-input]');
+  const listHost = backdrop.querySelector('[data-mt-list]');
+  const close = () => { backdrop.remove(); document.removeEventListener('keydown', onKey); };
+  const onKey = (e) => { if (e.key === 'Escape') close(); };
+  document.addEventListener('keydown', onKey);
+  backdrop.addEventListener('click', (e) => { if (e.target === backdrop) close(); });
+  backdrop.querySelectorAll('[data-mt-close]').forEach(b => b.addEventListener('click', close));
+
+  const renderList = (rows) => {
+    if (!rows || !rows.length) {
+      listHost.innerHTML = `<div class="muted" style="font-size:12px;">등록된 수동 티켓이 없습니다.</div>`;
+      return;
+    }
+    listHost.innerHTML = rows.map(r => {
+      const k = escapeAttr(r.jira_key);
+      return `<div style="display:flex; align-items:center; gap:8px; justify-content:space-between;">
+        <span>${jiraKeyHtml(r.jira_key)}${r.note ? ` <span class="muted" style="font-size:11px;">${escapeHtml(r.note)}</span>` : ''}</span>
+        <button type="button" class="tlink" data-mt-remove="${k}" title="등록 해제">✕</button>
+      </div>`;
+    }).join('');
+    listHost.querySelectorAll('[data-mt-remove]').forEach(b => {
+      b.addEventListener('click', () => doRemove(b.dataset.mtRemove));
+    });
+  };
+
+  const reload = async () => {
+    try {
+      renderList(await loadManualTickets());
+    } catch (e) {
+      if (e instanceof AuthRequiredError) { toast({ kicker: '로그인 필요', msg: '다시 로그인하세요.', kind: 'alert' }); close(); return; }
+      listHost.innerHTML = `<div class="muted" style="font-size:12px;">목록 로드 실패: ${escapeHtml(e.message || String(e))}</div>`;
+    }
+  };
+
+  const doAdd = async () => {
+    const key = extractJiraKey(input.value);
+    if (!key) { toast({ kicker: '형식 오류', msg: '유효한 Jira 키/링크가 아닙니다 (예: TM-1234).', kind: 'alert' }); return; }
+    try {
+      await addManualTicket(key);
+      input.value = '';
+      toast({ kicker: '등록됨', msg: `${key} · 다음 동기화 후 목록에 반영됩니다.`, kind: 'success' });
+      await reload();
+    } catch (e) {
+      if (e instanceof AuthRequiredError) { toast({ kicker: '로그인 필요', msg: '다시 로그인하세요.', kind: 'alert' }); close(); return; }
+      toast({ kicker: '등록 실패', msg: e.message || String(e), kind: 'alert' });
+    }
+  };
+
+  const doRemove = async (key) => {
+    try {
+      await removeManualTicket(key);
+      toast({ kicker: '해제됨', msg: `${key} 등록 해제 · 다음 동기화 후 목록에서 제외됩니다.`, kind: 'success' });
+      await reload();
+    } catch (e) {
+      if (e instanceof AuthRequiredError) { toast({ kicker: '로그인 필요', msg: '다시 로그인하세요.', kind: 'alert' }); close(); return; }
+      toast({ kicker: '해제 실패', msg: e.message || String(e), kind: 'alert' });
+    }
+  };
+
+  backdrop.querySelector('[data-mt-add]').addEventListener('click', doAdd);
+  input.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); doAdd(); } });
+  setTimeout(() => input.focus(), 0);
+  reload();
 }
 
 export const _internal = {

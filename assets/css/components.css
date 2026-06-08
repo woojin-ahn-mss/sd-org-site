@@ -1870,3 +1870,65 @@ hr.rule { border: 0; border-top: 1px solid var(--rule); margin: 18px 0; }
   .key { color: #000; text-decoration: underline; }
   .tlink, .btn { display: none; }
 }
+
+/* ── 패스트트랙 진행 칸반 ──────────────────────────────────── */
+.ftk-board {
+  display: flex;
+  overflow-x: auto;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--bg-elev);
+}
+.ftk-col {
+  flex: 0 0 240px;
+  min-width: 240px;
+  border-right: 1px solid var(--rule);
+  display: flex;
+  flex-direction: column;
+}
+.ftk-col:last-child { border-right: 0; }
+.ftk-col[data-col="intake"] { background: var(--bg); }
+.ftk-col-h {
+  display: flex; align-items: baseline; justify-content: space-between;
+  padding: 12px 14px 10px;
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--font-mono);
+  font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--dim);
+}
+.ftk-col-h .ct { color: var(--faint); }
+.ftk-col-body {
+  display: flex; flex-direction: column; gap: 8px;
+  padding: 10px; min-height: 120px;
+}
+.ftk-empty { color: var(--faint); font-size: 12px; text-align: center; padding: 10px 0; }
+.ftk-card {
+  padding: 10px 11px;
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-left: 2px solid var(--accent-rule);
+  border-radius: 8px;
+  transition: border-color 120ms;
+}
+.ftk-col[data-col="intake"] .ftk-card { background: var(--bg-elev); }
+.ftk-card:hover { border-color: var(--rule-strong); }
+.ftk-card-top {
+  display: flex; align-items: center; gap: 6px;
+  font-family: var(--font-mono); font-size: 10.5px;
+  margin-bottom: 5px;
+}
+.ftk-proj { color: var(--accent); font-weight: 600; letter-spacing: 0.04em; }
+.ftk-tag {
+  font-size: 9.5px; color: var(--faint);
+  border: 1px solid var(--rule-strong); border-radius: 3px;
+  padding: 0 4px; letter-spacing: 0.04em;
+}
+.ftk-card-sum {
+  font-size: 12.5px; line-height: 1.4; color: var(--text);
+  margin-bottom: 7px;
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+}
+.ftk-card-meta {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+}
+.ftk-card-meta .who { font-size: 11px; color: var(--faint); }

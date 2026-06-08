@@ -84,9 +84,24 @@
     <section>
       <div class="sec-head">
         <h2>주별 인입 · 완료 · 완료 예정 추이</h2>
-        <small>과거 12주 인입(ETR created)·완료(MSSCXTF+FT resolutionDate) + 이번 주~향후 12주 완료 예정(미완료 dueDate) · 기한 초과 제외</small>
+        <small>과거 12주 인입(ETR created)·완료(MSSCXTF·FT·PEL·TF resolutionDate) + 이번 주~향후 12주 완료 예정(미완료 dueDate) · 기한 초과 제외</small>
       </div>
       <div id="weekly-chart"></div>
+    </section>
+
+    <!-- 진행 칸반 (요구사항 인입 → 론치완료) -->
+    <section>
+      <div class="sec-head">
+        <div>
+          <h2>진행 칸반</h2>
+          <small>요구사항 인입(ETR) → 연결·복사 Initiative(MSSCXTF·TM·PEL·FT·TF)의 단계별 진행 · 종료건 제외</small>
+        </div>
+        <div class="actions">
+          <button id="btn-ft-manual" type="button" class="btn ghost"
+                  title="키로 패스트트랙 티켓을 수동 등록 — 자동 동기화에 안 잡히는 티켓(예: 특정 TM Initiative)을 명시 노출">🔗 티켓 추가</button>
+        </div>
+      </div>
+      <div id="ft-kanban"></div>
     </section>
 
     <!-- 필터 (데이터 없으면 통째로 숨김) -->
@@ -104,11 +119,11 @@
       <div id="sec-table"></div>
     </section>
 
-    <!-- 실제 진행 티켓 (MSSCXTF + FT Initiative) -->
+    <!-- 실제 진행 티켓 (MSSCXTF·FT·PEL·TF Initiative + 수동 등록) -->
     <section>
       <div class="sec-head">
         <h2>실제 진행 티켓 (Initiative)</h2>
-        <small>MSSCXTF + FT 프로젝트의 Initiative · 20건/페이지</small>
+        <small>MSSCXTF·FT·PEL·TF 프로젝트의 Initiative + 수동 등록 · 20건/페이지</small>
       </div>
       <div id="ft-table"></div>
     </section>
