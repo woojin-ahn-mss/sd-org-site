@@ -1899,6 +1899,7 @@ hr.rule { border: 0; border-top: 1px solid var(--rule); margin: 18px 0; }
   color: var(--dim);
 }
 .ftk-col-h .ct { color: var(--faint); }
+.ftk-col-note { color: var(--faint); font-size: 9.5px; text-transform: none; letter-spacing: 0; }
 .ftk-col-body {
   display: flex; flex-direction: column; gap: 8px;
   padding: 10px; min-height: 120px;

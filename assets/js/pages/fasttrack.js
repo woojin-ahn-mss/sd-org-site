@@ -54,6 +54,7 @@ const STATUS_TO_COL = {
   '배포완료': 'deployed',
   '론치완료': 'launched', '완료': 'launched',
 };
+const LAUNCHED_WINDOW_DAYS = 14;   // 완료(론치완료)는 최근 2주만 노출
 const KANBAN_COLS = [
   { id: 'intake',   label: '요구사항 인입' },
   { id: 'backlog',  label: '대기/백로그' },
@@ -62,7 +63,7 @@ const KANBAN_COLS = [
   { id: 'dev',      label: '개발중' },
   { id: 'devdone',  label: '개발완료' },
   { id: 'deployed', label: '배포완료' },
-  { id: 'launched', label: '론치완료' },
+  { id: 'launched', label: '론치완료', note: '최근 2주' },
 ];
 
 function projectOfKey(key) {
@@ -875,7 +876,7 @@ function isItemDone(it) {
 
 /** 인입(ETR) + 연결/복사 Initiative 를 컬럼별로 분류.
  *  @returns {Record<string, object[]>} 컬럼 id → 카드 배열 */
-export function buildKanban(etrItems = state.items, ftItems = state.ftItems) {
+export function buildKanban(etrItems = state.items, ftItems = state.ftItems, now = Date.now()) {
   const cols = {};
   for (const c of KANBAN_COLS) cols[c.id] = [];
 
@@ -898,7 +899,14 @@ export function buildKanban(etrItems = state.items, ftItems = state.ftItems) {
   for (const etr of etrItems) {
     for (const l of (etr.linkedTickets || [])) consider(l, projectOfKey(l.key));
   }
-  return mergeKanbanDuplicates(cols);
+  const merged = mergeKanbanDuplicates(cols);
+  // 완료(론치완료)는 최근 2주 완료분만 — 완료일 없으면(미상) 제외
+  const cutoff = now - LAUNCHED_WINDOW_DAYS * 86400 * 1000;
+  merged.launched = merged.launched.filter(c => {
+    const t = c.doneDate ? new Date(c.doneDate).getTime() : NaN;
+    return !isNaN(t) && t >= cutoff;
+  });
+  return merged;
 }
 
 /** 같은 summary 카드(복사/클론)를 한 장으로 병합 (2026-06-08).
@@ -948,6 +956,8 @@ function kanbanCard(raw, proj) {
     assignee: (raw.assignee && raw.assignee.name) || null,
     manual: !!raw.manual,
     labels: Array.isArray(raw.labels) ? raw.labels : [],
+    // 완료(론치완료) 최근 2주 필터용 완료일 — resolutionDate 우선, 없으면 상태변경/수정일
+    doneDate: raw.resolutionDate || raw.lastStatusChangedAt || raw.updated || null,
   };
 }
 
@@ -961,7 +971,10 @@ function renderKanban() {
   const labelOnly = !!scoped(KANBAN_LABEL_KEY).get(false);
   const cols = buildKanban();
   const keep = (c) => !labelOnly || cardHasLabel(c, KANBAN_LABEL);
-  const total = KANBAN_COLS.reduce((n, c) => n + (cols[c.id] || []).filter(keep).length, 0);
+  // 전체 개수는 완료(론치완료) 제외 — 진행 중 물량만 카운트
+  const total = KANBAN_COLS
+    .filter(c => c.id !== 'launched')
+    .reduce((n, c) => n + (cols[c.id] || []).filter(keep).length, 0);
 
   host.innerHTML = `
     <div class="ftk-toolbar">
@@ -969,7 +982,7 @@ function renderKanban() {
               aria-pressed="${labelOnly}" title="'fasttrack' 레이블이 붙은 카드만 표시">
         ⚡ fasttrack 레이블만
       </button>
-      <span class="ftk-toolbar-ct muted num">${total}건${labelOnly ? ' (필터됨)' : ''}</span>
+      <span class="ftk-toolbar-ct muted num">${total}건 (완료 제외)${labelOnly ? ' · 필터됨' : ''}</span>
     </div>
     <div class="ftk-board">
       ${KANBAN_COLS.map(c => {
@@ -977,7 +990,7 @@ function renderKanban() {
         return `
           <div class="ftk-col" data-col="${c.id}">
             <div class="ftk-col-h">
-              <span class="ftk-col-name">${escapeHtml(c.label)}</span>
+              <span class="ftk-col-name">${escapeHtml(c.label)}${c.note ? ` <span class="ftk-col-note">${escapeHtml(c.note)}</span>` : ''}</span>
               <span class="ct num">${cards.length}</span>
             </div>
             <div class="ftk-col-body">
