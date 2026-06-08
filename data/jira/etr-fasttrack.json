@@ -1,5 +1,5 @@
 {
-  "lastSync": "2026-06-08T10:18:09+09:00",
+  "lastSync": "2026-06-08T11:55:36+09:00",
   "count": 142,
   "items": [
     {
@@ -46,7 +46,12 @@
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "conveyor",
+            "one",
+            "ux-ft-backlog"
+          ]
         }
       ],
       "progress": {
@@ -98,7 +103,12 @@
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "conveyor",
+            "one",
+            "ux-ft-backlog"
+          ]
         }
       ],
       "progress": {
@@ -151,7 +161,14 @@
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor",
+            "conveyor-bot",
+            "general-task",
+            "one"
+          ]
         }
       ],
       "progress": {
@@ -204,7 +221,15 @@
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor",
+            "conveyor-bot",
+            "general-task",
+            "one",
+            "홈앤디"
+          ]
         }
       ],
       "progress": {
@@ -300,7 +325,15 @@
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor",
+            "conveyor-bot",
+            "general-task",
+            "one",
+            "홈앤디"
+          ]
         }
       ],
       "progress": {
@@ -353,7 +386,14 @@
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor",
+            "conveyor-bot",
+            "general-task",
+            "one"
+          ]
         }
       ],
       "progress": {
@@ -535,7 +575,13 @@
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "conveyor",
+            "fasttrack",
+            "one",
+            "ux-ft"
+          ]
         },
         {
           "key": "FT-49",
@@ -544,7 +590,14 @@
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor",
+            "conveyor-bot",
+            "fast-track-away",
+            "one"
+          ]
         }
       ],
       "progress": {
@@ -596,7 +649,14 @@
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "conveyor",
+            "conveyor-bot",
+            "fast-track-home",
+            "one",
+            "ux-ft"
+          ]
         }
       ],
       "progress": {
@@ -649,7 +709,15 @@
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor",
+            "conveyor-bot",
+            "general-task",
+            "one",
+            "홈앤디"
+          ]
         }
       ],
       "progress": {
@@ -702,16 +770,28 @@
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "fasttrack"
+          ]
         },
         {
           "key": "FT-40",
           "summary": "[PLP] 정렬 옵션 순서 개선 — 좋아요 급상승 하단 이동 및 매출 관련 정렬 상단 배치",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "개발완료",
+          "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor",
+            "conveyor-bot",
+            "fast-track-away",
+            "fasttrack",
+            "one",
+            "홈앤디"
+          ]
         }
       ],
       "progress": {
@@ -764,7 +844,15 @@
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor",
+            "conveyor-bot",
+            "general-task",
+            "one",
+            "홈앤디"
+          ]
         }
       ],
       "progress": {
@@ -816,7 +904,8 @@
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Blocks",
-          "direction": "outward"
+          "direction": "outward",
+          "labels": []
         },
         {
           "key": "FT-44",
@@ -825,7 +914,14 @@
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "conveyor",
+            "conveyor-bot",
+            "fast-track-away",
+            "fasttrack",
+            "one"
+          ]
         }
       ],
       "progress": {
@@ -872,11 +968,17 @@
         {
           "key": "MSSCXTF-1215",
           "summary": "[PDP] 브랜드명 옆 전문관 파비콘 + 전문관 붙이기",
-          "status": "디자인중",
-          "statusCategory": "indeterminate",
+          "status": "철회/반려/취소",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "conveyor",
+            "fasttrack",
+            "one",
+            "pel"
+          ]
         },
         {
           "key": "TM-3095",
@@ -885,11 +987,15 @@
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "fasttrack",
+            "one"
+          ]
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 2
       }
     },
@@ -936,7 +1042,10 @@
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Clones",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "one"
+          ]
         }
       ],
       "progress": {
@@ -989,7 +1098,17 @@
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "ai-full",
+            "complexity:1",
+            "complexity:3",
+            "conveyor",
+            "fasttrack",
+            "one",
+            "pel",
+            "홈앤디"
+          ]
         }
       ],
       "progress": {
@@ -1042,7 +1161,14 @@
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor",
+            "conveyor-bot",
+            "general-task",
+            "one"
+          ]
         }
       ],
       "progress": {
@@ -1095,7 +1221,8 @@
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Blocks",
-          "direction": "outward"
+          "direction": "outward",
+          "labels": []
         },
         {
           "key": "TM-3178",
@@ -1104,7 +1231,15 @@
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor",
+            "conveyor-bot",
+            "general-task",
+            "one",
+            "홈앤디"
+          ]
         }
       ],
       "progress": {
@@ -1200,7 +1335,12 @@
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Blocks",
-          "direction": "outward"
+          "direction": "outward",
+          "labels": [
+            "MSS",
+            "conveyor",
+            "one"
+          ]
         },
         {
           "key": "TM-1674",
@@ -1209,7 +1349,12 @@
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "MSS",
+            "conveyor",
+            "one"
+          ]
         }
       ],
       "progress": {
@@ -1262,7 +1407,11 @@
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "one",
+            "홈앤디"
+          ]
         }
       ],
       "progress": {
@@ -1315,7 +1464,16 @@
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Contains",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "26'2Q",
+            "AI-ASSISTED",
+            "MSS",
+            "conveyor",
+            "one",
+            "pel",
+            "홈앤디"
+          ]
         },
         {
           "key": "SNDPRD-4087",
@@ -1324,7 +1482,8 @@
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Contains",
-          "direction": "outward"
+          "direction": "outward",
+          "labels": []
         },
         {
           "key": "FT-36",
@@ -1333,7 +1492,15 @@
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor",
+            "conveyor-bot",
+            "fast-track-away",
+            "one",
+            "홈앤디"
+          ]
         }
       ],
       "progress": {
@@ -1429,7 +1596,12 @@
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Duplicate",
-          "direction": "outward"
+          "direction": "outward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor",
+            "one"
+          ]
         }
       ],
       "progress": {
@@ -1482,7 +1654,15 @@
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor",
+            "conveyor-bot",
+            "fast-track-away",
+            "fasttrack",
+            "one"
+          ]
         },
         {
           "key": "ETR-4595",
@@ -1491,7 +1671,12 @@
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Duplicate",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor",
+            "one"
+          ]
         }
       ],
       "progress": {
@@ -1544,7 +1729,15 @@
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor",
+            "conveyor-bot",
+            "fast-track-away",
+            "one",
+            "홈앤디"
+          ]
         }
       ],
       "progress": {
@@ -1597,7 +1790,14 @@
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor",
+            "conveyor-bot",
+            "general-task",
+            "one"
+          ]
         }
       ],
       "progress": {
@@ -1693,7 +1893,14 @@
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor",
+            "conveyor-bot",
+            "general-task",
+            "one"
+          ]
         }
       ],
       "progress": {
@@ -1746,7 +1953,14 @@
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor",
+            "conveyor-bot",
+            "general-task",
+            "one"
+          ]
         }
       ],
       "progress": {
@@ -1799,7 +2013,15 @@
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor",
+            "conveyor-bot",
+            "general-task",
+            "one",
+            "홈앤디"
+          ]
         }
       ],
       "progress": {
@@ -1852,7 +2074,10 @@
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Blocks",
-          "direction": "outward"
+          "direction": "outward",
+          "labels": [
+            "one"
+          ]
         },
         {
           "key": "TM-3151",
@@ -1861,7 +2086,16 @@
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "26'2Q",
+            "auto-etr-triaged",
+            "conveyor",
+            "conveyor-bot",
+            "fasttrack",
+            "general-task",
+            "one"
+          ]
         }
       ],
       "progress": {
@@ -1914,7 +2148,14 @@
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor",
+            "conveyor-bot",
+            "general-task",
+            "one"
+          ]
         }
       ],
       "progress": {
@@ -1967,7 +2208,14 @@
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor",
+            "conveyor-bot",
+            "general-task",
+            "one"
+          ]
         }
       ],
       "progress": {
@@ -2020,7 +2268,14 @@
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor",
+            "conveyor-bot",
+            "general-task",
+            "one"
+          ]
         }
       ],
       "progress": {
@@ -2073,7 +2328,15 @@
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "DUE_OVERDUE_BOT",
+            "conveyor",
+            "fasttrack",
+            "one",
+            "pel",
+            "ux-ft-close"
+          ]
         }
       ],
       "progress": {
@@ -2126,7 +2389,8 @@
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Blocks",
-          "direction": "outward"
+          "direction": "outward",
+          "labels": []
         }
       ],
       "progress": {
@@ -2180,7 +2444,12 @@
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "outward"
+          "direction": "outward",
+          "labels": [
+            "26유즈드",
+            "AI-ASSISTED",
+            "USED"
+          ]
         },
         {
           "key": "FT-35",
@@ -2189,7 +2458,15 @@
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor",
+            "conveyor-bot",
+            "fast-track-away",
+            "fasttrack",
+            "one"
+          ]
         }
       ],
       "progress": {
@@ -2368,7 +2645,14 @@
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor",
+            "conveyor-bot",
+            "general-task",
+            "one"
+          ]
         }
       ],
       "progress": {
@@ -2422,7 +2706,16 @@
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor",
+            "conveyor-bot",
+            "fast-track-away",
+            "one",
+            "ux-ft",
+            "홈앤디"
+          ]
         }
       ],
       "progress": {
@@ -2475,7 +2768,12 @@
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "conveyor",
+            "fasttrack",
+            "one"
+          ]
         },
         {
           "key": "FT-25",
@@ -2484,7 +2782,15 @@
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "DUE_OVERDUE_BOT",
+            "conveyor",
+            "conveyor-bot",
+            "fast-track-away",
+            "fasttrack",
+            "one"
+          ]
         }
       ],
       "progress": {
@@ -2536,7 +2842,12 @@
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "fasttrack",
+            "one",
+            "홈앤디"
+          ]
         },
         {
           "key": "TM-3106",
@@ -2545,7 +2856,13 @@
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "conveyor",
+            "conveyor-bot",
+            "general-task",
+            "one"
+          ]
         }
       ],
       "progress": {
@@ -2680,7 +2997,15 @@
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "DUE_OVERDUE_BOT",
+            "conveyor",
+            "conveyor-bot",
+            "fast-track-away",
+            "fasttrack",
+            "one"
+          ]
         }
       ],
       "progress": {
@@ -2733,7 +3058,14 @@
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "conveyor",
+            "fasttrack",
+            "one",
+            "pel",
+            "ux-ft"
+          ]
         }
       ],
       "progress": {
@@ -2825,7 +3157,11 @@
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Clones",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "fasttrack",
+            "one"
+          ]
         },
         {
           "key": "PD-8258",
@@ -2834,7 +3170,10 @@
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Blocks",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "one"
+          ]
         }
       ],
       "progress": {
@@ -2886,7 +3225,13 @@
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "conveyor",
+            "conveyor-bot",
+            "general-task",
+            "one"
+          ]
         }
       ],
       "progress": {
@@ -2938,7 +3283,11 @@
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "conveyor",
+            "one"
+          ]
         }
       ],
       "progress": {
@@ -2989,7 +3338,10 @@
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "plan-2026-06"
+          ]
         }
       ],
       "progress": {
@@ -3042,7 +3394,14 @@
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor-bot",
+            "general-task",
+            "one",
+            "홈앤디"
+          ]
         }
       ],
       "progress": {
@@ -3127,22 +3486,30 @@
       "startDate": null,
       "dueDate": "2026-06-04",
       "created": "2026-05-20T14:17:46.959+0900",
-      "updated": "2026-06-01T11:28:28.524+0900",
+      "updated": "2026-06-08T11:13:41.069+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-05-20T16:23:36.203+0900",
       "linkedTickets": [
         {
           "key": "FT-23",
           "summary": "앱 '단독' 섹션 배치 순서 변경 — 메인 캠페인 다음·스페셜 이전으로 이동",
-          "status": "개발중",
-          "statusCategory": "indeterminate",
+          "status": "론치완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "DUE_OVERDUE_BOT",
+            "auto-etr-triaged",
+            "conveyor-bot",
+            "fast-track-away",
+            "fasttrack",
+            "one"
+          ]
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 1
       }
     },
@@ -3193,7 +3560,12 @@
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "fasttrack",
+            "one",
+            "pel"
+          ]
         },
         {
           "key": "FT-32",
@@ -3202,7 +3574,15 @@
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "DUE_OVERDUE_BOT",
+            "conveyor",
+            "conveyor-bot",
+            "fast-track-away",
+            "fasttrack",
+            "one"
+          ]
         }
       ],
       "progress": {
@@ -3295,11 +3675,18 @@
         {
           "key": "FT-14",
           "summary": "마이페이지 쿠폰함 — 특정 쿠폰 공유하기 버튼 추가",
-          "status": "준비중",
+          "status": "개발중",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "DUE_OVERDUE_BOT",
+            "auto-etr-triaged",
+            "conveyor-bot",
+            "fast-track-away",
+            "fasttrack"
+          ]
         }
       ],
       "progress": {
@@ -3351,7 +3738,10 @@
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Clones",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "one"
+          ]
         }
       ],
       "progress": {
@@ -3404,7 +3794,16 @@
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Blocks",
-          "direction": "outward"
+          "direction": "outward",
+          "labels": [
+            "Away착수",
+            "auto-triaged",
+            "difficulty-S",
+            "mode_a",
+            "one",
+            "sp_by_choavis_v1",
+            "team-campaign"
+          ]
         },
         {
           "key": "FT-11",
@@ -3413,7 +3812,13 @@
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor-bot",
+            "fast-track-away",
+            "one"
+          ]
         }
       ],
       "progress": {
@@ -3466,7 +3871,14 @@
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "DUE_OVERDUE_BOT",
+            "auto-etr-triaged",
+            "conveyor-bot",
+            "fast-track-away",
+            "one"
+          ]
         }
       ],
       "progress": {
@@ -3519,7 +3931,11 @@
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Blocks",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "conveyor",
+            "one"
+          ]
         },
         {
           "key": "FT-9",
@@ -3528,7 +3944,13 @@
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor-bot",
+            "fast-track-away",
+            "one"
+          ]
         }
       ],
       "progress": {
@@ -3581,7 +4003,12 @@
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor-bot",
+            "fast-track-home"
+          ]
         }
       ],
       "progress": {
@@ -3634,7 +4061,12 @@
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor-bot",
+            "general-task"
+          ]
         }
       ],
       "progress": {
@@ -3687,7 +4119,8 @@
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "outward"
+          "direction": "outward",
+          "labels": []
         }
       ],
       "progress": {
@@ -3739,7 +4172,10 @@
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Clones",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "one"
+          ]
         },
         {
           "key": "TM-3072",
@@ -3748,7 +4184,13 @@
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "conveyor-bot",
+            "general-task",
+            "one",
+            "홈앤디"
+          ]
         }
       ],
       "progress": {
@@ -3801,7 +4243,12 @@
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Clones",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "one",
+            "ux-ft-close"
+          ]
         },
         {
           "key": "TM-3082",
@@ -3810,7 +4257,13 @@
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor-bot",
+            "general-task",
+            "one"
+          ]
         }
       ],
       "progress": {
@@ -3863,7 +4316,13 @@
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor-bot",
+            "general-task",
+            "홈앤디"
+          ]
         }
       ],
       "progress": {
@@ -3917,7 +4376,13 @@
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Clones",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "DUE_OVERDUE_BOT",
+            "auto-etr-triaged",
+            "fasttrack",
+            "one"
+          ]
         },
         {
           "key": "FT-3",
@@ -3926,7 +4391,13 @@
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "DUE_OVERDUE_BOT",
+            "auto-etr-triaged",
+            "fasttrack",
+            "one"
+          ]
         },
         {
           "key": "PD-8245",
@@ -3935,7 +4406,11 @@
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "outward"
+          "direction": "outward",
+          "labels": [
+            "CCD",
+            "ELT"
+          ]
         }
       ],
       "progress": {
@@ -4031,7 +4506,13 @@
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "fasttrack",
+            "one",
+            "ux-ft",
+            "홈앤디"
+          ]
         },
         {
           "key": "PD-8156",
@@ -4040,7 +4521,11 @@
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Blocks",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "fasttrack",
+            "pel"
+          ]
         },
         {
           "key": "FT-26",
@@ -4049,7 +4534,15 @@
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor",
+            "conveyor-bot",
+            "fast-track-away",
+            "fasttrack",
+            "one"
+          ]
         }
       ],
       "progress": {
@@ -4352,7 +4845,14 @@
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Clones",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "26'2Q",
+            "AI-ASSISTED",
+            "auto-etr-triaged",
+            "one",
+            "홈앤디"
+          ]
         }
       ],
       "progress": {
@@ -4445,7 +4945,11 @@
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Clones",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "one",
+            "홈앤디"
+          ]
         }
       ],
       "progress": {
@@ -4498,7 +5002,12 @@
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Clones",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "fasttrack",
+            "one",
+            "ux-ft-general"
+          ]
         },
         {
           "key": "COMCO-3290",
@@ -4507,7 +5016,10 @@
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Problem/Incident",
-          "direction": "outward"
+          "direction": "outward",
+          "labels": [
+            "created_by_choavis"
+          ]
         }
       ],
       "progress": {
@@ -4602,7 +5114,11 @@
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Clones",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "one"
+          ]
         }
       ],
       "progress": {
@@ -4697,7 +5213,11 @@
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Clones",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "fasttrack",
+            "one"
+          ]
         },
         {
           "key": "FT-33",
@@ -4706,7 +5226,14 @@
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "conveyor",
+            "conveyor-bot",
+            "fast-track-away",
+            "fasttrack",
+            "one"
+          ]
         }
       ],
       "progress": {
@@ -4799,7 +5326,10 @@
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Clones",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "one"
+          ]
         }
       ],
       "progress": {
@@ -4894,7 +5424,10 @@
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Clones",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "one"
+          ]
         }
       ],
       "progress": {
@@ -4947,7 +5480,12 @@
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Clones",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "one",
+            "pel"
+          ]
         }
       ],
       "progress": {
@@ -5000,11 +5538,17 @@
         {
           "key": "PEL-917",
           "summary": "[유즈드] 추천판 인기브랜드 섹션 유즈드 탭 추가 (ETR-4061)",
-          "status": "In Progress",
-          "statusCategory": "indeterminate",
+          "status": "완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "ETR-4061",
+            "home-discovery",
+            "pel",
+            "used"
+          ]
         },
         {
           "key": "MSSCXTF-1362",
@@ -5013,7 +5557,16 @@
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "DUE_OVERDUE_BOT",
+            "PEL",
+            "conveyor-bot",
+            "fast-track-away",
+            "one",
+            "pel",
+            "홈앤디"
+          ]
         },
         {
           "key": "SNDPRD-3958",
@@ -5022,7 +5575,12 @@
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "PEL",
+            "one",
+            "홈앤디"
+          ]
         },
         {
           "key": "SEARCHPL-2613",
@@ -5031,11 +5589,15 @@
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "CX",
+            "유즈드"
+          ]
         }
       ],
       "progress": {
-        "done": 3,
+        "done": 4,
         "total": 4
       }
     },
@@ -5083,7 +5645,13 @@
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Blocks",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "one",
+            "pel",
+            "ux-ft-close",
+            "홈앤디"
+          ]
         },
         {
           "key": "MSSCXTF-1208",
@@ -5092,7 +5660,13 @@
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "one",
+            "pel",
+            "ux-ft-close",
+            "홈앤디"
+          ]
         }
       ],
       "progress": {
@@ -5145,7 +5719,12 @@
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "fasttrack",
+            "one",
+            "pel"
+          ]
         }
       ],
       "progress": {
@@ -5198,7 +5777,13 @@
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Clones",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "DUE_OVERDUE_BOT",
+            "auto-etr-triaged",
+            "one",
+            "홈앤디"
+          ]
         },
         {
           "key": "MSSCXTF-1355",
@@ -5207,7 +5792,13 @@
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "DUE_OVERDUE_BOT",
+            "auto-etr-triaged",
+            "one",
+            "홈앤디"
+          ]
         },
         {
           "key": "PEL-884",
@@ -5216,7 +5807,14 @@
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "ai-full",
+            "complexity:1",
+            "fasttrack",
+            "pel",
+            "sp_by_choavis_v1"
+          ]
         },
         {
           "key": "PEL-885",
@@ -5225,7 +5823,14 @@
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "ai-full",
+            "complexity:2",
+            "fasttrack",
+            "pel",
+            "sp_by_choavis_v1"
+          ]
         },
         {
           "key": "PEL-886",
@@ -5234,7 +5839,13 @@
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "DUE_OVERDUE_BOT",
+            "fasttrack",
+            "pel",
+            "sp_by_choavis_v1"
+          ]
         }
       ],
       "progress": {
@@ -5329,7 +5940,13 @@
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "conveyor-bot",
+            "general-task",
+            "one",
+            "pdp"
+          ]
         }
       ],
       "progress": {
@@ -5383,7 +6000,13 @@
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "CX",
+            "DUE_OVERDUE_BOT",
+            "one",
+            "pel"
+          ]
         }
       ],
       "progress": {
@@ -5524,7 +6147,16 @@
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "Away착수",
+            "auto-triaged",
+            "difficulty-S",
+            "fasttrack",
+            "mode_a",
+            "one",
+            "team-display"
+          ]
         }
       ],
       "progress": {
@@ -5578,7 +6210,12 @@
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "AI-ASSISTED",
+            "one",
+            "홈앤디"
+          ]
         }
       ],
       "progress": {
@@ -5630,7 +6267,13 @@
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Blocks",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "DUE_OVERDUE_BOT",
+            "USED",
+            "구매활성화",
+            "유즈드"
+          ]
         }
       ],
       "progress": {
@@ -5727,7 +6370,12 @@
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Clones",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "one",
+            "앱테크"
+          ]
         }
       ],
       "progress": {
@@ -5824,7 +6472,11 @@
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Clones",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "one"
+          ]
         }
       ],
       "progress": {
@@ -5878,7 +6530,11 @@
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Clones",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "one"
+          ]
         }
       ],
       "progress": {
@@ -5933,16 +6589,30 @@
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Clones",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "one"
+          ]
         },
         {
           "key": "MSSCXTF-1334",
           "summary": "기획전 페이지 한페이지 구성 및 퀵구매 UI",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "철회/반려/취소",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "outward"
+          "direction": "outward",
+          "labels": [
+            "Away착수",
+            "auto-triaged",
+            "conveyor",
+            "difficulty-M",
+            "fasttrack",
+            "mode_b",
+            "one",
+            "team-campaign"
+          ]
         },
         {
           "key": "MSSCXTF-1326",
@@ -5951,11 +6621,17 @@
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "outward"
+          "direction": "outward",
+          "labels": [
+            "AI-ASSISTED",
+            "conveyor",
+            "fasttrack",
+            "one"
+          ]
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 3
       }
     },
@@ -6046,7 +6722,11 @@
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Clones",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "one"
+          ]
         }
       ],
       "progress": {
@@ -6100,7 +6780,12 @@
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Clones",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "one",
+            "홈앤디"
+          ]
         }
       ],
       "progress": {
@@ -6198,7 +6883,14 @@
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "Home필수",
+            "auto-triaged",
+            "difficulty-M",
+            "mode_b",
+            "one"
+          ]
         }
       ],
       "progress": {
@@ -6294,7 +6986,11 @@
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Clones",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "one"
+          ]
         }
       ],
       "progress": {
@@ -6390,7 +7086,15 @@
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "auto-triaged",
+            "difficulty-M",
+            "fasttrack",
+            "mode_b",
+            "one",
+            "team-display"
+          ]
         }
       ],
       "progress": {
@@ -6531,7 +7235,19 @@
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "Away착수",
+            "auto-triaged",
+            "difficulty-S",
+            "fasttrack",
+            "one",
+            "pel",
+            "sp_by_choavis_v1",
+            "team-campaign",
+            "직접해결",
+            "홈앤디"
+          ]
         }
       ],
       "progress": {
@@ -6585,7 +7301,14 @@
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "auto-triaged",
+            "difficulty-M",
+            "mode_b",
+            "one",
+            "team-display"
+          ]
         }
       ],
       "progress": {
@@ -6765,7 +7488,16 @@
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "auto-triaged",
+            "difficulty-L",
+            "fasttrack",
+            "one",
+            "sp_by_choavis_v1",
+            "team-display",
+            "방향검증"
+          ]
         }
       ],
       "progress": {
@@ -6817,7 +7549,12 @@
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Duplicate",
-          "direction": "outward"
+          "direction": "outward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor",
+            "one"
+          ]
         }
       ],
       "progress": {
@@ -6869,7 +7606,11 @@
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Duplicate",
-          "direction": "outward"
+          "direction": "outward",
+          "labels": [
+            "auto-etr-triaged",
+            "one"
+          ]
         }
       ],
       "progress": {
@@ -6922,7 +7663,11 @@
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Duplicate",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "one"
+          ]
         },
         {
           "key": "COMCO-3272",
@@ -6931,7 +7676,10 @@
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Blocks",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "AI-ASSISTED"
+          ]
         }
       ],
       "progress": {
@@ -6983,7 +7731,11 @@
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Duplicate",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "one"
+          ]
         },
         {
           "key": "COMCO-3271",
@@ -6992,7 +7744,10 @@
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Blocks",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "AI-ASSISTED"
+          ]
         }
       ],
       "progress": {
@@ -7045,7 +7800,10 @@
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Duplicate",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged"
+          ]
         },
         {
           "key": "COMCO-3270",
@@ -7054,7 +7812,10 @@
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Blocks",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "AI-ASSISTED"
+          ]
         }
       ],
       "progress": {
@@ -7106,7 +7867,10 @@
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Duplicate",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged"
+          ]
         }
       ],
       "progress": {
@@ -7159,7 +7923,10 @@
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Clones",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged"
+          ]
         },
         {
           "key": "COMCO-3388",
@@ -7168,7 +7935,11 @@
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "one",
+            "plan-2026-06"
+          ]
         }
       ],
       "progress": {
@@ -7222,7 +7993,11 @@
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Clones",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "fasttrack"
+          ]
         },
         {
           "key": "PEL-558",
@@ -7231,7 +8006,13 @@
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Clones",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "fasttrack",
+            "one",
+            "pel"
+          ]
         }
       ],
       "progress": {
@@ -7329,7 +8110,12 @@
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Blocks",
-          "direction": "outward"
+          "direction": "outward",
+          "labels": [
+            "26'3Q",
+            "one",
+            "홈앤디"
+          ]
         }
       ],
       "progress": {
@@ -7385,7 +8171,14 @@
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Clones",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": [
+            "domain-apptech",
+            "msse-be-campaign",
+            "one",
+            "무신사",
+            "앱테크-기타"
+          ]
         }
       ],
       "progress": {
@@ -7437,7 +8230,8 @@
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Clones",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": []
         },
         {
           "key": "FE-16206",
@@ -7446,7 +8240,8 @@
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Blocks",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": []
         },
         {
           "key": "ETR-1255",
@@ -7455,7 +8250,8 @@
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Clones",
-          "direction": "inward"
+          "direction": "inward",
+          "labels": []
         }
       ],
       "progress": {

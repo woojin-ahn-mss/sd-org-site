@@ -1,7 +1,51 @@
 {
-  "lastSync": "2026-06-08T10:18:44+09:00",
-  "count": 477,
+  "lastSync": "2026-06-08T11:56:11+09:00",
+  "count": 476,
   "items": [
+    {
+      "key": "FT-54",
+      "url": "https://jira.team.musinsa.com/browse/FT-54",
+      "summary": "[공통] 전문관 PDP 내 전문관 로고 위치 앞으로 이동 및 풀 로고 디자인 적용 검토",
+      "issueType": "Initiative",
+      "project": "FT",
+      "status": "SUGGESTED",
+      "statusCategory": "new",
+      "priority": "P2",
+      "assignee": {
+        "name": "유정선",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "서정명",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "conveyor",
+        "one",
+        "ux-ft-backlog"
+      ],
+      "mainSubject": "06.공통/네비게이션",
+      "mainSubjects": [
+        "06.공통/네비게이션"
+      ],
+      "subSubject": "전문관",
+      "subSubjects": [
+        "전문관"
+      ],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2"
+      ],
+      "subGroup": "MSS-P Product Design",
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-06-08T10:46:35.821+0900",
+      "updated": "2026-06-08T10:46:37.900+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null
+    },
     {
       "key": "FT-49",
       "url": "https://jira.team.musinsa.com/browse/FT-49",
@@ -107,6 +151,7 @@
       },
       "labels": [
         "conveyor",
+        "fasttrack",
         "one",
         "ux-ft"
       ],
@@ -120,7 +165,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-04T10:42:12.922+0900",
-      "updated": "2026-06-04T23:57:14.528+0900",
+      "updated": "2026-06-08T11:20:49.253+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -191,6 +236,7 @@
         "conveyor",
         "conveyor-bot",
         "fast-track-away",
+        "fasttrack",
         "one"
       ],
       "mainSubject": null,
@@ -203,7 +249,7 @@
       "startDate": "2026-06-02",
       "dueDate": "2026-06-03",
       "created": "2026-06-02T15:51:39.800+0900",
-      "updated": "2026-06-04T17:54:34.288+0900",
+      "updated": "2026-06-08T11:21:15.687+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -297,8 +343,8 @@
       "summary": "[PLP] 정렬 옵션 순서 개선 — 좋아요 급상승 하단 이동 및 매출 관련 정렬 상단 배치",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "SUGGESTED",
-      "statusCategory": "new",
+      "status": "개발완료",
+      "statusCategory": "indeterminate",
       "priority": "P2",
       "assignee": {
         "name": "문호은",
@@ -315,6 +361,7 @@
         "conveyor",
         "conveyor-bot",
         "fast-track-away",
+        "fasttrack",
         "one",
         "홈앤디"
       ],
@@ -334,9 +381,9 @@
       "startDate": "2026-06-02",
       "dueDate": "2026-06-05",
       "created": "2026-06-02T11:11:34.346+0900",
-      "updated": "2026-06-04T18:07:03.947+0900",
+      "updated": "2026-06-08T11:11:00.915+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": null
+      "lastStatusChangedAt": "2026-06-08T11:11:00.915+0900"
     },
     {
       "key": "FT-37",
@@ -362,6 +409,7 @@
         "conveyor",
         "conveyor-bot",
         "fast-track-away",
+        "fasttrack",
         "one"
       ],
       "mainSubject": null,
@@ -374,7 +422,7 @@
       "startDate": "2026-06-01",
       "dueDate": "2026-06-10",
       "created": "2026-06-01T10:34:34.547+0900",
-      "updated": "2026-06-04T14:08:20.158+0900",
+      "updated": "2026-06-08T11:21:31.544+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -465,7 +513,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-29T16:30:16.786+0900",
-      "updated": "2026-06-04T11:52:56.584+0900",
+      "updated": "2026-06-08T10:21:56.890+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -662,6 +710,7 @@
         "accountId": null
       },
       "labels": [
+        "fasttrack",
         "one",
         "pel",
         "ux-ft-backlog"
@@ -682,7 +731,7 @@
       "startDate": null,
       "dueDate": "2026-09-30",
       "created": "2026-05-27T14:46:43.110+0900",
-      "updated": "2026-06-04T12:07:57.949+0900",
+      "updated": "2026-06-08T11:15:21.400+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -968,8 +1017,8 @@
       "summary": "앱 '단독' 섹션 배치 순서 변경 — 메인 캠페인 다음·스페셜 이전으로 이동",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "개발중",
-      "statusCategory": "indeterminate",
+      "status": "론치완료",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "안우진",
@@ -1001,9 +1050,9 @@
       "startDate": "2026-05-21",
       "dueDate": "2026-06-04",
       "created": "2026-05-21T00:20:57.473+0900",
-      "updated": "2026-06-08T09:59:47.423+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-05-31T13:39:36.974+0900"
+      "updated": "2026-06-08T11:11:31.858+0900",
+      "resolutionDate": "2026-06-08T11:11:31.847+0900",
+      "lastStatusChangedAt": "2026-06-08T11:11:31.858+0900"
     },
     {
       "key": "FT-15",
@@ -1051,7 +1100,7 @@
       "summary": "마이페이지 쿠폰함 — 특정 쿠폰 공유하기 버튼 추가",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "준비중",
+      "status": "개발중",
       "statusCategory": "indeterminate",
       "priority": "P2",
       "assignee": {
@@ -1081,9 +1130,9 @@
       "startDate": "2026-05-19",
       "dueDate": "2026-06-04",
       "created": "2026-05-19T17:31:30.715+0900",
-      "updated": "2026-06-05T11:01:25.243+0900",
+      "updated": "2026-06-08T10:51:43.746+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-05-22T10:11:11.635+0900"
+      "lastStatusChangedAt": "2026-06-08T10:51:43.746+0900"
     },
     {
       "key": "FT-12",
@@ -1738,6 +1787,7 @@
         "accountId": null
       },
       "labels": [
+        "fasttrack",
         "one",
         "홈앤디"
       ],
@@ -1755,7 +1805,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-15T10:41:39.125+0900",
-      "updated": "2026-06-02T10:45:44.455+0900",
+      "updated": "2026-06-08T11:07:12.442+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -1916,49 +1966,6 @@
       "updated": "2026-06-05T09:46:15.221+0900",
       "resolutionDate": "2026-06-05T09:46:08.248+0900",
       "lastStatusChangedAt": "2026-06-05T09:46:08.258+0900"
-    },
-    {
-      "key": "PEL-919",
-      "url": "https://jira.team.musinsa.com/browse/PEL-919",
-      "summary": "광고 섹션 더보기·필터·카테고리 기능 추가",
-      "issueType": "Initiative",
-      "project": "PEL",
-      "status": "SUGGESTED",
-      "statusCategory": "new",
-      "priority": "P2",
-      "assignee": {
-        "name": "김경애",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "촤비스",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [
-        "Away착수",
-        "auto-triaged",
-        "conveyor",
-        "difficulty-L",
-        "fasttrack",
-        "mode_b",
-        "one",
-        "team-display"
-      ],
-      "mainSubject": null,
-      "mainSubjects": [],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
-      "subGroup": null,
-      "startDate": null,
-      "dueDate": null,
-      "created": "2026-05-13T16:39:04.298+0900",
-      "updated": "2026-06-08T09:18:12.222+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": null
     },
     {
       "key": "MSSCXTF-1362",
@@ -2674,7 +2681,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-06T08:56:37.858+0900",
-      "updated": "2026-05-31T13:46:46.563+0900",
+      "updated": "2026-06-08T10:53:03.409+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -2700,7 +2707,6 @@
       "labels": [
         "AI-ASSISTED",
         "conveyor",
-        "fasttrack",
         "one",
         "pel"
       ],
@@ -2716,7 +2722,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-06T08:47:25.154+0900",
-      "updated": "2026-05-31T13:44:16.760+0900",
+      "updated": "2026-06-08T11:52:10.307+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-05-07T10:43:48.587+0900"
     },
@@ -2743,6 +2749,7 @@
         "Away착수",
         "auto-triaged",
         "difficulty-S",
+        "fasttrack",
         "mode_b",
         "one"
       ],
@@ -2758,7 +2765,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-05T16:37:15.458+0900",
-      "updated": "2026-06-02T11:07:06.472+0900",
+      "updated": "2026-06-08T11:20:08.003+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -3533,8 +3540,8 @@
       "summary": "기획전 페이지 한페이지 구성 및 퀵구매 UI",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "SUGGESTED",
-      "statusCategory": "new",
+      "status": "철회/반려/취소",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "안우진",
@@ -3568,9 +3575,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-01T18:31:37.022+0900",
-      "updated": "2026-06-02T11:05:12.079+0900",
+      "updated": "2026-06-08T10:53:20.296+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": null
+      "lastStatusChangedAt": "2026-06-08T10:53:20.296+0900"
     },
     {
       "key": "PEL-706",
@@ -3664,7 +3671,7 @@
       "statusCategory": "new",
       "priority": "P2",
       "assignee": {
-        "name": "안우진",
+        "name": "조혜진",
         "email": null,
         "accountId": null
       },
@@ -3693,7 +3700,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-01T12:00:57.704+0900",
-      "updated": "2026-05-31T13:47:11.547+0900",
+      "updated": "2026-06-08T11:00:05.889+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-05-06T14:14:28.683+0900"
     },
@@ -3903,7 +3910,6 @@
       },
       "labels": [
         "conveyor",
-        "fasttrack",
         "one"
       ],
       "mainSubject": "21.주문/배송/클레임",
@@ -3918,7 +3924,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-04-30T13:30:01.266+0900",
-      "updated": "2026-05-31T13:58:32.017+0900",
+      "updated": "2026-06-08T11:04:23.808+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -4112,7 +4118,6 @@
         "Home필수",
         "auto-triaged",
         "difficulty-M",
-        "fasttrack",
         "mode_b",
         "one"
       ],
@@ -4131,7 +4136,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-04-24T16:25:00.638+0900",
-      "updated": "2026-05-31T16:33:28.012+0900",
+      "updated": "2026-06-08T11:50:08.841+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-04-24T18:09:38.578+0900"
     },
@@ -4231,6 +4236,7 @@
       "labels": [
         "auto-triaged",
         "difficulty-M",
+        "fasttrack",
         "mode_b",
         "one",
         "team-display"
@@ -4250,7 +4256,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-04-24T10:33:13.844+0900",
-      "updated": "2026-06-02T10:55:45.447+0900",
+      "updated": "2026-06-08T11:11:55.206+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-04-24T18:09:41.316+0900"
     },
@@ -4311,7 +4317,6 @@
       },
       "labels": [
         "conveyor",
-        "fasttrack",
         "one",
         "홈앤디"
       ],
@@ -4329,7 +4334,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-04-23T08:08:06.746+0900",
-      "updated": "2026-05-31T14:00:08.959+0900",
+      "updated": "2026-06-08T11:52:37.717+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-04-24T18:03:35.819+0900"
     },
@@ -4800,6 +4805,7 @@
       "labels": [
         "auto-triaged",
         "difficulty-L",
+        "fasttrack",
         "one",
         "sp_by_choavis_v1",
         "team-display",
@@ -4817,7 +4823,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-04-20T01:43:16.108+0900",
-      "updated": "2026-06-02T10:46:43.739+0900",
+      "updated": "2026-06-08T11:08:39.771+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-04-21T11:36:57.288+0900"
     },
@@ -5545,7 +5551,6 @@
       },
       "labels": [
         "conveyor",
-        "fasttrack",
         "one",
         "sp_by_choavis_v1",
         "team-display",
@@ -5563,7 +5568,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-04-10T14:48:06.359+0900",
-      "updated": "2026-05-31T13:53:26.145+0900",
+      "updated": "2026-06-08T11:50:33.285+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-04-21T13:29:18.122+0900"
     },
@@ -6302,8 +6307,8 @@
       "summary": "[design-driven][카테고리] 좌측 패널 가로값, 높이값 일괄 조정",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "SUGGESTED",
-      "statusCategory": "new",
+      "status": "디자인중",
+      "statusCategory": "indeterminate",
       "priority": "P2",
       "assignee": {
         "name": "성보현",
@@ -6332,9 +6337,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-04-02T11:24:23.711+0900",
-      "updated": "2026-05-31T13:47:50.249+0900",
+      "updated": "2026-06-08T11:12:28.674+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": null
+      "lastStatusChangedAt": "2026-06-08T11:12:28.674+0900"
     },
     {
       "key": "MSSCXTF-1266",
@@ -6509,7 +6514,6 @@
       },
       "labels": [
         "conveyor",
-        "fasttrack",
         "one",
         "pel"
       ],
@@ -6525,7 +6529,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-31T11:55:34.169+0900",
-      "updated": "2026-05-31T13:53:43.192+0900",
+      "updated": "2026-06-08T11:45:15.133+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-05-22T02:41:35.610+0900"
     },
@@ -7131,7 +7135,6 @@
       },
       "labels": [
         "conveyor",
-        "fasttrack",
         "one"
       ],
       "mainSubject": "02.콘텐츠/발매/스냅/라이브",
@@ -7146,7 +7149,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-23T11:55:30.299+0900",
-      "updated": "2026-06-02T10:49:39.294+0900",
+      "updated": "2026-06-08T11:50:55.667+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-04-21T11:46:35.535+0900"
     },
@@ -7526,9 +7529,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-19T17:19:07.938+0900",
-      "updated": "2026-06-02T13:16:03.510+0900",
+      "updated": "2026-06-08T11:28:32.649+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": null
+      "lastStatusChangedAt": "2026-06-08T11:28:32.649+0900"
     },
     {
       "key": "MSSCXTF-1220",
@@ -7575,7 +7578,7 @@
       "summary": "[design-driven][추천판] 캠페인 섹션 개선",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "디자인중",
+      "status": "개발중",
       "statusCategory": "indeterminate",
       "priority": "P0",
       "assignee": {
@@ -7590,7 +7593,6 @@
       },
       "labels": [
         "conveyor",
-        "fasttrack",
         "one",
         "pel"
       ],
@@ -7606,9 +7608,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-19T09:49:57.329+0900",
-      "updated": "2026-05-31T13:44:37.301+0900",
+      "updated": "2026-06-08T11:53:22.058+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-05-06T11:05:53.981+0900"
+      "lastStatusChangedAt": "2026-06-08T11:53:14.014+0900"
     },
     {
       "key": "MSSCXTF-1216",
@@ -7656,8 +7658,8 @@
       "summary": "[PDP] 브랜드명 옆 전문관 파비콘 + 전문관 붙이기",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "디자인중",
-      "statusCategory": "indeterminate",
+      "status": "철회/반려/취소",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
         "name": "조혜진",
@@ -7687,9 +7689,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-19T08:33:47.849+0900",
-      "updated": "2026-06-01T13:06:25.013+0900",
+      "updated": "2026-06-08T11:53:50.494+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-04-07T16:28:46.086+0900"
+      "lastStatusChangedAt": "2026-06-08T11:53:50.494+0900"
     },
     {
       "key": "MSSCXTF-1214",
@@ -7849,7 +7851,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-18T17:28:58.807+0900",
-      "updated": "2026-05-31T13:37:36.315+0900",
+      "updated": "2026-06-08T11:17:58.563+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-05-26T07:46:35.286+0900"
     },
@@ -8119,6 +8121,7 @@
         "accountId": null
       },
       "labels": [
+        "fasttrack",
         "one"
       ],
       "mainSubject": "21.주문/배송/클레임",
@@ -8136,7 +8139,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-13T20:35:51.566+0900",
-      "updated": "2026-06-05T17:12:33.036+0900",
+      "updated": "2026-06-08T11:18:08.371+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-05T17:10:50.378+0900"
     },
@@ -8161,6 +8164,7 @@
       },
       "labels": [
         "conveyor",
+        "fasttrack",
         "one",
         "pel"
       ],
@@ -8176,7 +8180,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-13T14:04:03.114+0900",
-      "updated": "2026-05-22T00:19:44.953+0900",
+      "updated": "2026-06-08T11:10:18.028+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-04-10T16:57:44.207+0900"
     },
@@ -8689,7 +8693,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-09T19:00:37.642+0900",
-      "updated": "2026-05-22T00:19:56.937+0900",
+      "updated": "2026-06-08T11:10:03.047+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-04-01T18:10:38.802+0900"
     },
@@ -8886,7 +8890,6 @@
       },
       "labels": [
         "conveyor",
-        "fasttrack",
         "one"
       ],
       "mainSubject": "08.이벤트/앱테크/온보딩",
@@ -8903,7 +8906,7 @@
       "startDate": null,
       "dueDate": "2026-05-30",
       "created": "2026-03-06T10:47:21.151+0900",
-      "updated": "2026-06-02T11:03:49.590+0900",
+      "updated": "2026-06-08T11:46:32.428+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -9085,7 +9088,7 @@
       "summary": "[design-driven][공통]스토어홈 앱바 이벤트/회원혜택 진입점 아이콘 모션 ",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "SUGGESTED",
+      "status": "Backlog",
       "statusCategory": "new",
       "priority": "P3",
       "assignee": {
@@ -9100,7 +9103,6 @@
       },
       "labels": [
         "conveyor",
-        "fasttrack",
         "one",
         "pel",
         "ux-ft-backlog"
@@ -9122,9 +9124,9 @@
       "startDate": null,
       "dueDate": "2026-09-30",
       "created": "2026-03-03T09:04:51.049+0900",
-      "updated": "2026-06-02T14:46:43.031+0900",
+      "updated": "2026-06-08T11:16:07.387+0900",
       "resolutionDate": "2026-06-01T12:56:18.947+0900",
-      "lastStatusChangedAt": "2026-06-02T14:46:43.031+0900"
+      "lastStatusChangedAt": "2026-06-08T11:15:57.218+0900"
     },
     {
       "key": "MSSCXTF-1154",
@@ -9147,6 +9149,7 @@
       },
       "labels": [
         "conveyor",
+        "fasttrack",
         "one"
       ],
       "mainSubject": "21.주문/배송/클레임",
@@ -9163,7 +9166,7 @@
       "startDate": null,
       "dueDate": "2027-06-11",
       "created": "2026-02-28T19:07:47.750+0900",
-      "updated": "2026-06-05T17:09:35.154+0900",
+      "updated": "2026-06-08T11:18:34.369+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-05T17:05:40.019+0900"
     },
@@ -9261,6 +9264,7 @@
       "labels": [
         "26'1Q",
         "conveyor",
+        "fasttrack",
         "one",
         "홈앤디"
       ],
@@ -9276,7 +9280,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-02-27T16:21:24.384+0900",
-      "updated": "2026-06-02T10:57:15.402+0900",
+      "updated": "2026-06-08T11:13:52.514+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-03-09T19:10:29.788+0900"
     },
@@ -9620,7 +9624,6 @@
       },
       "labels": [
         "conveyor",
-        "fasttrack",
         "one"
       ],
       "mainSubject": "02.콘텐츠/발매/스냅/라이브",
@@ -9635,7 +9638,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-02-24T12:04:38.965+0900",
-      "updated": "2026-05-31T13:48:05.860+0900",
+      "updated": "2026-06-08T11:47:05.341+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -9787,7 +9790,6 @@
       },
       "labels": [
         "conveyor",
-        "fasttrack",
         "one",
         "pel",
         "홈앤디"
@@ -9804,7 +9806,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-02-19T12:19:41.693+0900",
-      "updated": "2026-05-31T13:49:50.132+0900",
+      "updated": "2026-06-08T11:51:50.890+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-05-11T18:08:54.266+0900"
     },
@@ -10113,7 +10115,6 @@
       },
       "labels": [
         "conveyor",
-        "fasttrack",
         "one",
         "pel"
       ],
@@ -10131,7 +10132,7 @@
       "startDate": null,
       "dueDate": "2026-06-30",
       "created": "2026-02-10T20:54:45.907+0900",
-      "updated": "2026-05-31T13:50:35.907+0900",
+      "updated": "2026-06-08T11:54:15.714+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-04-22T08:56:27.942+0900"
     },
@@ -10977,7 +10978,6 @@
       },
       "labels": [
         "conveyor",
-        "fasttrack",
         "one"
       ],
       "mainSubject": "32.알림/CRM",
@@ -10994,7 +10994,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-01-09T14:48:51.099+0900",
-      "updated": "2026-05-31T13:59:00.791+0900",
+      "updated": "2026-06-08T11:47:50.476+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -11018,6 +11018,7 @@
         "accountId": null
       },
       "labels": [
+        "fasttrack",
         "one"
       ],
       "mainSubject": "21.주문/배송/클레임",
@@ -11032,7 +11033,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-01-08T14:57:44.620+0900",
-      "updated": "2026-05-29T19:27:59.039+0900",
+      "updated": "2026-06-08T11:18:57.836+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -11252,7 +11253,6 @@
       },
       "labels": [
         "conveyor",
-        "fasttrack",
         "one"
       ],
       "mainSubject": "99.기타",
@@ -11269,7 +11269,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-01-05T11:16:09.431+0900",
-      "updated": "2026-05-31T13:48:14.223+0900",
+      "updated": "2026-06-08T11:48:07.868+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -11611,7 +11611,6 @@
       },
       "labels": [
         "conveyor",
-        "fasttrack",
         "one",
         "홈앤디"
       ],
@@ -11629,7 +11628,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2025-12-29T16:27:19.605+0900",
-      "updated": "2026-06-02T10:53:49.061+0900",
+      "updated": "2026-06-08T11:48:30.193+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-05-22T02:43:15.819+0900"
     },
@@ -11793,47 +11792,6 @@
       "updated": "2026-01-22T18:09:16.578+0900",
       "resolutionDate": "2026-01-22T18:09:07.857+0900",
       "lastStatusChangedAt": "2026-01-22T18:09:16.578+0900"
-    },
-    {
-      "key": "MSSCXTF-1043",
-      "url": "https://jira.team.musinsa.com/browse/MSSCXTF-1043",
-      "summary": "[브랜드숍] AI 기반 브랜드 인사이트 & 추천 기능",
-      "issueType": "Initiative",
-      "project": "MSSCXTF",
-      "status": "Backlog",
-      "statusCategory": "new",
-      "priority": "P2",
-      "assignee": {
-        "name": "옥여경",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "오승주",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [
-        "conveyor",
-        "one"
-      ],
-      "mainSubject": "05.브랜드 인덱스/브랜드샵(홈)",
-      "mainSubjects": [
-        "05.브랜드 인덱스/브랜드샵(홈)"
-      ],
-      "subSubject": "브랜드 샵",
-      "subSubjects": [
-        "브랜드 샵"
-      ],
-      "yearQuarter": null,
-      "yearQuarters": [],
-      "subGroup": "MSS-P Discovery & Engagement",
-      "startDate": null,
-      "dueDate": null,
-      "created": "2025-12-15T17:12:01.439+0900",
-      "updated": "2026-06-02T10:58:23.540+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-02-12T12:34:11.545+0900"
     },
     {
       "key": "MSSCXTF-1040",
@@ -12127,7 +12085,6 @@
       },
       "labels": [
         "conveyor",
-        "fasttrack",
         "one"
       ],
       "mainSubject": "21.주문/배송/클레임",
@@ -12144,7 +12101,7 @@
       "startDate": null,
       "dueDate": "2026-04-30",
       "created": "2025-11-20T17:23:06.077+0900",
-      "updated": "2026-05-31T13:58:38.856+0900",
+      "updated": "2026-06-08T11:48:53.198+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -12377,6 +12334,7 @@
         "accountId": null
       },
       "labels": [
+        "fasttrack",
         "one"
       ],
       "mainSubject": "21.주문/배송/클레임",
@@ -12391,7 +12349,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2025-11-17T09:30:12.208+0900",
-      "updated": "2026-05-30T10:39:44.679+0900",
+      "updated": "2026-06-08T11:19:13.868+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -14196,7 +14154,6 @@
       },
       "labels": [
         "conveyor",
-        "fasttrack",
         "one"
       ],
       "mainSubject": null,
@@ -14209,7 +14166,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2025-09-18T14:39:45.083+0900",
-      "updated": "2026-05-31T13:48:22.129+0900",
+      "updated": "2026-06-08T11:49:13.068+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-05-22T02:43:35.570+0900"
     },
@@ -18590,9 +18547,9 @@
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": "2026-02-25",
-      "dueDate": "2026-06-08",
+      "dueDate": "2026-06-10",
       "created": "2026-02-12T14:28:04.898+0900",
-      "updated": "2026-06-08T09:37:37.859+0900",
+      "updated": "2026-06-08T11:40:15.334+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "manual": true
