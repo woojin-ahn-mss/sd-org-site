@@ -641,13 +641,27 @@ export function filterItems(items, filters) {
 }
 
 /**
- * 클러스터 필터 — 대표 또는 멤버 중 하나라도 매칭되면 그 묶음을 노출.
- * (병합된 멤버가 필터에 걸려도 묶음이 사라지지 않게.)
+ * 클러스터 필터.
+ * - 메타 토글(quick fix만/제외·spec 미지정·논의 필요)은 **클러스터(대표+멤버) 단위**로 평가한다.
+ *   체크박스 표시가 'rep OR 멤버' 기준이므로 필터도 같아야 함:
+ *   · Only(quickFixOnly)   → 묶음에 하나라도 켜져 있으면 통과
+ *   · 제외/미지정(Exclude·Unset·논의 필요) → 묶음에 하나라도 켜져 있으면 **제외**
+ *   (이전엔 per-item OR 라, 대표가 논의완료여도 멤버 하나가 미완료면 통과돼 버그였음 — 2026-06-08)
+ * - 그 외(인입/프로젝트/상태/숨김 등 inclusion)는 대표 또는 멤버 중 하나라도 매칭이면 노출.
  */
 export function filterClusters(reps, filters, membersByRep = new Map(), hiddenKeys, quickFixKeys, specKeys, channelKeys) {
+  // per-item 매칭엔 메타 토글을 끈 필터를 써 이중 적용 방지(메타는 아래서 클러스터 단위로만 평가).
+  const others = { ...filters, quickFixOnly: false, quickFixExclude: false, specUnset: false, channelUnset: false };
   return reps.filter(rep => {
-    if (itemMatchesFilters(rep, filters, hiddenKeys, quickFixKeys, specKeys, channelKeys)) return true;
-    return (membersByRep.get(rep.key) || []).some(m => itemMatchesFilters(m, filters, hiddenKeys, quickFixKeys, specKeys, channelKeys));
+    const members = membersByRep.get(rep.key) || [];
+    const clusterKeys = [rep.key, ...members.map(m => m.key)];
+    const clusterHas = (set) => !!set && clusterKeys.some(k => set.has(k));
+    if (filters.quickFixOnly && !clusterHas(quickFixKeys)) return false;
+    if (filters.quickFixExclude && clusterHas(quickFixKeys)) return false;
+    if (filters.specUnset && clusterHas(specKeys)) return false;
+    if (filters.channelUnset && clusterHas(channelKeys)) return false;
+    if (itemMatchesFilters(rep, others, hiddenKeys, quickFixKeys, specKeys, channelKeys)) return true;
+    return members.some(m => itemMatchesFilters(m, others, hiddenKeys, quickFixKeys, specKeys, channelKeys));
   });
 }
 
