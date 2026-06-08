@@ -1338,6 +1338,8 @@
 .one-qf-cell, .one-spec-cell, .one-channel-cell { text-align: center; }
 .one-quickfix, .one-spec, .one-channel { width: 15px; height: 15px; accent-color: var(--accent); cursor: pointer; }
 .one-quickfix:disabled, .one-spec:disabled, .one-channel:disabled { cursor: not-allowed; opacity: 0.5; }
+/* 연결 티켓에서 상속된 체크 — 대표 자신엔 없지만 묶음에 켜진 경우(점선 테두리로 구분) */
+.one-meta-inherited { outline: 1px dotted var(--accent-rule); outline-offset: 1px; opacity: 0.85; }
 .one-edited {
   display: inline-block; margin-left: 6px; vertical-align: middle;
   font-size: 10px; color: var(--accent); white-space: nowrap;

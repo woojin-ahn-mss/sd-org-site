@@ -905,6 +905,7 @@ function renderSubjectView(host, rows) {
 
 function rowHtml(it) {
   const members = (state.displayMembers && state.displayMembers.get(it.key)) || [];
+  const memberKeys = members.map(m => m.key);
   const expandable = members.length > 0;
   const open = state.expanded.has(it.key);
   const g = STATUS_GROUPS.find(x => x.id === statusGroup(it));
@@ -925,9 +926,9 @@ function rowHtml(it) {
       <td class="one-content-td">${contentCellHtml(it.key)}</td>
       <td><span class="st ${g ? g.stClass : 'st-wait'}">${escapeHtml(it.status || '—')}</span></td>
       <td>${rankCellHtml(it.key)}</td>
-      <td class="one-qf-cell">${quickFixCellHtml(it.key)}</td>
-      <td class="one-spec-cell">${specCellHtml(it.key)}</td>
-      <td class="one-channel-cell">${channelCellHtml(it.key)}</td>
+      <td class="one-qf-cell">${quickFixCellHtml(it.key, memberKeys)}</td>
+      <td class="one-spec-cell">${specCellHtml(it.key, memberKeys)}</td>
+      <td class="one-channel-cell">${channelCellHtml(it.key, memberKeys)}</td>
       <td>${commentCellHtml(it.key)}</td>
       <td class="one-row-actions">${hideBtnHtml(it.key)}</td>
     </tr>
@@ -1002,31 +1003,38 @@ function contentCellHtml(key) {
 
 const CONTENT_PH = '<span class="muted">내용 입력…</span>';
 
-/** Quick fix 체크박스 셀. */
-function quickFixCellHtml(key) {
-  const m = state.meta.get(key);
-  const checked = m && m.quick_fix ? 'checked' : '';
-  const dis = state.signedIn ? '' : 'disabled';
-  return `<input type="checkbox" class="one-quickfix" data-key="${escapeAttr(key)}" ${checked} ${dis}
-            aria-label="${escapeAttr(key)} Quick fix 대상" />`;
+/** 클러스터(대표+연결) 기준 메타 플래그 상태.
+ *  대표 또는 연결 멤버 중 하나라도 켜져 있으면 checked. 대표엔 없고 연결에서 온 경우 inherited=true.
+ *  (필터(filterClusters)가 클러스터 OR 매칭이라, 표시도 같은 기준으로 맞춰 불일치 제거 — 2026-06-08) */
+export function clusterMetaChecked(metaMap, key, memberKeys, field) {
+  const on = (k) => { const m = metaMap.get(k); return !!(m && m[field]); };
+  if (on(key)) return { checked: true, inherited: false };
+  if ((memberKeys || []).some(on)) return { checked: true, inherited: true };
+  return { checked: false, inherited: false };
 }
 
-/** Spec 작성 대상 체크박스 셀. */
-function specCellHtml(key) {
-  const m = state.meta.get(key);
-  const checked = m && m.spec ? 'checked' : '';
+function metaCheckboxHtml(key, memberKeys, field, cls, label) {
+  const { checked, inherited } = clusterMetaChecked(state.meta, key, memberKeys, field);
   const dis = state.signedIn ? '' : 'disabled';
-  return `<input type="checkbox" class="one-spec" data-key="${escapeAttr(key)}" ${checked} ${dis}
-            aria-label="${escapeAttr(key)} Spec 작성 대상" />`;
+  const inh = inherited ? ' one-meta-inherited' : '';
+  const title = inherited ? ' title="연결 티켓에서 설정됨 — 끄면 묶음 전체 해제"' : '';
+  return `<input type="checkbox" class="${cls}${inh}" data-key="${escapeAttr(key)}" ${checked ? 'checked' : ''} ${dis}${title}
+            aria-label="${escapeAttr(key)} ${label}" />`;
 }
 
-/** 채널 개설 대상 체크박스 셀. 체크=채널 개설 완료. (미체크 = "채널 미개설") */
-function channelCellHtml(key) {
-  const m = state.meta.get(key);
-  const checked = m && m.channel ? 'checked' : '';
-  const dis = state.signedIn ? '' : 'disabled';
-  return `<input type="checkbox" class="one-channel" data-key="${escapeAttr(key)}" ${checked} ${dis}
-            aria-label="${escapeAttr(key)} 채널 개설 대상" />`;
+/** Quick fix 체크박스 셀 (클러스터 기준). */
+function quickFixCellHtml(key, memberKeys) {
+  return metaCheckboxHtml(key, memberKeys, 'quick_fix', 'one-quickfix', 'Quick fix 대상');
+}
+
+/** Spec 작성 대상 체크박스 셀 (클러스터 기준). */
+function specCellHtml(key, memberKeys) {
+  return metaCheckboxHtml(key, memberKeys, 'spec', 'one-spec', 'Spec 작성 대상');
+}
+
+/** 채널 개설 대상 체크박스 셀 (클러스터 기준). 체크=채널 개설 완료. (미체크 = "채널 미개설") */
+function channelCellHtml(key, memberKeys) {
+  return metaCheckboxHtml(key, memberKeys, 'channel', 'one-channel', '채널 개설 대상');
 }
 
 function rankCellHtml(key) {
@@ -1193,15 +1201,15 @@ function bindMetaInputs(host) {
   });
   // Quick fix 체크박스
   host.querySelectorAll('.one-quickfix').forEach(cb => {
-    cb.addEventListener('change', () => saveMeta(cb.dataset.key, { quick_fix: cb.checked }));
+    cb.addEventListener('change', () => toggleClusterMeta(cb.dataset.key, 'quick_fix', cb.checked));
   });
   // Spec 체크박스
   host.querySelectorAll('.one-spec').forEach(cb => {
-    cb.addEventListener('change', () => saveMeta(cb.dataset.key, { spec: cb.checked }));
+    cb.addEventListener('change', () => toggleClusterMeta(cb.dataset.key, 'spec', cb.checked));
   });
   // 채널 개설 체크박스
   host.querySelectorAll('.one-channel').forEach(cb => {
-    cb.addEventListener('change', () => saveMeta(cb.dataset.key, { channel: cb.checked }));
+    cb.addEventListener('change', () => toggleClusterMeta(cb.dataset.key, 'channel', cb.checked));
   });
   // 코멘트 — 표시(URL 링크 클릭 가능) / 편집(textarea) 분리. 클릭→편집, blur→표시 복귀.
   host.querySelectorAll('.one-comment-cell').forEach(cell => {
@@ -1317,6 +1325,21 @@ function bindMetaInputs(host) {
   host.querySelectorAll('.one-img-del').forEach(btn => {
     btn.addEventListener('click', (e) => { e.stopPropagation(); onDeleteImage(btn.dataset.key, btn.dataset.field || 'image_path'); });
   });
+}
+
+/** 대표 행 메타 토글 (quick_fix / spec / channel) — 표시·필터가 클러스터(대표+연결) 기준이므로
+ *  끄기는 클러스터 전체를 해제해야 실제로 꺼진다(연결 멤버에만 켜진 경우 대표만 끄면 그대로 보임).
+ *  켜기: 대표 키에 기록. 끄기: 클러스터(대표+연결) 중 그 플래그가 켜진 키 전부 해제. */
+async function toggleClusterMeta(repKey, field, checked) {
+  if (!repKey || !state.signedIn) return;
+  if (checked) {
+    await saveMeta(repKey, { [field]: true });
+    return;
+  }
+  const memberKeys = ((state.displayMembers && state.displayMembers.get(repKey)) || []).map(m => m.key);
+  const onKeys = [repKey, ...memberKeys].filter(k => { const m = state.meta.get(k); return m && m[field]; });
+  if (!onKeys.length) { await saveMeta(repKey, { [field]: false }); return; }
+  for (const k of onKeys) await saveMeta(k, { [field]: false });
 }
 
 async function saveMeta(key, patch, { resort = false, rerender = false } = {}) {
@@ -1600,4 +1623,5 @@ export const _internal = {
   normalizeItem, isInitiative, buildFromFallback, clusterItems, pickRepresentative, MERGE_EXCLUDE_LINKS,
   filterItems, itemMatchesFilters, filterClusters, sortItems, sortClusters,
   groupByMainSubject, rankOf, cssId, subSubjectsOf, linkifyComment, pickDisplayRep,
+  clusterMetaChecked,
 };
