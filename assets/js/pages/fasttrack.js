@@ -898,7 +898,44 @@ export function buildKanban(etrItems = state.items, ftItems = state.ftItems) {
   for (const etr of etrItems) {
     for (const l of (etr.linkedTickets || [])) consider(l, projectOfKey(l.key));
   }
-  return cols;
+  return mergeKanbanDuplicates(cols);
+}
+
+/** 같은 summary 카드(복사/클론)를 한 장으로 병합 (2026-06-08).
+ *  대표 = 가장 진행된 컬럼 → 비-FT → key 순. 병합된 나머지는 rep.merged 에 기록.
+ *  labels 는 합집합(fasttrack 필터 일관성), manual 은 OR. 빈 summary 는 병합하지 않음. */
+function mergeKanbanDuplicates(cols) {
+  const rank = Object.fromEntries(KANBAN_COLS.map((c, i) => [c.id, i]));
+  const norm = (s) => (s || '').trim().replace(/\s+/g, ' ').toLowerCase();
+  const stripCol = ({ _col, ...rest }) => rest;
+
+  const groups = new Map();   // norm(summary) → [{...card, _col}]
+  const out = {};
+  for (const c of KANBAN_COLS) out[c.id] = [];
+
+  for (const c of KANBAN_COLS) {
+    for (const card of (cols[c.id] || [])) {
+      const k = norm(card.summary);
+      if (!k) { out[c.id].push(card); continue; }   // 빈 summary → 개별
+      if (!groups.has(k)) groups.set(k, []);
+      groups.get(k).push({ ...card, _col: c.id });
+    }
+  }
+  for (const grp of groups.values()) {
+    if (grp.length === 1) { out[grp[0]._col].push(stripCol(grp[0])); continue; }
+    const rep = grp.slice().sort((a, b) =>
+      (rank[b._col] - rank[a._col]) ||
+      ((a.project === 'FT' ? 1 : 0) - (b.project === 'FT' ? 1 : 0)) ||
+      String(a.key).localeCompare(String(b.key))
+    )[0];
+    out[rep._col].push({
+      ...stripCol(rep),
+      labels: Array.from(new Set(grp.flatMap(c => c.labels || []))),
+      manual: grp.some(c => c.manual),
+      merged: grp.filter(c => c.key !== rep.key).map(c => ({ key: c.key, project: c.project, status: c.status })),
+    });
+  }
+  return out;
 }
 
 function kanbanCard(raw, proj) {
@@ -964,10 +1001,13 @@ function kanbanCardHtml(c) {
     ? `<span class="who"><span class="who-dot"></span>${escapeHtml(c.assignee)}</span>`
     : '<span class="who muted">미배정</span>';
   const manualTag = c.manual ? '<span class="ftk-tag">수동</span>' : '';
+  const merged = Array.isArray(c.merged) && c.merged.length
+    ? `<span class="ftk-tag ftk-merged" title="${escapeAttr('병합: ' + c.merged.map(m => `${m.key}(${m.status})`).join(', '))}">+${c.merged.length} 병합</span>`
+    : '';
   return `
     <div class="ftk-card">
       <div class="ftk-card-top">
-        <span class="ftk-proj">${escapeHtml(c.project)}</span>${manualTag}
+        <span class="ftk-proj">${escapeHtml(c.project)}</span>${manualTag}${merged}
         ${jiraKeyHtml(c.key)}
       </div>
       <div class="ftk-card-sum">${escapeHtml(c.summary)}</div>
