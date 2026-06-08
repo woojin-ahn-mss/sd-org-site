@@ -516,7 +516,7 @@ function renderFilters() {
     `<button type="button" class="fchip ${f.quickFixOnly ? 'on' : ''}" data-toggle="quickFixOnly" role="switch" aria-checked="${f.quickFixOnly ? 'true' : 'false'}">quick fix만</button>` +
     `<button type="button" class="fchip ${f.quickFixExclude ? 'on' : ''}" data-toggle="quickFixExclude" role="switch" aria-checked="${f.quickFixExclude ? 'true' : 'false'}">quick fix 제외</button>` +
     `<button type="button" class="fchip ${f.specUnset ? 'on' : ''}" data-toggle="specUnset" role="switch" aria-checked="${f.specUnset ? 'true' : 'false'}">spec 미지정</button>` +
-    `<button type="button" class="fchip ${f.channelUnset ? 'on' : ''}" data-toggle="channelUnset" role="switch" aria-checked="${f.channelUnset ? 'true' : 'false'}">채널 미개설</button>`;
+    `<button type="button" class="fchip ${f.channelUnset ? 'on' : ''}" data-toggle="channelUnset" role="switch" aria-checked="${f.channelUnset ? 'true' : 'false'}">quick fix 논의 필요</button>`;
 
   host.innerHTML = `
     ${row(chipGroup('projects', '프로젝트', projects.map(v => ({ v, label: v })), f.projects, true))}
@@ -615,7 +615,7 @@ export function itemMatchesFilters(it, filters, hiddenKeys, quickFixKeys, specKe
   if (filters.quickFixOnly && !(quickFixKeys && quickFixKeys.has(it.key))) return false;
   if (filters.quickFixExclude && quickFixKeys && quickFixKeys.has(it.key)) return false;
   if (filters.specUnset && specKeys && specKeys.has(it.key)) return false;
-  // 채널 미개설만 — 채널 개설 체크된(=개설 완료) 항목 숨김 → 미개설만 노출.
+  // quick fix 논의 필요만 — 논의 완료(channel 체크) 항목 숨김 → 논의 필요(미체크)만 노출.
   if (filters.channelUnset && channelKeys && channelKeys.has(it.key)) return false;
   if (!filters.showHidden && hiddenKeys && hiddenKeys.has(it.key)) return false;
   // 모든 chip 필터: 복수 선택(배열) OR 매칭. 레거시 단일값도 지원.
@@ -868,7 +868,7 @@ function theadHtml() {
         <th style="width:74px">순위</th>
         <th style="width:64px" title="Quick fix 대상">Quick fix</th>
         <th style="width:48px" title="Spec 작성 대상">Spec</th>
-        <th style="width:64px" title="채널 개설 대상">채널 개설</th>
+        <th style="width:96px" title="quick fix 논의 완료">quick fix 논의완료</th>
         <th style="width:30%">코멘트</th>
         <th style="width:${state.hideManageMode ? 56 : 20}px">${state.hideManageMode ? '숨김' : ''}</th>
       </tr>
@@ -1032,9 +1032,10 @@ function specCellHtml(key, memberKeys) {
   return metaCheckboxHtml(key, memberKeys, 'spec', 'one-spec', 'Spec 작성 대상');
 }
 
-/** 채널 개설 대상 체크박스 셀 (클러스터 기준). 체크=채널 개설 완료. (미체크 = "채널 미개설") */
+/** quick fix 논의 완료 체크박스 셀 (클러스터 기준). 체크=논의 완료. (미체크 = "논의 필요")
+ *  데이터 필드는 호환 위해 'channel' 그대로 사용(2026-06-08 의미 재정의: 채널 개설 → quick fix 논의 완료). */
 function channelCellHtml(key, memberKeys) {
-  return metaCheckboxHtml(key, memberKeys, 'channel', 'one-channel', '채널 개설 대상');
+  return metaCheckboxHtml(key, memberKeys, 'channel', 'one-channel', 'quick fix 논의 완료');
 }
 
 function rankCellHtml(key) {
@@ -1207,7 +1208,7 @@ function bindMetaInputs(host) {
   host.querySelectorAll('.one-spec').forEach(cb => {
     cb.addEventListener('change', () => toggleClusterMeta(cb.dataset.key, 'spec', cb.checked));
   });
-  // 채널 개설 체크박스
+  // quick fix 논의 완료 체크박스 (데이터 필드는 channel)
   host.querySelectorAll('.one-channel').forEach(cb => {
     cb.addEventListener('change', () => toggleClusterMeta(cb.dataset.key, 'channel', cb.checked));
   });
