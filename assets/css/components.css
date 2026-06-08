@@ -1932,3 +1932,9 @@ hr.rule { border: 0; border-top: 1px solid var(--rule); margin: 18px 0; }
   display: flex; align-items: center; justify-content: space-between; gap: 8px;
 }
 .ftk-card-meta .who { font-size: 11px; color: var(--faint); }
+.ftk-toolbar {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 10px;
+}
+.ftk-toolbar .tlink { font-size: 12px; }
+.ftk-toolbar-ct { font-size: 11px; }

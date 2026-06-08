@@ -65,6 +65,13 @@ function projectOfKey(key) {
   return key && key.includes('-') ? key.split('-')[0] : '';
 }
 
+// 칸반 'fasttrack' 라벨 필터 — ON 시 라벨에 'fasttrack' 있는 카드만(전체 컬럼 균일)
+const KANBAN_LABEL = 'fasttrack';
+const KANBAN_LABEL_KEY = 'fasttrack.kanbanLabelOnly';
+function cardHasLabel(card, label) {
+  return Array.isArray(card.labels) && card.labels.includes(label);
+}
+
 // statusCategory='done' 중 '실제 완료' 가 아닌 상태 (취소/반려/Dropped) — 주별 차트 완료 카운트에서 제외
 const EXCLUDED_FROM_DONE = new Set(['Dropped', '철회/반려/취소', '취소', '반려', '철회']);
 function isRealDone(it) {
@@ -899,6 +906,7 @@ function kanbanCard(raw, proj) {
     project: proj,
     assignee: (raw.assignee && raw.assignee.name) || null,
     manual: !!raw.manual,
+    labels: Array.isArray(raw.labels) ? raw.labels : [],
   };
 }
 
@@ -909,11 +917,22 @@ function renderKanban() {
     host.innerHTML = emptyHtml({ kicker: 'NO DATA', msg: '데이터 동기화 대기 중.' });
     return;
   }
+  const labelOnly = !!scoped(KANBAN_LABEL_KEY).get(false);
   const cols = buildKanban();
+  const keep = (c) => !labelOnly || cardHasLabel(c, KANBAN_LABEL);
+  const total = KANBAN_COLS.reduce((n, c) => n + (cols[c.id] || []).filter(keep).length, 0);
+
   host.innerHTML = `
+    <div class="ftk-toolbar">
+      <button type="button" class="tlink ${labelOnly ? 'active' : ''}" data-ft-label
+              aria-pressed="${labelOnly}" title="'fasttrack' 레이블이 붙은 카드만 표시">
+        ⚡ fasttrack 레이블만
+      </button>
+      <span class="ftk-toolbar-ct muted num">${total}건${labelOnly ? ' (필터됨)' : ''}</span>
+    </div>
     <div class="ftk-board">
       ${KANBAN_COLS.map(c => {
-        const cards = cols[c.id] || [];
+        const cards = (cols[c.id] || []).filter(keep);
         return `
           <div class="ftk-col" data-col="${c.id}">
             <div class="ftk-col-h">
@@ -926,6 +945,12 @@ function renderKanban() {
           </div>`;
       }).join('')}
     </div>`;
+
+  const toggle = host.querySelector('[data-ft-label]');
+  if (toggle) toggle.addEventListener('click', () => {
+    scoped(KANBAN_LABEL_KEY).set(!labelOnly);
+    renderKanban();
+  });
 }
 
 function kanbanCardHtml(c) {
