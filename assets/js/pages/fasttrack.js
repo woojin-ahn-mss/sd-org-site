@@ -35,14 +35,18 @@ const FT_PROJECTS = new Set(['FT', 'MSSCXTF', 'PEL', 'TF']);
 /* ── 진행 칸반 (2026-06-08) ──────────────────────────────────
    인입 컬럼 = ETR 인입 단계 티켓. 그 외 컬럼 = ETR 에 연결/복사된 Initiative
    (MSSCXTF·TM·PEL·FT·TF) 의 상태로 배치. 매핑/제외 정책은 사용자 확정(2026-06-08):
-   - 미착수(SUGGESTED·Backlog·HOLD) → '대기/백로그' 컬럼
-   - 종료(철회/반려/취소·Dropped·반려) → 보드 제외
+   - 미착수(SUGGESTED·Backlog) → '대기/백로그' 컬럼
+   - 종료(철회/반려/취소·Dropped·반려) + 보류(HOLD) → 보드 제외
    - 'X완료' 중간상태 → 다음 단계로 (기획완료→디자인중, 디자인완료→개발중) */
 const KANBAN_PROJECTS = new Set(['MSSCXTF', 'TM', 'PEL', 'FT', 'TF']);
 const INTAKE_STATUSES = new Set(['발의', '매니저 승인 대기', 'PMO 검토 중', 'Tech 검토 대기 중', 'Tech 검토 중']);
-const KANBAN_TERMINAL = new Set(['철회/반려/취소', 'Dropped', '반려', '취소', '철회', '검토완료-미진행']);
+// 보드 제외 — 종료(취소/반려/철회/Dropped) + 보류(HOLD). 사용자 정책 2026-06-08.
+const KANBAN_TERMINAL = new Set([
+  '철회/반려/취소', 'Dropped', '반려', '취소', '철회', '검토완료-미진행',
+  'HOLD', '보류', 'On Hold',
+]);
 const STATUS_TO_COL = {
-  'SUGGESTED': 'backlog', 'Backlog': 'backlog', 'HOLD': 'backlog',
+  'SUGGESTED': 'backlog', 'Backlog': 'backlog',
   '준비중': 'plan', '기획중': 'plan',
   '기획완료': 'design', '디자인중': 'design', 'Design Finalization': 'design',
   '디자인완료': 'dev', '개발중': 'dev', 'In Progress': 'dev', 'QA중': 'dev', 'Waiting For Review': 'dev',
