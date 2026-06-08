@@ -882,7 +882,7 @@ function theadHtml() {
         <th style="width:74px">순위</th>
         <th style="width:64px" title="Quick fix 대상">Quick fix</th>
         <th style="width:48px" title="Spec 작성 대상">Spec</th>
-        <th style="width:96px" title="quick fix 논의 완료">quick fix 논의완료</th>
+        <th style="width:80px" title="quick fix 제외">quick fix 제외</th>
         <th style="width:30%">코멘트</th>
         <th style="width:${state.hideManageMode ? 56 : 20}px">${state.hideManageMode ? '숨김' : ''}</th>
       </tr>
@@ -1046,10 +1046,10 @@ function specCellHtml(key, memberKeys) {
   return metaCheckboxHtml(key, memberKeys, 'spec', 'one-spec', 'Spec 작성 대상');
 }
 
-/** quick fix 논의 완료 체크박스 셀 (클러스터 기준). 체크=논의 완료. (미체크 = "논의 필요")
- *  데이터 필드는 호환 위해 'channel' 그대로 사용(2026-06-08 의미 재정의: 채널 개설 → quick fix 논의 완료). */
+/** quick fix 제외 체크박스 셀 (클러스터 기준). 체크=quick fix 제외 대상.
+ *  데이터 필드는 호환 위해 'channel' 그대로 사용(2026-06-08 의미 재정의: 채널 개설 → quick fix 제외). */
 function channelCellHtml(key, memberKeys) {
-  return metaCheckboxHtml(key, memberKeys, 'channel', 'one-channel', 'quick fix 논의 완료');
+  return metaCheckboxHtml(key, memberKeys, 'channel', 'one-channel', 'quick fix 제외');
 }
 
 function rankCellHtml(key) {
