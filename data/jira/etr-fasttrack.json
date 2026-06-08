@@ -1,7 +1,50 @@
 {
-  "lastSync": "2026-06-08T11:55:36+09:00",
-  "count": 142,
+  "lastSync": "2026-06-08T13:56:37+09:00",
+  "count": 143,
   "items": [
+    {
+      "key": "ETR-4724",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4724",
+      "summary": "[USED] 판매 프로세스 단계별 페이지 상태·다음 단계·소요시간 안내 고도화",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "발의",
+      "statusCategory": "new",
+      "priority": "P0",
+      "assignee": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-06-08T13:51:51.266+0900",
+      "updated": "2026-06-08T13:52:08.709+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null,
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
     {
       "key": "ETR-4691",
       "url": "https://jira.team.musinsa.com/browse/ETR-4691",
@@ -772,7 +815,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
-            "fasttrack"
+            "one"
           ]
         },
         {
@@ -905,7 +948,8 @@
           "assignee": null,
           "linkType": "Blocks",
           "direction": "outward",
-          "labels": []
+          "labels": [],
+          "resolutionDate": "2026-06-02T15:09:28.622+0900"
         },
         {
           "key": "FT-44",
@@ -989,7 +1033,6 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
-            "fasttrack",
             "one"
           ]
         }
@@ -1222,7 +1265,8 @@
           "assignee": null,
           "linkType": "Blocks",
           "direction": "outward",
-          "labels": []
+          "labels": [],
+          "resolutionDate": "2026-06-04T15:42:28.219+0900"
         },
         {
           "key": "TM-3178",
@@ -1483,7 +1527,8 @@
           "assignee": null,
           "linkType": "Contains",
           "direction": "outward",
-          "labels": []
+          "labels": [],
+          "resolutionDate": "2026-06-02T10:01:34.473+0900"
         },
         {
           "key": "FT-36",
@@ -1650,8 +1695,8 @@
         {
           "key": "FT-37",
           "summary": "[퀵픽스] 판매 알림 고도화 — 개별 판매 발생 시 실시간 알림 제공",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "개발중",
+          "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -2077,7 +2122,8 @@
           "direction": "outward",
           "labels": [
             "one"
-          ]
+          ],
+          "resolutionDate": "2026-06-05T16:23:19.475+0900"
         },
         {
           "key": "TM-3151",
@@ -2336,7 +2382,8 @@
             "one",
             "pel",
             "ux-ft-close"
-          ]
+          ],
+          "resolutionDate": "2026-06-04T17:53:21.009+0900"
         }
       ],
       "progress": {
@@ -3159,7 +3206,6 @@
           "linkType": "Clones",
           "direction": "inward",
           "labels": [
-            "fasttrack",
             "one"
           ]
         },
@@ -3287,7 +3333,8 @@
           "labels": [
             "conveyor",
             "one"
-          ]
+          ],
+          "resolutionDate": "2026-05-28T18:09:27.540+0900"
         }
       ],
       "progress": {
@@ -3505,7 +3552,8 @@
             "fast-track-away",
             "fasttrack",
             "one"
-          ]
+          ],
+          "resolutionDate": "2026-06-08T11:11:31.847+0900"
         }
       ],
       "progress": {
@@ -3803,7 +3851,8 @@
             "one",
             "sp_by_choavis_v1",
             "team-campaign"
-          ]
+          ],
+          "resolutionDate": "2026-05-20T13:41:40.079+0900"
         },
         {
           "key": "FT-11",
@@ -3818,7 +3867,8 @@
             "conveyor-bot",
             "fast-track-away",
             "one"
-          ]
+          ],
+          "resolutionDate": "2026-05-20T10:45:53.003+0900"
         }
       ],
       "progress": {
@@ -3878,7 +3928,8 @@
             "conveyor-bot",
             "fast-track-away",
             "one"
-          ]
+          ],
+          "resolutionDate": "2026-05-28T18:05:23.603+0900"
         }
       ],
       "progress": {
@@ -3935,7 +3986,8 @@
           "labels": [
             "conveyor",
             "one"
-          ]
+          ],
+          "resolutionDate": "2026-05-21T23:21:46.570+0900"
         },
         {
           "key": "FT-9",
@@ -3950,7 +4002,8 @@
             "conveyor-bot",
             "fast-track-away",
             "one"
-          ]
+          ],
+          "resolutionDate": "2026-05-21T14:35:23.107+0900"
         }
       ],
       "progress": {
@@ -4008,7 +4061,8 @@
             "auto-etr-triaged",
             "conveyor-bot",
             "fast-track-home"
-          ]
+          ],
+          "resolutionDate": "2026-05-21T00:28:43.690+0900"
         }
       ],
       "progress": {
@@ -4120,7 +4174,8 @@
           "assignee": null,
           "linkType": "Relates",
           "direction": "outward",
-          "labels": []
+          "labels": [],
+          "resolutionDate": "2026-06-01T11:28:36.966+0900"
         }
       ],
       "progress": {
@@ -4248,7 +4303,8 @@
             "auto-etr-triaged",
             "one",
             "ux-ft-close"
-          ]
+          ],
+          "resolutionDate": "2026-05-28T18:04:00.660+0900"
         },
         {
           "key": "TM-3082",
@@ -4263,7 +4319,8 @@
             "conveyor-bot",
             "general-task",
             "one"
-          ]
+          ],
+          "resolutionDate": "2026-05-28T18:02:27.753+0900"
         }
       ],
       "progress": {
@@ -4525,7 +4582,8 @@
           "labels": [
             "fasttrack",
             "pel"
-          ]
+          ],
+          "resolutionDate": "2026-05-19T18:36:22.421+0900"
         },
         {
           "key": "FT-26",
@@ -5358,7 +5416,6 @@
       },
       "labels": [
         "conveyor",
-        "fasttrack",
         "one"
       ],
       "mainSubject": null,
@@ -5371,7 +5428,7 @@
       "startDate": null,
       "dueDate": "2026-06-03",
       "created": "2026-05-13T18:08:42.037+0900",
-      "updated": "2026-06-05T09:03:43.369+0900",
+      "updated": "2026-06-08T13:37:45.485+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-04T20:09:53.548+0900",
       "linkedTickets": [],
@@ -5548,7 +5605,8 @@
             "home-discovery",
             "pel",
             "used"
-          ]
+          ],
+          "resolutionDate": "2026-06-08T11:17:45.957+0900"
         },
         {
           "key": "MSSCXTF-1362",
@@ -5566,7 +5624,8 @@
             "one",
             "pel",
             "홈앤디"
-          ]
+          ],
+          "resolutionDate": "2026-05-26T14:54:05.186+0900"
         },
         {
           "key": "SNDPRD-3958",
@@ -5580,7 +5639,8 @@
             "PEL",
             "one",
             "홈앤디"
-          ]
+          ],
+          "resolutionDate": "2026-05-22T13:59:52.218+0900"
         },
         {
           "key": "SEARCHPL-2613",
@@ -5593,7 +5653,8 @@
           "labels": [
             "CX",
             "유즈드"
-          ]
+          ],
+          "resolutionDate": "2026-05-18T17:36:45.359+0900"
         }
       ],
       "progress": {
@@ -5651,7 +5712,8 @@
             "pel",
             "ux-ft-close",
             "홈앤디"
-          ]
+          ],
+          "resolutionDate": "2026-05-21T14:25:25.803+0900"
         },
         {
           "key": "MSSCXTF-1208",
@@ -5666,7 +5728,8 @@
             "pel",
             "ux-ft-close",
             "홈앤디"
-          ]
+          ],
+          "resolutionDate": "2026-05-21T14:25:25.803+0900"
         }
       ],
       "progress": {
@@ -5724,7 +5787,8 @@
             "fasttrack",
             "one",
             "pel"
-          ]
+          ],
+          "resolutionDate": "2026-06-02T10:37:10.857+0900"
         }
       ],
       "progress": {
@@ -5783,7 +5847,8 @@
             "auto-etr-triaged",
             "one",
             "홈앤디"
-          ]
+          ],
+          "resolutionDate": "2026-05-26T09:36:59.860+0900"
         },
         {
           "key": "MSSCXTF-1355",
@@ -5798,7 +5863,8 @@
             "auto-etr-triaged",
             "one",
             "홈앤디"
-          ]
+          ],
+          "resolutionDate": "2026-05-26T09:36:59.860+0900"
         },
         {
           "key": "PEL-884",
@@ -5814,7 +5880,8 @@
             "fasttrack",
             "pel",
             "sp_by_choavis_v1"
-          ]
+          ],
+          "resolutionDate": "2026-05-12T16:37:31.910+0900"
         },
         {
           "key": "PEL-885",
@@ -5830,7 +5897,8 @@
             "fasttrack",
             "pel",
             "sp_by_choavis_v1"
-          ]
+          ],
+          "resolutionDate": "2026-05-12T23:08:00.702+0900"
         },
         {
           "key": "PEL-886",
@@ -5845,7 +5913,8 @@
             "fasttrack",
             "pel",
             "sp_by_choavis_v1"
-          ]
+          ],
+          "resolutionDate": "2026-05-26T07:59:52.775+0900"
         }
       ],
       "progress": {
@@ -6006,7 +6075,8 @@
             "DUE_OVERDUE_BOT",
             "one",
             "pel"
-          ]
+          ],
+          "resolutionDate": "2026-05-28T17:55:36.375+0900"
         }
       ],
       "progress": {
@@ -6215,7 +6285,8 @@
             "AI-ASSISTED",
             "one",
             "홈앤디"
-          ]
+          ],
+          "resolutionDate": "2026-05-13T11:13:05.877+0900"
         }
       ],
       "progress": {
@@ -6273,7 +6344,8 @@
             "USED",
             "구매활성화",
             "유즈드"
-          ]
+          ],
+          "resolutionDate": "2026-06-05T11:12:19.967+0900"
         }
       ],
       "progress": {
@@ -7815,7 +7887,8 @@
           "direction": "inward",
           "labels": [
             "AI-ASSISTED"
-          ]
+          ],
+          "resolutionDate": "2026-05-21T09:33:16.275+0900"
         }
       ],
       "progress": {
@@ -8002,7 +8075,7 @@
         {
           "key": "PEL-558",
           "summary": "결제 주문서 내 '결제하기' 버튼을 제휴카드 정보 영역 상단으로 이동",
-          "status": "디자인완료",
+          "status": "개발중",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Clones",
@@ -8178,7 +8251,8 @@
             "one",
             "무신사",
             "앱테크-기타"
-          ]
+          ],
+          "resolutionDate": "2026-05-07T10:47:22.502+0900"
         }
       ],
       "progress": {
@@ -8231,7 +8305,8 @@
           "assignee": null,
           "linkType": "Clones",
           "direction": "inward",
-          "labels": []
+          "labels": [],
+          "resolutionDate": "2025-08-08T12:53:48.211+0900"
         },
         {
           "key": "FE-16206",
@@ -8241,7 +8316,8 @@
           "assignee": null,
           "linkType": "Blocks",
           "direction": "inward",
-          "labels": []
+          "labels": [],
+          "resolutionDate": "2025-07-29T15:03:53.133+0900"
         },
         {
           "key": "ETR-1255",
