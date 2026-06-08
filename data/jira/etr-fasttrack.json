@@ -1,11 +1,54 @@
 {
-  "lastSync": "2026-06-08T13:56:37+09:00",
-  "count": 143,
+  "lastSync": "2026-06-08T16:30:43+09:00",
+  "count": 156,
   "items": [
     {
-      "key": "ETR-4724",
-      "url": "https://jira.team.musinsa.com/browse/ETR-4724",
-      "summary": "[USED] 판매 프로세스 단계별 페이지 상태·다음 단계·소요시간 안내 고도화",
+      "key": "ETR-4751",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4751",
+      "summary": "[무신사] 퀵픽스 - 필터/정렬 UI 분리 및 레이아웃 무신사·29cm 기준 적용",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-미진행",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "이승연",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-06-08T15:06:15.460+0900",
+      "updated": "2026-06-08T15:47:06.236+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-06-08T15:46:38.943+0900",
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-4749",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4749",
+      "summary": "[유즈드] 메인 퀵메뉴 영역 확장 및 상품 개수 표시, 테마 칩스 UI 개선",
       "issueType": "과제 발의",
       "project": "ETR",
       "status": "발의",
@@ -35,10 +78,560 @@
       "subGroup": null,
       "startDate": null,
       "dueDate": null,
-      "created": "2026-06-08T13:51:51.266+0900",
-      "updated": "2026-06-08T13:52:08.709+0900",
+      "created": "2026-06-08T14:59:47.251+0900",
+      "updated": "2026-06-08T15:23:28.643+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-4748",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4748",
+      "summary": "[무신사 오프라인/퀵픽스] QR 스캔 없이 브랜드 상품 목록·카테고리 인기 상품·매장 이벤트 탐색 기능 추가",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-백로그",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "이승연",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-06-08T14:59:35.429+0900",
+      "updated": "2026-06-08T15:46:34.806+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-06-08T15:45:54.509+0900",
+      "linkedTickets": [
+        {
+          "key": "TM-3245",
+          "summary": "[무신사 오프라인/퀵픽스] QR 스캔 없이 브랜드 상품 목록·카테고리 인기 상품·매장 이벤트 탐색 기능 추가",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor",
+            "conveyor-bot",
+            "general-task",
+            "one"
+          ]
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-4747",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4747",
+      "summary": "[유즈드] 판매관리 버튼을 판매 신청하기 옆으로 이동",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "발의",
+      "statusCategory": "new",
+      "priority": "P0",
+      "assignee": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-06-08T14:59:22.650+0900",
+      "updated": "2026-06-08T15:24:14.495+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null,
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-4746",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4746",
+      "summary": "[무신사 오프라인/퀵픽스] QR 스캔 결과 화면 내 연속 스캔 버튼 추가",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "발의",
+      "statusCategory": "new",
+      "priority": "P0",
+      "assignee": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-06-08T14:59:11.075+0900",
+      "updated": "2026-06-08T14:59:55.554+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null,
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-4743",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4743",
+      "summary": "[29CM] 브랜드 UI 컴포넌트 명도 개선 — 고객 브랜드 인지 어려움",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-미진행",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "이승연",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": "2026-06-22",
+      "created": "2026-06-08T14:54:42.965+0900",
+      "updated": "2026-06-08T15:45:15.256+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-06-08T15:44:47.218+0900",
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-4741",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4741",
+      "summary": "[무신사 퀵픽스] 콜렉션 태그 시스템 근본 개선 (우량 콜렉션 하이라이팅 강화 및 비효율 태그 정리)",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-백로그",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "이승연",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-06-08T14:52:56.371+0900",
+      "updated": "2026-06-08T15:44:47.582+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-06-08T15:44:08.679+0900",
+      "linkedTickets": [
+        {
+          "key": "TM-3244",
+          "summary": "[무신사 퀵픽스] 콜렉션 태그 시스템 근본 개선 (우량 콜렉션 하이라이팅 강화 및 비효율 태그 정리)",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor",
+            "conveyor-bot",
+            "general-task",
+            "one"
+          ]
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-4740",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4740",
+      "summary": "무신사 퀵픽스 광고 노출 갯수 확대 및 상품 정보(단독/쿠폰/후기수/평점) 표시 추가",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "발의",
+      "statusCategory": "new",
+      "priority": "P0",
+      "assignee": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-06-08T14:51:34.746+0900",
+      "updated": "2026-06-08T14:51:54.690+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null,
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-4736",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4736",
+      "summary": "[스냅] SRP 키워드 검색 시 해당 키워드 관련 대표 매핑 상품 우선 노출",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "발의",
+      "statusCategory": "new",
+      "priority": "P0",
+      "assignee": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-06-08T14:48:01.993+0900",
+      "updated": "2026-06-08T14:48:21.892+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null,
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-4735",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4735",
+      "summary": "[공통] 품절 상품 썸네일 연하게(dim) 처리 요청",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-미진행",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "이승연",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-06-08T14:47:05.946+0900",
+      "updated": "2026-06-08T15:42:52.468+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-06-08T15:42:26.043+0900",
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-4732",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4732",
+      "summary": "[랭킹] 무탠다드 랭킹 탭 추가",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "발의",
+      "statusCategory": "new",
+      "priority": "P0",
+      "assignee": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-06-08T14:43:59.300+0900",
+      "updated": "2026-06-08T15:01:26.365+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null,
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-4731",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4731",
+      "summary": "[랭킹] 아울렛·키즈 랭킹 탭 추가",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "발의",
+      "statusCategory": "new",
+      "priority": "P0",
+      "assignee": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-06-08T14:43:45.062+0900",
+      "updated": "2026-06-08T15:01:25.779+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null,
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-4729",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4729",
+      "summary": "[상품상세] 바지 사이즈 선택 영역에 인치(inch) 단위 병행 표시",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-미진행",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "이승연",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-06-08T14:39:46.628+0900",
+      "updated": "2026-06-08T15:41:46.504+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-06-08T15:41:18.819+0900",
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-4724",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4724",
+      "summary": "[USED] 판매 프로세스 단계별 페이지 상태·다음 단계·소요시간 안내 고도화",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "매니저 승인 대기",
+      "statusCategory": "indeterminate",
+      "priority": "P0",
+      "assignee": {
+        "name": "이유정",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": "2026-06-11",
+      "created": "2026-06-08T13:51:51.266+0900",
+      "updated": "2026-06-08T14:29:42.651+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-06-08T14:29:35.557+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -286,11 +879,11 @@
       "summary": "[무신사 퀵픽스] 브랜드 탭에 부티크 탭 추가 (유즈드와 함께 파비콘 포함)",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "매니저 승인 대기",
-      "statusCategory": "indeterminate",
+      "status": "검토완료-미진행",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
-        "name": "촤비스",
+        "name": "이승연",
         "email": null,
         "accountId": null
       },
@@ -312,11 +905,11 @@
       "yearQuarters": [],
       "subGroup": null,
       "startDate": null,
-      "dueDate": "2026-06-10",
+      "dueDate": null,
       "created": "2026-06-04T13:08:54.674+0900",
-      "updated": "2026-06-08T09:00:56.541+0900",
+      "updated": "2026-06-08T15:47:40.272+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-08T08:47:07.779+0900",
+      "lastStatusChangedAt": "2026-06-08T15:47:12.102+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -6206,7 +6799,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-04T20:16:53.995+0900",
-      "updated": "2026-05-22T00:07:42.301+0900",
+      "updated": "2026-06-08T14:44:12.344+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-05-14T15:18:51.948+0900",
       "linkedTickets": [
@@ -6227,11 +6820,25 @@
             "one",
             "team-display"
           ]
+        },
+        {
+          "key": "FT-47",
+          "summary": "[공통] 이미지 태깅 추가 개선",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "outward",
+          "labels": [
+            "conveyor",
+            "one",
+            "ux-ft-backlog"
+          ]
         }
       ],
       "progress": {
         "done": 0,
-        "total": 1
+        "total": 2
       }
     },
     {
@@ -6591,7 +7198,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-01T21:56:56.121+0900",
-      "updated": "2026-05-22T00:13:25.962+0900",
+      "updated": "2026-06-08T16:02:07.544+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-05-22T00:12:46.650+0900",
       "linkedTickets": [
@@ -6797,6 +7404,7 @@
           "direction": "inward",
           "labels": [
             "auto-etr-triaged",
+            "fasttrack",
             "one"
           ]
         }
