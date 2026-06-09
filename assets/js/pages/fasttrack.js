@@ -108,6 +108,7 @@ let state = {
   rootRel: '',
   items: [],     // ETR 인입 (etr-fasttrack.json)
   ftItems: [],   // FT 프로젝트 티켓 (ft-tickets.json) — 없으면 빈 배열
+  tmFastItems: [], // TM fasttrack Initiative (tm-fasttrack.json) — 상단 '진행중' 카드 전용
   filters: { status: null, reporter: null, period: 'all' },
   expanded: new Set(),
   etrPage: 1,
@@ -139,6 +140,14 @@ export async function renderFasttrack({ rootRel = '' } = {}) {
     state.ftItems = ft.items || [];
   } catch (_) {
     state.ftItems = [];
+  }
+
+  // TM fasttrack — 옵셔널. 상단 '진행중' 카드에서만 사용.
+  try {
+    const tm = await loadJson(`${rootRel}data/jira/tm-fasttrack.json`);
+    state.tmFastItems = tm.items || [];
+  } catch (_) {
+    state.tmFastItems = [];
   }
 
   renderStats();
@@ -197,7 +206,10 @@ function renderStats() {
     it.status === STATUS_DEV &&
     (it.labels || []).includes('one')
   ).length;
-  setStatRaw('inprogress', inProgressOne, '개발중 · one (FT·MSSCXTF·PEL·TF + 수동)', state.ftItems.length === 0);
+  // TM fasttrack 라벨 Initiative 중 '개발중' 추가 합산
+  const inProgressTm = state.tmFastItems.filter(it => it.status === STATUS_DEV).length;
+  const noData = state.ftItems.length === 0 && state.tmFastItems.length === 0;
+  setStatRaw('inprogress', inProgressOne + inProgressTm, '개발중 · one (FT·MSSCXTF·PEL·TF + TM fasttrack + 수동)', noData);
 }
 
 /** KST 월~일 기준으로 created 를 금주/지난주 버킷에 배정.
