@@ -25,6 +25,12 @@ const PAGE_SIZE = 20;
 
 // 진행 상태 · 평균 경과 시간 표는 생성일 기준 이 날짜 이후 티켓만 집계 (2026-06-09)
 const DWELL_CREATED_FROM = new Date('2026-05-06T00:00:00+09:00').getTime();
+// FT/Initiative 컬럼에서 제외할 상태 — 종료성 + 보류(HOLD) (2026-06-09)
+const DWELL_FT_EXCLUDE = new Set(['론치완료', '철회/반려/취소', 'Dropped', 'HOLD']);
+// ETR 컬럼에서 제외할 종료성 상태 — 검토 결정 후 영구 잔류, 체류 시간 무의미 (2026-06-09)
+const DWELL_ETR_EXCLUDE = new Set([
+  '검토완료-우선착수', '검토완료-백로그', '검토완료-미진행', '반려', '완료',
+]);
 
 // 상태 분류 (사용자 정의)
 const STATUS_TRIAGE = '검토완료-우선착수';   // 패스트트랙 트리아지
@@ -90,6 +96,12 @@ function isRealDone(it) {
 const ETR_STATUS_ORDER = [
   '발의', '매니저 승인 대기', 'PMO 검토 중', 'Tech 검토 대기 중', 'Tech 검토 중',
   STATUS_TRIAGE, STATUS_NORMAL, '검토완료-미진행', '반려', '완료',
+];
+
+// FT/Initiative 진행 단계 순서 (2026-06-09). 데이터에 기획중·기획완료 단계 실재 → 포함.
+const FT_STATUS_ORDER = [
+  'Backlog', '준비중', 'SUGGESTED', '기획중', '기획완료', '디자인중', '디자인완료',
+  'Waiting For Review', 'In Progress', '개발중', '개발완료', 'QA중', '배포완료',
 ];
 
 let state = {
@@ -267,10 +279,16 @@ function renderDwellTables() {
   const etrTotal = document.getElementById('dwell-etr-total');
   const ftTotal = document.getElementById('dwell-ft-total');
   // 생성일 기준 2026-05-06 이후 티켓만 집계
-  const etrItems = state.items.filter(dwellCreatedFilter);
-  const ftItems = state.ftItems.filter(dwellCreatedFilter);
+  // ETR 은 검토 종료성 상태(검토완료-*·반려·완료) 추가 제외
+  const etrItems = state.items
+    .filter(dwellCreatedFilter)
+    .filter(it => !DWELL_ETR_EXCLUDE.has(it.status));
+  // FT/Initiative 는 종료성 상태(론치완료·철회/반려/취소·Dropped) 추가 제외
+  const ftItems = state.ftItems
+    .filter(dwellCreatedFilter)
+    .filter(it => !DWELL_FT_EXCLUDE.has(it.status));
   if (etrTable) renderDwellGroup(etrTable, dwellStats(etrItems, ETR_STATUS_ORDER));
-  if (ftTable)  renderDwellGroup(ftTable,  dwellStats(ftItems));
+  if (ftTable)  renderDwellGroup(ftTable,  dwellStats(ftItems, FT_STATUS_ORDER));
   if (etrTotal) etrTotal.textContent = etrItems.length ? `${etrItems.length}건` : '—';
   if (ftTotal)  ftTotal.textContent  = ftItems.length ? `${ftItems.length}건` : '—';
 }
