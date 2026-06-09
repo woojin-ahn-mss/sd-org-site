@@ -23,6 +23,9 @@ const FILTERS_KEY = 'fasttrack.filters';
 const PERIOD_DAYS = { '1m': 30, '3m': 90, 'all': Infinity };
 const PAGE_SIZE = 20;
 
+// 진행 상태 · 평균 경과 시간 표는 생성일 기준 이 날짜 이후 티켓만 집계 (2026-06-09)
+const DWELL_CREATED_FROM = new Date('2026-05-06T00:00:00+09:00').getTime();
+
 // 상태 분류 (사용자 정의)
 const STATUS_TRIAGE = '검토완료-우선착수';   // 패스트트랙 트리아지
 const STATUS_NORMAL = '검토완료-백로그';     // 일반 과제 (패스트트랙 진행 X)
@@ -263,10 +266,20 @@ function renderDwellTables() {
   const ftTable = document.getElementById('dwell-ft');
   const etrTotal = document.getElementById('dwell-etr-total');
   const ftTotal = document.getElementById('dwell-ft-total');
-  if (etrTable) renderDwellGroup(etrTable, dwellStats(state.items, ETR_STATUS_ORDER));
-  if (ftTable)  renderDwellGroup(ftTable,  dwellStats(state.ftItems));
-  if (etrTotal) etrTotal.textContent = state.items.length ? `${state.items.length}건` : '—';
-  if (ftTotal)  ftTotal.textContent  = state.ftItems.length ? `${state.ftItems.length}건` : '—';
+  // 생성일 기준 2026-05-06 이후 티켓만 집계
+  const etrItems = state.items.filter(dwellCreatedFilter);
+  const ftItems = state.ftItems.filter(dwellCreatedFilter);
+  if (etrTable) renderDwellGroup(etrTable, dwellStats(etrItems, ETR_STATUS_ORDER));
+  if (ftTable)  renderDwellGroup(ftTable,  dwellStats(ftItems));
+  if (etrTotal) etrTotal.textContent = etrItems.length ? `${etrItems.length}건` : '—';
+  if (ftTotal)  ftTotal.textContent  = ftItems.length ? `${ftItems.length}건` : '—';
+}
+
+/** 진행 상태 표 집계 대상: 생성일(created)이 DWELL_CREATED_FROM 이후인 티켓만. */
+function dwellCreatedFilter(it) {
+  if (!it.created) return false;
+  const t = new Date(it.created).getTime();
+  return !isNaN(t) && t >= DWELL_CREATED_FROM;
 }
 
 /**
