@@ -1,5 +1,5 @@
 {
-  "lastSync": "2026-06-09T13:34:31+09:00",
+  "lastSync": "2026-06-10T07:19:40+09:00",
   "count": 166,
   "items": [
     {
@@ -162,7 +162,6 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
-            "DUE_OVERDUE_BOT",
             "conveyor",
             "fasttrack",
             "one",
@@ -249,7 +248,8 @@
             "conveyor",
             "conveyor-bot",
             "fast-track-away",
-            "one"
+            "one",
+            "홈앤디"
           ]
         }
       ],
@@ -530,7 +530,8 @@
             "conveyor",
             "conveyor-bot",
             "fast-track-away",
-            "one"
+            "one",
+            "홈앤디"
           ]
         }
       ],
@@ -1882,7 +1883,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-02T13:57:36.039+0900",
-      "updated": "2026-06-04T23:57:52.486+0900",
+      "updated": "2026-06-10T01:48:21.494+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-04T23:57:14.142+0900",
       "linkedTickets": [
@@ -1900,27 +1901,11 @@
             "one",
             "ux-ft"
           ]
-        },
-        {
-          "key": "FT-49",
-          "summary": "[UI] 투명도 처리 전체 지면 확대 적용",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
-          "assignee": null,
-          "linkType": "Relates",
-          "direction": "inward",
-          "labels": [
-            "auto-etr-triaged",
-            "conveyor",
-            "conveyor-bot",
-            "fast-track-away",
-            "one"
-          ]
         }
       ],
       "progress": {
         "done": 0,
-        "total": 2
+        "total": 1
       }
     },
     {
@@ -1963,7 +1948,7 @@
         {
           "key": "FT-41",
           "summary": "[PLP/랭킹판] 무진장 로고 탭 로티 반영",
-          "status": "디자인중",
+          "status": "디자인완료",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
@@ -2077,7 +2062,7 @@
       "startDate": null,
       "dueDate": "2026-06-05",
       "created": "2026-06-01T21:30:06.617+0900",
-      "updated": "2026-06-03T09:00:45.509+0900",
+      "updated": "2026-06-09T21:29:28.209+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-02T10:22:07.503+0900",
       "linkedTickets": [
@@ -2110,11 +2095,21 @@
             "one",
             "홈앤디"
           ]
+        },
+        {
+          "key": "FE-24788",
+          "summary": "[Deploy][FE] feat: ETR-4648 [PLP] 정렬 옵션 순서 개선 — 좋아요 급상승 하단 이동 및 매출 관련 정렬 상단 배치 - 20260611",
+          "status": "Ready To Test",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward",
+          "labels": []
         }
       ],
       "progress": {
         "done": 0,
-        "total": 2
+        "total": 3
       }
     },
     {
@@ -2229,8 +2224,8 @@
         {
           "key": "FT-44",
           "summary": "[추천판] 지금 주목할 만한 브랜드 내에 전문관 파비콘 추가",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "준비중",
+          "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -2239,7 +2234,8 @@
             "conveyor-bot",
             "fast-track-away",
             "fasttrack",
-            "one"
+            "one",
+            "홈앤디"
           ]
         }
       ],
@@ -2656,9 +2652,11 @@
           "linkType": "Blocks",
           "direction": "outward",
           "labels": [
+            "AI-ASSISTED",
             "MSS",
             "conveyor",
-            "one"
+            "one",
+            "홈앤디"
           ]
         },
         {
@@ -2670,9 +2668,11 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "AI-ASSISTED",
             "MSS",
             "conveyor",
-            "one"
+            "one",
+            "홈앤디"
           ]
         }
       ],
@@ -3026,7 +3026,7 @@
       "summary": "[브숍] 각 브랜드샵 AI 탭 신설 — 브랜드 인사이트·고객 취향 분석 제공",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-우선착수",
+      "status": "검토완료-백로그",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -3054,15 +3054,15 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-29T09:42:20.373+0900",
-      "updated": "2026-06-04T23:53:23.476+0900",
+      "updated": "2026-06-10T01:38:35.483+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-04T23:52:44.444+0900",
+      "lastStatusChangedAt": "2026-06-10T01:37:55.519+0900",
       "linkedTickets": [
         {
           "key": "TM-3216",
-          "summary": "[브숍] 각 브랜드샵 AI 탭 신설 — 브랜드 인사이트·고객 취향 분석 제공",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "summary": "[브랜드숍] AI 브랜드 아카이브 신설",
+          "status": "준비중",
+          "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -3420,7 +3420,7 @@
         {
           "key": "TM-3151",
           "summary": "[랭킹판] 월간랭킹 진입점 배너 자동화, 운영요소 제거",
-          "status": "개발중",
+          "status": "개발완료",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
@@ -3432,7 +3432,8 @@
             "conveyor-bot",
             "fasttrack",
             "general-task",
-            "one"
+            "one",
+            "홈앤디"
           ]
         }
       ],
@@ -4580,7 +4581,8 @@
             "conveyor",
             "conveyor-bot",
             "general-task",
-            "one"
+            "one",
+            "홈앤디"
           ]
         }
       ],
@@ -4837,7 +4839,7 @@
       "startDate": null,
       "dueDate": "2026-06-04",
       "created": "2026-05-20T14:17:46.959+0900",
-      "updated": "2026-06-08T11:13:41.069+0900",
+      "updated": "2026-06-09T16:53:53.193+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-05-20T16:23:36.203+0900",
       "linkedTickets": [
@@ -4855,7 +4857,8 @@
             "conveyor-bot",
             "fast-track-away",
             "fasttrack",
-            "one"
+            "one",
+            "홈앤디"
           ],
           "resolutionDate": "2026-06-08T11:11:31.847+0900"
         }
@@ -4901,28 +4904,14 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-20T14:11:55.328+0900",
-      "updated": "2026-05-31T13:37:45.116+0900",
+      "updated": "2026-06-10T02:25:22.618+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-05-21T22:57:31.766+0900",
       "linkedTickets": [
         {
-          "key": "MSSCXTF-1349",
-          "summary": "[design-driven] 브랜드 로고 비율별 사이즈 개선",
-          "status": "개발중",
-          "statusCategory": "indeterminate",
-          "assignee": null,
-          "linkType": "Relates",
-          "direction": "inward",
-          "labels": [
-            "fasttrack",
-            "one",
-            "pel"
-          ]
-        },
-        {
           "key": "FT-32",
           "summary": "[design-driven] 브랜드 로고 비율별 사이즈 개선",
-          "status": "개발중",
+          "status": "개발완료",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
@@ -4933,13 +4922,14 @@
             "conveyor-bot",
             "fast-track-away",
             "fasttrack",
-            "one"
+            "one",
+            "홈앤디"
           ]
         }
       ],
       "progress": {
         "done": 0,
-        "total": 2
+        "total": 1
       }
     },
     {
@@ -5408,7 +5398,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-18T18:57:32.161+0900",
-      "updated": "2026-05-21T23:48:55.635+0900",
+      "updated": "2026-06-09T17:01:49.249+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-05-21T23:01:08.874+0900",
       "linkedTickets": [
@@ -5733,7 +5723,7 @@
         {
           "key": "FT-3",
           "summary": "[주문완료] 배너 소재 가이드 개선 — 아이폰 하단 홈 인디케이터(safe area) 여백 반영",
-          "status": "개발중",
+          "status": "QA중",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Clones",
@@ -5748,7 +5738,7 @@
         {
           "key": "FT-3",
           "summary": "[주문완료] 배너 소재 가이드 개선 — 아이폰 하단 홈 인디케이터(safe area) 여백 반영",
-          "status": "개발중",
+          "status": "QA중",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
@@ -5904,7 +5894,8 @@
             "conveyor-bot",
             "fast-track-away",
             "fasttrack",
-            "one"
+            "one",
+            "홈앤디"
           ]
         }
       ],
@@ -6029,7 +6020,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-14T18:22:29.355+0900",
-      "updated": "2026-06-08T22:41:45.663+0900",
+      "updated": "2026-06-09T17:03:07.040+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-08T22:41:06.770+0900",
       "linkedTickets": [],
@@ -6197,7 +6188,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-14T16:39:01.228+0900",
-      "updated": "2026-05-21T23:49:02.825+0900",
+      "updated": "2026-06-09T17:04:33.776+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-05-20T09:05:49.987+0900",
       "linkedTickets": [
@@ -6831,7 +6822,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-13T16:39:39.081+0900",
-      "updated": "2026-06-09T10:12:35.129+0900",
+      "updated": "2026-06-09T17:09:00.231+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-05-14T14:53:59.887+0900",
       "linkedTickets": [
@@ -7910,7 +7901,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-01T21:56:56.121+0900",
-      "updated": "2026-06-08T16:02:07.544+0900",
+      "updated": "2026-06-09T14:16:44.885+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-05-22T00:12:46.650+0900",
       "linkedTickets": [
