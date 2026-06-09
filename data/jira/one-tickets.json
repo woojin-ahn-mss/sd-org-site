@@ -1,7 +1,62 @@
 {
-  "lastSync": "2026-06-09T11:00:12+09:00",
-  "count": 638,
+  "lastSync": "2026-06-09T13:35:40+09:00",
+  "count": 639,
   "items": [
+    {
+      "key": "FT-59",
+      "url": "https://jira.team.musinsa.com/browse/FT-59",
+      "summary": "[랭킹판] 무신사 월간랭킹 진입점에 직전월 표기 자동 추가",
+      "issueType": "Initiative",
+      "project": "FT",
+      "status": "SUGGESTED",
+      "statusCategory": "new",
+      "priority": "P2",
+      "assignee": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "conveyor-bot",
+        "fast-track-away",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": "2026-06-09",
+      "dueDate": "2026-06-10",
+      "created": "2026-06-09T11:29:42.932+0900",
+      "updated": "2026-06-09T13:18:24.362+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null,
+      "linkedTickets": [
+        {
+          "key": "ETR-4778",
+          "summary": "[랭킹판] 무신사 월간랭킹 진입점에 직전월 표기 자동 추가",
+          "status": "검토완료-우선착수",
+          "statusCategory": "done",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "outward"
+        }
+      ],
+      "progress": {
+        "done": 1,
+        "total": 1
+      }
+    },
     {
       "key": "TM-3262",
       "url": "https://jira.team.musinsa.com/browse/TM-3262",
@@ -593,11 +648,11 @@
       "summary": "[랭킹판] 무신사 월간랭킹 진입점에 직전월 표기 자동 추가",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "발의",
-      "statusCategory": "new",
+      "status": "검토완료-우선착수",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
-        "name": "촤비스",
+        "name": "이승연",
         "email": null,
         "accountId": null
       },
@@ -621,9 +676,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-09T09:23:25.330+0900",
-      "updated": "2026-06-09T10:49:44.020+0900",
+      "updated": "2026-06-09T11:30:29.520+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": null,
+      "lastStatusChangedAt": "2026-06-09T11:29:50.240+0900",
       "linkedTickets": [
         {
           "key": "SNDPRD-4140",
@@ -633,11 +688,29 @@
           "assignee": null,
           "linkType": "Blocks",
           "direction": "outward"
+        },
+        {
+          "key": "PD-8421",
+          "summary": "[PD][랭킹판] font-weight 수정 요청",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Blocks",
+          "direction": "outward"
+        },
+        {
+          "key": "FT-59",
+          "summary": "[랭킹판] 무신사 월간랭킹 진입점에 직전월 표기 자동 추가",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
         }
       ],
       "progress": {
         "done": 0,
-        "total": 1
+        "total": 3
       }
     },
     {
@@ -987,7 +1060,7 @@
       "startDate": "2026-06-08",
       "dueDate": "2026-06-02",
       "created": "2026-06-08T18:37:01.003+0900",
-      "updated": "2026-06-08T18:46:22.178+0900",
+      "updated": "2026-06-09T11:29:35.589+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -1431,8 +1504,8 @@
       "summary": "[유즈드] 판매관리 버튼을 판매 신청하기 옆으로 이동",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "발의",
-      "statusCategory": "new",
+      "status": "매니저 승인 대기",
+      "statusCategory": "indeterminate",
       "priority": "P0",
       "assignee": {
         "name": "촤비스",
@@ -1457,11 +1530,11 @@
       "yearQuarters": [],
       "subGroup": null,
       "startDate": null,
-      "dueDate": null,
+      "dueDate": "2026-06-12",
       "created": "2026-06-08T14:59:22.650+0900",
-      "updated": "2026-06-08T17:06:45.992+0900",
+      "updated": "2026-06-09T11:47:52.552+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": null,
+      "lastStatusChangedAt": "2026-06-09T11:47:43.304+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -2504,7 +2577,7 @@
       "project": "TM",
       "status": "SUGGESTED",
       "statusCategory": "new",
-      "priority": "P0",
+      "priority": "Big-Rock",
       "assignee": {
         "name": "송지영",
         "email": null,
@@ -2527,8 +2600,10 @@
       "mainSubjects": [
         "05.브랜드 인덱스/브랜드샵(홈)"
       ],
-      "subSubject": null,
-      "subSubjects": [],
+      "subSubject": "브랜드 샵",
+      "subSubjects": [
+        "브랜드 샵"
+      ],
       "yearQuarter": "2026-Q3",
       "yearQuarters": [
         "2026-Q3"
@@ -2537,7 +2612,7 @@
       "startDate": "2026-06-04",
       "dueDate": null,
       "created": "2026-06-04T23:52:40.623+0900",
-      "updated": "2026-06-05T15:44:57.470+0900",
+      "updated": "2026-06-09T13:18:28.137+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -2829,8 +2904,10 @@
       "mainSubjects": [
         "01.추천"
       ],
-      "subSubject": null,
-      "subSubjects": [],
+      "subSubject": "추천",
+      "subSubjects": [
+        "추천"
+      ],
       "yearQuarter": "2026-Q3",
       "yearQuarters": [
         "2026-Q3"
@@ -2839,7 +2916,7 @@
       "startDate": "2026-06-04",
       "dueDate": "2026-09-30",
       "created": "2026-06-04T17:51:25.815+0900",
-      "updated": "2026-06-09T06:00:44.610+0900",
+      "updated": "2026-06-09T13:19:04.705+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -2889,8 +2966,12 @@
       "mainSubjects": [
         "05.브랜드 인덱스/브랜드샵(홈)"
       ],
-      "subSubject": null,
-      "subSubjects": [],
+      "subSubject": "랭킹",
+      "subSubjects": [
+        "랭킹",
+        "브랜드 인덱스",
+        "브랜드 샵"
+      ],
       "yearQuarter": "2026-Q3",
       "yearQuarters": [
         "2026-Q3"
@@ -2899,7 +2980,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-04T17:49:57.942+0900",
-      "updated": "2026-06-04T18:14:35.012+0900",
+      "updated": "2026-06-09T13:21:03.115+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -3034,11 +3115,11 @@
       "summary": "[USED] 정산 완료 알림 및 앱 내 정산 내역 상세 표기 강화",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-백로그",
+      "status": "검토완료-우선착수",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
-        "name": "이승연",
+        "name": "이유정",
         "email": null,
         "accountId": null
       },
@@ -3062,9 +3143,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-04T13:20:45.964+0900",
-      "updated": "2026-06-04T17:52:57.937+0900",
+      "updated": "2026-06-09T11:28:17.244+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-04T17:52:17.885+0900",
+      "lastStatusChangedAt": "2026-06-09T11:27:38.542+0900",
       "linkedTickets": [
         {
           "key": "REC-4712",
@@ -3764,9 +3845,9 @@
       ],
       "subGroup": null,
       "startDate": "2026-06-02",
-      "dueDate": "2026-06-11",
+      "dueDate": "2026-06-12",
       "created": "2026-06-02T14:27:19.473+0900",
-      "updated": "2026-06-05T17:28:11.275+0900",
+      "updated": "2026-06-09T11:07:01.730+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-04T13:44:56.314+0900",
       "linkedTickets": [
@@ -4824,7 +4905,7 @@
       "startDate": "2026-06-01",
       "dueDate": "2026-06-12",
       "created": "2026-06-01T10:33:26.046+0900",
-      "updated": "2026-06-05T17:12:12.012+0900",
+      "updated": "2026-06-09T13:24:27.653+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-04T18:05:16.808+0900",
       "linkedTickets": [
@@ -5431,7 +5512,7 @@
       "summary": "[랭킹판] 월간랭킹 진입점 배너 자동화, 운영요소 제거",
       "issueType": "Initiative",
       "project": "TM",
-      "status": "디자인중",
+      "status": "개발중",
       "statusCategory": "indeterminate",
       "priority": "P0",
       "assignee": {
@@ -5467,9 +5548,9 @@
       "startDate": "2026-06-05",
       "dueDate": "2026-06-30",
       "created": "2026-05-29T17:16:45.959+0900",
-      "updated": "2026-06-09T06:00:47.763+0900",
+      "updated": "2026-06-09T11:28:00.209+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-07T22:41:18.382+0900",
+      "lastStatusChangedAt": "2026-06-09T11:28:00.209+0900",
       "linkedTickets": [
         {
           "key": "ETR-4569",
@@ -5903,7 +5984,7 @@
         {
           "key": "TM-3151",
           "summary": "[랭킹판] 월간랭킹 진입점 배너 자동화, 운영요소 제거",
-          "status": "디자인중",
+          "status": "개발중",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
@@ -5954,7 +6035,7 @@
       "startDate": "2026-05-28",
       "dueDate": "2026-06-05",
       "created": "2026-05-28T14:42:54.326+0900",
-      "updated": "2026-06-04T16:32:43.817+0900",
+      "updated": "2026-06-09T13:28:40.856+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-05-29T08:46:38.810+0900",
       "linkedTickets": [
@@ -6931,11 +7012,11 @@
       "summary": "랭킹 및 판매 데이터 노출 강화",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "PMO 검토 중",
-      "statusCategory": "indeterminate",
+      "status": "Tech 검토 대기 중",
+      "statusCategory": "new",
       "priority": "P0",
       "assignee": {
-        "name": "이승연",
+        "name": "안우진",
         "email": null,
         "accountId": null
       },
@@ -6955,11 +7036,11 @@
       "yearQuarters": [],
       "subGroup": null,
       "startDate": null,
-      "dueDate": "2026-06-03",
+      "dueDate": "2026-06-23",
       "created": "2026-05-26T14:55:09.230+0900",
-      "updated": "2026-05-29T14:36:21.046+0900",
+      "updated": "2026-06-09T11:41:39.924+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-05-29T14:36:11.655+0900",
+      "lastStatusChangedAt": "2026-06-09T11:15:50.766+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -7000,7 +7081,7 @@
       "startDate": null,
       "dueDate": "2026-06-16",
       "created": "2026-05-26T08:46:31.680+0900",
-      "updated": "2026-06-05T13:15:53.483+0900",
+      "updated": "2026-06-09T11:01:08.686+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-02T09:25:44.288+0900",
       "linkedTickets": [],
@@ -7788,7 +7869,7 @@
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
-        "name": "이승연",
+        "name": "이유정",
         "email": null,
         "accountId": null
       },
@@ -7810,7 +7891,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-21T17:27:09.964+0900",
-      "updated": "2026-05-27T09:46:37.373+0900",
+      "updated": "2026-06-09T11:32:16.790+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-05-27T09:45:58.134+0900",
       "linkedTickets": [],
@@ -15206,19 +15287,20 @@
       "mainSubjects": [
         "03.랭킹/세일/커스텀판"
       ],
-      "subSubject": "전문관",
+      "subSubject": "랭킹",
       "subSubjects": [
+        "랭킹",
         "전문관"
       ],
-      "yearQuarter": "2026-Q3",
+      "yearQuarter": "2026-Q4",
       "yearQuarters": [
-        "2026-Q3"
+        "2026-Q4"
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-04-23T16:19:03.064+0900",
-      "updated": "2026-05-29T11:38:21.809+0900",
+      "updated": "2026-06-09T13:35:18.255+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [],
@@ -16594,7 +16676,7 @@
       "startDate": "2026-04-24",
       "dueDate": "2026-05-07",
       "created": "2026-04-21T11:53:41.023+0900",
-      "updated": "2026-06-09T06:01:31.581+0900",
+      "updated": "2026-06-09T11:23:13.083+0900",
       "resolutionDate": "2026-06-08T09:41:42.975+0900",
       "lastStatusChangedAt": "2026-06-08T09:41:42.990+0900",
       "linkedTickets": [],
@@ -19325,7 +19407,7 @@
       "startDate": "2026-04-08",
       "dueDate": "2026-05-29",
       "created": "2026-03-25T22:07:35.306+0900",
-      "updated": "2026-06-09T06:01:06.070+0900",
+      "updated": "2026-06-09T11:30:01.260+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-05-18T16:58:05.981+0900",
       "linkedTickets": [],
@@ -20879,7 +20961,7 @@
       "startDate": "2026-05-01",
       "dueDate": "2026-06-30",
       "created": "2026-03-18T11:14:27.958+0900",
-      "updated": "2026-06-09T06:01:16.458+0900",
+      "updated": "2026-06-09T11:35:52.310+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -21365,7 +21447,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-13T20:35:51.566+0900",
-      "updated": "2026-06-08T14:35:32.741+0900",
+      "updated": "2026-06-09T11:15:03.977+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-05T17:10:50.378+0900",
       "linkedTickets": [
@@ -22392,17 +22474,18 @@
       "mainSubjects": [
         "03.랭킹/세일/커스텀판"
       ],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": "2026-Q2",
-      "yearQuarters": [
-        "2026-Q2"
+      "subSubject": "세일(판)",
+      "subSubjects": [
+        "세일(판)",
+        "쿠폰/세일/할인"
       ],
+      "yearQuarter": null,
+      "yearQuarters": [],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-13T10:45:50.795+0900",
-      "updated": "2026-05-22T00:19:29.718+0900",
+      "updated": "2026-06-09T13:15:02.344+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [],
@@ -22439,17 +22522,18 @@
       "mainSubjects": [
         "03.랭킹/세일/커스텀판"
       ],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": "2026-Q2",
-      "yearQuarters": [
-        "2026-Q2"
+      "subSubject": "세일(판)",
+      "subSubjects": [
+        "세일(판)",
+        "쿠폰/세일/할인"
       ],
+      "yearQuarter": null,
+      "yearQuarters": [],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-13T10:45:47.561+0900",
-      "updated": "2026-05-22T00:19:30.352+0900",
+      "updated": "2026-06-09T13:14:54.670+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-03-13T17:07:06.890+0900",
       "linkedTickets": [],
@@ -22737,10 +22821,10 @@
     {
       "key": "TM-2357",
       "url": "https://jira.team.musinsa.com/browse/TM-2357",
-      "summary": "[세일판] 브랜드 위크",
+      "summary": "[세일판] 브랜드위크 고도화(배너 성별 구분 및 브랜드위크 콘텐츠 노출 확대)",
       "issueType": "Initiative",
       "project": "TM",
-      "status": "Backlog",
+      "status": "SUGGESTED",
       "statusCategory": "new",
       "priority": "P0",
       "assignee": {
@@ -22762,23 +22846,35 @@
       "mainSubjects": [
         "03.랭킹/세일/커스텀판"
       ],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": "2026-Q2",
+      "subSubject": "세일(판)",
+      "subSubjects": [
+        "세일(판)"
+      ],
+      "yearQuarter": "2026-Q3",
       "yearQuarters": [
-        "2026-Q2"
+        "2026-Q3"
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-13T10:44:34.594+0900",
-      "updated": "2026-05-22T00:19:31.698+0900",
+      "updated": "2026-06-09T13:03:32.740+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": null,
-      "linkedTickets": [],
+      "lastStatusChangedAt": "2026-06-09T11:33:34.359+0900",
+      "linkedTickets": [
+        {
+          "key": "ETR-3312",
+          "summary": "[채널기획] 세일판 - 브랜드위크 배너 성별 노출 로직 추가",
+          "status": "검토완료-백로그",
+          "statusCategory": "done",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        }
+      ],
       "progress": {
-        "done": 0,
-        "total": 0
+        "done": 1,
+        "total": 1
       }
     },
     {
@@ -23359,7 +23455,7 @@
       "startDate": "2026-03-27",
       "dueDate": null,
       "created": "2026-03-11T10:10:44.992+0900",
-      "updated": "2026-06-05T15:19:15.711+0900",
+      "updated": "2026-06-09T13:32:04.584+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-04-01T17:15:43.499+0900",
       "linkedTickets": [
@@ -24705,7 +24801,7 @@
       "startDate": null,
       "dueDate": "2027-06-11",
       "created": "2026-02-28T19:07:47.750+0900",
-      "updated": "2026-06-09T10:45:46.871+0900",
+      "updated": "2026-06-09T12:39:52.757+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-05T17:05:40.019+0900",
       "linkedTickets": [
@@ -24768,7 +24864,7 @@
       "startDate": "2026-02-23",
       "dueDate": "2026-06-30",
       "created": "2026-02-27T16:50:57.625+0900",
-      "updated": "2026-06-09T06:01:19.076+0900",
+      "updated": "2026-06-09T11:00:18.355+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -25782,15 +25878,17 @@
       "mainSubjects": [
         "04.검색/카테고리/필터"
       ],
-      "subSubject": null,
-      "subSubjects": [],
+      "subSubject": "추천",
+      "subSubjects": [
+        "추천"
+      ],
       "yearQuarter": null,
       "yearQuarters": [],
-      "subGroup": "MSS-P Discovery & Engagement",
+      "subGroup": "Core-E Discovery",
       "startDate": "2026-02-19",
       "dueDate": null,
       "created": "2026-02-19T15:34:33.570+0900",
-      "updated": "2026-05-22T00:20:22.268+0900",
+      "updated": "2026-06-09T13:12:22.997+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -26526,7 +26624,7 @@
       "startDate": "2026-02-25",
       "dueDate": "2026-06-10",
       "created": "2026-02-12T14:28:04.898+0900",
-      "updated": "2026-06-09T10:35:02.500+0900",
+      "updated": "2026-06-09T13:15:37.709+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -30502,7 +30600,7 @@
       "startDate": null,
       "dueDate": "2026-09-30",
       "created": "2025-11-19T21:25:41.154+0900",
-      "updated": "2026-06-09T06:01:29.582+0900",
+      "updated": "2026-06-09T13:30:15.991+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [],
@@ -33076,18 +33174,17 @@
       "mainSubjects": [
         "05.브랜드 인덱스/브랜드샵(홈)"
       ],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": "2026-Q1",
-      "yearQuarters": [
-        "2026-Q1",
-        "2026-Q2"
+      "subSubject": "브랜드 인덱스",
+      "subSubjects": [
+        "브랜드 인덱스"
       ],
+      "yearQuarter": null,
+      "yearQuarters": [],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2025-09-12T10:56:12.282+0900",
-      "updated": "2026-05-22T00:21:46.180+0900",
+      "updated": "2026-06-09T13:09:51.169+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-03-30T18:45:42.511+0900",
       "linkedTickets": [
@@ -33510,11 +33607,11 @@
       "yearQuarters": [
         "2026-Q3"
       ],
-      "subGroup": "MSS-P Discovery & Engagement",
+      "subGroup": "Core-E Discovery",
       "startDate": "2025-10-22",
       "dueDate": "2026-09-30",
       "created": "2025-09-09T17:32:56.181+0900",
-      "updated": "2026-06-09T06:01:35.554+0900",
+      "updated": "2026-06-09T13:31:03.725+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -34394,7 +34491,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2025-07-31T20:20:30.178+0900",
-      "updated": "2026-06-04T15:19:20.424+0900",
+      "updated": "2026-06-09T13:31:27.406+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-01T22:37:00.865+0900",
       "linkedTickets": [
@@ -34940,7 +35037,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2025-07-01T17:26:53.865+0900",
-      "updated": "2026-06-08T20:18:27.449+0900",
+      "updated": "2026-06-09T11:00:14.402+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-02T11:20:28.107+0900",
       "linkedTickets": [
