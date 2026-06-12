@@ -41,6 +41,14 @@ const DEFAULT_STATE = {
 };
 const GROUP_MODES = ['objective', 'subject', 'mainSubject'];
 
+// 철회/반려/취소(종료성) 상태는 로드맵에서 항상 제외 — 살아있는 과제만 노출.
+// Jira 상태가 한글 슬래시 묶음('철회/반려/취소') 또는 영문(Dropped)로 들어온다.
+const DROPPED_STATUSES = new Set(['철회/반려/취소', 'Dropped', 'DROPPED', '철회', '반려', '취소']);
+function isDropped(it) {
+  const s = (it.status || '').trim();
+  return DROPPED_STATUSES.has(s);
+}
+
 export async function renderRoadmap({ rootRel = '' }) {
   const host = document.getElementById('gantt-host');
   showLoading(host, { rows: 6, title: true });
@@ -71,8 +79,9 @@ export async function renderRoadmap({ rootRel = '' }) {
   const objById = new Map(objectives.map(o => [o.id, o]));
   const subjById = new Map(subjects.map(s => [s.id, s]));
   const subjectsAvailable = subjects.length > 0;
-  // 티켓에 subjectIds 부여 (ticket_subjects 매핑).
-  const items = joinTicketsWithOverrides(data.items || [], planData.overrides || [], year);
+  // 티켓에 subjectIds 부여 (ticket_subjects 매핑). 철회/반려/취소(종료성)는 로드맵에서 항상 제외.
+  const items = joinTicketsWithOverrides(data.items || [], planData.overrides || [], year)
+    .filter(it => !isDropped(it));
 
   let state = { ...DEFAULT_STATE, ...(store.get() || {}), ...stateFromUrl() };
   if (!state.cols || !state.cols.length) state.cols = DEFAULT_STATE.cols;
