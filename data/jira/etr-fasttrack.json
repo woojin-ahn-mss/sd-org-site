@@ -1,7 +1,50 @@
 {
-  "lastSync": "2026-06-12T07:48:48+09:00",
-  "count": 174,
+  "lastSync": "2026-06-12T18:24:53+09:00",
+  "count": 175,
   "items": [
+    {
+      "key": "ETR-4997",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4997",
+      "summary": "[앱테크] 출석체크(출쳌) 화면 하단 광고/상품 추천 영역 추가",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "매니저 승인 대기",
+      "statusCategory": "indeterminate",
+      "priority": "P0",
+      "assignee": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-06-12T14:08:04.306+0900",
+      "updated": "2026-06-12T14:08:34.076+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-06-12T14:08:07.618+0900",
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
     {
       "key": "ETR-4978",
       "url": "https://jira.team.musinsa.com/browse/ETR-4978",
@@ -181,9 +224,9 @@
       "linkedTickets": [
         {
           "key": "FT-64",
-          "summary": "[랭킹판] 오프라인 [품절]/[누적판매수] 라벨 즉시 미노출 처리",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "summary": "[랭킹판] 오프라인 테마칩스 > 배너 하단 '오프라인 랭킹 판매, 품절 상태 정책 설명 문구' 추가",
+          "status": "개발중",
+          "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -464,8 +507,8 @@
         {
           "key": "MSSCXTF-1080",
           "summary": "[추천판] 나의 관심 스타일 선택하기 전역 성별 필터 적용",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "개발중",
+          "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -578,23 +621,22 @@
         {
           "key": "MSSCXTF-1221",
           "summary": "[design-driven][콘텐츠/스페셜] 브랜드숍/관련상품 바텀시트 개선",
-          "status": "디자인중",
-          "statusCategory": "indeterminate",
+          "status": "철회/반려/취소",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
             "conveyor",
             "fasttrack",
-            "one",
-            "ux-ft"
+            "one"
           ]
         },
         {
           "key": "FT-70",
           "summary": "[design-driven][콘텐츠/스페셜] 브랜드숍/관련상품 바텀시트 개선",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "디자인완료",
+          "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -602,12 +644,13 @@
             "conveyor",
             "conveyor-bot",
             "fast-track-away",
-            "one"
+            "one",
+            "ux-ft"
           ]
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 2
       }
     },
@@ -2476,11 +2519,11 @@
       "summary": "[무신사] 퀵픽스 - 부티크 구매 가능성 높은 사용자 대상 부티크 선택 퀵 필터 개인화 노출",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "PMO 검토 중",
-      "statusCategory": "indeterminate",
+      "status": "Tech 검토 대기 중",
+      "statusCategory": "new",
       "priority": "P0",
       "assignee": {
-        "name": "이승연",
+        "name": "안우진",
         "email": null,
         "accountId": null
       },
@@ -2502,11 +2545,11 @@
       "yearQuarters": [],
       "subGroup": null,
       "startDate": null,
-      "dueDate": "2026-06-05",
+      "dueDate": "2026-06-26",
       "created": "2026-06-02T09:44:54.229+0900",
-      "updated": "2026-06-03T09:00:46.015+0900",
+      "updated": "2026-06-12T10:24:40.564+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-02T14:50:06.439+0900",
+      "lastStatusChangedAt": "2026-06-12T10:24:07.596+0900",
       "linkedTickets": [
         {
           "key": "TM-3183",
@@ -2565,7 +2608,7 @@
       "startDate": null,
       "dueDate": "2026-06-05",
       "created": "2026-06-01T21:30:06.617+0900",
-      "updated": "2026-06-11T15:40:45.832+0900",
+      "updated": "2026-06-12T10:55:27.904+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-02T10:22:07.503+0900",
       "linkedTickets": [
@@ -2585,8 +2628,8 @@
         {
           "key": "FT-40",
           "summary": "[PLP] 정렬 옵션 순서 개선 — 좋아요 급상승 하단 이동 및 매출 관련 정렬 상단 배치",
-          "status": "배포완료",
-          "statusCategory": "indeterminate",
+          "status": "론치완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -2598,7 +2641,8 @@
             "fasttrack",
             "one",
             "홈앤디"
-          ]
+          ],
+          "resolutionDate": "2026-06-12T10:49:21.247+0900"
         },
         {
           "key": "FE-24788",
@@ -2613,7 +2657,7 @@
         }
       ],
       "progress": {
-        "done": 2,
+        "done": 3,
         "total": 3
       }
     },
@@ -3047,13 +3091,14 @@
         },
         {
           "key": "TM-3178",
-          "summary": "[퀵윈][랭킹판] 검색창 급상승 키워드 '더보기' 클릭 시 랭킹판>검색어 탭 랜딩 개선",
+          "summary": "[랭킹판] 검색어탭 - 급상승 검색어 추가 + 검색 프론트 내 '급상승 검색어 > 더보기 버튼 추가' ",
           "status": "SUGGESTED",
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "26'3Q",
             "auto-etr-triaged",
             "conveyor",
             "conveyor-bot",
@@ -3229,15 +3274,16 @@
         {
           "key": "TM-2603",
           "summary": "[추천] [MSS] 추천판 시나리오 및 점수 고도화",
-          "status": "개발중",
-          "statusCategory": "indeterminate",
+          "status": "론치완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
             "one",
             "홈앤디"
-          ]
+          ],
+          "resolutionDate": "2026-06-12T09:44:12.425+0900"
         },
         {
           "key": "FT-55",
@@ -3257,7 +3303,7 @@
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 2
       }
     },
@@ -3295,15 +3341,15 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-01T09:19:44.439+0900",
-      "updated": "2026-06-11T15:55:58.708+0900",
+      "updated": "2026-06-12T11:05:59.806+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-11T15:55:19.152+0900",
       "linkedTickets": [
         {
           "key": "TM-2824",
           "summary": "[랭킹] 상품탭 - 전문관 랭킹 추가 (전문관 진입 배너 추가 포함)",
-          "status": "개발중",
-          "statusCategory": "indeterminate",
+          "status": "론치완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Contains",
           "direction": "inward",
@@ -3317,7 +3363,8 @@
             "랭킹",
             "전문관",
             "홈앤디"
-          ]
+          ],
+          "resolutionDate": "2026-06-12T11:18:23.063+0900"
         },
         {
           "key": "SNDPRD-4087",
@@ -3333,8 +3380,8 @@
         {
           "key": "FT-36",
           "summary": "[부티크] 부티크 바로가기 배너 추가",
-          "status": "QA중",
-          "statusCategory": "indeterminate",
+          "status": "론치완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -3346,11 +3393,12 @@
             "one",
             "전문관",
             "홈앤디"
-          ]
+          ],
+          "resolutionDate": "2026-06-12T11:02:25.187+0900"
         }
       ],
       "progress": {
-        "done": 1,
+        "done": 3,
         "total": 3
       }
     },
@@ -3502,6 +3550,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "DUE_OVERDUE_BOT",
             "auto-etr-triaged",
             "conveyor",
             "conveyor-bot",
@@ -4324,6 +4373,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "DUE_OVERDUE_BOT",
             "auto-etr-triaged",
             "conveyor",
             "conveyor-bot",
@@ -4520,19 +4570,20 @@
         },
         {
           "key": "REC-4649",
-          "summary": "[유즈드] 정산수단 디폴트값 변경 (무신사 머니 → 무신사 머니 포인트)",
-          "status": "In Progress",
-          "statusCategory": "indeterminate",
+          "summary": "[유즈드] 정산수단 디폴트값 변경 (무신사머니 → 무신사머니 포인트)",
+          "status": "완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
             "유즈드"
-          ]
+          ],
+          "resolutionDate": "2026-06-12T14:09:25.590+0900"
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 2
       }
     },
@@ -4584,6 +4635,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "DUE_OVERDUE_BOT",
             "auto-etr-triaged",
             "conveyor",
             "conveyor-bot",
@@ -7286,7 +7338,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-13T18:08:42.037+0900",
-      "updated": "2026-06-10T15:26:17.125+0900",
+      "updated": "2026-06-12T09:49:48.476+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-10T13:54:29.914+0900",
       "linkedTickets": [],
