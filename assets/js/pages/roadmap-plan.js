@@ -1026,7 +1026,7 @@ async function onSubjectSubmit(e) {
 
 function requestSubjectDelete(subj) {
   if (!subj) return;
-  const check = validateSubjectDelete(subj.id, state.cards, state.overrides);
+  const check = validateSubjectDelete(subj.id, state.cards, state.overrides, state.jiraTickets);
   if (!check.ok) {
     toast({ kicker: '삭제 차단', msg: check.reason, kind: 'alert' });
     return;

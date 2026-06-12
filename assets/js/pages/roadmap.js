@@ -5,7 +5,7 @@
 
 import { loadJson } from '../fetch-data.js';
 import { showError, showLoading } from '../states.js';
-import { renderGantt, COLUMNS } from '../gantt.js';
+import { renderGantt, COLUMNS, buildTimeAxis, quartersForItem } from '../gantt.js';
 import { scoped } from '../storage.js';
 import { attachModal } from '../modal.js';
 import { currentYear } from '../goals.js';
@@ -37,6 +37,7 @@ const DEFAULT_STATE = {
   collapsedGroups: [],
   groupBy: 'objective',  // 'objective'(목표·DB) | 'subject'(주제·DB) | 'mainSubject'(Jira 메인주제)
   excludeLaunched: false,  // 론치완료 상태 제외 토글
+  quarter: null,           // 단일 분기 줌 (예: '2026-Q2'). null=전체(6분기 창)
 };
 const GROUP_MODES = ['objective', 'subject', 'mainSubject'];
 
@@ -106,6 +107,31 @@ export async function renderRoadmap({ rootRel = '' }) {
     });
   });
 
+  // --- 분기 줌 선택 (전체 / 단일 분기) ---
+  // 옵션은 기본 분기 축(현재분기 -2~+3)의 6개 분기 + '전체'. 단일 분기 선택 시
+  // 해당 분기에 걸친 Initiative 만 남기고 간트 축도 그 분기 3개월로 확대.
+  function syncQuarterZoom() {
+    const host = document.querySelector('[data-quarter-zoom]');
+    if (!host) return;
+    const quarters = buildTimeAxis('quarter').cells.map(c => c.key);
+    host.innerHTML = '';
+    const mk = (key, label) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'tlink' + ((state.quarter || null) === key ? ' active' : '');
+      b.textContent = label;
+      b.addEventListener('click', () => {
+        state.quarter = key;              // null=전체
+        syncQuarterZoom();
+        persist(state); rerender();
+      });
+      host.appendChild(b);
+    };
+    mk(null, '전체');
+    for (const q of quarters) mk(q, q.replace('-Q', ' Q'));
+  }
+  syncQuarterZoom();
+
   // --- 그룹 모드 토글 (메인주제 / 목표) ---
   document.querySelectorAll('[data-group-by]').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.groupBy === state.groupBy);
@@ -146,6 +172,10 @@ export async function renderRoadmap({ rootRel = '' }) {
     if (state.excludeLaunched) {
       filtered = filtered.filter(it => it.status !== '론치완료');
     }
+    // 단일 분기 줌: 그 분기에 걸친 Initiative 만 (간트 막대 판정과 동일 기준).
+    if (state.quarter) {
+      filtered = filtered.filter(it => quartersForItem(it).has(state.quarter));
+    }
     document.querySelector('[data-cnt-total]').textContent = filtered.length;
     // 목표/주제 모드는 계위(DB) 기반으로 사전 그룹핑해 전달. 메인주제는 gantt 내부 그룹핑.
     const groups = state.groupBy === 'objective'
@@ -166,6 +196,7 @@ export async function renderRoadmap({ rootRel = '' }) {
       },
       groupBy: state.groupBy === 'mainSubject' ? 'subject' : state.groupBy,
       groups,
+      focusQuarter: state.quarter || null,
     });
   }
   rerender();
@@ -430,6 +461,7 @@ function persist(state) {
   const params = new URLSearchParams();
   params.set('mode', state.mode);
   if (state.groupBy) params.set('group', state.groupBy);
+  if (state.quarter) params.set('q', state.quarter);
   for (const [k, v] of Object.entries(state.filters || {})) {
     if (v && v.length) params.set(`f.${k}`, v.join('|'));
   }
@@ -444,6 +476,7 @@ function stateFromUrl() {
   const out = {};
   if (p.get('mode')) out.mode = p.get('mode');
   if (p.get('group')) out.groupBy = p.get('group');
+  if (p.get('q')) out.quarter = p.get('q');
   if (p.get('cols')) out.cols = p.get('cols').split(',').filter(Boolean);
   const filters = {};
   for (const [k, v] of p.entries()) {

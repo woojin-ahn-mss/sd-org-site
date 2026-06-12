@@ -84,6 +84,27 @@ export function buildTimeAxis(mode, anchor = new Date()) {
   return { mode, cells, totalStart: cells[0].start, totalEnd: cells[cells.length - 1].end };
 }
 
+/** 단일 분기 줌 축 — 'YYYY-Q[1-4]' 의 3개월을 month 셀로 펼친다.
+ *  invalid 면 기본 분기 축으로 폴백. */
+export function buildQuarterAxis(yearQuarter, anchor = new Date()) {
+  const m = /^(\d{4})-Q([1-4])$/.exec((yearQuarter || '').trim());
+  if (!m) return buildTimeAxis('quarter', anchor);
+  const y = Number(m[1]);
+  const q0 = Number(m[2]) - 1;
+  const cells = [];
+  for (let i = 0; i < 3; i++) {
+    const d = new Date(y, q0 * 3 + i, 1);
+    cells.push({
+      type: 'month',
+      label: `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, '0')}`,
+      start: d,
+      end: new Date(d.getFullYear(), d.getMonth() + 1, 1),
+      isCurrent: d.getFullYear() === anchor.getFullYear() && d.getMonth() === anchor.getMonth(),
+    });
+  }
+  return { mode: 'month', cells, totalStart: cells[0].start, totalEnd: cells[cells.length - 1].end, focusQuarter: `${y}-Q${q0 + 1}` };
+}
+
 /** 메인 렌더 — 좌측 메타패널(고정) + 우측 시간패널(가로 스크롤) 분리 구조.
  *  같은 행 인덱스의 양쪽 row 는 동일한 min-height 로 수직 정렬됨.
  *  opts:
@@ -100,8 +121,11 @@ export function buildTimeAxis(mode, anchor = new Date()) {
 export function renderGantt(host, opts) {
   const { mode = 'quarter', items, columns = COLUMNS.filter(c => c.default).map(c => c.id),
           collapsedGroups = new Set(), onGroupToggle,
-          groupBy = 'subject', goals = [], cardGoals = {}, groups = null } = opts;
-  const axis = buildTimeAxis(mode);
+          groupBy = 'subject', goals = [], cardGoals = {}, groups = null,
+          focusQuarter = null } = opts;
+  // 분기 줌이 켜지면 해당 분기 3개월을 month 축으로 펼치고, 행도 month 렌더(일자 기준 막대)를 쓴다.
+  const axis = focusQuarter ? buildQuarterAxis(focusQuarter) : buildTimeAxis(mode);
+  const effMode = focusQuarter ? 'month' : mode;
   // groups 가 주어지면(예: 목표/주제 — DB 기반 사전 그룹핑) 그대로 사용. 아니면 내부 그룹핑.
   const grouped = groups
     ? groups
@@ -112,7 +136,7 @@ export function renderGantt(host, opts) {
 
   const metaTemplate = activeCols.map(c => `${c.width}px`).join(' ');
   // 월: 셀당 최소 110px, 분기: 60px. 시간패널 너비가 컨테이너보다 크면 자동 가로 스크롤
-  const timeCellSize = mode === 'month' ? 'minmax(110px, 1fr)' : 'minmax(60px, 1fr)';
+  const timeCellSize = effMode === 'month' ? 'minmax(110px, 1fr)' : 'minmax(60px, 1fr)';
   const timeTemplate = `repeat(${axis.cells.length}, ${timeCellSize})`;
 
   const root = document.createElement('div');
@@ -138,7 +162,7 @@ export function renderGantt(host, opts) {
   timePane.className = 'gantt-time';
   // 시간 패널 내부 행의 명시적 min-width — 절대위치 막대(%) 가 grid 실제 너비를 기준으로 계산되게.
   // 이걸 안 잡으면 .gt-row 의 CSS 너비가 좁은 부모 너비 그대로라서 막대가 잘못된 컬럼에 위치함.
-  const minColPx = mode === 'month' ? 110 : 60;
+  const minColPx = effMode === 'month' ? 110 : 60;
   const timeMinWidth = minColPx * axis.cells.length;
 
   // 헤더 (양쪽 패널)
@@ -152,7 +176,7 @@ export function renderGantt(host, opts) {
   const renderItems = (items, nested = false) => {
     for (const item of items) {
       metaPane.appendChild(renderItemMetaRow(item, activeCols, metaTemplate, nested));
-      timePane.appendChild(renderItemTimeRow(item, axis, mode, timeTemplate, timeMinWidth));
+      timePane.appendChild(renderItemTimeRow(item, axis, effMode, timeTemplate, timeMinWidth));
     }
   };
   for (const group of grouped) {
@@ -337,7 +361,18 @@ function renderItemTimeRow(item, axis, mode, template, minWidth) {
       c.className = 'g-cell' + (cell.isCurrent ? ' current' : '');
       row.appendChild(c);
     }
-    const barEl = makeMonthBar(item, axis);
+    let barEl = makeMonthBar(item, axis);
+    // 분기 줌인데 일자가 없어 막대가 안 그려지면(yearQuarter 만 보유), 해당 분기에 걸친 경우
+    // 분기 전체를 덮는 흐린 막대로 폴백 — 행만 있고 막대가 비는 혼란 방지.
+    if (!barEl && axis.focusQuarter && quartersForItem(item).has(axis.focusQuarter)) {
+      barEl = makeBarElement(item);
+      barEl.classList.add('fade');
+      barEl.style.position = 'absolute';
+      barEl.style.top = '50%';
+      barEl.style.transform = 'translateY(-50%)';
+      barEl.style.left = '4px';
+      barEl.style.right = '4px';
+    }
     if (barEl) row.appendChild(barEl);
   } else {
     // 분기 모드: startDate~dueDate 가 걸친 분기 모두에 막대.
@@ -377,7 +412,7 @@ function dateToQuarterKey(dateStr) {
  *   4) item.yearQuarters (복수 분기 — Jira 멀티 셀렉트, 예: 2025-Q4 + 2026-Q1)
  *   5) item.yearQuarter (단일 — 하위호환)
  */
-function quartersForItem(item) {
+export function quartersForItem(item) {
   const startQ = dateToQuarterKey(item.startDate);
   const endQ = dateToQuarterKey(item.dueDate);
   const set = new Set();

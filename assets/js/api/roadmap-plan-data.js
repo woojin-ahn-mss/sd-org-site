@@ -189,10 +189,15 @@ export async function updateSubject(subj, patch = {}) {
 }
 
 /** cards/overrides 가 가리키는 subject 면 삭제 차단.
- *  cards 는 DB FK(restrict)도 차단하지만, ticket 매핑은 FK 가 cascade 라 client 에서만 막는다(매핑 유실 방지). */
-export function validateSubjectDelete(id, cards, overrides) {
+ *  cards 는 DB FK(restrict)도 차단하지만, ticket 매핑은 FK 가 cascade 라 client 에서만 막는다(매핑 유실 방지).
+ *  jiraTickets(라이브 풀)가 주어지면, 풀에 더 이상 존재하지 않는 티켓의 고아 매핑은 차단 대상에서 제외한다
+ *  — 카드의 "티켓 N" 표시와 동일 기준으로 맞춰, 표시 0인데 삭제만 막히는 불일치 방지. */
+export function validateSubjectDelete(id, cards, overrides, jiraTickets) {
   const cardUsing = (cards || []).filter(c => c.subject_id === id);
-  const ovUsing = (overrides || []).filter(o => parseSubjectIds(o.subject_id).includes(id));
+  const liveKeys = Array.isArray(jiraTickets) ? new Set(jiraTickets.map(t => String(t.key))) : null;
+  const ovUsing = (overrides || []).filter(o =>
+    parseSubjectIds(o.subject_id).includes(id) &&
+    (!liveKeys || liveKeys.has(String(o.jira_key))));
   if (cardUsing.length || ovUsing.length) {
     return { ok: false, reason: `이 주제에 속한 카드(${cardUsing.length}) / 티켓 매핑(${ovUsing.length})이 있습니다. 먼저 정리하세요.`, cardUsing, ovUsing };
   }
