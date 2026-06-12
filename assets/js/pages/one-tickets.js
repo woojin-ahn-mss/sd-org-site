@@ -876,14 +876,14 @@ function theadHtml() {
       <tr>
         <th style="width:92px">키</th>
         <th style="width:88px">생성일</th>
-        <th style="width:24%">요약</th>
-        <th style="width:24%">내용</th>
+        <th style="width:26%">요약</th>
+        <th style="width:26%">내용</th>
         <th style="width:150px">상태</th>
         <th style="width:74px">순위</th>
         <th style="width:64px" title="Quick fix 대상">Quick fix</th>
         <th style="width:48px" title="Spec 작성 대상">Spec</th>
         <th style="width:80px" title="quick fix 제외">quick fix 제외</th>
-        <th style="width:30%">코멘트</th>
+        <th style="width:26%">코멘트</th>
         <th style="width:${state.hideManageMode ? 56 : 20}px">${state.hideManageMode ? '숨김' : ''}</th>
       </tr>
     </thead>`;
