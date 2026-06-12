@@ -41,6 +41,9 @@ const SUBJECT_CLASS_MAP = {
   '05.디스커버리': 's-disc',
 };
 const PROJECT_KEY_RE = /^[A-Z][A-Z0-9]{1,11}$/;
+// 철회/반려/취소(종료성) 상태는 보드에서 항상 제외 — 한글 묶음·영문(Dropped) 모두.
+const DROPPED_STATUSES = new Set(['철회/반려/취소', 'Dropped', 'DROPPED', '철회', '반려', '취소']);
+const isDropped = (t) => DROPPED_STATUSES.has((t.status || '').trim());
 const FILTERS_KEY = 'roadmapPlan.filters';
 const GROUP_KEY   = 'roadmapPlan.groupBy';
 
@@ -133,7 +136,7 @@ async function loadAndRender() {
   state.subjects = sheetData.subjects;
   state.cards = sheetData.cards;
   state.overrides = sheetData.overrides;
-  state.jiraTickets = clusterEtrTickets(joinTicketsWithOverrides(jiraData.items || [], state.overrides, state.year));
+  state.jiraTickets = clusterEtrTickets(joinTicketsWithOverrides((jiraData.items || []).filter(it => !isDropped(it)), state.overrides, state.year));
 
   showBoards(true);
   renderFilters();
