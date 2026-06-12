@@ -28,6 +28,10 @@ export function jiraUrl(key) {
  * 그러지 않으면 더블 오픈 발생 (리뷰 Critical #1).
  */
 export function bindJiraLinks(root = document) {
+  // 같은 root 에 중복 바인딩 방지 — 렌더마다 재호출돼도 리스너가 누적되지 않게
+  // (누적되면 클릭 1회에 window.open 이 여러 번 → 같은 티켓이 여러 탭으로 열림).
+  if (root.__jiraLinksBound) return;
+  root.__jiraLinksBound = true;
   root.addEventListener('click', e => {
     const el = e.target.closest('[data-jira-key], .key[data-key]');
     if (!el) return;

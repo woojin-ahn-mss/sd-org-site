@@ -587,16 +587,18 @@ function renderCardBoard() {
   host.querySelectorAll('[data-card-id]').forEach(el => {
     el.addEventListener('click', (ev) => {
       if (ev.target.closest('a')) return;  // Jira 링크 클릭은 통과
+      ev.stopPropagation();                // 본문 클릭은 host 의 bindJiraLinks 까지 전파 차단
       const id = el.dataset.cardId;
       const card = state.cards.find(c => c.id === id);
       if (card) openCardModal(card);
     });
   });
 
-  // Jira 티켓 클릭 → 주제(복수) 매핑 모달. Jira 키 링크 클릭은 통과.
+  // Jira 티켓 클릭 → 주제(복수) 매핑 모달. Jira 키 링크 클릭은 통과(키 링크만 새 탭).
   host.querySelectorAll('[data-jira-key]').forEach(el => {
     el.addEventListener('click', (ev) => {
       if (ev.target.closest('a')) return;
+      ev.stopPropagation();                // 본문 클릭이 모달+Jira탭 둘 다 열리던 문제 방지
       const t = state.jiraTickets.find(x => x.key === el.dataset.jiraKey);
       if (t) openTicketModal(t);
     });
