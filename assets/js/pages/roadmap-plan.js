@@ -594,6 +594,15 @@ function renderCardBoard() {
     });
   });
 
+  // '＋주제 할당/수정' 칩 — 명시적 주제 매핑 진입점 (카드 본문 클릭과 동일 모달).
+  host.querySelectorAll('[data-subj-assign]').forEach(el => {
+    el.addEventListener('click', (ev) => {
+      ev.stopPropagation();
+      const t = state.jiraTickets.find(x => x.key === el.dataset.subjAssign);
+      if (t) openTicketModal(t);
+    });
+  });
+
   // Jira 티켓 클릭 → 주제(복수) 매핑 모달. Jira 키 링크 클릭은 통과(키 링크만 새 탭).
   host.querySelectorAll('[data-jira-key]').forEach(el => {
     el.addEventListener('click', (ev) => {
@@ -689,7 +698,15 @@ function cardEl(it) {
     linkBadge,
   ].filter(Boolean).join(' ');
   // 매핑된 주제를 칩으로 노출 (티켓 위주 — 어떤 주제에 묶였는지 한눈에).
+  // 칩 줄 전체가 클릭 영역 — 신규 할당(주제 없음)/수정(주제 있음) 모달을 연다(발견성↑).
   const chips = isJira ? subjectChipsHtml(ids) : '';
+  const subjRow = isJira
+    ? `<div class="poc-row rp-subj-row" data-subj-assign="${escapeAttr(it.jira_key)}" title="주제 할당/수정"
+            style="gap:4px;margin-top:4px;flex-wrap:wrap;align-items:center;cursor:pointer;">
+         ${chips}
+         <span class="rp-subj-edit" style="font-size:9.5px;line-height:1.4;padding:1px 7px;border-radius:9px;border:1px dashed var(--accent);color:var(--accent);">${ids.length ? '＋주제 수정' : '＋주제 할당'}</span>
+       </div>`
+    : '';
   const overrideMark = isJira && it._override ? `<span title="분기/주제 override" style="font-size:9px;color:var(--accent);">⊘</span>` : '';
   const dataAttrs = isJira
     ? `data-jira-key="${escapeAttr(it.jira_key)}" draggable="true"`
@@ -702,7 +719,7 @@ function cardEl(it) {
         ${overrideMark}
       </div>
       ${meta ? `<div class="poc-row" style="gap:4px;margin-top:3px;">${meta}</div>` : ''}
-      ${chips ? `<div class="poc-row" style="gap:4px;margin-top:4px;flex-wrap:wrap;">${chips}</div>` : ''}
+      ${subjRow}
     </article>
   `;
 }
