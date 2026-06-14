@@ -8,6 +8,8 @@ import { showError, emptyHtml } from '../states.js';
 import { jiraKeyHtml, jiraUrl } from '../jira-link.js';
 import { fmtDate, fmtDelta } from '../format.js';
 import { escapeHtml, escapeAttr } from '../escape.js';
+import { loadAll as loadPlanData, parseSubjectIds } from '../api/roadmap-plan-data.js';
+import { auth } from '../api/supabase.js';
 
 const QUARTERS = ['2025-Q3', '2025-Q4', '2026-Q1', '2026-Q2'];
 
@@ -16,7 +18,27 @@ let state = {
   launchesAll: [],        // 자동 (jira completed-launches.json)
   metricsByQuarter: {},   // 수동 (data/metrics/{q}.json)
   currentQuarter: null,
+  planByYear: {},         // 연도 → { objectives, subjects, overrides } (Supabase 계위, 실패 시 null)
 };
+
+/** 'YYYY-QN' → 연도 숫자 */
+function yearOfQuarter(q) {
+  const m = /^(\d{4})-Q[1-4]$/.exec(q || '');
+  return m ? Number(m[1]) : new Date().getFullYear();
+}
+
+/** 해당 연도 계위(Objective/Subject/티켓매핑) 로드 — 캐시. 미로그인/RLS 실패 시 null 로 degrade. */
+async function ensurePlanData(year) {
+  if (year in state.planByYear) return state.planByYear[year];
+  try {
+    const d = await loadPlanData(year);
+    state.planByYear[year] = d;
+  } catch (err) {
+    console.warn(`[performance] 계위(Supabase) ${year} 로드 실패 — 평면 목록으로 표시:`, err);
+    state.planByYear[year] = null;
+  }
+  return state.planByYear[year];
+}
 
 export async function renderPerformance({ rootRel = '' } = {}) {
   state.rootRel = rootRel;
@@ -24,6 +46,10 @@ export async function renderPerformance({ rootRel = '' } = {}) {
 
   renderTabs();
   bindExport();
+
+  // 다른 페이지와 동일하게 Supabase 세션 복원 — 계위 쿼리에 인증 토큰이 붙도록.
+  // (로그인 UI 별도 노출 없음. 실패해도 평면 목록으로 degrade)
+  try { await auth.init(); } catch (e) { console.warn('[performance] auth.init 실패', e); }
 
   // 자동 launches (fallback용)
   try {
@@ -93,6 +119,9 @@ async function switchQuarter(q) {
       state.metricsByQuarter[q] = null;
     }
   }
+  // 계위(목표/주제) — 분기 연도 기준 로드(캐시). 하이라이트 분류에 사용.
+  await ensurePlanData(yearOfQuarter(q));
+
   renderHeader(q);
   renderImpactStats(q);
   renderHighlights(q);
@@ -228,31 +257,93 @@ function renderHighlights(q) {
     return;
   }
 
-  // 큐레이션 우선 (metrics.launches), 없으면 자동 launches 전체
-  host.innerHTML = launches.map(l => {
-    const key = l.ticketKey || l.key;
-    const date = l.launchedAt || l.resolutionDate;
-    const title = l.title || l.summary || '';
-    const desc = l.description || '';
-    const impact = l.impactSummary || '';
-    const url = jiraUrl(key);
-    return `
-      <div class="entry">
-        <div class="entry-date">
-          ${date ? fmtDate(date) : '—'}
-          ${url
-            ? `<a class="key" href="${url}" target="_blank" rel="noopener noreferrer" data-jira-key="${escapeAttr(key)}">${escapeHtml(key)}</a>`
-            : `<span class="key muted">${escapeHtml(key || '')}</span>`
-          }
-        </div>
-        <div>
-          <h3>${escapeHtml(title)}</h3>
-          ${desc ? `<p>${escapeHtml(desc)}</p>` : ''}
-          ${impact ? `<div class="impact-line">${escapeHtml(impact)}</div>` : ''}
-        </div>
+  // 계위(목표/주제)가 있으면 목표 → 주제로 분류, 없으면(미로그인 등) 평면 목록.
+  const plan = state.planByYear[yearOfQuarter(q)];
+  const grouped = plan && plan.objectives && plan.objectives.length
+    ? groupLaunchesByObjective(launches, plan)
+    : null;
+
+  host.innerHTML = grouped
+    ? grouped.map(groupHtml).join('')
+    : launches.map(entryHtml).join('');
+}
+
+/** 출시 1건 → entry HTML */
+function entryHtml(l) {
+  const key = l.ticketKey || l.key;
+  const date = l.launchedAt || l.resolutionDate;
+  const title = l.title || l.summary || '';
+  const desc = l.description || '';
+  const impact = l.impactSummary || '';
+  const url = jiraUrl(key);
+  return `
+    <div class="entry">
+      <div class="entry-date">
+        ${date ? fmtDate(date) : '—'}
+        ${url
+          ? `<a class="key" href="${url}" target="_blank" rel="noopener noreferrer" data-jira-key="${escapeAttr(key)}">${escapeHtml(key)}</a>`
+          : `<span class="key muted">${escapeHtml(key || '')}</span>`
+        }
       </div>
-    `;
-  }).join('');
+      <div>
+        <h3>${escapeHtml(title)}</h3>
+        ${desc ? `<p>${escapeHtml(desc)}</p>` : ''}
+        ${impact ? `<div class="impact-line">${escapeHtml(impact)}</div>` : ''}
+      </div>
+    </div>
+  `;
+}
+
+/** 목표 그룹(헤더 + 주제별 하위그룹) HTML */
+function groupHtml(g) {
+  const color = g.color || 'var(--text)';
+  const head = `
+    <div class="hl-obj-head" style="margin:18px 0 2px;padding-bottom:6px;border-bottom:1px solid var(--rule);">
+      <span style="display:inline-block;width:9px;height:9px;border-radius:2px;background:${color};margin-right:8px;vertical-align:middle;"></span>
+      <strong style="font-size:14px;color:${color};">${escapeHtml(g.name)}</strong>
+      <span class="muted num" style="font-size:11px;margin-left:8px;">${g.count}건</span>
+    </div>`;
+  const subs = g.subGroups.map(sg => `
+    <div style="margin:8px 0 0;">
+      ${sg.name ? `<div class="muted dim-mono" style="font-size:11px;margin:6px 0 2px;">↳ ${escapeHtml(sg.name)} · ${sg.items.length}</div>` : ''}
+      ${sg.items.map(entryHtml).join('')}
+    </div>`).join('');
+  return head + subs;
+}
+
+/** 출시 목록을 목표 → 주제로 분류. 매핑은 ticket_subjects(overrides) 기준.
+ *  멀티 주제 티켓은 각 주제 그룹에 모두 노출(로드맵과 동일). 목표 헤더 count 는 distinct.
+ *  매핑 없는 출시는 마지막 '미분류' 그룹. */
+function groupLaunchesByObjective(launches, plan) {
+  const subjById = new Map(plan.subjects.map(s => [s.id, s]));
+  const subjIdsByKey = new Map();
+  for (const o of (plan.overrides || [])) {
+    if (o.jira_key) subjIdsByKey.set(String(o.jira_key), parseSubjectIds(o.subject_id));
+  }
+  const keyOf = (l) => String(l.ticketKey || l.key || '');
+  const bySubject = new Map();   // subjectId → launches
+  const none = [];
+  for (const l of launches) {
+    const sids = (subjIdsByKey.get(keyOf(l)) || []).filter(sid => subjById.has(sid));
+    if (!sids.length) { none.push(l); continue; }
+    for (const sid of sids) {
+      if (!bySubject.has(sid)) bySubject.set(sid, []);
+      bySubject.get(sid).push(l);
+    }
+  }
+  const out = [];
+  for (const o of plan.objectives) {
+    const subs = plan.subjects.filter(s => s.objective_id === o.id && bySubject.has(s.id));
+    if (!subs.length) continue;
+    const subGroups = subs.map(s => ({ name: s.name || '(주제)', items: bySubject.get(s.id) }));
+    const seen = new Set();
+    for (const sg of subGroups) for (const l of sg.items) seen.add(keyOf(l));
+    out.push({ name: o.name || '(목표)', color: o.color, count: seen.size, subGroups });
+  }
+  if (none.length) {
+    out.push({ name: '— 미분류 (주제 미지정)', color: 'var(--dim)', count: none.length, subGroups: [{ name: '', items: none }] });
+  }
+  return out;
 }
 
 /* ----- 전체 출시 타임라인 ---------------------------------- */
