@@ -16,7 +16,7 @@ const store = scoped('roadmap');
 
 // Search & Discovery 실이 관리하는 7개 Jira 프로젝트 (CLAUDE.md 기준).
 // 데이터에 없어도 chip 으로 노출 (사용자가 toggle 가능, count=0 표시).
-const SD_PROJECTS = ['TM', 'MSSCXTF', 'ETR', 'FT', 'PEL', 'CBP', 'PBO'];
+const SD_PROJECTS = ['TM', 'MSSCXTF', 'FT', 'PEL', 'CBP', 'PBO'];
 
 const FILTER_FIELDS = [
   { id: 'project', label: 'PROJECT', pick: it => it.project, fixedValues: SD_PROJECTS },
@@ -48,6 +48,7 @@ function isDropped(it) {
   const s = (it.status || '').trim();
   return DROPPED_STATUSES.has(s);
 }
+const projectOf = (it) => it.project || (typeof it.key === 'string' ? it.key.split('-')[0] : '');
 
 export async function renderRoadmap({ rootRel = '' }) {
   const host = document.getElementById('gantt-host');
@@ -80,8 +81,9 @@ export async function renderRoadmap({ rootRel = '' }) {
   const subjById = new Map(subjects.map(s => [s.id, s]));
   const subjectsAvailable = subjects.length > 0;
   // 티켓에 subjectIds 부여 (ticket_subjects 매핑). 철회/반려/취소(종료성)는 로드맵에서 항상 제외.
+  // ETR(외부 요청) 제외 + 철회/반려/취소(종료성) 제외.
   const items = joinTicketsWithOverrides(data.items || [], planData.overrides || [], year)
-    .filter(it => !isDropped(it));
+    .filter(it => !isDropped(it) && projectOf(it) !== 'ETR');
 
   let state = { ...DEFAULT_STATE, ...(store.get() || {}), ...stateFromUrl() };
   if (!state.cols || !state.cols.length) state.cols = DEFAULT_STATE.cols;
@@ -263,7 +265,7 @@ function groupByObjective(items, objectives, subjects, subjById) {
       _goal: objectivePeriod(o, subjById),
     });
   }
-  if (none.length) { sortByDue(none); out.push({ subject: '— 목표 미지정', key: 'obj:none', items: none }); }
+  if (none.length) { sortByDue(none); out.push({ subject: 'Fast Track', key: 'obj:none', items: none }); }
   return out;
 }
 
@@ -294,7 +296,7 @@ function groupBySubjectEntity(items, objectives, subjects, objById) {
     const _goal = subjectPeriod(s, its, o ? o.color : 'accent');
     return { subject: label, items: its, _goal };
   });
-  if (none.length) { sortByDue(none); out.push({ subject: '— 주제 미지정', items: none }); }
+  if (none.length) { sortByDue(none); out.push({ subject: 'Fast Track', items: none }); }
   return out;
 }
 
