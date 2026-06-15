@@ -1,7 +1,9 @@
 /* =========================================================
    pages/briefing.js — 분기 발표 대시보드
-   2026 2Q 회고(진행·완료) | 2026 3Q 예고(배포 예정)
-   목표 → 주제(Subject) 계위로 분류. roadmap 과 동일 데이터 파이프라인 재사용.
+   2026 2Q 회고 | 2026 3Q 예고.
+   "집중한 주제(Subject)"를 티켓 수 비례 면적의 트리맵으로 보여주고(어디에
+   집중했는지 한눈에), 타일을 클릭하면 그 주제의 Jira 티켓 리스트가 아래
+   패널에 펼쳐진다. roadmap 데이터 파이프라인 재사용.
    ========================================================= */
 
 import { loadJson } from '../fetch-data.js';
@@ -18,17 +20,21 @@ const Q_REVIEW = '2026-Q2';
 const Q_PREVIEW = '2026-Q3';
 const YEAR = 2026;
 
-// 철회/반려/취소(종료성) 상태는 항상 제외 (roadmap 과 동일 기준).
 const DROPPED = new Set(['철회/반려/취소', 'Dropped', 'DROPPED', '철회', '반려', '취소']);
 const isDropped = (it) => DROPPED.has((it.status || '').trim());
 
-export async function renderBriefing({ rootRel = '' }) {
-  const q2Host = document.getElementById('bf-q2');
-  const q3Host = document.getElementById('bf-q3');
-  showLoading(q2Host, { rows: 5, title: true });
-  showLoading(q3Host, { rows: 5, title: true });
+// 컬럼별 상태 (리사이즈 시 재배치용)
+const cols = {
+  q2: { host: null, groups: [], selected: 0 },
+  q3: { host: null, groups: [], selected: 0 },
+};
 
-  // Supabase 세션 복원 (계위 쿼리 인증). 실패해도 평면 degrade.
+export async function renderBriefing({ rootRel = '' }) {
+  cols.q2.host = document.getElementById('bf-q2');
+  cols.q3.host = document.getElementById('bf-q3');
+  showLoading(cols.q2.host, { rows: 4, title: true });
+  showLoading(cols.q3.host, { rows: 4, title: true });
+
   try { await auth.init(); } catch (e) { console.warn('[briefing] auth.init 실패', e); }
 
   let data, planData;
@@ -41,8 +47,8 @@ export async function renderBriefing({ rootRel = '' }) {
       }),
     ]);
   } catch (err) {
-    showError(q2Host, err);
-    q3Host.innerHTML = '';
+    showError(cols.q2.host, err);
+    cols.q3.host.innerHTML = '';
     return;
   }
 
@@ -51,33 +57,32 @@ export async function renderBriefing({ rootRel = '' }) {
   const items = joinTicketsWithOverrides(data.items || [], planData.overrides || [], YEAR)
     .filter(it => !isDropped(it));
 
-  const inQuarter = (it, q) => quartersForItem(it).has(q);
-  const q2Items = items.filter(it => inQuarter(it, Q_REVIEW));
-  const q3Items = items.filter(it => inQuarter(it, Q_PREVIEW));
+  cols.q2.groups = focusSubjects(items.filter(it => quartersForItem(it).has(Q_REVIEW)), objectives, subjects);
+  cols.q3.groups = focusSubjects(items.filter(it => quartersForItem(it).has(Q_PREVIEW)), objectives, subjects);
 
-  // 헤더 카운트
-  setText('[data-bf-count="q2"]', q2Items.length);
-  setText('[data-bf-count="q3"]', q3Items.length);
+  setText('[data-bf-count="q2"]', `주제 ${cols.q2.groups.length} · 과제 ${countTickets(cols.q2.groups)}`);
+  setText('[data-bf-count="q3"]', `주제 ${cols.q3.groups.length} · 과제 ${countTickets(cols.q3.groups)}`);
   const summaryEl = document.querySelector('[data-bf-summary]');
-  if (summaryEl) {
-    summaryEl.textContent = subjects.length
-      ? `2Q ${q2Items.length}건 · 3Q ${q3Items.length}건`
-      : `2Q ${q2Items.length}건 · 3Q ${q3Items.length}건 (로그인하면 목표·주제로 분류됩니다)`;
-  }
+  if (summaryEl && !subjects.length) summaryEl.textContent = '· 로그인하면 주제별로 분류됩니다';
 
-  q2Host.innerHTML = columnHtml(groupByObjective(q2Items, objectives, subjects), '2Q 과제가 없습니다.');
-  q3Host.innerHTML = columnHtml(groupByObjective(q3Items, objectives, subjects), '3Q 예정 과제가 없습니다.');
+  renderColumn('q2');
+  renderColumn('q3');
 
-  // Jira 키 클릭 → 새 탭 (비-anchor data-jira-key 위임). anchor 는 native.
-  bindJiraLinks(document.querySelector('.bf-cols') || document);
+  // 리사이즈 시 트리맵 재배치 (rAF 디바운스)
+  let raf = 0;
+  window.addEventListener('resize', () => {
+    if (raf) cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(() => { layout('q2'); layout('q3'); });
+  });
 }
 
-/* ----- 그룹핑 (목표 → 주제) ----- */
+/* ----- 주제별 집계 ----- */
 
-function groupByObjective(items, objectives, subjects) {
+function focusSubjects(items, objectives, subjects) {
   const subjById = new Map(subjects.map(s => [s.id, s]));
-  const bySubject = new Map();   // subjectId → items
-  const none = [];               // 매핑된 주제 없음
+  const objById = new Map(objectives.map(o => [o.id, o]));
+  const bySubject = new Map();
+  const none = [];
   for (const it of items) {
     const sids = (it.subjectIds || []).filter(sid => subjById.has(sid));
     if (!sids.length) { none.push(it); continue; }
@@ -87,21 +92,27 @@ function groupByObjective(items, objectives, subjects) {
     }
   }
   const out = [];
-  for (const o of objectives) {
-    const subs = subjects.filter(s => s.objective_id === o.id && bySubject.has(s.id));
-    if (!subs.length) continue;
-    const subGroups = subs.map(s => ({ name: s.name || '(주제)', items: sortItems(bySubject.get(s.id)) }));
-    const seen = new Set();
-    for (const sg of subGroups) for (const it of sg.items) seen.add(it.key);
-    out.push({ name: o.name || '(목표)', color: o.color || 'var(--text)', count: seen.size, subGroups });
+  for (const [sid, its] of bySubject) {
+    const s = subjById.get(sid);
+    const o = s && s.objective_id ? objById.get(s.objective_id) : null;
+    out.push({
+      subject: (s && s.name) || '(주제)',
+      objective: (o && o.name) || '',
+      color: (o && o.color) || 'var(--accent)',
+      items: sortItems(its),
+    });
   }
-  if (none.length) {
-    out.push({ name: '— 주제 미지정', color: 'var(--dim)', count: none.length, subGroups: [{ name: '', items: sortItems(none) }] });
-  }
+  out.sort((a, b) => b.items.length - a.items.length || a.subject.localeCompare(b.subject));
+  if (none.length) out.push({ subject: '주제 미지정', objective: '', color: 'var(--dim)', items: sortItems(none) });
   return out;
 }
 
-/** 종료/기한 임박 순 정렬 (완료일 → 기한 → 키). */
+function countTickets(groups) {
+  const set = new Set();
+  for (const g of groups) for (const it of g.items) set.add(it.key);
+  return set.size;
+}
+
 function sortItems(items) {
   return items.slice().sort((a, b) => {
     const da = a.resolutionDate || a.dueDate || '';
@@ -110,26 +121,76 @@ function sortItems(items) {
   });
 }
 
-/* ----- 렌더 ----- */
+/* ----- 렌더: 트리맵 + 디테일 패널 ----- */
 
-function columnHtml(groups, emptyMsg) {
-  if (!groups.length) return `<div class="muted" style="padding:14px;font-size:13px;">${escapeHtml(emptyMsg)}</div>`;
-  return groups.map(g => {
-    const subs = g.subGroups.map(sg => `
-      <div class="bf-subj">
-        ${sg.name ? `<div class="bf-subj-head">↳ ${escapeHtml(sg.name)} <span class="num">${sg.items.length}</span></div>` : ''}
-        ${sg.items.map(entryHtml).join('')}
-      </div>`).join('');
-    return `
-      <div class="bf-group">
-        <div class="bf-obj-head">
-          <span class="bf-dot" style="background:${g.color};"></span>
-          <strong style="color:${g.color};">${escapeHtml(g.name)}</strong>
-          <span class="num muted">${g.count}</span>
-        </div>
-        ${subs}
-      </div>`;
+function renderColumn(which) {
+  const c = cols[which];
+  if (!c.groups.length) {
+    c.host.innerHTML = `<div class="muted" style="padding:14px;font-size:13px;">표시할 과제가 없습니다.</div>`;
+    return;
+  }
+  c.host.innerHTML = `
+    <div class="bf-treemap" data-bf-map></div>
+    <div class="bf-detail" data-bf-detail></div>`;
+  layout(which);
+  selectTheme(which, 0);
+
+  const map = c.host.querySelector('[data-bf-map]');
+  map.addEventListener('click', (e) => {
+    const tile = e.target.closest('[data-bf-idx]');
+    if (!tile) return;
+    selectTheme(which, Number(tile.dataset.bfIdx));
+  });
+}
+
+/** 트리맵 타일 배치 (컨테이너 실측 → squarified). */
+function layout(which) {
+  const c = cols[which];
+  const map = c.host && c.host.querySelector('[data-bf-map]');
+  if (!map) return;
+  const W = map.clientWidth, H = map.clientHeight;
+  if (!W || !H) { requestAnimationFrame(() => layout(which)); return; }
+
+  const vals = c.groups.map((g, i) => ({ v: Math.max(g.items.length, 0.0001), i }));
+  const rects = squarify(vals, 0, 0, W, H);
+  map.innerHTML = rects.map(r => {
+    const g = c.groups[r.i];
+    const small = r.w < 64 || r.h < 30;
+    const tiny = r.w < 34 || r.h < 22;
+    const fs = Math.max(11, Math.min(20, Math.round(Math.sqrt(r.w * r.h) / 7)));
+    const sel = r.i === c.selected ? ' is-selected' : '';
+    const label = tiny ? '' :
+      `<span class="bf-tile-name" style="font-size:${fs}px;">${escapeHtml(g.subject)}</span>
+       ${small ? '' : `<span class="bf-tile-meta">${g.objective ? escapeHtml(g.objective) + ' · ' : ''}${g.items.length}건</span>`}`;
+    return `<button type="button" class="bf-tile${sel}" data-bf-idx="${r.i}"
+        title="${escapeAttr(g.subject)} · ${g.items.length}건"
+        style="left:${r.x}px;top:${r.y}px;width:${Math.max(r.w - 3, 1)}px;height:${Math.max(r.h - 3, 1)}px;
+               background:color-mix(in srgb, ${g.color} 26%, var(--bg-elev));border-color:color-mix(in srgb, ${g.color} 55%, transparent);">
+        <span class="bf-tile-count num" style="color:${g.color};">${g.items.length}</span>
+        ${label}
+      </button>`;
   }).join('');
+}
+
+function selectTheme(which, idx) {
+  const c = cols[which];
+  c.selected = idx;
+  const map = c.host.querySelector('[data-bf-map]');
+  if (map) map.querySelectorAll('.bf-tile').forEach(t => {
+    t.classList.toggle('is-selected', Number(t.dataset.bfIdx) === idx);
+  });
+  const detail = c.host.querySelector('[data-bf-detail]');
+  const g = c.groups[idx];
+  if (!detail || !g) return;
+  detail.innerHTML = `
+    <div class="bf-detail-head">
+      <span class="bf-dot" style="background:${g.color};"></span>
+      <strong style="color:${g.color};">${escapeHtml(g.subject)}</strong>
+      ${g.objective ? `<span class="bf-theme-obj">${escapeHtml(g.objective)}</span>` : ''}
+      <span class="num muted">${g.items.length}건</span>
+    </div>
+    <div class="bf-detail-list">${g.items.map(entryHtml).join('')}</div>`;
+  bindJiraLinks(detail);
 }
 
 function entryHtml(it) {
@@ -143,12 +204,61 @@ function entryHtml(it) {
       <div class="bf-entry-meta">
         ${keyHtml}
         <span class="bf-st ${statusCls(it.statusCategory, it.status)}">${escapeHtml(it.status || '—')}</span>
+        ${when ? `<span class="bf-when num">${fmtDate(when)}</span>` : ''}
       </div>
-      <div class="bf-entry-body">
-        <div class="bf-sum">${escapeHtml(it.summary || '')}</div>
-        ${when ? `<div class="bf-when num">${fmtDate(when)}</div>` : ''}
-      </div>
+      <div class="bf-sum">${escapeHtml(it.summary || '')}</div>
     </div>`;
+}
+
+/* ----- squarified treemap ----- */
+
+function squarify(values, x, y, w, h) {
+  const total = values.reduce((s, d) => s + d.v, 0) || 1;
+  const scale = (w * h) / total;
+  const items = values.map(d => ({ ...d, area: d.v * scale }));
+  const out = [];
+  let rect = { x, y, w, h };
+  let i = 0;
+  while (i < items.length) {
+    const side = Math.min(rect.w, rect.h);
+    let row = [items[i]];
+    let best = worstRatio(row, side);
+    let j = i + 1;
+    for (; j < items.length; j++) {
+      const r = worstRatio(row.concat(items[j]), side);
+      if (r > best) break;
+      row.push(items[j]); best = r;
+    }
+    const rowArea = row.reduce((s, d) => s + d.area, 0);
+    if (rect.w <= rect.h) {
+      const stripH = rowArea / rect.w || 0;
+      let cx = rect.x;
+      for (const d of row) {
+        const cw = d.area / stripH || 0;
+        out.push({ ...d, x: cx, y: rect.y, w: cw, h: stripH });
+        cx += cw;
+      }
+      rect = { x: rect.x, y: rect.y + stripH, w: rect.w, h: rect.h - stripH };
+    } else {
+      const stripW = rowArea / rect.h || 0;
+      let cy = rect.y;
+      for (const d of row) {
+        const ch = d.area / stripW || 0;
+        out.push({ ...d, x: rect.x, y: cy, w: stripW, h: ch });
+        cy += ch;
+      }
+      rect = { x: rect.x + stripW, y: rect.y, w: rect.w - stripW, h: rect.h };
+    }
+    i = j;
+  }
+  return out;
+}
+
+function worstRatio(row, side) {
+  let sum = 0, max = -Infinity, min = Infinity;
+  for (const d of row) { sum += d.area; if (d.area > max) max = d.area; if (d.area < min) min = d.area; }
+  const s2 = side * side, sum2 = sum * sum;
+  return Math.max((s2 * max) / sum2, sum2 / (s2 * min));
 }
 
 function statusCls(category, name) {
