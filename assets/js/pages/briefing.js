@@ -22,6 +22,7 @@ const YEAR = 2026;
 
 const DROPPED = new Set(['철회/반려/취소', 'Dropped', 'DROPPED', '철회', '반려', '취소']);
 const isDropped = (it) => DROPPED.has((it.status || '').trim());
+const projectOf = (it) => it.project || (typeof it.key === 'string' ? it.key.split('-')[0] : '');
 
 // 컬럼별 상태 (리사이즈 시 재배치용)
 const cols = {
@@ -54,8 +55,9 @@ export async function renderBriefing({ rootRel = '' }) {
 
   const objectives = planData.objectives || [];
   const subjects = planData.subjects || [];
+  // ETR(외부 요청) 티켓은 분기 발표에서 제외. 종료성 상태도 제외.
   const items = joinTicketsWithOverrides(data.items || [], planData.overrides || [], YEAR)
-    .filter(it => !isDropped(it));
+    .filter(it => !isDropped(it) && projectOf(it) !== 'ETR');
 
   cols.q2.groups = focusSubjects(items.filter(it => quartersForItem(it).has(Q_REVIEW)), objectives, subjects);
   cols.q3.groups = focusSubjects(items.filter(it => quartersForItem(it).has(Q_PREVIEW)), objectives, subjects);
@@ -103,7 +105,8 @@ function focusSubjects(items, objectives, subjects) {
     });
   }
   out.sort((a, b) => b.items.length - a.items.length || a.subject.localeCompare(b.subject));
-  if (none.length) out.push({ subject: '주제 미지정', objective: '', color: 'var(--dim)', items: sortItems(none) });
+  // 주제 매핑이 없는 티켓은 'Fast Track' 으로 묶는다 (사용자 정의).
+  if (none.length) out.push({ subject: 'Fast Track', objective: '', color: 'var(--accent)', items: sortItems(none) });
   return out;
 }
 
