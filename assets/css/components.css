@@ -2029,7 +2029,7 @@ hr.rule { border: 0; border-top: 1px solid var(--rule); margin: 18px 0; }
 }
 .team-sub {
   background: rgba(255,255,255,0.028); border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 14px; padding: 15px 17px; break-inside: avoid;
+  border-radius: 14px; padding: 18px 17px 20px; break-inside: avoid; min-height: 232px;
 }
 .team-sub-head {
   display: flex; align-items: center; gap: 9px; font-size: 15.5px; font-weight: 700;
