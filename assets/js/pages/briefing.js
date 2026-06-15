@@ -131,7 +131,7 @@ function buildTeams(items, subjById) {
     const b = acc.get(teamId);
     b.keys.add(it.key);
     const sids = (it.subjectIds || []).filter(id => subjById.has(id));
-    if (!sids.length) pushCard(b.cards, '__none__', '미지정', it);
+    if (!sids.length) pushCard(b.cards, '__none__', '패스트트랙', it);
     else for (const sid of sids) pushCard(b.cards, sid, subjById.get(sid), it);
   }
 
