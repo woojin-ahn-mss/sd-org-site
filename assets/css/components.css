@@ -2069,10 +2069,9 @@ hr.rule { border: 0; border-top: 1px solid var(--rule); margin: 18px 0; }
 /* 성과 입력 (다이얼로그) */
 .dlg-outcome { padding: 16px 26px; border-bottom: 1px solid rgba(255,255,255,0.08); }
 .dlg-outcome-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px; }
-.bf-outcome { min-height: 26px; cursor: text; font-size: 15px; line-height: 1.65; border-radius: 8px; }
+.bf-outcome { min-height: 26px; cursor: text; font-size: 15px; line-height: 1.65; border-radius: 8px; padding: 4px 6px; }
 .bf-outcome:hover { background: rgba(255,255,255,0.03); }
-.bf-bullet { position: relative; padding-left: 18px; white-space: pre-wrap; }
-.bf-bullet::before { content: "•"; position: absolute; left: 3px; color: #8ab4ff; }
+.bf-outcome-text { white-space: pre-wrap; word-break: break-word; }
 .bf-outcome-ph { color: #6c7585; font-size: 13.5px; }
 .bf-outcome-input {
   width: 100%; min-height: 96px; resize: vertical; font: inherit; font-size: 15px; line-height: 1.65;

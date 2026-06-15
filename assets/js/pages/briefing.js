@@ -9,17 +9,14 @@ import { loadJson } from '../fetch-data.js';
 import { showError } from '../states.js';
 import { jiraUrl, bindJiraLinks } from '../jira-link.js';
 import { escapeHtml, escapeAttr } from '../escape.js';
-import { scoped } from '../storage.js';
 import { loadAll as loadPlanData, joinTicketsWithOverrides } from '../api/roadmap-plan-data.js';
+import { loadOutcomes, upsertOutcome } from '../api/briefing-outcomes.js';
 import { auth } from '../api/supabase.js';
 
 const YEAR = 2026;
 
 // 분기 발표에서 수동 제외할 Jira 키.
 const EXCLUDE_KEYS = new Set(['TM-2685']);
-
-// 주제별 '성과' 입력 — 브라우저 localStorage 저장(분기:주제 키).
-const outcomeStore = scoped('briefingOutcomes');
 
 const TABS = [
   { id: 'q2', quarter: '2026-Q2', label: '2026 2Q', tag: '회고' },
@@ -72,19 +69,27 @@ function quarterKeys(it) {
 
 const state = { byTab: {}, slides: [], idx: 0, outcomes: {} };
 
-function outcomeKey(tabId, subjId) { return `${tabId}:${subjId}`; }
-function saveOutcome(key, text) {
-  if (text) state.outcomes[key] = text; else delete state.outcomes[key];
-  outcomeStore.set(state.outcomes);
+const outcomeKey = (quarter, subjId) => `${quarter}:${subjId}`;
+/** 성과 저장 — state 즉시 반영 + Supabase upsert(실패 시 alert). */
+function saveOutcome(quarter, subjId, text) {
+  const key = outcomeKey(quarter, subjId);
+  if (text.trim()) state.outcomes[key] = text; else delete state.outcomes[key];
+  upsertOutcome(quarter, subjId, text).catch(err => {
+    console.error('[briefing] 성과 저장 실패', err);
+    alert('성과 저장 실패 — 로그인 상태인지 확인해주세요.\n' + (err?.message || err));
+  });
 }
 
 export async function renderBriefing({ rootRel = '' }) {
   const stage = document.getElementById('deck-stage');
   stage.innerHTML = `<div class="slide-loading muted">불러오는 중…</div>`;
-  state.outcomes = outcomeStore.get() || {};
 
-  // Supabase 세션 복원(로드맵 주제 매핑 인증). 실패해도 '미지정'으로 degrade.
+  // Supabase 세션 복원(로드맵 주제 매핑 + 성과 인증). 실패해도 degrade.
   try { await auth.init(); } catch (e) { console.warn('[briefing] auth.init 실패', e); }
+  state.outcomes = await loadOutcomes().catch(err => {
+    console.warn('[briefing] 성과 로드 실패(미로그인 등):', err);
+    return {};
+  });
 
   let data, planData;
   try {
@@ -234,7 +239,8 @@ function openSubjectDialog(team, tabId, subIdx) {
   const dlg = document.getElementById('subj-dialog');
   const s = team.subjects[subIdx];
   if (!dlg || !s) return;
-  const oKey = outcomeKey(tabId, s.id);
+  const quarter = tabMeta(tabId).quarter;
+  const oKey = outcomeKey(quarter, s.id);
   dlg.querySelector('[data-dlg-body]').innerHTML = `
     <div class="dlg-head">
       <span class="team-bar" style="background:${team.color};"></span>
@@ -246,34 +252,34 @@ function openSubjectDialog(team, tabId, subIdx) {
       <div class="bf-outcome" data-outcome tabindex="0" role="button">${outcomeViewHtml(state.outcomes[oKey] || '')}</div>
     </div>
     <div class="dlg-list"><ul class="subj-tickets">${s.items.map(ticketHtml).join('')}</ul></div>`;
-  bindOutcome(dlg, oKey);
+  bindOutcome(dlg, quarter, s.id);
   bindJiraLinks(dlg);
   if (!dlg.open) dlg.showModal();
 }
 
-/** 성과 텍스트 → 불릿 표시 HTML (한 줄=불릿, 띄어쓰기 보존). */
+/** 성과 텍스트 → 표시 HTML. 통 필드(입력 그대로, 줄바꿈·띄어쓰기 보존; '-' 불릿은 사용자가 직접). */
 function outcomeViewHtml(text) {
-  const lines = (text || '').split('\n').map(l => l.replace(/\s+$/, '')).filter(l => l.trim());
-  if (!lines.length) return `<span class="bf-outcome-ph">+ 성과 입력 (한 줄에 하나씩 → 불릿)</span>`;
-  return lines.map(l => `<div class="bf-bullet">${escapeHtml(l)}</div>`).join('');
+  if (!text || !text.trim()) return `<span class="bf-outcome-ph">+ 성과 입력 (클릭)</span>`;
+  return `<div class="bf-outcome-text">${escapeHtml(text)}</div>`;
 }
 
-/** 성과 영역 — 클릭하면 textarea 편집, blur 시 저장. */
-function bindOutcome(dlg, key) {
+/** 성과 영역 — 클릭하면 textarea 편집, blur 시 Supabase 저장. */
+function bindOutcome(dlg, quarter, subjId) {
   const view = dlg.querySelector('[data-outcome]');
   if (!view) return;
+  const key = outcomeKey(quarter, subjId);
   const edit = () => {
     if (dlg.querySelector('.bf-outcome-input')) return;
     const ta = document.createElement('textarea');
     ta.className = 'bf-outcome-input';
     ta.value = state.outcomes[key] || '';
-    ta.placeholder = '성과를 한 줄에 하나씩 입력하세요';
+    ta.placeholder = '성과를 입력하세요 (줄바꿈·\'-\' 불릿 자유)';
     view.replaceWith(ta);
     ta.focus();
     ta.setSelectionRange(ta.value.length, ta.value.length);
     ta.addEventListener('blur', () => {
-      const text = ta.value.replace(/\s+$/, '');
-      saveOutcome(key, text);
+      const text = ta.value;
+      saveOutcome(quarter, subjId, text);
       const nv = document.createElement('div');
       nv.className = 'bf-outcome'; nv.tabIndex = 0; nv.setAttribute('role', 'button');
       nv.setAttribute('data-outcome', '');
