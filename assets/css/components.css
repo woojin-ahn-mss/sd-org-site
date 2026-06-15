@@ -2006,3 +2006,35 @@ hr.rule { border: 0; border-top: 1px solid var(--rule); margin: 18px 0; }
 .bf-tile.is-major { border-width: 1.5px; }
 .bf-treemap.editing .bf-tile { cursor: copy; }
 .bf-treemap.editing .bf-tile:hover { outline: 2px dashed var(--accent); }
+
+/* 발표(슬라이드) 모드 */
+.bf-deck {
+  position: fixed; inset: 0; z-index: 1000; display: none; flex-direction: column;
+  background: var(--bg-base); padding: 30px 44px 18px;
+}
+.bf-deck-stage { flex: 1; display: flex; min-height: 0; }
+.bf-slide { flex: 1; display: flex; flex-direction: column; min-height: 0; }
+.bf-slide-kicker { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.08em; color: var(--dim); }
+.bf-slide-title { font-size: 36px; font-weight: 700; letter-spacing: -0.02em; margin: 6px 0 16px; }
+.bf-slide-n { font-size: 15px; font-weight: 500; color: var(--dim); margin-left: 8px; }
+.bf-slide-overview .bf-slide-map { position: relative; flex: 1; min-height: 0; }
+.bf-slide-theme .bf-slide-title { font-size: 42px; }
+.bf-slide-tickets { flex: 1; overflow: auto; columns: 2; column-gap: 44px; }
+@media (max-width: 820px) { .bf-slide-tickets { columns: 1; } }
+.bf-slide-ticket {
+  display: flex; align-items: baseline; gap: 11px; padding: 10px 0;
+  border-bottom: 1px solid var(--rule); break-inside: avoid; font-size: 16px;
+}
+.bf-slide-ticket .key { font-size: 12px; color: var(--accent); flex: none; }
+.bf-slide-ticket .bf-st { flex: none; }
+.bf-slide-sum { color: var(--text); }
+.bf-deck-foot { display: flex; align-items: center; justify-content: center; gap: 22px; padding-top: 16px; }
+.bf-deck-nav {
+  background: transparent; border: 1px solid var(--rule); color: var(--text);
+  width: 46px; height: 36px; border-radius: 6px; font-size: 20px; cursor: pointer; line-height: 1;
+}
+.bf-deck-nav:hover { border-color: var(--accent); color: var(--accent); }
+.bf-deck-count { font-family: var(--font-mono); font-size: 13px; color: var(--dim); min-width: 64px; text-align: center; }
+.bf-deck-hint { position: absolute; right: 22px; bottom: 22px; font-size: 11px; }
+.bf-deck-close { position: absolute; top: 18px; right: 22px; background: transparent; border: 0; color: var(--dim); font-size: 20px; cursor: pointer; }
+.bf-deck-close:hover { color: var(--text); }

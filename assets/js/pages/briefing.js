@@ -35,6 +35,7 @@ const state = {
   active: TABS[0].id,
   editing: false,
   major: { q2: new Set(), q3: new Set() },   // tabId → Set(subjectKey)
+  deck: null,                                // 발표 모드: { slides, idx }
 };
 
 function loadMajor() {
@@ -79,6 +80,7 @@ export async function renderBriefing({ rootRel = '' }) {
 
   renderTabs();
   bindEdit();
+  bindPresent();
   selectTab(state.active);
 
   let raf = 0;
@@ -194,24 +196,25 @@ function layout() {
   }
   const W = map.clientWidth, H = map.clientHeight;
   if (!W || !H) { requestAnimationFrame(() => layout()); return; }
+  map.innerHTML = tilesHtml(c.groups, state.major[state.active], W, H, c.selected);
+  map.querySelectorAll('.bf-tile').forEach(t => {
+    t.addEventListener('click', () => onTileClick(Number(t.dataset.bfIdx)));
+  });
+}
 
-  const anyMajor = c.groups.some(isMajor);
-  // 주요가 하나라도 지정되면 주요=크게/나머지=작게, 없으면 균등.
-  const vals = c.groups.map((g, i) => ({
-    v: anyMajor ? (isMajor(g) ? W_MAJOR : W_MINOR) : 1,
-    i,
-  }));
-  // 주요 먼저 오도록 정렬(레이아웃상 큰 타일이 좌상단). 인덱스는 보존.
-  vals.sort((a, b) => b.v - a.v);
+/** 트리맵 타일 HTML (페이지·발표 슬라이드 공용). 면적=주요 여부(없으면 균등). */
+function tilesHtml(groups, majorSet, W, H, selectedIdx = -1) {
+  const anyMajor = groups.some(g => majorSet.has(g.id));
+  const vals = groups.map((g, i) => ({ v: anyMajor ? (majorSet.has(g.id) ? W_MAJOR : W_MINOR) : 1, i }));
+  vals.sort((a, b) => b.v - a.v);   // 큰 타일이 좌상단
   const rects = squarify(vals, 0, 0, W, H);
-
-  map.innerHTML = rects.map(r => {
-    const g = c.groups[r.i];
-    const major = isMajor(g);
+  return rects.map(r => {
+    const g = groups[r.i];
+    const major = majorSet.has(g.id);
     const small = r.w < 70 || r.h < 34;
     const tiny = r.w < 38 || r.h < 24;
-    const fs = Math.max(11, Math.min(26, Math.round(Math.sqrt(r.w * r.h) / 6.5)));
-    const sel = r.i === c.selected ? ' is-selected' : '';
+    const fs = Math.max(11, Math.min(28, Math.round(Math.sqrt(r.w * r.h) / 6.5)));
+    const sel = r.i === selectedIdx ? ' is-selected' : '';
     const label = tiny ? '' :
       `<span class="bf-tile-name" style="font-size:${fs}px;">${escapeHtml(g.subject)}</span>
        ${small ? '' : `<span class="bf-tile-meta">${g.objective ? escapeHtml(g.objective) + ' · ' : ''}${g.items.length}건</span>`}`;
@@ -224,10 +227,6 @@ function layout() {
         ${label}
       </button>`;
   }).join('');
-
-  map.querySelectorAll('.bf-tile').forEach(t => {
-    t.addEventListener('click', () => onTileClick(Number(t.dataset.bfIdx)));
-  });
 }
 
 function onTileClick(idx) {
@@ -284,6 +283,137 @@ function entryHtml(it) {
         ${when ? `<span class="bf-when num">${fmtDate(when)}</span>` : ''}
       </div>
       <div class="bf-sum">${escapeHtml(it.summary || '')}</div>
+    </div>`;
+}
+
+/* ----- 발표(슬라이드) 모드 ----- */
+
+function bindPresent() {
+  const btn = document.getElementById('bf-present');
+  if (btn) btn.addEventListener('click', openDeck);
+}
+
+/** 슬라이드 구성: 분기마다 [개요(트리맵)] + [주요 주제별 1장]. */
+function buildDeck() {
+  const slides = [];
+  for (const t of TABS) {
+    slides.push({ kind: 'overview', tab: t.id, label: t.label });
+    const majors = state.byTab[t.id].groups.filter(g => state.major[t.id].has(g.id));
+    for (const g of majors) slides.push({ kind: 'theme', tab: t.id, label: t.label, group: g });
+  }
+  return slides;
+}
+
+function openDeck() {
+  const slides = buildDeck();
+  if (!slides.length) return;
+  state.deck = { slides, idx: 0 };
+  let el = document.getElementById('bf-deck');
+  if (!el) {
+    el = document.createElement('div');
+    el.id = 'bf-deck';
+    el.className = 'bf-deck';
+    el.innerHTML = `
+      <button class="bf-deck-close" data-deck-close aria-label="종료 (ESC)">✕</button>
+      <div class="bf-deck-stage" data-deck-stage></div>
+      <div class="bf-deck-foot">
+        <button class="bf-deck-nav" data-deck-prev aria-label="이전">‹</button>
+        <span class="bf-deck-count" data-deck-count></span>
+        <button class="bf-deck-nav" data-deck-next aria-label="다음">›</button>
+        <span class="bf-deck-hint muted">← → 이동 · ESC 종료</span>
+      </div>`;
+    document.body.appendChild(el);
+    el.querySelector('[data-deck-close]').addEventListener('click', closeDeck);
+    el.querySelector('[data-deck-prev]').addEventListener('click', () => deckGo(-1));
+    el.querySelector('[data-deck-next]').addEventListener('click', () => deckGo(1));
+  }
+  el.style.display = 'flex';
+  document.addEventListener('keydown', deckKey);
+  window.addEventListener('resize', deckResize);
+  renderSlide();
+}
+
+function closeDeck() {
+  const el = document.getElementById('bf-deck');
+  if (el) el.style.display = 'none';
+  document.removeEventListener('keydown', deckKey);
+  window.removeEventListener('resize', deckResize);
+  state.deck = null;
+}
+
+function deckKey(e) {
+  if (!state.deck) return;
+  if (e.key === 'Escape') closeDeck();
+  else if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); deckGo(1); }
+  else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); deckGo(-1); }
+  else if (e.key === 'Home') { state.deck.idx = 0; renderSlide(); }
+  else if (e.key === 'End') { state.deck.idx = state.deck.slides.length - 1; renderSlide(); }
+}
+
+function deckGo(d) {
+  if (!state.deck) return;
+  const n = state.deck.slides.length;
+  state.deck.idx = Math.max(0, Math.min(n - 1, state.deck.idx + d));
+  renderSlide();
+}
+
+let deckRaf = 0;
+function deckResize() {
+  if (deckRaf) cancelAnimationFrame(deckRaf);
+  deckRaf = requestAnimationFrame(renderSlide);
+}
+
+function renderSlide() {
+  const el = document.getElementById('bf-deck');
+  if (!el || !state.deck) return;
+  const stage = el.querySelector('[data-deck-stage]');
+  const s = state.deck.slides[state.deck.idx];
+  el.querySelector('[data-deck-count]').textContent = `${state.deck.idx + 1} / ${state.deck.slides.length}`;
+
+  if (s.kind === 'overview') {
+    stage.innerHTML = `
+      <div class="bf-slide bf-slide-overview">
+        <div class="bf-slide-kicker">${escapeHtml(s.label)}</div>
+        <h2 class="bf-slide-title">집중 주제</h2>
+        <div class="bf-slide-map" data-slide-map></div>
+      </div>`;
+    const mapEl = stage.querySelector('[data-slide-map]');
+    requestAnimationFrame(() => {
+      const W = mapEl.clientWidth, H = mapEl.clientHeight;
+      if (!W || !H) return;
+      mapEl.innerHTML = tilesHtml(state.byTab[s.tab].groups, state.major[s.tab], W, H);
+      mapEl.querySelectorAll('.bf-tile').forEach(t => {
+        t.addEventListener('click', () => jumpToTheme(s.tab, Number(t.dataset.bfIdx)));
+      });
+    });
+  } else {
+    const g = s.group;
+    stage.innerHTML = `
+      <div class="bf-slide bf-slide-theme">
+        <div class="bf-slide-kicker">${escapeHtml(s.label)} · 주요 주제${g.objective ? ' · ' + escapeHtml(g.objective) : ''}</div>
+        <h2 class="bf-slide-title" style="color:${g.color};">${escapeHtml(g.subject)} <span class="bf-slide-n">${g.items.length}건</span></h2>
+        <div class="bf-slide-tickets">${g.items.map(slideEntryHtml).join('')}</div>
+      </div>`;
+    bindJiraLinks(stage);
+  }
+}
+
+function jumpToTheme(tabId, idx) {
+  const g = state.byTab[tabId].groups[idx];
+  if (!g || !state.major[tabId].has(g.id)) return;  // 주요만 슬라이드 존재
+  const target = state.deck.slides.findIndex(sl => sl.kind === 'theme' && sl.tab === tabId && sl.group.id === g.id);
+  if (target >= 0) { state.deck.idx = target; renderSlide(); }
+}
+
+function slideEntryHtml(it) {
+  const url = jiraUrl(it.key);
+  const keyHtml = url
+    ? `<a class="key" href="${url}" target="_blank" rel="noopener noreferrer" data-jira-key="${escapeAttr(it.key)}">${escapeHtml(it.key)}</a>`
+    : `<span class="key muted">${escapeHtml(it.key || '')}</span>`;
+  return `<div class="bf-slide-ticket">
+      <span class="bf-st ${statusCls(it.statusCategory, it.status)}">${escapeHtml(it.status || '—')}</span>
+      ${keyHtml}
+      <span class="bf-slide-sum">${escapeHtml(it.summary || '')}</span>
     </div>`;
 }
 
