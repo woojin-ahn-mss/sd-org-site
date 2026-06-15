@@ -23,35 +23,18 @@
 <body>
   <div class="page">
     <header>
-      <p class="page-kicker">QUARTERLY BRIEFING — 2026 2Q → 3Q</p>
+      <p class="page-kicker">QUARTERLY BRIEFING</p>
       <h1 class="page-title">분기 발표.</h1>
-      <p class="page-lede">목표 → 주제 계위로 묶은 분기 내러티브. 왼쪽 <strong>2Q 회고</strong>(진행·완료), 오른쪽 <strong>3Q 예고</strong>(배포 예정). <span data-bf-summary class="muted"></span></p>
+      <p class="page-lede">분기별 집중 주제를 티켓 수 비례 면적으로. 타일을 클릭하면 해당 주제의 Jira 티켓이 펼쳐집니다.</p>
     </header>
 
     <section>
-      <div class="bf-cols">
-        <div class="bf-col">
-          <div class="bf-col-head bf-col-review">
-            <div>
-              <div class="bf-col-kicker">RETROSPECTIVE</div>
-              <h2 class="bf-col-title">2026 2Q · 회고</h2>
-            </div>
-            <span class="num bf-col-count" data-bf-count="q2">—</span>
-          </div>
-          <div id="bf-q2"></div>
-        </div>
-
-        <div class="bf-col">
-          <div class="bf-col-head bf-col-preview">
-            <div>
-              <div class="bf-col-kicker">PREVIEW</div>
-              <h2 class="bf-col-title">2026 3Q · 예고</h2>
-            </div>
-            <span class="num bf-col-count" data-bf-count="q3">—</span>
-          </div>
-          <div id="bf-q3"></div>
-        </div>
+      <div class="sec-head">
+        <div class="seg-text" id="bf-tabs" role="tablist"></div>
+        <small class="muted" data-bf-count>—</small>
       </div>
+      <div class="bf-treemap" id="bf-map"></div>
+      <div class="bf-detail" id="bf-detail"></div>
     </section>
 
     <div class="page-meta">

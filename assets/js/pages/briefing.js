@@ -1,9 +1,9 @@
 /* =========================================================
    pages/briefing.js — 분기 발표 대시보드
-   2026 2Q 회고 | 2026 3Q 예고.
-   "집중한 주제(Subject)"를 티켓 수 비례 면적의 트리맵으로 보여주고(어디에
-   집중했는지 한눈에), 타일을 클릭하면 그 주제의 Jira 티켓 리스트가 아래
-   패널에 펼쳐진다. roadmap 데이터 파이프라인 재사용.
+   상단 분기 탭(2Q 회고 / 3Q 예고) → 선택한 분기만 전체 너비 트리맵.
+   주제(Subject)를 티켓 수 비례 면적으로 보여주고(어디에 집중했는지 한눈에),
+   타일 클릭 시 그 주제의 Jira 티켓 리스트가 아래 패널에 펼쳐진다.
+   roadmap 데이터 파이프라인 재사용.
    ========================================================= */
 
 import { loadJson } from '../fetch-data.js';
@@ -15,26 +15,25 @@ import { loadAll as loadPlanData, joinTicketsWithOverrides } from '../api/roadma
 import { quartersForItem } from '../gantt.js';
 import { auth } from '../api/supabase.js';
 
-// 발표 대상 분기 (회고 / 예고). 다음 분기로 넘어가면 여기만 바꾸면 된다.
-const Q_REVIEW = '2026-Q2';
-const Q_PREVIEW = '2026-Q3';
 const YEAR = 2026;
+// 탭 정의 (다음 분기로 넘어가면 여기만 바꾸면 된다).
+const TABS = [
+  { id: 'q2', quarter: '2026-Q2', label: '2026 2Q · 회고' },
+  { id: 'q3', quarter: '2026-Q3', label: '2026 3Q · 예고' },
+];
 
 const DROPPED = new Set(['철회/반려/취소', 'Dropped', 'DROPPED', '철회', '반려', '취소']);
 const isDropped = (it) => DROPPED.has((it.status || '').trim());
 const projectOf = (it) => it.project || (typeof it.key === 'string' ? it.key.split('-')[0] : '');
 
-// 컬럼별 상태 (리사이즈 시 재배치용)
-const cols = {
-  q2: { host: null, groups: [], selected: 0 },
-  q3: { host: null, groups: [], selected: 0 },
+const state = {
+  byTab: {},          // tabId → { groups, selected }
+  active: TABS[0].id,
 };
 
 export async function renderBriefing({ rootRel = '' }) {
-  cols.q2.host = document.getElementById('bf-q2');
-  cols.q3.host = document.getElementById('bf-q3');
-  showLoading(cols.q2.host, { rows: 4, title: true });
-  showLoading(cols.q3.host, { rows: 4, title: true });
+  const map = document.getElementById('bf-map');
+  showLoading(map, { rows: 4, title: false });
 
   try { await auth.init(); } catch (e) { console.warn('[briefing] auth.init 실패', e); }
 
@@ -43,39 +42,60 @@ export async function renderBriefing({ rootRel = '' }) {
     [data, planData] = await Promise.all([
       loadJson(`${rootRel}data/jira/initiatives.json`),
       loadPlanData(YEAR).catch(err => {
-        console.warn('[briefing] 계위(Supabase) 로드 실패 — 주제 미지정으로 표시:', err);
+        console.warn('[briefing] 계위(Supabase) 로드 실패 — Fast Track 으로 표시:', err);
         return { objectives: [], subjects: [], overrides: [] };
       }),
     ]);
   } catch (err) {
-    showError(cols.q2.host, err);
-    cols.q3.host.innerHTML = '';
+    showError(map, err);
     return;
   }
 
   const objectives = planData.objectives || [];
   const subjects = planData.subjects || [];
-  // ETR(외부 요청) 티켓은 분기 발표에서 제외. 종료성 상태도 제외.
+  // ETR(외부 요청) 제외 + 종료성 상태 제외.
   const items = joinTicketsWithOverrides(data.items || [], planData.overrides || [], YEAR)
     .filter(it => !isDropped(it) && projectOf(it) !== 'ETR');
 
-  cols.q2.groups = focusSubjects(items.filter(it => quartersForItem(it).has(Q_REVIEW)), objectives, subjects);
-  cols.q3.groups = focusSubjects(items.filter(it => quartersForItem(it).has(Q_PREVIEW)), objectives, subjects);
+  for (const t of TABS) {
+    const groups = focusSubjects(items.filter(it => quartersForItem(it).has(t.quarter)), objectives, subjects);
+    state.byTab[t.id] = { groups, selected: 0 };
+  }
 
-  setText('[data-bf-count="q2"]', `주제 ${cols.q2.groups.length} · 과제 ${countTickets(cols.q2.groups)}`);
-  setText('[data-bf-count="q3"]', `주제 ${cols.q3.groups.length} · 과제 ${countTickets(cols.q3.groups)}`);
-  const summaryEl = document.querySelector('[data-bf-summary]');
-  if (summaryEl && !subjects.length) summaryEl.textContent = '· 로그인하면 주제별로 분류됩니다';
+  renderTabs();
+  selectTab(state.active);
 
-  renderColumn('q2');
-  renderColumn('q3');
-
-  // 리사이즈 시 트리맵 재배치 (rAF 디바운스)
   let raf = 0;
   window.addEventListener('resize', () => {
     if (raf) cancelAnimationFrame(raf);
-    raf = requestAnimationFrame(() => { layout('q2'); layout('q3'); });
+    raf = requestAnimationFrame(() => layout());
   });
+}
+
+/* ----- 탭 ----- */
+
+function renderTabs() {
+  const host = document.getElementById('bf-tabs');
+  host.innerHTML = TABS.map(t =>
+    `<button type="button" role="tab" data-bf-tab="${t.id}" class="${t.id === state.active ? 'on' : ''}"
+       aria-selected="${t.id === state.active}">${escapeHtml(t.label)}</button>`).join('');
+  host.querySelectorAll('[data-bf-tab]').forEach(b => {
+    b.addEventListener('click', () => selectTab(b.dataset.bfTab));
+  });
+}
+
+function selectTab(tabId) {
+  state.active = tabId;
+  document.querySelectorAll('#bf-tabs [data-bf-tab]').forEach(b => {
+    const on = b.dataset.bfTab === tabId;
+    b.classList.toggle('on', on);
+    b.setAttribute('aria-selected', on ? 'true' : 'false');
+  });
+  const c = state.byTab[tabId];
+  const subjectsKnown = c.groups.some(g => g.subject !== 'Fast Track');
+  setText('[data-bf-count]', `주제 ${c.groups.length} · 과제 ${countTickets(c.groups)}${subjectsKnown ? '' : ' · 로그인하면 주제 분류'}`);
+  layout();
+  selectTheme(c.selected);
 }
 
 /* ----- 주제별 집계 ----- */
@@ -105,7 +125,7 @@ function focusSubjects(items, objectives, subjects) {
     });
   }
   out.sort((a, b) => b.items.length - a.items.length || a.subject.localeCompare(b.subject));
-  // 주제 매핑이 없는 티켓은 'Fast Track' 으로 묶는다 (사용자 정의).
+  // 주제 매핑 없는 묶음 = 'Fast Track'.
   if (none.length) out.push({ subject: 'Fast Track', objective: '', color: 'var(--accent)', items: sortItems(none) });
   return out;
 }
@@ -124,67 +144,59 @@ function sortItems(items) {
   });
 }
 
-/* ----- 렌더: 트리맵 + 디테일 패널 ----- */
+/* ----- 트리맵 배치 ----- */
 
-function renderColumn(which) {
-  const c = cols[which];
+function layout() {
+  const map = document.getElementById('bf-map');
+  const c = state.byTab[state.active];
+  if (!map || !c) return;
   if (!c.groups.length) {
-    c.host.innerHTML = `<div class="muted" style="padding:14px;font-size:13px;">표시할 과제가 없습니다.</div>`;
+    map.innerHTML = `<div class="muted" style="position:absolute;inset:0;display:grid;place-items:center;font-size:13px;">표시할 과제가 없습니다.</div>`;
+    setDetail(null);
     return;
   }
-  c.host.innerHTML = `
-    <div class="bf-treemap" data-bf-map></div>
-    <div class="bf-detail" data-bf-detail></div>`;
-  layout(which);
-  selectTheme(which, 0);
-
-  const map = c.host.querySelector('[data-bf-map]');
-  map.addEventListener('click', (e) => {
-    const tile = e.target.closest('[data-bf-idx]');
-    if (!tile) return;
-    selectTheme(which, Number(tile.dataset.bfIdx));
-  });
-}
-
-/** 트리맵 타일 배치 (컨테이너 실측 → squarified). */
-function layout(which) {
-  const c = cols[which];
-  const map = c.host && c.host.querySelector('[data-bf-map]');
-  if (!map) return;
   const W = map.clientWidth, H = map.clientHeight;
-  if (!W || !H) { requestAnimationFrame(() => layout(which)); return; }
+  if (!W || !H) { requestAnimationFrame(() => layout()); return; }
 
   const vals = c.groups.map((g, i) => ({ v: Math.max(g.items.length, 0.0001), i }));
   const rects = squarify(vals, 0, 0, W, H);
   map.innerHTML = rects.map(r => {
     const g = c.groups[r.i];
-    const small = r.w < 64 || r.h < 30;
-    const tiny = r.w < 34 || r.h < 22;
-    const fs = Math.max(11, Math.min(20, Math.round(Math.sqrt(r.w * r.h) / 7)));
+    const small = r.w < 70 || r.h < 34;
+    const tiny = r.w < 38 || r.h < 24;
+    const fs = Math.max(11, Math.min(24, Math.round(Math.sqrt(r.w * r.h) / 6.5)));
     const sel = r.i === c.selected ? ' is-selected' : '';
     const label = tiny ? '' :
       `<span class="bf-tile-name" style="font-size:${fs}px;">${escapeHtml(g.subject)}</span>
        ${small ? '' : `<span class="bf-tile-meta">${g.objective ? escapeHtml(g.objective) + ' · ' : ''}${g.items.length}건</span>`}`;
     return `<button type="button" class="bf-tile${sel}" data-bf-idx="${r.i}"
         title="${escapeAttr(g.subject)} · ${g.items.length}건"
-        style="left:${r.x}px;top:${r.y}px;width:${Math.max(r.w - 3, 1)}px;height:${Math.max(r.h - 3, 1)}px;
+        style="left:${r.x}px;top:${r.y}px;width:${Math.max(r.w - 4, 1)}px;height:${Math.max(r.h - 4, 1)}px;
                background:color-mix(in srgb, ${g.color} 26%, var(--bg-elev));border-color:color-mix(in srgb, ${g.color} 55%, transparent);">
         <span class="bf-tile-count num" style="color:${g.color};">${g.items.length}</span>
         ${label}
       </button>`;
   }).join('');
+
+  map.querySelectorAll('.bf-tile').forEach(t => {
+    t.addEventListener('click', () => selectTheme(Number(t.dataset.bfIdx)));
+  });
 }
 
-function selectTheme(which, idx) {
-  const c = cols[which];
+function selectTheme(idx) {
+  const c = state.byTab[state.active];
+  if (!c || !c.groups.length) return;
   c.selected = idx;
-  const map = c.host.querySelector('[data-bf-map]');
-  if (map) map.querySelectorAll('.bf-tile').forEach(t => {
+  document.querySelectorAll('#bf-map .bf-tile').forEach(t => {
     t.classList.toggle('is-selected', Number(t.dataset.bfIdx) === idx);
   });
-  const detail = c.host.querySelector('[data-bf-detail]');
-  const g = c.groups[idx];
-  if (!detail || !g) return;
+  setDetail(c.groups[idx]);
+}
+
+function setDetail(g) {
+  const detail = document.getElementById('bf-detail');
+  if (!detail) return;
+  if (!g) { detail.innerHTML = ''; return; }
   detail.innerHTML = `
     <div class="bf-detail-head">
       <span class="bf-dot" style="background:${g.color};"></span>
@@ -236,20 +248,12 @@ function squarify(values, x, y, w, h) {
     if (rect.w <= rect.h) {
       const stripH = rowArea / rect.w || 0;
       let cx = rect.x;
-      for (const d of row) {
-        const cw = d.area / stripH || 0;
-        out.push({ ...d, x: cx, y: rect.y, w: cw, h: stripH });
-        cx += cw;
-      }
+      for (const d of row) { const cw = d.area / stripH || 0; out.push({ ...d, x: cx, y: rect.y, w: cw, h: stripH }); cx += cw; }
       rect = { x: rect.x, y: rect.y + stripH, w: rect.w, h: rect.h - stripH };
     } else {
       const stripW = rowArea / rect.h || 0;
       let cy = rect.y;
-      for (const d of row) {
-        const ch = d.area / stripW || 0;
-        out.push({ ...d, x: rect.x, y: cy, w: stripW, h: ch });
-        cy += ch;
-      }
+      for (const d of row) { const ch = d.area / stripW || 0; out.push({ ...d, x: rect.x, y: cy, w: stripW, h: ch }); cy += ch; }
       rect = { x: rect.x + stripW, y: rect.y, w: rect.w - stripW, h: rect.h };
     }
     i = j;

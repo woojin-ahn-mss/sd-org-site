@@ -1952,57 +1952,49 @@ hr.rule { border: 0; border-top: 1px solid var(--rule); margin: 18px 0; }
 
 /* =========================================================
    분기 발표 대시보드 (briefing.html / briefing.js)
-   2컬럼(2Q 회고 | 3Q 예고). 주제=티켓수 비례 트리맵 + 클릭 시 티켓 리스트.
+   상단 분기 탭 + 단일 전체너비 트리맵 + 선택 주제 티켓 리스트.
    ========================================================= */
-.bf-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-@media (max-width: 900px) { .bf-cols { grid-template-columns: 1fr; } }
-.bf-col { min-width: 0; }
-.bf-col-head {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 10px 14px; border: 1px solid var(--rule); border-radius: 6px;
-  background: var(--bg-elev); margin-bottom: 12px; border-left: 3px solid var(--rule);
-}
-.bf-col-review { border-left-color: var(--success); }
-.bf-col-preview { border-left-color: var(--accent); }
-.bf-col-kicker { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; color: var(--dim); }
-.bf-col-title { margin: 2px 0 0; font-size: 16px; font-weight: 600; }
-.bf-col-count { font-size: 12px; color: var(--dim); font-family: var(--font-mono); }
-
-/* 트리맵 */
 .bf-treemap {
-  position: relative; width: 100%; height: 46vh; min-height: 300px;
-  border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; background: var(--bg-base);
+  position: relative; width: 100%; height: 56vh; min-height: 360px;
+  margin-top: 14px; border: 1px solid var(--rule); border-radius: 8px;
+  overflow: hidden; background: var(--bg-base);
 }
 .bf-tile {
   position: absolute; display: flex; flex-direction: column; justify-content: center;
-  gap: 2px; padding: 6px 8px; border: 1px solid transparent; border-radius: 4px;
+  gap: 3px; padding: 8px 11px; border: 1px solid transparent; border-radius: 5px;
   text-align: left; cursor: pointer; overflow: hidden; color: var(--text);
   transition: filter .12s ease, outline-color .12s ease; outline: 2px solid transparent;
 }
-.bf-tile:hover { filter: brightness(1.12); }
+.bf-tile:hover { filter: brightness(1.13); }
 .bf-tile.is-selected { outline-color: var(--text); z-index: 2; }
-.bf-tile-count { font-size: 13px; font-weight: 700; line-height: 1; }
-.bf-tile-name { font-weight: 600; line-height: 1.15; letter-spacing: -0.01em;
-  overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
-.bf-tile-meta { font-family: var(--font-mono); font-size: 10px; color: var(--dim);
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bf-tile-count { font-size: 15px; font-weight: 700; line-height: 1; }
+.bf-tile-name {
+  font-weight: 600; line-height: 1.15; letter-spacing: -0.01em; overflow: hidden;
+  text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+}
+.bf-tile-meta {
+  font-family: var(--font-mono); font-size: 10px; color: var(--dim);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
 
-/* 디테일(선택 주제의 티켓 리스트) */
-.bf-detail { margin-top: 12px; }
+/* 선택 주제의 티켓 리스트 */
+.bf-detail { margin-top: 18px; }
 .bf-detail-head {
   display: flex; align-items: center; gap: 8px; padding-bottom: 6px; margin-bottom: 4px;
-  border-bottom: 1px solid var(--rule); font-size: 14px;
+  border-bottom: 1px solid var(--rule); font-size: 15px;
 }
 .bf-detail-head .num { margin-left: auto; font-size: 11px; }
-.bf-detail-list { max-height: 38vh; overflow: auto; }
+.bf-detail-list {
+  columns: 2; column-gap: 28px;
+}
+@media (max-width: 760px) { .bf-detail-list { columns: 1; } }
 .bf-dot { width: 9px; height: 9px; border-radius: 2px; flex: none; }
 .bf-theme-obj {
   font-family: var(--font-mono); font-size: 10.5px; color: var(--dim);
   border: 1px solid var(--rule); border-radius: 8px; padding: 0 6px;
 }
 
-/* 티켓 entry */
-.bf-entry { padding: 7px 0; border-bottom: 1px solid var(--rule); }
+.bf-entry { padding: 7px 0; border-bottom: 1px solid var(--rule); break-inside: avoid; }
 .bf-entry-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 2px; }
 .bf-entry-meta .key { font-size: 11px; color: var(--accent); }
 .bf-st { font-size: 10.5px; }
