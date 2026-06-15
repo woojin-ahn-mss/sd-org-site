@@ -186,7 +186,7 @@ function render() {
 
   // 팀 슬라이드의 주제 카드 → 다이얼로그로 과제 표시.
   if (s.kind === 'team') {
-    stage.querySelectorAll('.subj-card').forEach(c => {
+    stage.querySelectorAll('.bf-subj-card').forEach(c => {
       c.addEventListener('click', () => openSubjectDialog(s.team, s.tab, Number(c.dataset.sub)));
     });
   }
@@ -218,7 +218,7 @@ function coverHtml(tabId) {
 function teamHtml(team, tabId) {
   const t = tabMeta(tabId);
   const cards = team.subjects.map((s, si) => `
-    <button type="button" class="subj-card" data-sub="${si}" style="--c:${team.color};">
+    <button type="button" class="bf-subj-card" data-sub="${si}" style="--c:${team.color};">
       <div class="subj-card-top">
         <span class="subj-card-dot" style="background:${team.color};"></span>
         <span class="subj-card-n num">${s.items.length}</span>

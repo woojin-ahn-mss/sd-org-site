@@ -2027,14 +2027,14 @@ hr.rule { border: 0; border-top: 1px solid var(--rule); margin: 18px 0; }
   flex: 1; overflow: auto; display: grid; gap: 18px; align-content: start;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
 }
-.subj-card {
+.bf-subj-card {
   text-align: left; cursor: pointer; color: #e9edf6;
   border: 1px solid rgba(255,255,255,0.09); border-radius: 16px; padding: 20px 20px 18px;
   min-height: 188px; display: flex; flex-direction: column; gap: 8px;
   background: linear-gradient(165deg, rgba(255,255,255,0.05), rgba(255,255,255,0.018));
   transition: transform .14s, border-color .14s, background .14s, box-shadow .14s;
 }
-.subj-card:hover {
+.bf-subj-card:hover {
   transform: translateY(-3px);
   border-color: color-mix(in srgb, var(--c) 60%, transparent);
   background: linear-gradient(165deg, color-mix(in srgb, var(--c) 16%, rgba(255,255,255,0.03)), rgba(255,255,255,0.02));
