@@ -2062,8 +2062,23 @@ hr.rule { border: 0; border-top: 1px solid var(--rule); margin: 18px 0; }
 .dlg-head .team-bar { min-height: 1.3em; }
 .dlg-head h3 { margin: 0; font-size: 25px; font-weight: 800; letter-spacing: -0.02em; display: flex; align-items: baseline; gap: 11px; }
 .dlg-n { font-size: 15px; font-weight: 700; }
-.dlg-close { margin-left: auto; background: transparent; border: 0; color: #8a93a6; font-size: 20px; cursor: pointer; line-height: 1; }
+.dlg-manage {
+  margin-left: auto; background: transparent; border: 1px solid rgba(255,255,255,0.2);
+  color: #c2cadb; font-size: 12px; font-weight: 600; padding: 5px 13px; border-radius: 8px; cursor: pointer;
+}
+.dlg-manage:hover { border-color: rgba(255,255,255,0.4); color: #fff; }
+.dlg-manage.on { background: #4fa3ff; border-color: #4fa3ff; color: #08101f; }
+.dlg-close { margin-left: 10px; background: transparent; border: 0; color: #8a93a6; font-size: 20px; cursor: pointer; line-height: 1; }
 .dlg-close:hover { color: #fff; }
+.dlg-manage-hint { padding: 10px 26px 0; font-size: 12px; color: #8a93a6; }
+.subj-tickets.is-manage { columns: 1; }
+.bf-tk-toggle {
+  margin-left: auto; flex: none; background: transparent; border: 1px solid rgba(255,255,255,0.22);
+  color: #aeb7c8; font-size: 11px; padding: 2px 10px; border-radius: 7px; cursor: pointer;
+}
+.bf-tk-toggle:hover { border-color: #4fa3ff; color: #fff; }
+.bf-tk-toggle.is-hidden { color: #ff9f5a; border-color: rgba(255,159,90,0.55); }
+.th-item.is-dim { opacity: 0.42; }
 .dlg-list { padding: 16px 26px 24px; overflow: auto; }
 
 /* 성과 입력 (다이얼로그) */

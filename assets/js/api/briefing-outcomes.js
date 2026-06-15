@@ -25,3 +25,20 @@ export async function upsertOutcome(quarter, subjectId, content) {
   unwrap(await supabase.from('briefing_outcomes')
     .upsert({ quarter, subject_id: subjectId, content: text }, { onConflict: 'quarter,subject_id' }));
 }
+
+/* ----- 숨긴(노출 제외) 티켓 ----- */
+
+/** 숨긴 Jira 키 Set. */
+export async function loadHidden() {
+  const rows = unwrap(await supabase.from('briefing_hidden_tickets').select('jira_key'));
+  return new Set((rows || []).map(r => r.jira_key));
+}
+
+/** 티켓 숨김 토글 — hidden=true 면 upsert(숨김), false 면 delete(노출). */
+export async function setHidden(jiraKey, hidden) {
+  if (hidden) {
+    unwrap(await supabase.from('briefing_hidden_tickets').upsert({ jira_key: jiraKey }, { onConflict: 'jira_key' }));
+  } else {
+    unwrap(await supabase.from('briefing_hidden_tickets').delete().eq('jira_key', jiraKey));
+  }
+}

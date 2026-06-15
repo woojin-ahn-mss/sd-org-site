@@ -10,7 +10,7 @@ import { showError } from '../states.js';
 import { jiraUrl, bindJiraLinks } from '../jira-link.js';
 import { escapeHtml, escapeAttr } from '../escape.js';
 import { loadAll as loadPlanData, joinTicketsWithOverrides } from '../api/roadmap-plan-data.js';
-import { loadOutcomes, upsertOutcome } from '../api/briefing-outcomes.js';
+import { loadOutcomes, upsertOutcome, loadHidden, setHidden } from '../api/briefing-outcomes.js';
 import { auth } from '../api/supabase.js';
 
 const YEAR = 2026;
@@ -67,7 +67,15 @@ function quarterKeys(it) {
   return dq ? new Set([dq]) : new Set();
 }
 
-const state = { byTab: {}, slides: [], idx: 0, outcomes: {} };
+const state = { byTab: {}, slides: [], idx: 0, outcomes: {}, hidden: new Set(), dlg: null };
+
+const visN = (s) => s.items.filter(it => !state.hidden.has(it.key)).length;
+function teamVisibleTotal(team) {
+  const set = new Set();
+  for (const s of team.subjects) for (const it of s.items) if (!state.hidden.has(it.key)) set.add(it.key);
+  return set.size;
+}
+const teamVisibleSubjects = (team) => team.subjects.filter(s => visN(s) > 0).length;
 
 const outcomeKey = (quarter, subjId) => `${quarter}:${subjId}`;
 /** 성과 저장 — state 즉시 반영 + Supabase upsert(실패 시 alert). */
@@ -86,10 +94,10 @@ export async function renderBriefing({ rootRel = '' }) {
 
   // Supabase 세션 복원(로드맵 주제 매핑 + 성과 인증). 실패해도 degrade.
   try { await auth.init(); } catch (e) { console.warn('[briefing] auth.init 실패', e); }
-  state.outcomes = await loadOutcomes().catch(err => {
-    console.warn('[briefing] 성과 로드 실패(미로그인 등):', err);
-    return {};
-  });
+  [state.outcomes, state.hidden] = await Promise.all([
+    loadOutcomes().catch(err => { console.warn('[briefing] 성과 로드 실패(미로그인 등):', err); return {}; }),
+    loadHidden().catch(err => { console.warn('[briefing] 숨김 목록 로드 실패:', err); return new Set(); }),
+  ]);
 
   let data, planData;
   try {
@@ -204,7 +212,7 @@ function coverHtml(tabId) {
     `<div class="cover-team">
        <span class="cover-team-dot" style="background:${tm.color};"></span>
        <span class="cover-team-name">${escapeHtml(tm.name)}</span>
-       <span class="cover-team-n num">${tm.total}건 · 메인주제 ${tm.subjects.length}</span>
+       <span class="cover-team-n num">${teamVisibleTotal(tm)}건 · 메인주제 ${teamVisibleSubjects(tm)}</span>
      </div>`).join('');
   return `
     <div class="slide slide-cover">
@@ -221,15 +229,15 @@ function teamHtml(team, tabId) {
     <button type="button" class="bf-subj-card" data-sub="${si}" style="--c:${team.color};">
       <div class="subj-card-top">
         <span class="subj-card-dot" style="background:${team.color};"></span>
-        <span class="subj-card-n num">${s.items.length}</span>
+        <span class="subj-card-n num">${visN(s)}</span>
       </div>
       <div class="subj-card-name">${escapeHtml(s.name)}</div>
-      <div class="subj-card-hint">과제 ${s.items.length}개 보기 →</div>
+      <div class="subj-card-hint">과제 ${visN(s)}개 보기 →</div>
     </button>`).join('');
   return `
     <div class="slide slide-team">
       <div class="slide-kicker">${escapeHtml(t.label)} · ${escapeHtml(t.tag)} · 주제를 클릭하면 과제가 나옵니다</div>
-      <h2 class="slide-h"><span class="team-bar" style="background:${team.color};"></span>${escapeHtml(team.name)} <span class="slide-h-n" style="color:${team.color};">${team.total}건</span></h2>
+      <h2 class="slide-h"><span class="team-bar" style="background:${team.color};"></span>${escapeHtml(team.name)} <span class="slide-h-n" style="color:${team.color};">${teamVisibleTotal(team)}건</span></h2>
       <div class="subj-grid">${cards}</div>
     </div>`;
 }
@@ -237,24 +245,58 @@ function teamHtml(team, tabId) {
 /** 주제 카드 클릭 → 성과 입력 + 과제 리스트 다이얼로그. */
 function openSubjectDialog(team, tabId, subIdx) {
   const dlg = document.getElementById('subj-dialog');
+  if (!dlg || !team.subjects[subIdx]) return;
+  state.dlg = { team, tabId, subIdx, manage: false };
+  renderDialogBody();
+  if (!dlg.open) dlg.showModal();
+}
+
+/** 다이얼로그 본문 렌더 — 일반: 노출 티켓만 / 관리: 전체 + 숨기기·보이기 토글. */
+function renderDialogBody() {
+  const dlg = document.getElementById('subj-dialog');
+  if (!dlg || !state.dlg) return;
+  const { team, tabId, subIdx, manage } = state.dlg;
   const s = team.subjects[subIdx];
-  if (!dlg || !s) return;
   const quarter = tabMeta(tabId).quarter;
   const oKey = outcomeKey(quarter, s.id);
+  const list = manage ? s.items : s.items.filter(it => !state.hidden.has(it.key));
   dlg.querySelector('[data-dlg-body]').innerHTML = `
     <div class="dlg-head">
       <span class="team-bar" style="background:${team.color};"></span>
-      <h3>${escapeHtml(s.name)} <span class="dlg-n" style="color:${team.color};">${s.items.length}건</span></h3>
+      <h3>${escapeHtml(s.name)} <span class="dlg-n" style="color:${team.color};">${visN(s)}건</span></h3>
+      <button type="button" class="dlg-manage${manage ? ' on' : ''}" data-dlg-manage>${manage ? '완료' : '관리'}</button>
       <button type="button" class="dlg-close" data-dlg-close aria-label="닫기">✕</button>
     </div>
     <div class="dlg-outcome">
       <div class="dlg-outcome-label" style="color:${team.color};">성과</div>
       <div class="bf-outcome" data-outcome tabindex="0" role="button">${outcomeViewHtml(state.outcomes[oKey] || '')}</div>
     </div>
-    <div class="dlg-list"><ul class="subj-tickets">${s.items.map(ticketHtml).join('')}</ul></div>`;
+    ${manage ? `<div class="dlg-manage-hint">숨긴 티켓은 발표에서 제외됩니다. 다시 누르면 노출.</div>` : ''}
+    <div class="dlg-list"><ul class="subj-tickets${manage ? ' is-manage' : ''}">${list.map(it => ticketHtml(it, manage)).join('')}</ul></div>`;
+
+  dlg.querySelector('[data-dlg-manage]')?.addEventListener('click', () => {
+    state.dlg.manage = !state.dlg.manage;
+    renderDialogBody();
+  });
+  if (manage) {
+    dlg.querySelectorAll('[data-tk]').forEach(btn => {
+      btn.addEventListener('click', () => toggleHidden(btn.dataset.tk));
+    });
+  }
   bindOutcome(dlg, quarter, s.id);
   bindJiraLinks(dlg);
-  if (!dlg.open) dlg.showModal();
+}
+
+function toggleHidden(key) {
+  const willHide = !state.hidden.has(key);
+  if (willHide) state.hidden.add(key); else state.hidden.delete(key);
+  renderDialogBody();
+  setHidden(key, willHide).catch(err => {
+    console.error('[briefing] 노출 설정 저장 실패', err);
+    alert('티켓 노출 설정 저장 실패 — 로그인 상태인지 확인해주세요.\n' + (err?.message || err));
+    if (willHide) state.hidden.delete(key); else state.hidden.add(key);
+    renderDialogBody();
+  });
 }
 
 /** 성과 텍스트 → 표시 HTML. 통 필드(입력 그대로, 줄바꿈·띄어쓰기 보존; '-' 불릿은 사용자가 직접). */
@@ -293,15 +335,20 @@ function bindOutcome(dlg, quarter, subjId) {
   view.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); edit(); } });
 }
 
-function ticketHtml(it) {
+function ticketHtml(it, manage = false) {
   const url = jiraUrl(it.key);
   const keyHtml = url
     ? `<a class="key" href="${url}" target="_blank" rel="noopener noreferrer" data-jira-key="${escapeAttr(it.key)}">${escapeHtml(it.key)}</a>`
     : `<span class="key muted">${escapeHtml(it.key || '')}</span>`;
-  return `<li class="th-item">
+  const hidden = state.hidden.has(it.key);
+  const toggle = manage
+    ? `<button type="button" class="bf-tk-toggle${hidden ? ' is-hidden' : ''}" data-tk="${escapeAttr(it.key)}">${hidden ? '보이기' : '숨기기'}</button>`
+    : '';
+  return `<li class="th-item${manage && hidden ? ' is-dim' : ''}">
       <span class="st-dot ${statusCls(it.statusCategory)}"></span>
       ${keyHtml}
       <span class="th-sum">${escapeHtml(it.summary || '')}</span>
+      ${toggle}
     </li>`;
 }
 
@@ -331,6 +378,8 @@ function bindControls() {
   dlg?.addEventListener('click', (e) => {
     if (e.target === dlg || e.target.closest('[data-dlg-close]')) dlg.close();
   });
+  // 닫힐 때 슬라이드 다시 그려 카드/건수에 숨김 반영.
+  dlg?.addEventListener('close', () => { state.dlg = null; render(); });
 
   document.addEventListener('keydown', (e) => {
     if (dlg?.open) return;   // 다이얼로그 열려있으면 덱 이동 막음(ESC 는 네이티브가 닫음)
