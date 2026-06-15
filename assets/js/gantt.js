@@ -9,6 +9,13 @@ import { jiraUrl } from './jira-link.js';
 import { fmtDate } from './format.js';
 import { goalToAxisBar, fmtPeriod, sortGoals } from './goals.js';
 
+// 이슈 완료일(resolutionDate) 기준으로 분기에 배치할 프로젝트 (yearQuarter 부정확·미설정 다수).
+const RESOLUTION_QUARTER_PROJECTS = new Set(['MSSCXTF', 'PEL', 'FT']);
+/** item 의 프로젝트 키 (명시 필드 우선, 없으면 Jira 키 prefix). */
+function projectOf(item) {
+  return item.project || (typeof item.key === 'string' ? item.key.split('-')[0] : '');
+}
+
 /** 메인주제 → b-* class (디자인 시스템) */
 const SUBJECT_CLASS = {
   '01.추천':      'b-rec',
@@ -413,6 +420,13 @@ function dateToQuarterKey(dateStr) {
  *   5) item.yearQuarter (단일 — 하위호환)
  */
 export function quartersForItem(item) {
+  // MSSCXTF/PEL/FT 는 이슈 완료일(resolutionDate) 기준 분기에 배치
+  // — 이 프로젝트들은 yearQuarter 미설정/부정확이 많아 완료일이 가장 정확.
+  if (RESOLUTION_QUARTER_PROJECTS.has(projectOf(item))) {
+    const rq = dateToQuarterKey(item.resolutionDate);
+    if (rq) return new Set([rq]);
+    // 미완료(완료일 없음)면 아래 기존 로직으로 폴백
+  }
   const startQ = dateToQuarterKey(item.startDate);
   const endQ = dateToQuarterKey(item.dueDate);
   const set = new Set();
@@ -490,7 +504,9 @@ function makeBarElement(item) {
 function makeMonthBar(item, axis) {
   const totalMs = axis.totalEnd - axis.totalStart;
   const start = item.startDate ? new Date(item.startDate) : null;
-  const end = item.dueDate ? new Date(item.dueDate) : null;
+  // MSSCXTF/PEL/FT 는 기한 없으면 완료일(resolutionDate)을 종료 시점으로 사용 (월 모드에서도 배치되게).
+  const endRaw = item.dueDate || (RESOLUTION_QUARTER_PROJECTS.has(projectOf(item)) ? item.resolutionDate : null);
+  const end = endRaw ? new Date(endRaw) : null;
 
   if (!start && !end) return null; // 둘 다 X → 점도 일단 생략 (행 끝 점은 옵션)
 

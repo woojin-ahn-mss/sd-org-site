@@ -439,7 +439,7 @@ function currentLaunches(q) {
     );
   }
   const auto = state.launchesAll
-    .filter(it => it.yearQuarter === q)
+    .filter(it => launchQuarter(it) === q)
     .map(it => ({
       ticketKey: it.key,
       title: it.summary,
@@ -449,6 +449,27 @@ function currentLaunches(q) {
     }))
     .sort((a, b) => (a.launchedAt || '').localeCompare(b.launchedAt || ''));
   return auto;
+}
+
+// 이슈 완료일(resolutionDate) 기준으로 분기에 배치할 프로젝트.
+const RESOLUTION_QUARTER_PROJECTS = new Set(['MSSCXTF', 'PEL', 'FT']);
+function projectOf(it) {
+  return it.project || (typeof it.key === 'string' ? it.key.split('-')[0] : '');
+}
+/** ISO 날짜 문자열 → 'YYYY-QN' (작성된 날짜 기준, tz 안정). */
+function dateToQuarter(ds) {
+  if (typeof ds !== 'string' || ds.length < 7) return null;
+  const y = ds.slice(0, 4);
+  const m = Number(ds.slice(5, 7));
+  if (!/^\d{4}$/.test(y) || !(m >= 1 && m <= 12)) return null;
+  return `${y}-Q${Math.floor((m - 1) / 3) + 1}`;
+}
+/** 출시 티켓의 분기 — 지정 프로젝트는 완료일 기준, 그 외는 yearQuarter. */
+function launchQuarter(it) {
+  if (RESOLUTION_QUARTER_PROJECTS.has(projectOf(it))) {
+    return dateToQuarter(it.resolutionDate) || it.yearQuarter || null;
+  }
+  return it.yearQuarter || null;
 }
 
 function prevQuarter(q) {
