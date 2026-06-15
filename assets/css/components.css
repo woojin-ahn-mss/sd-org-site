@@ -1951,90 +1951,76 @@ hr.rule { border: 0; border-top: 1px solid var(--rule); margin: 18px 0; }
 .ftk-merged { color: var(--accent); border-color: var(--accent-rule); cursor: help; }
 
 /* =========================================================
-   분기 발표 대시보드 (briefing.html / briefing.js)
-   상단 분기 탭 + 단일 전체너비 트리맵 + 선택 주제 티켓 리스트.
+   분기 발표 장표 (briefing.html / briefing.js)
+   페이지가 곧 덱. 큰 글씨·여백 위주의 깔끔한 슬라이드.
    ========================================================= */
-.bf-treemap {
-  position: relative; width: 100%; height: 56vh; min-height: 360px;
-  margin-top: 14px; border: 1px solid var(--rule); border-radius: 8px;
-  overflow: hidden; background: var(--bg-base);
+.deck { margin-top: 6px; }
+.deck-stage {
+  position: relative; height: 64vh; min-height: 440px;
+  border: 1px solid var(--rule); border-radius: 12px; background: var(--bg-elev);
+  padding: 48px 56px; overflow: hidden; display: flex;
 }
-.bf-tile {
-  position: absolute; display: flex; flex-direction: column; justify-content: center;
-  gap: 3px; padding: 8px 11px; border: 1px solid transparent; border-radius: 5px;
-  text-align: left; cursor: pointer; overflow: hidden; color: var(--text);
-  transition: filter .12s ease, outline-color .12s ease; outline: 2px solid transparent;
+.deck.is-full { background: var(--bg-base); }
+.deck.is-full .deck-stage {
+  height: calc(100vh - 86px); min-height: 0; border-radius: 0; border: 0;
+  background: var(--bg-base); padding: 5vh 7vw;
 }
-.bf-tile:hover { filter: brightness(1.13); }
-.bf-tile.is-selected { outline-color: var(--text); z-index: 2; }
-.bf-tile-count { font-size: 15px; font-weight: 700; line-height: 1; }
-.bf-tile-name {
-  font-weight: 600; line-height: 1.15; letter-spacing: -0.01em; overflow: hidden;
-  text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
-}
-.bf-tile-meta {
-  font-family: var(--font-mono); font-size: 10px; color: var(--dim);
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-}
+.deck.is-full { padding: 0 24px; }
 
-/* 선택 주제의 티켓 리스트 */
-.bf-detail { margin-top: 18px; }
-.bf-detail-head {
-  display: flex; align-items: center; gap: 8px; padding-bottom: 6px; margin-bottom: 4px;
-  border-bottom: 1px solid var(--rule); font-size: 15px;
-}
-.bf-detail-head .num { margin-left: auto; font-size: 11px; }
-.bf-detail-list {
-  columns: 2; column-gap: 28px;
-}
-@media (max-width: 760px) { .bf-detail-list { columns: 1; } }
-.bf-dot { width: 9px; height: 9px; border-radius: 2px; flex: none; }
-.bf-theme-obj {
-  font-family: var(--font-mono); font-size: 10.5px; color: var(--dim);
-  border: 1px solid var(--rule); border-radius: 8px; padding: 0 6px;
-}
-
-.bf-entry { padding: 7px 0; border-bottom: 1px solid var(--rule); break-inside: avoid; }
-.bf-entry-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 2px; }
-.bf-entry-meta .key { font-size: 11px; color: var(--accent); }
-.bf-st { font-size: 10.5px; }
-.bf-when { margin-left: auto; font-family: var(--font-mono); font-size: 10.5px; color: var(--dim); }
-.bf-sum { font-size: 13px; color: var(--text); line-height: 1.45; }
-
-/* 주요(★) 타일 + 편집 모드 */
-.bf-star { position: absolute; top: 5px; right: 8px; font-size: 12px; color: var(--accent); line-height: 1; }
-.bf-tile.is-major { border-width: 1.5px; }
-.bf-treemap.editing .bf-tile { cursor: copy; }
-.bf-treemap.editing .bf-tile:hover { outline: 2px dashed var(--accent); }
-
-/* 발표(슬라이드) 모드 */
-.bf-deck {
-  position: fixed; inset: 0; z-index: 1000; display: none; flex-direction: column;
-  background: var(--bg-base); padding: 30px 44px 18px;
-}
-.bf-deck-stage { flex: 1; display: flex; min-height: 0; }
-.bf-slide { flex: 1; display: flex; flex-direction: column; min-height: 0; }
-.bf-slide-kicker { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.08em; color: var(--dim); }
-.bf-slide-title { font-size: 36px; font-weight: 700; letter-spacing: -0.02em; margin: 6px 0 16px; }
-.bf-slide-n { font-size: 15px; font-weight: 500; color: var(--dim); margin-left: 8px; }
-.bf-slide-overview .bf-slide-map { position: relative; flex: 1; min-height: 0; }
-.bf-slide-theme .bf-slide-title { font-size: 42px; }
-.bf-slide-tickets { flex: 1; overflow: auto; columns: 2; column-gap: 44px; }
-@media (max-width: 820px) { .bf-slide-tickets { columns: 1; } }
-.bf-slide-ticket {
-  display: flex; align-items: baseline; gap: 11px; padding: 10px 0;
-  border-bottom: 1px solid var(--rule); break-inside: avoid; font-size: 16px;
-}
-.bf-slide-ticket .key { font-size: 12px; color: var(--accent); flex: none; }
-.bf-slide-ticket .bf-st { flex: none; }
-.bf-slide-sum { color: var(--text); }
-.bf-deck-foot { display: flex; align-items: center; justify-content: center; gap: 22px; padding-top: 16px; }
-.bf-deck-nav {
+.deck-ctrl { display: flex; align-items: center; gap: 12px; margin-top: 14px; }
+.deck-spacer { flex: 1; }
+.deck-btn {
   background: transparent; border: 1px solid var(--rule); color: var(--text);
-  width: 46px; height: 36px; border-radius: 6px; font-size: 20px; cursor: pointer; line-height: 1;
+  width: 46px; height: 34px; border-radius: 6px; font-size: 20px; line-height: 1; cursor: pointer;
 }
-.bf-deck-nav:hover { border-color: var(--accent); color: var(--accent); }
-.bf-deck-count { font-family: var(--font-mono); font-size: 13px; color: var(--dim); min-width: 64px; text-align: center; }
-.bf-deck-hint { position: absolute; right: 22px; bottom: 22px; font-size: 11px; }
-.bf-deck-close { position: absolute; top: 18px; right: 22px; background: transparent; border: 0; color: var(--dim); font-size: 20px; cursor: pointer; }
-.bf-deck-close:hover { color: var(--text); }
+.deck-btn:hover { border-color: var(--accent); color: var(--accent); }
+.deck-pos { font-family: var(--font-mono); font-size: 13px; color: var(--dim); min-width: 70px; text-align: center; }
+
+/* 슬라이드 공통 */
+.slide { display: flex; flex-direction: column; width: 100%; min-height: 0; }
+.slide-loading { display: grid; place-items: center; width: 100%; }
+.slide-kicker {
+  font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.1em;
+  color: var(--dim); text-transform: uppercase;
+}
+.slide-h {
+  font-size: clamp(26px, 3.6vw, 46px); font-weight: 700; letter-spacing: -0.02em;
+  margin: 10px 0 22px; line-height: 1.1;
+}
+.slide-h-n { font-size: 0.42em; font-weight: 500; color: var(--dim); margin-left: 12px; }
+
+/* 표지 */
+.slide-cover { justify-content: center; gap: 4px; }
+.cover-q { font-size: clamp(56px, 10vw, 140px); font-weight: 800; letter-spacing: -0.04em; line-height: 0.95; }
+.cover-sub { font-size: clamp(18px, 2.4vw, 30px); color: var(--text); margin-top: 14px; }
+.cover-meta { font-family: var(--font-mono); font-size: 14px; color: var(--dim); margin-top: 10px; }
+
+/* 집중 주제 목록 */
+.ag-list { list-style: none; margin: 0; padding: 0; overflow: auto; }
+.ag-row {
+  display: flex; align-items: center; gap: 18px; padding: 14px 8px;
+  border-bottom: 1px solid var(--rule); font-size: clamp(16px, 2vw, 26px);
+}
+.ag-row.editable { cursor: pointer; }
+.ag-row.editable:hover { background: rgba(255,255,255,0.03); }
+.ag-num { font-family: var(--font-mono); color: var(--faint); font-size: 0.6em; width: 2.4em; flex: none; }
+.ag-star { color: var(--accent); font-size: 1.3em; }
+.ag-dot { width: 13px; height: 13px; border-radius: 3px; flex: none; }
+.ag-name { font-weight: 600; }
+.ag-obj { color: var(--dim); font-size: 0.5em; font-family: var(--font-mono); margin-left: auto; white-space: nowrap; }
+.ag-count { color: var(--dim); font-size: 0.62em; min-width: 4em; text-align: right; flex: none; }
+
+/* 주제별 티켓 */
+.th-list { list-style: none; margin: 0; padding: 0; overflow: auto; columns: 2; column-gap: 50px; }
+@media (max-width: 820px) { .th-list { columns: 1; } }
+.th-item {
+  display: flex; align-items: baseline; gap: 11px; padding: 10px 0;
+  border-bottom: 1px solid var(--rule); break-inside: avoid; font-size: clamp(13px, 1.5vw, 18px);
+}
+.th-item .key { font-size: 0.72em; color: var(--accent); flex: none; }
+.th-sum { color: var(--text); }
+.st-dot { width: 8px; height: 8px; border-radius: 50%; flex: none; align-self: center; background: var(--faint); }
+.st-dot.is-done { background: var(--success); }
+.st-dot.is-progress { background: var(--accent); }
+.st-dot.is-new { background: var(--dim); }
+.st-dot.is-wait { background: var(--faint); }

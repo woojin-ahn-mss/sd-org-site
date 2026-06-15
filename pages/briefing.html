@@ -25,25 +25,18 @@
     <header>
       <p class="page-kicker">QUARTERLY BRIEFING</p>
       <h1 class="page-title">분기 발표.</h1>
-      <p class="page-lede">분기별 집중 주제를 티켓 수 비례 면적으로. 타일을 클릭하면 해당 주제의 Jira 티켓이 펼쳐집니다.</p>
     </header>
 
-    <section>
-      <div class="sec-head">
-        <div class="seg-text" id="bf-tabs" role="tablist"></div>
-        <div class="actions">
-          <small class="muted" data-bf-count>—</small>
-          <button type="button" class="btn ghost" id="bf-edit" title="주요 주제를 직접 지정 (크게 표시)">주요 표시</button>
-          <button type="button" class="btn primary" id="bf-present" title="풀스크린 발표 모드">발표 시작</button>
-        </div>
+    <div class="deck" id="deck">
+      <div class="deck-stage" id="deck-stage"></div>
+      <div class="deck-ctrl">
+        <button class="deck-btn" id="deck-prev" aria-label="이전 (←)">‹</button>
+        <span class="deck-pos num" id="deck-pos">—</span>
+        <button class="deck-btn" id="deck-next" aria-label="다음 (→)">›</button>
+        <span class="deck-spacer"></span>
+        <button class="btn ghost" id="deck-edit" title="분기별 주요 주제 지정">주요 편집</button>
+        <button class="btn ghost" id="deck-full" title="전체화면 발표">전체화면</button>
       </div>
-      <div class="bf-treemap" id="bf-map"></div>
-      <div class="bf-detail" id="bf-detail"></div>
-    </section>
-
-    <div class="page-meta">
-      <span class="muted">S&amp;D Console</span>
-      <span class="right num" data-meta-last-sync>—</span>
     </div>
   </div>
 
