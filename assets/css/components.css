@@ -1131,21 +1131,28 @@
    Performance — editorial entries
    ========================================================= */
 .entry {
-  display: grid; grid-template-columns: 110px 1fr;
-  gap: 32px; padding: 22px 0;
+  display: grid; grid-template-columns: 110px minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: 24px; padding: 18px 0;
   border-bottom: 1px solid var(--rule);
 }
 .entry-date {
   font-family: var(--font-mono);
   font-size: 11.5px; color: var(--dim);
-  letter-spacing: 0.04em; padding-top: 4px;
+  letter-spacing: 0.04em; padding-top: 3px;
 }
 .entry-date .key { display: block; margin-top: 6px; font-size: 11px; color: var(--accent); }
 .entry h3 {
-  margin: 0 0 8px; font-size: 22px; font-weight: 700; letter-spacing: -0.025em;
-  line-height: 1.15;
+  margin: 0 0 6px; font-size: 15px; font-weight: 600; letter-spacing: -0.015em;
+  line-height: 1.4;
 }
 .entry p { margin: 0; color: var(--dim); font-size: 14px; max-width: 640px; line-height: 1.6; }
+/* MBR 내용 컬럼 — one-tickets '내용'(meta override ?? one-content.json) */
+.entry-mbr {
+  font-size: 13px; color: var(--dim); line-height: 1.6;
+  white-space: pre-wrap; word-break: break-word; padding-top: 2px;
+}
+.entry-mbr.empty { color: var(--rule); }
+.entry-mbr a { color: var(--accent); }
 .entry .impact-line {
   margin-top: 12px;
   font-family: var(--font-mono);

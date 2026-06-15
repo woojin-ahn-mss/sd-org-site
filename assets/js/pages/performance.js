@@ -9,6 +9,7 @@ import { jiraKeyHtml, jiraUrl } from '../jira-link.js';
 import { fmtDate, fmtDelta } from '../format.js';
 import { escapeHtml, escapeAttr } from '../escape.js';
 import { loadAll as loadPlanData, parseSubjectIds } from '../api/roadmap-plan-data.js';
+import { loadOneMeta, metaByKey } from '../api/one-ticket-meta.js';
 import { auth } from '../api/supabase.js';
 
 const QUARTERS = ['2025-Q3', '2025-Q4', '2026-Q1', '2026-Q2'];
@@ -19,7 +20,16 @@ let state = {
   metricsByQuarter: {},   // 수동 (data/metrics/{q}.json)
   currentQuarter: null,
   planByYear: {},         // 연도 → { objectives, subjects, overrides } (Supabase 계위, 실패 시 null)
+  contentDefaults: new Map(),  // jira_key → 기본 내용 (one-content.json)
+  contentMeta: new Map(),      // jira_key → one_ticket_meta row (content override 포함)
 };
+
+/** 티켓의 MBR 내용 — 편집 override(one_ticket_meta.content) 우선, 없으면 one-content.json 기본값. */
+function mbrContent(key) {
+  const m = state.contentMeta.get(key);
+  const override = m && m.content != null ? String(m.content).trim() : '';
+  return override || state.contentDefaults.get(key) || '';
+}
 
 /** 'YYYY-QN' → 연도 숫자 */
 function yearOfQuarter(q) {
@@ -58,6 +68,20 @@ export async function renderPerformance({ rootRel = '' } = {}) {
   } catch (err) {
     console.warn('[performance] completed-launches load failed', err);
     state.launchesAll = [];
+  }
+
+  // MBR 내용 — 기본값(one-content.json) + 편집 override(one_ticket_meta).
+  try {
+    const cj = await loadJson(`${rootRel}data/jira/one-content.json`);
+    for (const [k, v] of Object.entries(cj || {})) state.contentDefaults.set(String(k), String(v ?? ''));
+  } catch (err) {
+    console.warn('[performance] one-content.json load failed', err);
+  }
+  try {
+    state.contentMeta = metaByKey(await loadOneMeta());
+  } catch (err) {
+    console.warn('[performance] one_ticket_meta 로드 실패 — 기본 내용만 표시:', err);
+    state.contentMeta = new Map();
   }
 
   await switchQuarter(state.currentQuarter);
@@ -276,6 +300,7 @@ function entryHtml(l) {
   const desc = l.description || '';
   const impact = l.impactSummary || '';
   const url = jiraUrl(key);
+  const mbr = mbrContent(key);
   return `
     <div class="entry">
       <div class="entry-date">
@@ -290,6 +315,7 @@ function entryHtml(l) {
         ${desc ? `<p>${escapeHtml(desc)}</p>` : ''}
         ${impact ? `<div class="impact-line">${escapeHtml(impact)}</div>` : ''}
       </div>
+      <div class="entry-mbr${mbr ? '' : ' empty'}">${mbr ? escapeHtml(mbr) : '—'}</div>
     </div>
   `;
 }
