@@ -109,7 +109,10 @@ function buildSlides() {
   const slides = [];
   for (const t of TABS) {
     slides.push({ kind: 'cover', tab: t.id });
-    for (const team of state.byTab[t.id]) slides.push({ kind: 'team', tab: t.id, team });
+    for (const team of state.byTab[t.id]) {
+      slides.push({ kind: 'team', tab: t.id, team });
+      for (let si = 0; si < team.subjects.length; si++) slides.push({ kind: 'subject', tab: t.id, team, subIdx: si });
+    }
   }
   state.slides = slides;
   state.idx = Math.max(0, Math.min(state.idx, slides.length - 1));
@@ -121,7 +124,16 @@ function render() {
   const stage = document.getElementById('deck-stage');
   const s = state.slides[state.idx];
   if (!s) { stage.innerHTML = ''; return; }
-  stage.innerHTML = s.kind === 'cover' ? coverHtml(s.tab) : teamHtml(s.team, s.tab);
+  if (s.kind === 'cover') stage.innerHTML = coverHtml(s.tab);
+  else if (s.kind === 'team') stage.innerHTML = teamHtml(s.team, s.tab);
+  else stage.innerHTML = subjectHtml(s.team, s.tab, s.subIdx);
+
+  // 팀 슬라이드의 주제 카드 → 해당 주제 상세 슬라이드로 이동.
+  if (s.kind === 'team') {
+    stage.querySelectorAll('.subj-card').forEach(c => {
+      c.addEventListener('click', () => goto(state.idx + 1 + Number(c.dataset.sub)));
+    });
+  }
   bindJiraLinks(stage);
   const pos = document.getElementById('deck-pos');
   if (pos) pos.textContent = `${state.idx + 1} / ${state.slides.length}`;
@@ -149,19 +161,31 @@ function coverHtml(tabId) {
 
 function teamHtml(team, tabId) {
   const t = tabMeta(tabId);
-  const subs = team.subjects.map(s => `
-    <div class="team-sub">
-      <div class="team-sub-head" style="color:${team.color};">
-        <span class="team-sub-dot" style="background:${team.color};"></span>
-        ${escapeHtml(s.name)} <span class="num muted">${s.items.length}</span>
+  const cards = team.subjects.map((s, si) => `
+    <button type="button" class="subj-card" data-sub="${si}" style="--c:${team.color};">
+      <div class="subj-card-top">
+        <span class="subj-card-dot" style="background:${team.color};"></span>
+        <span class="subj-card-n num">${s.items.length}</span>
       </div>
-      <ul class="th-list-flat">${s.items.map(ticketHtml).join('')}</ul>
-    </div>`).join('');
+      <div class="subj-card-name">${escapeHtml(s.name)}</div>
+      <div class="subj-card-hint">과제 ${s.items.length}개 보기 →</div>
+    </button>`).join('');
   return `
     <div class="slide slide-team">
-      <div class="slide-kicker">${escapeHtml(t.label)} · ${escapeHtml(t.tag)}</div>
+      <div class="slide-kicker">${escapeHtml(t.label)} · ${escapeHtml(t.tag)} · 주제를 클릭하면 과제가 나옵니다</div>
       <h2 class="slide-h"><span class="team-bar" style="background:${team.color};"></span>${escapeHtml(team.name)} <span class="slide-h-n" style="color:${team.color};">${team.total}건</span></h2>
-      <div class="team-grid">${subs}</div>
+      <div class="subj-grid">${cards}</div>
+    </div>`;
+}
+
+function subjectHtml(team, tabId, subIdx) {
+  const t = tabMeta(tabId);
+  const s = team.subjects[subIdx];
+  return `
+    <div class="slide slide-subject">
+      <div class="slide-kicker">${escapeHtml(t.label)} · ${escapeHtml(t.tag)} · ${escapeHtml(team.name)}</div>
+      <h2 class="slide-h"><span class="team-bar" style="background:${team.color};"></span>${escapeHtml(s.name)} <span class="slide-h-n" style="color:${team.color};">${s.items.length}건</span></h2>
+      <ul class="subj-tickets">${s.items.map(ticketHtml).join('')}</ul>
     </div>`;
 }
 
@@ -208,6 +232,11 @@ function bindControls() {
 
 function go(d) {
   state.idx = Math.max(0, Math.min(state.slides.length - 1, state.idx + d));
+  render();
+}
+
+function goto(i) {
+  state.idx = Math.max(0, Math.min(state.slides.length - 1, i));
   render();
 }
 
