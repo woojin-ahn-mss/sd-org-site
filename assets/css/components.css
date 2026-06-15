@@ -1954,10 +1954,10 @@ hr.rule { border: 0; border-top: 1px solid var(--rule); margin: 18px 0; }
    분기 발표 장표 (briefing.html / briefing.js)
    ※ 발표 전용 — 디자인 시스템과 별개로 화사하게 스타일.
    ========================================================= */
-.deck { margin-top: 8px; position: relative; }
+.deck { margin-top: 14px; position: relative; }
 /* 좌우 가장자리 이전/다음 (전체화면 발표에서도 클릭으로 넘김) */
 .deck-edge {
-  position: absolute; top: 0; height: 66vh; width: 58px; z-index: 5;
+  position: absolute; top: 0; height: 74vh; width: 58px; z-index: 5;
   display: flex; align-items: center; justify-content: center;
   background: transparent; border: 0; color: #cfd6e4; font-size: 34px; line-height: 1; cursor: pointer;
   opacity: 0.32; transition: opacity .15s, background .15s;
@@ -1969,7 +1969,7 @@ hr.rule { border: 0; border-top: 1px solid var(--rule); margin: 18px 0; }
   background: linear-gradient(270deg, rgba(0,0,0,0.35), transparent); }
 #deck:fullscreen .deck-edge { height: calc(100vh - 60px); width: 9vw; font-size: 44px; border-radius: 0; }
 .deck-stage {
-  position: relative; height: 66vh; min-height: 470px; display: flex;
+  position: relative; height: 74vh; min-height: 520px; display: flex;
   padding: 54px 62px; border-radius: 18px; overflow: hidden;
   color: #e9edf6;
   border: 1px solid rgba(255,255,255,0.07);
@@ -2029,11 +2029,33 @@ hr.rule { border: 0; border-top: 1px solid var(--rule); margin: 18px 0; }
 }
 .bf-subj-card {
   text-align: left; cursor: pointer; color: #e9edf6;
-  border: 1px solid rgba(255,255,255,0.09); border-radius: 16px; padding: 20px 20px 18px;
-  min-height: 188px; display: flex; flex-direction: column; gap: 8px;
+  border: 1px solid rgba(255,255,255,0.09); border-radius: 16px; padding: 24px 22px 22px;
+  min-height: 260px; display: flex; flex-direction: column; gap: 8px;
   background: linear-gradient(165deg, rgba(255,255,255,0.05), rgba(255,255,255,0.018));
   transition: transform .14s, border-color .14s, background .14s, box-shadow .14s;
 }
+
+/* 발표 덱 스크롤바 — 얇고 은은하게 (기본 스크롤바가 디자인과 안 어울림) */
+.subj-grid, .dlg-list, .subj-tickets, .bf-outcome-input {
+  scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.18) transparent;
+}
+.subj-grid::-webkit-scrollbar,
+.dlg-list::-webkit-scrollbar,
+.subj-tickets::-webkit-scrollbar,
+.bf-outcome-input::-webkit-scrollbar { width: 8px; height: 8px; }
+.subj-grid::-webkit-scrollbar-track,
+.dlg-list::-webkit-scrollbar-track,
+.subj-tickets::-webkit-scrollbar-track,
+.bf-outcome-input::-webkit-scrollbar-track { background: transparent; }
+.subj-grid::-webkit-scrollbar-thumb,
+.dlg-list::-webkit-scrollbar-thumb,
+.subj-tickets::-webkit-scrollbar-thumb,
+.bf-outcome-input::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.16); border-radius: 999px; border: 2px solid transparent; background-clip: padding-box;
+}
+.subj-grid::-webkit-scrollbar-thumb:hover,
+.dlg-list::-webkit-scrollbar-thumb:hover,
+.subj-tickets::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.3); background-clip: padding-box; }
 .bf-subj-card:hover {
   transform: translateY(-3px);
   border-color: color-mix(in srgb, var(--c) 60%, transparent);
@@ -2079,6 +2101,13 @@ hr.rule { border: 0; border-top: 1px solid var(--rule); margin: 18px 0; }
 .bf-tk-toggle:hover { border-color: #4fa3ff; color: #fff; }
 .bf-tk-toggle.is-hidden { color: #ff9f5a; border-color: rgba(255,159,90,0.55); }
 .th-item.is-dim { opacity: 0.42; }
+.subj-tickets.is-manage .th-item {
+  cursor: grab; padding: 8px 8px; border-radius: 8px; border-top: 0;
+  border: 1px solid transparent; margin-bottom: 2px;
+}
+.subj-tickets.is-manage .th-item:hover { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.08); }
+.th-item.dragging { opacity: 0.5; cursor: grabbing; background: rgba(79,163,255,0.14); border-color: rgba(79,163,255,0.5) !important; }
+.bf-tk-handle { flex: none; color: #6c7585; font-size: 14px; cursor: grab; letter-spacing: -1px; }
 .dlg-list { padding: 16px 26px 24px; overflow: auto; }
 
 /* 성과 입력 (다이얼로그) */

@@ -10,7 +10,7 @@ import { showError } from '../states.js';
 import { jiraUrl, bindJiraLinks } from '../jira-link.js';
 import { escapeHtml, escapeAttr } from '../escape.js';
 import { loadAll as loadPlanData, joinTicketsWithOverrides } from '../api/roadmap-plan-data.js';
-import { loadOutcomes, upsertOutcome, loadHidden, setHidden } from '../api/briefing-outcomes.js';
+import { loadOutcomes, upsertOutcome, loadHidden, setHidden, loadOrders, saveOrder } from '../api/briefing-outcomes.js';
 import { auth } from '../api/supabase.js';
 
 const YEAR = 2026;
@@ -67,7 +67,16 @@ function quarterKeys(it) {
   return dq ? new Set([dq]) : new Set();
 }
 
-const state = { byTab: {}, slides: [], idx: 0, outcomes: {}, hidden: new Set(), dlg: null };
+const state = { byTab: {}, slides: [], idx: 0, outcomes: {}, hidden: new Set(), orders: {}, dlg: null };
+
+/** 저장된 순서 적용 — orders[키]에 있는 순서대로, 없는 키는 기본(날짜) 순서로 뒤에. */
+function orderedItems(s, quarter) {
+  const ord = state.orders[`${quarter}:${s.id}`];
+  if (!ord || !ord.length) return s.items;
+  const pos = new Map(ord.map((k, i) => [k, i]));
+  return s.items.slice().sort((a, b) =>
+    (pos.has(a.key) ? pos.get(a.key) : Infinity) - (pos.has(b.key) ? pos.get(b.key) : Infinity));
+}
 
 const visN = (s) => s.items.filter(it => !state.hidden.has(it.key)).length;
 function teamVisibleTotal(team) {
@@ -94,9 +103,10 @@ export async function renderBriefing({ rootRel = '' }) {
 
   // Supabase 세션 복원(로드맵 주제 매핑 + 성과 인증). 실패해도 degrade.
   try { await auth.init(); } catch (e) { console.warn('[briefing] auth.init 실패', e); }
-  [state.outcomes, state.hidden] = await Promise.all([
+  [state.outcomes, state.hidden, state.orders] = await Promise.all([
     loadOutcomes().catch(err => { console.warn('[briefing] 성과 로드 실패(미로그인 등):', err); return {}; }),
     loadHidden().catch(err => { console.warn('[briefing] 숨김 목록 로드 실패:', err); return new Set(); }),
+    loadOrders().catch(err => { console.warn('[briefing] 순서 로드 실패:', err); return {}; }),
   ]);
 
   let data, planData;
@@ -259,7 +269,8 @@ function renderDialogBody() {
   const s = team.subjects[subIdx];
   const quarter = tabMeta(tabId).quarter;
   const oKey = outcomeKey(quarter, s.id);
-  const list = manage ? s.items : s.items.filter(it => !state.hidden.has(it.key));
+  const ordered = orderedItems(s, quarter);
+  const list = manage ? ordered : ordered.filter(it => !state.hidden.has(it.key));
   dlg.querySelector('[data-dlg-body]').innerHTML = `
     <div class="dlg-head">
       <span class="team-bar" style="background:${team.color};"></span>
@@ -271,7 +282,7 @@ function renderDialogBody() {
       <div class="dlg-outcome-label" style="color:${team.color};">성과</div>
       <div class="bf-outcome" data-outcome tabindex="0" role="button">${outcomeViewHtml(state.outcomes[oKey] || '')}</div>
     </div>
-    ${manage ? `<div class="dlg-manage-hint">숨긴 티켓은 발표에서 제외됩니다. 다시 누르면 노출.</div>` : ''}
+    ${manage ? `<div class="dlg-manage-hint">드래그로 순서 변경 · 숨기기로 발표에서 제외. (자동 저장)</div>` : ''}
     <div class="dlg-list"><ul class="subj-tickets${manage ? ' is-manage' : ''}">${list.map(it => ticketHtml(it, manage)).join('')}</ul></div>`;
 
   dlg.querySelector('[data-dlg-manage]')?.addEventListener('click', () => {
@@ -282,9 +293,58 @@ function renderDialogBody() {
     dlg.querySelectorAll('[data-tk]').forEach(btn => {
       btn.addEventListener('click', () => toggleHidden(btn.dataset.tk));
     });
+    bindDnd(dlg.querySelector('.subj-tickets'), quarter, s);
   }
   bindOutcome(dlg, quarter, s.id);
   bindJiraLinks(dlg);
+}
+
+/** 관리 모드 드래그앤드롭 순서 변경 — drop 시 전체 키 순서를 Supabase 저장. */
+function bindDnd(ul, quarter, s) {
+  if (!ul) return;
+  let dragKey = null;
+  ul.querySelectorAll('li[draggable="true"]').forEach(li => {
+    li.addEventListener('dragstart', (e) => {
+      dragKey = li.dataset.key;
+      li.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
+      try { e.dataTransfer.setData('text/plain', dragKey); } catch {}
+    });
+    li.addEventListener('dragend', () => { li.classList.remove('dragging'); dragKey = null; });
+    li.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+    });
+    li.addEventListener('drop', (e) => {
+      e.preventDefault();
+      const targetKey = li.dataset.key;
+      if (!dragKey || dragKey === targetKey) return;
+      const after = (e.clientY - li.getBoundingClientRect().top) > li.offsetHeight / 2;
+      reorderTicket(quarter, s, dragKey, targetKey, after);
+    });
+  });
+}
+
+function reorderTicket(quarter, s, dragKey, targetKey, after) {
+  const cur = orderedItems(s, quarter).map(it => it.key);  // 현재 전체 순서
+  const from = cur.indexOf(dragKey);
+  if (from < 0) return;
+  cur.splice(from, 1);
+  let to = cur.indexOf(targetKey);
+  if (to < 0) return;
+  if (after) to += 1;
+  cur.splice(to, 0, dragKey);
+
+  const key = `${quarter}:${s.id}`;
+  const prev = state.orders[key];
+  state.orders[key] = cur;
+  renderDialogBody();
+  saveOrder(quarter, s.id, cur).catch(err => {
+    console.error('[briefing] 순서 저장 실패', err);
+    alert('순서 저장 실패 — 로그인 상태인지 확인해주세요.\n' + (err?.message || err));
+    if (prev) state.orders[key] = prev; else delete state.orders[key];
+    renderDialogBody();
+  });
 }
 
 function toggleHidden(key) {
@@ -344,7 +404,9 @@ function ticketHtml(it, manage = false) {
   const toggle = manage
     ? `<button type="button" class="bf-tk-toggle${hidden ? ' is-hidden' : ''}" data-tk="${escapeAttr(it.key)}">${hidden ? '보이기' : '숨기기'}</button>`
     : '';
-  return `<li class="th-item${manage && hidden ? ' is-dim' : ''}">
+  const handle = manage ? `<span class="bf-tk-handle" aria-hidden="true">⠿</span>` : '';
+  return `<li class="th-item${manage && hidden ? ' is-dim' : ''}"${manage ? ` draggable="true" data-key="${escapeAttr(it.key)}"` : ''}>
+      ${handle}
       <span class="st-dot ${statusCls(it.statusCategory)}"></span>
       ${keyHtml}
       <span class="th-sum">${escapeHtml(it.summary || '')}</span>

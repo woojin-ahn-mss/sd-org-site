@@ -42,3 +42,23 @@ export async function setHidden(jiraKey, hidden) {
     unwrap(await supabase.from('briefing_hidden_tickets').delete().eq('jira_key', jiraKey));
   }
 }
+
+/* ----- 주제별 티켓 순서 ----- */
+
+/** 전체 순서 로드 → { 'quarter:subjectId': [jira_key, ...] } 맵. */
+export async function loadOrders() {
+  const rows = unwrap(await supabase.from('briefing_ticket_order').select('quarter, subject_id, jira_keys'));
+  const map = {};
+  for (const r of rows || []) map[keyOf(r.quarter, r.subject_id)] = r.jira_keys || [];
+  return map;
+}
+
+/** 순서 저장(upsert). 빈 배열이면 삭제. */
+export async function saveOrder(quarter, subjectId, jiraKeys) {
+  if (!jiraKeys || !jiraKeys.length) {
+    unwrap(await supabase.from('briefing_ticket_order').delete().eq('quarter', quarter).eq('subject_id', subjectId));
+    return;
+  }
+  unwrap(await supabase.from('briefing_ticket_order')
+    .upsert({ quarter, subject_id: subjectId, jira_keys: jiraKeys }, { onConflict: 'quarter,subject_id' }));
+}
