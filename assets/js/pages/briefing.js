@@ -9,7 +9,6 @@ import { loadJson } from '../fetch-data.js';
 import { showError } from '../states.js';
 import { jiraUrl, bindJiraLinks } from '../jira-link.js';
 import { escapeHtml, escapeAttr } from '../escape.js';
-import { quartersForItem } from '../gantt.js';
 import { loadAll as loadPlanData, joinTicketsWithOverrides } from '../api/roadmap-plan-data.js';
 import { auth } from '../api/supabase.js';
 
@@ -42,6 +41,28 @@ const isDropped = (it) => DROPPED.has((it.status || '').trim());
 const projectOf = (it) => it.project || (typeof it.key === 'string' ? it.key.split('-')[0] : '');
 const normSubject = (ms) => (ms || '').replace(/^\s*\d+\s*\.\s*/, '').trim();
 
+// 분기 배치 — Year/Quarter 필드 기준(시작~기한 범위로 인한 과잉 포함 방지).
+// MSSCXTF/PEL/FT 는 이슈 완료일(resolutionDate) 기준. 둘 다 없으면 기한(dueDate) 분기.
+const RES_PROJECTS = new Set(['MSSCXTF', 'PEL', 'FT']);
+function dateToQuarter(ds) {
+  if (typeof ds !== 'string' || ds.length < 7) return null;
+  const y = ds.slice(0, 4), m = Number(ds.slice(5, 7));
+  if (!/^\d{4}$/.test(y) || !(m >= 1 && m <= 12)) return null;
+  return `${y}-Q${Math.floor((m - 1) / 3) + 1}`;
+}
+function quarterKeys(it) {
+  if (RES_PROJECTS.has(projectOf(it))) {
+    const rq = dateToQuarter(it.resolutionDate);
+    if (rq) return new Set([rq]);
+  }
+  const s = new Set();
+  for (const yq of (it.yearQuarters || [])) if (yq) s.add(String(yq));
+  if (it.yearQuarter) s.add(String(it.yearQuarter));
+  if (s.size) return s;
+  const dq = dateToQuarter(it.dueDate);
+  return dq ? new Set([dq]) : new Set();
+}
+
 const state = { byTab: {}, slides: [], idx: 0 };
 
 export async function renderBriefing({ rootRel = '' }) {
@@ -71,7 +92,7 @@ export async function renderBriefing({ rootRel = '' }) {
     .filter(it => !isDropped(it) && projectOf(it) !== 'ETR');
 
   for (const t of TABS) {
-    state.byTab[t.id] = buildTeams(items.filter(it => quartersForItem(it).has(t.quarter)), subjById);
+    state.byTab[t.id] = buildTeams(items.filter(it => quarterKeys(it).has(t.quarter)), subjById);
   }
 
   buildSlides();
