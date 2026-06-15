@@ -1954,7 +1954,20 @@ hr.rule { border: 0; border-top: 1px solid var(--rule); margin: 18px 0; }
    분기 발표 장표 (briefing.html / briefing.js)
    ※ 발표 전용 — 디자인 시스템과 별개로 화사하게 스타일.
    ========================================================= */
-.deck { margin-top: 8px; }
+.deck { margin-top: 8px; position: relative; }
+/* 좌우 가장자리 이전/다음 (전체화면 발표에서도 클릭으로 넘김) */
+.deck-edge {
+  position: absolute; top: 0; height: 66vh; width: 58px; z-index: 5;
+  display: flex; align-items: center; justify-content: center;
+  background: transparent; border: 0; color: #cfd6e4; font-size: 34px; line-height: 1; cursor: pointer;
+  opacity: 0.32; transition: opacity .15s, background .15s;
+}
+.deck-edge:hover { opacity: 1; }
+.deck-edge-prev { left: 0; border-radius: 18px 0 0 18px;
+  background: linear-gradient(90deg, rgba(0,0,0,0.35), transparent); }
+.deck-edge-next { right: 0; border-radius: 0 18px 18px 0;
+  background: linear-gradient(270deg, rgba(0,0,0,0.35), transparent); }
+#deck:fullscreen .deck-edge { height: calc(100vh - 60px); width: 9vw; font-size: 44px; border-radius: 0; }
 .deck-stage {
   position: relative; height: 66vh; min-height: 470px; display: flex;
   padding: 54px 62px; border-radius: 18px; overflow: hidden;

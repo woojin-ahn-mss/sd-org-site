@@ -182,6 +182,8 @@ function ticketHtml(it) {
 function bindControls() {
   document.getElementById('deck-prev')?.addEventListener('click', () => go(-1));
   document.getElementById('deck-next')?.addEventListener('click', () => go(1));
+  document.getElementById('deck-edge-prev')?.addEventListener('click', () => go(-1));
+  document.getElementById('deck-edge-next')?.addEventListener('click', () => go(1));
 
   const fullBtn = document.getElementById('deck-full');
   fullBtn?.addEventListener('click', () => {
