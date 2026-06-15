@@ -2066,6 +2066,21 @@ hr.rule { border: 0; border-top: 1px solid var(--rule); margin: 18px 0; }
 .dlg-close:hover { color: #fff; }
 .dlg-list { padding: 16px 26px 24px; overflow: auto; }
 
+/* 성과 입력 (다이얼로그) */
+.dlg-outcome { padding: 16px 26px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.dlg-outcome-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px; }
+.bf-outcome { min-height: 26px; cursor: text; font-size: 15px; line-height: 1.65; border-radius: 8px; }
+.bf-outcome:hover { background: rgba(255,255,255,0.03); }
+.bf-bullet { position: relative; padding-left: 18px; white-space: pre-wrap; }
+.bf-bullet::before { content: "•"; position: absolute; left: 3px; color: #8ab4ff; }
+.bf-outcome-ph { color: #6c7585; font-size: 13.5px; }
+.bf-outcome-input {
+  width: 100%; min-height: 96px; resize: vertical; font: inherit; font-size: 15px; line-height: 1.65;
+  color: #e9edf6; background: rgba(255,255,255,0.045); border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 10px; padding: 10px 12px; box-sizing: border-box;
+}
+.bf-outcome-input:focus { outline: none; border-color: rgba(138,180,255,0.6); }
+
 /* 과제 리스트 (다이얼로그 안) */
 .subj-tickets { list-style: none; margin: 0; padding: 0; columns: 2; column-gap: 46px; }
 @media (max-width: 680px) { .subj-tickets { columns: 1; } }

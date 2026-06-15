@@ -9,10 +9,17 @@ import { loadJson } from '../fetch-data.js';
 import { showError } from '../states.js';
 import { jiraUrl, bindJiraLinks } from '../jira-link.js';
 import { escapeHtml, escapeAttr } from '../escape.js';
+import { scoped } from '../storage.js';
 import { loadAll as loadPlanData, joinTicketsWithOverrides } from '../api/roadmap-plan-data.js';
 import { auth } from '../api/supabase.js';
 
 const YEAR = 2026;
+
+// 분기 발표에서 수동 제외할 Jira 키.
+const EXCLUDE_KEYS = new Set(['TM-2685']);
+
+// 주제별 '성과' 입력 — 브라우저 localStorage 저장(분기:주제 키).
+const outcomeStore = scoped('briefingOutcomes');
 
 const TABS = [
   { id: 'q2', quarter: '2026-Q2', label: '2026 2Q', tag: '회고' },
@@ -63,11 +70,18 @@ function quarterKeys(it) {
   return dq ? new Set([dq]) : new Set();
 }
 
-const state = { byTab: {}, slides: [], idx: 0 };
+const state = { byTab: {}, slides: [], idx: 0, outcomes: {} };
+
+function outcomeKey(tabId, subjId) { return `${tabId}:${subjId}`; }
+function saveOutcome(key, text) {
+  if (text) state.outcomes[key] = text; else delete state.outcomes[key];
+  outcomeStore.set(state.outcomes);
+}
 
 export async function renderBriefing({ rootRel = '' }) {
   const stage = document.getElementById('deck-stage');
   stage.innerHTML = `<div class="slide-loading muted">불러오는 중…</div>`;
+  state.outcomes = outcomeStore.get() || {};
 
   // Supabase 세션 복원(로드맵 주제 매핑 인증). 실패해도 '미지정'으로 degrade.
   try { await auth.init(); } catch (e) { console.warn('[briefing] auth.init 실패', e); }
@@ -89,7 +103,7 @@ export async function renderBriefing({ rootRel = '' }) {
   // 팀은 메인주제로 배치, 카드는 로드맵 주제(ticket_subjects 매핑)로 묶는다.
   const subjById = new Map((planData.subjects || []).map(s => [s.id, s.name]));
   const items = joinTicketsWithOverrides(data.items || [], planData.overrides || [], YEAR)
-    .filter(it => !isDropped(it) && projectOf(it) !== 'ETR');
+    .filter(it => !isDropped(it) && projectOf(it) !== 'ETR' && !EXCLUDE_KEYS.has(it.key));
 
   for (const t of TABS) {
     state.byTab[t.id] = buildTeams(items.filter(it => quarterKeys(it).has(t.quarter)), subjById);
@@ -168,7 +182,7 @@ function render() {
   // 팀 슬라이드의 주제 카드 → 다이얼로그로 과제 표시.
   if (s.kind === 'team') {
     stage.querySelectorAll('.subj-card').forEach(c => {
-      c.addEventListener('click', () => openSubjectDialog(s.team, Number(c.dataset.sub)));
+      c.addEventListener('click', () => openSubjectDialog(s.team, s.tab, Number(c.dataset.sub)));
     });
   }
   bindJiraLinks(stage);
@@ -215,20 +229,62 @@ function teamHtml(team, tabId) {
     </div>`;
 }
 
-/** 주제 카드 클릭 → 과제 리스트 다이얼로그. */
-function openSubjectDialog(team, subIdx) {
+/** 주제 카드 클릭 → 성과 입력 + 과제 리스트 다이얼로그. */
+function openSubjectDialog(team, tabId, subIdx) {
   const dlg = document.getElementById('subj-dialog');
   const s = team.subjects[subIdx];
   if (!dlg || !s) return;
+  const oKey = outcomeKey(tabId, s.id);
   dlg.querySelector('[data-dlg-body]').innerHTML = `
     <div class="dlg-head">
       <span class="team-bar" style="background:${team.color};"></span>
       <h3>${escapeHtml(s.name)} <span class="dlg-n" style="color:${team.color};">${s.items.length}건</span></h3>
       <button type="button" class="dlg-close" data-dlg-close aria-label="닫기">✕</button>
     </div>
+    <div class="dlg-outcome">
+      <div class="dlg-outcome-label" style="color:${team.color};">성과</div>
+      <div class="bf-outcome" data-outcome tabindex="0" role="button">${outcomeViewHtml(state.outcomes[oKey] || '')}</div>
+    </div>
     <div class="dlg-list"><ul class="subj-tickets">${s.items.map(ticketHtml).join('')}</ul></div>`;
+  bindOutcome(dlg, oKey);
   bindJiraLinks(dlg);
   if (!dlg.open) dlg.showModal();
+}
+
+/** 성과 텍스트 → 불릿 표시 HTML (한 줄=불릿, 띄어쓰기 보존). */
+function outcomeViewHtml(text) {
+  const lines = (text || '').split('\n').map(l => l.replace(/\s+$/, '')).filter(l => l.trim());
+  if (!lines.length) return `<span class="bf-outcome-ph">+ 성과 입력 (한 줄에 하나씩 → 불릿)</span>`;
+  return lines.map(l => `<div class="bf-bullet">${escapeHtml(l)}</div>`).join('');
+}
+
+/** 성과 영역 — 클릭하면 textarea 편집, blur 시 저장. */
+function bindOutcome(dlg, key) {
+  const view = dlg.querySelector('[data-outcome]');
+  if (!view) return;
+  const edit = () => {
+    if (dlg.querySelector('.bf-outcome-input')) return;
+    const ta = document.createElement('textarea');
+    ta.className = 'bf-outcome-input';
+    ta.value = state.outcomes[key] || '';
+    ta.placeholder = '성과를 한 줄에 하나씩 입력하세요';
+    view.replaceWith(ta);
+    ta.focus();
+    ta.setSelectionRange(ta.value.length, ta.value.length);
+    ta.addEventListener('blur', () => {
+      const text = ta.value.replace(/\s+$/, '');
+      saveOutcome(key, text);
+      const nv = document.createElement('div');
+      nv.className = 'bf-outcome'; nv.tabIndex = 0; nv.setAttribute('role', 'button');
+      nv.setAttribute('data-outcome', '');
+      nv.innerHTML = outcomeViewHtml(text);
+      ta.replaceWith(nv);
+      nv.addEventListener('click', edit);
+      nv.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); edit(); } });
+    });
+  };
+  view.addEventListener('click', edit);
+  view.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); edit(); } });
 }
 
 function ticketHtml(it) {
