@@ -1949,3 +1949,59 @@ hr.rule { border: 0; border-top: 1px solid var(--rule); margin: 18px 0; }
 .ftk-toolbar .tlink { font-size: 12px; }
 .ftk-toolbar-ct { font-size: 11px; }
 .ftk-merged { color: var(--accent); border-color: var(--accent-rule); cursor: help; }
+
+/* =========================================================
+   분기 발표 대시보드 (briefing.html / briefing.js)
+   2컬럼(2Q 회고 | 3Q 예고), 목표→주제 그룹 + 과제 entry
+   ========================================================= */
+.bf-cols {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+}
+@media (max-width: 900px) { .bf-cols { grid-template-columns: 1fr; } }
+.bf-col { min-width: 0; }
+.bf-col-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 14px; border: 1px solid var(--rule); border-radius: 6px;
+  background: var(--bg-elev); margin-bottom: 12px;
+  border-left: 3px solid var(--rule);
+}
+.bf-col-review { border-left-color: var(--success); }
+.bf-col-preview { border-left-color: var(--accent); }
+.bf-col-kicker {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em;
+  color: var(--dim);
+}
+.bf-col-title { margin: 2px 0 0; font-size: 16px; font-weight: 600; }
+.bf-col-count { font-size: 20px; font-weight: 700; color: var(--text); }
+
+.bf-group { margin-bottom: 18px; }
+.bf-obj-head {
+  display: flex; align-items: center; gap: 8px;
+  padding-bottom: 5px; margin-bottom: 6px;
+  border-bottom: 1px solid var(--rule);
+  font-size: 13.5px;
+}
+.bf-obj-head .num { margin-left: auto; font-size: 11px; }
+.bf-dot { width: 9px; height: 9px; border-radius: 2px; flex: none; }
+.bf-subj { margin: 6px 0 0 2px; }
+.bf-subj-head {
+  font-family: var(--font-mono); font-size: 11px; color: var(--dim);
+  margin: 8px 0 4px;
+}
+
+.bf-entry {
+  padding: 7px 0; border-bottom: 1px solid var(--rule);
+}
+.bf-entry-meta {
+  display: flex; align-items: center; gap: 8px; margin-bottom: 2px;
+}
+.bf-entry-meta .key { font-size: 11px; color: var(--accent); }
+.bf-st { font-size: 10.5px; }
+.bf-entry-body {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 10px;
+}
+.bf-sum { font-size: 13px; color: var(--text); line-height: 1.45; min-width: 0; }
+.bf-when {
+  font-family: var(--font-mono); font-size: 10.5px; color: var(--dim);
+  flex: none; padding-top: 1px;
+}

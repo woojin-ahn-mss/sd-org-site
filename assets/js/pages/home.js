@@ -15,6 +15,7 @@ const TOC_DESCRIPTIONS = {
   'progress':     '상태 분포·흐름·지연',
   'resource':     '프로젝트·담당자 부하',
   'performance':  '분기별 론치 + 임팩트',
+  'briefing':     '2Q 회고 · 3Q 예고 (주제별)',
   'roadmap-plan': '1년 4분기 보드',
   'fasttrack':    '임원 요청 추적',
   'etr':          '외부 요청 / 본인 담당',

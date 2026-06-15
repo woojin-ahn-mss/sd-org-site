@@ -20,10 +20,11 @@ export const PAGES = [
   { id: 'plan',         num: '04', label: 'Plan',         path: 'pages/plan.html' },
   { id: 'resource',     num: '05', label: '리소스',        path: 'pages/resource.html' },
   { id: 'performance',  num: '06', label: '성과',         path: 'pages/performance.html' },
-  { id: 'roadmap-plan', num: '07', label: '로드맵 관리',    path: 'pages/roadmap-plan.html' },
-  { id: 'fasttrack',    num: '08', label: '패스트트랙',     path: 'pages/fasttrack.html' },
-  { id: 'one-tickets',  num: '09', label: 'One 티켓',      path: 'pages/one-tickets.html' },
-  { id: 'etr',          num: '10', label: 'ETR',         path: 'pages/etr.html' },
+  { id: 'briefing',     num: '07', label: '분기 발표',     path: 'pages/briefing.html' },
+  { id: 'roadmap-plan', num: '08', label: '로드맵 관리',    path: 'pages/roadmap-plan.html' },
+  { id: 'fasttrack',    num: '09', label: '패스트트랙',     path: 'pages/fasttrack.html' },
+  { id: 'one-tickets',  num: '10', label: 'One 티켓',      path: 'pages/one-tickets.html' },
+  { id: 'etr',          num: '11', label: 'ETR',         path: 'pages/etr.html' },
   // 'Raw Data'(poc-sheets) — 구 Google Sheet 뷰어. Supabase 이전으로 시트가 SoT 아님 → nav 에서 제외(폐기).
 ];
 
