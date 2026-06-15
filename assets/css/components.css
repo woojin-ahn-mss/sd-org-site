@@ -2046,9 +2046,29 @@ hr.rule { border: 0; border-top: 1px solid var(--rule); margin: 18px 0; }
 .subj-card-name { font-size: 19px; font-weight: 700; line-height: 1.25; margin-top: auto; }
 .subj-card-hint { font-size: 11.5px; color: #8a93a6; font-family: var(--font-mono); }
 
-/* 메인주제 상세: 과제 리스트 */
-.subj-tickets { list-style: none; margin: 0; padding: 0; flex: 1; overflow: auto; columns: 2; column-gap: 50px; }
-@media (max-width: 860px) { .subj-tickets { columns: 1; } }
+/* 주제 카드 클릭 → 과제 다이얼로그 */
+.subj-dialog {
+  border: 1px solid rgba(255,255,255,0.12); border-radius: 18px; padding: 0;
+  width: min(880px, 92vw); max-height: 84vh; overflow: hidden; color: #e9edf6;
+  background: linear-gradient(165deg, #151b2a, #0d1119);
+  box-shadow: 0 36px 90px rgba(0,0,0,0.62);
+}
+.subj-dialog::backdrop { background: rgba(4,6,12,0.62); backdrop-filter: blur(4px); }
+.subj-dialog [data-dlg-body] { display: flex; flex-direction: column; max-height: 84vh; }
+.dlg-head {
+  display: flex; align-items: center; gap: 13px; padding: 22px 26px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.dlg-head .team-bar { min-height: 1.3em; }
+.dlg-head h3 { margin: 0; font-size: 25px; font-weight: 800; letter-spacing: -0.02em; display: flex; align-items: baseline; gap: 11px; }
+.dlg-n { font-size: 15px; font-weight: 700; }
+.dlg-close { margin-left: auto; background: transparent; border: 0; color: #8a93a6; font-size: 20px; cursor: pointer; line-height: 1; }
+.dlg-close:hover { color: #fff; }
+.dlg-list { padding: 16px 26px 24px; overflow: auto; }
+
+/* 과제 리스트 (다이얼로그 안) */
+.subj-tickets { list-style: none; margin: 0; padding: 0; columns: 2; column-gap: 46px; }
+@media (max-width: 680px) { .subj-tickets { columns: 1; } }
 .subj-tickets .th-item { break-inside: avoid; padding: 9px 0; font-size: 15px; }
 
 .th-item {

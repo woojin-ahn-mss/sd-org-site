@@ -109,10 +109,7 @@ function buildSlides() {
   const slides = [];
   for (const t of TABS) {
     slides.push({ kind: 'cover', tab: t.id });
-    for (const team of state.byTab[t.id]) {
-      slides.push({ kind: 'team', tab: t.id, team });
-      for (let si = 0; si < team.subjects.length; si++) slides.push({ kind: 'subject', tab: t.id, team, subIdx: si });
-    }
+    for (const team of state.byTab[t.id]) slides.push({ kind: 'team', tab: t.id, team });
   }
   state.slides = slides;
   state.idx = Math.max(0, Math.min(state.idx, slides.length - 1));
@@ -125,13 +122,12 @@ function render() {
   const s = state.slides[state.idx];
   if (!s) { stage.innerHTML = ''; return; }
   if (s.kind === 'cover') stage.innerHTML = coverHtml(s.tab);
-  else if (s.kind === 'team') stage.innerHTML = teamHtml(s.team, s.tab);
-  else stage.innerHTML = subjectHtml(s.team, s.tab, s.subIdx);
+  else stage.innerHTML = teamHtml(s.team, s.tab);
 
-  // 팀 슬라이드의 주제 카드 → 해당 주제 상세 슬라이드로 이동.
+  // 팀 슬라이드의 주제 카드 → 다이얼로그로 과제 표시.
   if (s.kind === 'team') {
     stage.querySelectorAll('.subj-card').forEach(c => {
-      c.addEventListener('click', () => goto(state.idx + 1 + Number(c.dataset.sub)));
+      c.addEventListener('click', () => openSubjectDialog(s.team, Number(c.dataset.sub)));
     });
   }
   bindJiraLinks(stage);
@@ -178,15 +174,20 @@ function teamHtml(team, tabId) {
     </div>`;
 }
 
-function subjectHtml(team, tabId, subIdx) {
-  const t = tabMeta(tabId);
+/** 주제 카드 클릭 → 과제 리스트 다이얼로그. */
+function openSubjectDialog(team, subIdx) {
+  const dlg = document.getElementById('subj-dialog');
   const s = team.subjects[subIdx];
-  return `
-    <div class="slide slide-subject">
-      <div class="slide-kicker">${escapeHtml(t.label)} · ${escapeHtml(t.tag)} · ${escapeHtml(team.name)}</div>
-      <h2 class="slide-h"><span class="team-bar" style="background:${team.color};"></span>${escapeHtml(s.name)} <span class="slide-h-n" style="color:${team.color};">${s.items.length}건</span></h2>
-      <ul class="subj-tickets">${s.items.map(ticketHtml).join('')}</ul>
-    </div>`;
+  if (!dlg || !s) return;
+  dlg.querySelector('[data-dlg-body]').innerHTML = `
+    <div class="dlg-head">
+      <span class="team-bar" style="background:${team.color};"></span>
+      <h3>${escapeHtml(s.name)} <span class="dlg-n" style="color:${team.color};">${s.items.length}건</span></h3>
+      <button type="button" class="dlg-close" data-dlg-close aria-label="닫기">✕</button>
+    </div>
+    <div class="dlg-list"><ul class="subj-tickets">${s.items.map(ticketHtml).join('')}</ul></div>`;
+  bindJiraLinks(dlg);
+  if (!dlg.open) dlg.showModal();
 }
 
 function ticketHtml(it) {
@@ -222,7 +223,14 @@ function bindControls() {
     if (fb) fb.textContent = document.fullscreenElement ? '창 모드' : '전체화면';
   });
 
+  // 다이얼로그: 닫기 버튼 / 백드롭 클릭으로 닫기.
+  const dlg = document.getElementById('subj-dialog');
+  dlg?.addEventListener('click', (e) => {
+    if (e.target === dlg || e.target.closest('[data-dlg-close]')) dlg.close();
+  });
+
   document.addEventListener('keydown', (e) => {
+    if (dlg?.open) return;   // 다이얼로그 열려있으면 덱 이동 막음(ESC 는 네이티브가 닫음)
     if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); go(1); }
     else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); go(-1); }
     else if (e.key === 'Home') { state.idx = 0; render(); }
@@ -232,11 +240,6 @@ function bindControls() {
 
 function go(d) {
   state.idx = Math.max(0, Math.min(state.slides.length - 1, state.idx + d));
-  render();
-}
-
-function goto(i) {
-  state.idx = Math.max(0, Math.min(state.slides.length - 1, i));
   render();
 }
 
