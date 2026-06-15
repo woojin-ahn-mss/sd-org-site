@@ -10,6 +10,10 @@ import { showError } from '../states.js';
 import { jiraUrl, bindJiraLinks } from '../jira-link.js';
 import { escapeHtml, escapeAttr } from '../escape.js';
 import { quartersForItem } from '../gantt.js';
+import { loadAll as loadPlanData, joinTicketsWithOverrides } from '../api/roadmap-plan-data.js';
+import { auth } from '../api/supabase.js';
+
+const YEAR = 2026;
 
 const TABS = [
   { id: 'q2', quarter: '2026-Q2', label: '2026 2Q', tag: '회고' },
@@ -44,17 +48,30 @@ export async function renderBriefing({ rootRel = '' }) {
   const stage = document.getElementById('deck-stage');
   stage.innerHTML = `<div class="slide-loading muted">불러오는 중…</div>`;
 
-  let data;
+  // Supabase 세션 복원(로드맵 주제 매핑 인증). 실패해도 '미지정'으로 degrade.
+  try { await auth.init(); } catch (e) { console.warn('[briefing] auth.init 실패', e); }
+
+  let data, planData;
   try {
-    data = await loadJson(`${rootRel}data/jira/initiatives.json`);
+    [data, planData] = await Promise.all([
+      loadJson(`${rootRel}data/jira/initiatives.json`),
+      loadPlanData(YEAR).catch(err => {
+        console.warn('[briefing] 계위(Supabase) 로드 실패 — 주제 미지정으로 표시:', err);
+        return { subjects: [], overrides: [] };
+      }),
+    ]);
   } catch (err) {
     showError(stage, err);
     return;
   }
 
-  const items = (data.items || []).filter(it => !isDropped(it) && projectOf(it) !== 'ETR');
+  // 팀은 메인주제로 배치, 카드는 로드맵 주제(ticket_subjects 매핑)로 묶는다.
+  const subjById = new Map((planData.subjects || []).map(s => [s.id, s.name]));
+  const items = joinTicketsWithOverrides(data.items || [], planData.overrides || [], YEAR)
+    .filter(it => !isDropped(it) && projectOf(it) !== 'ETR');
+
   for (const t of TABS) {
-    state.byTab[t.id] = buildTeams(items.filter(it => quartersForItem(it).has(t.quarter)));
+    state.byTab[t.id] = buildTeams(items.filter(it => quartersForItem(it).has(t.quarter)), subjById);
   }
 
   buildSlides();
@@ -62,37 +79,40 @@ export async function renderBriefing({ rootRel = '' }) {
   render();
 }
 
-/* ----- 데이터: 팀 → 메인주제 ----- */
+/* ----- 데이터: 팀(메인주제) → 로드맵 주제 카드 ----- */
 
-function buildTeams(items) {
-  // teamId → (subjectName → items[])
-  const acc = new Map();
-  for (const t of TEAMS) acc.set(t.id, new Map());
-  acc.set(ETC.id, new Map());
+function buildTeams(items, subjById) {
+  const order = [...TEAMS, ETC];
+  // teamId → { cards: Map(cardId → {name, items}), keys: Set(distinct 티켓) }
+  const acc = new Map(order.map(t => [t.id, { cards: new Map(), keys: new Set() }]));
 
   for (const it of items) {
-    const name = normSubject(it.mainSubject) || '(메인주제 없음)';
-    const teamId = SUBJ_TEAM.get(name) || ETC.id;
-    const m = acc.get(teamId);
-    if (!m.has(name)) m.set(name, []);
-    m.get(name).push(it);
+    const teamId = SUBJ_TEAM.get(normSubject(it.mainSubject)) || ETC.id;
+    const b = acc.get(teamId);
+    b.keys.add(it.key);
+    const sids = (it.subjectIds || []).filter(id => subjById.has(id));
+    if (!sids.length) pushCard(b.cards, '__none__', '미지정', it);
+    else for (const sid of sids) pushCard(b.cards, sid, subjById.get(sid), it);
   }
 
   const teams = [];
-  for (const t of [...TEAMS, ETC]) {
-    const m = acc.get(t.id);
-    let subjects;
-    if (t.id === ETC.id) {
-      subjects = [...m.entries()].map(([name, its]) => ({ name, items: sortItems(its) }))
-        .sort((a, b) => b.items.length - a.items.length);
-    } else {
-      // 설정한 순서대로, 티켓 있는 것만.
-      subjects = t.subjects.filter(s => m.has(s)).map(s => ({ name: s, items: sortItems(m.get(s)) }));
-    }
-    const total = subjects.reduce((n, s) => n + s.items.length, 0);
-    if (total) teams.push({ id: t.id, name: t.name, color: t.color, subjects, total });
+  for (const t of order) {
+    const b = acc.get(t.id);
+    if (!b.keys.size) continue;
+    const subjects = [...b.cards.entries()]
+      .map(([id, c]) => ({ id, name: c.name || '(주제)', items: sortItems(c.items) }))
+      // '미지정' 은 맨 뒤, 나머지는 티켓 수 내림차순.
+      .sort((a, c) => (a.id === '__none__') - (c.id === '__none__')
+        || c.items.length - a.items.length
+        || a.name.localeCompare(c.name));
+    teams.push({ id: t.id, name: t.name, color: t.color, subjects, total: b.keys.size });
   }
   return teams;
+}
+
+function pushCard(cards, id, name, it) {
+  if (!cards.has(id)) cards.set(id, { name, items: [] });
+  cards.get(id).items.push(it);
 }
 
 function sortItems(items) {
