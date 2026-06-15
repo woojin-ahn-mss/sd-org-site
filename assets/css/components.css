@@ -2000,3 +2000,9 @@ hr.rule { border: 0; border-top: 1px solid var(--rule); margin: 18px 0; }
 .bf-st { font-size: 10.5px; }
 .bf-when { margin-left: auto; font-family: var(--font-mono); font-size: 10.5px; color: var(--dim); }
 .bf-sum { font-size: 13px; color: var(--text); line-height: 1.45; }
+
+/* 주요(★) 타일 + 편집 모드 */
+.bf-star { position: absolute; top: 5px; right: 8px; font-size: 12px; color: var(--accent); line-height: 1; }
+.bf-tile.is-major { border-width: 1.5px; }
+.bf-treemap.editing .bf-tile { cursor: copy; }
+.bf-treemap.editing .bf-tile:hover { outline: 2px dashed var(--accent); }

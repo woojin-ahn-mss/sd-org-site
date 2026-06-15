@@ -1,8 +1,8 @@
 /* =========================================================
    pages/briefing.js — 분기 발표 대시보드
    상단 분기 탭(2Q 회고 / 3Q 예고) → 선택한 분기만 전체 너비 트리맵.
-   주제(Subject)를 티켓 수 비례 면적으로 보여주고(어디에 집중했는지 한눈에),
-   타일 클릭 시 그 주제의 Jira 티켓 리스트가 아래 패널에 펼쳐진다.
+   타일 면적 = "주요" 여부(사용자가 직접 지정). 주요는 크게, 나머지는 작게.
+   '주요 표시' 편집 모드에서 타일을 클릭해 주요 토글, 평소엔 클릭 시 티켓 리스트.
    roadmap 데이터 파이프라인 재사용.
    ========================================================= */
 
@@ -11,29 +11,44 @@ import { showError, showLoading } from '../states.js';
 import { jiraUrl, bindJiraLinks } from '../jira-link.js';
 import { escapeHtml, escapeAttr } from '../escape.js';
 import { fmtDate } from '../format.js';
+import { scoped } from '../storage.js';
 import { loadAll as loadPlanData, joinTicketsWithOverrides } from '../api/roadmap-plan-data.js';
 import { quartersForItem } from '../gantt.js';
 import { auth } from '../api/supabase.js';
 
 const YEAR = 2026;
-// 탭 정의 (다음 분기로 넘어가면 여기만 바꾸면 된다).
 const TABS = [
   { id: 'q2', quarter: '2026-Q2', label: '2026 2Q · 회고' },
   { id: 'q3', quarter: '2026-Q3', label: '2026 3Q · 예고' },
 ];
+// 면적 가중치 — 주요는 크게, 나머지는 작게.
+const W_MAJOR = 14;
+const W_MINOR = 1;
 
 const DROPPED = new Set(['철회/반려/취소', 'Dropped', 'DROPPED', '철회', '반려', '취소']);
 const isDropped = (it) => DROPPED.has((it.status || '').trim());
 const projectOf = (it) => it.project || (typeof it.key === 'string' ? it.key.split('-')[0] : '');
 
+const store = scoped('briefing');
 const state = {
-  byTab: {},          // tabId → { groups, selected }
+  byTab: {},                 // tabId → { groups, selected }
   active: TABS[0].id,
+  editing: false,
+  major: { q2: new Set(), q3: new Set() },   // tabId → Set(subjectKey)
 };
+
+function loadMajor() {
+  const saved = store.get() || {};
+  for (const t of TABS) state.major[t.id] = new Set((saved.major && saved.major[t.id]) || []);
+}
+function saveMajor() {
+  store.set({ major: { q2: [...state.major.q2], q3: [...state.major.q3] } });
+}
 
 export async function renderBriefing({ rootRel = '' }) {
   const map = document.getElementById('bf-map');
   showLoading(map, { rows: 4, title: false });
+  loadMajor();
 
   try { await auth.init(); } catch (e) { console.warn('[briefing] auth.init 실패', e); }
 
@@ -63,6 +78,7 @@ export async function renderBriefing({ rootRel = '' }) {
   }
 
   renderTabs();
+  bindEdit();
   selectTab(state.active);
 
   let raf = 0;
@@ -72,7 +88,7 @@ export async function renderBriefing({ rootRel = '' }) {
   });
 }
 
-/* ----- 탭 ----- */
+/* ----- 탭 / 편집 ----- */
 
 function renderTabs() {
   const host = document.getElementById('bf-tabs');
@@ -84,6 +100,18 @@ function renderTabs() {
   });
 }
 
+function bindEdit() {
+  const btn = document.getElementById('bf-edit');
+  if (!btn) return;
+  btn.addEventListener('click', () => {
+    state.editing = !state.editing;
+    btn.classList.toggle('primary', state.editing);
+    btn.textContent = state.editing ? '완료' : '주요 표시';
+    updateCount();
+    layout();
+  });
+}
+
 function selectTab(tabId) {
   state.active = tabId;
   document.querySelectorAll('#bf-tabs [data-bf-tab]').forEach(b => {
@@ -91,11 +119,17 @@ function selectTab(tabId) {
     b.classList.toggle('on', on);
     b.setAttribute('aria-selected', on ? 'true' : 'false');
   });
-  const c = state.byTab[tabId];
-  const subjectsKnown = c.groups.some(g => g.subject !== 'Fast Track');
-  setText('[data-bf-count]', `주제 ${c.groups.length} · 과제 ${countTickets(c.groups)}${subjectsKnown ? '' : ' · 로그인하면 주제 분류'}`);
+  updateCount();
   layout();
-  selectTheme(c.selected);
+  selectTheme(state.byTab[tabId].selected);
+}
+
+function updateCount() {
+  const c = state.byTab[state.active];
+  if (!c) return;
+  const majorN = c.groups.filter(isMajor).length;
+  const hint = state.editing ? ' · 타일을 클릭해 주요 지정/해제' : '';
+  setText('[data-bf-count]', `주요 ${majorN} · 주제 ${c.groups.length} · 과제 ${countTickets(c.groups)}${hint}`);
 }
 
 /* ----- 주제별 집계 ----- */
@@ -118,6 +152,7 @@ function focusSubjects(items, objectives, subjects) {
     const s = subjById.get(sid);
     const o = s && s.objective_id ? objById.get(s.objective_id) : null;
     out.push({
+      id: sid,
       subject: (s && s.name) || '(주제)',
       objective: (o && o.name) || '',
       color: (o && o.color) || 'var(--accent)',
@@ -125,10 +160,11 @@ function focusSubjects(items, objectives, subjects) {
     });
   }
   out.sort((a, b) => b.items.length - a.items.length || a.subject.localeCompare(b.subject));
-  // 주제 매핑 없는 묶음 = 'Fast Track'.
-  if (none.length) out.push({ subject: 'Fast Track', objective: '', color: 'var(--accent)', items: sortItems(none) });
+  if (none.length) out.push({ id: '__fasttrack__', subject: 'Fast Track', objective: '', color: 'var(--accent)', items: sortItems(none) });
   return out;
 }
+
+function isMajor(g) { return state.major[state.active].has(g.id); }
 
 function countTickets(groups) {
   const set = new Set();
@@ -150,6 +186,7 @@ function layout() {
   const map = document.getElementById('bf-map');
   const c = state.byTab[state.active];
   if (!map || !c) return;
+  map.classList.toggle('editing', state.editing);
   if (!c.groups.length) {
     map.innerHTML = `<div class="muted" style="position:absolute;inset:0;display:grid;place-items:center;font-size:13px;">표시할 과제가 없습니다.</div>`;
     setDetail(null);
@@ -158,29 +195,54 @@ function layout() {
   const W = map.clientWidth, H = map.clientHeight;
   if (!W || !H) { requestAnimationFrame(() => layout()); return; }
 
-  const vals = c.groups.map((g, i) => ({ v: Math.max(g.items.length, 0.0001), i }));
+  const anyMajor = c.groups.some(isMajor);
+  // 주요가 하나라도 지정되면 주요=크게/나머지=작게, 없으면 균등.
+  const vals = c.groups.map((g, i) => ({
+    v: anyMajor ? (isMajor(g) ? W_MAJOR : W_MINOR) : 1,
+    i,
+  }));
+  // 주요 먼저 오도록 정렬(레이아웃상 큰 타일이 좌상단). 인덱스는 보존.
+  vals.sort((a, b) => b.v - a.v);
   const rects = squarify(vals, 0, 0, W, H);
+
   map.innerHTML = rects.map(r => {
     const g = c.groups[r.i];
+    const major = isMajor(g);
     const small = r.w < 70 || r.h < 34;
     const tiny = r.w < 38 || r.h < 24;
-    const fs = Math.max(11, Math.min(24, Math.round(Math.sqrt(r.w * r.h) / 6.5)));
+    const fs = Math.max(11, Math.min(26, Math.round(Math.sqrt(r.w * r.h) / 6.5)));
     const sel = r.i === c.selected ? ' is-selected' : '';
     const label = tiny ? '' :
       `<span class="bf-tile-name" style="font-size:${fs}px;">${escapeHtml(g.subject)}</span>
        ${small ? '' : `<span class="bf-tile-meta">${g.objective ? escapeHtml(g.objective) + ' · ' : ''}${g.items.length}건</span>`}`;
-    return `<button type="button" class="bf-tile${sel}" data-bf-idx="${r.i}"
+    return `<button type="button" class="bf-tile${sel}${major ? ' is-major' : ''}" data-bf-idx="${r.i}"
         title="${escapeAttr(g.subject)} · ${g.items.length}건"
         style="left:${r.x}px;top:${r.y}px;width:${Math.max(r.w - 4, 1)}px;height:${Math.max(r.h - 4, 1)}px;
                background:color-mix(in srgb, ${g.color} 26%, var(--bg-elev));border-color:color-mix(in srgb, ${g.color} 55%, transparent);">
+        ${major ? '<span class="bf-star">★</span>' : ''}
         <span class="bf-tile-count num" style="color:${g.color};">${g.items.length}</span>
         ${label}
       </button>`;
   }).join('');
 
   map.querySelectorAll('.bf-tile').forEach(t => {
-    t.addEventListener('click', () => selectTheme(Number(t.dataset.bfIdx)));
+    t.addEventListener('click', () => onTileClick(Number(t.dataset.bfIdx)));
   });
+}
+
+function onTileClick(idx) {
+  const c = state.byTab[state.active];
+  const g = c.groups[idx];
+  if (!g) return;
+  if (state.editing) {
+    const set = state.major[state.active];
+    if (set.has(g.id)) set.delete(g.id); else set.add(g.id);
+    saveMajor();
+    updateCount();
+    layout();
+  } else {
+    selectTheme(idx);
+  }
 }
 
 function selectTheme(idx) {
