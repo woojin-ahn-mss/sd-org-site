@@ -62,3 +62,19 @@ export async function saveOrder(quarter, subjectId, jiraKeys) {
   unwrap(await supabase.from('briefing_ticket_order')
     .upsert({ quarter, subject_id: subjectId, jira_keys: jiraKeys }, { onConflict: 'quarter,subject_id' }));
 }
+
+/* ----- 주제 → 팀 태깅 ----- */
+
+/** 전체 주제 팀 태깅 → { subject_id: 'hd'|'pe'|'etc' }. */
+export async function loadSubjectTeams() {
+  const rows = unwrap(await supabase.from('briefing_subject_team').select('subject_id, team'));
+  const map = {};
+  for (const r of rows || []) map[r.subject_id] = r.team;
+  return map;
+}
+
+/** 주제 팀 지정(upsert). */
+export async function setSubjectTeam(subjectId, team) {
+  unwrap(await supabase.from('briefing_subject_team')
+    .upsert({ subject_id: subjectId, team }, { onConflict: 'subject_id' }));
+}

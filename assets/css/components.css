@@ -2093,6 +2093,13 @@ hr.rule { border: 0; border-top: 1px solid var(--rule); margin: 18px 0; }
 .dlg-close { margin-left: 10px; background: transparent; border: 0; color: #8a93a6; font-size: 20px; cursor: pointer; line-height: 1; }
 .dlg-close:hover { color: #fff; }
 .dlg-manage-hint { padding: 10px 26px 0; font-size: 12px; color: #8a93a6; }
+.dlg-team { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; padding: 12px 26px 0; }
+.dlg-team-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #8a93a6; margin-right: 2px; }
+.dlg-team-btn {
+  background: transparent; border: 1px solid rgba(255,255,255,0.2); color: #c2cadb;
+  font-size: 12px; font-weight: 600; padding: 4px 11px; border-radius: 8px; cursor: pointer;
+}
+.dlg-team-btn:hover { border-color: rgba(255,255,255,0.4); color: #fff; }
 .subj-tickets.is-manage { columns: 1; }
 .bf-tk-toggle {
   margin-left: auto; flex: none; background: transparent; border: 1px solid rgba(255,255,255,0.22);

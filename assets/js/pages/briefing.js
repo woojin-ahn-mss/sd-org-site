@@ -10,7 +10,7 @@ import { showError } from '../states.js';
 import { jiraUrl, bindJiraLinks } from '../jira-link.js';
 import { escapeHtml, escapeAttr } from '../escape.js';
 import { loadAll as loadPlanData, joinTicketsWithOverrides } from '../api/roadmap-plan-data.js';
-import { loadOutcomes, upsertOutcome, loadHidden, setHidden, loadOrders, saveOrder } from '../api/briefing-outcomes.js';
+import { loadOutcomes, upsertOutcome, loadHidden, setHidden, loadOrders, saveOrder, loadSubjectTeams, setSubjectTeam } from '../api/briefing-outcomes.js';
 import { auth } from '../api/supabase.js';
 
 const YEAR = 2026;
@@ -67,7 +67,18 @@ function quarterKeys(it) {
   return dq ? new Set([dq]) : new Set();
 }
 
-const state = { byTab: {}, slides: [], idx: 0, outcomes: {}, hidden: new Set(), orders: {}, dlg: null };
+const state = { byTab: {}, itemsByTab: {}, subjById: new Map(), slides: [], idx: 0, outcomes: {}, hidden: new Set(), orders: {}, subjectTeam: {}, dlg: null };
+
+const TEAM_BY_ID = new Map([...TEAMS, ETC].map(t => [t.id, t]));
+const mainSubjectTeam = (it) => SUBJ_TEAM.get(normSubject(it.mainSubject)) || ETC.id;
+/** 주제 티켓들의 대표(최다) 메인주제 팀. */
+function dominantTeam(items) {
+  const cnt = {};
+  for (const it of items) { const tid = mainSubjectTeam(it); cnt[tid] = (cnt[tid] || 0) + 1; }
+  return Object.entries(cnt).sort((a, b) => b[1] - a[1])[0]?.[0] || ETC.id;
+}
+/** 주제의 팀 — 명시 태깅 우선, 없으면 대표 메인주제 팀. */
+const subjectTeamOf = (sid, items) => state.subjectTeam[sid] || dominantTeam(items);
 
 /** 저장된 순서 적용 — orders[키]에 있는 순서대로, 없는 키는 기본(날짜) 순서로 뒤에. */
 function orderedItems(s, quarter) {
@@ -103,10 +114,11 @@ export async function renderBriefing({ rootRel = '' }) {
 
   // Supabase 세션 복원(로드맵 주제 매핑 + 성과 인증). 실패해도 degrade.
   try { await auth.init(); } catch (e) { console.warn('[briefing] auth.init 실패', e); }
-  [state.outcomes, state.hidden, state.orders] = await Promise.all([
+  [state.outcomes, state.hidden, state.orders, state.subjectTeam] = await Promise.all([
     loadOutcomes().catch(err => { console.warn('[briefing] 성과 로드 실패(미로그인 등):', err); return {}; }),
     loadHidden().catch(err => { console.warn('[briefing] 숨김 목록 로드 실패:', err); return new Set(); }),
     loadOrders().catch(err => { console.warn('[briefing] 순서 로드 실패:', err); return {}; }),
+    loadSubjectTeams().catch(err => { console.warn('[briefing] 주제 팀 로드 실패:', err); return {}; }),
   ]);
 
   let data, planData;
@@ -123,54 +135,105 @@ export async function renderBriefing({ rootRel = '' }) {
     return;
   }
 
-  // 팀은 메인주제로 배치, 카드는 로드맵 주제(ticket_subjects 매핑)로 묶는다.
-  const subjById = new Map((planData.subjects || []).map(s => [s.id, s.name]));
+  state.subjById = new Map((planData.subjects || []).map(s => [s.id, s.name]));
   const items = joinTicketsWithOverrides(data.items || [], planData.overrides || [], YEAR)
     .filter(it => !isDropped(it) && projectOf(it) !== 'ETR' && !EXCLUDE_KEYS.has(it.key));
 
-  for (const t of TABS) {
-    state.byTab[t.id] = buildTeams(items.filter(it => quarterKeys(it).has(t.quarter)), subjById);
-  }
+  for (const t of TABS) state.itemsByTab[t.id] = items.filter(it => quarterKeys(it).has(t.quarter));
+  rebuildTeams();
 
   buildSlides();
   bindControls();
   render();
 }
 
-/* ----- 데이터: 팀(메인주제) → 로드맵 주제 카드 ----- */
+/** 주제 팀 태깅 변경 시 byTab 재계산. */
+function rebuildTeams() {
+  for (const t of TABS) state.byTab[t.id] = buildTeams(state.itemsByTab[t.id] || []);
+}
 
-function buildTeams(items, subjById) {
-  const order = [...TEAMS, ETC];
-  // teamId → { cards: Map(cardId → {name, items}), keys: Set(distinct 티켓) }
-  const acc = new Map(order.map(t => [t.id, { cards: new Map(), keys: new Set() }]));
+/* ----- 데이터: 로드맵 주제 카드 → 팀(주제 태깅) ----- */
 
+function buildTeams(items) {
+  // 1) 로드맵 주제 단위로 티켓 모으기. 미매핑 티켓은 메인주제 팀별 '패스트트랙'.
+  const bySubject = new Map();             // sid → items[]
+  const noneByTeam = new Map();            // teamId → items[] (패스트트랙)
   for (const it of items) {
-    const teamId = SUBJ_TEAM.get(normSubject(it.mainSubject)) || ETC.id;
-    const b = acc.get(teamId);
-    b.keys.add(it.key);
-    const sids = (it.subjectIds || []).filter(id => subjById.has(id));
-    if (!sids.length) pushCard(b.cards, '__none__', '패스트트랙', it);
-    else for (const sid of sids) pushCard(b.cards, sid, subjById.get(sid), it);
+    const sids = (it.subjectIds || []).filter(id => state.subjById.has(id));
+    if (!sids.length) {
+      const tid = mainSubjectTeam(it);
+      if (!noneByTeam.has(tid)) noneByTeam.set(tid, []);
+      noneByTeam.get(tid).push(it);
+    } else {
+      for (const sid of sids) {
+        if (!bySubject.has(sid)) bySubject.set(sid, []);
+        bySubject.get(sid).push(it);
+      }
+    }
+  }
+
+  const order = [...TEAMS, ETC];
+  const acc = new Map(order.map(t => [t.id, { cards: [], keys: new Set() }]));
+  // 2) 각 주제 → 한 팀에 통째로 배치 (명시 태깅 || 대표 메인주제 팀).
+  for (const [sid, its] of bySubject) {
+    const teamId = subjectTeamOf(sid, its);
+    const b = acc.get(teamId) || acc.get(ETC.id);
+    b.cards.push({ id: sid, name: state.subjById.get(sid) || '(주제)', items: sortItems(its) });
+    for (const it of its) b.keys.add(it.key);
+  }
+  // 3) 패스트트랙 (미매핑) — 메인주제 팀별.
+  for (const [teamId, its] of noneByTeam) {
+    const b = acc.get(teamId) || acc.get(ETC.id);
+    b.cards.push({ id: '__none__', name: '패스트트랙', items: sortItems(its) });
+    for (const it of its) b.keys.add(it.key);
   }
 
   const teams = [];
   for (const t of order) {
     const b = acc.get(t.id);
     if (!b.keys.size) continue;
-    const subjects = [...b.cards.entries()]
-      .map(([id, c]) => ({ id, name: c.name || '(주제)', items: sortItems(c.items) }))
-      // '미지정' 은 맨 뒤, 나머지는 티켓 수 내림차순.
-      .sort((a, c) => (a.id === '__none__') - (c.id === '__none__')
-        || c.items.length - a.items.length
-        || a.name.localeCompare(c.name));
+    const subjects = b.cards.sort((a, c) =>
+      (a.id === '__none__') - (c.id === '__none__')
+      || c.items.length - a.items.length
+      || a.name.localeCompare(c.name));
     teams.push({ id: t.id, name: t.name, color: t.color, subjects, total: b.keys.size });
   }
   return teams;
 }
 
-function pushCard(cards, id, name, it) {
-  if (!cards.has(id)) cards.set(id, { name, items: [] });
-  cards.get(id).items.push(it);
+/** 관리 모드 — 이 주제를 어느 팀에 둘지 선택 (패스트트랙은 제외). */
+function teamPickerHtml(s) {
+  if (s.id === '__none__') return '';
+  const cur = subjectTeamOf(s.id, s.items);
+  const btns = [...TEAMS, ETC].map(t =>
+    `<button type="button" class="dlg-team-btn${t.id === cur ? ' on' : ''}" data-subj-team="${t.id}"
+       style="${t.id === cur ? `background:${t.color};border-color:${t.color};color:#08101f;` : ''}">${escapeHtml(t.name)}</button>`).join('');
+  return `<div class="dlg-team"><span class="dlg-team-label">팀</span>${btns}</div>`;
+}
+
+/** 주제 팀 변경 → 저장 + byTab 재계산 + 다이얼로그가 같은 주제를 새 팀에서 가리키게 재배치. */
+function changeSubjectTeam(sid, teamId) {
+  if (sid === '__none__') return;
+  const prev = state.subjectTeam[sid];
+  state.subjectTeam[sid] = teamId;
+  rebuildTeams();
+  relocateDlg(sid);
+  renderDialogBody();
+  setSubjectTeam(sid, teamId).catch(err => {
+    console.error('[briefing] 주제 팀 저장 실패', err);
+    alert('주제 팀 저장 실패 — 로그인 상태인지 확인해주세요.\n' + (err?.message || err));
+    if (prev) state.subjectTeam[sid] = prev; else delete state.subjectTeam[sid];
+    rebuildTeams(); relocateDlg(sid); renderDialogBody();
+  });
+}
+
+/** 재계산 후 다이얼로그의 team/subIdx 를 sid 가 있는 곳으로 갱신. */
+function relocateDlg(sid) {
+  if (!state.dlg) return;
+  for (const team of state.byTab[state.dlg.tabId] || []) {
+    const idx = team.subjects.findIndex(x => x.id === sid);
+    if (idx >= 0) { state.dlg.team = team; state.dlg.subIdx = idx; return; }
+  }
 }
 
 function sortItems(items) {
@@ -282,6 +345,7 @@ function renderDialogBody() {
       <div class="dlg-outcome-label" style="color:${team.color};">성과</div>
       <div class="bf-outcome" data-outcome tabindex="0" role="button">${outcomeViewHtml(state.outcomes[oKey] || '')}</div>
     </div>
+    ${manage ? teamPickerHtml(s) : ''}
     ${manage ? `<div class="dlg-manage-hint">드래그로 순서 변경 · 숨기기로 발표에서 제외. (자동 저장)</div>` : ''}
     <div class="dlg-list"><ul class="subj-tickets${manage ? ' is-manage' : ''}">${list.map(it => ticketHtml(it, manage)).join('')}</ul></div>`;
 
@@ -292,6 +356,9 @@ function renderDialogBody() {
   if (manage) {
     dlg.querySelectorAll('[data-tk]').forEach(btn => {
       btn.addEventListener('click', () => toggleHidden(btn.dataset.tk));
+    });
+    dlg.querySelectorAll('[data-subj-team]').forEach(btn => {
+      btn.addEventListener('click', () => changeSubjectTeam(s.id, btn.dataset.subjTeam));
     });
     bindDnd(dlg.querySelector('.subj-tickets'), quarter, s);
   }
