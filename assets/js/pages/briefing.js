@@ -148,12 +148,27 @@ function saveOutcome(team, s, text) {
   });
 }
 
+/** 로그인 상태 표시 — 미로그인이면 저장 안 됨 경고 + 로그인 버튼. */
+function updateAuthUi() {
+  const el = document.getElementById('deck-auth');
+  if (!el) return;
+  if (auth.isSignedIn()) {
+    el.innerHTML = `<span class="deck-auth-ok" title="저장됨">● ${escapeHtml(auth.email() || '로그인됨')}</span>`;
+  } else {
+    el.innerHTML = `<button type="button" class="btn primary" id="deck-login" title="로그인해야 저장됩니다">⚠ 로그인 필요 · 저장 안 됨</button>`;
+    document.getElementById('deck-login')?.addEventListener('click', () => {
+      auth.signIn().catch(e => alert('로그인 실패: ' + (e?.message || e)));
+    });
+  }
+}
+
 export async function renderBriefing({ rootRel = '' }) {
   const stage = document.getElementById('deck-stage');
   stage.innerHTML = `<div class="slide-loading muted">불러오는 중…</div>`;
 
   // Supabase 세션 복원(로드맵 주제 매핑 + 카드 상태 인증). 실패해도 degrade.
   try { await auth.init(); } catch (e) { console.warn('[briefing] auth.init 실패', e); }
+  updateAuthUi();
   [state.cards, state.subjectTeam, state.titles] = await Promise.all([
     loadCards().catch(err => { console.warn('[briefing] 카드 상태 로드 실패(미로그인 등):', err); return {}; }),
     loadSubjectTeams().catch(err => { console.warn('[briefing] 주제 팀 로드 실패:', err); return {}; }),
