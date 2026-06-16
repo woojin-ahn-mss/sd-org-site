@@ -7,6 +7,38 @@ import { supabase, unwrap } from './supabase.js';
 
 const keyOf = (quarter, subjectId) => `${quarter}:${subjectId}`;
 
+/* ----- 카드(슬라이드별: 분기×팀×주제) 통합 상태 ----- */
+
+/** 전체 카드 로드 → { 'quarter:team:subjectId': {content, order:[], hidden:[]} }. */
+export async function loadCards() {
+  const rows = unwrap(await supabase.from('briefing_card').select('quarter, team, subject_id, content, ticket_order, hidden_keys'));
+  const map = {};
+  for (const r of rows || []) {
+    map[`${r.quarter}:${r.team}:${r.subject_id}`] = {
+      content: r.content || '',
+      order: r.ticket_order || [],
+      hidden: r.hidden_keys || [],
+    };
+  }
+  return map;
+}
+
+/** 카드 전체 upsert(부분 클로버 방지 — content/order/hidden 모두 전달). 셋 다 비면 삭제. */
+export async function saveCard(quarter, team, subjectId, { content = '', order = [], hidden = [] } = {}) {
+  const empty = !String(content || '').trim() && !(order && order.length) && !(hidden && hidden.length);
+  if (empty) {
+    unwrap(await supabase.from('briefing_card').delete()
+      .eq('quarter', quarter).eq('team', team).eq('subject_id', subjectId));
+    return;
+  }
+  unwrap(await supabase.from('briefing_card').upsert({
+    quarter, team, subject_id: subjectId,
+    content: String(content || ''),
+    ticket_order: order || [],
+    hidden_keys: hidden || [],
+  }, { onConflict: 'quarter,team,subject_id' }));
+}
+
 /** 전체 성과 로드 → { 'quarter:subjectId': content } 맵. */
 export async function loadOutcomes() {
   const rows = unwrap(await supabase.from('briefing_outcomes').select('quarter, subject_id, content'));

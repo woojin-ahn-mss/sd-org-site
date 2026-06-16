@@ -10,7 +10,7 @@ import { showError } from '../states.js';
 import { jiraUrl, bindJiraLinks } from '../jira-link.js';
 import { escapeHtml, escapeAttr } from '../escape.js';
 import { loadAll as loadPlanData, joinTicketsWithOverrides } from '../api/roadmap-plan-data.js';
-import { loadOutcomes, upsertOutcome, loadHidden, setHidden, loadOrders, saveOrder, loadSubjectTeams, setSubjectTeam, loadTitles, setTitle } from '../api/briefing-outcomes.js';
+import { loadCards, saveCard, loadSubjectTeams, setSubjectTeam, loadTitles, setTitle } from '../api/briefing-outcomes.js';
 import { auth } from '../api/supabase.js';
 
 const YEAR = 2026;
@@ -75,7 +75,20 @@ function quarterKeys(it) {
   return dq ? new Set([dq]) : new Set();
 }
 
-const state = { byTab: {}, itemsByTab: {}, subjById: new Map(), slides: [], idx: 0, outcomes: {}, hidden: new Set(), orders: {}, subjectTeam: {}, titles: {}, dlg: null };
+const state = { byTab: {}, itemsByTab: {}, subjById: new Map(), slides: [], idx: 0, cards: {}, subjectTeam: {}, titles: {}, dlg: null };
+
+/* ----- 카드 상태(슬라이드별: 분기×팀×주제) ----- */
+const EMPTY_CARD = { content: '', order: [], hidden: [] };
+const cardKey = (quarter, teamId, sid) => `${quarter}:${teamId}:${sid}`;
+const getCard = (quarter, teamId, sid) => state.cards[cardKey(quarter, teamId, sid)] || EMPTY_CARD;
+function mutCard(quarter, teamId, sid) {
+  const k = cardKey(quarter, teamId, sid);
+  if (!state.cards[k]) state.cards[k] = { content: '', order: [], hidden: [] };
+  return state.cards[k];
+}
+function saveCardNow(quarter, teamId, sid) {
+  return saveCard(quarter, teamId, sid, state.cards[cardKey(quarter, teamId, sid)] || EMPTY_CARD);
+}
 
 /** 표시 제목 — override 있으면 그것, 없으면 Jira summary. */
 const displayTitle = (it) => (state.titles[it.key] != null ? state.titles[it.key] : (it.summary || ''));
@@ -99,31 +112,39 @@ function subjectTeamsOf(sid, items) {
   return [...set];
 }
 
-/** 저장된 순서 적용 — orders[키]에 있는 순서대로, 없는 키는 기본(날짜) 순서로 뒤에. */
-function orderedItems(s, quarter) {
-  const ord = state.orders[`${quarter}:${s.id}`];
-  if (!ord || !ord.length) return s.items;
+/** 저장된 순서 적용(슬라이드별). 없는 키는 기본(날짜) 순서로 뒤에. */
+function orderedItems(s, team) {
+  const ord = getCard(team.quarter, team.id, s.id).order;
+  if (!ord.length) return s.items;
   const pos = new Map(ord.map((k, i) => [k, i]));
   return s.items.slice().sort((a, b) =>
     (pos.has(a.key) ? pos.get(a.key) : Infinity) - (pos.has(b.key) ? pos.get(b.key) : Infinity));
 }
 
-const visN = (s) => s.items.filter(it => !state.hidden.has(it.key)).length;
+/** 슬라이드(팀×분기) 기준 노출 티켓 수. */
+function visN(s, team) {
+  const h = getCard(team.quarter, team.id, s.id).hidden;
+  if (!h.length) return s.items.length;
+  const set = new Set(h);
+  return s.items.filter(it => !set.has(it.key)).length;
+}
 function teamVisibleTotal(team) {
   const set = new Set();
-  for (const s of team.subjects) for (const it of s.items) if (!state.hidden.has(it.key)) set.add(it.key);
+  for (const s of team.subjects) {
+    const h = new Set(getCard(team.quarter, team.id, s.id).hidden);
+    for (const it of s.items) if (!h.has(it.key)) set.add(it.key);
+  }
   return set.size;
 }
-const teamVisibleSubjects = (team) => team.subjects.filter(s => visN(s) > 0).length;
+const teamVisibleSubjects = (team) => team.subjects.filter(s => visN(s, team) > 0).length;
 
-const outcomeKey = (quarter, subjId) => `${quarter}:${subjId}`;
-/** 성과 저장 — state 즉시 반영 + Supabase upsert(실패 시 alert). */
-function saveOutcome(quarter, subjId, text) {
-  const key = outcomeKey(quarter, subjId);
-  if (text.trim()) state.outcomes[key] = text; else delete state.outcomes[key];
-  upsertOutcome(quarter, subjId, text).catch(err => {
+/** 성과/우선순위 저장 — 슬라이드별 카드 content 갱신 + Supabase. */
+function saveOutcome(team, s, text) {
+  const c = mutCard(team.quarter, team.id, s.id);
+  c.content = text;
+  saveCardNow(team.quarter, team.id, s.id).catch(err => {
     console.error('[briefing] 성과 저장 실패', err);
-    alert('성과 저장 실패 — 로그인 상태인지 확인해주세요.\n' + (err?.message || err));
+    alert('저장 실패 — 로그인 상태인지 확인해주세요.\n' + (err?.message || err));
   });
 }
 
@@ -131,12 +152,10 @@ export async function renderBriefing({ rootRel = '' }) {
   const stage = document.getElementById('deck-stage');
   stage.innerHTML = `<div class="slide-loading muted">불러오는 중…</div>`;
 
-  // Supabase 세션 복원(로드맵 주제 매핑 + 성과 인증). 실패해도 degrade.
+  // Supabase 세션 복원(로드맵 주제 매핑 + 카드 상태 인증). 실패해도 degrade.
   try { await auth.init(); } catch (e) { console.warn('[briefing] auth.init 실패', e); }
-  [state.outcomes, state.hidden, state.orders, state.subjectTeam, state.titles] = await Promise.all([
-    loadOutcomes().catch(err => { console.warn('[briefing] 성과 로드 실패(미로그인 등):', err); return {}; }),
-    loadHidden().catch(err => { console.warn('[briefing] 숨김 목록 로드 실패:', err); return new Set(); }),
-    loadOrders().catch(err => { console.warn('[briefing] 순서 로드 실패:', err); return {}; }),
+  [state.cards, state.subjectTeam, state.titles] = await Promise.all([
+    loadCards().catch(err => { console.warn('[briefing] 카드 상태 로드 실패(미로그인 등):', err); return {}; }),
     loadSubjectTeams().catch(err => { console.warn('[briefing] 주제 팀 로드 실패:', err); return {}; }),
     loadTitles().catch(err => { console.warn('[briefing] 제목 로드 실패:', err); return {}; }),
   ]);
@@ -169,12 +188,12 @@ export async function renderBriefing({ rootRel = '' }) {
 
 /** 주제 팀 태깅 변경 시 byTab 재계산. */
 function rebuildTeams() {
-  for (const t of TABS) state.byTab[t.id] = buildTeams(state.itemsByTab[t.id] || []);
+  for (const t of TABS) state.byTab[t.id] = buildTeams(state.itemsByTab[t.id] || [], t.quarter);
 }
 
 /* ----- 데이터: 로드맵 주제 카드 → 팀(주제 태깅) ----- */
 
-function buildTeams(items) {
+function buildTeams(items, quarter) {
   // 1) 로드맵 주제 단위로 티켓 모으기. 미매핑 티켓은 메인주제 팀별 '패스트트랙'.
   const bySubject = new Map();             // sid → items[]
   const noneByTeam = new Map();            // teamId → items[] (패스트트랙)
@@ -220,7 +239,7 @@ function buildTeams(items) {
       (a.id === '__none__') - (c.id === '__none__')
       || c.items.length - a.items.length
       || a.name.localeCompare(c.name));
-    teams.push({ id: t.id, name: t.name, color: t.color, subjects, total: b.keys.size });
+    teams.push({ id: t.id, name: t.name, color: t.color, quarter, subjects, total: b.keys.size });
   }
   return teams;
 }
@@ -329,15 +348,15 @@ function teamHtml(team, tabId) {
   const t = tabMeta(tabId);
   const cards = team.subjects
     .map((s, si) => ({ s, si }))
-    .filter(({ s }) => visN(s) > 0)               // 0건 주제 카드는 숨김
+    .filter(({ s }) => visN(s, team) > 0)               // 0건 주제 카드는 숨김
     .map(({ s, si }) => `
     <button type="button" class="bf-subj-card" data-sub="${si}" style="--c:${team.color};">
       <div class="subj-card-top">
         <span class="subj-card-dot" style="background:${team.color};"></span>
-        <span class="subj-card-n num">${visN(s)}</span>
+        <span class="subj-card-n num">${visN(s, team)}</span>
       </div>
       <div class="subj-card-name">${escapeHtml(s.name)}</div>
-      <div class="subj-card-hint">과제 ${visN(s)}개 보기 →</div>
+      <div class="subj-card-hint">과제 ${visN(s, team)}개 보기 →</div>
     </button>`).join('');
   return `
     <div class="slide slide-team">
@@ -362,25 +381,25 @@ function renderDialogBody() {
   if (!dlg || !state.dlg) return;
   const { team, tabId, subIdx, manage } = state.dlg;
   const s = team.subjects[subIdx];
-  const quarter = tabMeta(tabId).quarter;
   const noteLabel = tabMeta(tabId).tag === '회고' ? '성과' : '우선순위';   // 2Q=성과, 3Q=우선순위
-  const oKey = outcomeKey(quarter, s.id);
-  const ordered = orderedItems(s, quarter);
-  const list = manage ? ordered : ordered.filter(it => !state.hidden.has(it.key));
+  const c = getCard(team.quarter, team.id, s.id);
+  const hiddenSet = new Set(c.hidden);
+  const ordered = orderedItems(s, team);
+  const list = manage ? ordered : ordered.filter(it => !hiddenSet.has(it.key));
   dlg.querySelector('[data-dlg-body]').innerHTML = `
     <div class="dlg-head">
       <span class="team-bar" style="background:${team.color};"></span>
-      <h3>${escapeHtml(s.name)} <span class="dlg-n" style="color:${team.color};">${visN(s)}건</span></h3>
+      <h3>${escapeHtml(s.name)} <span class="dlg-n" style="color:${team.color};">${visN(s, team)}건</span></h3>
       <button type="button" class="dlg-manage${manage ? ' on' : ''}" data-dlg-manage>${manage ? '완료' : '관리'}</button>
       <button type="button" class="dlg-close" data-dlg-close aria-label="닫기">✕</button>
     </div>
     <div class="dlg-outcome">
       <div class="dlg-outcome-label" style="color:${team.color};">${noteLabel}</div>
-      <div class="bf-outcome" data-outcome tabindex="0" role="button">${outcomeViewHtml(state.outcomes[oKey] || '', noteLabel)}</div>
+      <div class="bf-outcome" data-outcome tabindex="0" role="button">${outcomeViewHtml(c.content || '', noteLabel)}</div>
     </div>
     ${manage ? teamPickerHtml(s) : ''}
-    ${manage ? `<div class="dlg-manage-hint">제목 클릭=수정 · 드래그=순서 · 숨기기=발표 제외. (자동 저장)</div>` : ''}
-    <div class="dlg-list"><ul class="subj-tickets${manage ? ' is-manage' : ''}">${list.map(it => ticketHtml(it, manage)).join('')}</ul></div>`;
+    ${manage ? `<div class="dlg-manage-hint">제목 클릭=수정 · 드래그=순서 · 숨기기=발표 제외. (슬라이드별 저장)</div>` : ''}
+    <div class="dlg-list"><ul class="subj-tickets${manage ? ' is-manage' : ''}">${list.map(it => ticketHtml(it, manage, hiddenSet)).join('')}</ul></div>`;
 
   dlg.querySelector('[data-dlg-manage]')?.addEventListener('click', () => {
     state.dlg.manage = !state.dlg.manage;
@@ -388,18 +407,18 @@ function renderDialogBody() {
   });
   if (manage) {
     dlg.querySelectorAll('[data-tk]').forEach(btn => {
-      btn.addEventListener('click', () => toggleHidden(btn.dataset.tk));
+      btn.addEventListener('click', () => toggleHidden(team, s, btn.dataset.tk));
     });
     dlg.querySelectorAll('[data-subj-team]').forEach(btn => {
       btn.addEventListener('click', () => changeSubjectTeam(s.id, btn.dataset.subjTeam));
     });
-    bindDnd(dlg.querySelector('.subj-tickets'), quarter, s);
+    bindDnd(dlg.querySelector('.subj-tickets'), team, s);
   }
   // 제목 편집은 일반/관리 모두 가능 (클릭 → 인라인 수정).
   dlg.querySelectorAll('[data-title-key]').forEach(span => {
     span.addEventListener('click', () => startTitleEdit(span));
   });
-  bindOutcome(dlg, quarter, s.id, noteLabel);
+  bindOutcome(dlg, team, s, noteLabel);
   bindJiraLinks(dlg);
 }
 
@@ -431,8 +450,8 @@ function startTitleEdit(span) {
   input.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); input.blur(); } });
 }
 
-/** 관리 모드 드래그앤드롭 순서 변경 — drop 시 전체 키 순서를 Supabase 저장. */
-function bindDnd(ul, quarter, s) {
+/** 관리 모드 드래그앤드롭 순서 변경 — drop 시 슬라이드별 순서 저장. */
+function bindDnd(ul, team, s) {
   if (!ul) return;
   let dragKey = null;
   ul.querySelectorAll('li[draggable="true"]').forEach(li => {
@@ -452,13 +471,13 @@ function bindDnd(ul, quarter, s) {
       const targetKey = li.dataset.key;
       if (!dragKey || dragKey === targetKey) return;
       const after = (e.clientY - li.getBoundingClientRect().top) > li.offsetHeight / 2;
-      reorderTicket(quarter, s, dragKey, targetKey, after);
+      reorderTicket(team, s, dragKey, targetKey, after);
     });
   });
 }
 
-function reorderTicket(quarter, s, dragKey, targetKey, after) {
-  const cur = orderedItems(s, quarter).map(it => it.key);  // 현재 전체 순서
+function reorderTicket(team, s, dragKey, targetKey, after) {
+  const cur = orderedItems(s, team).map(it => it.key);  // 현재 전체 순서
   const from = cur.indexOf(dragKey);
   if (from < 0) return;
   cur.splice(from, 1);
@@ -467,26 +486,28 @@ function reorderTicket(quarter, s, dragKey, targetKey, after) {
   if (after) to += 1;
   cur.splice(to, 0, dragKey);
 
-  const key = `${quarter}:${s.id}`;
-  const prev = state.orders[key];
-  state.orders[key] = cur;
+  const c = mutCard(team.quarter, team.id, s.id);
+  const prev = c.order;
+  c.order = cur;
   renderDialogBody();
-  saveOrder(quarter, s.id, cur).catch(err => {
+  saveCardNow(team.quarter, team.id, s.id).catch(err => {
     console.error('[briefing] 순서 저장 실패', err);
     alert('순서 저장 실패 — 로그인 상태인지 확인해주세요.\n' + (err?.message || err));
-    if (prev) state.orders[key] = prev; else delete state.orders[key];
+    c.order = prev;
     renderDialogBody();
   });
 }
 
-function toggleHidden(key) {
-  const willHide = !state.hidden.has(key);
-  if (willHide) state.hidden.add(key); else state.hidden.delete(key);
+function toggleHidden(team, s, key) {
+  const c = mutCard(team.quarter, team.id, s.id);
+  const prev = c.hidden.slice();
+  const i = c.hidden.indexOf(key);
+  if (i >= 0) c.hidden.splice(i, 1); else c.hidden.push(key);
   renderDialogBody();
-  setHidden(key, willHide).catch(err => {
+  saveCardNow(team.quarter, team.id, s.id).catch(err => {
     console.error('[briefing] 노출 설정 저장 실패', err);
     alert('티켓 노출 설정 저장 실패 — 로그인 상태인지 확인해주세요.\n' + (err?.message || err));
-    if (willHide) state.hidden.delete(key); else state.hidden.add(key);
+    c.hidden = prev;
     renderDialogBody();
   });
 }
@@ -498,22 +519,21 @@ function outcomeViewHtml(text, label = '성과') {
 }
 
 /** 노트 영역 — 클릭하면 textarea 편집, blur 시 Supabase 저장. label=성과/우선순위. */
-function bindOutcome(dlg, quarter, subjId, label = '성과') {
+function bindOutcome(dlg, team, s, label = '성과') {
   const view = dlg.querySelector('[data-outcome]');
   if (!view) return;
-  const key = outcomeKey(quarter, subjId);
   const edit = () => {
     if (dlg.querySelector('.bf-outcome-input')) return;
     const ta = document.createElement('textarea');
     ta.className = 'bf-outcome-input';
-    ta.value = state.outcomes[key] || '';
+    ta.value = getCard(team.quarter, team.id, s.id).content || '';
     ta.placeholder = `${label}을(를) 입력하세요 (줄바꿈·'-' 불릿 자유)`;
     view.replaceWith(ta);
     ta.focus();
     ta.setSelectionRange(ta.value.length, ta.value.length);
     ta.addEventListener('blur', () => {
       const text = ta.value;
-      saveOutcome(quarter, subjId, text);
+      saveOutcome(team, s, text);
       const nv = document.createElement('div');
       nv.className = 'bf-outcome'; nv.tabIndex = 0; nv.setAttribute('role', 'button');
       nv.setAttribute('data-outcome', '');
@@ -527,14 +547,14 @@ function bindOutcome(dlg, quarter, subjId, label = '성과') {
   view.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); edit(); } });
 }
 
-function ticketHtml(it, manage = false) {
+function ticketHtml(it, manage = false, hiddenSet = new Set()) {
   const url = jiraUrl(it.key);
   const keyHtml = url
     ? `<a class="key" href="${url}" target="_blank" rel="noopener noreferrer" data-jira-key="${escapeAttr(it.key)}">${escapeHtml(it.key)}</a>`
     : `<span class="key muted">${escapeHtml(it.key || '')}</span>`;
   const title = displayTitle(it);
   const sumHtml = `<span class="th-sum bf-title" data-title-key="${escapeAttr(it.key)}" data-orig="${escapeAttr(it.summary || '')}" title="클릭하여 제목 수정">${escapeHtml(title)}</span>`;
-  const hidden = state.hidden.has(it.key);
+  const hidden = hiddenSet.has(it.key);
   const toggle = manage
     ? `<button type="button" class="bf-tk-toggle${hidden ? ' is-hidden' : ''}" data-tk="${escapeAttr(it.key)}">${hidden ? '보이기' : '숨기기'}</button>`
     : '';
