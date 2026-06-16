@@ -18,18 +18,21 @@ const YEAR = 2026;
 // 분기 발표에서 수동 제외할 Jira 키.
 const EXCLUDE_KEYS = new Set(['TM-2685']);
 
+// 티켓 단위 팀 수동 지정 (메인주제와 무관하게 특정 키를 특정 팀으로).
+const TICKET_TEAM = new Map([['MSSCXTF-1319', 'hd']]);
+
 const TABS = [
   { id: 'q2', quarter: '2026-Q2', label: '2026 2Q', tag: '회고' },
   { id: 'q3', quarter: '2026-Q3', label: '2026 3Q', tag: '예고' },
 ];
 
 // 팀 → 메인주제(접두어 NN. 제거한 이름) 매핑. 한 메인주제가 두 팀에 걸칠 수 있음(복수 매핑).
-// (글로벌_원앱이전·유즈드·기타·오프라인/O4O 는 HD·PE 양쪽 / PLCC·파트너 는 PE — 2026-06 우진님 지정)
-const CROSS = ['글로벌_원앱이전', '유즈드', '기타', '오프라인/O4O'];
+// (글로벌_원앱이전·유즈드·기타·오프라인/O4O·광고 는 HD·PE 양쪽 / PLCC·파트너 는 PE — 2026-06 우진님 지정)
+const CROSS = ['글로벌_원앱이전', '유즈드', '기타', '오프라인/O4O', '광고'];
 const TEAMS = [
   {
     id: 'hd', name: 'Home & Discovery', color: '#4fa3ff',
-    subjects: ['추천', '랭킹/세일/커스텀판', '검색/카테고리/필터', '브랜드 인덱스/브랜드샵(홈)', '공통/네비게이션', '광고', '무배당발', ...CROSS],
+    subjects: ['추천', '랭킹/세일/커스텀판', '검색/카테고리/필터', '브랜드 인덱스/브랜드샵(홈)', '공통/네비게이션', '무배당발', ...CROSS],
   },
   {
     id: 'pe', name: 'PDP & Engagement', color: '#ff9f5a',
@@ -85,14 +88,15 @@ function saveTitle(key, title) {
   });
 }
 
-/** 티켓 메인주제가 매핑된 팀들(복수). 매핑 없으면 [기타]. */
-const mainSubjectTeams = (it) => SUBJ_TEAM.get(normSubject(it.mainSubject)) || [ETC.id];
-/** 주제가 들어갈 팀들 — 명시 태깅 있으면 그 단일 팀, 없으면 티켓 메인주제 팀들의 합집합. */
+/** 티켓이 들어갈 팀들 — 티켓 단위 지정 우선, 없으면 메인주제 매핑(복수 가능). 미매핑이면 [](제외). */
+const ticketTeams = (it) =>
+  TICKET_TEAM.has(it.key) ? [TICKET_TEAM.get(it.key)] : (SUBJ_TEAM.get(normSubject(it.mainSubject)) || []);
+/** 주제가 들어갈 팀들 — 명시 태깅 있으면 그 단일 팀, 없으면 티켓 팀들의 합집합. */
 function subjectTeamsOf(sid, items) {
   if (state.subjectTeam[sid]) return [state.subjectTeam[sid]];
   const set = new Set();
-  for (const it of items) for (const tid of mainSubjectTeams(it)) set.add(tid);
-  return set.size ? [...set] : [ETC.id];
+  for (const it of items) for (const tid of ticketTeams(it)) set.add(tid);
+  return [...set];
 }
 
 /** 저장된 순서 적용 — orders[키]에 있는 순서대로, 없는 키는 기본(날짜) 순서로 뒤에. */
@@ -177,7 +181,7 @@ function buildTeams(items) {
   for (const it of items) {
     const sids = (it.subjectIds || []).filter(id => state.subjById.has(id));
     if (!sids.length) {
-      for (const tid of mainSubjectTeams(it)) {
+      for (const tid of ticketTeams(it)) {     // 미매핑이면 빈 배열 → 어느 팀에도 안 들어감(제외)
         if (!noneByTeam.has(tid)) noneByTeam.set(tid, []);
         noneByTeam.get(tid).push(it);
       }
@@ -189,26 +193,27 @@ function buildTeams(items) {
     }
   }
 
-  const order = [...TEAMS, ETC];
-  const acc = new Map(order.map(t => [t.id, { cards: [], keys: new Set() }]));
-  // 2) 각 주제 → 매핑된 팀(들)에 배치. 태깅 있으면 단일, 없으면 메인주제 팀들 모두(복수 가능).
+  const acc = new Map(TEAMS.map(t => [t.id, { cards: [], keys: new Set() }]));   // 기타 없음
+  // 2) 각 주제 → 매핑된 팀(들)에 배치. 매핑 없으면 어느 팀에도 안 들어감.
   for (const [sid, its] of bySubject) {
     const sorted = sortItems(its);
     for (const teamId of subjectTeamsOf(sid, its)) {
-      const b = acc.get(teamId) || acc.get(ETC.id);
+      const b = acc.get(teamId);
+      if (!b) continue;
       b.cards.push({ id: sid, name: state.subjById.get(sid) || '(주제)', items: sorted });
       for (const it of its) b.keys.add(it.key);
     }
   }
-  // 3) 패스트트랙 (미매핑) — 메인주제 팀(들)별.
+  // 3) 패스트트랙 (미매핑 티켓) — 팀별.
   for (const [teamId, its] of noneByTeam) {
-    const b = acc.get(teamId) || acc.get(ETC.id);
+    const b = acc.get(teamId);
+    if (!b) continue;
     b.cards.push({ id: '__none__', name: '패스트트랙', items: sortItems(its) });
     for (const it of its) b.keys.add(it.key);
   }
 
   const teams = [];
-  for (const t of order) {
+  for (const t of TEAMS) {
     const b = acc.get(t.id);
     if (!b.keys.size) continue;
     const subjects = b.cards.sort((a, c) =>
@@ -226,7 +231,7 @@ function teamPickerHtml(s) {
   const cur = subjectTeamsOf(s.id, s.items);            // 효과적인 팀(들)
   const tagged = !!state.subjectTeam[s.id];
   const auto = `<button type="button" class="dlg-team-btn${tagged ? '' : ' on'}" data-subj-team="__auto__">자동</button>`;
-  const btns = [...TEAMS, ETC].map(t => {
+  const btns = TEAMS.map(t => {
     const on = cur.includes(t.id);
     return `<button type="button" class="dlg-team-btn${on ? ' on' : ''}" data-subj-team="${t.id}"
        style="${on ? `background:${t.color};border-color:${t.color};color:#08101f;` : ''}">${escapeHtml(t.name)}</button>`;
@@ -322,7 +327,10 @@ function coverHtml(tabId) {
 
 function teamHtml(team, tabId) {
   const t = tabMeta(tabId);
-  const cards = team.subjects.map((s, si) => `
+  const cards = team.subjects
+    .map((s, si) => ({ s, si }))
+    .filter(({ s }) => visN(s) > 0)               // 0건 주제 카드는 숨김
+    .map(({ s, si }) => `
     <button type="button" class="bf-subj-card" data-sub="${si}" style="--c:${team.color};">
       <div class="subj-card-top">
         <span class="subj-card-dot" style="background:${team.color};"></span>
@@ -385,11 +393,12 @@ function renderDialogBody() {
     dlg.querySelectorAll('[data-subj-team]').forEach(btn => {
       btn.addEventListener('click', () => changeSubjectTeam(s.id, btn.dataset.subjTeam));
     });
-    dlg.querySelectorAll('[data-title-key]').forEach(span => {
-      span.addEventListener('click', () => startTitleEdit(span));
-    });
     bindDnd(dlg.querySelector('.subj-tickets'), quarter, s);
   }
+  // 제목 편집은 일반/관리 모두 가능 (클릭 → 인라인 수정).
+  dlg.querySelectorAll('[data-title-key]').forEach(span => {
+    span.addEventListener('click', () => startTitleEdit(span));
+  });
   bindOutcome(dlg, quarter, s.id, noteLabel);
   bindJiraLinks(dlg);
 }
@@ -524,9 +533,7 @@ function ticketHtml(it, manage = false) {
     ? `<a class="key" href="${url}" target="_blank" rel="noopener noreferrer" data-jira-key="${escapeAttr(it.key)}">${escapeHtml(it.key)}</a>`
     : `<span class="key muted">${escapeHtml(it.key || '')}</span>`;
   const title = displayTitle(it);
-  const sumHtml = manage
-    ? `<span class="th-sum bf-title" data-title-key="${escapeAttr(it.key)}" data-orig="${escapeAttr(it.summary || '')}" title="클릭하여 제목 수정">${escapeHtml(title)}</span>`
-    : `<span class="th-sum">${escapeHtml(title)}</span>`;
+  const sumHtml = `<span class="th-sum bf-title" data-title-key="${escapeAttr(it.key)}" data-orig="${escapeAttr(it.summary || '')}" title="클릭하여 제목 수정">${escapeHtml(title)}</span>`;
   const hidden = state.hidden.has(it.key);
   const toggle = manage
     ? `<button type="button" class="bf-tk-toggle${hidden ? ' is-hidden' : ''}" data-tk="${escapeAttr(it.key)}">${hidden ? '보이기' : '숨기기'}</button>`
