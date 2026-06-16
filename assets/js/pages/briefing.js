@@ -23,22 +23,27 @@ const TABS = [
   { id: 'q3', quarter: '2026-Q3', label: '2026 3Q', tag: '예고' },
 ];
 
-// 팀 → 메인주제(접두어 NN. 제거한 이름) 매핑. 순서 = 발표 노출 순서.
+// 팀 → 메인주제(접두어 NN. 제거한 이름) 매핑. 한 메인주제가 두 팀에 걸칠 수 있음(복수 매핑).
+// (글로벌_원앱이전·유즈드·기타·오프라인/O4O 는 HD·PE 양쪽 / PLCC·파트너 는 PE — 2026-06 우진님 지정)
+const CROSS = ['글로벌_원앱이전', '유즈드', '기타', '오프라인/O4O'];
 const TEAMS = [
   {
     id: 'hd', name: 'Home & Discovery', color: '#4fa3ff',
-    subjects: ['추천', '랭킹/세일/커스텀판', '검색/카테고리/필터', '브랜드 인덱스/브랜드샵(홈)', '공통/네비게이션', '광고', '무배당발'],
+    subjects: ['추천', '랭킹/세일/커스텀판', '검색/카테고리/필터', '브랜드 인덱스/브랜드샵(홈)', '공통/네비게이션', '광고', '무배당발', ...CROSS],
   },
   {
     id: 'pe', name: 'PDP & Engagement', color: '#ff9f5a',
-    subjects: ['콘텐츠/발매/스냅/라이브', 'PDP/후기', '이벤트/앱테크/온보딩', '캠페인', '쿠폰/세일/할인', '상품', '무신사머니'],
+    subjects: ['콘텐츠/발매/스냅/라이브', 'PDP/후기', '이벤트/앱테크/온보딩', '캠페인', '쿠폰/세일/할인', '상품', '무신사머니', 'PLCC', '파트너', ...CROSS],
   },
 ];
 const ETC = { id: 'etc', name: '기타', color: '#8a93a3' };
 
-// normSubject → teamId
+// normSubject → [teamId, ...] (복수 매핑)
 const SUBJ_TEAM = new Map();
-for (const t of TEAMS) for (const s of t.subjects) SUBJ_TEAM.set(s, t.id);
+for (const t of TEAMS) for (const s of t.subjects) {
+  if (!SUBJ_TEAM.has(s)) SUBJ_TEAM.set(s, []);
+  if (!SUBJ_TEAM.get(s).includes(t.id)) SUBJ_TEAM.get(s).push(t.id);
+}
 
 const DROPPED = new Set(['철회/반려/취소', 'Dropped', 'DROPPED', '철회', '반려', '취소']);
 const isDropped = (it) => DROPPED.has((it.status || '').trim());
@@ -69,16 +74,15 @@ function quarterKeys(it) {
 
 const state = { byTab: {}, itemsByTab: {}, subjById: new Map(), slides: [], idx: 0, outcomes: {}, hidden: new Set(), orders: {}, subjectTeam: {}, dlg: null };
 
-const TEAM_BY_ID = new Map([...TEAMS, ETC].map(t => [t.id, t]));
-const mainSubjectTeam = (it) => SUBJ_TEAM.get(normSubject(it.mainSubject)) || ETC.id;
-/** 주제 티켓들의 대표(최다) 메인주제 팀. */
-function dominantTeam(items) {
-  const cnt = {};
-  for (const it of items) { const tid = mainSubjectTeam(it); cnt[tid] = (cnt[tid] || 0) + 1; }
-  return Object.entries(cnt).sort((a, b) => b[1] - a[1])[0]?.[0] || ETC.id;
+/** 티켓 메인주제가 매핑된 팀들(복수). 매핑 없으면 [기타]. */
+const mainSubjectTeams = (it) => SUBJ_TEAM.get(normSubject(it.mainSubject)) || [ETC.id];
+/** 주제가 들어갈 팀들 — 명시 태깅 있으면 그 단일 팀, 없으면 티켓 메인주제 팀들의 합집합. */
+function subjectTeamsOf(sid, items) {
+  if (state.subjectTeam[sid]) return [state.subjectTeam[sid]];
+  const set = new Set();
+  for (const it of items) for (const tid of mainSubjectTeams(it)) set.add(tid);
+  return set.size ? [...set] : [ETC.id];
 }
-/** 주제의 팀 — 명시 태깅 우선, 없으면 대표 메인주제 팀. */
-const subjectTeamOf = (sid, items) => state.subjectTeam[sid] || dominantTeam(items);
 
 /** 저장된 순서 적용 — orders[키]에 있는 순서대로, 없는 키는 기본(날짜) 순서로 뒤에. */
 function orderedItems(s, quarter) {
@@ -161,9 +165,10 @@ function buildTeams(items) {
   for (const it of items) {
     const sids = (it.subjectIds || []).filter(id => state.subjById.has(id));
     if (!sids.length) {
-      const tid = mainSubjectTeam(it);
-      if (!noneByTeam.has(tid)) noneByTeam.set(tid, []);
-      noneByTeam.get(tid).push(it);
+      for (const tid of mainSubjectTeams(it)) {
+        if (!noneByTeam.has(tid)) noneByTeam.set(tid, []);
+        noneByTeam.get(tid).push(it);
+      }
     } else {
       for (const sid of sids) {
         if (!bySubject.has(sid)) bySubject.set(sid, []);
@@ -174,14 +179,16 @@ function buildTeams(items) {
 
   const order = [...TEAMS, ETC];
   const acc = new Map(order.map(t => [t.id, { cards: [], keys: new Set() }]));
-  // 2) 각 주제 → 한 팀에 통째로 배치 (명시 태깅 || 대표 메인주제 팀).
+  // 2) 각 주제 → 매핑된 팀(들)에 배치. 태깅 있으면 단일, 없으면 메인주제 팀들 모두(복수 가능).
   for (const [sid, its] of bySubject) {
-    const teamId = subjectTeamOf(sid, its);
-    const b = acc.get(teamId) || acc.get(ETC.id);
-    b.cards.push({ id: sid, name: state.subjById.get(sid) || '(주제)', items: sortItems(its) });
-    for (const it of its) b.keys.add(it.key);
+    const sorted = sortItems(its);
+    for (const teamId of subjectTeamsOf(sid, its)) {
+      const b = acc.get(teamId) || acc.get(ETC.id);
+      b.cards.push({ id: sid, name: state.subjById.get(sid) || '(주제)', items: sorted });
+      for (const it of its) b.keys.add(it.key);
+    }
   }
-  // 3) 패스트트랙 (미매핑) — 메인주제 팀별.
+  // 3) 패스트트랙 (미매핑) — 메인주제 팀(들)별.
   for (const [teamId, its] of noneByTeam) {
     const b = acc.get(teamId) || acc.get(ETC.id);
     b.cards.push({ id: '__none__', name: '패스트트랙', items: sortItems(its) });
@@ -204,22 +211,27 @@ function buildTeams(items) {
 /** 관리 모드 — 이 주제를 어느 팀에 둘지 선택 (패스트트랙은 제외). */
 function teamPickerHtml(s) {
   if (s.id === '__none__') return '';
-  const cur = subjectTeamOf(s.id, s.items);
-  const btns = [...TEAMS, ETC].map(t =>
-    `<button type="button" class="dlg-team-btn${t.id === cur ? ' on' : ''}" data-subj-team="${t.id}"
-       style="${t.id === cur ? `background:${t.color};border-color:${t.color};color:#08101f;` : ''}">${escapeHtml(t.name)}</button>`).join('');
-  return `<div class="dlg-team"><span class="dlg-team-label">팀</span>${btns}</div>`;
+  const cur = subjectTeamsOf(s.id, s.items);            // 효과적인 팀(들)
+  const tagged = !!state.subjectTeam[s.id];
+  const auto = `<button type="button" class="dlg-team-btn${tagged ? '' : ' on'}" data-subj-team="__auto__">자동</button>`;
+  const btns = [...TEAMS, ETC].map(t => {
+    const on = cur.includes(t.id);
+    return `<button type="button" class="dlg-team-btn${on ? ' on' : ''}" data-subj-team="${t.id}"
+       style="${on ? `background:${t.color};border-color:${t.color};color:#08101f;` : ''}">${escapeHtml(t.name)}</button>`;
+  }).join('');
+  return `<div class="dlg-team"><span class="dlg-team-label">팀</span>${auto}${btns}</div>`;
 }
 
-/** 주제 팀 변경 → 저장 + byTab 재계산 + 다이얼로그가 같은 주제를 새 팀에서 가리키게 재배치. */
+/** 주제 팀 변경 → 저장 + byTab 재계산 + 다이얼로그 재배치. '__auto__' 면 태깅 해제(메인주제 자동). */
 function changeSubjectTeam(sid, teamId) {
   if (sid === '__none__') return;
   const prev = state.subjectTeam[sid];
-  state.subjectTeam[sid] = teamId;
+  const next = teamId === '__auto__' ? null : teamId;
+  if (next) state.subjectTeam[sid] = next; else delete state.subjectTeam[sid];
   rebuildTeams();
   relocateDlg(sid);
   renderDialogBody();
-  setSubjectTeam(sid, teamId).catch(err => {
+  setSubjectTeam(sid, next).catch(err => {
     console.error('[briefing] 주제 팀 저장 실패', err);
     alert('주제 팀 저장 실패 — 로그인 상태인지 확인해주세요.\n' + (err?.message || err));
     if (prev) state.subjectTeam[sid] = prev; else delete state.subjectTeam[sid];

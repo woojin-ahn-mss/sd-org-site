@@ -73,8 +73,12 @@ export async function loadSubjectTeams() {
   return map;
 }
 
-/** 주제 팀 지정(upsert). */
+/** 주제 팀 지정(upsert). team 이 비면 태깅 삭제(자동 배치로 복귀). */
 export async function setSubjectTeam(subjectId, team) {
+  if (!team) {
+    unwrap(await supabase.from('briefing_subject_team').delete().eq('subject_id', subjectId));
+    return;
+  }
   unwrap(await supabase.from('briefing_subject_team')
     .upsert({ subject_id: subjectId, team }, { onConflict: 'subject_id' }));
 }
