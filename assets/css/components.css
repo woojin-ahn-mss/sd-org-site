@@ -2157,6 +2157,18 @@ hr.rule { border: 0; border-top: 1px solid var(--rule); margin: 18px 0; }
 .st-dot.is-new { background: #8a93a6; }
 .st-dot.is-wait { background: #596072; }
 
+/* 카드 정렬 */
+.bf-cardsort-btn {
+  margin-left: 16px; vertical-align: middle; background: transparent;
+  border: 1px solid rgba(255,255,255,0.2); color: #c2cadb;
+  font-size: 12px; font-weight: 600; padding: 5px 12px; border-radius: 8px; cursor: pointer;
+}
+.bf-cardsort-btn:hover { border-color: rgba(255,255,255,0.4); color: #fff; }
+.bf-cardsort-btn.on { background: #4fa3ff; border-color: #4fa3ff; color: #08101f; }
+.bf-subj-card.is-sorting { cursor: grab; }
+.bf-subj-card.is-sorting:hover { transform: none; }
+.bf-subj-card.dragging { opacity: 0.5; outline: 2px dashed #4fa3ff; }
+
 /* 분기 발표 로그인 상태 */
 .deck-auth { font-family: var(--font-mono); font-size: 12px; }
 .deck-auth-ok { color: #46d39a; }

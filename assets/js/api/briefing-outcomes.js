@@ -105,6 +105,26 @@ export async function loadSubjectTeams() {
   return map;
 }
 
+/* ----- 슬라이드(분기×팀) 카드 순서 ----- */
+
+/** 전체 슬라이드 카드 순서 → { 'quarter:team': [subjectId, ...] }. */
+export async function loadSlideOrders() {
+  const rows = unwrap(await supabase.from('briefing_slide').select('quarter, team, card_order'));
+  const map = {};
+  for (const r of rows || []) map[`${r.quarter}:${r.team}`] = r.card_order || [];
+  return map;
+}
+
+/** 카드 순서 저장(upsert). 빈 배열이면 삭제. */
+export async function saveSlideOrder(quarter, team, cardOrder) {
+  if (!cardOrder || !cardOrder.length) {
+    unwrap(await supabase.from('briefing_slide').delete().eq('quarter', quarter).eq('team', team));
+    return;
+  }
+  unwrap(await supabase.from('briefing_slide')
+    .upsert({ quarter, team, card_order: cardOrder }, { onConflict: 'quarter,team' }));
+}
+
 /* ----- 티켓 제목 override ----- */
 
 /** 전체 제목 override → { jira_key: title }. */

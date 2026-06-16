@@ -10,7 +10,7 @@ import { showError } from '../states.js';
 import { jiraUrl, bindJiraLinks } from '../jira-link.js';
 import { escapeHtml, escapeAttr } from '../escape.js';
 import { loadAll as loadPlanData, joinTicketsWithOverrides } from '../api/roadmap-plan-data.js';
-import { loadCards, saveCard, loadSubjectTeams, setSubjectTeam, loadTitles, setTitle } from '../api/briefing-outcomes.js';
+import { loadCards, saveCard, loadSubjectTeams, setSubjectTeam, loadTitles, setTitle, loadSlideOrders, saveSlideOrder } from '../api/briefing-outcomes.js';
 import { auth } from '../api/supabase.js';
 
 const YEAR = 2026;
@@ -75,7 +75,18 @@ function quarterKeys(it) {
   return dq ? new Set([dq]) : new Set();
 }
 
-const state = { byTab: {}, itemsByTab: {}, subjById: new Map(), slides: [], idx: 0, cards: {}, subjectTeam: {}, titles: {}, dlg: null };
+const state = { byTab: {}, itemsByTab: {}, subjById: new Map(), slides: [], idx: 0, cards: {}, subjectTeam: {}, titles: {}, slideOrder: {}, cardSort: false, dlg: null };
+
+/** 슬라이드(팀×분기)의 카드 순서 적용 — 저장된 순서 우선, 없는 카드는 기본(건수) 순서 뒤로. */
+function orderedSubjects(team) {
+  const ord = state.slideOrder[`${team.quarter}:${team.id}`];
+  if (!ord || !ord.length) return team.subjects;
+  const pos = new Map(ord.map((id, i) => [id, i]));
+  return team.subjects.map((s, i) => ({ s, i }))
+    .sort((a, b) =>
+      ((pos.has(a.s.id) ? pos.get(a.s.id) : Infinity) - (pos.has(b.s.id) ? pos.get(b.s.id) : Infinity)) || (a.i - b.i))
+    .map(x => x.s);
+}
 
 /* ----- 카드 상태(슬라이드별: 분기×팀×주제) ----- */
 const EMPTY_CARD = { content: '', order: [], hidden: [] };
@@ -169,10 +180,11 @@ export async function renderBriefing({ rootRel = '' }) {
   // Supabase 세션 복원(로드맵 주제 매핑 + 카드 상태 인증). 실패해도 degrade.
   try { await auth.init(); } catch (e) { console.warn('[briefing] auth.init 실패', e); }
   updateAuthUi();
-  [state.cards, state.subjectTeam, state.titles] = await Promise.all([
+  [state.cards, state.subjectTeam, state.titles, state.slideOrder] = await Promise.all([
     loadCards().catch(err => { console.warn('[briefing] 카드 상태 로드 실패(미로그인 등):', err); return {}; }),
     loadSubjectTeams().catch(err => { console.warn('[briefing] 주제 팀 로드 실패:', err); return {}; }),
     loadTitles().catch(err => { console.warn('[briefing] 제목 로드 실패:', err); return {}; }),
+    loadSlideOrders().catch(err => { console.warn('[briefing] 카드 순서 로드 실패:', err); return {}; }),
   ]);
 
   let data, planData;
@@ -328,11 +340,19 @@ function render() {
   if (s.kind === 'cover') stage.innerHTML = coverHtml(s.tab);
   else stage.innerHTML = teamHtml(s.team, s.tab);
 
-  // 팀 슬라이드의 주제 카드 → 다이얼로그로 과제 표시.
+  // 팀 슬라이드: 카드 클릭 → 다이얼로그 / 정렬 모드면 드래그로 순서 변경.
   if (s.kind === 'team') {
-    stage.querySelectorAll('.bf-subj-card').forEach(c => {
-      c.addEventListener('click', () => openSubjectDialog(s.team, s.tab, Number(c.dataset.sub)));
+    stage.querySelector('[data-card-sort]')?.addEventListener('click', () => {
+      state.cardSort = !state.cardSort;
+      render();
     });
+    if (state.cardSort) {
+      bindCardDnd(stage.querySelector('.subj-grid'), s.team);
+    } else {
+      stage.querySelectorAll('.bf-subj-card').forEach(c => {
+        c.addEventListener('click', () => openSubjectDialog(s.team, s.tab, Number(c.dataset.sub)));
+      });
+    }
   }
   bindJiraLinks(stage);
   const pos = document.getElementById('deck-pos');
@@ -361,22 +381,25 @@ function coverHtml(tabId) {
 
 function teamHtml(team, tabId) {
   const t = tabMeta(tabId);
-  const cards = team.subjects
-    .map((s, si) => ({ s, si }))
+  const sort = state.cardSort;
+  const cards = orderedSubjects(team)
+    .map(s => ({ s, si: team.subjects.indexOf(s) }))
     .filter(({ s }) => visN(s, team) > 0)               // 0건 주제 카드는 숨김
     .map(({ s, si }) => `
-    <button type="button" class="bf-subj-card" data-sub="${si}" style="--c:${team.color};">
+    <button type="button" class="bf-subj-card${sort ? ' is-sorting' : ''}" data-sub="${si}" data-sid="${escapeAttr(s.id)}"${sort ? ' draggable="true"' : ''} style="--c:${team.color};">
       <div class="subj-card-top">
         <span class="subj-card-dot" style="background:${team.color};"></span>
         <span class="subj-card-n num">${visN(s, team)}</span>
       </div>
       <div class="subj-card-name">${escapeHtml(s.name)}</div>
-      <div class="subj-card-hint">과제 ${visN(s, team)}개 보기 →</div>
+      <div class="subj-card-hint">${sort ? '드래그로 위치 이동' : `과제 ${visN(s, team)}개 보기 →`}</div>
     </button>`).join('');
   return `
     <div class="slide slide-team">
-      <div class="slide-kicker">${escapeHtml(t.label)} · ${escapeHtml(t.tag)} · 주제를 클릭하면 과제가 나옵니다</div>
-      <h2 class="slide-h"><span class="team-bar" style="background:${team.color};"></span>${escapeHtml(team.name)} <span class="slide-h-n" style="color:${team.color};">${teamVisibleTotal(team)}건</span></h2>
+      <div class="slide-kicker">${escapeHtml(t.label)} · ${escapeHtml(t.tag)} · ${sort ? '카드를 드래그해 순서 변경' : '주제를 클릭하면 과제가 나옵니다'}</div>
+      <h2 class="slide-h"><span class="team-bar" style="background:${team.color};"></span>${escapeHtml(team.name)} <span class="slide-h-n" style="color:${team.color};">${teamVisibleTotal(team)}건</span>
+        <button type="button" class="bf-cardsort-btn${sort ? ' on' : ''}" data-card-sort>${sort ? '완료' : '카드 정렬'}</button>
+      </h2>
       <div class="subj-grid">${cards}</div>
     </div>`;
 }
@@ -463,6 +486,52 @@ function startTitleEdit(span) {
   };
   input.addEventListener('blur', done);
   input.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); input.blur(); } });
+}
+
+/** 카드 정렬 모드 — 주제 카드 드래그앤드롭. drop 시 슬라이드(분기×팀) 카드 순서 저장. */
+function bindCardDnd(grid, team) {
+  if (!grid) return;
+  let dragSid = null;
+  grid.querySelectorAll('.bf-subj-card[draggable="true"]').forEach(card => {
+    card.addEventListener('dragstart', (e) => {
+      dragSid = card.dataset.sid;
+      card.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
+      try { e.dataTransfer.setData('text/plain', dragSid); } catch {}
+    });
+    card.addEventListener('dragend', () => { card.classList.remove('dragging'); dragSid = null; });
+    card.addEventListener('dragover', (e) => { e.preventDefault(); e.dataTransfer.dropEffect = 'move'; });
+    card.addEventListener('drop', (e) => {
+      e.preventDefault();
+      const targetSid = card.dataset.sid;
+      if (!dragSid || dragSid === targetSid) return;
+      const r = card.getBoundingClientRect();
+      const after = (e.clientX - r.left) > r.width / 2;   // 가로 그리드: 좌우 기준
+      reorderCard(team, dragSid, targetSid, after);
+    });
+  });
+}
+
+function reorderCard(team, dragSid, targetSid, after) {
+  const cur = orderedSubjects(team).map(s => s.id);   // 현재 표시 순서(전체 카드)
+  const from = cur.indexOf(dragSid);
+  if (from < 0) return;
+  cur.splice(from, 1);
+  let to = cur.indexOf(targetSid);
+  if (to < 0) return;
+  if (after) to += 1;
+  cur.splice(to, 0, dragSid);
+
+  const key = `${team.quarter}:${team.id}`;
+  const prev = state.slideOrder[key];
+  state.slideOrder[key] = cur;
+  render();
+  saveSlideOrder(team.quarter, team.id, cur).catch(err => {
+    console.error('[briefing] 카드 순서 저장 실패', err);
+    alert('카드 순서 저장 실패 — 로그인 상태인지 확인해주세요.\n' + (err?.message || err));
+    if (prev) state.slideOrder[key] = prev; else delete state.slideOrder[key];
+    render();
+  });
 }
 
 /** 관리 모드 드래그앤드롭 순서 변경 — drop 시 슬라이드별 순서 저장. */
