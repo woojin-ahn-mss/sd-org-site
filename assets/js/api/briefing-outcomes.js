@@ -73,6 +73,26 @@ export async function loadSubjectTeams() {
   return map;
 }
 
+/* ----- 티켓 제목 override ----- */
+
+/** 전체 제목 override → { jira_key: title }. */
+export async function loadTitles() {
+  const rows = unwrap(await supabase.from('briefing_ticket_title').select('jira_key, title'));
+  const map = {};
+  for (const r of rows || []) map[r.jira_key] = r.title || '';
+  return map;
+}
+
+/** 제목 저장 — 있으면 upsert, 비면 삭제(원래 summary 로 복귀). */
+export async function setTitle(jiraKey, title) {
+  const t = title == null ? '' : String(title);
+  if (!t.trim()) {
+    unwrap(await supabase.from('briefing_ticket_title').delete().eq('jira_key', jiraKey));
+    return;
+  }
+  unwrap(await supabase.from('briefing_ticket_title').upsert({ jira_key: jiraKey, title: t }, { onConflict: 'jira_key' }));
+}
+
 /** 주제 팀 지정(upsert). team 이 비면 태깅 삭제(자동 배치로 복귀). */
 export async function setSubjectTeam(subjectId, team) {
   if (!team) {

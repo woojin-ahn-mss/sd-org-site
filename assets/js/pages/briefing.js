@@ -10,7 +10,7 @@ import { showError } from '../states.js';
 import { jiraUrl, bindJiraLinks } from '../jira-link.js';
 import { escapeHtml, escapeAttr } from '../escape.js';
 import { loadAll as loadPlanData, joinTicketsWithOverrides } from '../api/roadmap-plan-data.js';
-import { loadOutcomes, upsertOutcome, loadHidden, setHidden, loadOrders, saveOrder, loadSubjectTeams, setSubjectTeam } from '../api/briefing-outcomes.js';
+import { loadOutcomes, upsertOutcome, loadHidden, setHidden, loadOrders, saveOrder, loadSubjectTeams, setSubjectTeam, loadTitles, setTitle } from '../api/briefing-outcomes.js';
 import { auth } from '../api/supabase.js';
 
 const YEAR = 2026;
@@ -72,7 +72,18 @@ function quarterKeys(it) {
   return dq ? new Set([dq]) : new Set();
 }
 
-const state = { byTab: {}, itemsByTab: {}, subjById: new Map(), slides: [], idx: 0, outcomes: {}, hidden: new Set(), orders: {}, subjectTeam: {}, dlg: null };
+const state = { byTab: {}, itemsByTab: {}, subjById: new Map(), slides: [], idx: 0, outcomes: {}, hidden: new Set(), orders: {}, subjectTeam: {}, titles: {}, dlg: null };
+
+/** 표시 제목 — override 있으면 그것, 없으면 Jira summary. */
+const displayTitle = (it) => (state.titles[it.key] != null ? state.titles[it.key] : (it.summary || ''));
+/** 제목 override 저장 — state 즉시 반영 + Supabase. */
+function saveTitle(key, title) {
+  if (title) state.titles[key] = title; else delete state.titles[key];
+  setTitle(key, title).catch(err => {
+    console.error('[briefing] 제목 저장 실패', err);
+    alert('제목 저장 실패 — 로그인 상태인지 확인해주세요.\n' + (err?.message || err));
+  });
+}
 
 /** 티켓 메인주제가 매핑된 팀들(복수). 매핑 없으면 [기타]. */
 const mainSubjectTeams = (it) => SUBJ_TEAM.get(normSubject(it.mainSubject)) || [ETC.id];
@@ -118,11 +129,12 @@ export async function renderBriefing({ rootRel = '' }) {
 
   // Supabase 세션 복원(로드맵 주제 매핑 + 성과 인증). 실패해도 degrade.
   try { await auth.init(); } catch (e) { console.warn('[briefing] auth.init 실패', e); }
-  [state.outcomes, state.hidden, state.orders, state.subjectTeam] = await Promise.all([
+  [state.outcomes, state.hidden, state.orders, state.subjectTeam, state.titles] = await Promise.all([
     loadOutcomes().catch(err => { console.warn('[briefing] 성과 로드 실패(미로그인 등):', err); return {}; }),
     loadHidden().catch(err => { console.warn('[briefing] 숨김 목록 로드 실패:', err); return new Set(); }),
     loadOrders().catch(err => { console.warn('[briefing] 순서 로드 실패:', err); return {}; }),
     loadSubjectTeams().catch(err => { console.warn('[briefing] 주제 팀 로드 실패:', err); return {}; }),
+    loadTitles().catch(err => { console.warn('[briefing] 제목 로드 실패:', err); return {}; }),
   ]);
 
   let data, planData;
@@ -343,6 +355,7 @@ function renderDialogBody() {
   const { team, tabId, subIdx, manage } = state.dlg;
   const s = team.subjects[subIdx];
   const quarter = tabMeta(tabId).quarter;
+  const noteLabel = tabMeta(tabId).tag === '회고' ? '성과' : '우선순위';   // 2Q=성과, 3Q=우선순위
   const oKey = outcomeKey(quarter, s.id);
   const ordered = orderedItems(s, quarter);
   const list = manage ? ordered : ordered.filter(it => !state.hidden.has(it.key));
@@ -354,11 +367,11 @@ function renderDialogBody() {
       <button type="button" class="dlg-close" data-dlg-close aria-label="닫기">✕</button>
     </div>
     <div class="dlg-outcome">
-      <div class="dlg-outcome-label" style="color:${team.color};">성과</div>
-      <div class="bf-outcome" data-outcome tabindex="0" role="button">${outcomeViewHtml(state.outcomes[oKey] || '')}</div>
+      <div class="dlg-outcome-label" style="color:${team.color};">${noteLabel}</div>
+      <div class="bf-outcome" data-outcome tabindex="0" role="button">${outcomeViewHtml(state.outcomes[oKey] || '', noteLabel)}</div>
     </div>
     ${manage ? teamPickerHtml(s) : ''}
-    ${manage ? `<div class="dlg-manage-hint">드래그로 순서 변경 · 숨기기로 발표에서 제외. (자동 저장)</div>` : ''}
+    ${manage ? `<div class="dlg-manage-hint">제목 클릭=수정 · 드래그=순서 · 숨기기=발표 제외. (자동 저장)</div>` : ''}
     <div class="dlg-list"><ul class="subj-tickets${manage ? ' is-manage' : ''}">${list.map(it => ticketHtml(it, manage)).join('')}</ul></div>`;
 
   dlg.querySelector('[data-dlg-manage]')?.addEventListener('click', () => {
@@ -372,10 +385,41 @@ function renderDialogBody() {
     dlg.querySelectorAll('[data-subj-team]').forEach(btn => {
       btn.addEventListener('click', () => changeSubjectTeam(s.id, btn.dataset.subjTeam));
     });
+    dlg.querySelectorAll('[data-title-key]').forEach(span => {
+      span.addEventListener('click', () => startTitleEdit(span));
+    });
     bindDnd(dlg.querySelector('.subj-tickets'), quarter, s);
   }
-  bindOutcome(dlg, quarter, s.id);
+  bindOutcome(dlg, quarter, s.id, noteLabel);
   bindJiraLinks(dlg);
+}
+
+/** 관리 모드 — 티켓 제목 인라인 수정. blur 시 Supabase 저장. */
+function startTitleEdit(span) {
+  const key = span.dataset.titleKey;
+  const orig = span.dataset.orig || '';
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.className = 'bf-title-input';
+  input.value = state.titles[key] != null ? state.titles[key] : orig;
+  span.replaceWith(input);
+  input.focus();
+  input.select();
+  const done = () => {
+    const v = input.value.trim();
+    const override = (v && v !== orig) ? v : '';
+    saveTitle(key, override);
+    const ns = document.createElement('span');
+    ns.className = 'th-sum bf-title';
+    ns.dataset.titleKey = key;
+    ns.dataset.orig = orig;
+    ns.title = '클릭하여 제목 수정';
+    ns.textContent = override || orig;
+    input.replaceWith(ns);
+    ns.addEventListener('click', () => startTitleEdit(ns));
+  };
+  input.addEventListener('blur', done);
+  input.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); input.blur(); } });
 }
 
 /** 관리 모드 드래그앤드롭 순서 변경 — drop 시 전체 키 순서를 Supabase 저장. */
@@ -438,14 +482,14 @@ function toggleHidden(key) {
   });
 }
 
-/** 성과 텍스트 → 표시 HTML. 통 필드(입력 그대로, 줄바꿈·띄어쓰기 보존; '-' 불릿은 사용자가 직접). */
-function outcomeViewHtml(text) {
-  if (!text || !text.trim()) return `<span class="bf-outcome-ph">+ 성과 입력 (클릭)</span>`;
+/** 노트(성과/우선순위) 텍스트 → 표시 HTML. 통 필드(입력 그대로 보존). */
+function outcomeViewHtml(text, label = '성과') {
+  if (!text || !text.trim()) return `<span class="bf-outcome-ph">+ ${escapeHtml(label)} 입력 (클릭)</span>`;
   return `<div class="bf-outcome-text">${escapeHtml(text)}</div>`;
 }
 
-/** 성과 영역 — 클릭하면 textarea 편집, blur 시 Supabase 저장. */
-function bindOutcome(dlg, quarter, subjId) {
+/** 노트 영역 — 클릭하면 textarea 편집, blur 시 Supabase 저장. label=성과/우선순위. */
+function bindOutcome(dlg, quarter, subjId, label = '성과') {
   const view = dlg.querySelector('[data-outcome]');
   if (!view) return;
   const key = outcomeKey(quarter, subjId);
@@ -454,7 +498,7 @@ function bindOutcome(dlg, quarter, subjId) {
     const ta = document.createElement('textarea');
     ta.className = 'bf-outcome-input';
     ta.value = state.outcomes[key] || '';
-    ta.placeholder = '성과를 입력하세요 (줄바꿈·\'-\' 불릿 자유)';
+    ta.placeholder = `${label}을(를) 입력하세요 (줄바꿈·'-' 불릿 자유)`;
     view.replaceWith(ta);
     ta.focus();
     ta.setSelectionRange(ta.value.length, ta.value.length);
@@ -464,7 +508,7 @@ function bindOutcome(dlg, quarter, subjId) {
       const nv = document.createElement('div');
       nv.className = 'bf-outcome'; nv.tabIndex = 0; nv.setAttribute('role', 'button');
       nv.setAttribute('data-outcome', '');
-      nv.innerHTML = outcomeViewHtml(text);
+      nv.innerHTML = outcomeViewHtml(text, label);
       ta.replaceWith(nv);
       nv.addEventListener('click', edit);
       nv.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); edit(); } });
@@ -479,6 +523,10 @@ function ticketHtml(it, manage = false) {
   const keyHtml = url
     ? `<a class="key" href="${url}" target="_blank" rel="noopener noreferrer" data-jira-key="${escapeAttr(it.key)}">${escapeHtml(it.key)}</a>`
     : `<span class="key muted">${escapeHtml(it.key || '')}</span>`;
+  const title = displayTitle(it);
+  const sumHtml = manage
+    ? `<span class="th-sum bf-title" data-title-key="${escapeAttr(it.key)}" data-orig="${escapeAttr(it.summary || '')}" title="클릭하여 제목 수정">${escapeHtml(title)}</span>`
+    : `<span class="th-sum">${escapeHtml(title)}</span>`;
   const hidden = state.hidden.has(it.key);
   const toggle = manage
     ? `<button type="button" class="bf-tk-toggle${hidden ? ' is-hidden' : ''}" data-tk="${escapeAttr(it.key)}">${hidden ? '보이기' : '숨기기'}</button>`
@@ -488,7 +536,7 @@ function ticketHtml(it, manage = false) {
       ${handle}
       <span class="st-dot ${statusCls(it.statusCategory)}"></span>
       ${keyHtml}
-      <span class="th-sum">${escapeHtml(it.summary || '')}</span>
+      ${sumHtml}
       ${toggle}
     </li>`;
 }
