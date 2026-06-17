@@ -372,7 +372,7 @@ function coverHtml(tabId) {
      </div>`).join('');
   return `
     <div class="slide slide-cover">
-      <div class="slide-kicker">QUARTERLY BRIEFING · ${escapeHtml(t.tag)}</div>
+      <div class="slide-kicker">QUARTERLY BRIEFING${t.tag === '예고' ? '' : ' · ' + escapeHtml(t.tag)}</div>
       <div class="cover-q">${escapeHtml(t.label)}</div>
       <div class="cover-sub">${t.tag === '회고' ? '진행·완료한 일' : '배포 예정'}</div>
       <div class="cover-teams">${rows}</div>
@@ -396,7 +396,7 @@ function teamHtml(team, tabId) {
     </button>`).join('');
   return `
     <div class="slide slide-team">
-      <div class="slide-kicker">${escapeHtml(t.label)} · ${escapeHtml(t.tag)} · ${sort ? '카드를 드래그해 순서 변경' : '주제를 클릭하면 과제가 나옵니다'}</div>
+      <div class="slide-kicker">${escapeHtml(t.label)}${t.tag === '예고' ? '' : ' · ' + escapeHtml(t.tag)} · ${sort ? '카드를 드래그해 순서 변경' : '주제를 클릭하면 과제가 나옵니다'}</div>
       <h2 class="slide-h"><span class="team-bar" style="background:${team.color};"></span>${escapeHtml(team.name)} <span class="slide-h-n" style="color:${team.color};">${teamVisibleTotal(team)}건</span>
         <button type="button" class="bf-cardsort-btn${sort ? ' on' : ''}" data-card-sort>${sort ? '완료' : '카드 정렬'}</button>
       </h2>
