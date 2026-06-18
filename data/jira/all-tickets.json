@@ -1,11 +1,66 @@
 {
-  "lastSync": "2026-06-18T07:42:54+09:00",
-  "count": 594,
+  "lastSync": "2026-06-19T07:53:16+09:00",
+  "count": 596,
   "items": [
+    {
+      "key": "TM-3659",
+      "url": "https://jira.team.musinsa.com/browse/TM-3659",
+      "summary": "[무신사] 상품 이미지별 성별 설정 적용 - 전시, 커머스",
+      "issueType": "Initiative",
+      "project": "TM",
+      "status": "SUGGESTED",
+      "statusCategory": "new",
+      "priority": "Big-Rock",
+      "assignee": {
+        "name": "허유선",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "2026-3Q",
+        "DUE_OVERDUE_BOT",
+        "홈앤디"
+      ],
+      "mainSubject": "33.상품",
+      "mainSubjects": [
+        "33.상품"
+      ],
+      "subSubject": "추천",
+      "subSubjects": [
+        "추천",
+        "발매",
+        "랭킹",
+        "세일(판)",
+        "검색",
+        "브랜드 샵",
+        "PDP",
+        "캠페인",
+        "장바구니",
+        "주문서",
+        "주문완료",
+        "주문내역"
+      ],
+      "yearQuarter": "2026-Q3",
+      "yearQuarters": [
+        "2026-Q3"
+      ],
+      "subGroup": "MSS-P Discovery & Engagement",
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-06-18T14:37:24.398+0900",
+      "updated": "2026-06-18T18:33:37.782+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null
+    },
     {
       "key": "TM-3652",
       "url": "https://jira.team.musinsa.com/browse/TM-3652",
-      "summary": "[CPCMS] 캠페인 동시 편집",
+      "summary": "[캠페인관리] 캠페인 모듈 편집점유 기능 ",
       "issueType": "Initiative",
       "project": "TM",
       "status": "SUGGESTED",
@@ -32,21 +87,20 @@
       ],
       "yearQuarter": "2026-Q3",
       "yearQuarters": [
-        "2026-Q3",
-        "2026-Q4"
+        "2026-Q3"
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-17T21:51:12.901+0900",
-      "updated": "2026-06-17T21:51:13.105+0900",
+      "updated": "2026-06-18T16:15:43.640+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
     {
       "key": "TM-3651",
       "url": "https://jira.team.musinsa.com/browse/TM-3651",
-      "summary": "[CPCMS] 캠페인 진열/노출 시스템 안정화 ",
+      "summary": "[캠페인 관리] 캠페인 진열/노출 시스템 안정화 ",
       "issueType": "Initiative",
       "project": "TM",
       "status": "SUGGESTED",
@@ -73,14 +127,144 @@
       ],
       "yearQuarter": "2026-Q3",
       "yearQuarters": [
-        "2026-Q3",
-        "2026-Q4"
+        "2026-Q3"
       ],
       "subGroup": "Core-E Discovery",
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-17T21:21:52.854+0900",
-      "updated": "2026-06-17T21:25:45.732+0900",
+      "updated": "2026-06-18T16:15:52.572+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null
+    },
+    {
+      "key": "TM-3645",
+      "url": "https://jira.team.musinsa.com/browse/TM-3645",
+      "summary": "[세일판] 균일가 하루특가 신설",
+      "issueType": "Initiative",
+      "project": "TM",
+      "status": "SUGGESTED",
+      "statusCategory": "new",
+      "priority": "Big-Rock",
+      "assignee": {
+        "name": "신제경",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "신제경",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "세일판",
+        "홈앤디"
+      ],
+      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubjects": [
+        "03.랭킹/세일/커스텀판"
+      ],
+      "subSubject": "세일(판)",
+      "subSubjects": [
+        "세일(판)"
+      ],
+      "yearQuarter": "2026-Q3",
+      "yearQuarters": [
+        "2026-Q3"
+      ],
+      "subGroup": "MSS-P Discovery & Engagement",
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-06-17T18:11:40.959+0900",
+      "updated": "2026-06-18T14:47:03.910+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null
+    },
+    {
+      "key": "TM-3644",
+      "url": "https://jira.team.musinsa.com/browse/TM-3644",
+      "summary": "[콘텐츠] 이벤트 분류(댓글/체험단/오프라인) 개선 및 공지 모듈 추가",
+      "issueType": "Initiative",
+      "project": "TM",
+      "status": "SUGGESTED",
+      "statusCategory": "new",
+      "priority": "P0",
+      "assignee": {
+        "name": "이솔이",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "문호은",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "CMS26",
+        "domain-content"
+      ],
+      "mainSubject": "02.콘텐츠/발매/스냅/라이브",
+      "mainSubjects": [
+        "02.콘텐츠/발매/스냅/라이브"
+      ],
+      "subSubject": "콘텐츠",
+      "subSubjects": [
+        "콘텐츠"
+      ],
+      "yearQuarter": "2026-Q3",
+      "yearQuarters": [
+        "2026-Q3"
+      ],
+      "subGroup": "MSS-P Discovery & Engagement",
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-06-17T16:20:17.922+0900",
+      "updated": "2026-06-18T18:27:06.138+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null
+    },
+    {
+      "key": "TM-3605",
+      "url": "https://jira.team.musinsa.com/browse/TM-3605",
+      "summary": "[유즈드] PLP/카숍/SRP 유즈드탭 구분",
+      "issueType": "Initiative",
+      "project": "TM",
+      "status": "SUGGESTED",
+      "statusCategory": "new",
+      "priority": "P0",
+      "assignee": {
+        "name": "문호은",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "이유정",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "유즈드"
+      ],
+      "mainSubject": "41.유즈드",
+      "mainSubjects": [
+        "41.유즈드"
+      ],
+      "subSubject": "유즈드",
+      "subSubjects": [
+        "유즈드",
+        "스냅",
+        "카테고리/SRP"
+      ],
+      "yearQuarter": "2026-Q3",
+      "yearQuarters": [
+        "2026-Q3",
+        "2026-Q4"
+      ],
+      "subGroup": "MSS-P Discovery & Engagement",
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-06-16T23:24:25.754+0900",
+      "updated": "2026-06-18T18:50:59.847+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -166,7 +350,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-16T22:51:36.935+0900",
-      "updated": "2026-06-16T22:51:56.292+0900",
+      "updated": "2026-06-18T12:06:08.835+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -190,6 +374,7 @@
         "accountId": null
       },
       "labels": [
+        "2026-3Q",
         "홈앤디"
       ],
       "mainSubject": "42.광고",
@@ -208,7 +393,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-16T22:15:11.345+0900",
-      "updated": "2026-06-17T08:34:32.242+0900",
+      "updated": "2026-06-18T17:28:42.874+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -251,7 +436,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-16T17:29:18.759+0900",
-      "updated": "2026-06-16T23:21:34.088+0900",
+      "updated": "2026-06-18T12:06:09.823+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -280,19 +465,71 @@
         "원앱",
         "홈앤디"
       ],
-      "mainSubject": null,
-      "mainSubjects": [],
-      "subSubject": null,
-      "subSubjects": [],
+      "mainSubject": "56. 글로벌_원앱이전",
+      "mainSubjects": [
+        "56. 글로벌_원앱이전"
+      ],
+      "subSubject": "카테고리/SRP",
+      "subSubjects": [
+        "카테고리/SRP",
+        "브랜드 인덱스"
+      ],
       "yearQuarter": "2026-Q3",
       "yearQuarters": [
         "2026-Q3"
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
-      "dueDate": "2026-10-20",
+      "dueDate": null,
       "created": "2026-06-16T16:10:45.859+0900",
-      "updated": "2026-06-18T06:00:33.652+0900",
+      "updated": "2026-06-18T09:51:57.370+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null
+    },
+    {
+      "key": "TM-3576",
+      "url": "https://jira.team.musinsa.com/browse/TM-3576",
+      "summary": "[One-App M3] SRP/카테고리숍/브랜드숍+공통 PLP",
+      "issueType": "Initiative",
+      "project": "TM",
+      "status": "SUGGESTED",
+      "statusCategory": "new",
+      "priority": "P0",
+      "assignee": {
+        "name": "문호은",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "문호은",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "26'2Q",
+        "global-adapter",
+        "원앱",
+        "홈앤디"
+      ],
+      "mainSubject": "56. 글로벌_원앱이전",
+      "mainSubjects": [
+        "56. 글로벌_원앱이전"
+      ],
+      "subSubject": "카테고리/SRP",
+      "subSubjects": [
+        "카테고리/SRP",
+        "브랜드 샵",
+        "필터/PLP"
+      ],
+      "yearQuarter": "2026-Q3",
+      "yearQuarters": [
+        "2026-Q3"
+      ],
+      "subGroup": "MSS-P Discovery & Engagement",
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-06-16T16:10:28.110+0900",
+      "updated": "2026-06-18T11:16:56.373+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -335,7 +572,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-16T16:02:19.085+0900",
-      "updated": "2026-06-17T11:53:14.386+0900",
+      "updated": "2026-06-18T10:03:39.822+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -377,7 +614,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-16T15:53:24.189+0900",
-      "updated": "2026-06-17T22:57:11.847+0900",
+      "updated": "2026-06-18T08:31:33.178+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -419,9 +656,9 @@
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
-      "dueDate": "2026-10-20",
+      "dueDate": null,
       "created": "2026-06-16T15:41:01.224+0900",
-      "updated": "2026-06-18T06:00:32.821+0900",
+      "updated": "2026-06-18T12:06:09.349+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -466,7 +703,7 @@
       "startDate": null,
       "dueDate": "2026-10-20",
       "created": "2026-06-16T15:40:51.416+0900",
-      "updated": "2026-06-18T06:00:32.986+0900",
+      "updated": "2026-06-19T06:00:34.577+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -498,7 +735,7 @@
       "startDate": "2026-05-29",
       "dueDate": "2026-06-19",
       "created": "2026-06-15T14:26:43.064+0900",
-      "updated": "2026-06-17T16:28:46.242+0900",
+      "updated": "2026-06-19T06:01:05.368+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -541,7 +778,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-15T10:57:49.918+0900",
-      "updated": "2026-06-16T14:51:16.952+0900",
+      "updated": "2026-06-18T08:30:20.747+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -582,7 +819,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-15T10:55:38.702+0900",
-      "updated": "2026-06-16T14:51:02.754+0900",
+      "updated": "2026-06-18T12:06:06.502+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -627,6 +864,53 @@
       "lastStatusChangedAt": null
     },
     {
+      "key": "TM-3390",
+      "url": "https://jira.team.musinsa.com/browse/TM-3390",
+      "summary": "조건부혜택 시스템 고도화",
+      "issueType": "Initiative",
+      "project": "TM",
+      "status": "SUGGESTED",
+      "statusCategory": "new",
+      "priority": "P0",
+      "assignee": {
+        "name": "박승현",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "박승현",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "조건부혜택"
+      ],
+      "mainSubject": "21.주문/배송/클레임",
+      "mainSubjects": [
+        "21.주문/배송/클레임"
+      ],
+      "subSubject": "PDP",
+      "subSubjects": [
+        "PDP",
+        "카트/체크아웃",
+        "마이",
+        "배송",
+        "상품"
+      ],
+      "yearQuarter": "2026-Q3",
+      "yearQuarters": [
+        "2026-Q3",
+        "2026-Q4"
+      ],
+      "subGroup": "MSS-P Discovery & Engagement",
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-06-14T23:19:15.147+0900",
+      "updated": "2026-06-18T18:19:48.504+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null
+    },
+    {
       "key": "TM-3369",
       "url": "https://jira.team.musinsa.com/browse/TM-3369",
       "summary": "[랭킹판] 급상승 상품 랭킹 시차 축소 (현재 최대 20분 Delay → Trigger 방식으로 수정)",
@@ -666,7 +950,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-12T13:40:42.876+0900",
-      "updated": "2026-06-16T19:54:49.687+0900",
+      "updated": "2026-06-18T23:58:34.840+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -710,7 +994,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-12T09:53:26.933+0900",
-      "updated": "2026-06-12T10:27:27.747+0900",
+      "updated": "2026-06-18T12:05:47.371+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -794,7 +1078,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-11T19:14:56.890+0900",
-      "updated": "2026-06-16T15:21:45.128+0900",
+      "updated": "2026-06-18T16:40:44.140+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -973,7 +1257,7 @@
       "startDate": "2026-05-29",
       "dueDate": "2026-06-14",
       "created": "2026-06-10T09:44:37.792+0900",
-      "updated": "2026-06-15T09:14:25.335+0900",
+      "updated": "2026-06-19T06:01:05.392+0900",
       "resolutionDate": "2026-06-12T13:30:34.695+0900",
       "lastStatusChangedAt": null
     },
@@ -1113,7 +1397,7 @@
       "project": "TM",
       "status": "SUGGESTED",
       "statusCategory": "new",
-      "priority": "Big-Rock",
+      "priority": "P1",
       "assignee": {
         "name": "신제경",
         "email": null,
@@ -1138,13 +1422,14 @@
       ],
       "yearQuarter": "2026-Q3",
       "yearQuarters": [
-        "2026-Q3"
+        "2026-Q3",
+        "2026-Q4"
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-09T10:57:52.779+0900",
-      "updated": "2026-06-17T10:18:45.143+0900",
+      "updated": "2026-06-18T19:07:23.874+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -1230,21 +1515,21 @@
       "startDate": "2026-06-07",
       "dueDate": "2026-06-12",
       "created": "2026-06-05T15:20:27.785+0900",
-      "updated": "2026-06-16T06:02:07.473+0900",
+      "updated": "2026-06-19T06:01:05.891+0900",
       "resolutionDate": "2026-06-15T10:07:44.414+0900",
       "lastStatusChangedAt": null
     },
     {
       "key": "TM-3236",
       "url": "https://jira.team.musinsa.com/browse/TM-3236",
-      "summary": "[추천] PDP 추천영역 내 무배당발 가중치 반영",
+      "summary": "[추천] [MSS] 추천판 및 PDP 추천 내 무배당발 가중치 적용",
       "issueType": "Initiative",
       "project": "TM",
       "status": "SUGGESTED",
       "statusCategory": "new",
       "priority": "P0",
       "assignee": {
-        "name": "이광수",
+        "name": "박성일",
         "email": null,
         "accountId": null
       },
@@ -1268,10 +1553,10 @@
         "2026-Q3"
       ],
       "subGroup": "Core-E Discovery",
-      "startDate": null,
-      "dueDate": null,
+      "startDate": "2026-07-01",
+      "dueDate": "2026-09-30",
       "created": "2026-06-05T14:59:48.239+0900",
-      "updated": "2026-06-12T07:04:46.438+0900",
+      "updated": "2026-06-19T06:00:48.051+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -1295,6 +1580,7 @@
         "accountId": null
       },
       "labels": [
+        "삭제",
         "홈앤디"
       ],
       "mainSubject": "43.무배당발",
@@ -1306,15 +1592,13 @@
         "추천",
         "PDP"
       ],
-      "yearQuarter": "2026-Q3",
-      "yearQuarters": [
-        "2026-Q3"
-      ],
+      "yearQuarter": null,
+      "yearQuarters": [],
       "subGroup": "Core-E Discovery",
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-05T14:56:22.424+0900",
-      "updated": "2026-06-12T17:38:17.033+0900",
+      "updated": "2026-06-18T13:15:05.507+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -1617,7 +1901,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-05T13:07:11.233+0900",
-      "updated": "2026-06-12T00:19:08.222+0900",
+      "updated": "2026-06-18T08:30:44.586+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -1660,7 +1944,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-05T13:06:53.707+0900",
-      "updated": "2026-06-17T21:08:43.243+0900",
+      "updated": "2026-06-18T08:30:44.173+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -1704,7 +1988,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-05T13:06:19.993+0900",
-      "updated": "2026-06-17T21:11:10.000+0900",
+      "updated": "2026-06-18T08:30:43.579+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -1747,7 +2031,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-05T12:43:40.752+0900",
-      "updated": "2026-06-17T20:09:39.043+0900",
+      "updated": "2026-06-18T08:30:43.114+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -1791,7 +2075,7 @@
       "startDate": "0027-06-07",
       "dueDate": null,
       "created": "2026-06-05T12:43:04.460+0900",
-      "updated": "2026-06-17T20:11:31.361+0900",
+      "updated": "2026-06-18T23:43:04.460+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -1834,7 +2118,7 @@
       "startDate": "0027-06-07",
       "dueDate": null,
       "created": "2026-06-05T12:42:46.481+0900",
-      "updated": "2026-06-17T21:12:25.491+0900",
+      "updated": "2026-06-18T12:05:38.556+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -1879,9 +2163,9 @@
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": "2026-06-09",
-      "dueDate": "2026-09-30",
+      "dueDate": null,
       "created": "2026-06-04T23:52:40.623+0900",
-      "updated": "2026-06-18T06:00:44.191+0900",
+      "updated": "2026-06-18T18:03:52.398+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -1924,7 +2208,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-05T09:54:21.984+0900",
-      "updated": "2026-06-16T15:34:25.834+0900",
+      "updated": "2026-06-18T08:30:42.099+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -1970,7 +2254,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-04T23:56:01.978+0900",
-      "updated": "2026-06-17T17:38:44.942+0900",
+      "updated": "2026-06-18T12:05:38.978+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -2046,15 +2330,15 @@
       "subSubjects": [
         "후기"
       ],
-      "yearQuarter": "2026-Q3",
+      "yearQuarter": "2026-Q4",
       "yearQuarters": [
-        "2026-Q3"
+        "2026-Q4"
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-04T21:48:30.814+0900",
-      "updated": "2026-06-12T00:18:36.209+0900",
+      "updated": "2026-06-18T17:56:55.337+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -2138,7 +2422,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-04T21:47:55.043+0900",
-      "updated": "2026-06-17T22:52:01.480+0900",
+      "updated": "2026-06-18T13:36:32.846+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -2256,15 +2540,15 @@
       "subSubjects": [
         "후기"
       ],
-      "yearQuarter": "2026-Q3",
+      "yearQuarter": "2026-Q4",
       "yearQuarters": [
-        "2026-Q3"
+        "2026-Q4"
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-04T21:47:00.958+0900",
-      "updated": "2026-06-12T00:19:46.805+0900",
+      "updated": "2026-06-18T17:55:52.912+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -2348,7 +2632,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-04T21:46:23.984+0900",
-      "updated": "2026-06-17T21:30:38.037+0900",
+      "updated": "2026-06-18T13:38:50.776+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -2434,10 +2718,10 @@
         "2026-Q3"
       ],
       "subGroup": "MSS-P Discovery & Engagement",
-      "startDate": "2026-06-04",
+      "startDate": null,
       "dueDate": null,
       "created": "2026-06-04T17:51:25.815+0900",
-      "updated": "2026-06-10T08:38:33.916+0900",
+      "updated": "2026-06-18T15:51:18.063+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -2478,16 +2762,15 @@
         "브랜드 인덱스",
         "브랜드 샵"
       ],
-      "yearQuarter": "2025-Q4",
+      "yearQuarter": "2026-Q3",
       "yearQuarters": [
-        "2025-Q4",
         "2026-Q3"
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-04T17:49:57.942+0900",
-      "updated": "2026-06-17T11:10:42.200+0900",
+      "updated": "2026-06-18T14:52:03.370+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -2534,7 +2817,7 @@
       "startDate": "2026-06-04",
       "dueDate": "2026-06-04",
       "created": "2026-06-04T17:49:06.576+0900",
-      "updated": "2026-06-18T06:00:44.539+0900",
+      "updated": "2026-06-19T06:00:48.929+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -2576,7 +2859,7 @@
       "startDate": "2026-06-04",
       "dueDate": "2026-06-30",
       "created": "2026-06-04T15:46:46.795+0900",
-      "updated": "2026-06-18T06:00:45.624+0900",
+      "updated": "2026-06-19T06:01:06.817+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -2661,7 +2944,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-02T20:00:04.088+0900",
-      "updated": "2026-06-16T15:53:38.707+0900",
+      "updated": "2026-06-18T16:58:02.503+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -2705,10 +2988,10 @@
         "2026-Q4"
       ],
       "subGroup": "Core-E Personalization",
-      "startDate": "2026-06-02",
+      "startDate": null,
       "dueDate": null,
       "created": "2026-06-02T15:50:26.311+0900",
-      "updated": "2026-06-17T11:46:42.530+0900",
+      "updated": "2026-06-18T11:22:52.933+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -2870,7 +3153,7 @@
       "startDate": "2026-06-02",
       "dueDate": null,
       "created": "2026-06-02T11:16:29.717+0900",
-      "updated": "2026-06-12T14:20:52.907+0900",
+      "updated": "2026-06-18T12:05:40.475+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -2946,9 +3229,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "90. KTLO",
+      "mainSubject": "01.추천",
       "mainSubjects": [
-        "90. KTLO"
+        "01.추천"
       ],
       "subSubject": "추천",
       "subSubjects": [
@@ -2960,10 +3243,10 @@
         "2026-Q4"
       ],
       "subGroup": "Core-E Personalization",
-      "startDate": "2026-06-02",
+      "startDate": null,
       "dueDate": null,
       "created": "2026-06-02T11:01:08.071+0900",
-      "updated": "2026-06-16T23:30:20.855+0900",
+      "updated": "2026-06-18T15:53:24.112+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -3009,7 +3292,7 @@
       "startDate": "2026-06-12",
       "dueDate": "2026-06-19",
       "created": "2026-06-01T22:52:13.399+0900",
-      "updated": "2026-06-18T06:00:46.593+0900",
+      "updated": "2026-06-19T06:00:50.165+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -3192,7 +3475,7 @@
       "startDate": "2026-06-05",
       "dueDate": "2026-06-12",
       "created": "2026-05-29T17:16:45.959+0900",
-      "updated": "2026-06-15T10:16:19.713+0900",
+      "updated": "2026-06-19T06:01:07.902+0900",
       "resolutionDate": "2026-06-11T16:39:12.472+0900",
       "lastStatusChangedAt": null
     },
@@ -3358,7 +3641,7 @@
       "startDate": "2026-06-12",
       "dueDate": "2026-06-25",
       "created": "2026-05-28T10:10:43.520+0900",
-      "updated": "2026-06-18T06:00:48.096+0900",
+      "updated": "2026-06-19T06:00:51.483+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -3401,7 +3684,7 @@
       "startDate": "2026-06-01",
       "dueDate": null,
       "created": "2026-05-27T17:31:30.911+0900",
-      "updated": "2026-06-17T13:09:14.514+0900",
+      "updated": "2026-06-19T06:01:07.842+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -3490,7 +3773,7 @@
       "startDate": "2026-05-22",
       "dueDate": "2026-07-08",
       "created": "2026-05-22T10:38:36.846+0900",
-      "updated": "2026-06-18T06:00:48.680+0900",
+      "updated": "2026-06-19T06:01:07.847+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -3714,7 +3997,7 @@
     {
       "key": "TM-3085",
       "url": "https://jira.team.musinsa.com/browse/TM-3085",
-      "summary": "사이즈 실측 항목 확대 및 PDP 노출 처리",
+      "summary": "사이즈 실측 항목 확대에 따른 연관지면 개선(PDP/PLP/마이)",
       "issueType": "Initiative",
       "project": "TM",
       "status": "준비중",
@@ -3751,7 +4034,7 @@
       "startDate": "2026-05-28",
       "dueDate": null,
       "created": "2026-05-20T18:54:31.520+0900",
-      "updated": "2026-06-12T07:02:58.065+0900",
+      "updated": "2026-06-18T16:45:32.120+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -3795,7 +4078,7 @@
       "startDate": "2026-05-29",
       "dueDate": "2026-06-14",
       "created": "2026-05-20T17:27:56.597+0900",
-      "updated": "2026-06-15T14:40:10.951+0900",
+      "updated": "2026-06-19T06:01:09.273+0900",
       "resolutionDate": "2026-06-12T13:35:31.369+0900",
       "lastStatusChangedAt": null
     },
@@ -3829,7 +4112,7 @@
       "startDate": "2026-06-22",
       "dueDate": "2026-07-31",
       "created": "2026-05-20T15:41:46.120+0900",
-      "updated": "2026-06-18T06:00:47.793+0900",
+      "updated": "2026-06-19T06:00:51.573+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -3863,7 +4146,7 @@
       "startDate": "2026-06-15",
       "dueDate": "2026-10-30",
       "created": "2026-05-20T14:30:04.546+0900",
-      "updated": "2026-06-18T06:00:49.143+0900",
+      "updated": "2026-06-19T06:00:52.422+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -3903,9 +4186,9 @@
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
-      "dueDate": "2026-09-30",
+      "dueDate": null,
       "created": "2026-05-20T11:38:47.737+0900",
-      "updated": "2026-06-18T06:00:49.151+0900",
+      "updated": "2026-06-18T16:23:02.439+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -3945,9 +4228,9 @@
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
-      "dueDate": "2026-09-30",
+      "dueDate": null,
       "created": "2026-05-20T11:32:01.591+0900",
-      "updated": "2026-06-18T06:00:49.212+0900",
+      "updated": "2026-06-18T16:22:51.699+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -4081,9 +4364,9 @@
       "summary": "[후기] 동일상품후기공유 > 룰베이스 등록 방식으로 전환",
       "issueType": "Initiative",
       "project": "TM",
-      "status": "SUGGESTED",
+      "status": "Backlog",
       "statusCategory": "new",
-      "priority": "P0",
+      "priority": "P1",
       "assignee": {
         "name": "박소정",
         "email": null,
@@ -4103,15 +4386,15 @@
       ],
       "subSubject": null,
       "subSubjects": [],
-      "yearQuarter": "2026-Q3",
+      "yearQuarter": "2027-Q1",
       "yearQuarters": [
-        "2026-Q3"
+        "2027-Q1"
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-18T13:28:46.183+0900",
-      "updated": "2026-06-11T18:09:55.198+0900",
+      "updated": "2026-06-18T17:08:19.378+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -4154,7 +4437,7 @@
       "startDate": null,
       "dueDate": "2026-06-29",
       "created": "2026-05-18T13:28:10.593+0900",
-      "updated": "2026-06-18T06:00:49.194+0900",
+      "updated": "2026-06-19T06:00:52.667+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -4203,7 +4486,7 @@
     {
       "key": "TM-3051",
       "url": "https://jira.team.musinsa.com/browse/TM-3051",
-      "summary": "[소재모델링] 랜딩 URL 기반 소재 자동생성",
+      "summary": "[디스플레이최적화] 랜딩 URL 기반 소재 생성",
       "issueType": "Initiative",
       "project": "TM",
       "status": "기획중",
@@ -4227,9 +4510,9 @@
       "mainSubjects": [
         "02.콘텐츠/발매/스냅/라이브"
       ],
-      "subSubject": "콘텐츠",
+      "subSubject": "디스플레이 최적화",
       "subSubjects": [
-        "콘텐츠"
+        "디스플레이 최적화"
       ],
       "yearQuarter": "2026-Q2",
       "yearQuarters": [
@@ -4240,7 +4523,7 @@
       "startDate": "2026-05-18",
       "dueDate": "2026-08-31",
       "created": "2026-05-14T22:46:51.168+0900",
-      "updated": "2026-06-18T06:00:50.172+0900",
+      "updated": "2026-06-19T06:01:09.693+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -4284,7 +4567,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-14T22:37:53.821+0900",
-      "updated": "2026-06-17T11:44:49.114+0900",
+      "updated": "2026-06-18T16:48:27.057+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -4320,16 +4603,15 @@
       "subSubjects": [
         "콘텐츠"
       ],
-      "yearQuarter": "2025-Q4",
+      "yearQuarter": "2026-Q4",
       "yearQuarters": [
-        "2025-Q4",
-        "2026-Q3"
+        "2026-Q4"
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-14T22:24:28.254+0900",
-      "updated": "2026-06-17T17:14:05.415+0900",
+      "updated": "2026-06-18T15:30:21.482+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -4370,9 +4652,9 @@
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": "2026-06-22",
-      "dueDate": "2026-07-31",
+      "dueDate": null,
       "created": "2026-05-14T22:17:52.922+0900",
-      "updated": "2026-06-18T06:00:49.811+0900",
+      "updated": "2026-06-18T18:20:33.524+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -4442,13 +4724,14 @@
       "subSubjects": [],
       "yearQuarter": "2026-Q3",
       "yearQuarters": [
-        "2026-Q3"
+        "2026-Q3",
+        "2026-Q4"
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-14T20:10:08.697+0900",
-      "updated": "2026-06-17T20:57:52.934+0900",
+      "updated": "2026-06-18T12:01:52.081+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -4486,7 +4769,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-14T20:08:54.627+0900",
-      "updated": "2026-06-17T11:38:37.791+0900",
+      "updated": "2026-06-19T06:01:10.079+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -4524,7 +4807,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-14T20:08:20.927+0900",
-      "updated": "2026-06-17T20:43:30.222+0900",
+      "updated": "2026-06-18T08:30:06.168+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -4598,7 +4881,7 @@
       "startDate": "2026-05-11",
       "dueDate": "2026-06-12",
       "created": "2026-05-14T20:05:12.311+0900",
-      "updated": "2026-06-18T06:00:49.300+0900",
+      "updated": "2026-06-19T06:00:53.431+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -5006,7 +5289,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-13T15:30:08.835+0900",
-      "updated": "2026-06-16T17:50:34.390+0900",
+      "updated": "2026-06-18T12:05:41.095+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -5052,7 +5335,7 @@
       "startDate": "2026-06-16",
       "dueDate": "2026-07-31",
       "created": "2026-05-12T17:28:48.942+0900",
-      "updated": "2026-06-18T06:00:51.142+0900",
+      "updated": "2026-06-19T06:01:11.571+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -5094,7 +5377,7 @@
       "startDate": "2026-05-01",
       "dueDate": "2026-06-10",
       "created": "2026-05-06T15:34:36.070+0900",
-      "updated": "2026-06-15T11:48:52.112+0900",
+      "updated": "2026-06-19T06:01:12.779+0900",
       "resolutionDate": "2026-06-10T14:02:09.485+0900",
       "lastStatusChangedAt": null
     },
@@ -5180,7 +5463,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-04T10:27:37.566+0900",
-      "updated": "2026-06-17T19:16:59.613+0900",
+      "updated": "2026-06-18T14:32:27.342+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -5221,7 +5504,7 @@
       "startDate": null,
       "dueDate": "2026-07-20",
       "created": "2026-04-30T18:48:36.306+0900",
-      "updated": "2026-06-18T06:00:51.984+0900",
+      "updated": "2026-06-19T06:01:10.233+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -5262,9 +5545,9 @@
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": "2026-04-28",
-      "dueDate": "2026-06-25",
+      "dueDate": "2026-07-02",
       "created": "2026-04-30T11:08:09.186+0900",
-      "updated": "2026-06-18T06:00:50.757+0900",
+      "updated": "2026-06-19T06:00:54.461+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -5391,7 +5674,7 @@
       "startDate": "2026-05-11",
       "dueDate": "2026-06-14",
       "created": "2026-04-27T15:20:21.644+0900",
-      "updated": "2026-06-13T06:02:40.271+0900",
+      "updated": "2026-06-19T06:01:11.099+0900",
       "resolutionDate": "2026-06-12T13:42:18.316+0900",
       "lastStatusChangedAt": null
     },
@@ -5433,7 +5716,7 @@
       "startDate": "2026-05-04",
       "dueDate": "2026-07-31",
       "created": "2026-04-27T15:20:16.401+0900",
-      "updated": "2026-06-18T06:00:51.989+0900",
+      "updated": "2026-06-19T06:00:56.275+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -6200,15 +6483,15 @@
       "subSubjects": [
         "전문관"
       ],
-      "yearQuarter": "2026-Q4",
+      "yearQuarter": "2026-Q3",
       "yearQuarters": [
-        "2026-Q4"
+        "2026-Q3"
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-04-23T16:16:24.102+0900",
-      "updated": "2026-06-08T13:56:14.983+0900",
+      "updated": "2026-06-18T09:34:32.710+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -6383,7 +6666,7 @@
       "startDate": "2026-04-21",
       "dueDate": "2026-06-08",
       "created": "2026-04-21T11:55:06.699+0900",
-      "updated": "2026-06-17T18:01:10.273+0900",
+      "updated": "2026-06-19T06:01:11.688+0900",
       "resolutionDate": "2026-06-15T09:42:51.913+0900",
       "lastStatusChangedAt": null
     },
@@ -6468,7 +6751,7 @@
       "startDate": "2026-04-21",
       "dueDate": "2026-05-14",
       "created": "2026-04-21T11:54:14.560+0900",
-      "updated": "2026-06-18T06:00:52.615+0900",
+      "updated": "2026-06-19T06:00:56.775+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -6510,7 +6793,7 @@
       "startDate": "2026-04-21",
       "dueDate": "2026-05-14",
       "created": "2026-04-21T11:53:52.668+0900",
-      "updated": "2026-06-18T06:00:52.915+0900",
+      "updated": "2026-06-19T06:00:55.224+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -6641,7 +6924,7 @@
       "startDate": "2026-04-21",
       "dueDate": "2026-05-15",
       "created": "2026-04-21T11:53:14.039+0900",
-      "updated": "2026-06-18T06:00:52.660+0900",
+      "updated": "2026-06-19T06:00:55.516+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -6810,7 +7093,7 @@
       "startDate": null,
       "dueDate": "2026-06-30",
       "created": "2026-04-20T14:02:57.268+0900",
-      "updated": "2026-06-18T06:00:51.856+0900",
+      "updated": "2026-06-19T06:00:58.005+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -6847,7 +7130,7 @@
       "startDate": null,
       "dueDate": "2026-06-30",
       "created": "2026-04-20T13:54:19.677+0900",
-      "updated": "2026-06-18T06:00:53.380+0900",
+      "updated": "2026-06-19T06:00:55.275+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -6892,9 +7175,9 @@
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": "2026-04-13",
-      "dueDate": "2026-07-01",
+      "dueDate": "2026-07-08",
       "created": "2026-04-17T12:07:44.159+0900",
-      "updated": "2026-06-18T06:00:53.960+0900",
+      "updated": "2026-06-19T06:01:11.373+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -7026,7 +7309,7 @@
       "startDate": "2026-03-30",
       "dueDate": "2026-08-11",
       "created": "2026-04-10T11:55:12.881+0900",
-      "updated": "2026-06-18T06:00:54.991+0900",
+      "updated": "2026-06-19T06:01:13.561+0900",
       "resolutionDate": "2026-04-13T10:58:08.571+0900",
       "lastStatusChangedAt": null
     },
@@ -7117,7 +7400,7 @@
       "startDate": "2026-03-27",
       "dueDate": null,
       "created": "2026-03-27T12:57:09.337+0900",
-      "updated": "2026-06-16T11:14:30.791+0900",
+      "updated": "2026-06-18T12:05:42.639+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -7166,7 +7449,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-04-06T13:17:01.251+0900",
-      "updated": "2026-06-16T15:27:52.931+0900",
+      "updated": "2026-06-19T06:01:15.391+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -7211,7 +7494,7 @@
       "startDate": "2026-04-01",
       "dueDate": "2026-06-10",
       "created": "2026-01-19T17:28:43.938+0900",
-      "updated": "2026-06-15T14:42:15.827+0900",
+      "updated": "2026-06-19T06:01:15.063+0900",
       "resolutionDate": "2026-06-10T14:23:55.381+0900",
       "lastStatusChangedAt": null
     },
@@ -7260,7 +7543,7 @@
       "startDate": "2026-04-24",
       "dueDate": "2026-06-12",
       "created": "2026-04-03T11:44:16.772+0900",
-      "updated": "2026-06-13T06:02:40.044+0900",
+      "updated": "2026-06-19T06:01:14.521+0900",
       "resolutionDate": "2026-06-12T11:50:35.273+0900",
       "lastStatusChangedAt": null
     },
@@ -7390,9 +7673,9 @@
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": "2026-04-06",
-      "dueDate": "2026-06-30",
+      "dueDate": "2026-07-09",
       "created": "2026-04-01T16:57:23.778+0900",
-      "updated": "2026-06-18T06:00:55.311+0900",
+      "updated": "2026-06-19T06:01:14.335+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -7429,7 +7712,7 @@
       "startDate": "2026-04-01",
       "dueDate": "2026-12-31",
       "created": "2026-03-31T18:32:33.336+0900",
-      "updated": "2026-06-18T06:00:55.860+0900",
+      "updated": "2026-06-19T06:01:01.567+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -7480,7 +7763,7 @@
       "startDate": "2026-04-06",
       "dueDate": "2026-06-12",
       "created": "2026-03-31T10:14:04.009+0900",
-      "updated": "2026-06-15T10:12:53.736+0900",
+      "updated": "2026-06-19T06:01:15.593+0900",
       "resolutionDate": "2026-06-12T11:18:23.063+0900",
       "lastStatusChangedAt": null
     },
@@ -7652,9 +7935,9 @@
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": "2026-04-24",
-      "dueDate": "2026-06-10",
+      "dueDate": "2026-06-29",
       "created": "2026-03-30T14:54:22.276+0900",
-      "updated": "2026-06-18T06:00:57.705+0900",
+      "updated": "2026-06-19T06:01:00.621+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -7664,7 +7947,7 @@
       "summary": "[오프라인] PDP 오프라인 매장 재고 추가",
       "issueType": "Initiative",
       "project": "TM",
-      "status": "Backlog",
+      "status": "SUGGESTED",
       "statusCategory": "new",
       "priority": "Big-Rock",
       "assignee": {
@@ -7679,7 +7962,8 @@
       },
       "labels": [
         "conveyor",
-        "one"
+        "one",
+        "홈앤디"
       ],
       "mainSubject": "46.오프라인/O4O",
       "mainSubjects": [
@@ -7697,7 +7981,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-30T14:52:04.533+0900",
-      "updated": "2026-06-15T08:51:32.256+0900",
+      "updated": "2026-06-18T11:21:27.926+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -7707,7 +7991,7 @@
       "summary": "[오프라인] SRP/PLP 오프라인 스토어 필터 추가",
       "issueType": "Initiative",
       "project": "TM",
-      "status": "Backlog",
+      "status": "SUGGESTED",
       "statusCategory": "new",
       "priority": "P0",
       "assignee": {
@@ -7734,23 +8018,22 @@
         "카테고리/SRP",
         "필터/PLP"
       ],
-      "yearQuarter": "2026-Q2",
+      "yearQuarter": "2026-Q3",
       "yearQuarters": [
-        "2026-Q2",
         "2026-Q3"
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-30T14:50:13.021+0900",
-      "updated": "2026-06-17T16:23:03.196+0900",
+      "updated": "2026-06-18T14:51:29.615+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
     {
       "key": "TM-2807",
       "url": "https://jira.team.musinsa.com/browse/TM-2807",
-      "summary": "[오프라인] MSS-오프라인 관련 탐색동선 개선",
+      "summary": "[P1][오프라인] MSS-오프라인 관련 탐색동선 개선",
       "issueType": "Initiative",
       "project": "TM",
       "status": "기획중",
@@ -7785,9 +8068,9 @@
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": "2026-04-10",
-      "dueDate": "2026-09-30",
+      "dueDate": null,
       "created": "2026-03-30T14:46:46.055+0900",
-      "updated": "2026-06-18T06:00:56.635+0900",
+      "updated": "2026-06-19T06:01:16.194+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -7923,7 +8206,7 @@
       "startDate": "2026-03-25",
       "dueDate": "2026-07-01",
       "created": "2026-03-30T13:09:07.131+0900",
-      "updated": "2026-06-18T06:00:57.871+0900",
+      "updated": "2026-06-19T06:01:15.427+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -8099,7 +8382,7 @@
       "startDate": "2026-04-20",
       "dueDate": "2026-06-29",
       "created": "2026-03-25T22:56:14.491+0900",
-      "updated": "2026-06-18T07:30:24.852+0900",
+      "updated": "2026-06-19T07:30:26.735+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -8141,7 +8424,7 @@
       "startDate": "2026-03-23",
       "dueDate": "2026-06-01",
       "created": "2026-03-25T22:54:50.591+0900",
-      "updated": "2026-06-15T20:14:24.826+0900",
+      "updated": "2026-06-19T06:01:28.559+0900",
       "resolutionDate": "2026-06-02T15:50:25.214+0900",
       "lastStatusChangedAt": null
     },
@@ -8184,9 +8467,9 @@
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": "2026-04-13",
-      "dueDate": "2026-08-26",
+      "dueDate": "2026-09-30",
       "created": "2026-03-25T22:54:28.219+0900",
-      "updated": "2026-06-18T06:01:01.235+0900",
+      "updated": "2026-06-19T06:01:19.109+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -8231,7 +8514,7 @@
       "startDate": "2026-04-08",
       "dueDate": "2026-05-29",
       "created": "2026-03-25T22:07:35.306+0900",
-      "updated": "2026-06-18T06:01:02.749+0900",
+      "updated": "2026-06-19T06:01:19.908+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -8271,7 +8554,7 @@
       "startDate": "2026-04-01",
       "dueDate": "2026-05-13",
       "created": "2026-03-25T22:07:13.155+0900",
-      "updated": "2026-06-18T06:01:03.241+0900",
+      "updated": "2026-06-19T06:01:19.941+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -8353,7 +8636,7 @@
       "startDate": "2026-04-01",
       "dueDate": "2026-07-01",
       "created": "2026-03-25T22:05:38.057+0900",
-      "updated": "2026-06-15T16:27:39.955+0900",
+      "updated": "2026-06-18T16:37:13.507+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -8396,7 +8679,7 @@
       "startDate": "2026-04-01",
       "dueDate": "2026-07-27",
       "created": "2026-03-25T22:02:20.712+0900",
-      "updated": "2026-06-18T06:01:04.205+0900",
+      "updated": "2026-06-19T06:01:24.100+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -8619,7 +8902,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-20T20:37:08.954+0900",
-      "updated": "2026-06-16T15:52:13.439+0900",
+      "updated": "2026-06-18T12:05:43.136+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -8750,7 +9033,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-20T14:19:14.516+0900",
-      "updated": "2026-06-10T17:40:25.518+0900",
+      "updated": "2026-06-18T12:05:43.621+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -8805,7 +9088,7 @@
       "project": "TM",
       "status": "SUGGESTED",
       "statusCategory": "new",
-      "priority": "P0",
+      "priority": "Big-Rock",
       "assignee": {
         "name": "신제경",
         "email": null,
@@ -8837,7 +9120,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-20T17:15:35.446+0900",
-      "updated": "2026-06-16T15:34:16.403+0900",
+      "updated": "2026-06-18T14:46:51.970+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -8892,7 +9175,7 @@
       "startDate": "2026-04-01",
       "dueDate": "2026-06-30",
       "created": "2026-03-19T18:45:04.303+0900",
-      "updated": "2026-06-18T06:01:11.569+0900",
+      "updated": "2026-06-19T06:01:38.720+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -8943,7 +9226,7 @@
       "summary": "[체험단] 고단가 상품 최소 모집인원 조정",
       "issueType": "Initiative",
       "project": "TM",
-      "status": "SUGGESTED",
+      "status": "Backlog",
       "statusCategory": "new",
       "priority": "P1",
       "assignee": {
@@ -8965,15 +9248,15 @@
       "subSubjects": [
         "체험단"
       ],
-      "yearQuarter": "2026-Q4",
+      "yearQuarter": "2027-Q1",
       "yearQuarters": [
-        "2026-Q4"
+        "2027-Q1"
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-19T12:34:38.349+0900",
-      "updated": "2026-06-12T00:56:18.015+0900",
+      "updated": "2026-06-18T17:21:33.882+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -9063,7 +9346,7 @@
       "startDate": "2026-05-18",
       "dueDate": "2026-07-01",
       "created": "2026-03-19T12:25:56.484+0900",
-      "updated": "2026-06-18T06:01:12.183+0900",
+      "updated": "2026-06-19T06:01:40.434+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -9111,8 +9394,8 @@
       "summary": "[브랜드인덱스] URL 파라미터 지원 (카테고리 딥링크)",
       "issueType": "Initiative",
       "project": "TM",
-      "status": "SUGGESTED",
-      "statusCategory": "new",
+      "status": "기획완료",
+      "statusCategory": "indeterminate",
       "priority": "P1",
       "assignee": {
         "name": "송지영",
@@ -9144,7 +9427,7 @@
       "startDate": "2026-03-18",
       "dueDate": null,
       "created": "2026-03-18T23:40:23.403+0900",
-      "updated": "2026-06-16T15:22:00.369+0900",
+      "updated": "2026-06-18T16:22:37.652+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -9230,7 +9513,7 @@
       "startDate": "2026-05-06",
       "dueDate": "2026-06-30",
       "created": "2026-03-18T13:29:52.854+0900",
-      "updated": "2026-06-18T06:01:09.601+0900",
+      "updated": "2026-06-19T06:01:40.629+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -9274,53 +9557,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-18T11:50:00.960+0900",
-      "updated": "2026-06-16T14:12:04.649+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": null
-    },
-    {
-      "key": "TM-2423",
-      "url": "https://jira.team.musinsa.com/browse/TM-2423",
-      "summary": "[앱테크] 출석체크 이벤트 캘린더 노출 및 시즌성 스킨 적용",
-      "issueType": "Initiative",
-      "project": "TM",
-      "status": "디자인완료",
-      "statusCategory": "indeterminate",
-      "priority": "Big-Rock",
-      "assignee": {
-        "name": "지아름",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "지아름",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [
-        "apptech-one",
-        "conveyor",
-        "domain-apptech",
-        "msse-be-campaign",
-        "one",
-        "앱테크-출석체크"
-      ],
-      "mainSubject": "08.이벤트/앱테크/온보딩",
-      "mainSubjects": [
-        "08.이벤트/앱테크/온보딩"
-      ],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": "2026-Q2",
-      "yearQuarters": [
-        "2026-Q2",
-        "2026-Q3"
-      ],
-      "subGroup": "MSS-P Discovery & Engagement",
-      "startDate": "2026-05-01",
-      "dueDate": "2026-06-30",
-      "created": "2026-03-18T11:14:27.958+0900",
-      "updated": "2026-06-18T06:01:11.314+0900",
+      "updated": "2026-06-18T16:47:40.202+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -9577,8 +9814,8 @@
       "summary": "[무탠다드] 조건부 혜택 - 상품UID, 회원등급 기반 이벤트딜 ",
       "issueType": "Initiative",
       "project": "TM",
-      "status": "기획중",
-      "statusCategory": "indeterminate",
+      "status": "철회/반려/취소",
+      "statusCategory": "done",
       "priority": "Big-Rock",
       "assignee": {
         "name": "윤형훈",
@@ -9594,6 +9831,7 @@
         "AI-ASSISTED",
         "무탠다드_O4O",
         "무탠다드_과제요청리스트",
+        "삭제",
         "세일프라이싱",
         "장바구니"
       ],
@@ -9617,7 +9855,7 @@
       "startDate": "2026-04-06",
       "dueDate": null,
       "created": "2026-03-16T19:56:05.335+0900",
-      "updated": "2026-06-17T13:41:14.999+0900",
+      "updated": "2026-06-19T06:01:22.381+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -9669,7 +9907,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-16T19:26:21.062+0900",
-      "updated": "2026-06-10T18:52:22.918+0900",
+      "updated": "2026-06-18T11:18:15.550+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -9717,91 +9955,7 @@
       "startDate": "2026-05-01",
       "dueDate": "2026-07-31",
       "created": "2026-03-16T10:50:04.465+0900",
-      "updated": "2026-06-18T06:01:11.025+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": null
-    },
-    {
-      "key": "TM-2395",
-      "url": "https://jira.team.musinsa.com/browse/TM-2395",
-      "summary": "[앱테크]내부 미션 강화 및 확산을 위한 어드민 고도화",
-      "issueType": "Initiative",
-      "project": "TM",
-      "status": "Backlog",
-      "statusCategory": "new",
-      "priority": "P0",
-      "assignee": {
-        "name": "안슬기",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "안슬기",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [
-        "domain-apptech",
-        "domain-snap",
-        "msse-be-campaign"
-      ],
-      "mainSubject": "08.이벤트/앱테크/온보딩",
-      "mainSubjects": [
-        "08.이벤트/앱테크/온보딩"
-      ],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": "2026-Q3",
-      "yearQuarters": [
-        "2026-Q3"
-      ],
-      "subGroup": "MSS-P Discovery & Engagement",
-      "startDate": null,
-      "dueDate": null,
-      "created": "2026-03-16T10:35:25.330+0900",
-      "updated": "2026-06-09T14:57:12.622+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": null
-    },
-    {
-      "key": "TM-2394",
-      "url": "https://jira.team.musinsa.com/browse/TM-2394",
-      "summary": "[앱테크]게이미피케이션 기반의 바이럴 프로덕트 출시",
-      "issueType": "Initiative",
-      "project": "TM",
-      "status": "Backlog",
-      "statusCategory": "new",
-      "priority": "P0",
-      "assignee": {
-        "name": "안슬기",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "안슬기",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [
-        "domain-apptech",
-        "domain-snap",
-        "msse-be-campaign"
-      ],
-      "mainSubject": "08.이벤트/앱테크/온보딩",
-      "mainSubjects": [
-        "08.이벤트/앱테크/온보딩"
-      ],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": "2026-Q3",
-      "yearQuarters": [
-        "2026-Q3"
-      ],
-      "subGroup": "MSS-P Discovery & Engagement",
-      "startDate": null,
-      "dueDate": null,
-      "created": "2026-03-16T10:32:57.083+0900",
-      "updated": "2026-06-09T14:57:16.091+0900",
+      "updated": "2026-06-19T06:01:41.780+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -9846,7 +10000,7 @@
       "startDate": "2026-03-25",
       "dueDate": "2026-07-31",
       "created": "2026-03-16T10:01:27.815+0900",
-      "updated": "2026-06-18T06:01:11.222+0900",
+      "updated": "2026-06-19T06:01:41.364+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -9890,7 +10044,7 @@
       "startDate": "2026-03-01",
       "dueDate": "2026-06-01",
       "created": "2026-03-13T18:01:53.169+0900",
-      "updated": "2026-06-15T11:40:31.227+0900",
+      "updated": "2026-06-19T06:01:35.830+0900",
       "resolutionDate": "2026-06-01T16:57:52.241+0900",
       "lastStatusChangedAt": null
     },
@@ -9929,7 +10083,7 @@
       "startDate": "2026-05-25",
       "dueDate": "2026-06-30",
       "created": "2026-03-13T17:51:23.605+0900",
-      "updated": "2026-06-18T06:01:12.220+0900",
+      "updated": "2026-06-19T06:01:41.214+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -9973,7 +10127,7 @@
       "startDate": "2026-03-23",
       "dueDate": "2026-06-30",
       "created": "2026-03-13T17:46:14.418+0900",
-      "updated": "2026-06-18T06:01:11.758+0900",
+      "updated": "2026-06-19T06:01:41.029+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -10008,13 +10162,15 @@
       ],
       "subSubject": null,
       "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q4",
+      "yearQuarters": [
+        "2026-Q4"
+      ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-13T10:47:11.603+0900",
-      "updated": "2026-06-16T15:33:53.811+0900",
+      "updated": "2026-06-18T17:54:18.426+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -10049,13 +10205,15 @@
       ],
       "subSubject": null,
       "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q4",
+      "yearQuarters": [
+        "2026-Q4"
+      ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-13T10:47:08.589+0900",
-      "updated": "2026-06-16T15:33:49.087+0900",
+      "updated": "2026-06-18T17:54:04.362+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -10132,13 +10290,15 @@
       ],
       "subSubject": null,
       "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q4",
+      "yearQuarters": [
+        "2026-Q4"
+      ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-13T10:47:00.820+0900",
-      "updated": "2026-06-16T15:33:44.614+0900",
+      "updated": "2026-06-18T17:53:52.469+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -10167,21 +10327,23 @@
         "세일판",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "42.광고",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "42.광고"
       ],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": "2026-Q4",
+      "subSubject": "세일(판)",
+      "subSubjects": [
+        "세일(판)"
+      ],
+      "yearQuarter": "2026-Q3",
       "yearQuarters": [
-        "2026-Q4"
+        "2026-Q3"
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-13T10:46:56.914+0900",
-      "updated": "2026-06-16T15:33:39.879+0900",
+      "updated": "2026-06-18T09:59:31.529+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -10257,13 +10419,15 @@
       ],
       "subSubject": null,
       "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q4",
+      "yearQuarters": [
+        "2026-Q4"
+      ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-13T10:46:49.447+0900",
-      "updated": "2026-06-16T15:33:31.178+0900",
+      "updated": "2026-06-18T17:54:37.627+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -10298,13 +10462,15 @@
       ],
       "subSubject": null,
       "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q4",
+      "yearQuarters": [
+        "2026-Q4"
+      ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-13T10:46:36.758+0900",
-      "updated": "2026-06-16T15:33:27.328+0900",
+      "updated": "2026-06-18T17:54:48.674+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -10453,6 +10619,7 @@
       "labels": [
         "conveyor",
         "one",
+        "세일판",
         "홈앤디"
       ],
       "mainSubject": "03.랭킹/세일/커스텀판",
@@ -10463,13 +10630,15 @@
       "subSubjects": [
         "라이브커머스"
       ],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q3",
+      "yearQuarters": [
+        "2026-Q3"
+      ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-13T10:46:14.137+0900",
-      "updated": "2026-06-10T22:25:11.295+0900",
+      "updated": "2026-06-18T17:52:48.248+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -10597,9 +10766,9 @@
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": "2026-04-06",
-      "dueDate": "2026-09-30",
+      "dueDate": null,
       "created": "2026-03-13T10:45:58.632+0900",
-      "updated": "2026-06-18T06:01:11.355+0900",
+      "updated": "2026-06-19T06:01:36.092+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -10844,13 +11013,15 @@
       ],
       "subSubject": null,
       "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q4",
+      "yearQuarters": [
+        "2026-Q4"
+      ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-13T10:45:34.778+0900",
-      "updated": "2026-06-16T15:32:50.603+0900",
+      "updated": "2026-06-18T17:53:25.265+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -10885,13 +11056,15 @@
       ],
       "subSubject": null,
       "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q4",
+      "yearQuarters": [
+        "2026-Q4"
+      ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-13T10:45:30.874+0900",
-      "updated": "2026-06-16T15:32:44.127+0900",
+      "updated": "2026-06-18T17:53:42.076+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -11061,50 +11234,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-12T13:59:22.220+0900",
-      "updated": "2026-06-16T11:19:39.181+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": null
-    },
-    {
-      "key": "TM-2348",
-      "url": "https://jira.team.musinsa.com/browse/TM-2348",
-      "summary": "[앱테크] 출석체크 그룹 기능 추가",
-      "issueType": "Initiative",
-      "project": "TM",
-      "status": "Backlog",
-      "statusCategory": "new",
-      "priority": "P0",
-      "assignee": {
-        "name": "조혜진",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "안우진",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [
-        "conveyor",
-        "domain-apptech",
-        "msse-be-campaign",
-        "one"
-      ],
-      "mainSubject": "08.이벤트/앱테크/온보딩",
-      "mainSubjects": [
-        "08.이벤트/앱테크/온보딩"
-      ],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": "2026-Q3",
-      "yearQuarters": [
-        "2026-Q3"
-      ],
-      "subGroup": "MSS-P Discovery & Engagement",
-      "startDate": null,
-      "dueDate": null,
-      "created": "2026-03-11T16:09:20.467+0900",
-      "updated": "2026-06-09T14:57:13.248+0900",
+      "updated": "2026-06-18T08:30:30.974+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -11140,7 +11270,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-11T15:51:57.998+0900",
-      "updated": "2026-06-17T11:41:56.052+0900",
+      "updated": "2026-06-18T08:30:30.309+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -11183,7 +11313,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-11T15:51:27.275+0900",
-      "updated": "2026-06-12T10:26:51.770+0900",
+      "updated": "2026-06-18T08:30:29.830+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -11268,7 +11398,7 @@
       "startDate": "2026-04-13",
       "dueDate": "2026-06-11",
       "created": "2026-03-11T15:51:14.871+0900",
-      "updated": "2026-06-16T15:34:11.779+0900",
+      "updated": "2026-06-19T06:01:36.615+0900",
       "resolutionDate": "2026-06-11T13:37:51.660+0900",
       "lastStatusChangedAt": null
     },
@@ -11487,7 +11617,7 @@
       "startDate": "2026-05-11",
       "dueDate": "2026-07-08",
       "created": "2026-03-05T15:56:13.147+0900",
-      "updated": "2026-06-18T06:01:12.890+0900",
+      "updated": "2026-06-19T06:01:41.483+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -11497,8 +11627,8 @@
       "summary": "브랜드 대표 이미지 성별 적용 및 PO 개발",
       "issueType": "Initiative",
       "project": "TM",
-      "status": "SUGGESTED",
-      "statusCategory": "new",
+      "status": "기획완료",
+      "statusCategory": "indeterminate",
       "priority": "Big-Rock",
       "assignee": {
         "name": "송지영",
@@ -11529,9 +11659,9 @@
       ],
       "subGroup": "Core-P Partner Growth",
       "startDate": "2026-03-27",
-      "dueDate": null,
+      "dueDate": "2026-09-30",
       "created": "2026-03-11T10:10:44.992+0900",
-      "updated": "2026-06-16T15:20:08.479+0900",
+      "updated": "2026-06-19T06:01:41.262+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -11587,7 +11717,7 @@
       "project": "TM",
       "status": "SUGGESTED",
       "statusCategory": "new",
-      "priority": "P0",
+      "priority": "P1",
       "assignee": {
         "name": "방소윤",
         "email": null,
@@ -11623,7 +11753,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-09T11:17:36.185+0900",
-      "updated": "2026-06-16T15:24:12.744+0900",
+      "updated": "2026-06-18T14:49:43.263+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -11741,15 +11871,15 @@
       ],
       "subSubject": null,
       "subSubjects": [],
-      "yearQuarter": "2026-Q3",
+      "yearQuarter": "2026-Q4",
       "yearQuarters": [
-        "2026-Q3"
+        "2026-Q4"
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-05T10:53:30.494+0900",
-      "updated": "2026-06-17T11:06:12.097+0900",
+      "updated": "2026-06-18T18:20:49.022+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -11795,7 +11925,7 @@
       "startDate": "2026-03-31",
       "dueDate": "2026-06-30",
       "created": "2026-03-04T14:18:25.448+0900",
-      "updated": "2026-06-18T06:01:13.857+0900",
+      "updated": "2026-06-19T06:01:42.600+0900",
       "resolutionDate": "2026-05-07T10:47:22.502+0900",
       "lastStatusChangedAt": null
     },
@@ -11935,7 +12065,7 @@
       "startDate": "2026-02-23",
       "dueDate": "2026-08-03",
       "created": "2026-02-27T16:50:57.625+0900",
-      "updated": "2026-06-18T06:01:11.965+0900",
+      "updated": "2026-06-19T06:01:42.709+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -12054,16 +12184,15 @@
       "subSubjects": [
         "랭킹"
       ],
-      "yearQuarter": "2026-Q2",
+      "yearQuarter": "2026-Q3",
       "yearQuarters": [
-        "2026-Q2",
         "2026-Q3"
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": "2026-05-28",
-      "dueDate": "2026-09-30",
+      "dueDate": null,
       "created": "2026-02-24T15:02:24.375+0900",
-      "updated": "2026-06-18T06:01:14.002+0900",
+      "updated": "2026-06-19T06:01:38.851+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -12112,7 +12241,7 @@
       "startDate": "2026-02-25",
       "dueDate": "2026-06-10",
       "created": "2026-02-12T14:28:04.898+0900",
-      "updated": "2026-06-15T10:14:17.278+0900",
+      "updated": "2026-06-19T06:01:36.227+0900",
       "resolutionDate": "2026-06-11T10:18:55.915+0900",
       "lastStatusChangedAt": null
     },
@@ -12157,7 +12286,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-02-23T20:41:50.733+0900",
-      "updated": "2026-06-09T14:33:12.187+0900",
+      "updated": "2026-06-18T10:26:29.545+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -12200,7 +12329,7 @@
       "startDate": "2026-02-24",
       "dueDate": "2026-03-31",
       "created": "2026-02-23T15:32:37.134+0900",
-      "updated": "2026-06-18T06:01:13.491+0900",
+      "updated": "2026-06-19T06:01:43.012+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -12512,7 +12641,7 @@
       "startDate": "2026-04-30",
       "dueDate": null,
       "created": "2026-02-13T17:00:25.059+0900",
-      "updated": "2026-06-15T13:20:47.385+0900",
+      "updated": "2026-06-19T06:01:37.695+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -12555,7 +12684,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-02-13T13:21:16.908+0900",
-      "updated": "2026-06-11T18:52:31.517+0900",
+      "updated": "2026-06-18T10:54:16.003+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -12602,7 +12731,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2025-07-31T17:43:04.096+0900",
-      "updated": "2026-06-17T19:16:58.636+0900",
+      "updated": "2026-06-18T14:01:24.552+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -12645,7 +12774,7 @@
       "startDate": "2026-05-18",
       "dueDate": "2026-06-29",
       "created": "2026-02-12T16:23:40.323+0900",
-      "updated": "2026-06-18T06:01:15.210+0900",
+      "updated": "2026-06-19T06:01:45.032+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -12687,9 +12816,9 @@
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
-      "dueDate": "2026-09-30",
+      "dueDate": null,
       "created": "2026-02-12T16:22:26.124+0900",
-      "updated": "2026-06-18T06:01:13.082+0900",
+      "updated": "2026-06-18T16:24:00.655+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -12734,7 +12863,7 @@
       "startDate": "2026-04-17",
       "dueDate": "2026-06-10",
       "created": "2026-02-12T16:21:14.787+0900",
-      "updated": "2026-06-15T14:33:44.297+0900",
+      "updated": "2026-06-19T06:01:38.313+0900",
       "resolutionDate": "2026-06-10T14:23:39.500+0900",
       "lastStatusChangedAt": null
     },
@@ -12776,7 +12905,7 @@
       "startDate": "2026-04-15",
       "dueDate": "2026-06-30",
       "created": "2026-02-12T15:40:21.888+0900",
-      "updated": "2026-06-18T06:01:13.460+0900",
+      "updated": "2026-06-19T06:01:43.797+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -12990,7 +13119,7 @@
       "startDate": "2026-02-25",
       "dueDate": "2026-06-10",
       "created": "2026-02-11T21:36:04.217+0900",
-      "updated": "2026-06-15T14:42:16.259+0900",
+      "updated": "2026-06-19T06:01:38.087+0900",
       "resolutionDate": "2026-06-10T14:23:49.769+0900",
       "lastStatusChangedAt": null
     },
@@ -13122,7 +13251,7 @@
       "startDate": "2026-02-09",
       "dueDate": "2026-06-30",
       "created": "2026-02-09T18:09:19.995+0900",
-      "updated": "2026-06-18T07:30:14.931+0900",
+      "updated": "2026-06-19T06:01:43.406+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -13173,10 +13302,10 @@
     {
       "key": "TM-2220",
       "url": "https://jira.team.musinsa.com/browse/TM-2220",
-      "summary": "[무탠다드] 멀티 브랜드숍",
+      "summary": "[브랜드숍] 멀티 브랜드숍",
       "issueType": "Initiative",
       "project": "TM",
-      "status": "준비중",
+      "status": "기획중",
       "statusCategory": "indeterminate",
       "priority": "Big-Rock",
       "assignee": {
@@ -13204,13 +13333,14 @@
       "subSubjects": [],
       "yearQuarter": "2026-Q3",
       "yearQuarters": [
-        "2026-Q3"
+        "2026-Q3",
+        "2026-Q4"
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": "2026-06-05",
-      "dueDate": null,
+      "dueDate": "2026-09-30",
       "created": "2026-02-05T17:45:08.024+0900",
-      "updated": "2026-06-16T14:59:32.386+0900",
+      "updated": "2026-06-19T06:01:43.672+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -13343,7 +13473,7 @@
       "startDate": "2026-01-30",
       "dueDate": "2026-06-01",
       "created": "2026-01-19T17:14:56.329+0900",
-      "updated": "2026-06-16T11:42:09.114+0900",
+      "updated": "2026-06-19T06:01:48.703+0900",
       "resolutionDate": "2026-06-01T16:58:13.363+0900",
       "lastStatusChangedAt": null
     },
@@ -13793,14 +13923,14 @@
     {
       "key": "TM-1837",
       "url": "https://jira.team.musinsa.com/browse/TM-1837",
-      "summary": "One-App-래플",
+      "summary": "[One-App M3] One-App-래플",
       "issueType": "Initiative",
       "project": "TM",
       "status": "SUGGESTED",
       "statusCategory": "new",
       "priority": "Big-Rock",
       "assignee": {
-        "name": "지아름",
+        "name": "조혜진",
         "email": null,
         "accountId": null
       },
@@ -13822,13 +13952,14 @@
       "subSubjects": [],
       "yearQuarter": "2026-Q3",
       "yearQuarters": [
-        "2026-Q3"
+        "2026-Q3",
+        "2026-Q4"
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2025-12-12T16:23:41.645+0900",
-      "updated": "2026-06-18T00:27:54.338+0900",
+      "updated": "2026-06-18T17:06:30.994+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -13842,7 +13973,7 @@
       "statusCategory": "indeterminate",
       "priority": "Big-Rock",
       "assignee": {
-        "name": "지아름",
+        "name": "허유선",
         "email": null,
         "accountId": null
       },
@@ -13868,13 +13999,14 @@
       "yearQuarters": [
         "2025-Q4",
         "2026-Q1",
-        "2026-Q2"
+        "2026-Q2",
+        "2026-Q3"
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": "2026-01-01",
       "dueDate": "2026-10-22",
       "created": "2025-12-11T13:35:13.147+0900",
-      "updated": "2026-06-18T06:01:21.008+0900",
+      "updated": "2026-06-19T06:01:57.639+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -13925,7 +14057,7 @@
       "startDate": "2026-01-27",
       "dueDate": "2026-10-22",
       "created": "2025-12-11T11:53:44.850+0900",
-      "updated": "2026-06-18T06:01:21.636+0900",
+      "updated": "2026-06-19T06:01:58.431+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -13975,7 +14107,7 @@
       "startDate": null,
       "dueDate": "2026-10-22",
       "created": "2025-12-11T09:54:43.093+0900",
-      "updated": "2026-06-18T06:01:22.282+0900",
+      "updated": "2026-06-19T06:01:58.894+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -14016,14 +14148,14 @@
       "startDate": "2025-12-01",
       "dueDate": "2026-06-30",
       "created": "2025-12-11T09:54:27.024+0900",
-      "updated": "2026-06-18T06:01:22.000+0900",
+      "updated": "2026-06-19T06:01:58.801+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
     {
       "key": "TM-1824",
       "url": "https://jira.team.musinsa.com/browse/TM-1824",
-      "summary": "One-App-디스플레이 최적화",
+      "summary": "[One-App M2] 디스플레이 최적화",
       "issueType": "Initiative",
       "project": "TM",
       "status": "개발중",
@@ -14056,21 +14188,20 @@
       "yearQuarter": "2026-Q1",
       "yearQuarters": [
         "2026-Q1",
-        "2026-Q2",
-        "2026-Q3"
+        "2026-Q2"
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
-      "dueDate": "2026-10-22",
+      "dueDate": "2026-06-29",
       "created": "2025-12-11T09:54:17.617+0900",
-      "updated": "2026-06-18T06:01:22.381+0900",
+      "updated": "2026-06-19T06:01:58.454+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
     {
       "key": "TM-1822",
       "url": "https://jira.team.musinsa.com/browse/TM-1822",
-      "summary": "One-App-캠페인/CPCMS",
+      "summary": "[One-App M2] 캠페인/ 캠페인 관리",
       "issueType": "Initiative",
       "project": "TM",
       "status": "기획중",
@@ -14103,20 +14234,21 @@
       "yearQuarters": [
         "2025-Q4",
         "2026-Q1",
-        "2026-Q2"
+        "2026-Q2",
+        "2026-Q3"
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": "2026-01-05",
       "dueDate": "2026-08-11",
       "created": "2025-12-11T09:53:21.984+0900",
-      "updated": "2026-06-18T06:01:20.561+0900",
+      "updated": "2026-06-19T06:01:58.693+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
     {
       "key": "TM-1821",
       "url": "https://jira.team.musinsa.com/browse/TM-1821",
-      "summary": "One-App-후기",
+      "summary": "[One-App M2] 후기",
       "issueType": "Initiative",
       "project": "TM",
       "status": "개발중",
@@ -14155,7 +14287,7 @@
       "startDate": "2026-01-05",
       "dueDate": "2026-10-22",
       "created": "2025-12-11T09:51:43.349+0900",
-      "updated": "2026-06-18T06:01:23.574+0900",
+      "updated": "2026-06-19T06:01:58.978+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -14199,7 +14331,7 @@
       "startDate": "2025-12-01",
       "dueDate": "2026-06-30",
       "created": "2025-12-11T09:50:56.997+0900",
-      "updated": "2026-06-18T06:01:23.010+0900",
+      "updated": "2026-06-19T06:01:58.629+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -14337,14 +14469,14 @@
       "startDate": "2026-06-22",
       "dueDate": "2026-10-22",
       "created": "2025-12-10T18:16:13.320+0900",
-      "updated": "2026-06-18T06:01:21.644+0900",
+      "updated": "2026-06-19T06:01:59.609+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
     {
       "key": "TM-1810",
       "url": "https://jira.team.musinsa.com/browse/TM-1810",
-      "summary": "One-App - 전시 > 스냅",
+      "summary": "[One-App M2] 전시 > 스냅",
       "issueType": "Initiative",
       "project": "TM",
       "status": "개발중",
@@ -14386,7 +14518,7 @@
       "startDate": null,
       "dueDate": "2026-10-22",
       "created": "2025-12-10T18:11:47.110+0900",
-      "updated": "2026-06-18T06:01:21.184+0900",
+      "updated": "2026-06-19T06:01:58.959+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -14400,7 +14532,7 @@
       "statusCategory": "indeterminate",
       "priority": "Big-Rock",
       "assignee": {
-        "name": "지아름",
+        "name": "허유선",
         "email": null,
         "accountId": null
       },
@@ -14432,7 +14564,7 @@
       "startDate": "2026-01-01",
       "dueDate": "2026-10-22",
       "created": "2025-12-10T18:08:59.858+0900",
-      "updated": "2026-06-18T06:01:21.412+0900",
+      "updated": "2026-06-19T06:01:59.013+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -14481,7 +14613,7 @@
       "startDate": "2026-01-12",
       "dueDate": "2026-06-30",
       "created": "2025-12-10T17:24:20.490+0900",
-      "updated": "2026-06-18T06:01:23.096+0900",
+      "updated": "2026-06-19T06:01:59.281+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -14532,14 +14664,14 @@
       "startDate": "2026-01-05",
       "dueDate": "2026-06-25",
       "created": "2025-12-10T17:23:11.260+0900",
-      "updated": "2026-06-18T06:01:20.875+0900",
+      "updated": "2026-06-19T06:02:00.159+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
     {
       "key": "TM-1805",
       "url": "https://jira.team.musinsa.com/browse/TM-1805",
-      "summary": "[One-App M3] 전시 > 콘텐츠/CMS/소재모델링",
+      "summary": "[One-App M3] 전시 > CMS/콘텐츠 전시",
       "issueType": "Initiative",
       "project": "TM",
       "status": "디자인완료",
@@ -14582,7 +14714,7 @@
       "startDate": null,
       "dueDate": "2026-10-22",
       "created": "2025-12-10T17:04:30.731+0900",
-      "updated": "2026-06-18T06:01:22.106+0900",
+      "updated": "2026-06-19T06:01:59.064+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -15188,7 +15320,7 @@
       "startDate": "2026-04-13",
       "dueDate": "2026-06-12",
       "created": "2025-11-21T18:26:40.259+0900",
-      "updated": "2026-06-18T06:01:23.204+0900",
+      "updated": "2026-06-19T06:02:01.118+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -15282,7 +15414,7 @@
       "startDate": "2026-01-20",
       "dueDate": "2026-04-27",
       "created": "2025-11-21T16:08:25.663+0900",
-      "updated": "2026-06-17T13:57:50.833+0900",
+      "updated": "2026-06-18T16:28:24.835+0900",
       "resolutionDate": "2026-05-12T17:30:24.237+0900",
       "lastStatusChangedAt": null
     },
@@ -15728,8 +15860,8 @@
       "summary": "[추천판] 탐색 허브 전환 – 브랜드 및 콘텐츠 강화(관심스타일&전문관모듈 개선,신규 브랜드모듈 적용)",
       "issueType": "Initiative",
       "project": "TM",
-      "status": "SUGGESTED",
-      "statusCategory": "new",
+      "status": "기획중",
+      "statusCategory": "indeterminate",
       "priority": "Emergency",
       "assignee": {
         "name": "배정화",
@@ -15767,7 +15899,7 @@
       "startDate": "2026-06-15",
       "dueDate": "2026-07-31",
       "created": "2025-11-19T21:25:41.154+0900",
-      "updated": "2026-06-18T06:01:23.195+0900",
+      "updated": "2026-06-19T06:02:01.244+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -16074,7 +16206,7 @@
       "startDate": "2025-10-17",
       "dueDate": "2026-06-30",
       "created": "2025-10-27T17:12:06.007+0900",
-      "updated": "2026-06-18T06:01:25.416+0900",
+      "updated": "2026-06-19T06:02:03.205+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -16264,7 +16396,7 @@
       "startDate": "2025-11-26",
       "dueDate": "2026-07-01",
       "created": "2025-09-25T14:42:00.619+0900",
-      "updated": "2026-06-18T07:30:25.739+0900",
+      "updated": "2026-06-19T07:30:30.424+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -16387,15 +16519,15 @@
       ],
       "subSubject": null,
       "subSubjects": [],
-      "yearQuarter": "2026-Q3",
+      "yearQuarter": "2026-Q4",
       "yearQuarters": [
-        "2026-Q3"
+        "2026-Q4"
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2025-09-16T13:38:25.944+0900",
-      "updated": "2026-06-17T20:49:46.999+0900",
+      "updated": "2026-06-18T16:23:45.111+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -16526,16 +16658,13 @@
         "좋아요",
         "장바구니"
       ],
-      "yearQuarter": "2025-Q4",
-      "yearQuarters": [
-        "2025-Q4",
-        "2026-Q4"
-      ],
+      "yearQuarter": null,
+      "yearQuarters": [],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": "2025-11-13",
       "dueDate": null,
       "created": "2025-09-15T19:27:15.328+0900",
-      "updated": "2026-06-11T23:22:04.754+0900",
+      "updated": "2026-06-18T15:29:54.909+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -16698,7 +16827,7 @@
       "startDate": "2025-11-14",
       "dueDate": "2026-04-06",
       "created": "2025-09-15T19:00:50.104+0900",
-      "updated": "2026-06-15T14:06:10.395+0900",
+      "updated": "2026-06-18T09:23:09.818+0900",
       "resolutionDate": "2026-04-07T17:43:12.593+0900",
       "lastStatusChangedAt": null
     },
@@ -16962,9 +17091,9 @@
       ],
       "subGroup": "Core-E Discovery",
       "startDate": "2025-10-22",
-      "dueDate": "2026-09-30",
+      "dueDate": null,
       "created": "2025-09-09T17:32:56.181+0900",
-      "updated": "2026-06-18T06:01:27.403+0900",
+      "updated": "2026-06-18T13:05:39.092+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -17145,7 +17274,7 @@
       "startDate": "2025-08-01",
       "dueDate": null,
       "created": "2025-09-08T21:18:28.730+0900",
-      "updated": "2026-04-14T15:31:40.642+0900",
+      "updated": "2026-06-19T00:26:48.266+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -17192,14 +17321,14 @@
     {
       "key": "TM-1106",
       "url": "https://jira.team.musinsa.com/browse/TM-1106",
-      "summary": "[검색] 통합검색 내 스냅 검색 추가",
+      "summary": "[검색] 통합검색 내 스냅검색 이관 및 UX flow 개선",
       "issueType": "Initiative",
       "project": "TM",
-      "status": "SUGGESTED",
+      "status": "Backlog",
       "statusCategory": "new",
       "priority": "Big-Rock",
       "assignee": {
-        "name": "이광수",
+        "name": "홍상현",
         "email": null,
         "accountId": null
       },
@@ -17231,7 +17360,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2025-09-08T12:59:27.304+0900",
-      "updated": "2026-06-18T00:27:55.897+0900",
+      "updated": "2026-06-18T23:39:09.331+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -17477,7 +17606,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2025-09-03T10:55:20.359+0900",
-      "updated": "2026-06-09T17:45:46.718+0900",
+      "updated": "2026-06-18T12:05:47.985+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -18466,7 +18595,7 @@
       "startDate": "2025-10-13",
       "dueDate": "2026-05-12",
       "created": "2025-06-24T11:11:09.737+0900",
-      "updated": "2026-06-16T11:00:27.642+0900",
+      "updated": "2026-06-18T14:01:03.057+0900",
       "resolutionDate": "2026-05-18T14:26:57.173+0900",
       "lastStatusChangedAt": null
     },
@@ -19045,7 +19174,7 @@
       "startDate": "2025-07-01",
       "dueDate": "2025-12-31",
       "created": "2025-04-03T15:31:24.611+0900",
-      "updated": "2026-05-27T15:19:10.852+0900",
+      "updated": "2026-06-19T00:26:49.748+0900",
       "resolutionDate": "2026-04-01T08:53:52.214+0900",
       "lastStatusChangedAt": null
     },
@@ -19121,7 +19250,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-05T12:43:20.026+0900",
-      "updated": "2026-06-12T00:30:35.661+0900",
+      "updated": "2026-06-18T08:30:42.663+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -20447,6 +20576,7 @@
       "labels": [
         "one",
         "pel",
+        "pel-fast-track",
         "홈앤디"
       ],
       "mainSubject": "41.유즈드",
@@ -20463,7 +20593,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-04-23T08:08:23.680+0900",
-      "updated": "2026-04-23T08:09:05.442+0900",
+      "updated": "2026-06-18T16:30:45.089+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -20484,7 +20614,8 @@
       },
       "labels": [
         "one",
-        "pel"
+        "pel",
+        "pel-fast-track"
       ],
       "mainSubject": "02.콘텐츠/발매/스냅/라이브",
       "mainSubjects": [
@@ -20498,7 +20629,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-04-20T09:38:19.383+0900",
-      "updated": "2026-04-20T09:39:57.772+0900",
+      "updated": "2026-06-18T16:31:01.762+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -20607,7 +20738,8 @@
         "domain-content",
         "msse-be-campaign",
         "one",
-        "pel"
+        "pel",
+        "pel-fast-track"
       ],
       "mainSubject": "46.오프라인/O4O",
       "mainSubjects": [
@@ -20625,7 +20757,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-04-16T13:24:38.790+0900",
-      "updated": "2026-04-24T18:14:57.423+0900",
+      "updated": "2026-06-18T16:33:03.353+0900",
       "resolutionDate": "2026-04-24T18:14:57.289+0900",
       "lastStatusChangedAt": null
     },
@@ -20657,6 +20789,7 @@
         "complexity:4",
         "one",
         "pel",
+        "pel-fast-track",
         "홈앤디"
       ],
       "mainSubject": "06.공통/네비게이션",
@@ -20673,7 +20806,7 @@
       "startDate": "2026-03-25",
       "dueDate": "2026-07-01",
       "created": "2026-04-16T10:54:57.600+0900",
-      "updated": "2026-06-17T09:40:05.166+0900",
+      "updated": "2026-06-18T16:33:09.965+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -21395,8 +21528,8 @@
       "summary": "라이브 모듈 개선 — 하단 정보 구조, 아이콘 색상, 캐러셀 사이즈 조정",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "SUGGESTED",
-      "statusCategory": "new",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "옥여경",
@@ -21421,13 +21554,15 @@
       "subSubjects": [
         "추천"
       ],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2"
+      ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-15T10:41:39.125+0900",
-      "updated": "2026-06-12T17:37:02.086+0900",
+      "updated": "2026-06-19T01:06:21.365+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -21527,8 +21662,8 @@
       "summary": "[콘텐츠판] 콘텐츠에 이벤트가 있는 경우 표기 (예: 댓글 이벤트)",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "디자인중",
-      "statusCategory": "indeterminate",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "이솔이",
@@ -21552,13 +21687,15 @@
       "subSubjects": [
         "콘텐츠"
       ],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2"
+      ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-04-17T16:30:15.394+0900",
-      "updated": "2026-06-01T11:51:24.348+0900",
+      "updated": "2026-06-19T01:06:15.020+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -21612,8 +21749,8 @@
       "summary": "상품목록 혜택 뱃지 시스템 구축",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "기획중",
-      "statusCategory": "indeterminate",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "옥여경",
@@ -21638,13 +21775,15 @@
       ],
       "subSubject": null,
       "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2"
+      ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-04-10T14:48:06.359+0900",
-      "updated": "2026-06-08T11:50:33.285+0900",
+      "updated": "2026-06-19T01:06:14.716+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -21654,8 +21793,8 @@
       "summary": "기획전 성별필터·최근본 공통기능 통일",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "준비중",
-      "statusCategory": "indeterminate",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "조혜진",
@@ -21683,13 +21822,15 @@
       ],
       "subSubject": null,
       "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2"
+      ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-04-10T14:28:26.674+0900",
-      "updated": "2026-06-02T10:49:09.969+0900",
+      "updated": "2026-06-19T01:06:14.173+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -21699,8 +21840,8 @@
       "summary": "발매 상세 하단 진입경로 맥락 콘텐츠",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "준비중",
-      "statusCategory": "indeterminate",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "조혜진",
@@ -21727,13 +21868,15 @@
       ],
       "subSubject": null,
       "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2"
+      ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-04-20T01:43:16.108+0900",
-      "updated": "2026-06-12T08:52:57.825+0900",
+      "updated": "2026-06-19T01:06:15.316+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -21743,8 +21886,8 @@
       "summary": "장바구니 추천 레이어 재호출 UX",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "준비중",
-      "statusCategory": "indeterminate",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "안우진",
@@ -21772,13 +21915,15 @@
         "추천",
         "장바구니"
       ],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2"
+      ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-04-24T16:25:00.638+0900",
-      "updated": "2026-06-08T11:50:08.841+0900",
+      "updated": "2026-06-19T01:06:16.993+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -21831,8 +21976,8 @@
       "summary": "브랜드 상품 N회 조회 시 브랜드 좋아요 유도 팝업 레이어 도입",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "SUGGESTED",
-      "statusCategory": "new",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "조혜진",
@@ -21854,13 +21999,15 @@
       ],
       "subSubject": null,
       "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2"
+      ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-04T13:25:24.892+0900",
-      "updated": "2026-06-04T10:12:42.355+0900",
+      "updated": "2026-06-19T01:06:18.981+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -21870,8 +22017,8 @@
       "summary": "기획전 상품진열 페이지 탭 → 단일 스크롤 페이지 전환",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "SUGGESTED",
-      "statusCategory": "new",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P1",
       "assignee": {
         "name": "안우진",
@@ -21893,13 +22040,15 @@
       ],
       "subSubject": null,
       "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2"
+      ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-04T10:23:10.045+0900",
-      "updated": "2026-05-15T17:54:05.909+0900",
+      "updated": "2026-06-19T01:06:18.461+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -21949,8 +22098,8 @@
       "summary": "PLP 필터에 좋아요·누적판매량 구간 수치 필터 추가",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "SUGGESTED",
-      "statusCategory": "new",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "문호은",
@@ -21973,13 +22122,15 @@
       ],
       "subSubject": null,
       "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2"
+      ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": "2026-05-07",
       "created": "2026-05-04T10:09:35.834+0900",
-      "updated": "2026-05-15T16:49:51.715+0900",
+      "updated": "2026-06-19T01:06:18.519+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -21989,8 +22140,8 @@
       "summary": "[PM] AI 기반 브랜드 설명 최적화",
       "issueType": "Epic",
       "project": "MSSCXTF",
-      "status": "In Progress",
-      "statusCategory": "indeterminate",
+      "status": "완료",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "송지영",
@@ -22022,8 +22173,8 @@
       "startDate": "2026-04-16",
       "dueDate": null,
       "created": "2026-04-24T11:08:42.446+0900",
-      "updated": "2026-04-24T16:51:24.726+0900",
-      "resolutionDate": null,
+      "updated": "2026-06-19T01:06:18.524+0900",
+      "resolutionDate": "2026-06-19T01:06:15.939+0900",
       "lastStatusChangedAt": null
     },
     {
@@ -22159,8 +22310,8 @@
       "summary": "무신사홈 판 노출 확대 - 팬스토어 추가",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "SUGGESTED",
-      "statusCategory": "new",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
         "name": "신제경",
@@ -22189,7 +22340,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-26T14:56:54.144+0900",
-      "updated": "2026-03-27T10:46:10.721+0900",
+      "updated": "2026-06-19T00:29:23.353+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -22237,8 +22388,8 @@
       "summary": "[발매판] 섹션내 출시일, 좋아요, 쿠폰 등 정보 추가",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "준비중",
-      "statusCategory": "indeterminate",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
         "name": "조혜진",
@@ -22260,13 +22411,15 @@
       ],
       "subSubject": null,
       "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2"
+      ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-23T11:55:30.299+0900",
-      "updated": "2026-06-08T11:50:55.667+0900",
+      "updated": "2026-06-19T01:06:29.089+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -22276,8 +22429,8 @@
       "summary": "[PDP] 품절 임박 노출 로직 고도화",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "준비중",
-      "statusCategory": "indeterminate",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "차정현",
@@ -22301,13 +22454,15 @@
       ],
       "subSubject": null,
       "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2"
+      ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-23T11:51:07.989+0900",
-      "updated": "2026-06-16T10:29:58.639+0900",
+      "updated": "2026-06-19T01:07:58.401+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -22317,8 +22472,8 @@
       "summary": "[세일판] 유즈드 신상품 섹션 추가",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "기획완료",
-      "statusCategory": "indeterminate",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "신제경",
@@ -22343,13 +22498,15 @@
       "subSubjects": [
         "세일(판)"
       ],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2"
+      ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": "2026-04-27",
       "dueDate": null,
       "created": "2026-03-23T11:46:42.115+0900",
-      "updated": "2026-05-22T01:07:51.398+0900",
+      "updated": "2026-06-19T01:07:57.128+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -22359,8 +22516,8 @@
       "summary": "[발매] 유즈드 상품 등록 정보 알려주는 섹션 신설",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "SUGGESTED",
-      "statusCategory": "new",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "옥여경",
@@ -22385,13 +22542,15 @@
       "subSubjects": [
         "발매"
       ],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2"
+      ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-23T11:36:03.972+0900",
-      "updated": "2026-05-22T00:19:08.777+0900",
+      "updated": "2026-06-19T01:07:55.895+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -22401,8 +22560,8 @@
       "summary": "[추천판] 라이브 편성표 29 교차 노출 검토",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "Backlog",
-      "statusCategory": "new",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "옥여경",
@@ -22427,13 +22586,15 @@
       "subSubjects": [
         "라이브커머스"
       ],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2"
+      ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-23T10:55:30.981+0900",
-      "updated": "2026-06-01T11:26:20.885+0900",
+      "updated": "2026-06-19T01:07:54.487+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -22443,8 +22604,8 @@
       "summary": "[세일판] 인기 브랜드 모듈 추가 검토",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "Backlog",
-      "statusCategory": "new",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
         "name": "옥여경",
@@ -22467,13 +22628,15 @@
       ],
       "subSubject": null,
       "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2"
+      ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-23T10:51:26.220+0900",
-      "updated": "2026-06-02T10:50:41.401+0900",
+      "updated": "2026-06-19T01:07:53.119+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -22483,8 +22646,8 @@
       "summary": "[브랜드] 브랜드 인덱스, 추천판 등 브랜드 정보 뱃지 노출",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "개발중",
-      "statusCategory": "indeterminate",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
         "name": "송지영",
@@ -22524,7 +22687,7 @@
       "startDate": "2026-04-13",
       "dueDate": "2026-07-01",
       "created": "2026-03-20T08:44:10.636+0900",
-      "updated": "2026-06-12T09:11:50.934+0900",
+      "updated": "2026-06-19T01:06:10.142+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -22578,8 +22741,8 @@
       "summary": "[PDP] 타임세일 카운트다운 가격옆에 추가 하기",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "준비중",
-      "statusCategory": "indeterminate",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
         "name": "조혜진",
@@ -22602,13 +22765,15 @@
       ],
       "subSubject": null,
       "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2"
+      ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-19T08:39:30.925+0900",
-      "updated": "2026-06-02T11:01:59.072+0900",
+      "updated": "2026-06-19T01:07:47.638+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -22859,7 +23024,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-17T13:31:28.273+0900",
-      "updated": "2026-05-22T00:19:23.903+0900",
+      "updated": "2026-06-18T11:35:20.860+0900",
       "resolutionDate": "2026-03-26T11:17:33.680+0900",
       "lastStatusChangedAt": null
     },
@@ -22910,8 +23075,8 @@
       "summary": "[유즈드] 시간 마케팅 및 헤더 로고 영역 노출 검토",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "SUGGESTED",
-      "statusCategory": "new",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "이유정",
@@ -22936,13 +23101,15 @@
       "subSubjects": [
         "공통(GNB/게이트웨이)"
       ],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2"
+      ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-13T13:48:11.459+0900",
-      "updated": "2026-06-09T18:53:41.946+0900",
+      "updated": "2026-06-19T01:07:40.827+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -22952,8 +23119,8 @@
       "summary": "PLP 컬러칩 추가",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "Backlog",
-      "statusCategory": "new",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
         "name": "옥여경",
@@ -22976,13 +23143,15 @@
       ],
       "subSubject": null,
       "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2"
+      ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-12T12:04:24.508+0900",
-      "updated": "2026-05-22T00:19:46.695+0900",
+      "updated": "2026-06-19T01:07:39.474+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -23115,8 +23284,8 @@
       "summary": "[design-driven][래플] 래플 상세에서 본 상품 PDP 이동 링크 제공 검토",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "SUGGESTED",
-      "statusCategory": "new",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P1",
       "assignee": {
         "name": "박주현",
@@ -23146,7 +23315,7 @@
       "startDate": null,
       "dueDate": "2026-05-30",
       "created": "2026-03-06T10:47:21.151+0900",
-      "updated": "2026-06-08T11:46:32.428+0900",
+      "updated": "2026-06-19T01:06:04.686+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -23325,8 +23494,8 @@
       "summary": "[PDP] 브랜드 정보에 Since 및 국가명 노출 검토",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "배포완료",
-      "statusCategory": "indeterminate",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
         "name": "조혜진",
@@ -23345,13 +23514,15 @@
       ],
       "subSubject": null,
       "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2"
+      ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-02-27T16:23:23.229+0900",
-      "updated": "2026-05-31T15:23:57.575+0900",
+      "updated": "2026-06-19T00:29:14.628+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -23361,8 +23532,8 @@
       "summary": "[브랜드숍] 국가명 노출 검토",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "Backlog",
-      "statusCategory": "new",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "송지영",
@@ -23387,13 +23558,15 @@
       ],
       "subSubject": null,
       "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2"
+      ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-02-27T16:21:24.384+0900",
-      "updated": "2026-06-08T11:13:52.514+0900",
+      "updated": "2026-06-19T01:07:09.133+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -23442,8 +23615,8 @@
       "summary": "[PLP] 옵션 레이어에 남은 갯수 보여주기",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "SUGGESTED",
-      "statusCategory": "new",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "문호은",
@@ -23466,13 +23639,15 @@
       ],
       "subSubject": null,
       "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2"
+      ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-02-24T19:24:50.960+0900",
-      "updated": "2026-06-02T10:56:08.752+0900",
+      "updated": "2026-06-19T01:06:03.273+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -23482,8 +23657,8 @@
       "summary": "[랭킹] 랭킹 증감 표시 검토",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "Backlog",
-      "statusCategory": "new",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "방소윤",
@@ -23506,13 +23681,15 @@
       ],
       "subSubject": null,
       "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2"
+      ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-02-24T19:21:05.753+0900",
-      "updated": "2026-06-02T10:50:54.414+0900",
+      "updated": "2026-06-19T01:06:02.744+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -23522,8 +23699,8 @@
       "summary": "[후기] 후기 요약 보기 텍스트 혼합 구성 검토",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "Backlog",
-      "statusCategory": "new",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "조혜진",
@@ -23545,13 +23722,15 @@
       ],
       "subSubject": null,
       "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2"
+      ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-02-24T19:16:44.170+0900",
-      "updated": "2026-05-22T00:20:13.314+0900",
+      "updated": "2026-06-19T01:06:02.623+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -23642,8 +23821,8 @@
       "summary": "단독 상품 노출 극대화",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "SUGGESTED",
-      "statusCategory": "new",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "안우진",
@@ -23665,13 +23844,15 @@
       ],
       "subSubject": null,
       "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2"
+      ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-02-24T12:04:38.965+0900",
-      "updated": "2026-06-08T11:47:05.341+0900",
+      "updated": "2026-06-19T01:06:02.241+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -23681,8 +23862,8 @@
       "summary": "[캠페인] 캠페인 전시 영역에 카운트다운 노출",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "개발중",
-      "statusCategory": "indeterminate",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "옥여경",
@@ -23706,13 +23887,15 @@
       ],
       "subSubject": null,
       "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2"
+      ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-02-24T11:59:01.407+0900",
-      "updated": "2026-05-31T15:16:58.943+0900",
+      "updated": "2026-06-19T01:06:02.129+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -23767,8 +23950,8 @@
       "summary": "[design-driven][추천판] 빅배너 > 전체 보기 페이지 개선",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "준비중",
-      "statusCategory": "indeterminate",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "김혜림",
@@ -23792,13 +23975,15 @@
       ],
       "subSubject": null,
       "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2"
+      ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-02-19T12:19:41.693+0900",
-      "updated": "2026-06-17T09:40:36.087+0900",
+      "updated": "2026-06-19T01:06:16.600+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -23899,8 +24084,8 @@
       "summary": "[추천판] 유즈드 섹션 유저 선택 옵션 확장",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "SUGGESTED",
-      "statusCategory": "new",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
         "name": "이유정",
@@ -23925,13 +24110,15 @@
       "subSubjects": [
         "추천"
       ],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2"
+      ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-02-09T11:21:57.405+0900",
-      "updated": "2026-06-09T18:51:04.238+0900",
+      "updated": "2026-06-19T01:06:00.146+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -24022,8 +24209,8 @@
       "summary": "[추천판] 나의 관심 기반 상품탭 확장",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "준비중",
-      "statusCategory": "indeterminate",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "박성일",
@@ -24046,13 +24233,15 @@
       ],
       "subSubject": null,
       "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2"
+      ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-02-05T14:52:45.385+0900",
-      "updated": "2026-06-10T09:38:32.434+0900",
+      "updated": "2026-06-19T01:05:59.876+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -24145,8 +24334,8 @@
       "summary": "[후기] 후기 모아보기",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "Backlog",
-      "statusCategory": "new",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "박소정",
@@ -24168,13 +24357,15 @@
       ],
       "subSubject": null,
       "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2"
+      ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-01-26T18:54:57.692+0900",
-      "updated": "2026-05-22T00:20:40.100+0900",
+      "updated": "2026-06-19T01:05:59.240+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -24184,8 +24375,8 @@
       "summary": "[PDP] 모델 신체스펙과 선택 사이즈 추가",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "Backlog",
-      "statusCategory": "new",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P1",
       "assignee": {
         "name": "안태훈",
@@ -24207,13 +24398,15 @@
       ],
       "subSubject": null,
       "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2"
+      ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": "2026-05-31",
       "created": "2026-01-26T18:49:17.724+0900",
-      "updated": "2026-06-02T11:03:13.469+0900",
+      "updated": "2026-06-19T01:05:58.927+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -24308,8 +24501,8 @@
       "summary": "[PDP] 누적 판매 수량에 기간 구분 기능 추가",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "Backlog",
-      "statusCategory": "new",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "조혜진",
@@ -24331,13 +24524,15 @@
       ],
       "subSubject": null,
       "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2"
+      ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-01-23T18:00:12.539+0900",
-      "updated": "2026-05-22T00:20:41.542+0900",
+      "updated": "2026-06-19T01:05:58.932+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -24347,8 +24542,8 @@
       "summary": "[PLP] 패션잡화 상품 내 사이즈 옵션(필터) 노출 최적화",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "SUGGESTED",
-      "statusCategory": "new",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "문호은",
@@ -24373,13 +24568,15 @@
       "subSubjects": [
         "필터/PLP"
       ],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2"
+      ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-01-21T22:52:47.700+0900",
-      "updated": "2026-06-02T10:56:23.424+0900",
+      "updated": "2026-06-19T01:05:58.162+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -24436,8 +24633,8 @@
       "summary": "[랭킹판] 문구 다양화",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "Backlog",
-      "statusCategory": "new",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "방소윤",
@@ -24471,7 +24668,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-01-19T19:18:05.002+0900",
-      "updated": "2026-06-15T14:46:25.031+0900",
+      "updated": "2026-06-19T01:05:56.883+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -24525,8 +24722,8 @@
       "summary": "[추천판] 나의 관심 스타일 선택하기 전역 성별 필터 적용",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "개발중",
-      "statusCategory": "indeterminate",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P1",
       "assignee": {
         "name": "배정화",
@@ -24561,7 +24758,7 @@
       "startDate": "2026-06-12",
       "dueDate": "2026-06-19",
       "created": "2026-01-19T19:08:54.371+0900",
-      "updated": "2026-06-17T09:40:31.198+0900",
+      "updated": "2026-06-19T06:01:52.686+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -24694,8 +24891,8 @@
       "summary": "스냅 > 검색 내 '무신사스토어부자재' 키워드 및 해당 프로필 미노출 처리",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "배포완료",
-      "statusCategory": "indeterminate",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "임채원",
@@ -24714,13 +24911,15 @@
       ],
       "subSubject": null,
       "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2"
+      ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-01-01T18:20:27.306+0900",
-      "updated": "2026-05-31T19:12:31.179+0900",
+      "updated": "2026-06-19T00:28:56.945+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -24730,8 +24929,8 @@
       "summary": "앱스플래시 광고 노출이후 애니메이션 요소 추가",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "Backlog",
-      "statusCategory": "new",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "신제경",
@@ -24757,13 +24956,15 @@
         "추천",
         "광고"
       ],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2"
+      ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2025-12-31T14:50:34.414+0900",
-      "updated": "2026-05-22T00:20:51.186+0900",
+      "updated": "2026-06-19T01:05:54.702+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -24773,8 +24974,8 @@
       "summary": "[랭킹] 급상승랭킹 내 매출 절대량 로직 적용 검토",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "Backlog",
-      "statusCategory": "new",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "방소윤",
@@ -24799,13 +25000,15 @@
       "subSubjects": [
         "랭킹"
       ],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2"
+      ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2025-12-29T16:41:08.608+0900",
-      "updated": "2026-05-22T00:20:51.972+0900",
+      "updated": "2026-06-19T01:05:54.771+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -24857,8 +25060,8 @@
       "summary": "세일판>한정수량 특가 섹션 내 카테고리/브랜드탭 추가",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "SUGGESTED",
-      "statusCategory": "new",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "신제경",
@@ -24883,13 +25086,15 @@
       "subSubjects": [
         "세일(판)"
       ],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2"
+      ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2025-12-29T16:27:19.605+0900",
-      "updated": "2026-06-08T11:48:30.193+0900",
+      "updated": "2026-06-19T01:05:54.417+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -24899,8 +25104,8 @@
       "summary": "팬스토어 2차 개선(기획) : 좋아요 기능 추가 및 알림 연동",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "Backlog",
-      "statusCategory": "new",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "문호은",
@@ -24923,15 +25128,15 @@
       ],
       "subSubject": null,
       "subSubjects": [],
-      "yearQuarter": "2026-Q3",
+      "yearQuarter": "2026-Q2",
       "yearQuarters": [
-        "2026-Q3"
+        "2026-Q2"
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": "2026-03-01",
       "dueDate": null,
       "created": "2025-12-26T13:18:59.432+0900",
-      "updated": "2026-05-29T11:04:30.519+0900",
+      "updated": "2026-06-19T01:05:54.014+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -24941,8 +25146,8 @@
       "summary": "콘텐츠 이벤트 여부에 따라 콘텐츠 진입점 내 이벤트 여부 표시",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "Backlog",
-      "statusCategory": "new",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P3",
       "assignee": {
         "name": "옥여경",
@@ -24969,13 +25174,15 @@
         "발매",
         "라이브커머스"
       ],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2"
+      ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2025-12-24T11:40:57.083+0900",
-      "updated": "2026-06-02T10:41:27.618+0900",
+      "updated": "2026-06-19T01:05:53.798+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -24985,8 +25192,8 @@
       "summary": "기획전 하단 연관 콘텐츠 섹션 개선",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "Backlog",
-      "statusCategory": "new",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "이솔이",
@@ -25016,7 +25223,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2025-12-23T09:22:41.994+0900",
-      "updated": "2026-05-22T00:20:55.610+0900",
+      "updated": "2026-06-19T01:05:52.746+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -25026,8 +25233,8 @@
       "summary": "[design-driven][게이트웨이] 문구 운영 테스트",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "SUGGESTED",
-      "statusCategory": "new",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P3",
       "assignee": {
         "name": "유정선",
@@ -25060,7 +25267,7 @@
       "startDate": null,
       "dueDate": "2026-12-31",
       "created": "2025-12-06T12:57:30.324+0900",
-      "updated": "2026-06-05T16:16:17.933+0900",
+      "updated": "2026-06-19T01:05:52.560+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -25203,8 +25410,8 @@
       "summary": "검색 홈 내 자동완성 \"중고, 럭셔리 등 전문관\" 서비스 바로가기 반영",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "SUGGESTED",
-      "statusCategory": "new",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P3",
       "assignee": {
         "name": "이광수",
@@ -25223,13 +25430,15 @@
       ],
       "subSubject": null,
       "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2"
+      ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2025-09-24T11:02:12.885+0900",
-      "updated": "2025-11-26T18:23:12.054+0900",
+      "updated": "2026-06-19T00:28:06.676+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -25239,8 +25448,8 @@
       "summary": "비주얼 서치 기반 커뮤니티 프로덕트",
       "issueType": "Initiative",
       "project": "MSSCXTF",
-      "status": "SUGGESTED",
-      "statusCategory": "new",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P3",
       "assignee": {
         "name": "조혜진",
@@ -25260,13 +25469,15 @@
       "mainSubjects": [],
       "subSubject": null,
       "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2"
+      ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2025-09-18T14:39:45.083+0900",
-      "updated": "2026-06-08T11:49:13.068+0900",
+      "updated": "2026-06-19T01:05:48.333+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },

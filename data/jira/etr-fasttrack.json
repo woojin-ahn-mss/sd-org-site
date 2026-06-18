@@ -1,5 +1,5 @@
 {
-  "lastSync": "2026-06-18T07:43:05+09:00",
+  "lastSync": "2026-06-19T07:53:28+09:00",
   "count": 196,
   "items": [
     {
@@ -1490,15 +1490,15 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-09T10:05:36.544+0900",
-      "updated": "2026-06-09T10:07:54.103+0900",
+      "updated": "2026-06-19T01:14:37.596+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-09T10:07:14.615+0900",
       "linkedTickets": [
         {
           "key": "MSSCXTF-1080",
           "summary": "[추천판] 나의 관심 스타일 선택하기 전역 성별 필터 적용",
-          "status": "개발중",
-          "statusCategory": "indeterminate",
+          "status": "Dropped",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -1511,7 +1511,7 @@
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 1
       }
     },
@@ -1548,15 +1548,15 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-09T09:55:58.714+0900",
-      "updated": "2026-06-09T09:58:58.355+0900",
+      "updated": "2026-06-19T01:14:45.940+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-09T09:58:19.856+0900",
       "linkedTickets": [
         {
           "key": "MSSCXTF-1184",
           "summary": "[design-driven][스냅] 상품 스냅 모아보기 PDP → 스냅 단일 진입 시, 상단에 진입 맥락 노출",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "Dropped",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -1567,7 +1567,7 @@
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 1
       }
     },
@@ -1709,7 +1709,7 @@
         {
           "key": "FT-59",
           "summary": "[랭킹판] 무신사 월간랭킹 진입점에 직전월 표기 자동 추가",
-          "status": "QA중",
+          "status": "배포완료",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
@@ -3612,7 +3612,8 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
-            "one"
+            "one",
+            "pel-fast-track"
           ],
           "resolutionDate": "2026-06-10T17:23:10.130+0900"
         },
@@ -3950,8 +3951,8 @@
         {
           "key": "MSSCXTF-1224",
           "summary": "[브랜드] 브랜드 인덱스, 추천판 등 브랜드 정보 뱃지 노출",
-          "status": "개발중",
-          "statusCategory": "indeterminate",
+          "status": "Dropped",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -3968,7 +3969,7 @@
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 1
       }
     },
@@ -4231,7 +4232,7 @@
       "summary": "[퀵픽스] 추천 시나리오 카테고리 정교화 — 1뎁스→2뎁스 적용",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-우선착수",
+      "status": "완료",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -4259,15 +4260,15 @@
       "startDate": null,
       "dueDate": "2026-06-22",
       "created": "2026-06-01T09:21:48.368+0900",
-      "updated": "2026-06-08T18:37:44.799+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-08T18:37:05.490+0900",
+      "updated": "2026-06-18T13:08:48.228+0900",
+      "resolutionDate": "2026-06-18T13:08:48.155+0900",
+      "lastStatusChangedAt": "2026-06-18T13:08:48.228+0900",
       "linkedTickets": [
         {
           "key": "TM-2603",
           "summary": "[추천] [MSS] 추천판 시나리오 및 점수 고도화",
-          "status": "배포완료",
-          "statusCategory": "indeterminate",
+          "status": "론치완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -4280,8 +4281,8 @@
         {
           "key": "FT-55",
           "summary": "[퀵픽스] 추천 시나리오 카테고리 정교화 — 1뎁스→2뎁스 적용",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "배포완료",
+          "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -4295,7 +4296,7 @@
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 2
       }
     },
@@ -5336,9 +5337,9 @@
       "yearQuarters": [],
       "subGroup": null,
       "startDate": null,
-      "dueDate": null,
+      "dueDate": "2026-06-09",
       "created": "2026-05-27T08:29:52.356+0900",
-      "updated": "2026-06-02T12:17:05.609+0900",
+      "updated": "2026-06-18T13:10:49.751+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-02T12:16:26.039+0900",
       "linkedTickets": [
@@ -5754,15 +5755,15 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-21T23:36:24.384+0900",
-      "updated": "2026-06-09T09:42:44.334+0900",
+      "updated": "2026-06-19T01:18:59.035+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-09T09:38:13.922+0900",
       "linkedTickets": [
         {
           "key": "MSSCXTF-1368",
           "summary": "라이브 모듈 개선 — 하단 정보 구조, 아이콘 색상, 캐러셀 사이즈 조정",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "Dropped",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -5789,7 +5790,7 @@
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 2
       }
     },
@@ -8554,6 +8555,7 @@
             "ETR-4061",
             "home-discovery",
             "pel",
+            "pel-fast-track",
             "used"
           ],
           "resolutionDate": "2026-06-08T11:17:45.957+0900"
@@ -8829,6 +8831,7 @@
             "complexity:1",
             "fasttrack",
             "pel",
+            "pel-fast-track",
             "sp_by_choavis_v1"
           ],
           "resolutionDate": "2026-05-12T16:37:31.910+0900"
@@ -8846,6 +8849,7 @@
             "complexity:2",
             "fasttrack",
             "pel",
+            "pel-fast-track",
             "sp_by_choavis_v1"
           ],
           "resolutionDate": "2026-05-12T23:08:00.702+0900"
@@ -8862,6 +8866,7 @@
             "DUE_OVERDUE_BOT",
             "fasttrack",
             "pel",
+            "pel-fast-track",
             "sp_by_choavis_v1"
           ],
           "resolutionDate": "2026-05-26T07:59:52.775+0900"
@@ -9204,6 +9209,7 @@
           "labels": [
             "AI-ASSISTED",
             "one",
+            "pel-fast-track",
             "홈앤디"
           ],
           "resolutionDate": "2026-05-13T11:13:05.877+0900"
@@ -9460,8 +9466,8 @@
         {
           "key": "MSSCXTF-1324",
           "summary": "브랜드 상품 N회 조회 시 브랜드 좋아요 유도 팝업 레이어 도입",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "Dropped",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Clones",
           "direction": "inward",
@@ -9472,7 +9478,7 @@
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 1
       }
     },
@@ -9579,8 +9585,8 @@
         {
           "key": "MSSCXTF-1320",
           "summary": "기획전 상품진열 페이지 탭 → 단일 스크롤 페이지 전환",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "Dropped",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Clones",
           "direction": "inward",
@@ -9611,8 +9617,8 @@
         {
           "key": "MSSCXTF-1326",
           "summary": "이벤트딜 추천 페이지 UX 개선 — 탭 방식에서 단일 스크롤 페이지로 전환 및 퀵구매 UI 적용",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "Dropped",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "outward",
@@ -9625,7 +9631,7 @@
         }
       ],
       "progress": {
-        "done": 1,
+        "done": 3,
         "total": 3
       }
     },
@@ -9757,8 +9763,8 @@
         {
           "key": "MSSCXTF-1317",
           "summary": "PLP 필터에 좋아요·누적판매량 구간 수치 필터 추가",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "Dropped",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Clones",
           "direction": "inward",
@@ -9770,7 +9776,7 @@
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 1
       }
     },
@@ -9860,8 +9866,8 @@
         {
           "key": "MSSCXTF-1337",
           "summary": "장바구니 추천 레이어 재호출 UX",
-          "status": "준비중",
-          "statusCategory": "indeterminate",
+          "status": "Dropped",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -9875,7 +9881,7 @@
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 1
       }
     },
@@ -10063,8 +10069,8 @@
         {
           "key": "MSSCXTF-1340",
           "summary": "영문 스펠링 브랜드명 영문 표기 정책",
-          "status": "기획중",
-          "statusCategory": "indeterminate",
+          "status": "Dropped",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -10079,7 +10085,7 @@
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 1
       }
     },
@@ -10458,15 +10464,15 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-04-18T14:01:40.096+0900",
-      "updated": "2026-06-09T09:47:32.657+0900",
+      "updated": "2026-06-19T01:23:33.457+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-09T09:46:52.881+0900",
       "linkedTickets": [
         {
           "key": "MSSCXTF-1338",
           "summary": "발매 상세 하단 진입경로 맥락 콘텐츠",
-          "status": "준비중",
-          "statusCategory": "indeterminate",
+          "status": "Dropped",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -10482,7 +10488,7 @@
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 1
       }
     },
@@ -11102,8 +11108,8 @@
         {
           "key": "TM-2332",
           "summary": "브랜드 대표 이미지 성별 적용 및 PO 개발",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "기획완료",
+          "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Blocks",
           "direction": "outward",
