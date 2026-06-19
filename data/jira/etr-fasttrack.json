@@ -1,5 +1,5 @@
 {
-  "lastSync": "2026-06-19T07:53:28+09:00",
+  "lastSync": "2026-06-20T07:00:17+09:00",
   "count": 196,
   "items": [
     {
@@ -1215,7 +1215,7 @@
         {
           "key": "FT-64",
           "summary": "[랭킹판] 오프라인 테마칩스 > 배너 하단 '오프라인 랭킹 판매, 품절 상태 정책 설명 문구' 추가",
-          "status": "개발중",
+          "status": "배포완료",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
@@ -1685,12 +1685,13 @@
         {
           "key": "SNDPRD-4140",
           "summary": "[PM] 랭킹판 상품탭 : '무신사 월간랭킹' > 'N월 무신사 월간랭킹' 으로 직전월 표기 자동 추가",
-          "status": "In Progress",
-          "statusCategory": "indeterminate",
+          "status": "완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Blocks",
           "direction": "outward",
-          "labels": []
+          "labels": [],
+          "resolutionDate": "2026-06-19T15:39:21.572+0900"
         },
         {
           "key": "PD-8421",
@@ -1726,7 +1727,7 @@
         }
       ],
       "progress": {
-        "done": 1,
+        "done": 2,
         "total": 3
       }
     },
@@ -3233,27 +3234,10 @@
       "updated": "2026-06-09T10:11:02.849+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-04T17:49:13.957+0900",
-      "linkedTickets": [
-        {
-          "key": "TM-3195",
-          "summary": "[무신사] 퀵픽스 필터 조건 매칭 상품에 몰로코 광고 삽입 (1·13·25·37번째 위치)",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
-          "assignee": null,
-          "linkType": "Relates",
-          "direction": "inward",
-          "labels": [
-            "auto-etr-triaged",
-            "conveyor",
-            "conveyor-bot",
-            "general-task",
-            "one"
-          ]
-        }
-      ],
+      "linkedTickets": [],
       "progress": {
         "done": 0,
-        "total": 1
+        "total": 0
       }
     },
     {
@@ -4287,6 +4271,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "DUE_OVERDUE_BOT",
             "auto-etr-triaged",
             "conveyor",
             "conveyor-bot",
@@ -4530,15 +4515,15 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-29T20:07:58.023+0900",
-      "updated": "2026-06-11T15:56:22.423+0900",
+      "updated": "2026-06-19T11:44:51.817+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-11T15:55:43.823+0900",
       "linkedTickets": [
         {
           "key": "FT-37",
           "summary": "[퀵픽스] 판매 알림 고도화 — 개별 판매 발생 시 실시간 알림 제공",
-          "status": "개발중",
-          "statusCategory": "indeterminate",
+          "status": "론치완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -4550,7 +4535,8 @@
             "fast-track-away",
             "fasttrack",
             "one"
-          ]
+          ],
+          "resolutionDate": "2026-06-19T11:30:41.190+0900"
         },
         {
           "key": "ETR-4595",
@@ -4568,7 +4554,7 @@
         }
       ],
       "progress": {
-        "done": 1,
+        "done": 2,
         "total": 2
       }
     },
@@ -7822,14 +7808,15 @@
       "linkedTickets": [
         {
           "key": "TM-3041",
-          "summary": "[랭킹] 무신사 앨범/굿즈 전용 차트 신설 및 카테고리 1뎁스 재분류 (오프라인 합산·과거 데이터 마이그레이션 포함)",
-          "status": "기획중",
+          "summary": "[랭킹] 무신사 앨범/굿즈 전용 차트 신설 및 카테고리 1뎁스 추가 (랭킹 아카이브 포함)",
+          "status": "기획완료",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Clones",
           "direction": "inward",
           "labels": [
             "26'2Q",
+            "26'4Q",
             "AI-ASSISTED",
             "auto-etr-triaged",
             "one",
@@ -10872,8 +10859,8 @@
       "summary": "결제수단 화면 개선 — 현재 주문 적용 가능 결제수단 활성화/정렬 및 프로모션 구좌 활용",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "Tech 검토 중",
-      "statusCategory": "indeterminate",
+      "status": "검토완료-백로그",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
         "name": "박승현",
@@ -10898,11 +10885,11 @@
       "yearQuarters": [],
       "subGroup": "MSS-P Commerce Core",
       "startDate": null,
-      "dueDate": "2026-06-12",
+      "dueDate": null,
       "created": "2026-04-18T13:59:48.486+0900",
-      "updated": "2026-06-11T18:34:12.424+0900",
+      "updated": "2026-06-19T09:14:18.481+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-04T06:57:05.856+0900",
+      "lastStatusChangedAt": "2026-06-19T09:13:38.381+0900",
       "linkedTickets": [
         {
           "key": "ETR-3681",

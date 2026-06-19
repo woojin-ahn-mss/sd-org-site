@@ -1,5 +1,5 @@
 {
-  "lastSync": "2026-06-19T07:53:16+09:00",
+  "lastSync": "2026-06-20T07:00:04+09:00",
   "count": 596,
   "items": [
     {
@@ -53,7 +53,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-18T14:37:24.398+0900",
-      "updated": "2026-06-18T18:33:37.782+0900",
+      "updated": "2026-06-19T16:39:17.732+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -224,6 +224,46 @@
       "lastStatusChangedAt": null
     },
     {
+      "key": "TM-3621",
+      "url": "https://jira.team.musinsa.com/browse/TM-3621",
+      "summary": "[Partner Growth][MSS][세일판] 상품광고 - 광고 모듈 추가 (할인 상품)",
+      "issueType": "Initiative",
+      "project": "TM",
+      "status": "SUGGESTED",
+      "statusCategory": "new",
+      "priority": "P0",
+      "assignee": {
+        "name": "이영석",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "김경애",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [],
+      "mainSubject": "42.광고",
+      "mainSubjects": [
+        "42.광고"
+      ],
+      "subSubject": "세일(판)",
+      "subSubjects": [
+        "세일(판)"
+      ],
+      "yearQuarter": "2026-Q3",
+      "yearQuarters": [
+        "2026-Q3"
+      ],
+      "subGroup": "MSS-P Discovery & Engagement",
+      "startDate": "2026-07-06",
+      "dueDate": "2026-07-31",
+      "created": "2026-06-17T01:02:00.683+0900",
+      "updated": "2026-06-20T06:00:51.219+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null
+    },
+    {
       "key": "TM-3605",
       "url": "https://jira.team.musinsa.com/browse/TM-3605",
       "summary": "[유즈드] PLP/카숍/SRP 유즈드탭 구분",
@@ -243,7 +283,8 @@
         "accountId": null
       },
       "labels": [
-        "유즈드"
+        "유즈드",
+        "홈앤디"
       ],
       "mainSubject": "41.유즈드",
       "mainSubjects": [
@@ -264,7 +305,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-16T23:24:25.754+0900",
-      "updated": "2026-06-18T18:50:59.847+0900",
+      "updated": "2026-06-19T16:49:08.746+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -572,7 +613,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-16T16:02:19.085+0900",
-      "updated": "2026-06-18T10:03:39.822+0900",
+      "updated": "2026-06-19T16:39:16.938+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -646,10 +687,14 @@
         "홈앤디",
         "홈앤디_글로벌"
       ],
-      "mainSubject": null,
-      "mainSubjects": [],
-      "subSubject": null,
-      "subSubjects": [],
+      "mainSubject": "56. 글로벌_원앱이전",
+      "mainSubjects": [
+        "56. 글로벌_원앱이전"
+      ],
+      "subSubject": "추천",
+      "subSubjects": [
+        "추천"
+      ],
       "yearQuarter": "2026-Q3",
       "yearQuarters": [
         "2026-Q3"
@@ -658,7 +703,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-16T15:41:01.224+0900",
-      "updated": "2026-06-18T12:06:09.349+0900",
+      "updated": "2026-06-19T18:33:23.280+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -703,7 +748,7 @@
       "startDate": null,
       "dueDate": "2026-10-20",
       "created": "2026-06-16T15:40:51.416+0900",
-      "updated": "2026-06-19T06:00:34.577+0900",
+      "updated": "2026-06-20T06:00:55.770+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -778,7 +823,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-15T10:57:49.918+0900",
-      "updated": "2026-06-18T08:30:20.747+0900",
+      "updated": "2026-06-19T17:03:28.951+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -1078,7 +1123,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-11T19:14:56.890+0900",
-      "updated": "2026-06-18T16:40:44.140+0900",
+      "updated": "2026-06-19T16:39:17.313+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -1088,8 +1133,8 @@
       "summary": "[추천판][브랜드] 추천판 더보기 > 브랜드 인덱스 고도화",
       "issueType": "Initiative",
       "project": "TM",
-      "status": "SUGGESTED",
-      "statusCategory": "new",
+      "status": "철회/반려/취소",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
         "name": "배정화",
@@ -1102,9 +1147,7 @@
         "accountId": null
       },
       "labels": [
-        "26'3Q",
-        "추천판",
-        "홈앤디"
+        "삭제"
       ],
       "mainSubject": "01.추천",
       "mainSubjects": [
@@ -1122,7 +1165,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-11T13:15:21.356+0900",
-      "updated": "2026-06-16T15:30:46.848+0900",
+      "updated": "2026-06-19T17:52:40.713+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -1420,16 +1463,15 @@
       "subSubjects": [
         "세일(판)"
       ],
-      "yearQuarter": "2026-Q3",
+      "yearQuarter": "2026-Q4",
       "yearQuarters": [
-        "2026-Q3",
         "2026-Q4"
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-09T10:57:52.779+0900",
-      "updated": "2026-06-18T19:07:23.874+0900",
+      "updated": "2026-06-19T09:36:50.541+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -1556,7 +1598,7 @@
       "startDate": "2026-07-01",
       "dueDate": "2026-09-30",
       "created": "2026-06-05T14:59:48.239+0900",
-      "updated": "2026-06-19T06:00:48.051+0900",
+      "updated": "2026-06-20T06:01:06.190+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -1622,7 +1664,7 @@
         "accountId": null
       },
       "labels": [
-        "26'2Q",
+        "26'4Q",
         "AI-ASSISTED",
         "랭킹",
         "홈앤디"
@@ -1643,7 +1685,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-05T14:53:22.406+0900",
-      "updated": "2026-06-10T22:10:51.405+0900",
+      "updated": "2026-06-19T15:02:05.773+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -2165,7 +2207,7 @@
       "startDate": "2026-06-09",
       "dueDate": null,
       "created": "2026-06-04T23:52:40.623+0900",
-      "updated": "2026-06-18T18:03:52.398+0900",
+      "updated": "2026-06-19T16:39:13.503+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -2208,7 +2250,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-05T09:54:21.984+0900",
-      "updated": "2026-06-18T08:30:42.099+0900",
+      "updated": "2026-06-19T16:52:08.536+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -2721,7 +2763,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-04T17:51:25.815+0900",
-      "updated": "2026-06-18T15:51:18.063+0900",
+      "updated": "2026-06-19T16:39:13.853+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -2770,54 +2812,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-04T17:49:57.942+0900",
-      "updated": "2026-06-18T14:52:03.370+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": null
-    },
-    {
-      "key": "TM-3195",
-      "url": "https://jira.team.musinsa.com/browse/TM-3195",
-      "summary": "[무신사] 퀵픽스 필터 조건 매칭 상품에 몰로코 광고 삽입 (1·13·25·37번째 위치)",
-      "issueType": "Initiative",
-      "project": "TM",
-      "status": "SUGGESTED",
-      "statusCategory": "new",
-      "priority": "P0",
-      "assignee": {
-        "name": "김경애",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "박준현",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [
-        "auto-etr-triaged",
-        "conveyor",
-        "conveyor-bot",
-        "general-task",
-        "one"
-      ],
-      "mainSubject": "42.광고",
-      "mainSubjects": [
-        "42.광고"
-      ],
-      "subSubject": "검색",
-      "subSubjects": [
-        "검색",
-        "필터/PLP"
-      ],
-      "yearQuarter": "2026-Q3",
-      "yearQuarters": [
-        "2026-Q3"
-      ],
-      "subGroup": "Core-P Partner Growth",
-      "startDate": "2026-06-04",
-      "dueDate": "2026-06-04",
-      "created": "2026-06-04T17:49:06.576+0900",
-      "updated": "2026-06-19T06:00:48.929+0900",
+      "updated": "2026-06-19T16:38:03.143+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -2859,7 +2854,7 @@
       "startDate": "2026-06-04",
       "dueDate": "2026-06-30",
       "created": "2026-06-04T15:46:46.795+0900",
-      "updated": "2026-06-19T06:01:06.817+0900",
+      "updated": "2026-06-20T06:01:06.796+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -2944,7 +2939,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-02T20:00:04.088+0900",
-      "updated": "2026-06-18T16:58:02.503+0900",
+      "updated": "2026-06-19T16:39:14.156+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -3292,7 +3287,7 @@
       "startDate": "2026-06-12",
       "dueDate": "2026-06-19",
       "created": "2026-06-01T22:52:13.399+0900",
-      "updated": "2026-06-19T06:00:50.165+0900",
+      "updated": "2026-06-19T16:39:14.584+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -3641,7 +3636,7 @@
       "startDate": "2026-06-12",
       "dueDate": "2026-06-25",
       "created": "2026-05-28T10:10:43.520+0900",
-      "updated": "2026-06-19T06:00:51.483+0900",
+      "updated": "2026-06-20T06:01:07.331+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -3684,7 +3679,7 @@
       "startDate": "2026-06-01",
       "dueDate": null,
       "created": "2026-05-27T17:31:30.911+0900",
-      "updated": "2026-06-19T06:01:07.842+0900",
+      "updated": "2026-06-19T12:15:07.262+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -3773,7 +3768,7 @@
       "startDate": "2026-05-22",
       "dueDate": "2026-07-08",
       "created": "2026-05-22T10:38:36.846+0900",
-      "updated": "2026-06-19T06:01:07.847+0900",
+      "updated": "2026-06-20T06:01:08.807+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -3925,8 +3920,7 @@
       },
       "labels": [
         "26'1Q",
-        "26'2Q",
-        "26'3Q",
+        "26'4Q",
         "AI-ASSISTED",
         "MSS",
         "one",
@@ -3951,7 +3945,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-21T11:22:14.965+0900",
-      "updated": "2026-06-08T23:05:30.274+0900",
+      "updated": "2026-06-19T15:17:32.275+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -4112,7 +4106,7 @@
       "startDate": "2026-06-22",
       "dueDate": "2026-07-31",
       "created": "2026-05-20T15:41:46.120+0900",
-      "updated": "2026-06-19T06:00:51.573+0900",
+      "updated": "2026-06-20T06:01:09.474+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -4146,7 +4140,7 @@
       "startDate": "2026-06-15",
       "dueDate": "2026-10-30",
       "created": "2026-05-20T14:30:04.546+0900",
-      "updated": "2026-06-19T06:00:52.422+0900",
+      "updated": "2026-06-20T06:01:08.653+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -4437,7 +4431,7 @@
       "startDate": null,
       "dueDate": "2026-06-29",
       "created": "2026-05-18T13:28:10.593+0900",
-      "updated": "2026-06-19T06:00:52.667+0900",
+      "updated": "2026-06-20T06:01:10.716+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -4523,7 +4517,7 @@
       "startDate": "2026-05-18",
       "dueDate": "2026-08-31",
       "created": "2026-05-14T22:46:51.168+0900",
-      "updated": "2026-06-19T06:01:09.693+0900",
+      "updated": "2026-06-20T06:01:11.711+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -4567,7 +4561,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-14T22:37:53.821+0900",
-      "updated": "2026-06-18T16:48:27.057+0900",
+      "updated": "2026-06-19T11:07:31.797+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -4654,7 +4648,7 @@
       "startDate": "2026-06-22",
       "dueDate": null,
       "created": "2026-05-14T22:17:52.922+0900",
-      "updated": "2026-06-18T18:20:33.524+0900",
+      "updated": "2026-06-19T17:00:09.739+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -4769,7 +4763,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-14T20:08:54.627+0900",
-      "updated": "2026-06-19T06:01:10.079+0900",
+      "updated": "2026-06-19T18:03:42.989+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -4865,7 +4859,8 @@
         "accountId": null
       },
       "labels": [
-        "26'여름무진장"
+        "26'여름무진장",
+        "DUE_OVERDUE_BOT"
       ],
       "mainSubject": "09.캠페인",
       "mainSubjects": [
@@ -4881,17 +4876,17 @@
       "startDate": "2026-05-11",
       "dueDate": "2026-06-12",
       "created": "2026-05-14T20:05:12.311+0900",
-      "updated": "2026-06-19T06:00:53.431+0900",
+      "updated": "2026-06-20T06:01:10.988+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
     {
       "key": "TM-3041",
       "url": "https://jira.team.musinsa.com/browse/TM-3041",
-      "summary": "[랭킹] 무신사 앨범/굿즈 전용 차트 신설 및 카테고리 1뎁스 재분류 (오프라인 합산·과거 데이터 마이그레이션 포함)",
+      "summary": "[랭킹] 무신사 앨범/굿즈 전용 차트 신설 및 카테고리 1뎁스 추가 (랭킹 아카이브 포함)",
       "issueType": "Initiative",
       "project": "TM",
-      "status": "기획중",
+      "status": "기획완료",
       "statusCategory": "indeterminate",
       "priority": "P1",
       "assignee": {
@@ -4906,6 +4901,7 @@
       },
       "labels": [
         "26'2Q",
+        "26'4Q",
         "AI-ASSISTED",
         "auto-etr-triaged",
         "one",
@@ -4926,7 +4922,7 @@
       "startDate": "2026-05-20",
       "dueDate": null,
       "created": "2026-05-14T18:14:00.858+0900",
-      "updated": "2026-06-12T06:00:53.908+0900",
+      "updated": "2026-06-19T15:18:58.983+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -5335,7 +5331,7 @@
       "startDate": "2026-06-16",
       "dueDate": "2026-07-31",
       "created": "2026-05-12T17:28:48.942+0900",
-      "updated": "2026-06-19T06:01:11.571+0900",
+      "updated": "2026-06-20T06:01:11.797+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -5463,7 +5459,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-04T10:27:37.566+0900",
-      "updated": "2026-06-18T14:32:27.342+0900",
+      "updated": "2026-06-19T18:04:48.773+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -5504,7 +5500,7 @@
       "startDate": null,
       "dueDate": "2026-07-20",
       "created": "2026-04-30T18:48:36.306+0900",
-      "updated": "2026-06-19T06:01:10.233+0900",
+      "updated": "2026-06-20T06:01:12.848+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -5547,7 +5543,7 @@
       "startDate": "2026-04-28",
       "dueDate": "2026-07-02",
       "created": "2026-04-30T11:08:09.186+0900",
-      "updated": "2026-06-19T06:00:54.461+0900",
+      "updated": "2026-06-20T06:01:12.700+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -5716,7 +5712,7 @@
       "startDate": "2026-05-04",
       "dueDate": "2026-07-31",
       "created": "2026-04-27T15:20:16.401+0900",
-      "updated": "2026-06-19T06:00:56.275+0900",
+      "updated": "2026-06-20T06:01:13.811+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -6751,7 +6747,7 @@
       "startDate": "2026-04-21",
       "dueDate": "2026-05-14",
       "created": "2026-04-21T11:54:14.560+0900",
-      "updated": "2026-06-19T06:00:56.775+0900",
+      "updated": "2026-06-20T06:01:14.145+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -6793,7 +6789,7 @@
       "startDate": "2026-04-21",
       "dueDate": "2026-05-14",
       "created": "2026-04-21T11:53:52.668+0900",
-      "updated": "2026-06-19T06:00:55.224+0900",
+      "updated": "2026-06-20T06:01:13.611+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -6924,7 +6920,7 @@
       "startDate": "2026-04-21",
       "dueDate": "2026-05-15",
       "created": "2026-04-21T11:53:14.039+0900",
-      "updated": "2026-06-19T06:00:55.516+0900",
+      "updated": "2026-06-20T06:01:14.351+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -7093,7 +7089,7 @@
       "startDate": null,
       "dueDate": "2026-06-30",
       "created": "2026-04-20T14:02:57.268+0900",
-      "updated": "2026-06-19T06:00:58.005+0900",
+      "updated": "2026-06-20T06:01:13.915+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -7130,7 +7126,7 @@
       "startDate": null,
       "dueDate": "2026-06-30",
       "created": "2026-04-20T13:54:19.677+0900",
-      "updated": "2026-06-19T06:00:55.275+0900",
+      "updated": "2026-06-20T06:01:14.101+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -7177,7 +7173,7 @@
       "startDate": "2026-04-13",
       "dueDate": "2026-07-08",
       "created": "2026-04-17T12:07:44.159+0900",
-      "updated": "2026-06-19T06:01:11.373+0900",
+      "updated": "2026-06-20T06:01:14.220+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -7309,7 +7305,7 @@
       "startDate": "2026-03-30",
       "dueDate": "2026-08-11",
       "created": "2026-04-10T11:55:12.881+0900",
-      "updated": "2026-06-19T06:01:13.561+0900",
+      "updated": "2026-06-20T06:01:14.278+0900",
       "resolutionDate": "2026-04-13T10:58:08.571+0900",
       "lastStatusChangedAt": null
     },
@@ -7449,7 +7445,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-04-06T13:17:01.251+0900",
-      "updated": "2026-06-19T06:01:15.391+0900",
+      "updated": "2026-06-19T16:27:03.478+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -7675,7 +7671,7 @@
       "startDate": "2026-04-06",
       "dueDate": "2026-07-09",
       "created": "2026-04-01T16:57:23.778+0900",
-      "updated": "2026-06-19T06:01:14.335+0900",
+      "updated": "2026-06-20T06:01:17.970+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -7712,7 +7708,7 @@
       "startDate": "2026-04-01",
       "dueDate": "2026-12-31",
       "created": "2026-03-31T18:32:33.336+0900",
-      "updated": "2026-06-19T06:01:01.567+0900",
+      "updated": "2026-06-20T06:01:18.525+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -7937,7 +7933,7 @@
       "startDate": "2026-04-24",
       "dueDate": "2026-06-29",
       "created": "2026-03-30T14:54:22.276+0900",
-      "updated": "2026-06-19T06:01:00.621+0900",
+      "updated": "2026-06-20T06:01:17.803+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -7975,13 +7971,14 @@
       ],
       "yearQuarter": "2026-Q3",
       "yearQuarters": [
-        "2026-Q3"
+        "2026-Q3",
+        "2026-Q4"
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-30T14:52:04.533+0900",
-      "updated": "2026-06-18T11:21:27.926+0900",
+      "updated": "2026-06-19T14:08:55.213+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -8020,13 +8017,14 @@
       ],
       "yearQuarter": "2026-Q3",
       "yearQuarters": [
-        "2026-Q3"
+        "2026-Q3",
+        "2026-Q4"
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-30T14:50:13.021+0900",
-      "updated": "2026-06-18T14:51:29.615+0900",
+      "updated": "2026-06-19T14:08:55.207+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -8070,7 +8068,7 @@
       "startDate": "2026-04-10",
       "dueDate": null,
       "created": "2026-03-30T14:46:46.055+0900",
-      "updated": "2026-06-19T06:01:16.194+0900",
+      "updated": "2026-06-19T12:14:58.288+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -8206,7 +8204,7 @@
       "startDate": "2026-03-25",
       "dueDate": "2026-07-01",
       "created": "2026-03-30T13:09:07.131+0900",
-      "updated": "2026-06-19T06:01:15.427+0900",
+      "updated": "2026-06-20T06:01:18.066+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -8336,7 +8334,7 @@
       "startDate": "2026-03-26",
       "dueDate": "2026-06-10",
       "created": "2026-03-26T11:28:08.614+0900",
-      "updated": "2026-06-13T06:02:41.222+0900",
+      "updated": "2026-06-19T12:14:50.510+0900",
       "resolutionDate": "2026-06-12T13:43:07.166+0900",
       "lastStatusChangedAt": null
     },
@@ -8382,7 +8380,7 @@
       "startDate": "2026-04-20",
       "dueDate": "2026-06-29",
       "created": "2026-03-25T22:56:14.491+0900",
-      "updated": "2026-06-19T07:30:26.735+0900",
+      "updated": "2026-06-20T06:01:22.971+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -8424,7 +8422,7 @@
       "startDate": "2026-03-23",
       "dueDate": "2026-06-01",
       "created": "2026-03-25T22:54:50.591+0900",
-      "updated": "2026-06-19T06:01:28.559+0900",
+      "updated": "2026-06-19T12:15:11.336+0900",
       "resolutionDate": "2026-06-02T15:50:25.214+0900",
       "lastStatusChangedAt": null
     },
@@ -8469,7 +8467,7 @@
       "startDate": "2026-04-13",
       "dueDate": "2026-09-30",
       "created": "2026-03-25T22:54:28.219+0900",
-      "updated": "2026-06-19T06:01:19.109+0900",
+      "updated": "2026-06-20T06:01:21.905+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -8514,7 +8512,7 @@
       "startDate": "2026-04-08",
       "dueDate": "2026-05-29",
       "created": "2026-03-25T22:07:35.306+0900",
-      "updated": "2026-06-19T06:01:19.908+0900",
+      "updated": "2026-06-20T06:01:23.499+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -8554,7 +8552,7 @@
       "startDate": "2026-04-01",
       "dueDate": "2026-05-13",
       "created": "2026-03-25T22:07:13.155+0900",
-      "updated": "2026-06-19T06:01:19.941+0900",
+      "updated": "2026-06-20T06:01:23.394+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -8679,7 +8677,7 @@
       "startDate": "2026-04-01",
       "dueDate": "2026-07-27",
       "created": "2026-03-25T22:02:20.712+0900",
-      "updated": "2026-06-19T06:01:24.100+0900",
+      "updated": "2026-06-20T06:01:26.088+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -8770,7 +8768,7 @@
       "startDate": "2026-04-15",
       "dueDate": "2026-06-02",
       "created": "2026-03-24T11:00:41.592+0900",
-      "updated": "2026-06-12T06:01:25.821+0900",
+      "updated": "2026-06-19T12:14:49.519+0900",
       "resolutionDate": "2026-06-05T09:15:07.977+0900",
       "lastStatusChangedAt": null
     },
@@ -9002,7 +9000,7 @@
       "statusCategory": "new",
       "priority": "P0",
       "assignee": {
-        "name": "문호은",
+        "name": "이창연",
         "email": null,
         "accountId": null
       },
@@ -9012,7 +9010,7 @@
         "accountId": null
       },
       "labels": [
-        "26'2Q",
+        "26'3Q",
         "홈앤디"
       ],
       "mainSubject": "04.검색/카테고리/필터",
@@ -9033,7 +9031,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-20T14:19:14.516+0900",
-      "updated": "2026-06-18T12:05:43.621+0900",
+      "updated": "2026-06-19T14:11:10.714+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -9083,7 +9081,7 @@
     {
       "key": "TM-2507",
       "url": "https://jira.team.musinsa.com/browse/TM-2507",
-      "summary": "[세일판] 노세일 상품 노출(한정수량 모듈·상품 큐레이션 모듈)",
+      "summary": "[세일판] 노세일 상품 세일판에 노출되도록 처리 (한정수량, 상품 큐레이션, 상품 쿠폰)",
       "issueType": "Initiative",
       "project": "TM",
       "status": "SUGGESTED",
@@ -9120,7 +9118,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-20T17:15:35.446+0900",
-      "updated": "2026-06-18T14:46:51.970+0900",
+      "updated": "2026-06-19T17:47:05.804+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -9175,7 +9173,7 @@
       "startDate": "2026-04-01",
       "dueDate": "2026-06-30",
       "created": "2026-03-19T18:45:04.303+0900",
-      "updated": "2026-06-19T06:01:38.720+0900",
+      "updated": "2026-06-20T06:01:32.400+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -9346,7 +9344,7 @@
       "startDate": "2026-05-18",
       "dueDate": "2026-07-01",
       "created": "2026-03-19T12:25:56.484+0900",
-      "updated": "2026-06-19T06:01:40.434+0900",
+      "updated": "2026-06-20T06:01:31.159+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -9513,7 +9511,7 @@
       "startDate": "2026-05-06",
       "dueDate": "2026-06-30",
       "created": "2026-03-18T13:29:52.854+0900",
-      "updated": "2026-06-19T06:01:40.629+0900",
+      "updated": "2026-06-20T06:01:32.441+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -9557,7 +9555,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-18T11:50:00.960+0900",
-      "updated": "2026-06-18T16:47:40.202+0900",
+      "updated": "2026-06-19T16:39:15.275+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -9804,7 +9802,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-17T11:38:02.159+0900",
-      "updated": "2026-06-15T20:45:44.213+0900",
+      "updated": "2026-06-19T14:42:14.614+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -9855,7 +9853,7 @@
       "startDate": "2026-04-06",
       "dueDate": null,
       "created": "2026-03-16T19:56:05.335+0900",
-      "updated": "2026-06-19T06:01:22.381+0900",
+      "updated": "2026-06-19T19:31:45.735+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -9955,7 +9953,7 @@
       "startDate": "2026-05-01",
       "dueDate": "2026-07-31",
       "created": "2026-03-16T10:50:04.465+0900",
-      "updated": "2026-06-19T06:01:41.780+0900",
+      "updated": "2026-06-20T06:01:33.526+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -10000,7 +9998,7 @@
       "startDate": "2026-03-25",
       "dueDate": "2026-07-31",
       "created": "2026-03-16T10:01:27.815+0900",
-      "updated": "2026-06-19T06:01:41.364+0900",
+      "updated": "2026-06-20T06:01:32.444+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -10083,7 +10081,7 @@
       "startDate": "2026-05-25",
       "dueDate": "2026-06-30",
       "created": "2026-03-13T17:51:23.605+0900",
-      "updated": "2026-06-19T06:01:41.214+0900",
+      "updated": "2026-06-20T06:01:33.880+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -10127,7 +10125,7 @@
       "startDate": "2026-03-23",
       "dueDate": "2026-06-30",
       "created": "2026-03-13T17:46:14.418+0900",
-      "updated": "2026-06-19T06:01:41.029+0900",
+      "updated": "2026-06-20T06:01:32.136+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -10308,8 +10306,8 @@
       "summary": "[세일판] 광고",
       "issueType": "Initiative",
       "project": "TM",
-      "status": "Backlog",
-      "statusCategory": "new",
+      "status": "철회/반려/취소",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
         "name": "신제경",
@@ -10343,7 +10341,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-13T10:46:56.914+0900",
-      "updated": "2026-06-18T09:59:31.529+0900",
+      "updated": "2026-06-19T11:24:26.645+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -10768,7 +10766,7 @@
       "startDate": "2026-04-06",
       "dueDate": null,
       "created": "2026-03-13T10:45:58.632+0900",
-      "updated": "2026-06-19T06:01:36.092+0900",
+      "updated": "2026-06-19T16:39:15.641+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -11234,7 +11232,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-12T13:59:22.220+0900",
-      "updated": "2026-06-18T08:30:30.974+0900",
+      "updated": "2026-06-19T17:10:48.588+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -11398,7 +11396,7 @@
       "startDate": "2026-04-13",
       "dueDate": "2026-06-11",
       "created": "2026-03-11T15:51:14.871+0900",
-      "updated": "2026-06-19T06:01:36.615+0900",
+      "updated": "2026-06-19T15:32:08.697+0900",
       "resolutionDate": "2026-06-11T13:37:51.660+0900",
       "lastStatusChangedAt": null
     },
@@ -11617,7 +11615,7 @@
       "startDate": "2026-05-11",
       "dueDate": "2026-07-08",
       "created": "2026-03-05T15:56:13.147+0900",
-      "updated": "2026-06-19T06:01:41.483+0900",
+      "updated": "2026-06-20T06:01:33.802+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -11661,7 +11659,7 @@
       "startDate": "2026-03-27",
       "dueDate": "2026-09-30",
       "created": "2026-03-11T10:10:44.992+0900",
-      "updated": "2026-06-19T06:01:41.262+0900",
+      "updated": "2026-06-20T06:01:33.017+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -11925,7 +11923,7 @@
       "startDate": "2026-03-31",
       "dueDate": "2026-06-30",
       "created": "2026-03-04T14:18:25.448+0900",
-      "updated": "2026-06-19T06:01:42.600+0900",
+      "updated": "2026-06-20T06:01:34.647+0900",
       "resolutionDate": "2026-05-07T10:47:22.502+0900",
       "lastStatusChangedAt": null
     },
@@ -12065,7 +12063,7 @@
       "startDate": "2026-02-23",
       "dueDate": "2026-08-03",
       "created": "2026-02-27T16:50:57.625+0900",
-      "updated": "2026-06-19T06:01:42.709+0900",
+      "updated": "2026-06-20T06:01:34.778+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -12192,7 +12190,7 @@
       "startDate": "2026-05-28",
       "dueDate": null,
       "created": "2026-02-24T15:02:24.375+0900",
-      "updated": "2026-06-19T06:01:38.851+0900",
+      "updated": "2026-06-19T15:20:09.671+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -12241,7 +12239,7 @@
       "startDate": "2026-02-25",
       "dueDate": "2026-06-10",
       "created": "2026-02-12T14:28:04.898+0900",
-      "updated": "2026-06-19T06:01:36.227+0900",
+      "updated": "2026-06-19T09:36:26.200+0900",
       "resolutionDate": "2026-06-11T10:18:55.915+0900",
       "lastStatusChangedAt": null
     },
@@ -12329,7 +12327,7 @@
       "startDate": "2026-02-24",
       "dueDate": "2026-03-31",
       "created": "2026-02-23T15:32:37.134+0900",
-      "updated": "2026-06-19T06:01:43.012+0900",
+      "updated": "2026-06-20T06:01:35.299+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -12641,7 +12639,7 @@
       "startDate": "2026-04-30",
       "dueDate": null,
       "created": "2026-02-13T17:00:25.059+0900",
-      "updated": "2026-06-19T06:01:37.695+0900",
+      "updated": "2026-06-19T16:39:16.003+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -12651,11 +12649,11 @@
       "summary": "[체험단] 제세공과금 수취 자동화 시스템 구축",
       "issueType": "Initiative",
       "project": "TM",
-      "status": "Backlog",
+      "status": "SUGGESTED",
       "statusCategory": "new",
       "priority": "Big-Rock",
       "assignee": {
-        "name": "안태훈",
+        "name": "박승현",
         "email": null,
         "accountId": null
       },
@@ -12668,9 +12666,9 @@
         "MSS",
         "체험단2.0"
       ],
-      "mainSubject": "34.파트너",
+      "mainSubject": "21.주문/배송/클레임",
       "mainSubjects": [
-        "34.파트너"
+        "21.주문/배송/클레임"
       ],
       "subSubject": "체험단",
       "subSubjects": [
@@ -12682,9 +12680,9 @@
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
-      "dueDate": null,
+      "dueDate": "2026-07-31",
       "created": "2026-02-13T13:21:16.908+0900",
-      "updated": "2026-06-18T10:54:16.003+0900",
+      "updated": "2026-06-20T06:01:33.865+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -12731,7 +12729,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2025-07-31T17:43:04.096+0900",
-      "updated": "2026-06-18T14:01:24.552+0900",
+      "updated": "2026-06-19T20:42:14.140+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -12774,7 +12772,7 @@
       "startDate": "2026-05-18",
       "dueDate": "2026-06-29",
       "created": "2026-02-12T16:23:40.323+0900",
-      "updated": "2026-06-19T06:01:45.032+0900",
+      "updated": "2026-06-20T06:01:34.243+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -12784,7 +12782,7 @@
       "summary": "[무탠다드] 아더컬러 유형 세분화",
       "issueType": "Initiative",
       "project": "TM",
-      "status": "Postponed",
+      "status": "SUGGESTED",
       "statusCategory": "new",
       "priority": "P0",
       "assignee": {
@@ -12814,11 +12812,11 @@
       "yearQuarters": [
         "2026-Q3"
       ],
-      "subGroup": "MSS-P Discovery & Engagement",
+      "subGroup": "Core-P Catalog & Settlement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-02-12T16:22:26.124+0900",
-      "updated": "2026-06-18T16:24:00.655+0900",
+      "updated": "2026-06-19T11:27:18.559+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -12905,7 +12903,7 @@
       "startDate": "2026-04-15",
       "dueDate": "2026-06-30",
       "created": "2026-02-12T15:40:21.888+0900",
-      "updated": "2026-06-19T06:01:43.797+0900",
+      "updated": "2026-06-20T06:01:35.537+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -13119,7 +13117,7 @@
       "startDate": "2026-02-25",
       "dueDate": "2026-06-10",
       "created": "2026-02-11T21:36:04.217+0900",
-      "updated": "2026-06-19T06:01:38.087+0900",
+      "updated": "2026-06-19T12:15:00.709+0900",
       "resolutionDate": "2026-06-10T14:23:49.769+0900",
       "lastStatusChangedAt": null
     },
@@ -13251,7 +13249,7 @@
       "startDate": "2026-02-09",
       "dueDate": "2026-06-30",
       "created": "2026-02-09T18:09:19.995+0900",
-      "updated": "2026-06-19T06:01:43.406+0900",
+      "updated": "2026-06-20T06:01:34.460+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -13340,7 +13338,7 @@
       "startDate": "2026-06-05",
       "dueDate": "2026-09-30",
       "created": "2026-02-05T17:45:08.024+0900",
-      "updated": "2026-06-19T06:01:43.672+0900",
+      "updated": "2026-06-20T06:01:35.735+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -14006,7 +14004,7 @@
       "startDate": "2026-01-01",
       "dueDate": "2026-10-22",
       "created": "2025-12-11T13:35:13.147+0900",
-      "updated": "2026-06-19T06:01:57.639+0900",
+      "updated": "2026-06-20T06:01:41.374+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -14057,7 +14055,7 @@
       "startDate": "2026-01-27",
       "dueDate": "2026-10-22",
       "created": "2025-12-11T11:53:44.850+0900",
-      "updated": "2026-06-19T06:01:58.431+0900",
+      "updated": "2026-06-20T06:01:41.091+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -14107,7 +14105,7 @@
       "startDate": null,
       "dueDate": "2026-10-22",
       "created": "2025-12-11T09:54:43.093+0900",
-      "updated": "2026-06-19T06:01:58.894+0900",
+      "updated": "2026-06-20T06:01:41.969+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -14148,7 +14146,7 @@
       "startDate": "2025-12-01",
       "dueDate": "2026-06-30",
       "created": "2025-12-11T09:54:27.024+0900",
-      "updated": "2026-06-19T06:01:58.801+0900",
+      "updated": "2026-06-20T06:01:40.861+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -14194,7 +14192,7 @@
       "startDate": null,
       "dueDate": "2026-06-29",
       "created": "2025-12-11T09:54:17.617+0900",
-      "updated": "2026-06-19T06:01:58.454+0900",
+      "updated": "2026-06-20T06:01:42.080+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -14241,7 +14239,7 @@
       "startDate": "2026-01-05",
       "dueDate": "2026-08-11",
       "created": "2025-12-11T09:53:21.984+0900",
-      "updated": "2026-06-19T06:01:58.693+0900",
+      "updated": "2026-06-20T06:01:42.205+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -14287,7 +14285,7 @@
       "startDate": "2026-01-05",
       "dueDate": "2026-10-22",
       "created": "2025-12-11T09:51:43.349+0900",
-      "updated": "2026-06-19T06:01:58.978+0900",
+      "updated": "2026-06-20T06:01:42.301+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -14331,7 +14329,7 @@
       "startDate": "2025-12-01",
       "dueDate": "2026-06-30",
       "created": "2025-12-11T09:50:56.997+0900",
-      "updated": "2026-06-19T06:01:58.629+0900",
+      "updated": "2026-06-20T06:01:42.489+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -14469,7 +14467,7 @@
       "startDate": "2026-06-22",
       "dueDate": "2026-10-22",
       "created": "2025-12-10T18:16:13.320+0900",
-      "updated": "2026-06-19T06:01:59.609+0900",
+      "updated": "2026-06-20T06:01:42.489+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -14518,7 +14516,7 @@
       "startDate": null,
       "dueDate": "2026-10-22",
       "created": "2025-12-10T18:11:47.110+0900",
-      "updated": "2026-06-19T06:01:58.959+0900",
+      "updated": "2026-06-20T06:01:42.309+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -14564,7 +14562,7 @@
       "startDate": "2026-01-01",
       "dueDate": "2026-10-22",
       "created": "2025-12-10T18:08:59.858+0900",
-      "updated": "2026-06-19T06:01:59.013+0900",
+      "updated": "2026-06-20T06:01:43.323+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -14613,7 +14611,7 @@
       "startDate": "2026-01-12",
       "dueDate": "2026-06-30",
       "created": "2025-12-10T17:24:20.490+0900",
-      "updated": "2026-06-19T06:01:59.281+0900",
+      "updated": "2026-06-20T06:01:41.981+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -14664,7 +14662,7 @@
       "startDate": "2026-01-05",
       "dueDate": "2026-06-25",
       "created": "2025-12-10T17:23:11.260+0900",
-      "updated": "2026-06-19T06:02:00.159+0900",
+      "updated": "2026-06-20T06:01:43.851+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -14714,7 +14712,7 @@
       "startDate": null,
       "dueDate": "2026-10-22",
       "created": "2025-12-10T17:04:30.731+0900",
-      "updated": "2026-06-19T06:01:59.064+0900",
+      "updated": "2026-06-20T06:01:42.431+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -15302,6 +15300,7 @@
       },
       "labels": [
         "26'여름무진장",
+        "DUE_OVERDUE_BOT",
         "domain-apptech",
         "domain-cpcms",
         "msse-be-campaign"
@@ -15320,7 +15319,7 @@
       "startDate": "2026-04-13",
       "dueDate": "2026-06-12",
       "created": "2025-11-21T18:26:40.259+0900",
-      "updated": "2026-06-19T06:02:01.118+0900",
+      "updated": "2026-06-20T06:01:45.429+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -15899,7 +15898,7 @@
       "startDate": "2026-06-15",
       "dueDate": "2026-07-31",
       "created": "2025-11-19T21:25:41.154+0900",
-      "updated": "2026-06-19T06:02:01.244+0900",
+      "updated": "2026-06-20T06:01:46.211+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -15985,7 +15984,7 @@
       "startDate": "2025-11-20",
       "dueDate": "2026-01-28",
       "created": "2025-11-03T09:35:28.331+0900",
-      "updated": "2026-05-21T13:42:34.472+0900",
+      "updated": "2026-06-19T11:00:24.968+0900",
       "resolutionDate": "2026-01-28T14:59:45.069+0900",
       "lastStatusChangedAt": null
     },
@@ -16206,7 +16205,7 @@
       "startDate": "2025-10-17",
       "dueDate": "2026-06-30",
       "created": "2025-10-27T17:12:06.007+0900",
-      "updated": "2026-06-19T06:02:03.205+0900",
+      "updated": "2026-06-20T06:01:45.115+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -16396,7 +16395,7 @@
       "startDate": "2025-11-26",
       "dueDate": "2026-07-01",
       "created": "2025-09-25T14:42:00.619+0900",
-      "updated": "2026-06-19T07:30:30.424+0900",
+      "updated": "2026-06-20T06:01:48.055+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -17093,7 +17092,7 @@
       "startDate": "2025-10-22",
       "dueDate": null,
       "created": "2025-09-09T17:32:56.181+0900",
-      "updated": "2026-06-18T13:05:39.092+0900",
+      "updated": "2026-06-19T15:19:33.649+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -17606,7 +17605,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2025-09-03T10:55:20.359+0900",
-      "updated": "2026-06-18T12:05:47.985+0900",
+      "updated": "2026-06-19T14:43:33.629+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -18595,7 +18594,7 @@
       "startDate": "2025-10-13",
       "dueDate": "2026-05-12",
       "created": "2025-06-24T11:11:09.737+0900",
-      "updated": "2026-06-18T14:01:03.057+0900",
+      "updated": "2026-06-19T12:14:58.761+0900",
       "resolutionDate": "2026-05-18T14:26:57.173+0900",
       "lastStatusChangedAt": null
     },
@@ -24758,7 +24757,7 @@
       "startDate": "2026-06-12",
       "dueDate": "2026-06-19",
       "created": "2026-01-19T19:08:54.371+0900",
-      "updated": "2026-06-19T06:01:52.686+0900",
+      "updated": "2026-06-19T11:23:44.038+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
