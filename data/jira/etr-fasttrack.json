@@ -1,7 +1,50 @@
 {
-  "lastSync": "2026-06-26T07:17:12+09:00",
-  "count": 215,
+  "lastSync": "2026-06-27T07:06:22+09:00",
+  "count": 217,
   "items": [
+    {
+      "key": "ETR-5329",
+      "url": "https://jira.team.musinsa.com/browse/ETR-5329",
+      "summary": "[빅배너/캠페인] 메인·브숍 빅배너 기능 통합 및 캠페인 기반 멀티채널 배너 관리 시스템 도입",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "매니저 승인 대기",
+      "statusCategory": "indeterminate",
+      "priority": "P0",
+      "assignee": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-06-26T18:53:40.241+0900",
+      "updated": "2026-06-26T18:54:26.687+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-06-26T18:53:43.756+0900",
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
     {
       "key": "ETR-5319",
       "url": "https://jira.team.musinsa.com/browse/ETR-5319",
@@ -36,7 +79,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-25T23:25:14.433+0900",
-      "updated": "2026-06-25T23:25:40.555+0900",
+      "updated": "2026-06-26T14:47:48.910+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-25T23:25:17.967+0900",
       "linkedTickets": [],
@@ -51,11 +94,11 @@
       "summary": "무진장 결산 화면 '무신사머니 X 케이뱅크' 텍스트 간결화",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "매니저 승인 대기",
+      "status": "PMO 검토 중",
       "statusCategory": "indeterminate",
       "priority": "P0",
       "assignee": {
-        "name": "촤비스",
+        "name": "이승연",
         "email": null,
         "accountId": null
       },
@@ -77,15 +120,73 @@
       "yearQuarters": [],
       "subGroup": null,
       "startDate": null,
-      "dueDate": null,
+      "dueDate": "2026-07-01",
       "created": "2026-06-25T18:51:43.036+0900",
-      "updated": "2026-06-25T18:52:06.580+0900",
+      "updated": "2026-06-26T14:46:38.803+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-25T18:51:46.563+0900",
+      "lastStatusChangedAt": "2026-06-26T14:46:20.468+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
         "total": 0
+      }
+    },
+    {
+      "key": "ETR-5315",
+      "url": "https://jira.team.musinsa.com/browse/ETR-5315",
+      "summary": "사이즈필터 순서변경_FastTrack 요청",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-우선착수",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "이승연",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "문호은",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": "2026-06-25",
+      "dueDate": null,
+      "created": "2026-06-25T17:28:32.023+0900",
+      "updated": "2026-06-26T10:16:29.576+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-06-26T10:15:50.238+0900",
+      "linkedTickets": [
+        {
+          "key": "FT-241",
+          "summary": "사이즈필터 순서변경_FastTrack 요청",
+          "status": "개발완료",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward",
+          "labels": [
+            "conveyor",
+            "conveyor-bot",
+            "fast-track-away",
+            "one"
+          ]
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
       }
     },
     {
@@ -263,8 +364,8 @@
         {
           "key": "FT-216",
           "summary": "[PDP] 이미지 뷰어 확대 시 UX 개선 ",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "개발중",
+          "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -316,7 +417,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-23T14:57:27.234+0900",
-      "updated": "2026-06-24T15:27:40.363+0900",
+      "updated": "2026-06-26T16:48:23.180+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-24T15:27:01.631+0900",
       "linkedTickets": [
@@ -337,8 +438,8 @@
         {
           "key": "FT-221",
           "summary": "라이브 모듈 개선 — 하단 정보 구조, 아이콘 색상, 캐러셀 사이즈 조정",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "철회/반려/취소",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -352,7 +453,7 @@
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 2
       }
     },
@@ -549,8 +650,8 @@
         {
           "key": "FT-185",
           "summary": "영문 스펠링 브랜드명 영문 표기 정책",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "디자인중",
+          "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -858,8 +959,8 @@
         {
           "key": "FT-219",
           "summary": "[브랜드숍] 국가명 노출 검토",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "개발완료",
+          "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -868,7 +969,8 @@
             "conveyor",
             "conveyor-bot",
             "fast-track-away",
-            "one"
+            "one",
+            "홈앤디"
           ]
         }
       ],
@@ -918,8 +1020,8 @@
         {
           "key": "FT-126",
           "summary": "[design-driven][공통] Error 화면 버튼 ",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "디자인중",
+          "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -1515,7 +1617,7 @@
       "linkedTickets": [
         {
           "key": "FT-205",
-          "summary": "[후기] 키즈 상품 후기 작성 시 자동 불러오기 기능 비활성화",
+          "summary": "[후기] 키즈 상품 후기 작성 시 신체정보 입력 영역 개선",
           "status": "개발중",
           "statusCategory": "indeterminate",
           "assignee": null,
@@ -1912,16 +2014,19 @@
         {
           "key": "TM-3123",
           "summary": "[무진장] 26 여름 무진장 대응 (무진장 기간 중)",
-          "status": "In Progress",
-          "statusCategory": "indeterminate",
+          "status": "론치완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
-          "labels": []
+          "labels": [
+            "DUE_OVERDUE_BOT"
+          ],
+          "resolutionDate": "2026-06-26T13:23:16.656+0900"
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 1
       }
     },
@@ -2026,16 +2131,19 @@
         {
           "key": "TM-3123",
           "summary": "[무진장] 26 여름 무진장 대응 (무진장 기간 중)",
-          "status": "In Progress",
-          "statusCategory": "indeterminate",
+          "status": "론치완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
-          "labels": []
+          "labels": [
+            "DUE_OVERDUE_BOT"
+          ],
+          "resolutionDate": "2026-06-26T13:23:16.656+0900"
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 1
       }
     },
@@ -2080,16 +2188,19 @@
         {
           "key": "TM-3123",
           "summary": "[무진장] 26 여름 무진장 대응 (무진장 기간 중)",
-          "status": "In Progress",
-          "statusCategory": "indeterminate",
+          "status": "론치완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
-          "labels": []
+          "labels": [
+            "DUE_OVERDUE_BOT"
+          ],
+          "resolutionDate": "2026-06-26T13:23:16.656+0900"
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 1
       }
     },
@@ -2134,16 +2245,19 @@
         {
           "key": "TM-3123",
           "summary": "[무진장] 26 여름 무진장 대응 (무진장 기간 중)",
-          "status": "In Progress",
-          "statusCategory": "indeterminate",
+          "status": "론치완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
-          "labels": []
+          "labels": [
+            "DUE_OVERDUE_BOT"
+          ],
+          "resolutionDate": "2026-06-26T13:23:16.656+0900"
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 1
       }
     },
@@ -2342,8 +2456,8 @@
       "summary": "[무탠 990딜 이벤트] 이벤트 상품 주문당 수량 제한 미작동 버그",
       "issueType": "기타(KTLO/BAU)",
       "project": "ETR",
-      "status": "Tech 검토 대기 중",
-      "statusCategory": "new",
+      "status": "검토완료-우선착수",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
         "name": "한신혜",
@@ -2368,11 +2482,11 @@
       "yearQuarters": [],
       "subGroup": "MSS-P Commerce Core",
       "startDate": null,
-      "dueDate": "2026-07-08",
+      "dueDate": null,
       "created": "2026-06-15T10:47:35.728+0900",
-      "updated": "2026-06-24T17:52:48.185+0900",
+      "updated": "2026-06-26T14:49:17.103+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-24T17:52:18.528+0900",
+      "lastStatusChangedAt": "2026-06-26T14:48:38.231+0900",
       "linkedTickets": [
         {
           "key": "TM-3390",
@@ -4850,11 +4964,11 @@
       "summary": "[퀵픽스] UI 흰색 부분 투명도 조절",
       "issueType": "기타(KTLO/BAU)",
       "project": "ETR",
-      "status": "발의",
-      "statusCategory": "new",
+      "status": "PMO 검토 중",
+      "statusCategory": "indeterminate",
       "priority": "P0",
       "assignee": {
-        "name": "촤비스",
+        "name": "이승연",
         "email": null,
         "accountId": null
       },
@@ -4876,11 +4990,11 @@
       "yearQuarters": [],
       "subGroup": null,
       "startDate": null,
-      "dueDate": null,
+      "dueDate": "2026-07-01",
       "created": "2026-06-02T17:14:42.341+0900",
-      "updated": "2026-06-02T17:29:48.748+0900",
+      "updated": "2026-06-26T14:49:27.940+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": null,
+      "lastStatusChangedAt": "2026-06-26T14:49:18.968+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -4893,11 +5007,11 @@
       "summary": "[무신사] 서브웨이 필터 \"별점 높은 모자\" → \"후기 좋은 모자\" 명칭 변경 및 정렬 로직 개선",
       "issueType": "기타(KTLO/BAU)",
       "project": "ETR",
-      "status": "발의",
-      "statusCategory": "new",
+      "status": "PMO 검토 중",
+      "statusCategory": "indeterminate",
       "priority": "P0",
       "assignee": {
-        "name": "촤비스",
+        "name": "이승연",
         "email": null,
         "accountId": null
       },
@@ -4919,11 +5033,11 @@
       "yearQuarters": [],
       "subGroup": null,
       "startDate": null,
-      "dueDate": null,
+      "dueDate": "2026-07-01",
       "created": "2026-06-02T16:51:02.355+0900",
-      "updated": "2026-06-02T19:02:04.642+0900",
+      "updated": "2026-06-26T14:51:07.036+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": null,
+      "lastStatusChangedAt": "2026-06-26T14:50:57.287+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -5585,8 +5699,8 @@
       "summary": "[퀵윈][랭킹판] 검색창 급상승 키워드 '더보기' 클릭 시 랭킹판/검색어 탭 랜딩 개선",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "발의",
-      "statusCategory": "new",
+      "status": "매니저 승인 대기",
+      "statusCategory": "indeterminate",
       "priority": "P0",
       "assignee": {
         "name": "촤비스",
@@ -5611,11 +5725,11 @@
       "yearQuarters": [],
       "subGroup": null,
       "startDate": null,
-      "dueDate": null,
+      "dueDate": "2026-07-01",
       "created": "2026-06-01T09:22:49.891+0900",
-      "updated": "2026-06-02T11:16:35.199+0900",
+      "updated": "2026-06-26T14:51:49.197+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": null,
+      "lastStatusChangedAt": "2026-06-26T14:51:34.579+0900",
       "linkedTickets": [
         {
           "key": "PD-8318",
@@ -5659,8 +5773,8 @@
       "summary": "[랭킹판] 글로벌(일본/미국) vs 한국 검색어 랭킹 비교 기능 신설",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "발의",
-      "statusCategory": "new",
+      "status": "매니저 승인 대기",
+      "statusCategory": "indeterminate",
       "priority": "P0",
       "assignee": {
         "name": "촤비스",
@@ -5685,11 +5799,11 @@
       "yearQuarters": [],
       "subGroup": null,
       "startDate": null,
-      "dueDate": null,
+      "dueDate": "2026-07-01",
       "created": "2026-06-01T09:22:40.286+0900",
-      "updated": "2026-06-02T11:08:22.011+0900",
+      "updated": "2026-06-26T14:52:23.094+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": null,
+      "lastStatusChangedAt": "2026-06-26T14:52:14.403+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -8052,11 +8166,11 @@
       "yearQuarters": [
         "2026-Q2"
       ],
-      "subGroup": null,
+      "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
-      "dueDate": null,
+      "dueDate": "2026-07-08",
       "created": "2026-05-20T14:11:55.328+0900",
-      "updated": "2026-06-10T02:25:22.618+0900",
+      "updated": "2026-06-26T16:06:57.757+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-05-21T22:57:31.766+0900",
       "linkedTickets": [
@@ -9024,7 +9138,7 @@
         {
           "key": "TM-2440",
           "summary": "[게이트웨이] 브랜드광고 배너 노출",
-          "status": "개발중",
+          "status": "QA중",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
@@ -12115,7 +12229,7 @@
         {
           "key": "ETR-3684",
           "summary": "결제 실패 시 흰화면 멈춤 문제 및 오류 안내/복구 UX 개선",
-          "status": "매니저 승인 대기",
+          "status": "PMO 검토 중",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Duplicate",
@@ -12194,11 +12308,11 @@
       "summary": "결제 실패 시 흰화면 멈춤 문제 및 오류 안내/복구 UX 개선",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "매니저 승인 대기",
+      "status": "PMO 검토 중",
       "statusCategory": "indeterminate",
       "priority": "P0",
       "assignee": {
-        "name": "이선화",
+        "name": "이승연",
         "email": null,
         "accountId": null
       },
@@ -12220,11 +12334,11 @@
       "yearQuarters": [],
       "subGroup": "MSS-P Commerce Core",
       "startDate": null,
-      "dueDate": "2026-07-03",
+      "dueDate": "2026-07-01",
       "created": "2026-04-18T14:00:44.986+0900",
-      "updated": "2026-06-08T09:29:45.827+0900",
+      "updated": "2026-06-26T14:12:41.110+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-05-29T13:53:14.743+0900",
+      "lastStatusChangedAt": "2026-06-26T14:12:05.683+0900",
       "linkedTickets": [
         {
           "key": "ETR-3687",
