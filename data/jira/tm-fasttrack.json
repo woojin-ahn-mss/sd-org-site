@@ -1,7 +1,51 @@
 {
-  "lastSync": "2026-07-01T07:12:50+09:00",
-  "count": 4,
+  "lastSync": "2026-07-02T07:15:50+09:00",
+  "count": 5,
   "items": [
+    {
+      "key": "TM-3969",
+      "url": "https://jira.team.musinsa.com/browse/TM-3969",
+      "summary": "반품/교환 수거 재접수 안내 추가",
+      "issueType": "Initiative",
+      "project": "TM",
+      "status": "개발중",
+      "statusCategory": "indeterminate",
+      "priority": "Emergency",
+      "assignee": {
+        "name": "김영롱",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "이서령",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "fasttrack",
+        "one"
+      ],
+      "mainSubject": "21.주문/배송/클레임",
+      "mainSubjects": [
+        "21.주문/배송/클레임"
+      ],
+      "subSubject": "클레임",
+      "subSubjects": [
+        "클레임",
+        "주문내역"
+      ],
+      "yearQuarter": "2026-Q3",
+      "yearQuarters": [
+        "2026-Q3"
+      ],
+      "subGroup": "MSS-P Commerce Core",
+      "startDate": null,
+      "dueDate": "2026-07-08",
+      "created": "2026-06-19T00:56:13.807+0900",
+      "updated": "2026-07-02T06:01:00.934+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null
+    },
     {
       "key": "TM-3151",
       "url": "https://jira.team.musinsa.com/browse/TM-3151",
@@ -142,8 +186,8 @@
       "summary": "[게이트웨이] 브랜드광고 배너 노출",
       "issueType": "Initiative",
       "project": "TM",
-      "status": "QA중",
-      "statusCategory": "indeterminate",
+      "status": "론치완료",
+      "statusCategory": "done",
       "priority": "P1",
       "assignee": {
         "name": "허유선",
@@ -158,7 +202,7 @@
       "labels": [
         "fasttrack",
         "one",
-        "ux-ft",
+        "ux-ft-close",
         "홈앤디"
       ],
       "mainSubject": "42.광고",
@@ -177,8 +221,8 @@
       "startDate": "2026-05-18",
       "dueDate": "2026-07-01",
       "created": "2026-03-19T12:25:56.484+0900",
-      "updated": "2026-07-01T06:01:37.802+0900",
-      "resolutionDate": null,
+      "updated": "2026-07-02T06:02:15.331+0900",
+      "resolutionDate": "2026-07-01T10:09:38.942+0900",
       "lastStatusChangedAt": null
     }
   ]

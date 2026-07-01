@@ -1,6 +1,6 @@
 {
-  "lastSync": "2026-07-01T07:12:04+09:00",
-  "count": 85,
+  "lastSync": "2026-07-02T07:15:00+09:00",
+  "count": 87,
   "items": [
     {
       "key": "ETR-4411",
@@ -36,8 +36,156 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-21T17:10:33.776+0900",
-      "updated": "2026-06-30T01:03:25.064+0900",
+      "updated": "2026-07-01T18:24:44.423+0900",
       "resolutionDate": "2026-06-30T01:02:45.424+0900",
+      "lastStatusChangedAt": null
+    },
+    {
+      "key": "ETR-3728",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3728",
+      "summary": "옵션 품절 시 대체 상품 제안",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "반려",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "김연수",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "무탠다드_과제요청리스트",
+        "무탠다드_탐색"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": "2026-Q3",
+      "yearQuarters": [
+        "2026-Q3"
+      ],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-04-20T17:24:28.943+0900",
+      "updated": "2026-07-01T13:15:55.535+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null
+    },
+    {
+      "key": "ETR-3003",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3003",
+      "summary": "[무탠다드 본부 온라인사업실] 1Q 과제_온/오프라인 교차 구매에 따른 리워드 혜택(테크 과제 요청 리스트를 통해 사전 커뮤니케이션이 완료된 건)",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-미진행",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "오기현",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "무탠다드_O4O",
+        "무탠다드_과제요청리스트"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": "2026-Q1",
+      "yearQuarters": [
+        "2026-Q1"
+      ],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-03-05T12:34:15.455+0900",
+      "updated": "2026-07-01T13:15:54.430+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null
+    },
+    {
+      "key": "ETR-5295",
+      "url": "https://jira.team.musinsa.com/browse/ETR-5295",
+      "summary": "무신사머니 웹뷰 지면에서 무신사 네비게이션이 노출되는 이슈",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "Tech 검토 대기 중",
+      "statusCategory": "new",
+      "priority": "P0",
+      "assignee": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "ahhyun.lee",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": "2026-07-15",
+      "created": "2026-06-24T16:49:37.454+0900",
+      "updated": "2026-07-01T11:06:00.291+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null
+    },
+    {
+      "key": "ETR-5304",
+      "url": "https://jira.team.musinsa.com/browse/ETR-5304",
+      "summary": "무신사머니 상품권 상세 페이지 문구 수정 요청",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "Tech 검토 대기 중",
+      "statusCategory": "new",
+      "priority": "P1",
+      "assignee": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "박지선",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "무신사"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": "2026-06-25",
+      "dueDate": "2026-07-15",
+      "created": "2026-06-25T10:57:23.361+0900",
+      "updated": "2026-07-01T11:05:05.189+0900",
+      "resolutionDate": null,
       "lastStatusChangedAt": null
     },
     {
@@ -351,45 +499,6 @@
       "created": "2026-06-01T09:19:44.439+0900",
       "updated": "2026-06-26T02:32:38.865+0900",
       "resolutionDate": "2026-06-26T02:32:38.781+0900",
-      "lastStatusChangedAt": null
-    },
-    {
-      "key": "ETR-3003",
-      "url": "https://jira.team.musinsa.com/browse/ETR-3003",
-      "summary": "[무탠다드 본부 온라인사업실] 1Q 과제_온/오프라인 교차 구매에 따른 리워드 혜택(테크 과제 요청 리스트를 통해 사전 커뮤니케이션이 완료된 건)",
-      "issueType": "과제 발의",
-      "project": "ETR",
-      "status": "검토완료-미진행",
-      "statusCategory": "done",
-      "priority": "P0",
-      "assignee": {
-        "name": "안우진",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "오기현",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [
-        "무탠다드_O4O",
-        "무탠다드_과제요청리스트"
-      ],
-      "mainSubject": null,
-      "mainSubjects": [],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": "2026-Q1",
-      "yearQuarters": [
-        "2026-Q1"
-      ],
-      "subGroup": null,
-      "startDate": null,
-      "dueDate": null,
-      "created": "2026-03-05T12:34:15.455+0900",
-      "updated": "2026-06-25T12:59:00.917+0900",
-      "resolutionDate": null,
       "lastStatusChangedAt": null
     },
     {
@@ -717,45 +826,6 @@
       "dueDate": null,
       "created": "2026-05-01T21:56:56.121+0900",
       "updated": "2026-06-23T10:37:51.996+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": null
-    },
-    {
-      "key": "ETR-3728",
-      "url": "https://jira.team.musinsa.com/browse/ETR-3728",
-      "summary": "옵션 품절 시 대체 상품 제안",
-      "issueType": "과제 발의",
-      "project": "ETR",
-      "status": "반려",
-      "statusCategory": "done",
-      "priority": "P0",
-      "assignee": {
-        "name": "안우진",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "김연수",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [
-        "무탠다드_과제요청리스트",
-        "무탠다드_탐색"
-      ],
-      "mainSubject": null,
-      "mainSubjects": [],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": "2026-Q3",
-      "yearQuarters": [
-        "2026-Q3"
-      ],
-      "subGroup": null,
-      "startDate": null,
-      "dueDate": null,
-      "created": "2026-04-20T17:24:28.943+0900",
-      "updated": "2026-06-22T10:23:47.821+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
