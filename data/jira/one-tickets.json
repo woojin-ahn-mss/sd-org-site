@@ -1,18 +1,177 @@
 {
-  "lastSync": "2026-07-02T07:16:39+09:00",
-  "count": 889,
+  "lastSync": "2026-07-03T07:03:26+09:00",
+  "count": 892,
   "items": [
+    {
+      "key": "ETR-5414",
+      "url": "https://jira.team.musinsa.com/browse/ETR-5414",
+      "summary": "[콘텐츠] 브랜드숍/관련상품 앵커링 탭에 항목 갯수 표시 추가",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "PMO 검토 중",
+      "statusCategory": "indeterminate",
+      "priority": "P0",
+      "assignee": {
+        "name": "이승연",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": "2026-07-06",
+      "created": "2026-07-02T08:52:30.104+0900",
+      "updated": "2026-07-02T08:59:13.000+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-07-02T08:55:10.615+0900",
+      "linkedTickets": [
+        {
+          "key": "FT-288",
+          "summary": "[design-driven][콘텐츠] 브랜드숍/관련상품 바텀시트 타이틀에 숫자 추가",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Blocks",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-5413",
+      "url": "https://jira.team.musinsa.com/browse/ETR-5413",
+      "summary": "[브랜드탐색] 브랜드 선택 후 상품 수 부족으로 인한 전환율 저하 개선",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "PMO 검토 중",
+      "statusCategory": "indeterminate",
+      "priority": "P0",
+      "assignee": {
+        "name": "이승연",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": "2026-07-06",
+      "created": "2026-07-02T08:42:45.866+0900",
+      "updated": "2026-07-02T21:05:46.648+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-07-02T08:49:52.697+0900",
+      "linkedTickets": [
+        {
+          "key": "ETR-5402",
+          "summary": "[홈] 뷰티 카테고리 브랜드 추천 섹션 — 브랜드 노출 수 확대 및 품목별 보기 모드 추가",
+          "status": "반려",
+          "statusCategory": "done",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "outward"
+        }
+      ],
+      "progress": {
+        "done": 1,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-5412",
+      "url": "https://jira.team.musinsa.com/browse/ETR-5412",
+      "summary": "[추천판] 브랜드 칩에도 남성 성별 필터 적용",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "PMO 검토 중",
+      "statusCategory": "indeterminate",
+      "priority": "P0",
+      "assignee": {
+        "name": "이승연",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": "2026-07-06",
+      "created": "2026-07-02T08:42:28.166+0900",
+      "updated": "2026-07-02T20:36:23.179+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-07-02T08:44:34.379+0900",
+      "linkedTickets": [
+        {
+          "key": "ETR-5402",
+          "summary": "[홈] 뷰티 카테고리 브랜드 추천 섹션 — 브랜드 노출 수 확대 및 품목별 보기 모드 추가",
+          "status": "반려",
+          "statusCategory": "done",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "outward"
+        }
+      ],
+      "progress": {
+        "done": 1,
+        "total": 1
+      }
+    },
     {
       "key": "FT-299",
       "url": "https://jira.team.musinsa.com/browse/FT-299",
       "summary": "유즈드 베타뱃지 동선 내 추가",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "SUGGESTED",
-      "statusCategory": "new",
+      "status": "개발중",
+      "statusCategory": "indeterminate",
       "priority": "P2",
       "assignee": {
-        "name": "안우진",
+        "name": "김애란",
         "email": null,
         "accountId": null
       },
@@ -37,11 +196,11 @@
       ],
       "subGroup": null,
       "startDate": "2026-07-01",
-      "dueDate": "2026-07-08",
+      "dueDate": "2026-07-15",
       "created": "2026-07-01T18:17:16.418+0900",
-      "updated": "2026-07-01T18:17:26.386+0900",
+      "updated": "2026-07-02T10:15:48.002+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": null,
+      "lastStatusChangedAt": "2026-07-02T10:11:27.565+0900",
       "linkedTickets": [
         {
           "key": "ETR-5397",
@@ -64,8 +223,8 @@
       "summary": "[홈] 뷰티 카테고리 브랜드 추천 섹션 — 브랜드 노출 수 확대 및 품목별 보기 모드 추가",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "매니저 승인 대기",
-      "statusCategory": "indeterminate",
+      "status": "반려",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
         "name": "촤비스",
@@ -92,13 +251,32 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-07-01T17:07:21.960+0900",
-      "updated": "2026-07-01T17:07:49.244+0900",
+      "updated": "2026-07-02T21:05:46.716+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-01T17:07:25.329+0900",
-      "linkedTickets": [],
+      "lastStatusChangedAt": "2026-07-02T08:40:34.458+0900",
+      "linkedTickets": [
+        {
+          "key": "ETR-5412",
+          "summary": "[추천판] 브랜드 칩에도 남성 성별 필터 적용",
+          "status": "PMO 검토 중",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        },
+        {
+          "key": "ETR-5413",
+          "summary": "[브랜드탐색] 브랜드 선택 후 상품 수 부족으로 인한 전환율 저하 개선",
+          "status": "PMO 검토 중",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        }
+      ],
       "progress": {
         "done": 0,
-        "total": 0
+        "total": 2
       }
     },
     {
@@ -195,8 +373,8 @@
       "summary": "[PDP] 타임세일 카운트다운 가격옆에 추가 하기",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "SUGGESTED",
-      "statusCategory": "new",
+      "status": "철회/반려/취소",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "안우진",
@@ -226,23 +404,13 @@
       "startDate": "2026-06-30",
       "dueDate": "2026-07-08",
       "created": "2026-07-01T15:34:07.243+0900",
-      "updated": "2026-07-01T15:34:22.980+0900",
+      "updated": "2026-07-03T01:43:04.215+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": null,
-      "linkedTickets": [
-        {
-          "key": "ETR-5364",
-          "summary": "[PDP] 타임세일 카운트다운 가격옆에 추가 하기",
-          "status": "검토완료-우선착수",
-          "statusCategory": "done",
-          "assignee": null,
-          "linkType": "Relates",
-          "direction": "outward"
-        }
-      ],
+      "lastStatusChangedAt": "2026-07-03T01:43:04.215+0900",
+      "linkedTickets": [],
       "progress": {
-        "done": 1,
-        "total": 1
+        "done": 0,
+        "total": 0
       }
     },
     {
@@ -251,8 +419,8 @@
       "summary": "[design-driven][필터] 탑필터 안내 문구 표기",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "SUGGESTED",
-      "statusCategory": "new",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "안우진",
@@ -282,23 +450,13 @@
       "startDate": "2026-06-30",
       "dueDate": "2026-07-08",
       "created": "2026-07-01T15:33:43.856+0900",
-      "updated": "2026-07-01T15:33:59.982+0900",
+      "updated": "2026-07-03T01:40:02.541+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": null,
-      "linkedTickets": [
-        {
-          "key": "ETR-5373",
-          "summary": "[design-driven][필터] 탑필터 안내 문구 표기",
-          "status": "검토완료-우선착수",
-          "statusCategory": "done",
-          "assignee": null,
-          "linkType": "Relates",
-          "direction": "outward"
-        }
-      ],
+      "lastStatusChangedAt": "2026-07-03T01:39:52.844+0900",
+      "linkedTickets": [],
       "progress": {
-        "done": 1,
-        "total": 1
+        "done": 0,
+        "total": 0
       }
     },
     {
@@ -307,8 +465,8 @@
       "summary": "[design-driven][카테고리] 좌측 패널 가로값, 높이값 일괄 조정",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "SUGGESTED",
-      "statusCategory": "new",
+      "status": "디자인중",
+      "statusCategory": "indeterminate",
       "priority": "P2",
       "assignee": {
         "name": "안우진",
@@ -338,9 +496,9 @@
       "startDate": "2026-06-30",
       "dueDate": "2026-07-08",
       "created": "2026-07-01T15:33:15.208+0900",
-      "updated": "2026-07-01T15:33:29.108+0900",
+      "updated": "2026-07-02T10:48:34.204+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": null,
+      "lastStatusChangedAt": "2026-07-02T10:48:34.204+0900",
       "linkedTickets": [
         {
           "key": "ETR-5372",
@@ -397,8 +555,8 @@
         {
           "key": "FT-299",
           "summary": "유즈드 베타뱃지 동선 내 추가",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "개발중",
+          "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward"
@@ -557,7 +715,7 @@
       "statusCategory": "new",
       "priority": "P2",
       "assignee": {
-        "name": "이승연",
+        "name": "오승주",
         "email": null,
         "accountId": null
       },
@@ -582,7 +740,7 @@
       "startDate": "2026-06-30",
       "dueDate": "2026-07-01",
       "created": "2026-06-30T15:08:53.133+0900",
-      "updated": "2026-07-01T08:53:43.764+0900",
+      "updated": "2026-07-02T10:49:24.566+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -731,7 +889,7 @@
       "startDate": "2026-06-30",
       "dueDate": "2026-07-01",
       "created": "2026-06-30T14:51:37.048+0900",
-      "updated": "2026-07-01T06:00:53.029+0900",
+      "updated": "2026-07-03T06:01:05.084+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -786,7 +944,7 @@
       "startDate": "2026-06-30",
       "dueDate": "2026-06-26",
       "created": "2026-06-30T14:31:18.013+0900",
-      "updated": "2026-07-02T06:01:01.042+0900",
+      "updated": "2026-07-03T06:01:05.084+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -1110,7 +1268,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-30T14:18:29.154+0900",
-      "updated": "2026-07-01T15:34:29.979+0900",
+      "updated": "2026-07-03T01:40:16.186+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-01T15:33:51.508+0900",
       "linkedTickets": [
@@ -1122,20 +1280,11 @@
           "assignee": null,
           "linkType": "Relates",
           "direction": "outward"
-        },
-        {
-          "key": "FT-295",
-          "summary": "[design-driven][필터] 탑필터 안내 문구 표기",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
-          "assignee": null,
-          "linkType": "Relates",
-          "direction": "inward"
         }
       ],
       "progress": {
         "done": 0,
-        "total": 2
+        "total": 1
       }
     },
     {
@@ -1187,8 +1336,8 @@
         {
           "key": "FT-294",
           "summary": "[design-driven][카테고리] 좌측 패널 가로값, 높이값 일괄 조정",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "디자인중",
+          "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward"
@@ -1291,8 +1440,8 @@
         {
           "key": "FT-90",
           "summary": "[design-driven][공통] 퍼널 배너 스타일 개선",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "Dropped",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "outward"
@@ -1308,7 +1457,7 @@
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 2
       }
     },
@@ -1397,7 +1546,7 @@
       "startDate": null,
       "dueDate": "2026-07-15",
       "created": "2026-06-30T14:15:27.993+0900",
-      "updated": "2026-07-01T15:34:53.840+0900",
+      "updated": "2026-07-03T01:42:52.115+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-01T15:34:14.619+0900",
       "linkedTickets": [
@@ -1408,21 +1557,12 @@
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "outward"
-        },
-        {
-          "key": "FT-296",
-          "summary": "[PDP] 타임세일 카운트다운 가격옆에 추가 하기",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
-          "assignee": null,
-          "linkType": "Relates",
           "direction": "inward"
         }
       ],
       "progress": {
         "done": 0,
-        "total": 2
+        "total": 1
       }
     },
     {
@@ -1465,8 +1605,8 @@
         {
           "key": "FT-262",
           "summary": "[랭킹] 브랜드 랭킹 상단 배너 디자인 수정",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "디자인완료",
+          "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward"
@@ -1512,7 +1652,7 @@
       "startDate": "2026-06-30",
       "dueDate": "2026-07-01",
       "created": "2026-06-30T10:05:21.016+0900",
-      "updated": "2026-07-01T19:29:12.086+0900",
+      "updated": "2026-07-02T08:52:23.064+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -1607,8 +1747,8 @@
       "summary": "[랭킹] 브랜드 랭킹 상단 배너 디자인 수정",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "SUGGESTED",
-      "statusCategory": "new",
+      "status": "디자인완료",
+      "statusCategory": "indeterminate",
       "priority": "P2",
       "assignee": {
         "name": "김혜림",
@@ -1639,9 +1779,9 @@
       "startDate": "2026-06-30",
       "dueDate": null,
       "created": "2026-06-30T08:48:21.280+0900",
-      "updated": "2026-07-02T01:08:29.034+0900",
+      "updated": "2026-07-02T13:03:30.779+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": null,
+      "lastStatusChangedAt": "2026-07-02T13:03:30.779+0900",
       "linkedTickets": [
         {
           "key": "ETR-5362",
@@ -1694,7 +1834,7 @@
       "startDate": "2026-06-29",
       "dueDate": "2026-06-29",
       "created": "2026-06-29T16:21:59.689+0900",
-      "updated": "2026-07-02T06:01:00.982+0900",
+      "updated": "2026-07-03T06:01:05.090+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -2325,7 +2465,7 @@
         {
           "key": "ETR-5315",
           "summary": "사이즈필터 순서변경_FastTrack 요청",
-          "status": "검토완료-우선착수",
+          "status": "완료",
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
@@ -2448,7 +2588,7 @@
       "summary": "사이즈필터 순서변경_FastTrack 요청",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-우선착수",
+      "status": "완료",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -2475,9 +2615,9 @@
       "startDate": "2026-06-25",
       "dueDate": null,
       "created": "2026-06-25T17:28:32.023+0900",
-      "updated": "2026-06-30T13:31:57.135+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-26T10:15:50.238+0900",
+      "updated": "2026-07-02T21:44:04.152+0900",
+      "resolutionDate": "2026-07-02T21:44:04.097+0900",
+      "lastStatusChangedAt": "2026-07-02T21:44:04.152+0900",
       "linkedTickets": [
         {
           "key": "FT-241",
@@ -2530,7 +2670,7 @@
       "startDate": "2026-06-25",
       "dueDate": "2026-06-23",
       "created": "2026-06-25T17:15:04.776+0900",
-      "updated": "2026-07-02T06:01:01.159+0900",
+      "updated": "2026-07-03T06:01:05.082+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -2585,7 +2725,7 @@
       "startDate": "2026-06-25",
       "dueDate": "2026-06-23",
       "created": "2026-06-25T17:14:54.335+0900",
-      "updated": "2026-07-02T06:01:00.913+0900",
+      "updated": "2026-07-03T06:01:05.028+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -2640,7 +2780,7 @@
       "startDate": "2026-06-25",
       "dueDate": "2026-06-18",
       "created": "2026-06-25T17:14:41.172+0900",
-      "updated": "2026-07-02T06:01:01.308+0900",
+      "updated": "2026-07-03T06:01:05.045+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -2695,7 +2835,7 @@
       "startDate": "2026-06-25",
       "dueDate": "2026-06-18",
       "created": "2026-06-25T17:14:20.596+0900",
-      "updated": "2026-07-02T06:01:01.071+0900",
+      "updated": "2026-07-03T06:01:05.423+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -2814,7 +2954,7 @@
         {
           "key": "ETR-4959",
           "summary": "[랭킹판] 오프라인 디자인 개선 — 띠배너 스타일 보완 및 3D 아이콘 제작",
-          "status": "검토완료-우선착수",
+          "status": "완료",
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
@@ -2862,7 +3002,7 @@
       "startDate": "2026-06-24",
       "dueDate": "2026-06-11",
       "created": "2026-06-24T15:28:16.689+0900",
-      "updated": "2026-07-02T06:01:03.640+0900",
+      "updated": "2026-07-03T06:01:08.113+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -2933,7 +3073,7 @@
         {
           "key": "FT-198",
           "summary": "라이브 모듈 개선 — 하단 정보 구조, 아이콘 색상, 캐러셀 사이즈 조정",
-          "status": "QA중",
+          "status": "개발완료",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
@@ -2981,7 +3121,7 @@
       "startDate": "2026-06-24",
       "dueDate": "2026-07-31",
       "created": "2026-06-24T15:26:28.039+0900",
-      "updated": "2026-07-01T08:54:37.967+0900",
+      "updated": "2026-07-02T08:53:16.816+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-30T10:46:17.701+0900",
       "linkedTickets": [
@@ -3059,7 +3199,7 @@
         {
           "key": "ETR-5272",
           "summary": "[브랜드숍] 국가명 노출 검토",
-          "status": "검토완료-우선착수",
+          "status": "완료",
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
@@ -3193,7 +3333,7 @@
       "startDate": "2026-06-24",
       "dueDate": "2026-07-31",
       "created": "2026-06-24T15:19:13.540+0900",
-      "updated": "2026-07-02T01:08:35.478+0900",
+      "updated": "2026-07-02T08:52:56.217+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-26T14:14:23.328+0900",
       "linkedTickets": [
@@ -3250,7 +3390,7 @@
       "startDate": "2026-06-24",
       "dueDate": "2026-06-25",
       "created": "2026-06-24T15:18:50.691+0900",
-      "updated": "2026-07-02T06:01:03.466+0900",
+      "updated": "2026-07-03T06:01:09.572+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -3305,7 +3445,7 @@
       "startDate": "2026-06-24",
       "dueDate": "2026-06-16",
       "created": "2026-06-24T15:18:35.955+0900",
-      "updated": "2026-07-02T06:01:04.094+0900",
+      "updated": "2026-07-03T06:01:08.029+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -3360,7 +3500,7 @@
       "startDate": "2026-06-24",
       "dueDate": "2026-06-17",
       "created": "2026-06-24T15:18:23.114+0900",
-      "updated": "2026-07-02T06:01:03.773+0900",
+      "updated": "2026-07-03T06:01:10.276+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -3415,7 +3555,7 @@
       "startDate": "2026-06-24",
       "dueDate": "2026-06-24",
       "created": "2026-06-24T15:17:44.338+0900",
-      "updated": "2026-07-01T08:54:13.947+0900",
+      "updated": "2026-07-02T08:53:01.417+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -3598,7 +3738,7 @@
       "startDate": "2026-06-24",
       "dueDate": "2026-06-24",
       "created": "2026-06-24T13:26:06.706+0900",
-      "updated": "2026-07-02T06:01:04.313+0900",
+      "updated": "2026-07-03T06:01:08.530+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -3660,7 +3800,7 @@
         {
           "key": "ETR-5274",
           "summary": "기획전 성별필터·최근본 공통기능 통일",
-          "status": "검토완료-우선착수",
+          "status": "완료",
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
@@ -3719,7 +3859,7 @@
       "startDate": "2026-06-24",
       "dueDate": "2026-07-10",
       "created": "2026-06-24T11:06:23.207+0900",
-      "updated": "2026-07-01T11:40:47.917+0900",
+      "updated": "2026-07-02T08:53:10.171+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-01T11:40:47.917+0900",
       "linkedTickets": [
@@ -3783,7 +3923,7 @@
       "startDate": "2026-06-24",
       "dueDate": "2026-06-24",
       "created": "2026-06-24T11:06:08.479+0900",
-      "updated": "2026-07-02T06:01:05.869+0900",
+      "updated": "2026-07-03T06:01:10.869+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -3902,7 +4042,7 @@
       "startDate": "2026-06-24",
       "dueDate": "2026-06-24",
       "created": "2026-06-24T11:05:11.514+0900",
-      "updated": "2026-07-02T06:01:05.819+0900",
+      "updated": "2026-07-03T06:01:08.369+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -4064,7 +4204,7 @@
         {
           "key": "FT-198",
           "summary": "라이브 모듈 개선 — 하단 정보 구조, 아이콘 색상, 캐러셀 사이즈 조정",
-          "status": "QA중",
+          "status": "개발완료",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
@@ -4339,7 +4479,7 @@
       "summary": "기획전 성별필터·최근본 공통기능 통일",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-우선착수",
+      "status": "완료",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -4367,9 +4507,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-23T14:57:16.531+0900",
-      "updated": "2026-06-30T10:22:50.078+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-24T11:06:43.473+0900",
+      "updated": "2026-07-02T21:44:01.590+0900",
+      "resolutionDate": "2026-07-02T21:44:01.510+0900",
+      "lastStatusChangedAt": "2026-07-02T21:44:01.590+0900",
       "linkedTickets": [
         {
           "key": "FT-180",
@@ -4463,7 +4603,7 @@
       "summary": "[브랜드숍] 국가명 노출 검토",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-우선착수",
+      "status": "완료",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -4491,9 +4631,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-23T14:57:12.442+0900",
-      "updated": "2026-06-30T21:46:18.580+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-24T15:25:12.179+0900",
+      "updated": "2026-07-02T21:44:06.061+0900",
+      "resolutionDate": "2026-07-02T21:44:05.989+0900",
+      "lastStatusChangedAt": "2026-07-02T21:44:06.061+0900",
       "linkedTickets": [
         {
           "key": "FT-148",
@@ -4684,8 +4824,8 @@
         {
           "key": "FT-114",
           "summary": "[design-driven][PLP] 상품 정보영역 내 간격 등 개선",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "Dropped",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward"
@@ -4701,7 +4841,7 @@
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 2
       }
     },
@@ -4803,7 +4943,7 @@
       "startDate": "2026-06-23",
       "dueDate": "2026-06-17",
       "created": "2026-06-23T10:06:46.426+0900",
-      "updated": "2026-07-02T06:01:07.046+0900",
+      "updated": "2026-07-03T06:01:13.364+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -4858,7 +4998,7 @@
       "startDate": "2026-06-23",
       "dueDate": "2026-06-17",
       "created": "2026-06-23T10:06:06.182+0900",
-      "updated": "2026-07-02T06:01:06.010+0900",
+      "updated": "2026-07-03T06:01:14.953+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -4913,7 +5053,7 @@
       "startDate": "2026-06-23",
       "dueDate": "2026-06-16",
       "created": "2026-06-23T10:05:52.754+0900",
-      "updated": "2026-07-02T06:01:06.586+0900",
+      "updated": "2026-07-03T06:01:15.455+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -5299,11 +5439,11 @@
       "summary": "라이브 모듈 개선 — 하단 정보 구조, 아이콘 색상, 캐러셀 사이즈 조정",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "QA중",
+      "status": "개발완료",
       "statusCategory": "indeterminate",
       "priority": "P2",
       "assignee": {
-        "name": "심규환",
+        "name": "배정화",
         "email": null,
         "accountId": null
       },
@@ -5333,9 +5473,9 @@
       "startDate": "2026-06-24",
       "dueDate": "2026-07-08",
       "created": "2026-06-19T00:56:45.012+0900",
-      "updated": "2026-06-30T20:47:21.881+0900",
+      "updated": "2026-07-02T10:42:11.680+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-29T14:41:55.689+0900",
+      "lastStatusChangedAt": "2026-07-02T10:40:49.143+0900",
       "linkedTickets": [
         {
           "key": "ETR-5279",
@@ -5349,7 +5489,7 @@
         {
           "key": "ETR-4419",
           "summary": "라이브 모듈 개선 — 하단 정보 구조, 아이콘 색상, 캐러셀 사이즈 조정",
-          "status": "검토완료-우선착수",
+          "status": "검토완료-미진행",
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
@@ -5867,16 +6007,16 @@
       }
     },
     {
-      "key": "FT-188",
-      "url": "https://jira.team.musinsa.com/browse/FT-188",
-      "summary": "[design-driven][마이] 주문내역에 탭 적용",
+      "key": "TM-3981",
+      "url": "https://jira.team.musinsa.com/browse/TM-3981",
+      "summary": "[마이] 주문내역에 탭 적용",
       "issueType": "Initiative",
-      "project": "FT",
+      "project": "TM",
       "status": "SUGGESTED",
       "statusCategory": "new",
-      "priority": "P2",
+      "priority": "Backlog",
       "assignee": {
-        "name": "박주현",
+        "name": "박승현",
         "email": null,
         "accountId": null
       },
@@ -5901,22 +6041,22 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-19T00:56:38.499+0900",
-      "updated": "2026-06-29T10:10:05.454+0900",
+      "updated": "2026-07-02T10:10:10.044+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
         {
           "key": "FT-118",
           "summary": "[design-driven][마이] 진행 중 주문 현황 전체보기",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "Dropped",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Blocks",
           "direction": "outward"
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 1
       }
     },
@@ -6242,7 +6382,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-19T00:56:32.636+0900",
-      "updated": "2026-06-28T00:49:01.536+0900",
+      "updated": "2026-07-03T06:02:09.876+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-28T00:45:13.388+0900",
       "linkedTickets": [
@@ -6370,7 +6510,7 @@
         {
           "key": "ETR-5274",
           "summary": "기획전 성별필터·최근본 공통기능 통일",
-          "status": "검토완료-우선착수",
+          "status": "완료",
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
@@ -6427,7 +6567,7 @@
       "startDate": null,
       "dueDate": "2026-07-31",
       "created": "2026-06-19T00:56:32.403+0900",
-      "updated": "2026-06-30T21:05:00.207+0900",
+      "updated": "2026-07-02T10:15:11.250+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-23T10:35:57.343+0900",
       "linkedTickets": [
@@ -6452,7 +6592,7 @@
       "summary": "[design-driven][공통] KV 위 GNB 타입 제작 (투명형)",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "SUGGESTED",
+      "status": "Backlog",
       "statusCategory": "new",
       "priority": "P2",
       "assignee": {
@@ -6484,9 +6624,9 @@
       "startDate": null,
       "dueDate": "2026-09-30",
       "created": "2026-06-19T00:56:30.376+0900",
-      "updated": "2026-07-01T15:56:16.082+0900",
+      "updated": "2026-07-02T10:45:36.950+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": null,
+      "lastStatusChangedAt": "2026-07-02T10:45:36.950+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -6731,7 +6871,7 @@
       "startDate": "2026-04-27",
       "dueDate": null,
       "created": "2026-06-19T00:56:27.821+0900",
-      "updated": "2026-06-29T10:37:44.019+0900",
+      "updated": "2026-07-03T06:02:11.265+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [],
@@ -7028,7 +7168,7 @@
       "startDate": null,
       "dueDate": "2026-07-31",
       "created": "2026-06-19T00:56:21.001+0900",
-      "updated": "2026-07-01T15:33:49.705+0900",
+      "updated": "2026-07-03T01:40:16.131+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-23T09:57:04.631+0900",
       "linkedTickets": [
@@ -7172,7 +7312,7 @@
       "startDate": null,
       "dueDate": "2026-07-31",
       "created": "2026-06-19T00:56:18.229+0900",
-      "updated": "2026-07-01T15:34:13.789+0900",
+      "updated": "2026-07-03T01:42:52.167+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-23T09:55:14.117+0900",
       "linkedTickets": [
@@ -7192,7 +7332,7 @@
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "inward"
+          "direction": "outward"
         }
       ],
       "progress": {
@@ -7349,8 +7489,8 @@
       "summary": "[design-driven][공통] 전문관 홈 작동 방식 ",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "HOLD",
-      "statusCategory": "indeterminate",
+      "status": "Backlog",
+      "statusCategory": "new",
       "priority": "P2",
       "assignee": {
         "name": "유정선",
@@ -7381,9 +7521,9 @@
       "startDate": null,
       "dueDate": "2026-09-30",
       "created": "2026-06-19T00:56:14.731+0900",
-      "updated": "2026-06-23T12:43:08.043+0900",
+      "updated": "2026-07-02T11:01:35.370+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-23T10:35:50.251+0900",
+      "lastStatusChangedAt": "2026-07-02T11:01:35.370+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -7430,13 +7570,23 @@
       "startDate": null,
       "dueDate": "2026-07-08",
       "created": "2026-06-19T00:56:13.807+0900",
-      "updated": "2026-07-02T06:01:00.934+0900",
+      "updated": "2026-07-03T06:01:05.092+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-30T15:29:20.964+0900",
-      "linkedTickets": [],
+      "linkedTickets": [
+        {
+          "key": "FE-25825",
+          "summary": "[FE] 미수거 안내 노티 문의 버튼 로그(click/impression) 심기",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Contains",
+          "direction": "outward"
+        }
+      ],
       "progress": {
         "done": 0,
-        "total": 0
+        "total": 1
       }
     },
     {
@@ -7524,7 +7674,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-19T00:56:12.427+0900",
-      "updated": "2026-06-25T17:59:33.361+0900",
+      "updated": "2026-07-02T10:41:58.989+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-23T10:42:50.630+0900",
       "linkedTickets": [],
@@ -7570,7 +7720,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-19T00:56:11.831+0900",
-      "updated": "2026-06-23T11:30:06.501+0900",
+      "updated": "2026-07-02T10:40:51.417+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [],
@@ -7631,8 +7781,8 @@
       "summary": "[design-driven][SRP] 스냅 리스트 상품 정보 추가",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "SUGGESTED",
-      "statusCategory": "new",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "오승주",
@@ -7662,9 +7812,9 @@
       "startDate": null,
       "dueDate": "2026-05-31",
       "created": "2026-06-19T00:56:09.496+0900",
-      "updated": "2026-06-23T11:29:56.513+0900",
+      "updated": "2026-07-02T10:38:57.565+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": null,
+      "lastStatusChangedAt": "2026-07-02T10:38:57.565+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -7810,7 +7960,7 @@
       "summary": "[design-driven][공통]스토어홈 앱바 이벤트/회원혜택 진입점 아이콘 모션 ",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "SUGGESTED",
+      "status": "Backlog",
       "statusCategory": "new",
       "priority": "P3",
       "assignee": {
@@ -7846,9 +7996,9 @@
       "startDate": null,
       "dueDate": "2026-09-30",
       "created": "2026-06-19T00:56:08.043+0900",
-      "updated": "2026-06-30T15:14:06.318+0900",
+      "updated": "2026-07-02T10:35:57.267+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-30T15:14:06.318+0900",
+      "lastStatusChangedAt": "2026-07-02T10:35:57.267+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -7941,14 +8091,14 @@
       "startDate": "2026-06-25",
       "dueDate": "2026-06-29",
       "created": "2026-06-19T00:56:02.966+0900",
-      "updated": "2026-06-30T21:42:16.856+0900",
+      "updated": "2026-07-03T06:02:11.999+0900",
       "resolutionDate": "2026-06-29T10:27:08.336+0900",
       "lastStatusChangedAt": "2026-06-29T10:27:08.349+0900",
       "linkedTickets": [
         {
           "key": "ETR-5272",
           "summary": "[브랜드숍] 국가명 노출 검토",
-          "status": "검토완료-우선착수",
+          "status": "완료",
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
@@ -8202,8 +8352,8 @@
       "summary": "[design-driven][추천판] 빅배너 > 전체 보기 페이지 개선",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "SUGGESTED",
-      "statusCategory": "new",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "김혜림",
@@ -8235,9 +8385,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-19T00:55:58.386+0900",
-      "updated": "2026-06-23T11:29:32.100+0900",
+      "updated": "2026-07-02T10:35:05.882+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": null,
+      "lastStatusChangedAt": "2026-07-02T10:35:05.882+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -8611,8 +8761,8 @@
       "summary": "[PLP] 패션잡화 상품 내 사이즈 옵션(필터) 노출 최적화",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "SUGGESTED",
-      "statusCategory": "new",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "문호은",
@@ -8637,15 +8787,17 @@
       "subSubjects": [
         "필터/PLP"
       ],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2"
+      ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-19T00:55:51.672+0900",
-      "updated": "2026-06-23T11:28:28.289+0900",
+      "updated": "2026-07-02T10:34:17.714+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": null,
+      "lastStatusChangedAt": "2026-07-02T10:34:17.714+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -8787,7 +8939,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-19T00:55:47.942+0900",
-      "updated": "2026-06-29T15:34:38.143+0900",
+      "updated": "2026-07-02T20:20:51.104+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [],
@@ -8990,7 +9142,7 @@
       "startDate": null,
       "dueDate": "2026-07-31",
       "created": "2026-06-19T00:55:43.717+0900",
-      "updated": "2026-07-01T15:54:50.080+0900",
+      "updated": "2026-07-02T10:44:56.089+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-26T14:12:41.397+0900",
       "linkedTickets": [
@@ -9024,8 +9176,8 @@
       "summary": "앱스플래시 광고 노출이후 애니메이션 요소 추가",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "Backlog",
-      "statusCategory": "new",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "신제경",
@@ -9059,9 +9211,9 @@
       "startDate": null,
       "dueDate": "2026-09-30",
       "created": "2026-06-19T00:55:42.292+0900",
-      "updated": "2026-06-29T15:29:00.407+0900",
+      "updated": "2026-07-02T10:31:58.104+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-23T10:42:30.183+0900",
+      "lastStatusChangedAt": "2026-07-02T10:31:58.104+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -9155,7 +9307,7 @@
       "startDate": null,
       "dueDate": "2026-09-30",
       "created": "2026-06-19T00:55:40.024+0900",
-      "updated": "2026-06-29T15:27:37.435+0900",
+      "updated": "2026-07-02T10:30:46.645+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [],
@@ -9202,7 +9354,7 @@
       "startDate": "2026-03-01",
       "dueDate": "2026-09-30",
       "created": "2026-06-19T00:55:39.435+0900",
-      "updated": "2026-06-29T15:26:54.169+0900",
+      "updated": "2026-07-02T10:30:12.745+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-23T10:42:25.926+0900",
       "linkedTickets": [],
@@ -9309,7 +9461,7 @@
       "startDate": null,
       "dueDate": "2026-09-30",
       "created": "2026-06-19T00:55:36.860+0900",
-      "updated": "2026-06-29T15:26:43.444+0900",
+      "updated": "2026-07-02T10:29:30.295+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-23T10:42:24.006+0900",
       "linkedTickets": [],
@@ -9324,7 +9476,7 @@
       "summary": "[design-driven][게이트웨이] 문구 운영 테스트",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "SUGGESTED",
+      "status": "Backlog",
       "statusCategory": "new",
       "priority": "P3",
       "assignee": {
@@ -9358,9 +9510,9 @@
       "startDate": null,
       "dueDate": "2026-12-31",
       "created": "2026-06-19T00:55:36.779+0900",
-      "updated": "2026-06-29T10:13:44.852+0900",
+      "updated": "2026-07-02T10:27:49.329+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": null,
+      "lastStatusChangedAt": "2026-07-02T10:27:49.329+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -9373,8 +9525,8 @@
       "summary": "[design-driven][마이] 진행 중 주문 현황 전체보기",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "SUGGESTED",
-      "statusCategory": "new",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "박주현",
@@ -9404,13 +9556,13 @@
       "startDate": null,
       "dueDate": "2026-09-30",
       "created": "2026-06-19T00:55:35.278+0900",
-      "updated": "2026-06-29T15:26:19.281+0900",
+      "updated": "2026-07-02T10:09:40.718+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": null,
+      "lastStatusChangedAt": "2026-07-02T10:09:33.948+0900",
       "linkedTickets": [
         {
-          "key": "FT-188",
-          "summary": "[design-driven][마이] 주문내역에 탭 적용",
+          "key": "TM-3981",
+          "summary": "[마이] 주문내역에 탭 적용",
           "status": "SUGGESTED",
           "statusCategory": "new",
           "assignee": null,
@@ -9429,8 +9581,8 @@
       "summary": "[design-driven][공통] 파란점, 느낌표 등 기능 인디케이터 정책 정의",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "SUGGESTED",
-      "statusCategory": "new",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "성영주",
@@ -9462,9 +9614,9 @@
       "startDate": null,
       "dueDate": "2026-09-30",
       "created": "2026-06-19T00:55:34.452+0900",
-      "updated": "2026-06-30T12:00:25.281+0900",
+      "updated": "2026-07-02T10:27:33.566+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": null,
+      "lastStatusChangedAt": "2026-07-02T10:27:33.566+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -9575,8 +9727,8 @@
       "summary": "[design-driven][PLP] 상품 정보영역 내 간격 등 개선",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "SUGGESTED",
-      "statusCategory": "new",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "오승주",
@@ -9606,9 +9758,9 @@
       "startDate": null,
       "dueDate": "2026-09-30",
       "created": "2026-06-19T00:55:32.693+0900",
-      "updated": "2026-06-29T15:26:03.037+0900",
+      "updated": "2026-07-02T10:24:35.813+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": null,
+      "lastStatusChangedAt": "2026-07-02T10:24:35.813+0900",
       "linkedTickets": [
         {
           "key": "ETR-5269",
@@ -9723,7 +9875,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-19T00:55:31.964+0900",
-      "updated": "2026-06-23T12:43:05.658+0900",
+      "updated": "2026-07-02T10:10:50.843+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-23T10:16:07.612+0900",
       "linkedTickets": [],
@@ -9770,7 +9922,7 @@
       "startDate": null,
       "dueDate": "2026-09-30",
       "created": "2026-06-19T00:55:30.252+0900",
-      "updated": "2026-06-29T15:25:47.074+0900",
+      "updated": "2026-07-02T10:23:50.303+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [],
@@ -9785,7 +9937,7 @@
       "summary": "[design-driven][유즈드] 홈 판매관리/판매신청 버튼 ",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "개발중",
+      "status": "개발완료",
       "statusCategory": "indeterminate",
       "priority": "P2",
       "assignee": {
@@ -9820,9 +9972,9 @@
       "startDate": "2026-06-28",
       "dueDate": "2026-07-31",
       "created": "2026-06-19T00:55:29.785+0900",
-      "updated": "2026-07-01T17:18:11.405+0900",
+      "updated": "2026-07-02T10:39:00.649+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-26T16:50:02.191+0900",
+      "lastStatusChangedAt": "2026-07-02T10:39:00.649+0900",
       "linkedTickets": [
         {
           "key": "FT-275",
@@ -9936,7 +10088,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-19T00:55:29.461+0900",
-      "updated": "2026-06-23T10:35:31.921+0900",
+      "updated": "2026-07-02T17:31:36.625+0900",
       "resolutionDate": "2026-06-23T10:35:31.856+0900",
       "lastStatusChangedAt": "2026-06-23T10:35:31.921+0900",
       "linkedTickets": [],
@@ -10228,8 +10380,8 @@
       "summary": "주문 완료 3s 광고 구좌 개선",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "SUGGESTED",
-      "statusCategory": "new",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "장미진",
@@ -10260,9 +10412,9 @@
       "startDate": null,
       "dueDate": "2026-09-30",
       "created": "2026-06-19T00:55:24.256+0900",
-      "updated": "2026-06-29T15:25:18.854+0900",
+      "updated": "2026-07-02T10:21:38.910+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": null,
+      "lastStatusChangedAt": "2026-07-02T10:21:27.723+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -10307,7 +10459,7 @@
       "startDate": "2026-06-26",
       "dueDate": "2026-07-31",
       "created": "2026-06-19T00:55:24.221+0900",
-      "updated": "2026-07-02T01:08:29.938+0900",
+      "updated": "2026-07-02T17:32:19.362+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-29T10:59:42.808+0900",
       "linkedTickets": [
@@ -10364,7 +10516,7 @@
       "startDate": null,
       "dueDate": "2026-09-30",
       "created": "2026-06-19T00:55:24.137+0900",
-      "updated": "2026-06-30T14:19:36.897+0900",
+      "updated": "2026-07-02T10:17:40.799+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-30T10:46:08.713+0900",
       "linkedTickets": [
@@ -10463,7 +10615,7 @@
       "startDate": null,
       "dueDate": "2026-09-30",
       "created": "2026-06-19T00:55:21.812+0900",
-      "updated": "2026-06-29T15:24:45.783+0900",
+      "updated": "2026-07-02T10:14:53.072+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [],
@@ -10507,7 +10659,7 @@
       "startDate": null,
       "dueDate": "2026-10-31",
       "created": "2026-06-19T00:55:21.751+0900",
-      "updated": "2026-06-29T15:24:26.151+0900",
+      "updated": "2026-07-02T10:13:27.044+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [],
@@ -10556,7 +10708,7 @@
       "startDate": null,
       "dueDate": "2026-12-31",
       "created": "2026-06-19T00:55:21.675+0900",
-      "updated": "2026-06-30T15:14:14.655+0900",
+      "updated": "2026-07-02T10:16:23.559+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-30T15:14:14.655+0900",
       "linkedTickets": [
@@ -10762,8 +10914,8 @@
       "summary": "[design-driven][공통] 퍼널 배너 스타일 개선",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "SUGGESTED",
-      "statusCategory": "new",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "이규현",
@@ -10797,9 +10949,9 @@
       "startDate": null,
       "dueDate": "2026-09-30",
       "created": "2026-06-19T00:55:18.988+0900",
-      "updated": "2026-06-30T14:51:44.132+0900",
+      "updated": "2026-07-02T10:13:00.852+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-30T11:52:50.750+0900",
+      "lastStatusChangedAt": "2026-07-02T10:13:00.852+0900",
       "linkedTickets": [
         {
           "key": "ETR-5367",
@@ -10822,7 +10974,7 @@
       "summary": "[design-driven][공통] 앱 딥링크 브릿지 페이지 개선",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "SUGGESTED",
+      "status": "Backlog",
       "statusCategory": "new",
       "priority": "P3",
       "assignee": {
@@ -10855,9 +11007,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-19T00:46:25.496+0900",
-      "updated": "2026-07-01T10:01:16.846+0900",
+      "updated": "2026-07-02T10:10:08.368+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-01T10:01:14.486+0900",
+      "lastStatusChangedAt": "2026-07-02T10:10:08.368+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -12160,7 +12312,7 @@
         {
           "key": "ETR-4784",
           "summary": "[design-driven][콘텐츠/스페셜] 브랜드숍/관련상품 바텀시트 개선",
-          "status": "검토완료-우선착수",
+          "status": "완료",
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
@@ -12217,7 +12369,7 @@
       "startDate": "2026-06-11",
       "dueDate": "2026-06-09",
       "created": "2026-06-11T12:57:25.499+0900",
-      "updated": "2026-07-02T06:01:22.826+0900",
+      "updated": "2026-07-03T06:01:57.404+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -12242,8 +12394,8 @@
       "summary": "[랭킹탭] 퀵필터 오프라인탭 앞에 아이콘 추가 ",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "QA중",
-      "statusCategory": "indeterminate",
+      "status": "론치완료",
+      "statusCategory": "done",
       "priority": "P1",
       "assignee": {
         "name": "김광섭",
@@ -12256,6 +12408,7 @@
         "accountId": null
       },
       "labels": [
+        "AI-ASSISTED",
         "conveyer",
         "fasttrack",
         "one",
@@ -12277,14 +12430,14 @@
       "startDate": "2026-06-12",
       "dueDate": "2026-07-31",
       "created": "2026-06-11T08:44:04.362+0900",
-      "updated": "2026-07-02T01:08:47.251+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-29T13:27:23.902+0900",
+      "updated": "2026-07-02T11:37:49.614+0900",
+      "resolutionDate": "2026-07-02T11:33:23.985+0900",
+      "lastStatusChangedAt": "2026-07-02T11:33:24.016+0900",
       "linkedTickets": [
         {
           "key": "ETR-4959",
           "summary": "[랭킹판] 오프라인 디자인 개선 — 띠배너 스타일 보완 및 3D 아이콘 제작",
-          "status": "검토완료-우선착수",
+          "status": "완료",
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
@@ -12293,8 +12446,8 @@
         {
           "key": "SNDDEV-9096",
           "summary": "퀵필터 오프라인탭 앞에 아이콘 추가",
-          "status": "Manager Approval",
-          "statusCategory": "indeterminate",
+          "status": "완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Problem/Incident",
           "direction": "outward"
@@ -12310,7 +12463,7 @@
         }
       ],
       "progress": {
-        "done": 2,
+        "done": 3,
         "total": 3
       }
     },
@@ -12386,7 +12539,7 @@
       "summary": "[랭킹판] 오프라인 디자인 개선 — 띠배너 스타일 보완 및 3D 아이콘 제작",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-우선착수",
+      "status": "완료",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -12414,15 +12567,15 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-10T23:49:02.689+0900",
-      "updated": "2026-06-25T15:11:43.030+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-24T19:10:09.227+0900",
+      "updated": "2026-07-02T21:44:07.979+0900",
+      "resolutionDate": "2026-07-02T21:44:07.923+0900",
+      "lastStatusChangedAt": "2026-07-02T21:44:07.979+0900",
       "linkedTickets": [
         {
           "key": "FT-65",
           "summary": "[랭킹탭] 퀵필터 오프라인탭 앞에 아이콘 추가 ",
-          "status": "QA중",
-          "statusCategory": "indeterminate",
+          "status": "론치완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward"
@@ -12438,7 +12591,7 @@
         }
       ],
       "progress": {
-        "done": 1,
+        "done": 2,
         "total": 2
       }
     },
@@ -12593,7 +12746,7 @@
       "startDate": "2026-06-10",
       "dueDate": "2026-06-11",
       "created": "2026-06-10T23:37:15.266+0900",
-      "updated": "2026-07-02T06:01:22.864+0900",
+      "updated": "2026-07-03T06:01:56.506+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -12648,7 +12801,7 @@
       "startDate": "2026-06-10",
       "dueDate": "2026-06-11",
       "created": "2026-06-10T23:35:19.930+0900",
-      "updated": "2026-07-02T06:01:23.025+0900",
+      "updated": "2026-07-03T06:01:57.448+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -12703,7 +12856,7 @@
       "startDate": "2026-06-10",
       "dueDate": "2026-06-11",
       "created": "2026-06-10T23:32:31.260+0900",
-      "updated": "2026-07-02T06:01:22.966+0900",
+      "updated": "2026-07-03T06:01:58.136+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -12758,7 +12911,7 @@
       "startDate": "2026-06-10",
       "dueDate": "2026-06-09",
       "created": "2026-06-10T23:28:56.871+0900",
-      "updated": "2026-07-02T06:01:23.255+0900",
+      "updated": "2026-07-03T06:01:57.561+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -12847,7 +13000,7 @@
         {
           "key": "OFFSYSM-5357",
           "summary": "[PDP] IOS앱 QR 스캔 버튼 노출",
-          "status": "In Progress",
+          "status": "In Code Review",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
@@ -13158,7 +13311,7 @@
       "startDate": "2026-07-01",
       "dueDate": "2026-09-30",
       "created": "2026-06-09T19:06:10.148+0900",
-      "updated": "2026-07-02T06:01:25.348+0900",
+      "updated": "2026-07-03T06:01:58.417+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [],
@@ -13363,7 +13516,7 @@
       "startDate": "2026-06-09",
       "dueDate": "2026-06-25",
       "created": "2026-06-09T11:29:42.932+0900",
-      "updated": "2026-06-30T15:16:45.884+0900",
+      "updated": "2026-07-03T06:02:11.692+0900",
       "resolutionDate": "2026-06-25T16:18:59.071+0900",
       "lastStatusChangedAt": "2026-06-25T16:18:59.077+0900",
       "linkedTickets": [
@@ -13493,7 +13646,7 @@
       "startDate": "2026-06-09",
       "dueDate": "2026-06-09",
       "created": "2026-06-09T10:29:02.346+0900",
-      "updated": "2026-07-02T06:01:25.400+0900",
+      "updated": "2026-07-03T06:02:00.556+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -13548,7 +13701,7 @@
       "startDate": "2026-06-09",
       "dueDate": "2026-06-09",
       "created": "2026-06-09T10:28:10.372+0900",
-      "updated": "2026-07-02T06:01:26.102+0900",
+      "updated": "2026-07-03T06:01:59.345+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -13603,7 +13756,7 @@
       "startDate": "2026-06-09",
       "dueDate": "2026-06-09",
       "created": "2026-06-09T10:17:29.586+0900",
-      "updated": "2026-07-02T06:01:25.682+0900",
+      "updated": "2026-07-03T06:02:00.770+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -13658,7 +13811,7 @@
       "startDate": "2026-06-09",
       "dueDate": "2026-06-09",
       "created": "2026-06-09T10:14:06.961+0900",
-      "updated": "2026-07-02T06:01:25.895+0900",
+      "updated": "2026-07-03T06:02:01.287+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -13713,7 +13866,7 @@
       "startDate": "2026-06-09",
       "dueDate": "2026-06-09",
       "created": "2026-06-09T10:11:54.664+0900",
-      "updated": "2026-07-02T06:01:25.833+0900",
+      "updated": "2026-07-03T06:02:01.002+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -13768,7 +13921,7 @@
       "startDate": "2026-06-09",
       "dueDate": "2026-06-09",
       "created": "2026-06-09T10:10:53.751+0900",
-      "updated": "2026-07-02T06:01:25.977+0900",
+      "updated": "2026-07-03T06:02:01.470+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -13793,7 +13946,7 @@
       "summary": "[추천판] 나의 관심 스타일 선택하기 전역 성별 필터 적용",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-우선착수",
+      "status": "검토완료-미진행",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -13820,9 +13973,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-09T10:05:36.544+0900",
-      "updated": "2026-06-19T01:14:37.596+0900",
+      "updated": "2026-07-02T21:44:15.307+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-09T10:07:14.615+0900",
+      "lastStatusChangedAt": "2026-07-02T21:44:09.675+0900",
       "linkedTickets": [
         {
           "key": "MSSCXTF-1080",
@@ -13897,7 +14050,7 @@
       "summary": "[design-driven][콘텐츠/스페셜] 브랜드숍/관련상품 바텀시트 개선",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-우선착수",
+      "status": "완료",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -13924,9 +14077,9 @@
       "startDate": null,
       "dueDate": "2026-06-23",
       "created": "2026-06-09T09:50:26.321+0900",
-      "updated": "2026-06-30T11:04:21.920+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-09T09:52:06.462+0900",
+      "updated": "2026-07-02T21:43:59.415+0900",
+      "resolutionDate": "2026-07-02T21:43:59.364+0900",
+      "lastStatusChangedAt": "2026-07-02T21:43:59.415+0900",
       "linkedTickets": [
         {
           "key": "MSSCXTF-1221",
@@ -14592,7 +14745,7 @@
       "startDate": "2026-06-08",
       "dueDate": "2026-06-09",
       "created": "2026-06-08T18:26:35.558+0900",
-      "updated": "2026-07-02T06:01:28.291+0900",
+      "updated": "2026-07-03T06:02:01.707+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -14700,7 +14853,7 @@
       "startDate": "2026-06-08",
       "dueDate": "2026-06-09",
       "created": "2026-06-08T15:45:47.968+0900",
-      "updated": "2026-07-02T06:01:27.729+0900",
+      "updated": "2026-07-03T06:02:01.780+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -14755,7 +14908,7 @@
       "startDate": "2026-06-08",
       "dueDate": "2026-06-09",
       "created": "2026-06-08T15:43:59.615+0900",
-      "updated": "2026-07-02T06:01:28.569+0900",
+      "updated": "2026-07-03T06:02:00.868+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -15962,7 +16115,7 @@
       "startDate": "2026-06-17",
       "dueDate": "2026-09-30",
       "created": "2026-06-04T23:56:01.978+0900",
-      "updated": "2026-07-02T06:01:27.761+0900",
+      "updated": "2026-07-03T06:02:01.118+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-29T13:14:47.074+0900",
       "linkedTickets": [
@@ -15978,8 +16131,8 @@
         {
           "key": "TM-2804",
           "summary": "[공통] 커스텀(일반)판 > 탭 강조 어드민 및 프론트 대응",
-          "status": "QA중",
-          "statusCategory": "indeterminate",
+          "status": "론치완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Blocks",
           "direction": "inward"
@@ -15995,7 +16148,7 @@
         }
       ],
       "progress": {
-        "done": 2,
+        "done": 3,
         "total": 3
       }
     },
@@ -16042,7 +16195,7 @@
       "startDate": "2026-06-09",
       "dueDate": "2026-09-30",
       "created": "2026-06-04T23:52:40.623+0900",
-      "updated": "2026-07-02T06:01:28.837+0900",
+      "updated": "2026-07-03T06:02:00.784+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-29T18:56:26.855+0900",
       "linkedTickets": [
@@ -16097,7 +16250,7 @@
       "startDate": "2026-06-04",
       "dueDate": "2026-06-01",
       "created": "2026-06-04T23:51:10.691+0900",
-      "updated": "2026-07-02T06:01:28.334+0900",
+      "updated": "2026-07-03T06:02:02.569+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -16152,7 +16305,7 @@
       "startDate": "2026-06-04",
       "dueDate": "2026-06-01",
       "created": "2026-06-04T23:48:05.173+0900",
-      "updated": "2026-07-02T06:01:27.417+0900",
+      "updated": "2026-07-03T06:02:02.486+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -16207,7 +16360,7 @@
       "startDate": "2026-06-04",
       "dueDate": "2026-05-29",
       "created": "2026-06-04T23:46:01.973+0900",
-      "updated": "2026-07-02T06:01:27.948+0900",
+      "updated": "2026-07-03T06:02:01.021+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -16266,7 +16419,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-04T18:37:19.962+0900",
-      "updated": "2026-07-02T01:08:32.728+0900",
+      "updated": "2026-07-02T08:53:26.370+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-01T10:48:40.383+0900",
       "linkedTickets": [
@@ -16346,7 +16499,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-04T17:51:25.815+0900",
-      "updated": "2026-06-30T14:54:46.222+0900",
+      "updated": "2026-07-02T12:55:16.285+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -16410,7 +16563,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-04T17:49:57.942+0900",
-      "updated": "2026-06-30T14:54:56.334+0900",
+      "updated": "2026-07-02T17:15:44.175+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -16729,7 +16882,7 @@
         {
           "key": "ETR-4657",
           "summary": "[UI] 투명도 처리 전체 지면 확대 적용",
-          "status": "검토완료-우선착수",
+          "status": "완료",
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
@@ -16806,8 +16959,8 @@
         {
           "key": "TM-2804",
           "summary": "[공통] 커스텀(일반)판 > 탭 강조 어드민 및 프론트 대응",
-          "status": "QA중",
-          "statusCategory": "indeterminate",
+          "status": "론치완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward"
@@ -16823,7 +16976,7 @@
         }
       ],
       "progress": {
-        "done": 1,
+        "done": 2,
         "total": 3
       }
     },
@@ -17305,7 +17458,7 @@
       "summary": "[UI] 투명도 처리 전체 지면 확대 적용",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-우선착수",
+      "status": "완료",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -17333,9 +17486,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-02T13:57:36.039+0900",
-      "updated": "2026-06-30T13:38:47.516+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-04T23:57:14.142+0900",
+      "updated": "2026-07-02T21:43:57.552+0900",
+      "resolutionDate": "2026-07-02T21:43:57.475+0900",
+      "lastStatusChangedAt": "2026-07-02T21:43:57.552+0900",
       "linkedTickets": [
         {
           "key": "FT-46",
@@ -17553,7 +17706,7 @@
       "startDate": "2026-06-02",
       "dueDate": null,
       "created": "2026-06-02T11:16:29.717+0900",
-      "updated": "2026-06-30T14:55:18.601+0900",
+      "updated": "2026-07-02T15:47:32.029+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -17792,7 +17945,7 @@
       "startDate": "2026-06-12",
       "dueDate": "2026-06-25",
       "created": "2026-06-01T22:52:13.399+0900",
-      "updated": "2026-06-29T09:57:37.895+0900",
+      "updated": "2026-07-03T06:01:23.028+0900",
       "resolutionDate": "2026-06-26T09:10:52.185+0900",
       "lastStatusChangedAt": "2026-06-26T09:10:52.205+0900",
       "linkedTickets": [
@@ -17923,7 +18076,7 @@
       "startDate": null,
       "dueDate": "2026-06-04",
       "created": "2026-06-01T18:37:32.485+0900",
-      "updated": "2026-07-02T06:01:28.592+0900",
+      "updated": "2026-07-03T06:02:13.989+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-01T18:38:16.760+0900",
       "linkedTickets": [
@@ -18152,7 +18305,7 @@
       "startDate": "2026-06-01",
       "dueDate": "2026-06-02",
       "created": "2026-06-01T13:04:02.633+0900",
-      "updated": "2026-07-02T06:01:30.496+0900",
+      "updated": "2026-07-03T06:02:13.692+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -19580,7 +19733,7 @@
       "startDate": "2026-05-28",
       "dueDate": "2026-07-31",
       "created": "2026-05-28T13:02:35.389+0900",
-      "updated": "2026-07-02T06:01:31.473+0900",
+      "updated": "2026-07-03T06:02:15.052+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-22T10:10:07.999+0900",
       "linkedTickets": [
@@ -19865,9 +20018,9 @@
       "startDate": "2026-06-01",
       "dueDate": "2026-09-30",
       "created": "2026-05-27T17:31:30.911+0900",
-      "updated": "2026-07-02T06:01:29.989+0900",
+      "updated": "2026-07-03T06:02:16.471+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-22T10:38:47.262+0900",
+      "lastStatusChangedAt": null,
       "linkedTickets": [
         {
           "key": "ETR-4355",
@@ -20209,7 +20362,7 @@
       "startDate": "2026-05-27",
       "dueDate": "2026-07-08",
       "created": "2026-05-27T14:59:20.957+0900",
-      "updated": "2026-07-01T08:54:53.098+0900",
+      "updated": "2026-07-03T06:02:10.817+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-24T15:00:05.378+0900",
       "linkedTickets": [
@@ -20301,7 +20454,7 @@
       "summary": "[design-driven][공통] 빅 배너에 사람 또는 사물을 AI로 분리해서 Zoom-in 모션 적용",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "SUGGESTED",
+      "status": "Backlog",
       "statusCategory": "new",
       "priority": "P2",
       "assignee": {
@@ -20335,9 +20488,9 @@
       "startDate": null,
       "dueDate": "2026-09-30",
       "created": "2026-05-27T10:19:21.113+0900",
-      "updated": "2026-06-29T09:01:21.310+0900",
+      "updated": "2026-07-02T10:08:28.226+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": null,
+      "lastStatusChangedAt": "2026-07-02T10:08:28.226+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -20515,14 +20668,14 @@
       "startDate": "2026-05-26",
       "dueDate": "2026-06-29",
       "created": "2026-05-26T16:44:55.033+0900",
-      "updated": "2026-06-30T15:16:56.863+0900",
+      "updated": "2026-07-03T06:02:12.170+0900",
       "resolutionDate": "2026-06-29T09:26:54.891+0900",
       "lastStatusChangedAt": "2026-06-29T09:26:54.924+0900",
       "linkedTickets": [
         {
           "key": "ETR-4423",
           "summary": "전문관 PDP 내 전문관 로고 위치 앞으로 이동 및 풀 로고 디자인 적용 검토",
-          "status": "검토완료-우선착수",
+          "status": "완료",
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
@@ -20848,7 +21001,7 @@
         {
           "key": "ETR-4419",
           "summary": "라이브 모듈 개선 — 하단 정보 구조, 아이콘 색상, 캐러셀 사이즈 조정",
-          "status": "검토완료-우선착수",
+          "status": "검토완료-미진행",
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
@@ -20857,7 +21010,7 @@
         {
           "key": "FT-198",
           "summary": "라이브 모듈 개선 — 하단 정보 구조, 아이콘 색상, 캐러셀 사이즈 조정",
-          "status": "QA중",
+          "status": "개발완료",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Clones",
@@ -20907,7 +21060,7 @@
       "startDate": "2026-05-22",
       "dueDate": "2026-05-26",
       "created": "2026-05-22T13:20:41.309+0900",
-      "updated": "2026-07-02T06:01:31.067+0900",
+      "updated": "2026-07-03T06:02:17.053+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -20994,7 +21147,7 @@
       "summary": "전문관 PDP 내 전문관 로고 위치 앞으로 이동 및 풀 로고 디자인 적용 검토",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-우선착수",
+      "status": "완료",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -21023,9 +21176,9 @@
       "startDate": null,
       "dueDate": "2026-06-08",
       "created": "2026-05-22T10:50:44.165+0900",
-      "updated": "2026-06-29T14:28:15.708+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-05-27T09:27:54.236+0900",
+      "updated": "2026-07-02T21:43:55.686+0900",
+      "resolutionDate": "2026-07-02T21:43:55.602+0900",
+      "lastStatusChangedAt": "2026-07-02T21:43:55.686+0900",
       "linkedTickets": [
         {
           "key": "FT-27",
@@ -21083,7 +21236,7 @@
       "startDate": "2026-05-22",
       "dueDate": "2026-07-08",
       "created": "2026-05-22T10:38:36.846+0900",
-      "updated": "2026-07-02T06:01:30.673+0900",
+      "updated": "2026-07-03T06:02:16.152+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -21253,7 +21406,7 @@
       "summary": "라이브 모듈 개선 — 하단 정보 구조, 아이콘 색상, 캐러셀 사이즈 조정",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-우선착수",
+      "status": "검토완료-미진행",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -21280,9 +21433,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-21T23:36:24.384+0900",
-      "updated": "2026-06-24T09:52:25.042+0900",
+      "updated": "2026-07-02T21:47:28.357+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-09T09:38:13.922+0900",
+      "lastStatusChangedAt": "2026-07-02T21:47:18.594+0900",
       "linkedTickets": [
         {
           "key": "MSSCXTF-1368",
@@ -21305,7 +21458,7 @@
         {
           "key": "FT-198",
           "summary": "라이브 모듈 개선 — 하단 정보 구조, 아이콘 색상, 캐러셀 사이즈 조정",
-          "status": "QA중",
+          "status": "개발완료",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
@@ -21520,15 +21673,15 @@
         {
           "key": "FE-25806",
           "summary": "cms-web release v2.25.0",
-          "status": "Ready To Test",
-          "statusCategory": "indeterminate",
+          "status": "완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "outward"
         }
       ],
       "progress": {
-        "done": 2,
+        "done": 3,
         "total": 3
       }
     },
@@ -23222,7 +23375,7 @@
       "startDate": null,
       "dueDate": "2026-09-30",
       "created": "2026-05-18T15:58:48.846+0900",
-      "updated": "2026-06-29T15:23:18.973+0900",
+      "updated": "2026-07-02T10:07:23.133+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-05-18T16:03:03.980+0900",
       "linkedTickets": [
@@ -23473,7 +23626,7 @@
       "startDate": "2026-06-15",
       "dueDate": "2026-06-29",
       "created": "2026-05-18T13:28:10.593+0900",
-      "updated": "2026-07-02T06:01:31.152+0900",
+      "updated": "2026-07-03T06:02:19.234+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-29T17:39:56.329+0900",
       "linkedTickets": [
@@ -23832,7 +23985,7 @@
         {
           "key": "ETR-4419",
           "summary": "라이브 모듈 개선 — 하단 정보 구조, 아이콘 색상, 캐러셀 사이즈 조정",
-          "status": "검토완료-우선착수",
+          "status": "검토완료-미진행",
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
@@ -23924,8 +24077,8 @@
       "summary": "29CM 검색홈 인기검색어 UI/UX 개선 — 순위 변동 표시, 상품 수 미리보기, 카테고리 분류",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "Tech 검토 중",
-      "statusCategory": "indeterminate",
+      "status": "검토완료-우선착수",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
         "name": "이현욱",
@@ -23945,15 +24098,17 @@
       "mainSubjects": [],
       "subSubject": null,
       "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q3",
+      "yearQuarters": [
+        "2026-Q3"
+      ],
       "subGroup": null,
       "startDate": null,
-      "dueDate": "2026-06-05",
+      "dueDate": null,
       "created": "2026-05-14T19:29:50.370+0900",
-      "updated": "2026-06-10T16:28:38.686+0900",
+      "updated": "2026-07-02T21:17:47.786+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-05-23T14:05:16.148+0900",
+      "lastStatusChangedAt": "2026-07-02T21:17:07.513+0900",
       "linkedTickets": [
         {
           "key": "TM-3296",
@@ -24878,7 +25033,7 @@
       "startDate": "2026-05-11",
       "dueDate": "2026-05-08",
       "created": "2026-05-14T01:21:31.881+0900",
-      "updated": "2026-07-02T06:01:32.480+0900",
+      "updated": "2026-07-03T06:02:18.421+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -25730,7 +25885,7 @@
       "startDate": "2026-06-16",
       "dueDate": "2026-07-31",
       "created": "2026-05-12T17:28:48.942+0900",
-      "updated": "2026-07-02T06:01:33.306+0900",
+      "updated": "2026-07-03T06:02:19.283+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -27277,7 +27432,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-04T10:27:37.566+0900",
-      "updated": "2026-06-30T15:41:06.987+0900",
+      "updated": "2026-07-03T06:01:28.765+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -28201,7 +28356,7 @@
       "startDate": "2026-04-28",
       "dueDate": "2026-07-02",
       "created": "2026-04-30T11:08:09.186+0900",
-      "updated": "2026-07-02T06:01:33.789+0900",
+      "updated": "2026-07-03T06:01:28.104+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-30T11:34:06.429+0900",
       "linkedTickets": [
@@ -30286,7 +30441,7 @@
       "startDate": "2026-04-21",
       "dueDate": "2026-06-08",
       "created": "2026-04-21T11:55:06.699+0900",
-      "updated": "2026-06-29T20:47:21.369+0900",
+      "updated": "2026-07-03T06:01:28.319+0900",
       "resolutionDate": "2026-06-15T09:42:51.913+0900",
       "lastStatusChangedAt": "2026-06-15T09:42:51.924+0900",
       "linkedTickets": [],
@@ -31349,7 +31504,7 @@
       "startDate": "2026-04-13",
       "dueDate": "2026-07-08",
       "created": "2026-04-17T12:07:44.159+0900",
-      "updated": "2026-07-02T06:01:36.014+0900",
+      "updated": "2026-07-03T06:02:21.441+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-29T10:16:26.149+0900",
       "linkedTickets": [
@@ -31794,7 +31949,7 @@
       "startDate": "2026-05-28",
       "dueDate": "2026-10-21",
       "created": "2026-04-06T13:17:01.251+0900",
-      "updated": "2026-07-02T06:01:37.905+0900",
+      "updated": "2026-07-03T06:02:22.392+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-29T17:41:16.013+0900",
       "linkedTickets": [
@@ -31974,7 +32129,7 @@
       "startDate": "2026-04-06",
       "dueDate": "2026-07-09",
       "created": "2026-04-01T16:57:23.778+0900",
-      "updated": "2026-07-02T06:01:37.429+0900",
+      "updated": "2026-07-03T06:02:23.904+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -32057,7 +32212,7 @@
       "startDate": null,
       "dueDate": "2026-05-31",
       "created": "2026-04-01T09:43:12.574+0900",
-      "updated": "2026-06-19T01:06:13.179+0900",
+      "updated": "2026-07-02T12:08:36.896+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-19T01:06:13.179+0900",
       "linkedTickets": [],
@@ -32106,7 +32261,7 @@
       "startDate": null,
       "dueDate": "2026-05-22",
       "created": "2026-04-01T09:17:36.312+0900",
-      "updated": "2026-06-24T11:42:51.957+0900",
+      "updated": "2026-07-02T12:08:37.056+0900",
       "resolutionDate": "2026-05-28T14:22:59.608+0900",
       "lastStatusChangedAt": "2026-05-28T14:22:59.618+0900",
       "linkedTickets": [],
@@ -32162,7 +32317,7 @@
       "startDate": "2026-04-06",
       "dueDate": "2026-06-12",
       "created": "2026-03-31T10:14:04.009+0900",
-      "updated": "2026-07-01T12:21:52.131+0900",
+      "updated": "2026-07-03T06:01:42.567+0900",
       "resolutionDate": "2026-06-12T11:18:23.063+0900",
       "lastStatusChangedAt": "2026-06-12T11:18:23.076+0900",
       "linkedTickets": [
@@ -32505,7 +32660,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-30T14:52:04.533+0900",
-      "updated": "2026-07-01T10:14:39.153+0900",
+      "updated": "2026-07-02T15:49:32.748+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-18T10:11:55.860+0900",
       "linkedTickets": [
@@ -32568,7 +32723,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-30T14:50:13.021+0900",
-      "updated": "2026-06-30T14:46:49.220+0900",
+      "updated": "2026-07-02T15:49:46.326+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-18T09:16:10.903+0900",
       "linkedTickets": [
@@ -32629,7 +32784,7 @@
       "startDate": "2026-04-10",
       "dueDate": null,
       "created": "2026-03-30T14:46:46.055+0900",
-      "updated": "2026-06-29T17:36:52.875+0900",
+      "updated": "2026-07-03T06:01:42.534+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -32808,8 +32963,8 @@
       "summary": "[공통] 커스텀(일반)판 > 탭 강조 어드민 및 프론트 대응",
       "issueType": "Initiative",
       "project": "TM",
-      "status": "QA중",
-      "statusCategory": "indeterminate",
+      "status": "론치완료",
+      "statusCategory": "done",
       "priority": "Big-Rock",
       "assignee": {
         "name": "허유선",
@@ -32845,9 +33000,9 @@
       "startDate": "2026-03-25",
       "dueDate": "2026-07-01",
       "created": "2026-03-30T13:09:07.131+0900",
-      "updated": "2026-07-01T11:20:12.819+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": null,
+      "updated": "2026-07-03T06:02:05.374+0900",
+      "resolutionDate": "2026-07-02T10:24:38.117+0900",
+      "lastStatusChangedAt": "2026-07-02T10:24:38.128+0900",
       "linkedTickets": [
         {
           "key": "MSSCXTF-1175",
@@ -32957,7 +33112,7 @@
       "startDate": "2026-08-01",
       "dueDate": "2026-09-11",
       "created": "2026-03-30T10:00:18.103+0900",
-      "updated": "2026-07-02T06:01:38.854+0900",
+      "updated": "2026-07-03T06:02:23.348+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -33084,7 +33239,7 @@
       "summary": "브랜드광고 전시 어드민 대응(성별에 따른 브랜드광고 노출 대응 포함)",
       "issueType": "Initiative",
       "project": "TM",
-      "status": "기획중",
+      "status": "기획완료",
       "statusCategory": "indeterminate",
       "priority": "P0",
       "assignee": {
@@ -33118,9 +33273,9 @@
       "startDate": "2026-03-27",
       "dueDate": "2026-09-30",
       "created": "2026-03-27T12:57:09.337+0900",
-      "updated": "2026-07-02T06:01:36.533+0900",
+      "updated": "2026-07-03T06:02:23.116+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-29T13:05:23.019+0900",
+      "lastStatusChangedAt": "2026-07-02T16:59:59.531+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -33315,7 +33470,7 @@
       "startDate": "2026-04-13",
       "dueDate": "2026-09-30",
       "created": "2026-03-25T22:54:28.219+0900",
-      "updated": "2026-07-02T06:01:43.399+0900",
+      "updated": "2026-07-03T06:02:26.736+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -33384,7 +33539,7 @@
       "startDate": "2026-04-08",
       "dueDate": "2026-05-29",
       "created": "2026-03-25T22:07:35.306+0900",
-      "updated": "2026-06-30T13:17:37.217+0900",
+      "updated": "2026-07-03T06:01:46.861+0900",
       "resolutionDate": "2026-06-23T01:00:01.438+0900",
       "lastStatusChangedAt": "2026-06-23T01:00:01.470+0900",
       "linkedTickets": [],
@@ -33518,7 +33673,7 @@
       "startDate": "2026-04-01",
       "dueDate": "2026-10-21",
       "created": "2026-03-25T21:47:10.141+0900",
-      "updated": "2026-07-02T06:01:46.691+0900",
+      "updated": "2026-07-03T06:02:30.250+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -33581,7 +33736,7 @@
       "startDate": "2026-04-20",
       "dueDate": "2026-06-10",
       "created": "2026-03-25T16:55:48.051+0900",
-      "updated": "2026-06-30T17:29:47.811+0900",
+      "updated": "2026-07-03T06:01:50.221+0900",
       "resolutionDate": "2026-06-11T10:59:26.372+0900",
       "lastStatusChangedAt": "2026-06-11T10:59:26.406+0900",
       "linkedTickets": [
@@ -34549,7 +34704,7 @@
       "startDate": "2026-05-18",
       "dueDate": "2026-07-01",
       "created": "2026-03-19T12:25:56.484+0900",
-      "updated": "2026-07-02T06:02:15.331+0900",
+      "updated": "2026-07-03T06:01:53.489+0900",
       "resolutionDate": "2026-07-01T10:09:38.942+0900",
       "lastStatusChangedAt": "2026-07-01T10:09:38.953+0900",
       "linkedTickets": [
@@ -35113,7 +35268,7 @@
       "startDate": "2026-05-01",
       "dueDate": "2026-06-30",
       "created": "2026-03-18T11:14:27.958+0900",
-      "updated": "2026-06-30T06:01:55.541+0900",
+      "updated": "2026-07-03T06:01:52.837+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-29T14:48:32.294+0900",
       "linkedTickets": [
@@ -35515,7 +35670,7 @@
       "startDate": "2026-05-01",
       "dueDate": "2026-07-08",
       "created": "2026-03-16T10:50:04.465+0900",
-      "updated": "2026-07-02T06:01:49.282+0900",
+      "updated": "2026-07-03T06:02:34.502+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -36391,7 +36546,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-13T10:46:14.137+0900",
-      "updated": "2026-06-30T15:04:22.923+0900",
+      "updated": "2026-07-02T17:32:40.336+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [],
@@ -36565,7 +36720,7 @@
       "startDate": "2026-04-06",
       "dueDate": "2026-09-30",
       "created": "2026-03-13T10:45:58.632+0900",
-      "updated": "2026-07-02T06:01:51.000+0900",
+      "updated": "2026-07-03T06:02:34.222+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-29T10:38:29.923+0900",
       "linkedTickets": [
@@ -37093,7 +37248,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-13T10:44:34.594+0900",
-      "updated": "2026-06-30T14:58:27.967+0900",
+      "updated": "2026-07-02T17:17:02.401+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-16T23:29:32.650+0900",
       "linkedTickets": [
@@ -37595,7 +37750,7 @@
       "startDate": "2026-03-27",
       "dueDate": null,
       "created": "2026-03-11T10:10:44.992+0900",
-      "updated": "2026-06-24T06:01:54.429+0900",
+      "updated": "2026-07-02T16:51:26.925+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-23T11:11:30.903+0900",
       "linkedTickets": [
@@ -37919,15 +38074,15 @@
         {
           "key": "TM-2804",
           "summary": "[공통] 커스텀(일반)판 > 탭 강조 어드민 및 프론트 대응",
-          "status": "QA중",
-          "statusCategory": "indeterminate",
+          "status": "론치완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward"
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 1
       }
     },
@@ -38243,7 +38398,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-09T11:17:36.185+0900",
-      "updated": "2026-06-30T15:08:35.463+0900",
+      "updated": "2026-07-02T17:27:18.475+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-12T14:19:15.719+0900",
       "linkedTickets": [
@@ -38447,7 +38602,7 @@
       "startDate": "2026-05-11",
       "dueDate": "2026-07-08",
       "created": "2026-03-05T15:56:13.147+0900",
-      "updated": "2026-07-02T06:01:49.310+0900",
+      "updated": "2026-07-03T06:02:34.955+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-01T21:18:20.355+0900",
       "linkedTickets": [
@@ -38994,7 +39149,7 @@
       "startDate": "2026-02-23",
       "dueDate": "2026-07-21",
       "created": "2026-02-27T16:50:57.625+0900",
-      "updated": "2026-07-02T06:01:51.160+0900",
+      "updated": "2026-07-03T06:02:35.247+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -39866,7 +40021,7 @@
       "startDate": "2026-02-24",
       "dueDate": "2026-03-31",
       "created": "2026-02-23T15:32:37.134+0900",
-      "updated": "2026-07-02T06:01:50.674+0900",
+      "updated": "2026-07-03T06:02:35.431+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [],
@@ -40228,7 +40383,7 @@
         {
           "key": "ETR-4784",
           "summary": "[design-driven][콘텐츠/스페셜] 브랜드숍/관련상품 바텀시트 개선",
-          "status": "검토완료-우선착수",
+          "status": "완료",
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
@@ -40300,7 +40455,7 @@
       "startDate": "2026-04-30",
       "dueDate": "2026-09-30",
       "created": "2026-02-13T17:00:25.059+0900",
-      "updated": "2026-07-02T06:01:50.708+0900",
+      "updated": "2026-07-03T06:02:34.798+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-22T10:37:55.228+0900",
       "linkedTickets": [
@@ -40705,7 +40860,7 @@
       "startDate": "2026-04-15",
       "dueDate": "2026-06-30",
       "created": "2026-02-12T15:40:21.888+0900",
-      "updated": "2026-07-01T06:02:03.980+0900",
+      "updated": "2026-07-03T06:02:04.212+0900",
       "resolutionDate": "2026-06-30T13:57:54.025+0900",
       "lastStatusChangedAt": "2026-06-30T13:57:54.040+0900",
       "linkedTickets": [
@@ -41257,7 +41412,7 @@
       "startDate": "2026-02-09",
       "dueDate": "2026-06-30",
       "created": "2026-02-09T18:09:19.995+0900",
-      "updated": "2026-07-02T06:01:52.061+0900",
+      "updated": "2026-07-03T06:02:35.394+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-29T09:59:46.969+0900",
       "linkedTickets": [
@@ -41482,7 +41637,7 @@
       "startDate": "2026-06-05",
       "dueDate": "2026-09-30",
       "created": "2026-02-05T17:45:08.024+0900",
-      "updated": "2026-07-02T06:01:51.632+0900",
+      "updated": "2026-07-03T06:02:35.827+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-18T16:56:44.928+0900",
       "linkedTickets": [
@@ -42107,7 +42262,7 @@
         {
           "key": "ETR-4787",
           "summary": "[추천판] 나의 관심 스타일 선택하기 전역 성별 필터 적용",
-          "status": "검토완료-우선착수",
+          "status": "검토완료-미진행",
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
@@ -42971,7 +43126,7 @@
       "startDate": "2026-06-22",
       "dueDate": "2026-09-30",
       "created": "2025-12-23T11:42:16.368+0900",
-      "updated": "2026-07-02T06:01:54.455+0900",
+      "updated": "2026-07-03T06:02:39.087+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -43239,7 +43394,7 @@
       "startDate": null,
       "dueDate": "2026-06-30",
       "created": "2025-11-26T23:25:22.018+0900",
-      "updated": "2026-07-02T06:01:58.994+0900",
+      "updated": "2026-07-03T06:02:42.264+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [],
@@ -44797,7 +44952,7 @@
       "startDate": "2026-06-15",
       "dueDate": "2026-07-31",
       "created": "2025-11-19T21:25:41.154+0900",
-      "updated": "2026-07-02T06:01:59.700+0900",
+      "updated": "2026-07-03T06:02:43.011+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -46117,7 +46272,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2025-10-20T16:54:56.340+0900",
-      "updated": "2026-07-01T17:12:36.216+0900",
+      "updated": "2026-07-02T14:11:37.434+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-24T10:13:16.079+0900",
       "linkedTickets": [
@@ -46190,7 +46345,7 @@
       "startDate": "2025-10-06",
       "dueDate": "2025-12-31",
       "created": "2025-10-20T16:28:28.450+0900",
-      "updated": "2026-07-02T06:02:01.914+0900",
+      "updated": "2026-07-03T06:02:45.210+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [],
@@ -47063,7 +47218,7 @@
       "startDate": null,
       "dueDate": "2026-05-31",
       "created": "2025-09-15T13:56:51.624+0900",
-      "updated": "2026-06-30T10:52:42.584+0900",
+      "updated": "2026-07-02T09:36:27.453+0900",
       "resolutionDate": "2026-06-01T10:14:48.079+0900",
       "lastStatusChangedAt": "2026-06-01T10:14:48.113+0900",
       "linkedTickets": [
@@ -47635,7 +47790,7 @@
       "startDate": "2025-09-15",
       "dueDate": "2026-05-31",
       "created": "2025-09-10T16:22:09.073+0900",
-      "updated": "2026-07-02T06:02:03.831+0900",
+      "updated": "2026-07-03T06:02:47.451+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-05T11:13:46.613+0900",
       "linkedTickets": [
@@ -47797,7 +47952,7 @@
       "startDate": "2026-06-25",
       "dueDate": "2026-11-30",
       "created": "2025-09-10T07:33:29.959+0900",
-      "updated": "2026-07-02T06:02:03.685+0900",
+      "updated": "2026-07-03T06:02:47.047+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-29T14:40:40.817+0900",
       "linkedTickets": [],
@@ -47853,7 +48008,7 @@
       "startDate": "2025-10-22",
       "dueDate": "2026-09-30",
       "created": "2025-09-09T17:32:56.181+0900",
-      "updated": "2026-07-02T06:02:04.133+0900",
+      "updated": "2026-07-03T06:02:46.911+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -49336,7 +49491,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2025-07-01T17:26:53.865+0900",
-      "updated": "2026-07-01T21:01:16.187+0900",
+      "updated": "2026-07-03T06:02:11.212+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -49449,7 +49604,7 @@
       "startDate": null,
       "dueDate": "2026-09-30",
       "created": "2025-04-04T10:42:52.964+0900",
-      "updated": "2026-07-02T06:02:05.813+0900",
+      "updated": "2026-07-03T06:02:47.459+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [

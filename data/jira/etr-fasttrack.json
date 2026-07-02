@@ -1,15 +1,187 @@
 {
-  "lastSync": "2026-07-02T07:14:55+09:00",
-  "count": 238,
+  "lastSync": "2026-07-03T07:01:52+09:00",
+  "count": 241,
   "items": [
+    {
+      "key": "ETR-5414",
+      "url": "https://jira.team.musinsa.com/browse/ETR-5414",
+      "summary": "[콘텐츠] 브랜드숍/관련상품 앵커링 탭에 항목 갯수 표시 추가",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "PMO 검토 중",
+      "statusCategory": "indeterminate",
+      "priority": "P0",
+      "assignee": {
+        "name": "이승연",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": "2026-07-06",
+      "created": "2026-07-02T08:52:30.104+0900",
+      "updated": "2026-07-02T08:59:13.000+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-07-02T08:55:10.615+0900",
+      "linkedTickets": [
+        {
+          "key": "FT-288",
+          "summary": "[design-driven][콘텐츠] 브랜드숍/관련상품 바텀시트 타이틀에 숫자 추가",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Blocks",
+          "direction": "inward",
+          "labels": [
+            "ux-ft-general"
+          ]
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-5413",
+      "url": "https://jira.team.musinsa.com/browse/ETR-5413",
+      "summary": "[브랜드탐색] 브랜드 선택 후 상품 수 부족으로 인한 전환율 저하 개선",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "PMO 검토 중",
+      "statusCategory": "indeterminate",
+      "priority": "P0",
+      "assignee": {
+        "name": "이승연",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": "2026-07-06",
+      "created": "2026-07-02T08:42:45.866+0900",
+      "updated": "2026-07-02T21:05:46.648+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-07-02T08:49:52.697+0900",
+      "linkedTickets": [
+        {
+          "key": "ETR-5402",
+          "summary": "[홈] 뷰티 카테고리 브랜드 추천 섹션 — 브랜드 노출 수 확대 및 품목별 보기 모드 추가",
+          "status": "반려",
+          "statusCategory": "done",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "outward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor",
+            "one"
+          ]
+        }
+      ],
+      "progress": {
+        "done": 1,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-5412",
+      "url": "https://jira.team.musinsa.com/browse/ETR-5412",
+      "summary": "[추천판] 브랜드 칩에도 남성 성별 필터 적용",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "PMO 검토 중",
+      "statusCategory": "indeterminate",
+      "priority": "P0",
+      "assignee": {
+        "name": "이승연",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": "2026-07-06",
+      "created": "2026-07-02T08:42:28.166+0900",
+      "updated": "2026-07-02T20:36:23.179+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-07-02T08:44:34.379+0900",
+      "linkedTickets": [
+        {
+          "key": "ETR-5402",
+          "summary": "[홈] 뷰티 카테고리 브랜드 추천 섹션 — 브랜드 노출 수 확대 및 품목별 보기 모드 추가",
+          "status": "반려",
+          "statusCategory": "done",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "outward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor",
+            "one"
+          ]
+        }
+      ],
+      "progress": {
+        "done": 1,
+        "total": 1
+      }
+    },
     {
       "key": "ETR-5402",
       "url": "https://jira.team.musinsa.com/browse/ETR-5402",
       "summary": "[홈] 뷰티 카테고리 브랜드 추천 섹션 — 브랜드 노출 수 확대 및 품목별 보기 모드 추가",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "매니저 승인 대기",
-      "statusCategory": "indeterminate",
+      "status": "반려",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
         "name": "촤비스",
@@ -36,13 +208,42 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-07-01T17:07:21.960+0900",
-      "updated": "2026-07-01T17:07:49.244+0900",
+      "updated": "2026-07-02T21:05:46.716+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-01T17:07:25.329+0900",
-      "linkedTickets": [],
+      "lastStatusChangedAt": "2026-07-02T08:40:34.458+0900",
+      "linkedTickets": [
+        {
+          "key": "ETR-5412",
+          "summary": "[추천판] 브랜드 칩에도 남성 성별 필터 적용",
+          "status": "PMO 검토 중",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor",
+            "one"
+          ]
+        },
+        {
+          "key": "ETR-5413",
+          "summary": "[브랜드탐색] 브랜드 선택 후 상품 수 부족으로 인한 전환율 저하 개선",
+          "status": "PMO 검토 중",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor",
+            "one"
+          ]
+        }
+      ],
       "progress": {
         "done": 0,
-        "total": 0
+        "total": 2
       }
     },
     {
@@ -85,8 +286,8 @@
         {
           "key": "FT-299",
           "summary": "유즈드 베타뱃지 동선 내 추가",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "개발중",
+          "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -536,7 +737,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-30T14:18:29.154+0900",
-      "updated": "2026-07-01T15:34:29.979+0900",
+      "updated": "2026-07-03T01:40:16.186+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-01T15:33:51.508+0900",
       "linkedTickets": [
@@ -553,26 +754,11 @@
             "fasttrack",
             "one"
           ]
-        },
-        {
-          "key": "FT-295",
-          "summary": "[design-driven][필터] 탑필터 안내 문구 표기",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
-          "assignee": null,
-          "linkType": "Relates",
-          "direction": "inward",
-          "labels": [
-            "conveyor",
-            "conveyor-bot",
-            "fast-track-away",
-            "one"
-          ]
         }
       ],
       "progress": {
         "done": 0,
-        "total": 2
+        "total": 1
       }
     },
     {
@@ -629,8 +815,8 @@
         {
           "key": "FT-294",
           "summary": "[design-driven][카테고리] 좌측 패널 가로값, 높이값 일괄 조정",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "디자인중",
+          "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -744,8 +930,8 @@
         {
           "key": "FT-90",
           "summary": "[design-driven][공통] 퍼널 배너 스타일 개선",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "Dropped",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "outward",
@@ -775,7 +961,7 @@
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 2
       }
     },
@@ -869,7 +1055,7 @@
       "startDate": null,
       "dueDate": "2026-07-15",
       "created": "2026-06-30T14:15:27.993+0900",
-      "updated": "2026-07-01T15:34:53.840+0900",
+      "updated": "2026-07-03T01:42:52.115+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-01T15:34:14.619+0900",
       "linkedTickets": [
@@ -880,32 +1066,17 @@
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
-          "direction": "outward",
-          "labels": [
-            "conveyor",
-            "fasttrack",
-            "one"
-          ]
-        },
-        {
-          "key": "FT-296",
-          "summary": "[PDP] 타임세일 카운트다운 가격옆에 추가 하기",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
-          "assignee": null,
-          "linkType": "Relates",
           "direction": "inward",
           "labels": [
             "conveyor",
-            "conveyor-bot",
-            "fast-track-away",
+            "fasttrack",
             "one"
           ]
         }
       ],
       "progress": {
         "done": 0,
-        "total": 2
+        "total": 1
       }
     },
     {
@@ -948,8 +1119,8 @@
         {
           "key": "FT-262",
           "summary": "[랭킹] 브랜드 랭킹 상단 배너 디자인 수정",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "디자인완료",
+          "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -1413,7 +1584,7 @@
       "summary": "사이즈필터 순서변경_FastTrack 요청",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-우선착수",
+      "status": "완료",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -1440,9 +1611,9 @@
       "startDate": "2026-06-25",
       "dueDate": null,
       "created": "2026-06-25T17:28:32.023+0900",
-      "updated": "2026-06-30T13:31:57.135+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-26T10:15:50.238+0900",
+      "updated": "2026-07-02T21:44:04.152+0900",
+      "resolutionDate": "2026-07-02T21:44:04.097+0900",
+      "lastStatusChangedAt": "2026-07-02T21:44:04.152+0900",
       "linkedTickets": [
         {
           "key": "FT-241",
@@ -1701,7 +1872,7 @@
         {
           "key": "FT-198",
           "summary": "라이브 모듈 개선 — 하단 정보 구조, 아이콘 색상, 캐러셀 사이즈 조정",
-          "status": "QA중",
+          "status": "개발완료",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
@@ -2049,7 +2220,7 @@
       "summary": "기획전 성별필터·최근본 공통기능 통일",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-우선착수",
+      "status": "완료",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -2077,9 +2248,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-23T14:57:16.531+0900",
-      "updated": "2026-06-30T10:22:50.078+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-24T11:06:43.473+0900",
+      "updated": "2026-07-02T21:44:01.590+0900",
+      "resolutionDate": "2026-07-02T21:44:01.510+0900",
+      "lastStatusChangedAt": "2026-07-02T21:44:01.590+0900",
       "linkedTickets": [
         {
           "key": "FT-180",
@@ -2200,7 +2371,7 @@
       "summary": "[브랜드숍] 국가명 노출 검토",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-우선착수",
+      "status": "완료",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -2228,9 +2399,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-23T14:57:12.442+0900",
-      "updated": "2026-06-30T21:46:18.580+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-24T15:25:12.179+0900",
+      "updated": "2026-07-02T21:44:06.061+0900",
+      "resolutionDate": "2026-07-02T21:44:05.989+0900",
+      "lastStatusChangedAt": "2026-07-02T21:44:06.061+0900",
       "linkedTickets": [
         {
           "key": "FT-148",
@@ -2463,8 +2634,8 @@
         {
           "key": "FT-114",
           "summary": "[design-driven][PLP] 상품 정보영역 내 간격 등 개선",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "Dropped",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -2491,7 +2662,7 @@
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 2
       }
     },
@@ -3985,7 +4156,7 @@
       "summary": "[랭킹판] 오프라인 디자인 개선 — 띠배너 스타일 보완 및 3D 아이콘 제작",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-우선착수",
+      "status": "완료",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -4013,24 +4184,26 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-10T23:49:02.689+0900",
-      "updated": "2026-06-25T15:11:43.030+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-24T19:10:09.227+0900",
+      "updated": "2026-07-02T21:44:07.979+0900",
+      "resolutionDate": "2026-07-02T21:44:07.923+0900",
+      "lastStatusChangedAt": "2026-07-02T21:44:07.979+0900",
       "linkedTickets": [
         {
           "key": "FT-65",
           "summary": "[랭킹탭] 퀵필터 오프라인탭 앞에 아이콘 추가 ",
-          "status": "QA중",
-          "statusCategory": "indeterminate",
+          "status": "론치완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "AI-ASSISTED",
             "conveyer",
             "fasttrack",
             "one",
             "ux-ft"
-          ]
+          ],
+          "resolutionDate": "2026-07-02T11:33:23.985+0900"
         },
         {
           "key": "FT-225",
@@ -4050,7 +4223,7 @@
         }
       ],
       "progress": {
-        "done": 1,
+        "done": 2,
         "total": 2
       }
     },
@@ -4420,7 +4593,7 @@
       "summary": "[추천판] 나의 관심 스타일 선택하기 전역 성별 필터 적용",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-우선착수",
+      "status": "검토완료-미진행",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -4447,9 +4620,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-09T10:05:36.544+0900",
-      "updated": "2026-06-19T01:14:37.596+0900",
+      "updated": "2026-07-02T21:44:15.307+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-09T10:07:14.615+0900",
+      "lastStatusChangedAt": "2026-07-02T21:44:09.675+0900",
       "linkedTickets": [
         {
           "key": "MSSCXTF-1080",
@@ -4534,7 +4707,7 @@
       "summary": "[design-driven][콘텐츠/스페셜] 브랜드숍/관련상품 바텀시트 개선",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-우선착수",
+      "status": "완료",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -4561,9 +4734,9 @@
       "startDate": null,
       "dueDate": "2026-06-23",
       "created": "2026-06-09T09:50:26.321+0900",
-      "updated": "2026-06-30T11:04:21.920+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-09T09:52:06.462+0900",
+      "updated": "2026-07-02T21:43:59.415+0900",
+      "resolutionDate": "2026-07-02T21:43:59.364+0900",
+      "lastStatusChangedAt": "2026-07-02T21:43:59.415+0900",
       "linkedTickets": [
         {
           "key": "MSSCXTF-1221",
@@ -6365,7 +6538,7 @@
       "summary": "[UI] 투명도 처리 전체 지면 확대 적용",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-우선착수",
+      "status": "완료",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -6393,9 +6566,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-02T13:57:36.039+0900",
-      "updated": "2026-06-30T13:38:47.516+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-04T23:57:14.142+0900",
+      "updated": "2026-07-02T21:43:57.552+0900",
+      "resolutionDate": "2026-07-02T21:43:57.475+0900",
+      "lastStatusChangedAt": "2026-07-02T21:43:57.552+0900",
       "linkedTickets": [
         {
           "key": "FT-46",
@@ -8581,7 +8754,7 @@
       "summary": "전문관 PDP 내 전문관 로고 위치 앞으로 이동 및 풀 로고 디자인 적용 검토",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-우선착수",
+      "status": "완료",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -8610,9 +8783,9 @@
       "startDate": null,
       "dueDate": "2026-06-08",
       "created": "2026-05-22T10:50:44.165+0900",
-      "updated": "2026-06-29T14:28:15.708+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-05-27T09:27:54.236+0900",
+      "updated": "2026-07-02T21:43:55.686+0900",
+      "resolutionDate": "2026-07-02T21:43:55.602+0900",
+      "lastStatusChangedAt": "2026-07-02T21:43:55.686+0900",
       "linkedTickets": [
         {
           "key": "FT-27",
@@ -8724,7 +8897,7 @@
       "summary": "라이브 모듈 개선 — 하단 정보 구조, 아이콘 색상, 캐러셀 사이즈 조정",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-우선착수",
+      "status": "검토완료-미진행",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -8751,9 +8924,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-21T23:36:24.384+0900",
-      "updated": "2026-06-24T09:52:25.042+0900",
+      "updated": "2026-07-02T21:47:28.357+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-09T09:38:13.922+0900",
+      "lastStatusChangedAt": "2026-07-02T21:47:18.594+0900",
       "linkedTickets": [
         {
           "key": "MSSCXTF-1368",
@@ -8787,7 +8960,7 @@
         {
           "key": "FT-198",
           "summary": "라이브 모듈 개선 — 하단 정보 구조, 아이콘 색상, 캐러셀 사이즈 조정",
-          "status": "QA중",
+          "status": "개발완료",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
@@ -8958,19 +9131,20 @@
         {
           "key": "FE-25806",
           "summary": "cms-web release v2.25.0",
-          "status": "Ready To Test",
-          "statusCategory": "indeterminate",
+          "status": "완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "outward",
           "labels": [
             "emd_by_bize_ai_v1",
             "sp_by_bize_ai_v1"
-          ]
+          ],
+          "resolutionDate": "2026-07-02T10:40:50.076+0900"
         }
       ],
       "progress": {
-        "done": 2,
+        "done": 3,
         "total": 3
       }
     },
@@ -10553,8 +10727,8 @@
       "summary": "29CM 검색홈 인기검색어 UI/UX 개선 — 순위 변동 표시, 상품 수 미리보기, 카테고리 분류",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "Tech 검토 중",
-      "statusCategory": "indeterminate",
+      "status": "검토완료-우선착수",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
         "name": "이현욱",
@@ -10574,15 +10748,17 @@
       "mainSubjects": [],
       "subSubject": null,
       "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q3",
+      "yearQuarters": [
+        "2026-Q3"
+      ],
       "subGroup": null,
       "startDate": null,
-      "dueDate": "2026-06-05",
+      "dueDate": null,
       "created": "2026-05-14T19:29:50.370+0900",
-      "updated": "2026-06-10T16:28:38.686+0900",
+      "updated": "2026-07-02T21:17:47.786+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-05-23T14:05:16.148+0900",
+      "lastStatusChangedAt": "2026-07-02T21:17:07.513+0900",
       "linkedTickets": [
         {
           "key": "TM-3296",
