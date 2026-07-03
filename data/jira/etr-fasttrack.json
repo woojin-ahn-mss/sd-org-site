@@ -1,15 +1,212 @@
 {
-  "lastSync": "2026-07-03T07:01:52+09:00",
-  "count": 241,
+  "lastSync": "2026-07-04T07:00:29+09:00",
+  "count": 246,
   "items": [
+    {
+      "key": "ETR-5463",
+      "url": "https://jira.team.musinsa.com/browse/ETR-5463",
+      "summary": "바텀시트 공통 디자인",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "Tech 검토 중",
+      "statusCategory": "indeterminate",
+      "priority": "P0",
+      "assignee": {
+        "name": "이승연",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "박준현",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": "2026-07-17",
+      "created": "2026-07-03T17:31:33.385+0900",
+      "updated": "2026-07-03T17:33:36.460+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-07-03T17:31:41.913+0900",
+      "linkedTickets": [
+        {
+          "key": "FT-209",
+          "summary": "[design-driven][공통] 바텀시트 높이값 및 작동 방식 개선",
+          "status": "디자인완료",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward",
+          "labels": [
+            "conveyor",
+            "one",
+            "ux-ft-general"
+          ]
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-5462",
+      "url": "https://jira.team.musinsa.com/browse/ETR-5462",
+      "summary": "[브랜드 라벨] 유즈드 지면 브랜드 라벨 미노출 처리",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "완료",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "이승연",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "박준현",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-07-03T16:10:44.504+0900",
+      "updated": "2026-07-03T16:24:10.939+0900",
+      "resolutionDate": "2026-07-03T16:24:09.782+0900",
+      "lastStatusChangedAt": "2026-07-03T16:24:09.832+0900",
+      "linkedTickets": [
+        {
+          "key": "FT-313",
+          "summary": "[브랜드 라벨] 유즈드 지면 브랜드 라벨 미노출 처리",
+          "status": "론치완료",
+          "statusCategory": "done",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward",
+          "labels": [],
+          "resolutionDate": "2026-07-03T16:20:31.429+0900"
+        }
+      ],
+      "progress": {
+        "done": 1,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-5459",
+      "url": "https://jira.team.musinsa.com/browse/ETR-5459",
+      "summary": "[추천] 클릭 상품 브랜드 우선 노출 및 유사 상품 추천 개선",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "매니저 승인 대기",
+      "statusCategory": "indeterminate",
+      "priority": "P0",
+      "assignee": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-07-03T15:28:32.044+0900",
+      "updated": "2026-07-03T15:28:55.409+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-07-03T15:28:35.417+0900",
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-5447",
+      "url": "https://jira.team.musinsa.com/browse/ETR-5447",
+      "summary": "[무신사] 퀵픽스 리스트 정렬 순서 변경 — 진입 경로별 상단 고정 및 개인화/MD 가중치 정렬",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "매니저 승인 대기",
+      "statusCategory": "indeterminate",
+      "priority": "P0",
+      "assignee": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-07-03T11:17:27.483+0900",
+      "updated": "2026-07-03T11:17:44.066+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-07-03T11:17:31.033+0900",
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
     {
       "key": "ETR-5414",
       "url": "https://jira.team.musinsa.com/browse/ETR-5414",
       "summary": "[콘텐츠] 브랜드숍/관련상품 앵커링 탭에 항목 갯수 표시 추가",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "PMO 검토 중",
-      "statusCategory": "indeterminate",
+      "status": "검토완료-우선착수",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
         "name": "이승연",
@@ -34,28 +231,44 @@
       "yearQuarters": [],
       "subGroup": null,
       "startDate": null,
-      "dueDate": "2026-07-06",
+      "dueDate": "2026-07-17",
       "created": "2026-07-02T08:52:30.104+0900",
-      "updated": "2026-07-02T08:59:13.000+0900",
+      "updated": "2026-07-03T11:48:36.874+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-02T08:55:10.615+0900",
+      "lastStatusChangedAt": "2026-07-03T11:47:57.923+0900",
       "linkedTickets": [
         {
           "key": "FT-288",
           "summary": "[design-driven][콘텐츠] 브랜드숍/관련상품 바텀시트 타이틀에 숫자 추가",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "디자인완료",
+          "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Blocks",
           "direction": "inward",
           "labels": [
-            "ux-ft-general"
+            "ux-ft"
+          ]
+        },
+        {
+          "key": "FT-311",
+          "summary": "[콘텐츠] 브랜드숍/관련상품 앵커링 탭에 항목 갯수 표시 추가",
+          "status": "디자인완료",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor",
+            "conveyor-bot",
+            "fast-track-away",
+            "one"
           ]
         }
       ],
       "progress": {
         "done": 0,
-        "total": 1
+        "total": 2
       }
     },
     {
@@ -99,7 +312,7 @@
         {
           "key": "ETR-5402",
           "summary": "[홈] 뷰티 카테고리 브랜드 추천 섹션 — 브랜드 노출 수 확대 및 품목별 보기 모드 추가",
-          "status": "반려",
+          "status": "검토완료-백로그",
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
@@ -122,8 +335,8 @@
       "summary": "[추천판] 브랜드 칩에도 남성 성별 필터 적용",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "PMO 검토 중",
-      "statusCategory": "indeterminate",
+      "status": "검토완료-백로그",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
         "name": "이승연",
@@ -148,16 +361,16 @@
       "yearQuarters": [],
       "subGroup": null,
       "startDate": null,
-      "dueDate": "2026-07-06",
+      "dueDate": "2026-07-17",
       "created": "2026-07-02T08:42:28.166+0900",
-      "updated": "2026-07-02T20:36:23.179+0900",
+      "updated": "2026-07-03T11:49:30.417+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-02T08:44:34.379+0900",
+      "lastStatusChangedAt": "2026-07-03T11:48:51.386+0900",
       "linkedTickets": [
         {
           "key": "ETR-5402",
           "summary": "[홈] 뷰티 카테고리 브랜드 추천 섹션 — 브랜드 노출 수 확대 및 품목별 보기 모드 추가",
-          "status": "반려",
+          "status": "검토완료-백로그",
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
@@ -167,11 +380,27 @@
             "conveyor",
             "one"
           ]
+        },
+        {
+          "key": "TM-3986",
+          "summary": "[추천판] 브랜드 칩에도 남성 성별 필터 적용",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor",
+            "conveyor-bot",
+            "general-task",
+            "one"
+          ]
         }
       ],
       "progress": {
         "done": 1,
-        "total": 1
+        "total": 2
       }
     },
     {
@@ -180,11 +409,11 @@
       "summary": "[홈] 뷰티 카테고리 브랜드 추천 섹션 — 브랜드 노출 수 확대 및 품목별 보기 모드 추가",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "반려",
+      "status": "검토완료-백로그",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
-        "name": "촤비스",
+        "name": "이승연",
         "email": null,
         "accountId": null
       },
@@ -208,15 +437,15 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-07-01T17:07:21.960+0900",
-      "updated": "2026-07-02T21:05:46.716+0900",
+      "updated": "2026-07-03T13:11:08.968+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-02T08:40:34.458+0900",
+      "lastStatusChangedAt": "2026-07-03T13:10:27.689+0900",
       "linkedTickets": [
         {
           "key": "ETR-5412",
           "summary": "[추천판] 브랜드 칩에도 남성 성별 필터 적용",
-          "status": "PMO 검토 중",
-          "statusCategory": "indeterminate",
+          "status": "검토완료-백로그",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -239,11 +468,27 @@
             "conveyor",
             "one"
           ]
+        },
+        {
+          "key": "TM-3998",
+          "summary": "[홈] 뷰티 카테고리 브랜드 추천 섹션 — 브랜드 노출 수 확대 및 품목별 보기 모드 추가",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor",
+            "conveyor-bot",
+            "general-task",
+            "one"
+          ]
         }
       ],
       "progress": {
-        "done": 0,
-        "total": 2
+        "done": 1,
+        "total": 3
       }
     },
     {
@@ -370,8 +615,8 @@
       "summary": "[입점사] 무신사 앱 딥링크(OneLink) 접근 시 오류 발생 — 방안 검토",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "PMO 검토 중",
-      "statusCategory": "indeterminate",
+      "status": "완료",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
         "name": "이승연",
@@ -396,11 +641,11 @@
       "yearQuarters": [],
       "subGroup": null,
       "startDate": null,
-      "dueDate": "2026-07-03",
+      "dueDate": "2026-07-17",
       "created": "2026-06-30T15:04:03.489+0900",
-      "updated": "2026-07-01T09:00:23.221+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-30T16:11:43.226+0900",
+      "updated": "2026-07-03T16:14:10.206+0900",
+      "resolutionDate": "2026-07-03T16:13:40.855+0900",
+      "lastStatusChangedAt": "2026-07-03T16:13:40.892+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -503,7 +748,7 @@
         {
           "key": "FT-107",
           "summary": "[PD][메인판] 콘텐츠 모듈 내 텍스트 영역 가독성 개선",
-          "status": "디자인중",
+          "status": "HOLD",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
@@ -524,8 +769,8 @@
       "summary": "[design-driven][공통] 바텀시트 버튼 유무 및 버튼명 정의",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "Tech 검토 중",
-      "statusCategory": "indeterminate",
+      "status": "검토완료-미진행",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
         "name": "이승연",
@@ -549,14 +794,14 @@
       "yearQuarters": [],
       "subGroup": null,
       "startDate": null,
-      "dueDate": "2026-07-14",
+      "dueDate": null,
       "created": "2026-06-30T14:19:28.166+0900",
-      "updated": "2026-06-30T15:57:30.836+0900",
+      "updated": "2026-07-03T16:11:54.587+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-30T14:19:36.713+0900",
+      "lastStatusChangedAt": "2026-07-03T12:11:01.490+0900",
       "linkedTickets": [
         {
-          "key": "FT-99",
+          "key": "PD-8701",
           "summary": "[design-driven][공통] 바텀시트 버튼 유무 및 버튼명 정의",
           "status": "SUGGESTED",
           "statusCategory": "new",
@@ -581,8 +826,8 @@
       "summary": "[design-driven][공통] 룩북 대표 썸네일 정책",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "Tech 검토 중",
-      "statusCategory": "indeterminate",
+      "status": "검토완료-백로그",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
         "name": "이승연",
@@ -606,14 +851,14 @@
       "yearQuarters": [],
       "subGroup": null,
       "startDate": null,
-      "dueDate": "2026-07-14",
+      "dueDate": null,
       "created": "2026-06-30T14:19:22.752+0900",
-      "updated": "2026-06-30T15:57:39.769+0900",
+      "updated": "2026-07-03T12:12:38.699+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-30T14:19:30.052+0900",
+      "lastStatusChangedAt": "2026-07-03T12:11:58.460+0900",
       "linkedTickets": [
         {
-          "key": "FT-95",
+          "key": "TM-3988",
           "summary": "[design-driven][공통] 룩북 대표 썸네일 정책",
           "status": "SUGGESTED",
           "statusCategory": "new",
@@ -623,13 +868,28 @@
           "labels": [
             "conveyor",
             "one",
-            "ux-ft-backlog"
+            "ux-ft-drop"
+          ]
+        },
+        {
+          "key": "TM-3987",
+          "summary": "[design-driven][공통] 룩북 대표 썸네일 정책",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward",
+          "labels": [
+            "conveyor",
+            "conveyor-bot",
+            "general-task",
+            "one"
           ]
         }
       ],
       "progress": {
         "done": 0,
-        "total": 1
+        "total": 2
       }
     },
     {
@@ -686,8 +946,8 @@
         {
           "key": "FT-277",
           "summary": "[필터] 바텀시트 간격 개선",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "디자인중",
+          "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -737,7 +997,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-30T14:18:29.154+0900",
-      "updated": "2026-07-03T01:40:16.186+0900",
+      "updated": "2026-07-03T13:24:20.392+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-01T15:33:51.508+0900",
       "linkedTickets": [
@@ -941,7 +1201,7 @@
             "conveyor",
             "fasttrack",
             "one",
-            "ux-ft-backlog"
+            "ux-ft-drop"
           ]
         },
         {
@@ -1176,12 +1436,13 @@
         {
           "key": "FT-267",
           "summary": "무신사 SRP/PLP 실시간에 점 추가",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "배포완료",
+          "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "DUE_OVERDUE_BOT",
             "conveyor",
             "conveyor-bot",
             "fast-track-away",
@@ -1191,8 +1452,8 @@
         {
           "key": "FE-25742",
           "summary": "[인수인계 및 배포]무신사 SRP/PLP 실시간에 점 추가",
-          "status": "검토 중",
-          "statusCategory": "indeterminate",
+          "status": "완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -1202,11 +1463,12 @@
             "discovery-frontend-pel",
             "one",
             "sp_by_bize_ai_v1"
-          ]
+          ],
+          "resolutionDate": "2026-07-03T10:00:31.492+0900"
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 2
       }
     },
@@ -1402,6 +1664,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "DUE_OVERDUE_BOT",
             "auto-etr-triaged",
             "conveyor",
             "conveyor-bot",
@@ -2336,7 +2599,7 @@
       "linkedTickets": [
         {
           "key": "FT-175",
-          "summary": "[PDP] 품절 임박 노출 로직 고도화",
+          "summary": "[PDP] 판매 예정인 상품 품절 임박 넛징 미노출",
           "status": "개발완료",
           "statusCategory": "indeterminate",
           "assignee": null,
@@ -2351,9 +2614,9 @@
         },
         {
           "key": "FT-272",
-          "summary": "[인수인계&배포] FT-217 goods-detail#958 - PDP 판매예정 상품 품절임박 넛징 미노출",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "summary": "[인수인계] FT-217 goods-detail#958 - PDP 판매예정 상품 품절임박 넛징 미노출",
+          "status": "In Progress",
+          "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -2485,7 +2748,7 @@
         {
           "key": "FT-126",
           "summary": "[design-driven][공통] Error 화면 버튼 ",
-          "status": "디자인중",
+          "status": "디자인완료",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
@@ -2724,8 +2987,8 @@
         {
           "key": "FT-215",
           "summary": "[design-driven]상품상세 > 대표이미지 영역 > AI추천, 후기, 스냅 노출",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "개발중",
+          "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -3959,8 +4222,8 @@
         {
           "key": "TM-3390",
           "summary": "[조건부혜택] Phase 1. 추가할인 고도화 및 조건부시스템 연동",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "기획중",
+          "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Blocks",
           "direction": "inward",
@@ -4142,7 +4405,9 @@
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
-          "labels": []
+          "labels": [
+            "DUE_OVERDUE_BOT"
+          ]
         }
       ],
       "progress": {
@@ -6046,7 +6311,7 @@
         {
           "key": "FT-47",
           "summary": "[desivn-driven][공통] 이미지 태깅 추가 개선",
-          "status": "Waiting For Review",
+          "status": "디자인완료",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
@@ -6177,8 +6442,8 @@
         {
           "key": "REC-4940",
           "summary": "[USED] 정산 완료 알림톡/알림피드 통합 및 FF 기반 전환 (BE)",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "In Progress",
+          "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Contains",
           "direction": "inward",
@@ -8262,8 +8527,8 @@
         {
           "key": "TM-3130",
           "summary": "[추천판] 브랜드 강조형 신규 모듈 개발 (부티크 우선)",
-          "status": "디자인중",
-          "statusCategory": "indeterminate",
+          "status": "Backlog",
+          "statusCategory": "new",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -10313,7 +10578,7 @@
       "lastStatusChangedAt": "2026-05-21T23:00:35.993+0900",
       "linkedTickets": [
         {
-          "key": "FT-6",
+          "key": "TM-3984",
           "summary": "PLP/PDP 상품 리스트 AI 유사 디자인, 해당 상품 스탭 코디 찾기 버튼 추가 및 레이어 노출",
           "status": "SUGGESTED",
           "statusCategory": "new",
@@ -10321,7 +10586,8 @@
           "linkType": "Clones",
           "direction": "inward",
           "labels": [
-            "one"
+            "one",
+            "홈앤디"
           ]
         },
         {
@@ -10731,7 +10997,7 @@
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
-        "name": "이현욱",
+        "name": "박미성",
         "email": null,
         "accountId": null
       },
@@ -10756,7 +11022,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-14T19:29:50.370+0900",
-      "updated": "2026-07-02T21:17:47.786+0900",
+      "updated": "2026-07-03T09:29:01.838+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-02T21:17:07.513+0900",
       "linkedTickets": [
@@ -12377,7 +12643,7 @@
         {
           "key": "FT-47",
           "summary": "[desivn-driven][공통] 이미지 태깅 추가 개선",
-          "status": "Waiting For Review",
+          "status": "디자인완료",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
@@ -13448,7 +13714,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-04-22T17:11:35.250+0900",
-      "updated": "2026-06-29T16:32:11.150+0900",
+      "updated": "2026-07-03T11:51:58.095+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-04-28T17:44:04.384+0900",
       "linkedTickets": [
@@ -13472,11 +13738,29 @@
             "직접해결",
             "홈앤디"
           ]
+        },
+        {
+          "key": "FT-312",
+          "summary": "퀵픽스 배너광고 영역에 기획전 날짜·슬로건 추가 노출 요청",
+          "status": "디자인중",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward",
+          "labels": [
+            "CX",
+            "auto-etr-triaged",
+            "conveyor",
+            "conveyor-bot",
+            "fast-track-away",
+            "fasttrack",
+            "one"
+          ]
         }
       ],
       "progress": {
         "done": 0,
-        "total": 1
+        "total": 2
       }
     },
     {
@@ -14443,6 +14727,62 @@
             "앱테크-기타"
           ],
           "resolutionDate": "2026-05-07T10:47:22.502+0900"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-1831",
+      "url": "https://jira.team.musinsa.com/browse/ETR-1831",
+      "summary": "[표준브랜드] 표준브랜드 데이터 이슈 해결 ",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-백로그",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "오명훈",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "정다해",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "ETR",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": "2025-11-14",
+      "created": "2025-10-28T16:26:04.731+0900",
+      "updated": "2026-07-03T17:00:07.146+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2025-10-31T17:07:17.635+0900",
+      "linkedTickets": [
+        {
+          "key": "CBPPSE-744",
+          "summary": "[표준브랜드] 표준브랜드 데이터 이슈 해결",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Clones",
+          "direction": "inward",
+          "labels": [
+            "ETR"
+          ]
         }
       ],
       "progress": {
