@@ -1,7 +1,75 @@
 {
-  "lastSync": "2026-07-08T07:07:26+09:00",
-  "count": 90,
+  "lastSync": "2026-07-09T07:01:16+09:00",
+  "count": 91,
   "items": [
+    {
+      "key": "ETR-2861",
+      "url": "https://jira.team.musinsa.com/browse/ETR-2861",
+      "summary": "[전사캠페인팀] CPCMS 광고API 모듈 - 무배당발 필터링 기능 추가 요청",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-우선착수",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "박수경",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-02-23T14:14:06.870+0900",
+      "updated": "2026-07-08T21:21:38.493+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null
+    },
+    {
+      "key": "ETR-5539",
+      "url": "https://jira.team.musinsa.com/browse/ETR-5539",
+      "summary": "[카테고리 변경] 모자 카테고리를 2depth에서 1depth로 변경",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "반려",
+      "statusCategory": "done",
+      "priority": "Big-Rock",
+      "assignee": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-07-08T18:06:56.400+0900",
+      "updated": "2026-07-08T18:09:58.465+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null
+    },
     {
       "key": "ETR-3541",
       "url": "https://jira.team.musinsa.com/browse/ETR-3541",
@@ -22,6 +90,8 @@
         "accountId": null
       },
       "labels": [
+        "conveyor",
+        "one",
         "운영본부"
       ],
       "mainSubject": null,
@@ -34,8 +104,48 @@
       "startDate": "2026-04-07",
       "dueDate": null,
       "created": "2026-04-07T20:07:09.848+0900",
-      "updated": "2026-07-07T15:58:48.196+0900",
+      "updated": "2026-07-08T17:54:11.999+0900",
       "resolutionDate": null,
+      "lastStatusChangedAt": null
+    },
+    {
+      "key": "ETR-4340",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4340",
+      "summary": "[design-driven] 브랜드 로고 비율별 사이즈 개선",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "완료",
+      "statusCategory": "done",
+      "priority": "Big-Rock",
+      "assignee": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "박준현",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "conveyor",
+        "fasttrack",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2"
+      ],
+      "subGroup": "MSS-P Discovery & Engagement",
+      "startDate": null,
+      "dueDate": "2026-07-08",
+      "created": "2026-05-20T14:11:55.328+0900",
+      "updated": "2026-07-08T13:55:39.659+0900",
+      "resolutionDate": "2026-07-08T13:55:38.895+0900",
       "lastStatusChangedAt": null
     },
     {
@@ -482,46 +592,6 @@
       "created": "2026-06-13T14:48:35.254+0900",
       "updated": "2026-06-29T14:17:43.346+0900",
       "resolutionDate": "2026-06-24T17:07:15.484+0900",
-      "lastStatusChangedAt": null
-    },
-    {
-      "key": "ETR-4340",
-      "url": "https://jira.team.musinsa.com/browse/ETR-4340",
-      "summary": "[design-driven] 브랜드 로고 비율별 사이즈 개선",
-      "issueType": "과제 발의",
-      "project": "ETR",
-      "status": "검토완료-우선착수",
-      "statusCategory": "done",
-      "priority": "Big-Rock",
-      "assignee": {
-        "name": "안우진",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "박준현",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [
-        "conveyor",
-        "fasttrack",
-        "one"
-      ],
-      "mainSubject": null,
-      "mainSubjects": [],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": "2026-Q2",
-      "yearQuarters": [
-        "2026-Q2"
-      ],
-      "subGroup": "MSS-P Discovery & Engagement",
-      "startDate": null,
-      "dueDate": "2026-07-08",
-      "created": "2026-05-20T14:11:55.328+0900",
-      "updated": "2026-06-26T16:06:57.757+0900",
-      "resolutionDate": null,
       "lastStatusChangedAt": null
     },
     {
@@ -1006,40 +1076,6 @@
       "dueDate": null,
       "created": "2026-05-28T10:21:14.373+0900",
       "updated": "2026-06-22T10:06:08.003+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": null
-    },
-    {
-      "key": "ETR-2861",
-      "url": "https://jira.team.musinsa.com/browse/ETR-2861",
-      "summary": "[전사캠페인팀] CPCMS 광고API 모듈 - 무배당발 필터링 기능 추가 요청",
-      "issueType": "과제 발의",
-      "project": "ETR",
-      "status": "검토완료-우선착수",
-      "statusCategory": "done",
-      "priority": "P0",
-      "assignee": {
-        "name": "안우진",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "박수경",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [],
-      "mainSubject": null,
-      "mainSubjects": [],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
-      "subGroup": null,
-      "startDate": null,
-      "dueDate": null,
-      "created": "2026-02-23T14:14:06.870+0900",
-      "updated": "2026-06-17T13:58:38.636+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },

@@ -1,7 +1,51 @@
 {
-  "lastSync": "2026-07-08T07:08:06+09:00",
-  "count": 604,
+  "lastSync": "2026-07-09T07:02:01+09:00",
+  "count": 605,
   "items": [
+    {
+      "key": "FT-332",
+      "url": "https://jira.team.musinsa.com/browse/FT-332",
+      "summary": "[design-driven][캠페인] 쿠폰 모듈 밀도감 개선",
+      "issueType": "Initiative",
+      "project": "FT",
+      "status": "SUGGESTED",
+      "statusCategory": "new",
+      "priority": "P2",
+      "assignee": {
+        "name": "이규현",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "fasttrack",
+        "one",
+        "ux-ft-backlog"
+      ],
+      "mainSubject": "09.캠페인",
+      "mainSubjects": [
+        "09.캠페인"
+      ],
+      "subSubject": "캠페인",
+      "subSubjects": [
+        "캠페인"
+      ],
+      "yearQuarter": "2026-Q3",
+      "yearQuarters": [
+        "2026-Q3"
+      ],
+      "subGroup": "MSS-P Product Design",
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-07-08T18:22:43.201+0900",
+      "updated": "2026-07-08T18:27:08.929+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null
+    },
     {
       "key": "FT-331",
       "url": "https://jira.team.musinsa.com/browse/FT-331",
@@ -119,8 +163,8 @@
       "summary": "[design-driven][카테고리메뉴] 서비스탭_ 전문관 파비콘추가",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "SUGGESTED",
-      "statusCategory": "new",
+      "status": "디자인완료",
+      "statusCategory": "indeterminate",
       "priority": "P2",
       "assignee": {
         "name": "성보현",
@@ -146,18 +190,18 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-07-07T15:00:04.200+0900",
-      "updated": "2026-07-07T17:28:31.260+0900",
+      "updated": "2026-07-08T15:28:56.620+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": null
+      "lastStatusChangedAt": "2026-07-08T14:43:13.051+0900"
     },
     {
       "key": "FT-327",
       "url": "https://jira.team.musinsa.com/browse/FT-327",
-      "summary": "[design-driven][랭킹판] 탭 높이 조절",
+      "summary": "[design-driven][판영역] 탭 높이 조절",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "SUGGESTED",
-      "statusCategory": "new",
+      "status": "디자인완료",
+      "statusCategory": "indeterminate",
       "priority": "P2",
       "assignee": {
         "name": "김혜림",
@@ -165,7 +209,7 @@
         "accountId": null
       },
       "reporter": {
-        "name": "오승주",
+        "name": "김혜림",
         "email": null,
         "accountId": null
       },
@@ -177,15 +221,17 @@
       "mainSubjects": [],
       "subSubject": null,
       "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q3",
+      "yearQuarters": [
+        "2026-Q3"
+      ],
       "subGroup": null,
-      "startDate": null,
-      "dueDate": null,
+      "startDate": "2026-07-08",
+      "dueDate": "2026-07-10",
       "created": "2026-07-07T14:59:02.013+0900",
-      "updated": "2026-07-07T15:10:31.611+0900",
+      "updated": "2026-07-08T15:12:31.888+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": null
+      "lastStatusChangedAt": "2026-07-08T10:13:40.563+0900"
     },
     {
       "key": "FT-326",
@@ -222,7 +268,7 @@
       "startDate": "2026-07-07",
       "dueDate": "2026-07-10",
       "created": "2026-07-07T14:57:01.843+0900",
-      "updated": "2026-07-07T17:21:03.804+0900",
+      "updated": "2026-07-08T10:01:26.326+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-07T17:21:03.804+0900"
     },
@@ -232,11 +278,11 @@
       "summary": "[design-driven][추천판] 브랜드 라벨 투명도 제거",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "개발중",
+      "status": "개발완료",
       "statusCategory": "indeterminate",
       "priority": "P2",
       "assignee": {
-        "name": "홍승표",
+        "name": "송지영",
         "email": null,
         "accountId": null
       },
@@ -261,9 +307,9 @@
       "startDate": "2026-07-07",
       "dueDate": "2026-07-10",
       "created": "2026-07-07T14:56:23.540+0900",
-      "updated": "2026-07-08T00:35:52.188+0900",
+      "updated": "2026-07-08T10:39:27.151+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-07T18:43:09.241+0900"
+      "lastStatusChangedAt": "2026-07-08T10:38:45.446+0900"
     },
     {
       "key": "FT-324",
@@ -271,8 +317,8 @@
       "summary": "[design-driven][공통] 상품 리스트 정보 영역 개선",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "SUGGESTED",
-      "statusCategory": "new",
+      "status": "디자인중",
+      "statusCategory": "indeterminate",
       "priority": "P2",
       "assignee": {
         "name": "성영주",
@@ -299,9 +345,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-07-07T14:55:15.633+0900",
-      "updated": "2026-07-07T15:00:29.643+0900",
+      "updated": "2026-07-08T18:25:42.002+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": null
+      "lastStatusChangedAt": "2026-07-08T18:25:42.002+0900"
     },
     {
       "key": "FT-323",
@@ -325,7 +371,7 @@
       "labels": [
         "fasttrack",
         "one",
-        "ux-ft-general"
+        "ux-ft-backlog"
       ],
       "mainSubject": null,
       "mainSubjects": [],
@@ -337,7 +383,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-07-07T14:54:15.344+0900",
-      "updated": "2026-07-07T15:01:12.585+0900",
+      "updated": "2026-07-08T18:26:16.741+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -363,7 +409,7 @@
       "labels": [
         "fasttrack",
         "one",
-        "ux-ft-general"
+        "ux-ft-backlog"
       ],
       "mainSubject": null,
       "mainSubjects": [],
@@ -375,7 +421,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-07-07T14:53:24.460+0900",
-      "updated": "2026-07-07T14:57:38.612+0900",
+      "updated": "2026-07-08T18:26:00.067+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -401,7 +447,7 @@
       "labels": [
         "fasttrack",
         "one",
-        "ux-ft-general"
+        "ux-ft-backlog"
       ],
       "mainSubject": null,
       "mainSubjects": [],
@@ -413,7 +459,7 @@
       "startDate": null,
       "dueDate": "2026-07-31",
       "created": "2026-07-07T14:52:20.654+0900",
-      "updated": "2026-07-07T17:25:46.720+0900",
+      "updated": "2026-07-08T18:26:36.842+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -465,8 +511,8 @@
       "summary": "[검색] 전문관 검색 시 해당 전문관 브랜드를 최근 방문 브랜드에 노출",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "SUGGESTED",
-      "statusCategory": "new",
+      "status": "디자인완료",
+      "statusCategory": "indeterminate",
       "priority": "P2",
       "assignee": {
         "name": "옥여경",
@@ -497,9 +543,9 @@
       "startDate": "2026-07-06",
       "dueDate": "2026-07-31",
       "created": "2026-07-06T18:07:21.544+0900",
-      "updated": "2026-07-07T17:24:40.206+0900",
+      "updated": "2026-07-08T13:53:18.244+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-07T17:21:02.551+0900"
+      "lastStatusChangedAt": "2026-07-08T13:53:18.244+0900"
     },
     {
       "key": "FT-318",
@@ -660,7 +706,7 @@
       "startDate": "2026-07-06",
       "dueDate": "2026-07-13",
       "created": "2026-07-06T17:00:43.941+0900",
-      "updated": "2026-07-07T10:57:52.093+0900",
+      "updated": "2026-07-08T17:42:25.026+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-07T10:54:56.846+0900"
     },
@@ -877,11 +923,11 @@
       "summary": "유즈드 베타뱃지 동선 내 추가",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "개발중",
+      "status": "개발완료",
       "statusCategory": "indeterminate",
       "priority": "P2",
       "assignee": {
-        "name": "김애란",
+        "name": "이영진",
         "email": null,
         "accountId": null
       },
@@ -908,9 +954,9 @@
       "startDate": "2026-07-01",
       "dueDate": "2026-07-15",
       "created": "2026-07-01T18:17:16.418+0900",
-      "updated": "2026-07-08T00:35:46.246+0900",
+      "updated": "2026-07-08T21:52:35.934+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-02T10:11:27.565+0900"
+      "lastStatusChangedAt": "2026-07-08T21:52:35.934+0900"
     },
     {
       "key": "FT-296",
@@ -1000,7 +1046,7 @@
       "summary": "[design-driven][카테고리] 좌측 패널 가로값, 높이값 일괄 조정",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "개발중",
+      "status": "개발완료",
       "statusCategory": "indeterminate",
       "priority": "P2",
       "assignee": {
@@ -1029,11 +1075,11 @@
       ],
       "subGroup": null,
       "startDate": "2026-06-30",
-      "dueDate": "2026-07-08",
+      "dueDate": "2026-07-15",
       "created": "2026-07-01T15:33:15.208+0900",
-      "updated": "2026-07-08T00:35:38.409+0900",
+      "updated": "2026-07-08T17:37:28.827+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-07T10:39:01.492+0900"
+      "lastStatusChangedAt": "2026-07-08T17:37:28.827+0900"
     },
     {
       "key": "FT-309",
@@ -1104,9 +1150,9 @@
       "startDate": "2026-07-01",
       "dueDate": "2026-12-31",
       "created": "2026-07-01T14:04:24.655+0900",
-      "updated": "2026-07-07T18:02:32.710+0900",
+      "updated": "2026-07-08T16:29:40.357+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-06T15:14:42.789+0900"
+      "lastStatusChangedAt": null
     },
     {
       "key": "FT-277",
@@ -1183,7 +1229,7 @@
       "startDate": "2026-06-30",
       "dueDate": "2026-09-30",
       "created": "2026-06-30T14:29:13.807+0900",
-      "updated": "2026-07-07T13:16:48.743+0900",
+      "updated": "2026-07-08T14:57:35.732+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-07T13:16:48.743+0900"
     },
@@ -1270,7 +1316,7 @@
       "startDate": "2026-06-30",
       "dueDate": null,
       "created": "2026-06-30T08:48:21.280+0900",
-      "updated": "2026-07-06T11:08:28.516+0900",
+      "updated": "2026-07-08T10:49:44.356+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-02T13:03:30.779+0900"
     },
@@ -1647,7 +1693,7 @@
       "startDate": "2026-06-24",
       "dueDate": "2026-07-31",
       "created": "2026-06-24T15:19:13.540+0900",
-      "updated": "2026-07-08T00:35:41.290+0900",
+      "updated": "2026-07-08T16:09:28.653+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-26T14:14:23.328+0900"
     },
@@ -1737,8 +1783,8 @@
       "summary": "수량 입력 시 수기 입력 가능하도록 수정",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "디자인완료",
-      "statusCategory": "indeterminate",
+      "status": "Backlog",
+      "statusCategory": "new",
       "priority": "P2",
       "assignee": {
         "name": "이혜영",
@@ -1767,11 +1813,11 @@
       ],
       "subGroup": null,
       "startDate": "2026-06-24",
-      "dueDate": "2026-07-10",
+      "dueDate": null,
       "created": "2026-06-24T11:06:23.207+0900",
-      "updated": "2026-07-02T08:53:10.171+0900",
+      "updated": "2026-07-08T20:33:54.789+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-01T11:40:47.917+0900"
+      "lastStatusChangedAt": "2026-07-08T20:33:54.789+0900"
     },
     {
       "key": "FT-211",
@@ -1854,7 +1900,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-23T18:35:54.073+0900",
-      "updated": "2026-07-07T09:17:13.311+0900",
+      "updated": "2026-07-08T16:04:30.467+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-06T17:21:03.656+0900"
     },
@@ -2031,8 +2077,8 @@
       "summary": "라이브 모듈 개선 — 하단 정보 구조, 아이콘 색상, 캐러셀 사이즈 조정",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "개발완료",
-      "statusCategory": "indeterminate",
+      "status": "론치완료",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "배정화",
@@ -2065,9 +2111,9 @@
       "startDate": "2026-06-24",
       "dueDate": "2026-07-08",
       "created": "2026-06-19T00:56:45.012+0900",
-      "updated": "2026-07-08T00:36:04.069+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-02T10:40:49.143+0900"
+      "updated": "2026-07-08T19:05:56.241+0900",
+      "resolutionDate": "2026-07-08T19:05:56.235+0900",
+      "lastStatusChangedAt": "2026-07-08T19:05:56.241+0900"
     },
     {
       "key": "FT-196",
@@ -2807,7 +2853,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-19T00:56:28.273+0900",
-      "updated": "2026-07-07T17:10:29.874+0900",
+      "updated": "2026-07-08T10:49:09.746+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-07T17:10:29.874+0900"
     },
@@ -2817,8 +2863,8 @@
       "summary": "[PDP] 판매 예정인 상품 품절 임박 넛징 미노출",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "개발완료",
-      "statusCategory": "indeterminate",
+      "status": "론치완료",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "이혜영",
@@ -2848,11 +2894,11 @@
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": "2026-06-24",
-      "dueDate": null,
+      "dueDate": "2026-07-06",
       "created": "2026-06-19T00:56:27.988+0900",
-      "updated": "2026-07-06T12:36:51.828+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-30T11:37:41.543+0900"
+      "updated": "2026-07-08T20:32:30.861+0900",
+      "resolutionDate": "2026-07-08T20:32:30.831+0900",
+      "lastStatusChangedAt": "2026-07-08T20:32:30.861+0900"
     },
     {
       "key": "FT-173",
@@ -3085,7 +3131,7 @@
       "summary": "[design-driven][필터] 탑필터 안내 문구 표기",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "디자인중",
+      "status": "디자인완료",
       "statusCategory": "indeterminate",
       "priority": "P2",
       "assignee": {
@@ -3116,9 +3162,9 @@
       "startDate": null,
       "dueDate": "2026-07-31",
       "created": "2026-06-19T00:56:21.001+0900",
-      "updated": "2026-07-06T11:51:41.852+0900",
+      "updated": "2026-07-08T14:42:41.228+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-23T09:57:04.631+0900"
+      "lastStatusChangedAt": "2026-07-08T13:47:45.465+0900"
     },
     {
       "key": "FT-166",
@@ -3234,10 +3280,10 @@
       "yearQuarter": null,
       "yearQuarters": [],
       "subGroup": null,
-      "startDate": null,
-      "dueDate": null,
+      "startDate": "2026-06-19",
+      "dueDate": "2026-06-25",
       "created": "2026-06-19T00:56:16.080+0900",
-      "updated": "2026-06-23T12:43:09.192+0900",
+      "updated": "2026-07-08T10:49:41.846+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-23T09:54:00.112+0900"
     },
@@ -3909,10 +3955,10 @@
         "2026-Q2"
       ],
       "subGroup": "MSS-P Discovery & Engagement",
-      "startDate": null,
-      "dueDate": null,
+      "startDate": "2026-06-19",
+      "dueDate": "2026-06-22",
       "created": "2026-06-19T00:55:58.386+0900",
-      "updated": "2026-07-02T10:35:05.882+0900",
+      "updated": "2026-07-08T10:49:29.188+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-02T10:35:05.882+0900"
     },
@@ -4405,9 +4451,9 @@
       "yearQuarters": [],
       "subGroup": "MSS-P Commerce Core",
       "startDate": "2026-06-30",
-      "dueDate": null,
+      "dueDate": "2026-07-15",
       "created": "2026-06-19T00:55:46.859+0900",
-      "updated": "2026-07-08T00:35:53.635+0900",
+      "updated": "2026-07-08T17:48:15.823+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-26T19:02:58.373+0900"
     },
@@ -4458,8 +4504,8 @@
       "summary": "[design-driven][공통] Error 화면 버튼 ",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "개발중",
-      "statusCategory": "indeterminate",
+      "status": "철회/반려/취소",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "이규현",
@@ -4476,7 +4522,7 @@
         "fasttrack",
         "one",
         "standby",
-        "ux-ft"
+        "ux-ft-close"
       ],
       "mainSubject": "06.공통/네비게이션",
       "mainSubjects": [
@@ -4489,12 +4535,12 @@
         "2026-Q3"
       ],
       "subGroup": null,
-      "startDate": "0026-07-06",
+      "startDate": "0026-07-02",
       "dueDate": "2026-07-31",
       "created": "2026-06-19T00:55:43.717+0900",
-      "updated": "2026-07-07T15:39:41.073+0900",
+      "updated": "2026-07-08T16:12:31.542+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-06T16:35:03.607+0900"
+      "lastStatusChangedAt": "2026-07-08T16:07:18.064+0900"
     },
     {
       "key": "FT-125",
@@ -4974,11 +5020,11 @@
       "summary": "[design-driven][유즈드] 홈 판매관리/판매신청 버튼 ",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "개발완료",
-      "statusCategory": "indeterminate",
+      "status": "론치완료",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
-        "name": "심규환",
+        "name": "이영진",
         "email": null,
         "accountId": null
       },
@@ -5009,9 +5055,9 @@
       "startDate": "2026-06-28",
       "dueDate": "2026-07-31",
       "created": "2026-06-19T00:55:29.785+0900",
-      "updated": "2026-07-08T00:36:04.571+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-02T10:39:00.649+0900"
+      "updated": "2026-07-08T19:09:34.636+0900",
+      "resolutionDate": "2026-07-08T19:09:34.616+0900",
+      "lastStatusChangedAt": "2026-07-08T19:09:34.636+0900"
     },
     {
       "key": "FT-109",
@@ -5085,10 +5131,10 @@
         "2025-Q4"
       ],
       "subGroup": null,
-      "startDate": null,
-      "dueDate": null,
+      "startDate": "2026-06-23",
+      "dueDate": "2026-06-23",
       "created": "2026-06-19T00:55:29.029+0900",
-      "updated": "2026-07-06T17:46:01.737+0900",
+      "updated": "2026-07-08T10:49:43.688+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-03T11:08:55.574+0900"
     },
@@ -5180,7 +5226,7 @@
       "statusCategory": "indeterminate",
       "priority": "P2",
       "assignee": {
-        "name": "오승주",
+        "name": "김혜림",
         "email": null,
         "accountId": null
       },
@@ -5208,7 +5254,7 @@
       "startDate": "2026-06-26",
       "dueDate": "2026-07-31",
       "created": "2026-06-19T00:55:24.221+0900",
-      "updated": "2026-07-08T00:35:31.485+0900",
+      "updated": "2026-07-08T10:49:22.259+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-29T10:59:42.808+0900"
     },
@@ -5322,8 +5368,8 @@
       "summary": "[design-driven]상품상세 > 대표이미지 영역 >  후기, 스냅 노출",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "QA중",
-      "statusCategory": "indeterminate",
+      "status": "론치완료",
+      "statusCategory": "done",
       "priority": "P3",
       "assignee": {
         "name": "노경진",
@@ -5357,9 +5403,9 @@
       "startDate": "2026-06-24",
       "dueDate": "2026-07-08",
       "created": "2026-06-19T00:55:18.991+0900",
-      "updated": "2026-07-08T00:35:44.330+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-07T14:43:28.882+0900"
+      "updated": "2026-07-08T22:01:28.009+0900",
+      "resolutionDate": "2026-07-08T13:31:06.136+0900",
+      "lastStatusChangedAt": "2026-07-08T13:31:06.165+0900"
     },
     {
       "key": "FT-90",
@@ -5429,7 +5475,7 @@
         "conveyor",
         "one",
         "pel",
-        "ux-ft-general"
+        "ux-ft-baclog"
       ],
       "mainSubject": "06.공통/네비게이션",
       "mainSubjects": [
@@ -5445,7 +5491,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-19T00:46:25.496+0900",
-      "updated": "2026-07-02T10:10:08.368+0900",
+      "updated": "2026-07-08T10:34:58.394+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-02T10:10:08.368+0900"
     },
@@ -5455,7 +5501,7 @@
       "summary": "[design-driven][PDP] 이미지 뷰어 확대 시 UX 개선 ",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "개발중",
+      "status": "개발완료",
       "statusCategory": "indeterminate",
       "priority": "P2",
       "assignee": {
@@ -5490,9 +5536,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-12T14:19:34.463+0900",
-      "updated": "2026-07-06T11:23:47.359+0900",
+      "updated": "2026-07-08T15:03:06.777+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-30T13:35:46.828+0900"
+      "lastStatusChangedAt": "2026-07-08T15:03:06.777+0900"
     },
     {
       "key": "FT-70",
@@ -5532,7 +5578,7 @@
       "startDate": "2026-06-11",
       "dueDate": "2026-06-26",
       "created": "2026-06-11T17:21:50.195+0900",
-      "updated": "2026-07-06T11:23:48.276+0900",
+      "updated": "2026-07-08T10:29:23.285+0900",
       "resolutionDate": "2026-06-30T10:53:24.670+0900",
       "lastStatusChangedAt": "2026-06-30T10:53:24.688+0900"
     },
@@ -5622,7 +5668,7 @@
       "startDate": "2026-06-11",
       "dueDate": "2026-06-19",
       "created": "2026-06-11T00:00:16.696+0900",
-      "updated": "2026-06-30T15:16:44.416+0900",
+      "updated": "2026-07-08T10:49:21.756+0900",
       "resolutionDate": "2026-06-22T08:58:01.186+0900",
       "lastStatusChangedAt": "2026-06-22T08:58:01.220+0900"
     },
@@ -5797,7 +5843,7 @@
       "startDate": "2026-06-08",
       "dueDate": "2026-06-22",
       "created": "2026-06-08T20:56:47.284+0900",
-      "updated": "2026-07-06T11:23:36.741+0900",
+      "updated": "2026-07-08T10:29:25.157+0900",
       "resolutionDate": "2026-06-22T14:04:17.803+0900",
       "lastStatusChangedAt": "2026-06-22T14:04:17.834+0900"
     },
@@ -6013,7 +6059,7 @@
       "startDate": "2026-07-08",
       "dueDate": "2026-07-14",
       "created": "2026-06-04T18:37:19.962+0900",
-      "updated": "2026-07-08T00:35:34.770+0900",
+      "updated": "2026-07-08T20:19:52.881+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-06T10:06:46.874+0900"
     },
@@ -6187,7 +6233,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-02T14:39:18.721+0900",
-      "updated": "2026-07-07T15:45:11.208+0900",
+      "updated": "2026-07-08T18:18:35.020+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-29T09:46:18.625+0900"
     },
@@ -6554,11 +6600,11 @@
       "summary": "[design-driven] 브랜드 로고 비율별 사이즈 개선",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "QA중",
-      "statusCategory": "indeterminate",
+      "status": "론치완료",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
-        "name": "이예진",
+        "name": "송지영",
         "email": null,
         "accountId": null
       },
@@ -6584,15 +6630,16 @@
       "subSubjects": [],
       "yearQuarter": "2026-Q2",
       "yearQuarters": [
-        "2026-Q2"
+        "2026-Q2",
+        "2026-Q3"
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": "2026-05-27",
       "dueDate": "2026-07-08",
       "created": "2026-05-27T14:59:20.957+0900",
-      "updated": "2026-07-06T09:52:36.336+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-06T09:51:20.557+0900"
+      "updated": "2026-07-08T13:46:46.984+0900",
+      "resolutionDate": "2026-07-08T13:46:46.945+0900",
+      "lastStatusChangedAt": "2026-07-08T13:46:46.984+0900"
     },
     {
       "key": "FT-88",
@@ -6634,7 +6681,7 @@
       "startDate": null,
       "dueDate": "2026-09-30",
       "created": "2026-05-27T14:46:43.110+0900",
-      "updated": "2026-07-08T00:35:34.298+0900",
+      "updated": "2026-07-08T10:34:22.236+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-01T13:13:27.217+0900"
     },
@@ -10827,7 +10874,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-04-14T13:38:04.607+0900",
-      "updated": "2026-07-08T00:35:35.641+0900",
+      "updated": "2026-07-08T10:49:48.801+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -11135,7 +11182,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-04-10T14:35:35.623+0900",
-      "updated": "2026-05-31T15:46:53.113+0900",
+      "updated": "2026-07-08T10:49:15.369+0900",
       "resolutionDate": "2026-05-31T15:46:23.740+0900",
       "lastStatusChangedAt": "2026-05-31T15:46:23.762+0900"
     },
@@ -11698,10 +11745,10 @@
       "yearQuarter": null,
       "yearQuarters": [],
       "subGroup": null,
-      "startDate": null,
-      "dueDate": null,
+      "startDate": "2026-04-08",
+      "dueDate": "2026-04-08",
       "created": "2026-04-07T11:28:54.251+0900",
-      "updated": "2026-05-22T00:18:48.327+0900",
+      "updated": "2026-07-08T10:49:30.324+0900",
       "resolutionDate": "2026-04-28T11:27:57.141+0900",
       "lastStatusChangedAt": "2026-04-28T11:27:57.270+0900"
     },
@@ -12413,7 +12460,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-26T15:00:50.550+0900",
-      "updated": "2026-06-11T13:42:27.277+0900",
+      "updated": "2026-07-08T10:49:48.114+0900",
       "resolutionDate": "2026-05-28T11:19:18.664+0900",
       "lastStatusChangedAt": "2026-05-28T11:19:18.676+0900"
     },
@@ -12492,10 +12539,10 @@
         "2026-Q2"
       ],
       "subGroup": null,
-      "startDate": null,
-      "dueDate": null,
+      "startDate": "2026-05-11",
+      "dueDate": "2026-05-12",
       "created": "2026-03-26T14:54:31.753+0900",
-      "updated": "2026-06-19T01:06:28.057+0900",
+      "updated": "2026-07-08T10:49:04.207+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-19T01:06:12.915+0900"
     },
@@ -12614,7 +12661,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-23T11:55:30.299+0900",
-      "updated": "2026-06-19T01:06:29.089+0900",
+      "updated": "2026-07-08T10:49:09.735+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-19T01:06:12.655+0900"
     },
@@ -12965,7 +13012,7 @@
       "startDate": "2026-04-13",
       "dueDate": "2026-07-01",
       "created": "2026-03-20T08:44:10.636+0900",
-      "updated": "2026-06-19T01:06:10.142+0900",
+      "updated": "2026-07-08T10:49:20.477+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-19T01:06:10.142+0900"
     },
@@ -13293,10 +13340,10 @@
         "2026-Q2"
       ],
       "subGroup": null,
-      "startDate": null,
-      "dueDate": null,
+      "startDate": "2026-04-03",
+      "dueDate": "2026-04-09",
       "created": "2026-03-18T17:31:41.718+0900",
-      "updated": "2026-06-19T01:07:45.053+0900",
+      "updated": "2026-07-08T10:49:03.792+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-19T01:07:45.053+0900"
     },
@@ -13674,9 +13721,9 @@
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": "0026-07-07",
-      "dueDate": "2026-07-09",
+      "dueDate": "2026-07-13",
       "created": "2026-03-13T17:46:14.418+0900",
-      "updated": "2026-07-08T00:35:51.732+0900",
+      "updated": "2026-07-08T18:40:03.432+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-07T17:53:02.191+0900"
     },
@@ -15368,10 +15415,10 @@
         "2026-Q2"
       ],
       "subGroup": "MSS-P Discovery & Engagement",
-      "startDate": null,
-      "dueDate": null,
+      "startDate": "2026-05-11",
+      "dueDate": "2026-05-12",
       "created": "2026-02-19T12:19:41.693+0900",
-      "updated": "2026-06-19T01:06:16.600+0900",
+      "updated": "2026-07-08T10:49:12.311+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-19T01:06:01.194+0900"
     },
@@ -20192,7 +20239,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2025-09-15T17:35:22.008+0900",
-      "updated": "2026-06-19T01:05:56.723+0900",
+      "updated": "2026-07-08T10:49:29.194+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-19T01:05:46.593+0900"
     },
@@ -20272,10 +20319,10 @@
       "yearQuarter": null,
       "yearQuarters": [],
       "subGroup": null,
-      "startDate": null,
-      "dueDate": null,
+      "startDate": "2025-10-14",
+      "dueDate": "2025-10-14",
       "created": "2025-09-15T17:22:58.328+0900",
-      "updated": "2026-05-22T10:16:49.699+0900",
+      "updated": "2026-07-08T10:49:13.402+0900",
       "resolutionDate": "2026-03-11T11:43:21.009+0900",
       "lastStatusChangedAt": "2026-03-11T11:43:21.094+0900"
     },
@@ -20842,7 +20889,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2025-09-11T17:07:19.067+0900",
-      "updated": "2025-09-15T15:38:45.530+0900",
+      "updated": "2026-07-08T11:26:37.395+0900",
       "resolutionDate": "2025-09-15T15:38:45.405+0900",
       "lastStatusChangedAt": "2025-09-15T15:38:45.530+0900"
     },
@@ -20916,7 +20963,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2025-09-11T07:42:34.963+0900",
-      "updated": "2026-06-19T01:05:56.999+0900",
+      "updated": "2026-07-08T10:49:29.715+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-19T00:27:31.603+0900"
     },
@@ -21036,7 +21083,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2025-09-08T12:10:04.939+0900",
-      "updated": "2026-04-07T15:00:51.337+0900",
+      "updated": "2026-07-08T11:26:37.411+0900",
       "resolutionDate": "2025-09-10T18:54:13.157+0900",
       "lastStatusChangedAt": "2025-09-10T18:54:13.229+0900"
     },
@@ -21790,7 +21837,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2025-08-25T08:20:31.358+0900",
-      "updated": "2026-04-07T15:00:51.781+0900",
+      "updated": "2026-07-08T11:26:39.035+0900",
       "resolutionDate": "2025-09-04T16:40:16.720+0900",
       "lastStatusChangedAt": "2025-09-04T16:40:16.824+0900"
     },
@@ -22263,7 +22310,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2025-08-13T16:06:50.448+0900",
-      "updated": "2026-06-16T14:35:00.021+0900",
+      "updated": "2026-07-08T10:49:14.607+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-04-10T11:22:30.935+0900"
     },
@@ -22545,7 +22592,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2025-07-25T13:52:28.275+0900",
-      "updated": "2025-08-13T17:53:49.529+0900",
+      "updated": "2026-07-08T11:26:40.748+0900",
       "resolutionDate": "2025-08-13T17:53:49.366+0900",
       "lastStatusChangedAt": "2025-08-13T17:53:49.529+0900"
     },
@@ -22582,7 +22629,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2025-07-25T13:29:23.836+0900",
-      "updated": "2026-04-07T15:00:48.577+0900",
+      "updated": "2026-07-08T11:26:34.933+0900",
       "resolutionDate": "2025-10-14T18:45:38.106+0900",
       "lastStatusChangedAt": "2025-10-14T18:45:38.270+0900"
     },
@@ -22801,7 +22848,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2025-07-21T13:53:09.169+0900",
-      "updated": "2025-09-15T15:54:53.726+0900",
+      "updated": "2026-07-08T11:26:42.506+0900",
       "resolutionDate": "2025-08-14T10:50:09.532+0900",
       "lastStatusChangedAt": "2025-08-14T10:50:09.635+0900"
     },
@@ -23545,7 +23592,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2025-07-09T14:04:04.396+0900",
-      "updated": "2025-08-04T10:26:14.237+0900",
+      "updated": "2026-07-08T10:49:37.895+0900",
       "resolutionDate": "2025-08-04T10:26:14.088+0900",
       "lastStatusChangedAt": "2025-08-04T10:26:14.237+0900"
     },
@@ -23581,7 +23628,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2025-07-09T13:59:37.910+0900",
-      "updated": "2025-12-01T16:21:48.396+0900",
+      "updated": "2026-07-08T11:26:41.063+0900",
       "resolutionDate": "2025-08-01T10:38:52.758+0900",
       "lastStatusChangedAt": "2025-08-01T10:38:52.875+0900"
     },
@@ -23651,7 +23698,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2025-07-09T11:39:15.255+0900",
-      "updated": "2025-11-19T07:38:57.004+0900",
+      "updated": "2026-07-08T11:26:45.321+0900",
       "resolutionDate": "2025-08-04T10:24:44.617+0900",
       "lastStatusChangedAt": "2025-08-04T10:24:44.784+0900"
     },
@@ -23721,7 +23768,7 @@
       "startDate": "2025-07-08",
       "dueDate": "2025-07-18",
       "created": "2025-07-07T13:33:51.895+0900",
-      "updated": "2025-12-01T16:21:49.164+0900",
+      "updated": "2026-07-08T11:26:43.921+0900",
       "resolutionDate": "2025-07-24T15:02:53.995+0900",
       "lastStatusChangedAt": "2025-07-24T15:02:54.082+0900"
     },
@@ -24108,7 +24155,7 @@
       "startDate": null,
       "dueDate": "2025-07-17",
       "created": "2025-07-04T18:22:22.717+0900",
-      "updated": "2025-09-15T10:25:46.536+0900",
+      "updated": "2026-07-08T11:26:45.598+0900",
       "resolutionDate": "2025-07-18T09:28:30.039+0900",
       "lastStatusChangedAt": "2025-07-18T09:28:30.134+0900"
     },
@@ -24144,7 +24191,7 @@
       "startDate": "2025-08-13",
       "dueDate": "2025-09-10",
       "created": "2025-07-04T18:21:50.852+0900",
-      "updated": "2025-09-10T13:30:43.230+0900",
+      "updated": "2026-07-08T11:26:40.237+0900",
       "resolutionDate": "2025-09-10T13:30:43.108+0900",
       "lastStatusChangedAt": "2025-09-10T13:30:43.230+0900"
     },
