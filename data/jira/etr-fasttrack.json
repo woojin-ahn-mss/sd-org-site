@@ -1,7 +1,109 @@
 {
-  "lastSync": "2026-07-09T12:53:37+09:00",
-  "count": 274,
+  "lastSync": "2026-07-10T07:16:25+09:00",
+  "count": 276,
   "items": [
+    {
+      "key": "ETR-5559",
+      "url": "https://jira.team.musinsa.com/browse/ETR-5559",
+      "summary": "[퀵픽스] 상품 후기 더보기 진입 시 상품 정보 표시 및 필터 자동 적용",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-백로그",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "이승연",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": "2026-07-23",
+      "created": "2026-07-09T16:49:13.558+0900",
+      "updated": "2026-07-09T17:11:52.313+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-07-09T17:11:12.902+0900",
+      "linkedTickets": [
+        {
+          "key": "TM-4049",
+          "summary": "[퀵픽스] 상품 후기 더보기 진입 시 상품 정보 표시 및 필터 자동 적용",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor",
+            "conveyor-bot",
+            "general-task",
+            "one"
+          ]
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-5555",
+      "url": "https://jira.team.musinsa.com/browse/ETR-5555",
+      "summary": "쿠폰라벨 미노출 대상 적용",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "Tech 검토 중",
+      "statusCategory": "indeterminate",
+      "priority": "P0",
+      "assignee": {
+        "name": "이승연",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "박준현",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": "2026-07-23",
+      "created": "2026-07-09T16:21:42.686+0900",
+      "updated": "2026-07-09T17:03:26.627+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-07-09T16:21:50.693+0900",
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
     {
       "key": "ETR-5540",
       "url": "https://jira.team.musinsa.com/browse/ETR-5540",
@@ -36,7 +138,7 @@
       "startDate": null,
       "dueDate": "2026-07-23",
       "created": "2026-07-08T18:12:04.302+0900",
-      "updated": "2026-07-09T09:54:10.306+0900",
+      "updated": "2026-07-09T15:39:21.264+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-09T09:53:04.813+0900",
       "linkedTickets": [
@@ -126,64 +228,8 @@
       "summary": "[카테고리메뉴] 서비스탭_ 전문관 파비콘추가",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "PMO 검토 중",
-      "statusCategory": "indeterminate",
-      "priority": "P0",
-      "assignee": {
-        "name": "이승연",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "안우진",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [
-        "fasttrack",
-        "one"
-      ],
-      "mainSubject": null,
-      "mainSubjects": [],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
-      "subGroup": null,
-      "startDate": null,
-      "dueDate": "2026-07-13",
-      "created": "2026-07-08T15:14:10.244+0900",
-      "updated": "2026-07-08T15:29:02.814+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-08T15:28:51.550+0900",
-      "linkedTickets": [
-        {
-          "key": "FT-328",
-          "summary": "[design-driven][카테고리메뉴] 서비스탭_ 전문관 파비콘추가",
-          "status": "디자인완료",
-          "statusCategory": "indeterminate",
-          "assignee": null,
-          "linkType": "Relates",
-          "direction": "inward",
-          "labels": [
-            "fasttrack",
-            "one"
-          ]
-        }
-      ],
-      "progress": {
-        "done": 0,
-        "total": 1
-      }
-    },
-    {
-      "key": "ETR-5532",
-      "url": "https://jira.team.musinsa.com/browse/ETR-5532",
-      "summary": "[판영역] 탭 높이 조절",
-      "issueType": "과제 발의",
-      "project": "ETR",
-      "status": "PMO 검토 중",
-      "statusCategory": "indeterminate",
+      "status": "검토완료-우선착수",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
         "name": "이승연",
@@ -208,11 +254,84 @@
       "yearQuarters": [],
       "subGroup": null,
       "startDate": null,
-      "dueDate": "2026-07-13",
-      "created": "2026-07-08T15:08:35.423+0900",
-      "updated": "2026-07-08T15:14:19.329+0900",
+      "dueDate": "2026-07-23",
+      "created": "2026-07-08T15:14:10.244+0900",
+      "updated": "2026-07-09T18:26:16.664+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-08T15:12:28.149+0900",
+      "lastStatusChangedAt": "2026-07-09T18:25:36.427+0900",
+      "linkedTickets": [
+        {
+          "key": "FT-328",
+          "summary": "[design-driven][카테고리메뉴] 서비스탭_ 전문관 파비콘추가",
+          "status": "디자인완료",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward",
+          "labels": [
+            "fasttrack",
+            "one"
+          ]
+        },
+        {
+          "key": "FT-337",
+          "summary": "[카테고리메뉴] 서비스탭_ 전문관 파비콘추가",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward",
+          "labels": [
+            "conveyor",
+            "conveyor-bot",
+            "fast-track-away",
+            "fasttrack",
+            "one"
+          ]
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 2
+      }
+    },
+    {
+      "key": "ETR-5532",
+      "url": "https://jira.team.musinsa.com/browse/ETR-5532",
+      "summary": "[판영역] 탭 높이 조절",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-우선착수",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "이승연",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "conveyor",
+        "fasttrack",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": "2026-07-23",
+      "created": "2026-07-08T15:08:35.423+0900",
+      "updated": "2026-07-09T15:18:38.002+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-07-09T15:17:56.277+0900",
       "linkedTickets": [
         {
           "key": "FT-327",
@@ -226,11 +345,27 @@
             "fasttrack",
             "one"
           ]
+        },
+        {
+          "key": "FT-336",
+          "summary": "[판영역] 탭 높이 조절",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward",
+          "labels": [
+            "conveyor",
+            "conveyor-bot",
+            "fast-track-away",
+            "fasttrack",
+            "one"
+          ]
         }
       ],
       "progress": {
         "done": 0,
-        "total": 1
+        "total": 2
       }
     },
     {
@@ -3050,7 +3185,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-30T11:22:45.029+0900",
-      "updated": "2026-06-30T11:25:15.914+0900",
+      "updated": "2026-07-09T18:12:35.448+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-30T11:24:37.124+0900",
       "linkedTickets": [
@@ -3070,11 +3205,54 @@
             "랭킹",
             "홈앤디"
           ]
+        },
+        {
+          "key": "APPDEV-26768",
+          "summary": "[인수인계&배포] ETR-5362 app-store-android - 랭킹 상단 배너 컴팩트 규격 FF 적용",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward",
+          "labels": [
+            "AI-ASSISTED",
+            "emd_by_bize_ai_v1",
+            "sp_by_bize_ai_v1"
+          ]
+        },
+        {
+          "key": "APPDEV-26769",
+          "summary": "[인수인계&배포] ETR-5362 app-store-ios - 랭킹 상단 배너 컴팩트 규격 FF 적용",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward",
+          "labels": [
+            "AI-ASSISTED",
+            "emd_by_bize_ai_v1",
+            "sp_by_bize_ai_v1"
+          ]
+        },
+        {
+          "key": "FE-26125",
+          "summary": "[인수인계 및 배포] ETR-5362 discovery-frontend - 랭킹 상단 배너 컴팩트 규격",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward",
+          "labels": [
+            "AI-ASSISTED",
+            "discovery-frontend-pel",
+            "emd_by_bize_ai_v1",
+            "sp_by_bize_ai_v1"
+          ]
         }
       ],
       "progress": {
         "done": 0,
-        "total": 1
+        "total": 4
       }
     },
     {
@@ -3910,7 +4088,7 @@
         {
           "key": "FT-194",
           "summary": "이벤트딜 추천 페이지 UX 개선 — 탭 방식에서 단일 스크롤 페이지로 전환 및 퀵구매 UI 적용",
-          "status": "디자인완료",
+          "status": "개발중",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
@@ -4657,7 +4835,7 @@
       "summary": "[design-driven]상품상세 > 대표이미지 영역 > AI추천, 후기, 스냅 노출",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-우선착수",
+      "status": "완료",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -4685,9 +4863,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-23T14:54:23.336+0900",
-      "updated": "2026-06-24T15:18:28.792+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-24T15:17:49.949+0900",
+      "updated": "2026-07-09T18:27:59.727+0900",
+      "resolutionDate": "2026-07-09T18:27:58.917+0900",
+      "lastStatusChangedAt": "2026-07-09T18:27:58.959+0900",
       "linkedTickets": [
         {
           "key": "FT-91",
@@ -4710,8 +4888,8 @@
         {
           "key": "FT-215",
           "summary": "[design-driven]상품상세 > 대표이미지 영역 > AI추천, 후기, 스냅 노출",
-          "status": "개발중",
-          "statusCategory": "indeterminate",
+          "status": "철회/반려/취소",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -4722,11 +4900,29 @@
             "fast-track-away",
             "one"
           ]
+        },
+        {
+          "key": "FT-91",
+          "summary": "[design-driven]상품상세 > 대표이미지 영역 >  후기, 스냅 노출",
+          "status": "론치완료",
+          "statusCategory": "done",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "outward",
+          "labels": [
+            "F1",
+            "conveyor",
+            "fasttrack",
+            "one",
+            "pel",
+            "리서치예정"
+          ],
+          "resolutionDate": "2026-07-08T13:31:06.136+0900"
         }
       ],
       "progress": {
-        "done": 1,
-        "total": 2
+        "done": 3,
+        "total": 3
       }
     },
     {
@@ -8038,7 +8234,7 @@
         {
           "key": "FT-47",
           "summary": "[desivn-driven][공통] 이미지 태깅 추가 개선",
-          "status": "개발중",
+          "status": "개발완료",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
@@ -8169,7 +8365,7 @@
         {
           "key": "REC-4940",
           "summary": "[USED] 정산 완료 알림톡/알림피드 통합 및 FF 기반 전환 (BE)",
-          "status": "In Code Review",
+          "status": "In Developer Test",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Contains",
@@ -14390,7 +14586,7 @@
         {
           "key": "FT-47",
           "summary": "[desivn-driven][공통] 이미지 태깅 추가 개선",
-          "status": "개발중",
+          "status": "개발완료",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
