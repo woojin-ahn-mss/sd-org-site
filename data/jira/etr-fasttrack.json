@@ -1,5 +1,5 @@
 {
-  "lastSync": "2026-07-09T07:01:11+09:00",
+  "lastSync": "2026-07-09T12:53:37+09:00",
   "count": 274,
   "items": [
     {
@@ -8,11 +8,11 @@
       "summary": "[랭킹판] 모자 카테고리 1-depth로 변경",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "매니저 승인 대기",
-      "statusCategory": "indeterminate",
+      "status": "검토완료-우선착수",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
-        "name": "촤비스",
+        "name": "이승연",
         "email": null,
         "accountId": null
       },
@@ -34,15 +34,32 @@
       "yearQuarters": [],
       "subGroup": null,
       "startDate": null,
-      "dueDate": null,
+      "dueDate": "2026-07-23",
       "created": "2026-07-08T18:12:04.302+0900",
-      "updated": "2026-07-08T18:26:25.105+0900",
+      "updated": "2026-07-09T09:54:10.306+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-08T18:12:07.991+0900",
-      "linkedTickets": [],
+      "lastStatusChangedAt": "2026-07-09T09:53:04.813+0900",
+      "linkedTickets": [
+        {
+          "key": "FT-333",
+          "summary": "[랭킹판] 모자 카테고리 1-depth로 변경",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor",
+            "conveyor-bot",
+            "fast-track-home",
+            "one"
+          ]
+        }
+      ],
       "progress": {
         "done": 0,
-        "total": 0
+        "total": 1
       }
     },
     {
@@ -51,8 +68,8 @@
       "summary": "추천판 유즈드 모듈 개선",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "Tech 검토 중",
-      "statusCategory": "indeterminate",
+      "status": "검토완료-우선착수",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
         "name": "이승연",
@@ -76,15 +93,31 @@
       "yearQuarters": [],
       "subGroup": null,
       "startDate": null,
-      "dueDate": "2026-07-22",
+      "dueDate": null,
       "created": "2026-07-08T16:52:23.922+0900",
-      "updated": "2026-07-08T16:52:59.452+0900",
+      "updated": "2026-07-09T11:32:55.670+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-08T16:52:31.189+0900",
-      "linkedTickets": [],
+      "lastStatusChangedAt": "2026-07-09T11:32:15.958+0900",
+      "linkedTickets": [
+        {
+          "key": "FT-334",
+          "summary": "추천판 캠페인 모듈 개선",
+          "status": "개발중",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward",
+          "labels": [
+            "conveyor",
+            "conveyor-bot",
+            "fast-track-away",
+            "one"
+          ]
+        }
+      ],
       "progress": {
         "done": 0,
-        "total": 0
+        "total": 1
       }
     },
     {
@@ -722,8 +755,8 @@
       "summary": "[퀵픽스] 배송지 정보 텍스트 블록 자동 파싱 입력 기능 추가",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "PMO 검토 중",
-      "statusCategory": "indeterminate",
+      "status": "검토완료-우선착수",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
         "name": "이승연",
@@ -748,15 +781,32 @@
       "yearQuarters": [],
       "subGroup": null,
       "startDate": null,
-      "dueDate": "2026-07-13",
+      "dueDate": "2026-07-23",
       "created": "2026-07-06T09:29:44.704+0900",
-      "updated": "2026-07-08T09:24:53.837+0900",
+      "updated": "2026-07-09T11:44:22.794+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-08T09:24:44.157+0900",
-      "linkedTickets": [],
+      "lastStatusChangedAt": "2026-07-09T11:43:43.840+0900",
+      "linkedTickets": [
+        {
+          "key": "FT-335",
+          "summary": "[퀵픽스] 배송지 정보 텍스트 블록 자동 파싱 입력 기능 추가",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor",
+            "conveyor-bot",
+            "fast-track-away",
+            "one"
+          ]
+        }
+      ],
       "progress": {
         "done": 0,
-        "total": 0
+        "total": 1
       }
     },
     {
@@ -765,8 +815,8 @@
       "summary": "[퀵주문] 무머니 상품권 퀵주문 상품 등록 및 노출 정책 개발",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "PMO 검토 중",
-      "statusCategory": "indeterminate",
+      "status": "검토완료-백로그",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
         "name": "이승연",
@@ -791,11 +841,11 @@
       "yearQuarters": [],
       "subGroup": null,
       "startDate": null,
-      "dueDate": "2026-07-10",
+      "dueDate": "2026-07-23",
       "created": "2026-07-06T09:29:15.735+0900",
-      "updated": "2026-07-08T09:01:14.337+0900",
+      "updated": "2026-07-09T11:41:21.267+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-07T10:49:53.636+0900",
+      "lastStatusChangedAt": "2026-07-09T11:40:42.139+0900",
       "linkedTickets": [
         {
           "key": "TM-3638",
@@ -809,11 +859,24 @@
             "조건부혜택",
             "퀵주문"
           ]
+        },
+        {
+          "key": "TM-3638",
+          "summary": "[조건부혜택] Phase 0-1. 퀵주문 서비스 확장 (상품군 확대·합배송·클레임 정책)",
+          "status": "디자인중",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward",
+          "labels": [
+            "조건부혜택",
+            "퀵주문"
+          ]
         }
       ],
       "progress": {
         "done": 0,
-        "total": 1
+        "total": 2
       }
     },
     {
@@ -898,8 +961,8 @@
       "summary": "[퀵주문] 퀵주문 상품 → 본상품 PDP 자동 연결 및 리뷰 마이그레이션",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "PMO 검토 중",
-      "statusCategory": "indeterminate",
+      "status": "검토완료-미진행",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
         "name": "이승연",
@@ -924,11 +987,11 @@
       "yearQuarters": [],
       "subGroup": null,
       "startDate": null,
-      "dueDate": "2026-07-10",
+      "dueDate": "2026-07-23",
       "created": "2026-07-06T09:28:56.318+0900",
-      "updated": "2026-07-08T09:01:10.077+0900",
+      "updated": "2026-07-09T11:48:31.754+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-07T10:49:37.983+0900",
+      "lastStatusChangedAt": "2026-07-09T11:48:03.361+0900",
       "linkedTickets": [
         {
           "key": "TM-3638",
@@ -1815,7 +1878,7 @@
       "summary": "[콘텐츠] 브랜드숍/관련상품 앵커링 탭에 항목 갯수 표시 추가",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-우선착수",
+      "status": "완료",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -1843,15 +1906,15 @@
       "startDate": null,
       "dueDate": "2026-07-17",
       "created": "2026-07-02T08:52:30.104+0900",
-      "updated": "2026-07-03T11:48:36.874+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-03T11:47:57.923+0900",
+      "updated": "2026-07-09T11:05:32.478+0900",
+      "resolutionDate": "2026-07-09T11:05:31.599+0900",
+      "lastStatusChangedAt": "2026-07-09T11:05:31.651+0900",
       "linkedTickets": [
         {
           "key": "FT-311",
           "summary": "[콘텐츠] 브랜드숍/관련상품 앵커링 탭에 항목 갯수 표시 추가",
-          "status": "디자인완료",
-          "statusCategory": "indeterminate",
+          "status": "론치완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -1862,11 +1925,12 @@
             "fast-track-away",
             "one",
             "ux-ft"
-          ]
+          ],
+          "resolutionDate": "2026-07-09T11:02:21.659+0900"
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 1
       }
     },
@@ -2197,7 +2261,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-30T15:26:01.237+0900",
-      "updated": "2026-07-08T09:24:42.463+0900",
+      "updated": "2026-07-09T11:35:17.362+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-08T09:24:02.732+0900",
       "linkedTickets": [
@@ -4430,7 +4494,7 @@
       "summary": "수량 입력 시 수기 입력 가능하도록 수정",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-우선착수",
+      "status": "검토완료-백로그",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -4458,9 +4522,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-23T14:57:07.765+0900",
-      "updated": "2026-06-30T11:52:52.116+0900",
+      "updated": "2026-07-09T12:18:17.124+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-24T11:06:29.284+0900",
+      "lastStatusChangedAt": "2026-07-09T12:17:37.766+0900",
       "linkedTickets": [
         {
           "key": "FT-116",
@@ -4479,8 +4543,8 @@
         {
           "key": "FT-212",
           "summary": "수량 입력 시 수기 입력 가능하도록 수정",
-          "status": "Backlog",
-          "statusCategory": "new",
+          "status": "철회/반려/취소",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -4491,11 +4555,27 @@
             "fast-track-away",
             "one"
           ]
+        },
+        {
+          "key": "TM-4046",
+          "summary": "수량 입력 시 수기 입력 가능하도록 수정",
+          "status": "Backlog",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward",
+          "labels": [
+            "auto-retrofit",
+            "conveyor",
+            "conveyor-bot",
+            "general-task",
+            "one"
+          ]
         }
       ],
       "progress": {
-        "done": 1,
-        "total": 2
+        "done": 2,
+        "total": 3
       }
     },
     {
@@ -5830,7 +5910,7 @@
       "summary": "[무탠 990딜 이벤트] 이벤트 상품 주문당 수량 제한 미작동 버그",
       "issueType": "기타(KTLO/BAU)",
       "project": "ETR",
-      "status": "검토완료-우선착수",
+      "status": "검토완료-미진행",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -5858,9 +5938,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-15T10:47:35.728+0900",
-      "updated": "2026-06-26T14:49:17.103+0900",
+      "updated": "2026-07-09T11:46:37.703+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-26T14:48:38.231+0900",
+      "lastStatusChangedAt": "2026-07-09T11:46:32.088+0900",
       "linkedTickets": [
         {
           "key": "TM-3390",
@@ -8066,7 +8146,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-04T13:20:45.964+0900",
-      "updated": "2026-07-07T10:05:33.949+0900",
+      "updated": "2026-07-09T10:24:13.783+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-09T11:27:38.542+0900",
       "linkedTickets": [
@@ -8089,7 +8169,7 @@
         {
           "key": "REC-4940",
           "summary": "[USED] 정산 완료 알림톡/알림피드 통합 및 FF 기반 전환 (BE)",
-          "status": "In Progress",
+          "status": "In Code Review",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Contains",
@@ -11252,7 +11332,7 @@
       "summary": "[추천판] 눈에 띄는 신규 입점 브랜드 섹션 브랜드 모듈로 개선",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-우선착수",
+      "status": "완료",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -11279,15 +11359,15 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-21T16:24:18.231+0900",
-      "updated": "2026-06-16T10:32:28.338+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-16T10:31:47.513+0900",
+      "updated": "2026-07-09T08:30:19.769+0900",
+      "resolutionDate": "2026-07-09T08:30:18.925+0900",
+      "lastStatusChangedAt": "2026-07-09T08:30:19.007+0900",
       "linkedTickets": [
         {
           "key": "TM-3098",
           "summary": "[추천판] 눈에 띄는 신규 입점 브랜드 섹션 브랜드 모듈로 개선",
-          "status": "배포완료",
-          "statusCategory": "indeterminate",
+          "status": "론치완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -11297,11 +11377,12 @@
             "general-task",
             "one",
             "홈앤디"
-          ]
+          ],
+          "resolutionDate": "2026-07-09T08:27:19.284+0900"
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 1
       }
     },
