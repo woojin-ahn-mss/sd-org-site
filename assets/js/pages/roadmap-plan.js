@@ -556,6 +556,9 @@ function renderCardBoard() {
       priority: t.priority || '',
       projectKey: t.project || '',
       status: t.status || '',
+      statusCategory: t.statusCategory || '',
+      yearQuarter: t.yearQuarter || '',
+      dueDate: t.dueDate || '',
       linkedEtr: Array.isArray(t._linkedEtr) ? t._linkedEtr : null,
     })),
   ];
@@ -678,6 +681,21 @@ function groupEl(g) {
   return `<div class="group">${head}${g.items.map(cardEl).join('')}</div>`;
 }
 
+/**
+ * 미배치(분기 미배정) 티켓의 사유 — 왜 어느 분기에도 안 들어갔는지.
+ * dueDate 보정 후에도 pool 에 남은 건 = 같은 연도 분기값도, 같은 연도 마감일도 없는 티켓.
+ * 사용자 카드(수기)는 의도적 미배정이므로 사유 배지를 달지 않는다.
+ * @returns {string} 배지 텍스트 (없으면 '')
+ */
+function poolReason(it) {
+  if (QUARTERS.includes(it.quarter)) return '';   // 배정됨 — 배지 없음
+  if (it._kind !== 'jira') return '';             // 수기 카드 제외
+  const yq = (it.yearQuarter || '').trim();
+  if (/^\d{4}-Q[1-4]$/.test(yq)) return `${yq} · 타 연도`;
+  if (it.dueDate) return `마감 ${String(it.dueDate).slice(0, 7)} · 타 연도`;
+  return '분기·마감일 없음';
+}
+
 function cardEl(it) {
   const ids = itemSubjectIds(it);
   const subj = ids.length ? subjectById(ids[0]) : null;
@@ -708,6 +726,13 @@ function cardEl(it) {
        </div>`
     : '';
   const overrideMark = isJira && it._override ? `<span title="분기/주제 override" style="font-size:9px;color:var(--accent);">⊘</span>` : '';
+  const reason = poolReason(it);
+  const reasonBadge = reason
+    ? `<div class="poc-row" style="margin-top:3px;">
+         <span class="muted dim-mono" title="분기 미배정 사유 — 드래그하거나 ＋주제로 배치하세요"
+               style="font-size:9.5px;padding:0 5px;border:1px dashed var(--rule);border-radius:9px;opacity:.85;">⚠ ${escapeHtml(reason)}</span>
+       </div>`
+    : '';
   const dataAttrs = isJira
     ? `data-jira-key="${escapeAttr(it.jira_key)}" draggable="true"`
     : `data-card-id="${escapeAttr(it.id)}" draggable="true"`;
@@ -719,6 +744,7 @@ function cardEl(it) {
         ${overrideMark}
       </div>
       ${meta ? `<div class="poc-row" style="gap:4px;margin-top:3px;">${meta}</div>` : ''}
+      ${reasonBadge}
       ${subjRow}
     </article>
   `;

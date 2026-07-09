@@ -279,7 +279,10 @@ export function joinTicketsWithOverrides(jiraTickets, overrides, year) {
   }
   return jiraTickets.map(t => {
     const o = idx.get(String(t.key));
-    const baseQuarter = parseQuarterFromYearQuarter(t.yearQuarter, year);
+    // yearQuarter(정식 분기값) 우선, 없거나 타 연도면 dueDate 의 분기로 보정.
+    // (gantt 와 동일한 정책 — Jira 분기 필드 미입력 티켓을 마감일 기준으로 배치)
+    const baseQuarter = parseQuarterFromYearQuarter(t.yearQuarter, year)
+      || parseQuarterFromDate(t.dueDate, year);
     if (!o) {
       return { ...t, subject_id: '', subjectIds: [], quarter: baseQuarter, baseQuarter, _override: false };
     }
@@ -304,9 +307,20 @@ function parseQuarterFromYearQuarter(yq, year) {
   return m[2];
 }
 
+/** "2026-08-15" → 해당 연도면 'Q3', 아니면 '' (분기값 없을 때 마감일 보정용). */
+function parseQuarterFromDate(ds, year) {
+  if (typeof ds !== 'string') return '';
+  const m = /^(\d{4})-(\d{2})/.exec(ds.trim());
+  if (!m) return '';
+  if (parseInt(m[1], 10) !== year) return '';
+  const mo = parseInt(m[2], 10);
+  if (mo < 1 || mo > 12) return '';
+  return 'Q' + (Math.floor((mo - 1) / 3) + 1);
+}
+
 /* ─── test export ─────────────────────────────────────────── */
 export const _internal = {
-  orderVal, normalizeYear, parseQuarterFromYearQuarter,
+  orderVal, normalizeYear, parseQuarterFromYearQuarter, parseQuarterFromDate,
   parseSubjectIds, joinSubjectIds,
   mapKeys, pick, subjFromDb, cardFromDb,
   SUBJ_C2S, SUBJ_S2C, CARD_C2S, CARD_S2C,
