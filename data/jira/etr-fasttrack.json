@@ -1,7 +1,136 @@
 {
-  "lastSync": "2026-07-10T07:16:25+09:00",
-  "count": 276,
+  "lastSync": "2026-07-11T06:55:17+09:00",
+  "count": 278,
   "items": [
+    {
+      "key": "ETR-5566",
+      "url": "https://jira.team.musinsa.com/browse/ETR-5566",
+      "summary": "[랭킹판] 오프라인 랭킹에서 단일 브랜드 매장 제외",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-우선착수",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "이승연",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one",
+        "standby"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": "2026-07-24",
+      "created": "2026-07-10T10:45:47.095+0900",
+      "updated": "2026-07-10T13:17:47.885+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-07-10T13:17:08.045+0900",
+      "linkedTickets": [
+        {
+          "key": "SNDPRD-4297",
+          "summary": "[FT][PM][랭킹판] 오프라인 랭킹에서 단일 브랜드 매장 제외",
+          "status": "In Progress",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Blocks",
+          "direction": "inward",
+          "labels": []
+        },
+        {
+          "key": "FT-338",
+          "summary": "[랭킹판] 오프라인 랭킹에서 단일 브랜드 매장 제외",
+          "status": "개발중",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor",
+            "conveyor-bot",
+            "fast-track-away",
+            "one",
+            "standby"
+          ]
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 2
+      }
+    },
+    {
+      "key": "ETR-5565",
+      "url": "https://jira.team.musinsa.com/browse/ETR-5565",
+      "summary": "[design-driven][공통] 상단 탭/필터 투명도 적용",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-우선착수",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "서정명",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": "2026-07-24",
+      "created": "2026-07-10T10:41:23.026+0900",
+      "updated": "2026-07-10T10:45:30.225+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-07-10T10:43:04.835+0900",
+      "linkedTickets": [
+        {
+          "key": "FT-322",
+          "summary": "[design-driven][공통] 상단 탭/필터 투명도 적용",
+          "status": "디자인중",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward",
+          "labels": [
+            "fasttrack",
+            "one",
+            "ux-ft"
+          ]
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
     {
       "key": "ETR-5559",
       "url": "https://jira.team.musinsa.com/browse/ETR-5559",
@@ -92,10 +221,10 @@
       "yearQuarter": null,
       "yearQuarters": [],
       "subGroup": null,
-      "startDate": null,
+      "startDate": "2026-07-10",
       "dueDate": "2026-07-23",
       "created": "2026-07-09T16:21:42.686+0900",
-      "updated": "2026-07-09T17:03:26.627+0900",
+      "updated": "2026-07-10T13:19:46.008+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-09T16:21:50.693+0900",
       "linkedTickets": [],
@@ -253,10 +382,10 @@
       "yearQuarter": null,
       "yearQuarters": [],
       "subGroup": null,
-      "startDate": null,
+      "startDate": "2026-07-10",
       "dueDate": "2026-07-23",
       "created": "2026-07-08T15:14:10.244+0900",
-      "updated": "2026-07-09T18:26:16.664+0900",
+      "updated": "2026-07-10T16:36:43.714+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-09T18:25:36.427+0900",
       "linkedTickets": [
@@ -549,13 +678,24 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-07-08T09:22:21.618+0900",
-      "updated": "2026-07-08T09:38:55.304+0900",
+      "updated": "2026-07-10T14:39:40.670+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-08T09:22:25.602+0900",
-      "linkedTickets": [],
+      "linkedTickets": [
+        {
+          "key": "SNDPRD-4302",
+          "summary": "[PM][랭킹판] 브랜드 랭킹 — 상단 칩 아래 영역에 쿠폰/단독 필터 추가",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Blocks",
+          "direction": "inward",
+          "labels": []
+        }
+      ],
       "progress": {
         "done": 0,
-        "total": 0
+        "total": 1
       }
     },
     {
@@ -3185,14 +3325,14 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-30T11:22:45.029+0900",
-      "updated": "2026-07-09T18:12:35.448+0900",
+      "updated": "2026-07-10T16:37:48.646+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-30T11:24:37.124+0900",
       "linkedTickets": [
         {
           "key": "FT-262",
           "summary": "[랭킹] 브랜드 랭킹 상단 배너 디자인 수정",
-          "status": "디자인완료",
+          "status": "배포완료",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
@@ -3209,7 +3349,7 @@
         {
           "key": "APPDEV-26768",
           "summary": "[인수인계&배포] ETR-5362 app-store-android - 랭킹 상단 배너 컴팩트 규격 FF 적용",
-          "status": "SUGGESTED",
+          "status": "Backlog",
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Relates",
@@ -3223,7 +3363,7 @@
         {
           "key": "APPDEV-26769",
           "summary": "[인수인계&배포] ETR-5362 app-store-ios - 랭킹 상단 배너 컴팩트 규격 FF 적용",
-          "status": "SUGGESTED",
+          "status": "Backlog",
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Relates",
@@ -3237,7 +3377,7 @@
         {
           "key": "FE-26125",
           "summary": "[인수인계 및 배포] ETR-5362 discovery-frontend - 랭킹 상단 배너 컴팩트 규격",
-          "status": "SUGGESTED",
+          "status": "Backlog",
           "statusCategory": "new",
           "assignee": null,
           "linkType": "Relates",
@@ -4088,7 +4228,7 @@
         {
           "key": "FT-194",
           "summary": "이벤트딜 추천 페이지 UX 개선 — 탭 방식에서 단일 스크롤 페이지로 전환 및 퀵구매 UI 적용",
-          "status": "개발중",
+          "status": "배포완료",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
@@ -8314,7 +8454,7 @@
       "summary": "[USED] 정산 완료 알림 및 앱 내 정산 내역 상세 표기 강화",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-우선착수",
+      "status": "완료",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -8342,9 +8482,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-04T13:20:45.964+0900",
-      "updated": "2026-07-09T10:24:13.783+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-09T11:27:38.542+0900",
+      "updated": "2026-07-10T11:48:10.353+0900",
+      "resolutionDate": "2026-07-10T11:48:10.302+0900",
+      "lastStatusChangedAt": "2026-07-10T11:48:10.353+0900",
       "linkedTickets": [
         {
           "key": "REC-4712",
@@ -9393,11 +9533,11 @@
       "summary": "[퀵윈][랭킹판] 검색창 급상승 키워드 '더보기' 클릭 시 랭킹판/검색어 탭 랜딩 개선",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "PMO 검토 중",
-      "statusCategory": "indeterminate",
+      "status": "Tech 검토 대기 중",
+      "statusCategory": "new",
       "priority": "P0",
       "assignee": {
-        "name": "이승연",
+        "name": "안우진",
         "email": null,
         "accountId": null
       },
@@ -9419,11 +9559,11 @@
       "yearQuarters": [],
       "subGroup": null,
       "startDate": null,
-      "dueDate": "2026-07-10",
+      "dueDate": "2026-07-24",
       "created": "2026-06-01T09:22:49.891+0900",
-      "updated": "2026-07-08T09:01:10.717+0900",
+      "updated": "2026-07-10T10:49:59.771+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-07T17:05:20.669+0900",
+      "lastStatusChangedAt": "2026-07-10T10:49:28.964+0900",
       "linkedTickets": [
         {
           "key": "PD-8318",
@@ -9495,7 +9635,7 @@
       "startDate": null,
       "dueDate": "2026-07-10",
       "created": "2026-06-01T09:22:40.286+0900",
-      "updated": "2026-07-08T09:01:12.512+0900",
+      "updated": "2026-07-10T11:05:40.297+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-07T17:05:28.297+0900",
       "linkedTickets": [],
@@ -13288,8 +13428,8 @@
       "summary": "앱 내 '아즈니섬 쿠폰' 기능 고도화 관련",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "Tech 검토 중",
-      "statusCategory": "indeterminate",
+      "status": "검토완료-우선착수",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
         "name": "이유정",
@@ -13312,11 +13452,11 @@
       "yearQuarters": [],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
-      "dueDate": "2026-06-19",
+      "dueDate": null,
       "created": "2026-05-14T15:34:01.315+0900",
-      "updated": "2026-06-09T10:22:22.527+0900",
+      "updated": "2026-07-10T11:38:58.579+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-09T10:22:02.914+0900",
+      "lastStatusChangedAt": "2026-07-10T11:38:19.263+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
