@@ -1,5 +1,5 @@
 {
-  "lastSync": "2026-07-12T06:42:14+09:00",
+  "lastSync": "2026-07-13T06:42:05+09:00",
   "count": 597,
   "items": [
     {
@@ -366,14 +366,14 @@
     {
       "key": "TM-3940",
       "url": "https://jira.team.musinsa.com/browse/TM-3940",
-      "summary": "[캠페인] 모듈별 성별필터 적용정책 개선",
+      "summary": "[캠페인] 성별 기반 탭/모듈 자동 노출 필터링",
       "issueType": "Initiative",
       "project": "TM",
-      "status": "SUGGESTED",
-      "statusCategory": "new",
+      "status": "기획중",
+      "statusCategory": "indeterminate",
       "priority": "Big-Rock",
       "assignee": {
-        "name": "황미리",
+        "name": "이솔이",
         "email": null,
         "accountId": null
       },
@@ -398,10 +398,10 @@
         "2026-Q3"
       ],
       "subGroup": "Core-E Discovery",
-      "startDate": null,
-      "dueDate": null,
+      "startDate": "2026-07-09",
+      "dueDate": "2026-08-31",
       "created": "2026-06-25T11:51:45.532+0900",
-      "updated": "2026-07-08T21:06:15.930+0900",
+      "updated": "2026-07-13T06:01:18.958+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -452,7 +452,7 @@
       "startDate": "2026-06-24",
       "dueDate": "2026-06-24",
       "created": "2026-06-24T13:26:06.706+0900",
-      "updated": "2026-07-12T06:01:04.891+0900",
+      "updated": "2026-07-13T06:01:22.134+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -542,7 +542,7 @@
       "startDate": null,
       "dueDate": "2026-10-22",
       "created": "2026-06-22T11:18:02.765+0900",
-      "updated": "2026-07-12T06:01:11.253+0900",
+      "updated": "2026-07-13T06:01:28.960+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -597,18 +597,18 @@
       "startDate": "2026-06-22",
       "dueDate": "2026-09-30",
       "created": "2026-06-18T14:37:24.398+0900",
-      "updated": "2026-07-12T06:01:16.871+0900",
+      "updated": "2026-07-13T06:01:34.928+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
     {
       "key": "TM-3652",
       "url": "https://jira.team.musinsa.com/browse/TM-3652",
-      "summary": "[캠페인관리] 모듈 덮어쓰기 방지 및 데이터 조회 개선 ",
+      "summary": "[캠페인] 모듈 덮어쓰기 방지 및 데이터 조회 개선 ",
       "issueType": "Initiative",
       "project": "TM",
-      "status": "개발중",
-      "statusCategory": "indeterminate",
+      "status": "론치완료",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
         "name": "이솔이",
@@ -639,14 +639,14 @@
       "startDate": "2026-06-22",
       "dueDate": "2026-07-10",
       "created": "2026-06-17T21:51:12.901+0900",
-      "updated": "2026-07-12T06:01:17.810+0900",
-      "resolutionDate": null,
+      "updated": "2026-07-13T06:02:13.591+0900",
+      "resolutionDate": "2026-07-12T19:44:31.346+0900",
       "lastStatusChangedAt": null
     },
     {
       "key": "TM-3651",
       "url": "https://jira.team.musinsa.com/browse/TM-3651",
-      "summary": "[캠페인 관리] 캠페인 진열/노출 시스템 안정화 ",
+      "summary": "[캠페인] 캠페인 진열/노출 시스템 안정화 ",
       "issueType": "Initiative",
       "project": "TM",
       "status": "SUGGESTED",
@@ -681,7 +681,7 @@
       "startDate": "2026-06-22",
       "dueDate": "2026-07-17",
       "created": "2026-06-17T21:21:52.854+0900",
-      "updated": "2026-07-12T06:01:18.052+0900",
+      "updated": "2026-07-13T06:01:35.749+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -724,7 +724,7 @@
       "startDate": "2026-06-24",
       "dueDate": "2026-09-30",
       "created": "2026-06-17T18:11:40.959+0900",
-      "updated": "2026-07-12T06:01:18.826+0900",
+      "updated": "2026-07-13T06:01:37.030+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -807,7 +807,7 @@
       "startDate": "2026-07-06",
       "dueDate": "2026-07-31",
       "created": "2026-06-17T01:02:00.683+0900",
-      "updated": "2026-07-12T06:01:20.533+0900",
+      "updated": "2026-07-13T06:01:37.887+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -980,7 +980,7 @@
       "startDate": "2026-07-06",
       "dueDate": "2026-07-10",
       "created": "2026-06-16T17:29:18.759+0900",
-      "updated": "2026-07-12T06:01:22.659+0900",
+      "updated": "2026-07-13T06:01:41.046+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -1417,7 +1417,7 @@
       "startDate": "2026-07-01",
       "dueDate": "2026-09-23",
       "created": "2026-06-14T23:19:15.147+0900",
-      "updated": "2026-07-12T06:01:28.722+0900",
+      "updated": "2026-07-13T06:01:47.656+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -2059,7 +2059,7 @@
       "startDate": "2026-07-01",
       "dueDate": "2026-09-30",
       "created": "2026-06-05T14:56:22.424+0900",
-      "updated": "2026-07-12T06:01:37.987+0900",
+      "updated": "2026-07-13T06:01:53.254+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -2669,7 +2669,7 @@
       "startDate": "2026-06-17",
       "dueDate": "2026-09-30",
       "created": "2026-06-04T23:56:01.978+0900",
-      "updated": "2026-07-12T06:01:35.539+0900",
+      "updated": "2026-07-13T06:01:53.706+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -3883,7 +3883,7 @@
       "startDate": "2026-05-28",
       "dueDate": "2026-07-31",
       "created": "2026-05-28T13:02:35.389+0900",
-      "updated": "2026-07-12T06:01:39.394+0900",
+      "updated": "2026-07-13T06:01:55.809+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -4008,7 +4008,7 @@
       "startDate": "2026-06-12",
       "dueDate": "2026-06-25",
       "created": "2026-05-28T10:10:43.520+0900",
-      "updated": "2026-07-11T18:02:26.563+0900",
+      "updated": "2026-07-12T19:01:51.923+0900",
       "resolutionDate": "2026-06-26T13:23:16.656+0900",
       "lastStatusChangedAt": null
     },
@@ -4050,7 +4050,7 @@
       "startDate": "2026-06-01",
       "dueDate": "2026-09-30",
       "created": "2026-05-27T17:31:30.911+0900",
-      "updated": "2026-07-12T06:01:37.023+0900",
+      "updated": "2026-07-13T06:01:55.847+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -4399,7 +4399,7 @@
       "startDate": "2026-05-28",
       "dueDate": "2026-07-29",
       "created": "2026-05-20T18:54:31.520+0900",
-      "updated": "2026-07-12T06:01:38.847+0900",
+      "updated": "2026-07-13T06:01:56.039+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -4477,7 +4477,7 @@
       "startDate": "2026-06-15",
       "dueDate": "2026-10-30",
       "created": "2026-05-20T14:30:04.546+0900",
-      "updated": "2026-07-12T06:01:38.198+0900",
+      "updated": "2026-07-13T06:01:55.970+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -5032,7 +5032,7 @@
     {
       "key": "TM-3046",
       "url": "https://jira.team.musinsa.com/browse/TM-3046",
-      "summary": "[캠페인 관리] 브랜드 모듈 - 브랜드 탭 정렬 개인화",
+      "summary": "[캠페인] 브랜드 모듈 - 브랜드 탭 정렬 개인화",
       "issueType": "Initiative",
       "project": "TM",
       "status": "SUGGESTED",
@@ -5066,7 +5066,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-14T20:10:08.697+0900",
-      "updated": "2026-07-07T13:29:08.087+0900",
+      "updated": "2026-07-12T19:44:59.200+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -5628,7 +5628,7 @@
       "startDate": "2026-05-12",
       "dueDate": "2026-09-30",
       "created": "2026-05-13T15:30:08.835+0900",
-      "updated": "2026-07-12T06:01:40.790+0900",
+      "updated": "2026-07-13T06:01:58.163+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -5674,7 +5674,7 @@
       "startDate": "2026-06-16",
       "dueDate": "2026-07-31",
       "created": "2026-05-12T17:28:48.942+0900",
-      "updated": "2026-07-12T06:01:38.846+0900",
+      "updated": "2026-07-13T06:01:58.828+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -5846,7 +5846,7 @@
       "startDate": "2026-04-30",
       "dueDate": "2026-07-20",
       "created": "2026-04-30T18:48:36.306+0900",
-      "updated": "2026-07-12T06:01:41.774+0900",
+      "updated": "2026-07-13T06:01:58.790+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -5890,7 +5890,7 @@
       "startDate": "2026-04-28",
       "dueDate": "2026-07-02",
       "created": "2026-04-30T11:08:09.186+0900",
-      "updated": "2026-07-12T06:01:40.385+0900",
+      "updated": "2026-07-13T06:01:58.975+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -6019,7 +6019,7 @@
       "startDate": "2026-05-04",
       "dueDate": "2026-07-31",
       "created": "2026-04-27T15:20:16.401+0900",
-      "updated": "2026-07-12T06:01:40.251+0900",
+      "updated": "2026-07-13T06:01:59.694+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -7227,7 +7227,7 @@
       "startDate": "2026-04-21",
       "dueDate": "2026-05-15",
       "created": "2026-04-21T11:53:14.039+0900",
-      "updated": "2026-07-12T06:01:40.266+0900",
+      "updated": "2026-07-13T06:01:59.177+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -7396,7 +7396,7 @@
       "startDate": null,
       "dueDate": "2026-06-30",
       "created": "2026-04-20T14:02:57.268+0900",
-      "updated": "2026-07-12T06:01:42.844+0900",
+      "updated": "2026-07-13T06:01:59.929+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -7551,6 +7551,7 @@
         "accountId": null
       },
       "labels": [
+        "AI-ASSISTED",
         "DUE_OVERDUE_BOT",
         "Y26Q2",
         "무탠다드_AI",
@@ -7570,7 +7571,7 @@
       "startDate": "2026-04-10",
       "dueDate": "2026-07-01",
       "created": "2026-04-13T16:34:16.723+0900",
-      "updated": "2026-06-30T17:33:43.987+0900",
+      "updated": "2026-07-13T00:34:41.530+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -7616,7 +7617,7 @@
       "startDate": "2026-03-30",
       "dueDate": "2026-08-11",
       "created": "2026-04-10T11:55:12.881+0900",
-      "updated": "2026-07-12T06:01:44.553+0900",
+      "updated": "2026-07-13T06:01:59.493+0900",
       "resolutionDate": "2026-04-13T10:58:08.571+0900",
       "lastStatusChangedAt": null
     },
@@ -7707,7 +7708,7 @@
       "startDate": "2026-03-27",
       "dueDate": "2026-09-30",
       "created": "2026-03-27T12:57:09.337+0900",
-      "updated": "2026-07-12T06:01:42.170+0900",
+      "updated": "2026-07-13T06:02:00.104+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -7759,7 +7760,7 @@
       "startDate": "2026-05-28",
       "dueDate": "2026-10-21",
       "created": "2026-04-06T13:17:01.251+0900",
-      "updated": "2026-07-12T06:01:43.157+0900",
+      "updated": "2026-07-13T06:02:04.014+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -8022,7 +8023,7 @@
       "startDate": "2026-04-01",
       "dueDate": "2026-12-31",
       "created": "2026-03-31T18:32:33.336+0900",
-      "updated": "2026-07-12T06:01:43.403+0900",
+      "updated": "2026-07-13T06:02:01.504+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -8388,7 +8389,7 @@
       "startDate": "2026-04-10",
       "dueDate": "2026-11-06",
       "created": "2026-03-30T14:46:46.055+0900",
-      "updated": "2026-07-12T06:01:44.260+0900",
+      "updated": "2026-07-13T06:02:03.647+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -8788,7 +8789,7 @@
       "startDate": "2026-04-13",
       "dueDate": "2026-09-30",
       "created": "2026-03-25T22:54:28.219+0900",
-      "updated": "2026-07-12T06:01:46.951+0900",
+      "updated": "2026-07-13T06:02:06.013+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -8998,7 +8999,7 @@
       "startDate": "2026-04-01",
       "dueDate": "2026-07-29",
       "created": "2026-03-25T22:02:20.712+0900",
-      "updated": "2026-07-12T06:01:49.327+0900",
+      "updated": "2026-07-13T06:02:06.791+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -9350,7 +9351,7 @@
       "startDate": "2026-07-20",
       "dueDate": "2026-09-30",
       "created": "2026-03-20T14:19:14.516+0900",
-      "updated": "2026-07-12T06:01:52.196+0900",
+      "updated": "2026-07-13T06:02:09.646+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -9438,7 +9439,7 @@
       "startDate": "2026-06-23",
       "dueDate": "2026-09-30",
       "created": "2026-03-20T17:15:35.446+0900",
-      "updated": "2026-07-12T06:01:50.623+0900",
+      "updated": "2026-07-13T06:02:09.865+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -9493,7 +9494,7 @@
       "startDate": "2026-04-01",
       "dueDate": "2026-06-30",
       "created": "2026-03-19T18:45:04.303+0900",
-      "updated": "2026-07-12T06:01:54.346+0900",
+      "updated": "2026-07-13T06:02:10.387+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -9831,7 +9832,7 @@
       "startDate": "2026-05-06",
       "dueDate": "2026-07-14",
       "created": "2026-03-18T13:29:52.854+0900",
-      "updated": "2026-07-12T06:01:52.237+0900",
+      "updated": "2026-07-13T06:02:12.195+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -10120,7 +10121,7 @@
       "startDate": "2026-07-01",
       "dueDate": "2026-08-17",
       "created": "2026-03-17T11:38:02.159+0900",
-      "updated": "2026-07-12T06:01:54.275+0900",
+      "updated": "2026-07-13T06:02:12.568+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -10943,7 +10944,7 @@
       "startDate": "2026-04-06",
       "dueDate": "2026-09-30",
       "created": "2026-03-13T10:45:58.632+0900",
-      "updated": "2026-07-12T06:01:54.861+0900",
+      "updated": "2026-07-13T06:02:12.731+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -12188,7 +12189,7 @@
       "startDate": "2026-04-06",
       "dueDate": "2026-07-21",
       "created": "2026-02-27T16:50:57.625+0900",
-      "updated": "2026-07-12T06:01:55.033+0900",
+      "updated": "2026-07-13T06:02:13.855+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -12315,7 +12316,7 @@
       "startDate": "2026-05-28",
       "dueDate": "2026-08-19",
       "created": "2026-02-24T15:02:24.375+0900",
-      "updated": "2026-07-12T06:01:54.132+0900",
+      "updated": "2026-07-13T06:02:13.381+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -12410,7 +12411,7 @@
       "startDate": "2026-07-27",
       "dueDate": "2026-09-30",
       "created": "2026-02-23T20:41:50.733+0900",
-      "updated": "2026-07-12T06:01:54.378+0900",
+      "updated": "2026-07-13T06:02:13.812+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -12453,7 +12454,7 @@
       "startDate": "2026-02-24",
       "dueDate": "2026-03-31",
       "created": "2026-02-23T15:32:37.134+0900",
-      "updated": "2026-07-12T06:01:55.066+0900",
+      "updated": "2026-07-13T06:02:12.290+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -12766,7 +12767,7 @@
       "startDate": "2026-04-30",
       "dueDate": "2026-09-30",
       "created": "2026-02-13T17:00:25.059+0900",
-      "updated": "2026-07-12T06:01:56.623+0900",
+      "updated": "2026-07-13T06:02:14.879+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -12809,7 +12810,7 @@
       "startDate": "2026-07-06",
       "dueDate": "2026-07-31",
       "created": "2026-02-13T13:21:16.908+0900",
-      "updated": "2026-07-12T06:01:56.653+0900",
+      "updated": "2026-07-13T06:02:14.243+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -12946,7 +12947,7 @@
       "startDate": "2026-07-27",
       "dueDate": "2026-09-30",
       "created": "2026-02-12T16:22:26.124+0900",
-      "updated": "2026-07-12T06:01:54.703+0900",
+      "updated": "2026-07-13T06:02:13.428+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -13473,7 +13474,7 @@
       "startDate": "2026-06-05",
       "dueDate": "2026-09-30",
       "created": "2026-02-05T17:45:08.024+0900",
-      "updated": "2026-07-12T06:01:56.100+0900",
+      "updated": "2026-07-13T06:02:14.981+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -14138,7 +14139,7 @@
       "startDate": "2026-01-01",
       "dueDate": "2026-10-22",
       "created": "2025-12-11T13:35:13.147+0900",
-      "updated": "2026-07-12T06:02:02.261+0900",
+      "updated": "2026-07-13T06:02:20.563+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -14239,7 +14240,7 @@
       "startDate": null,
       "dueDate": "2026-10-22",
       "created": "2025-12-11T09:54:43.093+0900",
-      "updated": "2026-07-12T06:02:02.085+0900",
+      "updated": "2026-07-13T06:02:19.118+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -14280,7 +14281,7 @@
       "startDate": "2025-12-01",
       "dueDate": "2026-10-20",
       "created": "2025-12-11T09:54:27.024+0900",
-      "updated": "2026-07-12T06:02:00.803+0900",
+      "updated": "2026-07-13T06:02:21.321+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -14374,7 +14375,7 @@
       "startDate": "2026-01-05",
       "dueDate": "2026-08-11",
       "created": "2025-12-11T09:53:21.984+0900",
-      "updated": "2026-07-12T06:02:01.926+0900",
+      "updated": "2026-07-13T06:02:19.510+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -14421,7 +14422,7 @@
       "startDate": "2026-01-05",
       "dueDate": "2026-08-11",
       "created": "2025-12-11T09:51:43.349+0900",
-      "updated": "2026-07-12T06:02:01.902+0900",
+      "updated": "2026-07-13T06:02:21.358+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -14466,7 +14467,7 @@
       "startDate": "2025-12-01",
       "dueDate": "2026-10-20",
       "created": "2025-12-11T09:50:56.997+0900",
-      "updated": "2026-07-12T06:02:01.202+0900",
+      "updated": "2026-07-13T06:02:19.445+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -14605,7 +14606,7 @@
       "startDate": "2026-06-22",
       "dueDate": "2026-10-22",
       "created": "2025-12-10T18:16:13.320+0900",
-      "updated": "2026-07-12T06:02:01.530+0900",
+      "updated": "2026-07-13T06:02:19.637+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -14655,7 +14656,7 @@
       "startDate": null,
       "dueDate": "2026-08-11",
       "created": "2025-12-10T18:11:47.110+0900",
-      "updated": "2026-07-12T06:02:01.890+0900",
+      "updated": "2026-07-13T06:02:22.239+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -14701,7 +14702,7 @@
       "startDate": "2026-01-01",
       "dueDate": "2026-10-22",
       "created": "2025-12-10T18:08:59.858+0900",
-      "updated": "2026-07-12T06:02:01.340+0900",
+      "updated": "2026-07-13T06:02:21.775+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -14750,7 +14751,7 @@
       "startDate": "2026-01-12",
       "dueDate": "2026-08-11",
       "created": "2025-12-10T17:24:20.490+0900",
-      "updated": "2026-07-12T06:02:01.621+0900",
+      "updated": "2026-07-13T06:02:22.516+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -14803,7 +14804,7 @@
       "startDate": "2026-01-05",
       "dueDate": "2026-10-20",
       "created": "2025-12-10T17:23:11.260+0900",
-      "updated": "2026-07-12T06:02:02.005+0900",
+      "updated": "2026-07-13T06:02:20.003+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -14853,7 +14854,7 @@
       "startDate": null,
       "dueDate": "2026-10-22",
       "created": "2025-12-10T17:04:30.731+0900",
-      "updated": "2026-07-12T06:02:01.754+0900",
+      "updated": "2026-07-13T06:02:22.246+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -14945,7 +14946,7 @@
       "startDate": "2026-07-15",
       "dueDate": "2026-09-11",
       "created": "2025-12-09T10:16:44.249+0900",
-      "updated": "2026-07-12T06:02:02.089+0900",
+      "updated": "2026-07-13T06:02:22.169+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -16044,7 +16045,7 @@
       "startDate": "2026-06-15",
       "dueDate": "2026-07-29",
       "created": "2025-11-19T21:25:41.154+0900",
-      "updated": "2026-07-12T06:02:03.310+0900",
+      "updated": "2026-07-13T06:02:22.501+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -16542,7 +16543,7 @@
       "startDate": "2025-11-26",
       "dueDate": "2026-07-20",
       "created": "2025-09-25T14:42:00.619+0900",
-      "updated": "2026-07-12T06:02:05.060+0900",
+      "updated": "2026-07-13T06:02:24.084+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -17239,7 +17240,7 @@
       "startDate": "2025-10-22",
       "dueDate": "2026-08-12",
       "created": "2025-09-09T17:32:56.181+0900",
-      "updated": "2026-07-12T06:02:07.720+0900",
+      "updated": "2026-07-13T06:02:25.150+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -17750,7 +17751,7 @@
       "startDate": "2026-07-06",
       "dueDate": "2026-09-30",
       "created": "2025-09-03T10:55:20.359+0900",
-      "updated": "2026-07-12T06:02:08.727+0900",
+      "updated": "2026-07-13T06:02:27.151+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
