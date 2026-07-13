@@ -1,7 +1,210 @@
 {
-  "lastSync": "2026-07-13T06:42:21+09:00",
-  "count": 278,
+  "lastSync": "2026-07-14T06:49:36+09:00",
+  "count": 283,
   "items": [
+    {
+      "key": "ETR-5607",
+      "url": "https://jira.team.musinsa.com/browse/ETR-5607",
+      "summary": "BNC 세일 배너 하단 세일 상세 정보(유형·품목·할인율) 텍스트 추가",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-미진행",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "이승연",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": "2026-07-27",
+      "created": "2026-07-13T18:47:10.946+0900",
+      "updated": "2026-07-13T18:55:55.872+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-07-13T18:55:27.295+0900",
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-5576",
+      "url": "https://jira.team.musinsa.com/browse/ETR-5576",
+      "summary": "[공통] 성별 필터 적용 시 다른 성별 상품 존재 안내 툴팁 추가",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "매니저 승인 대기",
+      "statusCategory": "indeterminate",
+      "priority": "P0",
+      "assignee": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-07-13T09:15:52.055+0900",
+      "updated": "2026-07-13T09:16:06.629+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-07-13T09:15:55.846+0900",
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-5575",
+      "url": "https://jira.team.musinsa.com/browse/ETR-5575",
+      "summary": "[무신사] 카드 목록 UX 개선 — 추가/수정/삭제 버튼 접근성 향상",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-우선착수",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "이승연",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-07-13T09:15:34.840+0900",
+      "updated": "2026-07-13T14:48:29.435+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-07-13T13:34:44.884+0900",
+      "linkedTickets": [
+        {
+          "key": "FT-339",
+          "summary": "[무신사] 카드 목록 UX 개선 — 추가/수정/삭제 버튼 접근성 향상",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor",
+            "conveyor-bot",
+            "fast-track-away",
+            "one"
+          ]
+        },
+        {
+          "key": "PD-8766",
+          "summary": "[CD][주문서] 무신사페이 카드 목록 페이지 연결 UX 변경",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward",
+          "labels": [
+            "CD",
+            "FT",
+            "Y26Q3"
+          ]
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 2
+      }
+    },
+    {
+      "key": "ETR-5574",
+      "url": "https://jira.team.musinsa.com/browse/ETR-5574",
+      "summary": "[앱] 알람 영역 로딩 성능 개선",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "매니저 승인 대기",
+      "statusCategory": "indeterminate",
+      "priority": "P0",
+      "assignee": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-07-13T09:15:06.419+0900",
+      "updated": "2026-07-13T09:15:21.813+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-07-13T09:15:09.645+0900",
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
     {
       "key": "ETR-5566",
       "url": "https://jira.team.musinsa.com/browse/ETR-5566",
@@ -54,12 +257,13 @@
         {
           "key": "FT-338",
           "summary": "[랭킹판] 오프라인 랭킹에서 단일 브랜드 매장 제외",
-          "status": "개발중",
+          "status": "Waiting For Review",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "auto-etr-triaged",
             "conveyor",
             "conveyor-bot",
@@ -120,6 +324,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "fasttrack",
             "one",
             "ux-ft"
@@ -165,7 +370,7 @@
       "startDate": null,
       "dueDate": "2026-07-23",
       "created": "2026-07-09T16:49:13.558+0900",
-      "updated": "2026-07-09T17:11:52.313+0900",
+      "updated": "2026-07-13T09:14:25.121+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-09T17:11:12.902+0900",
       "linkedTickets": [
@@ -197,8 +402,8 @@
       "summary": "쿠폰라벨 미노출 대상 적용",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "Tech 검토 중",
-      "statusCategory": "indeterminate",
+      "status": "검토완료-우선착수",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
         "name": "이승연",
@@ -222,15 +427,31 @@
       "yearQuarters": [],
       "subGroup": null,
       "startDate": "2026-07-10",
-      "dueDate": "2026-07-23",
+      "dueDate": null,
       "created": "2026-07-09T16:21:42.686+0900",
-      "updated": "2026-07-10T13:19:46.008+0900",
+      "updated": "2026-07-13T16:03:42.478+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-09T16:21:50.693+0900",
-      "linkedTickets": [],
+      "lastStatusChangedAt": "2026-07-13T15:09:08.952+0900",
+      "linkedTickets": [
+        {
+          "key": "FT-341",
+          "summary": "쿠폰라벨 미노출 대상 적용",
+          "status": "개발중",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward",
+          "labels": [
+            "conveyor",
+            "conveyor-bot",
+            "fast-track-away",
+            "one"
+          ]
+        }
+      ],
       "progress": {
         "done": 0,
-        "total": 0
+        "total": 1
       }
     },
     {
@@ -267,19 +488,20 @@
       "startDate": null,
       "dueDate": "2026-07-23",
       "created": "2026-07-08T18:12:04.302+0900",
-      "updated": "2026-07-09T15:39:21.264+0900",
+      "updated": "2026-07-13T13:40:56.655+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-09T09:53:04.813+0900",
       "linkedTickets": [
         {
           "key": "FT-333",
           "summary": "[랭킹판] 모자 카테고리 1-depth로 변경",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "개발중",
+          "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "auto-etr-triaged",
             "conveyor",
             "conveyor-bot",
@@ -339,10 +561,13 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "conveyor",
             "conveyor-bot",
             "fast-track-away",
-            "one"
+            "one",
+            "추천판",
+            "홈앤디"
           ]
         }
       ],
@@ -357,7 +582,7 @@
       "summary": "[카테고리메뉴] 서비스탭_ 전문관 파비콘추가",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-우선착수",
+      "status": "검토완료-미진행",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -383,11 +608,11 @@
       "yearQuarters": [],
       "subGroup": null,
       "startDate": "2026-07-10",
-      "dueDate": "2026-07-23",
+      "dueDate": null,
       "created": "2026-07-08T15:14:10.244+0900",
-      "updated": "2026-07-10T16:36:43.714+0900",
+      "updated": "2026-07-13T22:03:57.513+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-09T18:25:36.427+0900",
+      "lastStatusChangedAt": "2026-07-13T22:03:51.496+0900",
       "linkedTickets": [
         {
           "key": "FT-328",
@@ -399,14 +624,15 @@
           "direction": "inward",
           "labels": [
             "fasttrack",
-            "one"
+            "one",
+            "standby"
           ]
         },
         {
           "key": "FT-337",
           "summary": "[카테고리메뉴] 서비스탭_ 전문관 파비콘추가",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "철회/반려/취소",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -420,7 +646,7 @@
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 2
       }
     },
@@ -458,7 +684,7 @@
       "startDate": null,
       "dueDate": "2026-07-23",
       "created": "2026-07-08T15:08:35.423+0900",
-      "updated": "2026-07-09T15:18:38.002+0900",
+      "updated": "2026-07-13T20:00:05.144+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-09T15:17:56.277+0900",
       "linkedTickets": [
@@ -650,11 +876,11 @@
       "summary": "[랭킹판] 브랜드 랭킹 — 상단 칩 아래 영역에 쿠폰/단독 필터 추가",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "매니저 승인 대기",
-      "statusCategory": "indeterminate",
+      "status": "검토완료-우선착수",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
-        "name": "촤비스",
+        "name": "이승연",
         "email": null,
         "accountId": null
       },
@@ -676,11 +902,11 @@
       "yearQuarters": [],
       "subGroup": null,
       "startDate": null,
-      "dueDate": null,
+      "dueDate": "2026-07-27",
       "created": "2026-07-08T09:22:21.618+0900",
-      "updated": "2026-07-10T14:39:40.670+0900",
+      "updated": "2026-07-13T15:34:19.563+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-08T09:22:25.602+0900",
+      "lastStatusChangedAt": "2026-07-13T15:33:41.818+0900",
       "linkedTickets": [
         {
           "key": "SNDPRD-4302",
@@ -691,11 +917,27 @@
           "linkType": "Blocks",
           "direction": "inward",
           "labels": []
+        },
+        {
+          "key": "FT-342",
+          "summary": "[랭킹판] 브랜드 랭킹 — 상단 칩 아래 영역에 쿠폰/단독 필터 추가",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor",
+            "conveyor-bot",
+            "fast-track-away",
+            "one"
+          ]
         }
       ],
       "progress": {
         "done": 0,
-        "total": 1
+        "total": 2
       }
     },
     {
@@ -1575,7 +1817,9 @@
             "conveyor",
             "conveyor-bot",
             "fast-track-away",
-            "one"
+            "one",
+            "추천판",
+            "홈앤디"
           ]
         }
       ],
@@ -1691,6 +1935,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "auto-etr-triaged",
             "conveyor",
             "conveyor-bot",
@@ -1906,7 +2151,7 @@
       "summary": "바텀시트 공통 디자인",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-우선착수",
+      "status": "검토완료-미진행",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -1933,9 +2178,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-07-03T17:31:33.385+0900",
-      "updated": "2026-07-06T17:42:46.885+0900",
+      "updated": "2026-07-13T14:34:37.391+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-06T17:41:40.288+0900",
+      "lastStatusChangedAt": "2026-07-13T14:34:31.752+0900",
       "linkedTickets": [
         {
           "key": "FT-209",
@@ -1947,6 +2192,7 @@
           "direction": "inward",
           "labels": [
             "conveyor",
+            "fasttrack",
             "one",
             "standby",
             "ux-ft"
@@ -1955,12 +2201,13 @@
         {
           "key": "FT-317",
           "summary": "바텀시트 공통 디자인",
-          "status": "디자인완료",
-          "statusCategory": "indeterminate",
+          "status": "철회/반려/취소",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "conveyor",
             "conveyor-bot",
             "fast-track-away",
@@ -1969,7 +2216,7 @@
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 2
       }
     },
@@ -2018,7 +2265,9 @@
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
-          "labels": [],
+          "labels": [
+            "7월퀵윈"
+          ],
           "resolutionDate": "2026-07-03T16:20:31.429+0900"
         }
       ],
@@ -2194,6 +2443,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "auto-etr-triaged",
             "conveyor",
             "conveyor-bot",
@@ -2652,7 +2902,9 @@
           "linkType": "Relates",
           "direction": "outward",
           "labels": [
+            "7월퀵윈",
             "fasttrack",
+            "handover",
             "one"
           ]
         }
@@ -2956,12 +3208,13 @@
         {
           "key": "FT-167",
           "summary": "[design-driven][필터] 탑필터 안내 문구 표기",
-          "status": "디자인완료",
+          "status": "개발중",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
           "direction": "outward",
           "labels": [
+            "7월퀵윈",
             "conveyor",
             "fasttrack",
             "one",
@@ -3086,12 +3339,13 @@
         {
           "key": "FT-100",
           "summary": "[design-driven][공통] 카드형 UI 사이 간격 개선",
-          "status": "디자인중",
+          "status": "디자인완료",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
           "direction": "outward",
           "labels": [
+            "7월퀵윈",
             "conveyor",
             "fasttrack",
             "one"
@@ -3281,6 +3535,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "conveyor",
             "fasttrack",
             "one"
@@ -3298,7 +3553,7 @@
       "summary": "[랭킹] 브랜드 랭킹 상단 배너 디자인 수정",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-우선착수",
+      "status": "완료",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -3325,26 +3580,28 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-30T11:22:45.029+0900",
-      "updated": "2026-07-10T16:37:48.646+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-30T11:24:37.124+0900",
+      "updated": "2026-07-13T14:05:25.151+0900",
+      "resolutionDate": "2026-07-13T14:05:24.229+0900",
+      "lastStatusChangedAt": "2026-07-13T14:05:24.299+0900",
       "linkedTickets": [
         {
           "key": "FT-262",
           "summary": "[랭킹] 브랜드 랭킹 상단 배너 디자인 수정",
-          "status": "배포완료",
-          "statusCategory": "indeterminate",
+          "status": "론치완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
             "26'3Q",
+            "7월퀵윈",
             "OneDesignSync",
             "one",
             "ux-ft",
             "랭킹",
             "홈앤디"
-          ]
+          ],
+          "resolutionDate": "2026-07-13T14:01:09.187+0900"
         },
         {
           "key": "APPDEV-26768",
@@ -3386,12 +3643,13 @@
             "AI-ASSISTED",
             "discovery-frontend-pel",
             "emd_by_bize_ai_v1",
+            "snorlax-mirror",
             "sp_by_bize_ai_v1"
           ]
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 4
       }
     },
@@ -3441,6 +3699,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "DUE_OVERDUE_BOT",
             "conveyor",
             "conveyor-bot",
@@ -3462,6 +3721,7 @@
             "conveyor",
             "discovery-frontend-pel",
             "one",
+            "snorlax-mirror",
             "sp_by_bize_ai_v1"
           ],
           "resolutionDate": "2026-07-03T10:00:31.492+0900"
@@ -3681,6 +3941,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "DUE_OVERDUE_BOT",
             "auto-etr-triaged",
             "conveyor",
@@ -4099,6 +4360,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "conveyor",
             "conveyor-bot",
             "fast-track-away",
@@ -4159,6 +4421,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "fasttrack",
             "one",
             "홈앤디"
@@ -4234,6 +4497,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "AI-ASSISTED",
             "conveyor",
             "fasttrack",
@@ -4309,6 +4573,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "Away착수",
             "auto-triaged",
             "difficulty-S",
@@ -4327,6 +4592,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "auto-retrofit",
             "conveyor",
             "conveyor-bot",
@@ -4388,6 +4654,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "auto-triaged",
             "difficulty-M",
             "fasttrack",
@@ -4543,6 +4810,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "CMS26",
             "Home필수",
             "auto-triaged",
@@ -4564,6 +4832,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "auto-retrofit",
             "conveyor",
             "conveyor-bot",
@@ -4625,6 +4894,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "DUE_OVERDUE_BOT",
             "conveyor",
             "fasttrack",
@@ -4699,6 +4969,7 @@
           "direction": "inward",
           "labels": [
             "26'1Q",
+            "7월퀵윈",
             "conveyor",
             "fasttrack",
             "one",
@@ -5016,6 +5287,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "F1",
             "conveyor",
             "fasttrack",
@@ -5050,6 +5322,7 @@
           "linkType": "Relates",
           "direction": "outward",
           "labels": [
+            "7월퀵윈",
             "F1",
             "conveyor",
             "fasttrack",
@@ -5183,6 +5456,93 @@
       "progress": {
         "done": 0,
         "total": 1
+      }
+    },
+    {
+      "key": "ETR-5238",
+      "url": "https://jira.team.musinsa.com/browse/ETR-5238",
+      "summary": "주문서 내 유즈드백 상세페이지 변경 요청건",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "완료",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "박승현",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "최종훈",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "conveyor",
+        "one",
+        "유즈드"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": "MSS-P Commerce Core",
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-06-22T11:57:07.192+0900",
+      "updated": "2026-07-13T20:06:06.210+0900",
+      "resolutionDate": "2026-07-13T20:06:05.336+0900",
+      "lastStatusChangedAt": "2026-07-13T20:06:05.377+0900",
+      "linkedTickets": [
+        {
+          "key": "FT-316",
+          "summary": "주문서 내 유즈드백 상세페이지 변경 요청건",
+          "status": "론치완료",
+          "statusCategory": "done",
+          "assignee": null,
+          "linkType": "Clones",
+          "direction": "inward",
+          "labels": [
+            "one",
+            "standby",
+            "유즈드"
+          ],
+          "resolutionDate": "2026-07-13T14:53:50.569+0900"
+        },
+        {
+          "key": "COMCO-3509",
+          "summary": "주문서 내 유즈드백 상세페이지 변경 요청건",
+          "status": "완료",
+          "statusCategory": "done",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward",
+          "labels": [
+            "유즈드"
+          ],
+          "resolutionDate": "2026-07-13T16:29:18.749+0900"
+        },
+        {
+          "key": "FT-316",
+          "summary": "주문서 내 유즈드백 상세페이지 변경 요청건",
+          "status": "론치완료",
+          "statusCategory": "done",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward",
+          "labels": [
+            "one",
+            "standby",
+            "유즈드"
+          ],
+          "resolutionDate": "2026-07-13T14:53:50.569+0900"
+        }
+      ],
+      "progress": {
+        "done": 3,
+        "total": 3
       }
     },
     {
@@ -5413,6 +5773,7 @@
           "direction": "inward",
           "labels": [
             "26후기",
+            "7월퀵윈",
             "auto-etr-triaged",
             "conveyor",
             "conveyor-bot",
@@ -6344,6 +6705,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "auto-etr-triaged",
             "conveyor",
             "conveyor-bot",
@@ -6523,6 +6885,7 @@
           "direction": "inward",
           "labels": [
             "26'3Q",
+            "7월퀵윈",
             "AI-ASSISTED",
             "conveyer",
             "fasttrack",
@@ -6677,6 +7040,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "auto-etr-triaged",
             "conveyor",
             "conveyor-bot",
@@ -7088,6 +7452,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "conveyor",
             "conveyor-bot",
             "fast-track-away",
@@ -7174,6 +7539,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "AI-ASSISTED",
             "auto-etr-triaged",
             "conveyor",
@@ -7247,9 +7613,9 @@
         },
         {
           "key": "AP-59",
-          "summary": "시간단위 회차제 미션형 앱테크 프로그램 개발 ",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "summary": "[앱테크] 미션 어드민 개발 ",
+          "status": "준비중",
+          "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Blocks",
           "direction": "inward",
@@ -7487,6 +7853,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "conveyor",
             "conveyor-bot",
             "fast-track-away",
@@ -8007,6 +8374,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "auto-etr-triaged",
             "conveyor",
             "conveyor-bot",
@@ -8374,12 +8742,13 @@
         {
           "key": "FT-47",
           "summary": "[desivn-driven][공통] 이미지 태깅 추가 개선",
-          "status": "개발완료",
+          "status": "배포완료",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "conveyor",
             "one",
             "ux-ft"
@@ -8482,7 +8851,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-04T13:20:45.964+0900",
-      "updated": "2026-07-10T11:48:10.353+0900",
+      "updated": "2026-07-13T16:14:53.086+0900",
       "resolutionDate": "2026-07-10T11:48:10.302+0900",
       "lastStatusChangedAt": "2026-07-10T11:48:10.353+0900",
       "linkedTickets": [
@@ -8516,11 +8885,22 @@
             "emd_by_bize_ai_v1",
             "sp_by_bize_ai_v1"
           ]
+        },
+        {
+          "key": "TL-136",
+          "summary": "[유즈드] 정산 완료 알림 및 앱 내 정산 내역 상세 표기 강화",
+          "status": "완료",
+          "statusCategory": "done",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "outward",
+          "labels": [],
+          "resolutionDate": "2026-07-14T00:12:08.442+0900"
         }
       ],
       "progress": {
-        "done": 0,
-        "total": 2
+        "done": 1,
+        "total": 3
       }
     },
     {
@@ -8618,13 +8998,26 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-04T13:08:54.674+0900",
-      "updated": "2026-06-08T15:47:40.272+0900",
+      "updated": "2026-07-13T17:15:21.369+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-08T15:47:12.102+0900",
-      "linkedTickets": [],
+      "linkedTickets": [
+        {
+          "key": "FT-348",
+          "summary": "[무신사 퀵픽스] 브랜드 탭에 부티크 탭 추가 (유즈드와 함께 파비콘 포함)",
+          "status": "철회/반려/취소",
+          "statusCategory": "done",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward",
+          "labels": [
+            "quickwin-backfill"
+          ]
+        }
+      ],
       "progress": {
-        "done": 0,
-        "total": 0
+        "done": 1,
+        "total": 1
       }
     },
     {
@@ -8821,6 +9214,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "conveyor",
             "fasttrack",
             "one",
@@ -8924,6 +9318,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "conveyor",
             "fasttrack",
             "one",
@@ -8983,6 +9378,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "conveyor",
             "conveyor-bot",
             "fast-track-home",
@@ -9119,6 +9515,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "auto-etr-triaged",
             "conveyor",
             "conveyor-bot",
@@ -9265,6 +9662,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "conveyor",
             "conveyor-bot",
             "fast-track-away",
@@ -9781,6 +10179,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "DUE_OVERDUE_BOT",
             "auto-etr-triaged",
             "conveyor",
@@ -9875,6 +10274,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "auto-etr-triaged",
             "conveyor",
             "conveyor-bot",
@@ -9925,13 +10325,26 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-29T20:44:25.625+0900",
-      "updated": "2026-06-02T10:34:34.727+0900",
+      "updated": "2026-07-13T17:15:25.165+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-06-01T19:17:56.087+0900",
-      "linkedTickets": [],
+      "linkedTickets": [
+        {
+          "key": "FT-349",
+          "summary": "[무신사 퀵픽스] 전문관 아이콘 노출 디자인 통일성 개선",
+          "status": "철회/반려/취소",
+          "statusCategory": "done",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward",
+          "labels": [
+            "quickwin-backfill"
+          ]
+        }
+      ],
       "progress": {
-        "done": 0,
-        "total": 0
+        "done": 1,
+        "total": 1
       }
     },
     {
@@ -10040,6 +10453,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "DUE_OVERDUE_BOT",
             "auto-etr-triaged",
             "conveyor",
@@ -10865,6 +11279,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "DUE_OVERDUE_BOT",
             "auto-etr-triaged",
             "conveyor",
@@ -11141,6 +11556,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "DUE_OVERDUE_BOT",
             "auto-etr-triaged",
             "conveyor",
@@ -11221,6 +11637,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "DUE_OVERDUE_BOT",
             "conveyor",
             "conveyor-bot",
@@ -11311,6 +11728,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "fasttrack",
             "one",
             "홈앤디"
@@ -11452,6 +11870,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "DUE_OVERDUE_BOT",
             "conveyor",
             "conveyor-bot",
@@ -11541,6 +11960,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "conveyor",
             "fasttrack",
             "one",
@@ -11647,8 +12067,8 @@
         {
           "key": "PD-8258",
           "summary": "[PD] 브랜드숍 - 브랜드 정보 노출 강화",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "In Progress",
+          "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Blocks",
           "direction": "inward",
@@ -11996,6 +12416,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "DUE_OVERDUE_BOT",
             "auto-etr-triaged",
             "conveyor-bot",
@@ -12061,6 +12482,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "DUE_OVERDUE_BOT",
             "conveyor",
             "conveyor-bot",
@@ -12168,6 +12590,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "DUE_OVERDUE_BOT",
             "auto-etr-triaged",
             "conveyor-bot",
@@ -12363,6 +12786,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "DUE_OVERDUE_BOT",
             "auto-etr-triaged",
             "conveyor-bot",
@@ -12438,6 +12862,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "auto-etr-triaged",
             "conveyor-bot",
             "fast-track-away",
@@ -12498,6 +12923,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "auto-etr-triaged",
             "conveyor-bot",
             "fast-track-home"
@@ -12741,6 +13167,7 @@
           "linkType": "Clones",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "auto-etr-triaged",
             "one",
             "ux-ft-close"
@@ -12889,6 +13316,7 @@
           "linkType": "Clones",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "DUE_OVERDUE_BOT",
             "auto-etr-triaged",
             "fasttrack",
@@ -12905,6 +13333,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "DUE_OVERDUE_BOT",
             "auto-etr-triaged",
             "fasttrack",
@@ -13054,6 +13483,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "auto-etr-triaged",
             "conveyor",
             "conveyor-bot",
@@ -13264,8 +13694,8 @@
         {
           "key": "TM-3491",
           "summary": "[이미지 태깅 KTLO] 품절 상품 비중 초과 시 alert 시스템",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "HOLD",
+          "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Blocks",
           "direction": "inward",
@@ -13525,7 +13955,7 @@
       "summary": "주문완료 이메일 무신사 로고 다크모드 고려해 수정",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-우선착수",
+      "status": "완료",
       "statusCategory": "done",
       "priority": "P2",
       "assignee": {
@@ -13553,9 +13983,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-14T15:13:33.132+0900",
-      "updated": "2026-06-05T11:14:58.303+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-05-14T15:14:17.614+0900",
+      "updated": "2026-07-13T10:38:41.746+0900",
+      "resolutionDate": "2026-07-13T10:38:41.649+0900",
+      "lastStatusChangedAt": "2026-07-13T10:38:41.746+0900",
       "linkedTickets": [
         {
           "key": "FT-1",
@@ -13566,6 +13996,7 @@
           "linkType": "Clones",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "fasttrack",
             "one",
             "ux-ft-close"
@@ -13794,6 +14225,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "conveyor",
             "conveyor-bot",
             "fast-track-away",
@@ -14726,12 +15158,13 @@
         {
           "key": "FT-47",
           "summary": "[desivn-driven][공통] 이미지 태깅 추가 개선",
-          "status": "개발완료",
+          "status": "배포완료",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
           "direction": "outward",
           "labels": [
+            "7월퀵윈",
             "conveyor",
             "one",
             "ux-ft"
@@ -15811,6 +16244,7 @@
           "direction": "inward",
           "labels": [
             "26'3Q",
+            "7월퀵윈",
             "Away착수",
             "auto-triaged",
             "difficulty-S",
@@ -15832,6 +16266,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "7월퀵윈",
             "CX",
             "auto-etr-triaged",
             "conveyor",
@@ -16301,7 +16736,7 @@
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
-        "name": "박승현",
+        "name": "이선화",
         "email": null,
         "accountId": null
       },
@@ -16324,7 +16759,7 @@
       "startDate": "2026-05-18",
       "dueDate": "2026-06-05",
       "created": "2026-04-18T14:00:30.654+0900",
-      "updated": "2026-05-13T11:12:05.504+0900",
+      "updated": "2026-07-13T10:39:20.443+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-05-13T10:16:16.595+0900",
       "linkedTickets": [
@@ -16714,7 +17149,7 @@
       "startDate": "2026-04-07",
       "dueDate": null,
       "created": "2026-04-07T20:07:09.848+0900",
-      "updated": "2026-07-08T17:54:11.999+0900",
+      "updated": "2026-07-13T19:35:09.470+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-04-16T08:32:24.511+0900",
       "linkedTickets": [
@@ -16741,11 +17176,28 @@
           "labels": [
             "PDP"
           ]
+        },
+        {
+          "key": "FT-340",
+          "summary": "[무배당발] 빠른 교환·환불 서비스 제한 가능성 유의사항 문구 추가",
+          "status": "디자인완료",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward",
+          "labels": [
+            "conveyor",
+            "conveyor-bot",
+            "fast-track-away",
+            "one",
+            "standby",
+            "운영본부"
+          ]
         }
       ],
       "progress": {
         "done": 0,
-        "total": 2
+        "total": 3
       }
     },
     {
@@ -16777,16 +17229,15 @@
       "mainSubjects": [],
       "subSubject": null,
       "subSubjects": [],
-      "yearQuarter": "2026-Q2",
+      "yearQuarter": "2026-Q3",
       "yearQuarters": [
-        "2026-Q2",
         "2026-Q3"
       ],
       "subGroup": null,
       "startDate": "2026-03-24",
       "dueDate": null,
       "created": "2026-03-24T11:04:12.944+0900",
-      "updated": "2026-07-06T20:55:38.466+0900",
+      "updated": "2026-07-13T22:42:19.689+0900",
       "resolutionDate": "2026-06-08T23:02:08.882+0900",
       "lastStatusChangedAt": "2026-07-06T20:54:57.809+0900",
       "linkedTickets": [
@@ -16807,8 +17258,8 @@
         {
           "key": "TM-3490",
           "summary": "[PO] 브랜드 대표이미지 성별 이미지 파트너 직접 제어",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "기획중",
+          "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Blocks",
           "direction": "inward",
@@ -16866,8 +17317,8 @@
         {
           "key": "AP-86",
           "summary": "[앱테크] 고객참여 시 기기알림 동의 프로세스 확대",
-          "status": "개발중",
-          "statusCategory": "indeterminate",
+          "status": "론치완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Clones",
           "direction": "inward",
@@ -16882,7 +17333,7 @@
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 1
       }
     },
