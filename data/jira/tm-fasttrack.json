@@ -1,6 +1,6 @@
 {
-  "lastSync": "2026-07-14T06:50:21+09:00",
-  "count": 5,
+  "lastSync": "2026-07-15T06:53:09+09:00",
+  "count": 8,
   "items": [
     {
       "key": "TM-3969",
@@ -42,7 +42,7 @@
       "startDate": "2026-07-09",
       "dueDate": "2026-07-15",
       "created": "2026-06-19T00:56:13.807+0900",
-      "updated": "2026-07-14T06:00:53.409+0900",
+      "updated": "2026-07-15T06:00:54.425+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -97,41 +97,131 @@
       "lastStatusChangedAt": null
     },
     {
-      "key": "TM-3031",
-      "url": "https://jira.team.musinsa.com/browse/TM-3031",
-      "summary": "[스냅] 숏츠 영상 섬네일 생성기준 확인 및 카테고리숍/SRP 내 노출 방식 개선",
+      "key": "TM-3123",
+      "url": "https://jira.team.musinsa.com/browse/TM-3123",
+      "summary": "[무진장] 26 여름 무진장 대응 (무진장 기간 중)",
+      "issueType": "Initiative",
+      "project": "TM",
+      "status": "론치완료",
+      "statusCategory": "done",
+      "priority": "Big-Rock",
+      "assignee": {
+        "name": "황미리",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "조혜진",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "DUE_OVERDUE_BOT",
+        "fasttrack"
+      ],
+      "mainSubject": "09.캠페인",
+      "mainSubjects": [
+        "09.캠페인"
+      ],
+      "subSubject": "카트/체크아웃",
+      "subSubjects": [
+        "카트/체크아웃"
+      ],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2"
+      ],
+      "subGroup": "MSS-P Discovery & Engagement",
+      "startDate": "2026-06-12",
+      "dueDate": "2026-06-25",
+      "created": "2026-05-28T10:10:43.520+0900",
+      "updated": "2026-07-14T17:09:43.202+0900",
+      "resolutionDate": "2026-06-26T13:23:16.656+0900",
+      "lastStatusChangedAt": null
+    },
+    {
+      "key": "TM-3098",
+      "url": "https://jira.team.musinsa.com/browse/TM-3098",
+      "summary": "[추천판] 눈에 띄는 신규 입점 브랜드 섹션 브랜드 모듈로 개선",
       "issueType": "Initiative",
       "project": "TM",
       "status": "론치완료",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
-        "name": "박소정",
+        "name": "배정화",
         "email": null,
         "accountId": null
       },
       "reporter": {
-        "name": "안우진",
+        "name": "박준현",
         "email": null,
         "accountId": null
       },
       "labels": [
+        "conveyor",
+        "conveyor-bot",
         "fasttrack",
+        "general-task",
         "one",
-        "삭제"
+        "홈앤디"
+      ],
+      "mainSubject": "01.추천",
+      "mainSubjects": [
+        "01.추천"
+      ],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2",
+        "2026-Q3"
+      ],
+      "subGroup": "Core-E Discovery",
+      "startDate": "2026-05-22",
+      "dueDate": "2026-07-08",
+      "created": "2026-05-22T10:38:36.846+0900",
+      "updated": "2026-07-14T11:19:08.132+0900",
+      "resolutionDate": "2026-07-09T08:27:19.284+0900",
+      "lastStatusChangedAt": null
+    },
+    {
+      "key": "TM-3096",
+      "url": "https://jira.team.musinsa.com/browse/TM-3096",
+      "summary": "[검색/정렬] 실시간 판매순 및 판매 누적순 정렬 추가",
+      "issueType": "Initiative",
+      "project": "TM",
+      "status": "론치완료",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "성종건",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "성종건",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "DUE_OVERDUE_BOT",
+        "fasttrack"
       ],
       "mainSubject": null,
       "mainSubjects": [],
       "subSubject": null,
       "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
-      "subGroup": "MSS-P Discovery & Engagement",
-      "startDate": null,
-      "dueDate": null,
-      "created": "2026-05-13T18:24:35.496+0900",
-      "updated": "2026-06-11T06:01:35.415+0900",
-      "resolutionDate": "2026-06-10T23:56:08.502+0900",
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2"
+      ],
+      "subGroup": null,
+      "startDate": "2026-05-18",
+      "dueDate": "2026-06-30",
+      "created": "2026-05-22T09:58:15.194+0900",
+      "updated": "2026-07-14T11:19:07.540+0900",
+      "resolutionDate": "2026-07-06T10:24:56.859+0900",
       "lastStatusChangedAt": null
     },
     {
@@ -181,48 +271,92 @@
       "lastStatusChangedAt": null
     },
     {
-      "key": "TM-2440",
-      "url": "https://jira.team.musinsa.com/browse/TM-2440",
-      "summary": "[게이트웨이] 브랜드광고 배너 노출",
+      "key": "TM-2923",
+      "url": "https://jira.team.musinsa.com/browse/TM-2923",
+      "summary": "[브랜드] 브랜드 라벨 및 인덱스 고도화",
       "issueType": "Initiative",
       "project": "TM",
       "status": "론치완료",
       "statusCategory": "done",
-      "priority": "P1",
+      "priority": "Big-Rock",
       "assignee": {
-        "name": "허유선",
+        "name": "송지영",
         "email": null,
         "accountId": null
       },
       "reporter": {
-        "name": "안우진",
+        "name": "송지영",
         "email": null,
         "accountId": null
       },
       "labels": [
+        "26'2Q",
+        "conveyor",
         "fasttrack",
         "one",
-        "ux-ft-close",
         "홈앤디"
       ],
-      "mainSubject": "42.광고",
+      "mainSubject": "01.추천",
       "mainSubjects": [
-        "42.광고"
+        "01.추천"
       ],
-      "subSubject": "공통(GNB/게이트웨이)",
+      "subSubject": "추천",
       "subSubjects": [
-        "공통(GNB/게이트웨이)"
+        "추천",
+        "브랜드 인덱스",
+        "브랜드 샵"
       ],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2",
+        "2026-Q3"
+      ],
+      "subGroup": "MSS-P Discovery & Engagement",
+      "startDate": "2026-04-13",
+      "dueDate": "2026-07-08",
+      "created": "2026-04-17T12:07:44.159+0900",
+      "updated": "2026-07-14T11:19:06.894+0900",
+      "resolutionDate": "2026-07-08T13:46:46.947+0900",
+      "lastStatusChangedAt": null
+    },
+    {
+      "key": "TM-2527",
+      "url": "https://jira.team.musinsa.com/browse/TM-2527",
+      "summary": "[검색] MSS 정렬 확대 : 좋아요/조회순 기간분리&등락순 추가",
+      "issueType": "Initiative",
+      "project": "TM",
+      "status": "론치완료",
+      "statusCategory": "done",
+      "priority": "Emergency",
+      "assignee": {
+        "name": "성종건",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "이광수",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "conveyor",
+        "fasttrack",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
       "yearQuarter": "2026-Q2",
       "yearQuarters": [
         "2026-Q2"
       ],
-      "subGroup": "MSS-P Discovery & Engagement",
-      "startDate": "2026-05-18",
-      "dueDate": "2026-07-01",
-      "created": "2026-03-19T12:25:56.484+0900",
-      "updated": "2026-07-09T11:54:52.047+0900",
-      "resolutionDate": "2026-07-01T10:09:38.942+0900",
+      "subGroup": null,
+      "startDate": "2026-03-23",
+      "dueDate": "2026-05-29",
+      "created": "2026-03-23T15:59:29.304+0900",
+      "updated": "2026-07-14T11:19:06.326+0900",
+      "resolutionDate": "2026-05-28T18:09:27.540+0900",
       "lastStatusChangedAt": null
     }
   ]

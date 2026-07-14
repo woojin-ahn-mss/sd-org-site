@@ -1,6 +1,6 @@
 {
-  "lastSync": "2026-07-14T06:49:40+09:00",
-  "count": 92,
+  "lastSync": "2026-07-15T06:52:20+09:00",
+  "count": 87,
   "items": [
     {
       "key": "ETR-3541",
@@ -36,43 +36,7 @@
       "startDate": "2026-04-07",
       "dueDate": null,
       "created": "2026-04-07T20:07:09.848+0900",
-      "updated": "2026-07-13T19:35:09.470+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": null
-    },
-    {
-      "key": "ETR-5304",
-      "url": "https://jira.team.musinsa.com/browse/ETR-5304",
-      "summary": "무신사머니 상품권 상세 페이지 문구 수정 요청",
-      "issueType": "과제 발의",
-      "project": "ETR",
-      "status": "Tech 검토 대기 중",
-      "statusCategory": "new",
-      "priority": "P1",
-      "assignee": {
-        "name": "안우진",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "박지선",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [
-        "무신사"
-      ],
-      "mainSubject": null,
-      "mainSubjects": [],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
-      "subGroup": null,
-      "startDate": "2026-06-25",
-      "dueDate": "2026-07-15",
-      "created": "2026-06-25T10:57:23.361+0900",
-      "updated": "2026-07-13T10:12:19.984+0900",
+      "updated": "2026-07-14T14:38:51.186+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -82,8 +46,8 @@
       "summary": "[퀵윈][랭킹판] 검색창 급상승 키워드 '더보기' 클릭 시 랭킹판/검색어 탭 랜딩 개선",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "Tech 검토 대기 중",
-      "statusCategory": "new",
+      "status": "Tech 검토 중",
+      "statusCategory": "indeterminate",
       "priority": "P0",
       "assignee": {
         "name": "안우진",
@@ -110,7 +74,41 @@
       "startDate": null,
       "dueDate": "2026-07-24",
       "created": "2026-06-01T09:22:49.891+0900",
-      "updated": "2026-07-10T10:49:59.771+0900",
+      "updated": "2026-07-14T14:06:22.046+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null
+    },
+    {
+      "key": "ETR-5295",
+      "url": "https://jira.team.musinsa.com/browse/ETR-5295",
+      "summary": "무신사머니 웹뷰 지면에서 무신사 네비게이션이 노출되는 이슈",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-우선착수",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "ahhyun.lee",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-06-24T16:49:37.454+0900",
+      "updated": "2026-07-14T13:56:29.355+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -450,40 +448,6 @@
       "lastStatusChangedAt": null
     },
     {
-      "key": "ETR-5252",
-      "url": "https://jira.team.musinsa.com/browse/ETR-5252",
-      "summary": "[CPCMS] 로고 띠배너(전문관/브랜드) 시스템 연동 개선",
-      "issueType": "과제 발의",
-      "project": "ETR",
-      "status": "Tech 검토 대기 중",
-      "statusCategory": "new",
-      "priority": "P0",
-      "assignee": {
-        "name": "안우진",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "임수진",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [],
-      "mainSubject": null,
-      "mainSubjects": [],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
-      "subGroup": null,
-      "startDate": null,
-      "dueDate": "2026-07-17",
-      "created": "2026-06-22T15:17:41.433+0900",
-      "updated": "2026-07-03T13:05:53.813+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": null
-    },
-    {
       "key": "ETR-3815",
       "url": "https://jira.team.musinsa.com/browse/ETR-3815",
       "summary": "퀵픽스 배너광고 영역에 기획전 날짜·슬로건 추가 노출 요청",
@@ -596,40 +560,6 @@
       "created": "2026-05-21T17:10:33.776+0900",
       "updated": "2026-07-01T18:24:44.423+0900",
       "resolutionDate": "2026-06-30T01:02:45.424+0900",
-      "lastStatusChangedAt": null
-    },
-    {
-      "key": "ETR-5295",
-      "url": "https://jira.team.musinsa.com/browse/ETR-5295",
-      "summary": "무신사머니 웹뷰 지면에서 무신사 네비게이션이 노출되는 이슈",
-      "issueType": "과제 발의",
-      "project": "ETR",
-      "status": "Tech 검토 대기 중",
-      "statusCategory": "new",
-      "priority": "P0",
-      "assignee": {
-        "name": "안우진",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "ahhyun.lee",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [],
-      "mainSubject": null,
-      "mainSubjects": [],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
-      "subGroup": null,
-      "startDate": null,
-      "dueDate": "2026-07-15",
-      "created": "2026-06-24T16:49:37.454+0900",
-      "updated": "2026-07-01T11:06:00.291+0900",
-      "resolutionDate": null,
       "lastStatusChangedAt": null
     },
     {
@@ -866,40 +796,6 @@
       "lastStatusChangedAt": null
     },
     {
-      "key": "ETR-5049",
-      "url": "https://jira.team.musinsa.com/browse/ETR-5049",
-      "summary": "[CMS] 콘텐츠 전용 안내에 특화된 플러팅 배너 모듈 개발 요청 ",
-      "issueType": "과제 발의",
-      "project": "ETR",
-      "status": "Tech 검토 대기 중",
-      "statusCategory": "new",
-      "priority": "Big-Rock",
-      "assignee": {
-        "name": "안우진",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "이소민",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [],
-      "mainSubject": null,
-      "mainSubjects": [],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
-      "subGroup": null,
-      "startDate": "2026-06-15",
-      "dueDate": "2026-07-08",
-      "created": "2026-06-15T16:10:17.500+0900",
-      "updated": "2026-06-24T17:15:51.009+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": null
-    },
-    {
       "key": "ETR-5215",
       "url": "https://jira.team.musinsa.com/browse/ETR-5215",
       "summary": "[CPCMS] 이미지+상품 모듈 이미지 시스템 텍스트 개발",
@@ -1004,42 +900,6 @@
       "dueDate": "2026-07-08",
       "created": "2026-06-19T17:07:47.427+0900",
       "updated": "2026-06-24T17:09:26.335+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": null
-    },
-    {
-      "key": "ETR-4988",
-      "url": "https://jira.team.musinsa.com/browse/ETR-4988",
-      "summary": "[유즈드] CPCMS 모듈 수기진열 성별 필터 적용",
-      "issueType": "과제 발의",
-      "project": "ETR",
-      "status": "Tech 검토 대기 중",
-      "statusCategory": "new",
-      "priority": "P0",
-      "assignee": {
-        "name": "안우진",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "김헌주",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [
-        "유즈드"
-      ],
-      "mainSubject": null,
-      "mainSubjects": [],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
-      "subGroup": null,
-      "startDate": null,
-      "dueDate": "2026-07-08",
-      "created": "2026-06-12T12:11:07.276+0900",
-      "updated": "2026-06-24T17:05:13.159+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -2135,42 +1995,6 @@
       "dueDate": null,
       "created": "2026-05-29T09:03:30.079+0900",
       "updated": "2026-06-04T23:49:26.821+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": null
-    },
-    {
-      "key": "ETR-4617",
-      "url": "https://jira.team.musinsa.com/browse/ETR-4617",
-      "summary": "[브랜드] 브랜드 관련 노출 정비",
-      "issueType": "과제 발의",
-      "project": "ETR",
-      "status": "매니저 승인 대기",
-      "statusCategory": "indeterminate",
-      "priority": "P0",
-      "assignee": {
-        "name": "안우진",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "안우진",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [
-        "one"
-      ],
-      "mainSubject": null,
-      "mainSubjects": [],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
-      "subGroup": null,
-      "startDate": null,
-      "dueDate": "2026-06-05",
-      "created": "2026-06-01T13:05:45.484+0900",
-      "updated": "2026-06-03T09:00:48.937+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
