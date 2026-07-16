@@ -1,18 +1,159 @@
 {
-  "lastSync": "2026-07-16T06:52:41+09:00",
-  "count": 289,
+  "lastSync": "2026-07-17T06:59:10+09:00",
+  "count": 293,
   "items": [
+    {
+      "key": "ETR-5679",
+      "url": "https://jira.team.musinsa.com/browse/ETR-5679",
+      "summary": "[design-driven][공통] Menu 컴포넌트 내 블루닷/NEW 뱃지 노출",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "PMO 검토 중",
+      "statusCategory": "indeterminate",
+      "priority": "P0",
+      "assignee": {
+        "name": "이승연",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "서정명",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": "2026-Q3",
+      "yearQuarters": [
+        "2026-Q3"
+      ],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": "2026-07-21",
+      "created": "2026-07-16T15:49:04.214+0900",
+      "updated": "2026-07-16T16:40:35.658+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-07-16T15:49:16.783+0900",
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-5671",
+      "url": "https://jira.team.musinsa.com/browse/ETR-5671",
+      "summary": "[카테고리메뉴]오프라인탭 API 변경",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "PMO 검토 중",
+      "statusCategory": "indeterminate",
+      "priority": "P0",
+      "assignee": {
+        "name": "이승연",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "문호은",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "conveyor",
+        "one",
+        "홈앤디"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": "2026-07-16",
+      "dueDate": "2026-07-21",
+      "created": "2026-07-16T13:29:24.776+0900",
+      "updated": "2026-07-16T13:59:03.730+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-07-16T13:39:44.544+0900",
+      "linkedTickets": [
+        {
+          "key": "FT-309",
+          "summary": "[카테고리메뉴]오프라인탭 API 변경 - 유형통일",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Blocks",
+          "direction": "inward",
+          "labels": []
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-5659",
+      "url": "https://jira.team.musinsa.com/browse/ETR-5659",
+      "summary": "[무신사] 특정 화면 진입 시 페이지 미로딩/멈춤 현상 빈번 발생",
+      "issueType": "기타(KTLO/BAU)",
+      "project": "ETR",
+      "status": "검토완료-미진행",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "이승연",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-07-16T10:43:27.246+0900",
+      "updated": "2026-07-16T12:46:18.782+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-07-16T12:45:51.085+0900",
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
     {
       "key": "ETR-5642",
       "url": "https://jira.team.musinsa.com/browse/ETR-5642",
       "summary": "[상품] 입점브랜드 상품 성별 카테고리 오등록 감지 및 품질 관제 프로세스 구축",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "매니저 승인 대기",
-      "statusCategory": "indeterminate",
+      "status": "검토완료-백로그",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
-        "name": "촤비스",
+        "name": "이승연",
         "email": null,
         "accountId": null
       },
@@ -36,62 +177,36 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-07-15T10:32:47.088+0900",
-      "updated": "2026-07-15T10:33:02.854+0900",
+      "updated": "2026-07-16T15:18:39.719+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-15T10:32:51.080+0900",
-      "linkedTickets": [],
+      "lastStatusChangedAt": "2026-07-16T15:18:00.521+0900",
+      "linkedTickets": [
+        {
+          "key": "TM-4085",
+          "summary": "[상품] 입점브랜드 상품 성별 카테고리 오등록 감지 및 품질 관제 프로세스 구축",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor",
+            "conveyor-bot",
+            "general-task",
+            "one"
+          ]
+        }
+      ],
       "progress": {
         "done": 0,
-        "total": 0
+        "total": 1
       }
     },
     {
       "key": "ETR-5640",
       "url": "https://jira.team.musinsa.com/browse/ETR-5640",
       "summary": "[출석체크] 추천 상품 노출 소스 확대 및 탭 구조 개선 제안",
-      "issueType": "과제 발의",
-      "project": "ETR",
-      "status": "매니저 승인 대기",
-      "statusCategory": "indeterminate",
-      "priority": "P0",
-      "assignee": {
-        "name": "촤비스",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "촤비스",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [
-        "auto-etr-triaged",
-        "conveyor",
-        "one"
-      ],
-      "mainSubject": null,
-      "mainSubjects": [],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
-      "subGroup": null,
-      "startDate": null,
-      "dueDate": null,
-      "created": "2026-07-15T09:27:47.689+0900",
-      "updated": "2026-07-15T09:28:15.612+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-15T09:27:51.539+0900",
-      "linkedTickets": [],
-      "progress": {
-        "done": 0,
-        "total": 0
-      }
-    },
-    {
-      "key": "ETR-5639",
-      "url": "https://jira.team.musinsa.com/browse/ETR-5639",
-      "summary": "[무신사] 특정 UI 요소 탭 시 스크롤 위치 고정",
       "issueType": "과제 발의",
       "project": "ETR",
       "status": "검토완료-우선착수",
@@ -120,15 +235,15 @@
       "yearQuarters": [],
       "subGroup": null,
       "startDate": null,
-      "dueDate": null,
-      "created": "2026-07-14T21:55:51.450+0900",
-      "updated": "2026-07-15T09:05:08.571+0900",
+      "dueDate": "2026-07-30",
+      "created": "2026-07-15T09:27:47.689+0900",
+      "updated": "2026-07-16T10:29:25.482+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-15T09:04:26.594+0900",
+      "lastStatusChangedAt": "2026-07-16T10:28:45.965+0900",
       "linkedTickets": [
         {
-          "key": "FT-353",
-          "summary": "[무신사] 특정 UI 요소 탭 시 스크롤 위치 고정",
+          "key": "FT-354",
+          "summary": "[출석체크] 추천 상품 노출 소스 확대 및 탭 구조 개선 제안",
           "status": "SUGGESTED",
           "statusCategory": "new",
           "assignee": null,
@@ -140,6 +255,67 @@
             "conveyor-bot",
             "fast-track-away",
             "one"
+          ]
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-5639",
+      "url": "https://jira.team.musinsa.com/browse/ETR-5639",
+      "summary": "[무신사] 특정 UI 요소 탭 시 스크롤 위치 고정",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-우선착수",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "서정명",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-07-14T21:55:51.450+0900",
+      "updated": "2026-07-16T15:28:06.446+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-07-15T09:04:26.594+0900",
+      "linkedTickets": [
+        {
+          "key": "FT-353",
+          "summary": "[무신사] 특정 UI 요소 탭 시 스크롤 위치 고정",
+          "status": "개발중",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor",
+            "conveyor-bot",
+            "fast-track-away",
+            "one",
+            "standby"
           ]
         }
       ],
@@ -209,16 +385,59 @@
       }
     },
     {
-      "key": "ETR-5620",
-      "url": "https://jira.team.musinsa.com/browse/ETR-5620",
-      "summary": "[퀵픽스] 29CM 주문내역 통합 조회 및 검색 기능 개발",
+      "key": "ETR-5632",
+      "url": "https://jira.team.musinsa.com/browse/ETR-5632",
+      "summary": "무배당발 지면 / 혜택 영역 교체 / 리유저블백 →결제 혜택",
       "issueType": "과제 발의",
       "project": "ETR",
       "status": "매니저 승인 대기",
       "statusCategory": "indeterminate",
       "priority": "P0",
       "assignee": {
-        "name": "촤비스",
+        "name": "이우빈",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "신혜인",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "conveyor",
+        "one",
+        "무신사"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": "2026-07-14",
+      "dueDate": "2026-08-07",
+      "created": "2026-07-14T17:11:33.639+0900",
+      "updated": "2026-07-16T15:01:03.927+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-07-14T17:11:38.865+0900",
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-5620",
+      "url": "https://jira.team.musinsa.com/browse/ETR-5620",
+      "summary": "[퀵픽스] 29CM 주문내역 통합 조회 및 검색 기능 개발",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-미진행",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "이승연",
         "email": null,
         "accountId": null
       },
@@ -240,11 +459,11 @@
       "yearQuarters": [],
       "subGroup": null,
       "startDate": null,
-      "dueDate": null,
+      "dueDate": "2026-07-30",
       "created": "2026-07-14T14:22:37.275+0900",
-      "updated": "2026-07-14T17:28:11.619+0900",
+      "updated": "2026-07-16T11:03:01.257+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-14T14:22:40.982+0900",
+      "lastStatusChangedAt": "2026-07-16T11:02:08.333+0900",
       "linkedTickets": [
         {
           "key": "TM-4078",
@@ -598,7 +817,7 @@
       "summary": "[랭킹판] 오프라인 랭킹에서 단일 브랜드 매장 제외",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-우선착수",
+      "status": "완료",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -627,25 +846,26 @@
       "startDate": null,
       "dueDate": "2026-07-24",
       "created": "2026-07-10T10:45:47.095+0900",
-      "updated": "2026-07-14T14:38:07.511+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-10T13:17:08.045+0900",
+      "updated": "2026-07-16T15:24:01.378+0900",
+      "resolutionDate": "2026-07-16T15:24:00.489+0900",
+      "lastStatusChangedAt": "2026-07-16T15:24:00.539+0900",
       "linkedTickets": [
         {
           "key": "SNDPRD-4297",
           "summary": "[FT][PM][랭킹판] 오프라인 랭킹에서 단일 브랜드 매장 제외",
-          "status": "In Progress",
-          "statusCategory": "indeterminate",
+          "status": "완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Blocks",
           "direction": "inward",
-          "labels": []
+          "labels": [],
+          "resolutionDate": "2026-07-16T15:16:41.469+0900"
         },
         {
           "key": "FT-338",
           "summary": "[랭킹판] 오프라인 랭킹에서 단일 브랜드 매장 제외",
-          "status": "Waiting For Review",
-          "statusCategory": "indeterminate",
+          "status": "론치완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -657,19 +877,21 @@
             "fast-track-away",
             "one",
             "standby"
-          ]
+          ],
+          "resolutionDate": "2026-07-16T15:16:33.693+0900"
         },
         {
           "key": "PEL-1994",
           "summary": "[랭킹판] 오프라인 랭킹에서 단일 브랜드 매장 제외",
-          "status": "In Progress",
-          "statusCategory": "indeterminate",
+          "status": "완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
             "pel-fast-track"
-          ]
+          ],
+          "resolutionDate": "2026-07-16T15:16:46.053+0900"
         },
         {
           "key": "MDC-51",
@@ -690,7 +912,7 @@
         }
       ],
       "progress": {
-        "done": 1,
+        "done": 4,
         "total": 4
       }
     },
@@ -734,7 +956,7 @@
         {
           "key": "FT-322",
           "summary": "[design-driven][공통] 상단 탭/필터 투명도 적용",
-          "status": "디자인완료",
+          "status": "개발중",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
@@ -877,7 +1099,7 @@
       "summary": "[랭킹판] 모자 카테고리 1-depth로 변경",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-우선착수",
+      "status": "완료",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -905,15 +1127,15 @@
       "startDate": null,
       "dueDate": "2026-07-23",
       "created": "2026-07-08T18:12:04.302+0900",
-      "updated": "2026-07-13T13:40:56.655+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-09T09:53:04.813+0900",
+      "updated": "2026-07-16T14:14:15.935+0900",
+      "resolutionDate": "2026-07-16T14:14:15.083+0900",
+      "lastStatusChangedAt": "2026-07-16T14:14:15.137+0900",
       "linkedTickets": [
         {
           "key": "FT-333",
           "summary": "모자 카테고리 1-depth로 변경",
-          "status": "개발중",
-          "statusCategory": "indeterminate",
+          "status": "론치완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -925,11 +1147,12 @@
             "conveyor-bot",
             "fast-track-home",
             "one"
-          ]
+          ],
+          "resolutionDate": "2026-07-16T14:12:17.148+0900"
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 1
       }
     },
@@ -2227,7 +2450,7 @@
         {
           "key": "FT-315",
           "summary": "[추천판] 라이브 특가 모듈 개선 — 날짜/시간 표시, 쿠폰 아이콘화, 브랜드/프로모션 정보 구분",
-          "status": "디자인중",
+          "status": "디자인완료",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
@@ -2349,8 +2572,8 @@
         {
           "key": "FT-320",
           "summary": "[키즈] 신발·의류 사이즈 표기 오류",
-          "status": "개발완료",
-          "statusCategory": "indeterminate",
+          "status": "론치완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -2361,7 +2584,8 @@
             "conveyor-bot",
             "fast-track-away",
             "one"
-          ]
+          ],
+          "resolutionDate": "2026-07-16T16:15:30.719+0900"
         },
         {
           "key": "MDC-67",
@@ -2382,7 +2606,7 @@
         }
       ],
       "progress": {
-        "done": 1,
+        "done": 2,
         "total": 2
       }
     },
@@ -2453,7 +2677,7 @@
       "summary": "[브랜드 인덱스] 단독/신규입점/쿠폰/발매 라벨 기반 필터 기능 추가",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-우선착수",
+      "status": "검토완료-미진행",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -2481,9 +2705,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-07-06T09:26:09.363+0900",
-      "updated": "2026-07-06T17:46:05.968+0900",
+      "updated": "2026-07-16T16:05:16.415+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-06T17:45:04.457+0900",
+      "lastStatusChangedAt": "2026-07-16T14:55:19.289+0900",
       "linkedTickets": [
         {
           "key": "TM-2923",
@@ -2505,8 +2729,8 @@
         {
           "key": "FT-318",
           "summary": "[브랜드 인덱스] 단독/신규입점/쿠폰/발매 라벨 기반 필터 기능 추가",
-          "status": "디자인중",
-          "statusCategory": "indeterminate",
+          "status": "Dropped",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -2520,7 +2744,7 @@
         }
       ],
       "progress": {
-        "done": 1,
+        "done": 2,
         "total": 2
       }
     },
@@ -3523,8 +3747,8 @@
         {
           "key": "TM-3988",
           "summary": "[design-driven][공통] 룩북 대표 썸네일 정책",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "Dropped",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "outward",
@@ -3551,7 +3775,7 @@
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 2
       }
     },
@@ -3659,7 +3883,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-30T14:18:29.154+0900",
-      "updated": "2026-07-06T11:45:48.322+0900",
+      "updated": "2026-07-16T09:54:32.696+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-01T15:33:51.508+0900",
       "linkedTickets": [
@@ -3678,11 +3902,23 @@
             "one",
             "홈앤디"
           ]
+        },
+        {
+          "key": "DBA-13026",
+          "summary": " [campaign] cpcms_filter PLP 배너 전시여부 컬럼 추가 요청",
+          "status": "MZC 작업이관",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Blocks",
+          "direction": "inward",
+          "labels": [
+            "기한협의X"
+          ]
         }
       ],
       "progress": {
         "done": 0,
-        "total": 1
+        "total": 2
       }
     },
     {
@@ -3797,7 +4033,7 @@
         {
           "key": "FT-100",
           "summary": "[design-driven][공통] 카드형 UI 사이 간격 개선",
-          "status": "디자인완료",
+          "status": "개발중",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
@@ -3813,7 +4049,7 @@
         {
           "key": "FT-100",
           "summary": "[design-driven][공통] 카드형 UI 사이 간격 개선",
-          "status": "디자인완료",
+          "status": "개발중",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
@@ -3947,8 +4183,8 @@
         {
           "key": "FT-72",
           "summary": "[design-driven][PDP] 이미지 뷰어 확대 시 UX 개선 ",
-          "status": "개발완료",
-          "statusCategory": "indeterminate",
+          "status": "론치완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "outward",
@@ -3956,11 +4192,12 @@
             "conveyor",
             "one",
             "ux-ft-close"
-          ]
+          ],
+          "resolutionDate": "2026-07-16T09:35:38.146+0900"
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 1
       }
     },
@@ -4003,7 +4240,7 @@
       "linkedTickets": [
         {
           "key": "FT-164",
-          "summary": "[PDP] 타임세일 카운트다운 가격옆에 추가 하기",
+          "summary": "[PDP] 타임세일 카운트다운 가격옆에 추가 및 개선 ",
           "status": "개발중",
           "statusCategory": "indeterminate",
           "assignee": null,
@@ -4082,8 +4319,8 @@
         {
           "key": "APPDEV-26768",
           "summary": "[인수인계&배포] ETR-5362 app-store-android - 랭킹 상단 배너 컴팩트 규격 FF 적용",
-          "status": "검토 중",
-          "statusCategory": "indeterminate",
+          "status": "완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -4091,7 +4328,8 @@
             "AI-ASSISTED",
             "emd_by_bize_ai_v1",
             "sp_by_bize_ai_v1"
-          ]
+          ],
+          "resolutionDate": "2026-07-16T16:50:05.702+0900"
         },
         {
           "key": "APPDEV-26769",
@@ -4125,7 +4363,7 @@
         }
       ],
       "progress": {
-        "done": 1,
+        "done": 2,
         "total": 4
       }
     },
@@ -4345,7 +4583,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-29T10:28:48.877+0900",
-      "updated": "2026-07-07T12:51:03.746+0900",
+      "updated": "2026-07-16T16:43:32.782+0900",
       "resolutionDate": "2026-07-07T12:51:03.662+0900",
       "lastStatusChangedAt": "2026-07-07T12:51:03.746+0900",
       "linkedTickets": [
@@ -17444,7 +17682,7 @@
       "summary": "결제수단 화면 개선 — 현재 주문 적용 가능 결제수단 활성화/정렬 및 프로모션 구좌 활용",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-백로그",
+      "status": "검토완료-우선착수",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -17472,9 +17710,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-04-18T13:59:48.486+0900",
-      "updated": "2026-06-19T09:14:18.481+0900",
+      "updated": "2026-07-16T17:15:35.431+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-19T09:13:38.381+0900",
+      "lastStatusChangedAt": "2026-07-16T17:14:00.372+0900",
       "linkedTickets": [
         {
           "key": "ETR-3681",
@@ -17512,11 +17750,24 @@
           "labels": [
             "AI-ASSISTED"
           ]
+        },
+        {
+          "key": "FT-331",
+          "summary": "[장바구니] 결제 즉시할인 혜택 넛지 추가",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward",
+          "labels": [
+            "fasttrack",
+            "one"
+          ]
         }
       ],
       "progress": {
         "done": 1,
-        "total": 3
+        "total": 4
       }
     },
     {
@@ -17667,9 +17918,9 @@
       "yearQuarters": [],
       "subGroup": null,
       "startDate": "2026-04-07",
-      "dueDate": null,
+      "dueDate": "2026-07-20",
       "created": "2026-04-07T20:07:09.848+0900",
-      "updated": "2026-07-15T15:05:41.214+0900",
+      "updated": "2026-07-16T17:11:24.669+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-04-16T08:32:24.511+0900",
       "linkedTickets": [
@@ -17717,8 +17968,8 @@
         {
           "key": "MDC-78",
           "summary": "[인수인계 및 배포][무배당발] 빠른 교환·환불 서비스 제한 가능성 유의사항 문구 추가",
-          "status": "In Progress",
-          "statusCategory": "indeterminate",
+          "status": "완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -17729,12 +17980,23 @@
             "pel-fast-track-handover",
             "snorlax-mirror",
             "sp_by_bize_ai_v1"
-          ]
+          ],
+          "resolutionDate": "2026-07-16T13:47:57.098+0900"
+        },
+        {
+          "key": "TL-152",
+          "summary": "[FT과제][PDP/PLP] 무배당발 안내문구 추가",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "outward",
+          "labels": []
         }
       ],
       "progress": {
-        "done": 0,
-        "total": 4
+        "done": 1,
+        "total": 5
       }
     },
     {
