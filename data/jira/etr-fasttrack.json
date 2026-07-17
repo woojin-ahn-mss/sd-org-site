@@ -1,7 +1,136 @@
 {
-  "lastSync": "2026-07-17T06:59:10+09:00",
-  "count": 293,
+  "lastSync": "2026-07-18T06:44:11+09:00",
+  "count": 296,
   "items": [
+    {
+      "key": "ETR-5689",
+      "url": "https://jira.team.musinsa.com/browse/ETR-5689",
+      "summary": "[검색] 29CM 전용 브랜드 검색 자동완성·결과 페이지 동일 수준 노출 및 29CM 입점 표시 추가",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "매니저 승인 대기",
+      "statusCategory": "indeterminate",
+      "priority": "P0",
+      "assignee": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-07-17T10:35:45.725+0900",
+      "updated": "2026-07-17T10:36:18.014+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-07-17T10:35:49.832+0900",
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-5688",
+      "url": "https://jira.team.musinsa.com/browse/ETR-5688",
+      "summary": "[추천판] 추천판 상단 광고 슬롯 수 확대 — 전체 탭 또는 다탭 적용",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "매니저 승인 대기",
+      "statusCategory": "indeterminate",
+      "priority": "P0",
+      "assignee": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-07-17T10:35:13.331+0900",
+      "updated": "2026-07-17T10:36:17.414+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-07-17T10:35:23.960+0900",
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-5687",
+      "url": "https://jira.team.musinsa.com/browse/ETR-5687",
+      "summary": "[노출최적화] 영업 협업 콘텐츠 추천판·브숍·SRP·PDP·주문후추천·이메일 다채널 노출 확대",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "매니저 승인 대기",
+      "statusCategory": "indeterminate",
+      "priority": "P0",
+      "assignee": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-07-17T10:34:48.409+0900",
+      "updated": "2026-07-17T10:36:17.664+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-07-17T10:35:08.116+0900",
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
     {
       "key": "ETR-5679",
       "url": "https://jira.team.musinsa.com/browse/ETR-5679",
@@ -1351,6 +1480,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "DUE_OVERDUE_BOT",
             "conveyor",
             "conveyor-bot",
             "fast-track-away",
@@ -3825,6 +3955,7 @@
           "linkType": "Relates",
           "direction": "outward",
           "labels": [
+            "DUE_OVERDUE_BOT",
             "OneDesignSync",
             "conveyor"
           ]
@@ -3838,6 +3969,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "DUE_OVERDUE_BOT",
             "conveyor",
             "conveyor-bot",
             "fast-track-away",
@@ -3981,6 +4113,7 @@
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
+            "DUE_OVERDUE_BOT",
             "conveyor",
             "conveyor-bot",
             "fast-track-away",
@@ -15129,7 +15262,11 @@
           "assignee": null,
           "linkType": "Blocks",
           "direction": "inward",
-          "labels": []
+          "labels": [
+            "MATCH",
+            "명시적데이터수집",
+            "키즈"
+          ]
         }
       ],
       "progress": {
@@ -16995,8 +17132,8 @@
         {
           "key": "FT-69",
           "summary": "[랭킹판/PLP] 퍼널 배너 광고 영역 추가 정보 노출",
-          "status": "Waiting For Review",
-          "statusCategory": "indeterminate",
+          "status": "론치완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -17004,6 +17141,7 @@
             "26'3Q",
             "7월퀵윈",
             "Away착수",
+            "DUE_OVERDUE_BOT",
             "auto-triaged",
             "difficulty-S",
             "fasttrack",
@@ -17013,7 +17151,8 @@
             "team-campaign",
             "직접해결",
             "홈앤디"
-          ]
+          ],
+          "resolutionDate": "2026-07-17T14:52:26.644+0900"
         },
         {
           "key": "FT-312",
@@ -17036,7 +17175,7 @@
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 2
       }
     },
