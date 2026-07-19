@@ -1,5 +1,5 @@
 {
-  "lastSync": "2026-07-18T06:44:11+09:00",
+  "lastSync": "2026-07-20T06:44:14+09:00",
   "count": 296,
   "items": [
     {
@@ -2792,6 +2792,7 @@
             "conveyor-bot",
             "fast-track-away",
             "one",
+            "pel-auto",
             "standby"
           ]
         }
@@ -3915,7 +3916,7 @@
       "summary": "[필터] 바텀시트 간격 개선",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-우선착수",
+      "status": "검토완료-미진행",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -3942,9 +3943,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-30T14:19:17.907+0900",
-      "updated": "2026-06-30T15:09:36.288+0900",
+      "updated": "2026-07-20T01:43:14.870+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-30T15:08:55.528+0900",
+      "lastStatusChangedAt": "2026-07-20T01:43:07.686+0900",
       "linkedTickets": [
         {
           "key": "FT-42",
@@ -3963,8 +3964,8 @@
         {
           "key": "FT-277",
           "summary": "[필터] 바텀시트 간격 개선",
-          "status": "디자인중",
-          "statusCategory": "indeterminate",
+          "status": "철회/반려/취소",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -3978,7 +3979,7 @@
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 2
       }
     },
@@ -18125,16 +18126,17 @@
         {
           "key": "TL-152",
           "summary": "[FT과제][PDP/PLP] 무배당발 안내문구 추가",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "outward",
-          "labels": []
+          "labels": [],
+          "resolutionDate": "2026-07-20T00:12:08.037+0900"
         }
       ],
       "progress": {
-        "done": 1,
+        "done": 2,
         "total": 5
       }
     },
