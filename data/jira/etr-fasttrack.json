@@ -1,18 +1,76 @@
 {
-  "lastSync": "2026-07-20T06:44:14+09:00",
-  "count": 296,
+  "lastSync": "2026-07-21T06:56:55+09:00",
+  "count": 297,
   "items": [
     {
-      "key": "ETR-5689",
-      "url": "https://jira.team.musinsa.com/browse/ETR-5689",
-      "summary": "[검색] 29CM 전용 브랜드 검색 자동완성·결과 페이지 동일 수준 노출 및 29CM 입점 표시 추가",
+      "key": "ETR-5701",
+      "url": "https://jira.team.musinsa.com/browse/ETR-5701",
+      "summary": "[테스트] A-case3 ETR+FTD 검증 (삭제가능)",
       "issueType": "과제 발의",
       "project": "ETR",
       "status": "매니저 승인 대기",
       "statusCategory": "indeterminate",
       "priority": "P0",
       "assignee": {
-        "name": "촤비스",
+        "name": "박준현",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "박준현",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-07-20T13:08:32.400+0900",
+      "updated": "2026-07-20T13:30:40.613+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-07-20T13:08:36.544+0900",
+      "linkedTickets": [
+        {
+          "key": "FTD-22",
+          "summary": "[테스트] A-case3 ETR+FTD 검증 (삭제가능)",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward",
+          "labels": [
+            "FT이관",
+            "conveyor",
+            "one",
+            "ux-ft-general"
+          ]
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-5689",
+      "url": "https://jira.team.musinsa.com/browse/ETR-5689",
+      "summary": "[검색] 29CM 전용 브랜드 검색 자동완성·결과 페이지 동일 수준 노출 및 29CM 입점 표시 추가",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-백로그",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "이승연",
         "email": null,
         "accountId": null
       },
@@ -36,13 +94,30 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-07-17T10:35:45.725+0900",
-      "updated": "2026-07-17T10:36:18.014+0900",
+      "updated": "2026-07-20T10:09:56.964+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-17T10:35:49.832+0900",
-      "linkedTickets": [],
+      "lastStatusChangedAt": "2026-07-20T10:09:16.655+0900",
+      "linkedTickets": [
+        {
+          "key": "TM-4089",
+          "summary": "[검색] 29CM 전용 브랜드 검색 자동완성·결과 페이지 동일 수준 노출 및 29CM 입점 표시 추가",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor",
+            "conveyor-bot",
+            "general-task",
+            "one"
+          ]
+        }
+      ],
       "progress": {
         "done": 0,
-        "total": 0
+        "total": 1
       }
     },
     {
@@ -51,11 +126,11 @@
       "summary": "[추천판] 추천판 상단 광고 슬롯 수 확대 — 전체 탭 또는 다탭 적용",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "매니저 승인 대기",
-      "statusCategory": "indeterminate",
+      "status": "검토완료-백로그",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
-        "name": "촤비스",
+        "name": "이승연",
         "email": null,
         "accountId": null
       },
@@ -79,13 +154,30 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-07-17T10:35:13.331+0900",
-      "updated": "2026-07-17T10:36:17.414+0900",
+      "updated": "2026-07-20T10:42:31.846+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-17T10:35:23.960+0900",
-      "linkedTickets": [],
+      "lastStatusChangedAt": "2026-07-20T10:41:52.374+0900",
+      "linkedTickets": [
+        {
+          "key": "TM-4090",
+          "summary": "[추천판] 추천판 상단 광고 슬롯 수 확대 — 전체 탭 또는 다탭 적용",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor",
+            "conveyor-bot",
+            "general-task",
+            "one"
+          ]
+        }
+      ],
       "progress": {
         "done": 0,
-        "total": 0
+        "total": 1
       }
     },
     {
@@ -94,11 +186,11 @@
       "summary": "[노출최적화] 영업 협업 콘텐츠 추천판·브숍·SRP·PDP·주문후추천·이메일 다채널 노출 확대",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "매니저 승인 대기",
-      "statusCategory": "indeterminate",
+      "status": "검토완료-백로그",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
-        "name": "촤비스",
+        "name": "이승연",
         "email": null,
         "accountId": null
       },
@@ -122,13 +214,30 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-07-17T10:34:48.409+0900",
-      "updated": "2026-07-17T10:36:17.664+0900",
+      "updated": "2026-07-20T11:28:46.170+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-17T10:35:08.116+0900",
-      "linkedTickets": [],
+      "lastStatusChangedAt": "2026-07-20T11:28:07.155+0900",
+      "linkedTickets": [
+        {
+          "key": "TM-4091",
+          "summary": "[노출최적화] 영업 협업 콘텐츠 추천판·브숍·SRP·PDP·주문후추천·이메일 다채널 노출 확대",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward",
+          "labels": [
+            "auto-etr-triaged",
+            "conveyor",
+            "conveyor-bot",
+            "general-task",
+            "one"
+          ]
+        }
+      ],
       "progress": {
         "done": 0,
-        "total": 0
+        "total": 1
       }
     },
     {
@@ -221,7 +330,9 @@
           "assignee": null,
           "linkType": "Blocks",
           "direction": "inward",
-          "labels": []
+          "labels": [
+            "홈앤디"
+          ]
         }
       ],
       "progress": {
@@ -519,11 +630,11 @@
       "summary": "무배당발 지면 / 혜택 영역 교체 / 리유저블백 →결제 혜택",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "매니저 승인 대기",
-      "statusCategory": "indeterminate",
+      "status": "검토완료-우선착수",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
-        "name": "이우빈",
+        "name": "이승연",
         "email": null,
         "accountId": null
       },
@@ -545,15 +656,32 @@
       "yearQuarters": [],
       "subGroup": null,
       "startDate": "2026-07-14",
-      "dueDate": "2026-08-07",
+      "dueDate": null,
       "created": "2026-07-14T17:11:33.639+0900",
-      "updated": "2026-07-16T15:01:03.927+0900",
+      "updated": "2026-07-20T13:19:13.740+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-14T17:11:38.865+0900",
-      "linkedTickets": [],
+      "lastStatusChangedAt": "2026-07-20T13:12:46.792+0900",
+      "linkedTickets": [
+        {
+          "key": "FT-357",
+          "summary": "무배당발 지면 / 배너 어드민 연동",
+          "status": "개발중",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward",
+          "labels": [
+            "conveyor",
+            "conveyor-bot",
+            "fast-track-away",
+            "one",
+            "무신사"
+          ]
+        }
+      ],
       "progress": {
         "done": 0,
-        "total": 0
+        "total": 1
       }
     },
     {
@@ -840,15 +968,15 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-07-13T09:15:34.840+0900",
-      "updated": "2026-07-13T14:48:29.435+0900",
+      "updated": "2026-07-20T17:23:50.328+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-13T13:34:44.884+0900",
       "linkedTickets": [
         {
           "key": "FT-339",
           "summary": "[무신사] 카드 목록 UX 개선 — 추가/수정/삭제 버튼 접근성 향상",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "디자인완료",
+          "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -863,8 +991,8 @@
         {
           "key": "PD-8766",
           "summary": "[CD][주문서] 무신사페이 카드 목록 페이지 연결 UX 변경",
-          "status": "In Design",
-          "statusCategory": "indeterminate",
+          "status": "완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -872,12 +1000,23 @@
             "CD",
             "FT",
             "Y26Q3"
-          ]
+          ],
+          "resolutionDate": "2026-07-20T10:40:04.136+0900"
+        },
+        {
+          "key": "ETR-5706",
+          "summary": "[무신사/29CM] 주문서 내 무신사페이 결제수단 관리 진입 — 페이먼츠 지원 요청 (관리 화면 직행 딥링크 외)",
+          "status": "PMO 검토 중",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "outward",
+          "labels": []
         }
       ],
       "progress": {
-        "done": 0,
-        "total": 2
+        "done": 1,
+        "total": 3
       }
     },
     {
@@ -1094,6 +1233,7 @@
             "7월퀵윈",
             "fasttrack",
             "one",
+            "pel-auto",
             "standby",
             "ux-ft"
           ]
@@ -1461,8 +1601,8 @@
         {
           "key": "FT-327",
           "summary": "[design-driven][판영역] 탭 높이 조절",
-          "status": "디자인완료",
-          "statusCategory": "indeterminate",
+          "status": "철회/반려/취소",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -1490,7 +1630,7 @@
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 2
       }
     },
@@ -2080,8 +2220,8 @@
         {
           "key": "FT-335",
           "summary": "[퀵픽스] 배송지 정보 텍스트 블록 자동 파싱 입력 기능 추가",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "디자인중",
+          "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -2140,7 +2280,7 @@
         {
           "key": "TM-3638",
           "summary": "[조건부혜택] Phase 0-1. 퀵주문 서비스 확장 (상품군 확대·합배송·클레임 정책)",
-          "status": "디자인중",
+          "status": "기획중",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Blocks",
@@ -2153,7 +2293,7 @@
         {
           "key": "TM-3638",
           "summary": "[조건부혜택] Phase 0-1. 퀵주문 서비스 확장 (상품군 확대·합배송·클레임 정책)",
-          "status": "디자인중",
+          "status": "기획중",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
@@ -2286,7 +2426,7 @@
         {
           "key": "TM-3638",
           "summary": "[조건부혜택] Phase 0-1. 퀵주문 서비스 확장 (상품군 확대·합배송·클레임 정책)",
-          "status": "디자인중",
+          "status": "기획중",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Blocks",
@@ -2463,7 +2603,7 @@
         {
           "key": "TM-3638",
           "summary": "[조건부혜택] Phase 0-1. 퀵주문 서비스 확장 (상품군 확대·합배송·클레임 정책)",
-          "status": "디자인중",
+          "status": "기획중",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Blocks",
@@ -2988,6 +3128,7 @@
             "conveyor",
             "fasttrack",
             "one",
+            "pel-auto",
             "standby",
             "ux-ft"
           ]
@@ -3767,8 +3908,8 @@
         {
           "key": "FT-107",
           "summary": "[PD][메인판] 콘텐츠 모듈 내 텍스트 영역 가독성 개선",
-          "status": "HOLD",
-          "statusCategory": "indeterminate",
+          "status": "Dropped",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "outward",
@@ -3778,7 +3919,7 @@
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 1
       }
     },
@@ -3943,14 +4084,14 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-30T14:19:17.907+0900",
-      "updated": "2026-07-20T01:43:14.870+0900",
+      "updated": "2026-07-20T16:49:20.732+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-20T01:43:07.686+0900",
       "linkedTickets": [
         {
           "key": "FT-42",
           "summary": "[필터] 바텀시트 간격 개선",
-          "status": "디자인완료",
+          "status": "개발중",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
@@ -3958,7 +4099,8 @@
           "labels": [
             "DUE_OVERDUE_BOT",
             "OneDesignSync",
-            "conveyor"
+            "conveyor",
+            "standby"
           ]
         },
         {
@@ -3976,11 +4118,26 @@
             "fast-track-away",
             "one"
           ]
+        },
+        {
+          "key": "FT-42",
+          "summary": "[필터] 바텀시트 간격 개선",
+          "status": "개발중",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward",
+          "labels": [
+            "DUE_OVERDUE_BOT",
+            "OneDesignSync",
+            "conveyor",
+            "standby"
+          ]
         }
       ],
       "progress": {
         "done": 1,
-        "total": 2
+        "total": 3
       }
     },
     {
@@ -4368,14 +4525,14 @@
       "startDate": null,
       "dueDate": "2026-07-15",
       "created": "2026-06-30T14:15:27.993+0900",
-      "updated": "2026-07-03T01:42:52.115+0900",
+      "updated": "2026-07-20T10:45:14.945+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-01T15:34:14.619+0900",
       "linkedTickets": [
         {
           "key": "FT-164",
           "summary": "[PDP] 타임세일 카운트다운 가격옆에 추가 및 개선 ",
-          "status": "개발중",
+          "status": "개발완료",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
@@ -4386,11 +4543,30 @@
             "one",
             "standby"
           ]
+        },
+        {
+          "key": "MEC-45",
+          "summary": "[인수인계 및 배포][FE][PDP] 타임세일 카운트다운 가격 옆 노출",
+          "status": "In Progress",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward",
+          "labels": [
+            "AI-ASSISTED",
+            "FE",
+            "discovery-frontend-pel",
+            "pdp",
+            "pel",
+            "pel-fast-track-handover",
+            "snorlax-mirror",
+            "sp_by_bize_ai_v1"
+          ]
         }
       ],
       "progress": {
         "done": 0,
-        "total": 1
+        "total": 2
       }
     },
     {
@@ -4426,7 +4602,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-30T11:22:45.029+0900",
-      "updated": "2026-07-13T14:05:25.151+0900",
+      "updated": "2026-07-20T13:27:48.021+0900",
       "resolutionDate": "2026-07-13T14:05:24.229+0900",
       "lastStatusChangedAt": "2026-07-13T14:05:24.299+0900",
       "linkedTickets": [
@@ -4468,8 +4644,8 @@
         {
           "key": "APPDEV-26769",
           "summary": "[인수인계&배포] ETR-5362 app-store-ios - 랭킹 상단 배너 컴팩트 규격 FF 적용",
-          "status": "검토 중",
-          "statusCategory": "indeterminate",
+          "status": "완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -4477,7 +4653,8 @@
             "AI-ASSISTED",
             "emd_by_bize_ai_v1",
             "sp_by_bize_ai_v1"
-          ]
+          ],
+          "resolutionDate": "2026-07-20T14:01:01.665+0900"
         },
         {
           "key": "FE-26125",
@@ -4497,7 +4674,7 @@
         }
       ],
       "progress": {
-        "done": 2,
+        "done": 3,
         "total": 4
       }
     },
@@ -8966,7 +9143,7 @@
       "summary": "[유즈드] 판매관리 버튼을 판매 신청하기 옆으로 이동",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-백로그",
+      "status": "완료",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -8994,9 +9171,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-08T14:59:22.650+0900",
-      "updated": "2026-06-11T12:58:21.554+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-11T12:57:42.552+0900",
+      "updated": "2026-07-20T20:50:07.584+0900",
+      "resolutionDate": "2026-07-20T20:50:07.544+0900",
+      "lastStatusChangedAt": "2026-07-20T20:50:07.584+0900",
       "linkedTickets": [
         {
           "key": "TM-3327",
@@ -9723,7 +9900,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-04T13:20:45.964+0900",
-      "updated": "2026-07-13T16:14:53.086+0900",
+      "updated": "2026-07-20T18:27:20.441+0900",
       "resolutionDate": "2026-07-10T11:48:10.302+0900",
       "lastStatusChangedAt": "2026-07-10T11:48:10.353+0900",
       "linkedTickets": [
@@ -13129,7 +13306,7 @@
         {
           "key": "TM-3638",
           "summary": "[조건부혜택] Phase 0-1. 퀵주문 서비스 확장 (상품군 확대·합배송·클레임 정책)",
-          "status": "디자인중",
+          "status": "기획중",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
@@ -15327,8 +15504,8 @@
         {
           "key": "TM-2995",
           "summary": "[후기] 후기 부스팅 프로모션 (파트너 셀프 서비스)",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "기획중",
+          "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -16438,8 +16615,8 @@
         {
           "key": "TM-2995",
           "summary": "[후기] 후기 부스팅 프로모션 (파트너 셀프 서비스)",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "기획중",
+          "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
           "direction": "outward",
@@ -17096,7 +17273,7 @@
       "summary": "퀵픽스 배너광고 영역에 기획전 날짜·슬로건 추가 노출 요청",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-우선착수",
+      "status": "반려",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -17126,9 +17303,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-04-22T17:11:35.250+0900",
-      "updated": "2026-07-03T11:51:58.095+0900",
+      "updated": "2026-07-20T13:56:03.186+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-04-28T17:44:04.384+0900",
+      "lastStatusChangedAt": "2026-07-20T13:49:06.218+0900",
       "linkedTickets": [
         {
           "key": "FT-69",
@@ -17158,8 +17335,8 @@
         {
           "key": "FT-312",
           "summary": "퀵픽스 배너광고 영역에 기획전 날짜·슬로건 추가 노출 요청",
-          "status": "디자인중",
-          "statusCategory": "indeterminate",
+          "status": "Dropped",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -17176,7 +17353,7 @@
         }
       ],
       "progress": {
-        "done": 1,
+        "done": 2,
         "total": 2
       }
     },
@@ -17894,8 +18071,8 @@
         {
           "key": "FT-331",
           "summary": "[장바구니] 결제 즉시할인 혜택 넛지 추가",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "디자인완료",
+          "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -18060,39 +18237,41 @@
       "startDate": "2026-04-07",
       "dueDate": "2026-07-20",
       "created": "2026-04-07T20:07:09.848+0900",
-      "updated": "2026-07-16T17:11:24.669+0900",
+      "updated": "2026-07-20T18:47:13.419+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-04-16T08:32:24.511+0900",
       "linkedTickets": [
         {
           "key": "SNDPRD-3779",
           "summary": "[PLP] 무배당발 인덱스 페이지 내 교환, 환불 유의사항 문구 추가 ",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
           "labels": [
             "홈앤디"
-          ]
+          ],
+          "resolutionDate": "2026-07-20T10:06:59.472+0900"
         },
         {
           "key": "SNDPRD-3910",
           "summary": "[KTLO][PDP] 무배당발- 빠른 교환·환불 서비스 제한 가능성 유의사항 문구 추가",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Blocks",
           "direction": "outward",
           "labels": [
             "PDP"
-          ]
+          ],
+          "resolutionDate": "2026-07-20T13:53:49.187+0900"
         },
         {
           "key": "FT-340",
           "summary": "[무배당발] 빠른 교환·환불 서비스 제한 가능성 유의사항 문구 추가",
-          "status": "개발중",
-          "statusCategory": "indeterminate",
+          "status": "론치완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward",
@@ -18103,7 +18282,8 @@
             "one",
             "standby",
             "운영본부"
-          ]
+          ],
+          "resolutionDate": "2026-07-20T16:00:31.999+0900"
         },
         {
           "key": "MDC-78",
@@ -18136,7 +18316,7 @@
         }
       ],
       "progress": {
-        "done": 2,
+        "done": 5,
         "total": 5
       }
     },
