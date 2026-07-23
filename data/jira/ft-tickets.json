@@ -1,7 +1,134 @@
 {
-  "lastSync": "2026-07-22T07:00:08+09:00",
-  "count": 635,
+  "lastSync": "2026-07-24T07:00:31+09:00",
+  "count": 637,
   "items": [
+    {
+      "key": "FT-362",
+      "url": "https://jira.team.musinsa.com/browse/FT-362",
+      "summary": "[카테고리메뉴]오프라인탭 API 변경",
+      "issueType": "Initiative",
+      "project": "FT",
+      "status": "SUGGESTED",
+      "statusCategory": "new",
+      "priority": "P2",
+      "assignee": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "conveyor",
+        "conveyor-bot",
+        "fast-track-away",
+        "one",
+        "홈앤디"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": "2026-Q3",
+      "yearQuarters": [
+        "2026-Q3"
+      ],
+      "subGroup": null,
+      "startDate": "2026-07-16",
+      "dueDate": "2026-07-30",
+      "created": "2026-07-23T16:33:25.059+0900",
+      "updated": "2026-07-23T16:33:37.234+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null
+    },
+    {
+      "key": "FT-361",
+      "url": "https://jira.team.musinsa.com/browse/FT-361",
+      "summary": "[design-driven][공통] Menu 컴포넌트 내 블루닷/NEW 뱃지 노출",
+      "issueType": "Initiative",
+      "project": "FT",
+      "status": "개발중",
+      "statusCategory": "indeterminate",
+      "priority": "P2",
+      "assignee": {
+        "name": "김애란",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "conveyor",
+        "conveyor-bot",
+        "fast-track-away",
+        "one",
+        "standby",
+        "ux-ft"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": "2026-Q3",
+      "yearQuarters": [
+        "2026-Q3"
+      ],
+      "subGroup": null,
+      "startDate": "2026-07-16",
+      "dueDate": "2026-07-29",
+      "created": "2026-07-22T10:46:08.011+0900",
+      "updated": "2026-07-23T17:17:48.281+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-07-23T11:49:46.644+0900"
+    },
+    {
+      "key": "FT-360",
+      "url": "https://jira.team.musinsa.com/browse/FT-360",
+      "summary": "[검색 랭킹] 검색어 랭킹 탭 분리 — 전체 / 급상승 탭 추가",
+      "issueType": "Initiative",
+      "project": "FT",
+      "status": "Waiting For Review",
+      "statusCategory": "indeterminate",
+      "priority": "P0",
+      "assignee": {
+        "name": "방소윤",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "방소윤",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "conveyor-bot",
+        "fast-track-away",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": "2026-Q3",
+      "yearQuarters": [
+        "2026-Q3"
+      ],
+      "subGroup": null,
+      "startDate": "2026-07-22",
+      "dueDate": "2026-07-24",
+      "created": "2026-07-22T10:25:17.667+0900",
+      "updated": "2026-07-23T19:01:19.073+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-07-23T16:35:44.110+0900"
+    },
     {
       "key": "FT-359",
       "url": "https://jira.team.musinsa.com/browse/FT-359",
@@ -92,11 +219,11 @@
       "summary": "무배당발 지면 / 배너 어드민 연동",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "디자인완료",
+      "status": "개발중",
       "statusCategory": "indeterminate",
       "priority": "P2",
       "assignee": {
-        "name": "허유선",
+        "name": "하수종",
         "email": null,
         "accountId": null
       },
@@ -125,9 +252,9 @@
       "startDate": "2026-07-14",
       "dueDate": "2026-07-27",
       "created": "2026-07-20T13:12:38.426+0900",
-      "updated": "2026-07-21T14:01:48.137+0900",
+      "updated": "2026-07-22T12:03:06.459+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-21T13:30:37.871+0900"
+      "lastStatusChangedAt": "2026-07-22T09:47:00.855+0900"
     },
     {
       "key": "FT-356",
@@ -249,8 +376,8 @@
       "summary": "[무신사] 특정 UI 요소 탭 시 스크롤 위치 고정",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "개발중",
-      "statusCategory": "indeterminate",
+      "status": "론치완료",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "김애란",
@@ -280,11 +407,11 @@
       ],
       "subGroup": null,
       "startDate": "2026-07-14",
-      "dueDate": "2026-07-22",
+      "dueDate": "2026-07-23",
       "created": "2026-07-15T09:04:19.539+0900",
-      "updated": "2026-07-20T12:02:34.997+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-16T17:19:21.797+0900"
+      "updated": "2026-07-23T16:52:05.838+0900",
+      "resolutionDate": "2026-07-23T16:52:05.826+0900",
+      "lastStatusChangedAt": "2026-07-23T16:52:05.838+0900"
     },
     {
       "key": "FT-352",
@@ -638,54 +765,12 @@
       "lastStatusChangedAt": "2026-07-13T17:15:03.409+0900"
     },
     {
-      "key": "FT-342",
-      "url": "https://jira.team.musinsa.com/browse/FT-342",
-      "summary": "[랭킹판] 브랜드 랭킹 — 상단 칩 아래 영역에 쿠폰/단독 필터 추가",
-      "issueType": "Initiative",
-      "project": "FT",
-      "status": "디자인완료",
-      "statusCategory": "indeterminate",
-      "priority": "P2",
-      "assignee": {
-        "name": "김혜림",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "방소윤",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [
-        "auto-etr-triaged",
-        "conveyor",
-        "conveyor-bot",
-        "fast-track-away",
-        "one"
-      ],
-      "mainSubject": null,
-      "mainSubjects": [],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": "2026-Q3",
-      "yearQuarters": [
-        "2026-Q3"
-      ],
-      "subGroup": null,
-      "startDate": "2026-07-08",
-      "dueDate": "2026-07-24",
-      "created": "2026-07-13T15:33:34.399+0900",
-      "updated": "2026-07-20T01:10:31.332+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-15T13:22:44.451+0900"
-    },
-    {
       "key": "FT-341",
       "url": "https://jira.team.musinsa.com/browse/FT-341",
       "summary": "쿠폰라벨 미노출 대상 적용",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "개발중",
+      "status": "개발완료",
       "statusCategory": "indeterminate",
       "priority": "P2",
       "assignee": {
@@ -714,11 +799,11 @@
       ],
       "subGroup": null,
       "startDate": "2026-07-09",
-      "dueDate": "2026-07-22",
+      "dueDate": "2026-07-23",
       "created": "2026-07-13T15:09:07.181+0900",
-      "updated": "2026-07-21T18:50:49.332+0900",
+      "updated": "2026-07-23T22:57:40.217+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-13T21:50:24.783+0900"
+      "lastStatusChangedAt": "2026-07-22T09:36:30.908+0900"
     },
     {
       "key": "FT-340",
@@ -886,7 +971,7 @@
       "startDate": "2026-07-10",
       "dueDate": "2026-07-16",
       "created": "2026-07-10T13:16:56.739+0900",
-      "updated": "2026-07-20T15:36:24.774+0900",
+      "updated": "2026-07-24T06:02:03.899+0900",
       "resolutionDate": "2026-07-16T15:16:33.693+0900",
       "lastStatusChangedAt": "2026-07-16T15:16:33.742+0900"
     },
@@ -938,11 +1023,11 @@
       "summary": "[판영역] 탭 높이 조절",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "디자인완료",
+      "status": "개발중",
       "statusCategory": "indeterminate",
       "priority": "P2",
       "assignee": {
-        "name": "김혜림",
+        "name": "심규환",
         "email": null,
         "accountId": null
       },
@@ -957,7 +1042,8 @@
         "conveyor-bot",
         "fast-track-away",
         "fasttrack",
-        "one"
+        "one",
+        "standby"
       ],
       "mainSubject": null,
       "mainSubjects": [],
@@ -969,11 +1055,11 @@
       ],
       "subGroup": null,
       "startDate": "2026-07-08",
-      "dueDate": "2026-07-24",
+      "dueDate": "2026-08-05",
       "created": "2026-07-09T15:17:52.356+0900",
-      "updated": "2026-07-21T14:26:37.713+0900",
+      "updated": "2026-07-23T15:03:25.154+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-15T10:25:00.806+0900"
+      "lastStatusChangedAt": "2026-07-23T10:05:19.990+0900"
     },
     {
       "key": "FT-335",
@@ -1023,11 +1109,11 @@
       "summary": "추천판 캠페인 모듈 개선",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "개발중",
+      "status": "개발완료",
       "statusCategory": "indeterminate",
       "priority": "P2",
       "assignee": {
-        "name": "김애란",
+        "name": "배정화",
         "email": null,
         "accountId": null
       },
@@ -1059,9 +1145,9 @@
       "startDate": "2026-07-08",
       "dueDate": "2026-07-22",
       "created": "2026-07-09T11:32:14.085+0900",
-      "updated": "2026-07-21T16:02:06.549+0900",
+      "updated": "2026-07-24T06:02:02.098+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": null
+      "lastStatusChangedAt": "2026-07-23T22:25:05.123+0900"
     },
     {
       "key": "FT-333",
@@ -1300,7 +1386,7 @@
       "startDate": "2026-07-15",
       "dueDate": "2026-07-28",
       "created": "2026-07-07T15:00:04.200+0900",
-      "updated": "2026-07-20T11:44:54.320+0900",
+      "updated": "2026-07-22T10:02:31.155+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-14T14:55:34.819+0900"
     },
@@ -1462,7 +1548,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-07-07T14:55:15.633+0900",
-      "updated": "2026-07-20T10:03:04.411+0900",
+      "updated": "2026-07-22T10:02:35.467+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-20T09:52:15.345+0900"
     },
@@ -1502,7 +1588,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-07-07T14:54:15.344+0900",
-      "updated": "2026-07-20T09:26:41.585+0900",
+      "updated": "2026-07-23T17:18:46.479+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-20T09:26:41.585+0900"
     },
@@ -1512,8 +1598,8 @@
       "summary": "[design-driven][공통] 상단 탭/필터 투명도 적용",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "개발중",
-      "statusCategory": "indeterminate",
+      "status": "철회/반려/취소",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "김광섭",
@@ -1531,7 +1617,7 @@
         "one",
         "pel-auto",
         "standby",
-        "ux-ft"
+        "ux-ft-drop"
       ],
       "mainSubject": "06.공통/네비게이션",
       "mainSubjects": [
@@ -1549,9 +1635,9 @@
       "startDate": "2026-07-20",
       "dueDate": "2026-07-29",
       "created": "2026-07-07T14:53:24.460+0900",
-      "updated": "2026-07-21T16:38:12.722+0900",
+      "updated": "2026-07-23T18:14:49.001+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-16T18:50:58.564+0900"
+      "lastStatusChangedAt": "2026-07-23T15:30:49.468+0900"
     },
     {
       "key": "FT-321",
@@ -1678,7 +1764,7 @@
       "startDate": "2026-07-06",
       "dueDate": "2026-07-31",
       "created": "2026-07-06T18:07:21.544+0900",
-      "updated": "2026-07-20T15:03:17.274+0900",
+      "updated": "2026-07-24T06:02:03.229+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-20T15:03:17.274+0900"
     },
@@ -1813,11 +1899,11 @@
       "summary": "[추천판] 라이브 특가 모듈 개선 — 날짜/시간 표시, 쿠폰 아이콘화, 브랜드/프로모션 정보 구분",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "디자인완료",
+      "status": "개발중",
       "statusCategory": "indeterminate",
       "priority": "P2",
       "assignee": {
-        "name": "박주현",
+        "name": "박경민",
         "email": null,
         "accountId": null
       },
@@ -1852,9 +1938,9 @@
       "startDate": "2026-07-06",
       "dueDate": "2026-07-29",
       "created": "2026-07-06T17:00:43.941+0900",
-      "updated": "2026-07-21T14:18:26.162+0900",
+      "updated": "2026-07-24T06:02:03.459+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-16T17:28:19.967+0900"
+      "lastStatusChangedAt": "2026-07-23T14:00:26.494+0900"
     },
     {
       "key": "PEL-1870",
@@ -2202,7 +2288,7 @@
       "statusCategory": "indeterminate",
       "priority": "P2",
       "assignee": {
-        "name": "박경민",
+        "name": "문호은",
         "email": null,
         "accountId": null
       },
@@ -2228,9 +2314,9 @@
       ],
       "subGroup": null,
       "startDate": "2026-06-30",
-      "dueDate": "2026-07-20",
+      "dueDate": "2026-07-24",
       "created": "2026-07-01T15:33:15.208+0900",
-      "updated": "2026-07-20T11:44:52.914+0900",
+      "updated": "2026-07-23T16:54:05.122+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-08T17:37:28.827+0900"
     },
@@ -2311,7 +2397,7 @@
       "startDate": "2026-07-01",
       "dueDate": "2026-12-31",
       "created": "2026-07-01T14:04:24.655+0900",
-      "updated": "2026-07-22T05:33:54.335+0900",
+      "updated": "2026-07-23T18:39:12.876+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -3156,7 +3242,7 @@
       "startDate": "2026-07-10",
       "dueDate": "2026-07-29",
       "created": "2026-06-23T18:35:54.073+0900",
-      "updated": "2026-07-21T14:01:46.833+0900",
+      "updated": "2026-07-22T10:02:32.053+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-06T17:21:03.656+0900"
     },
@@ -4429,7 +4515,7 @@
       "startDate": "0026-07-06",
       "dueDate": "2026-07-31",
       "created": "2026-06-19T00:56:21.001+0900",
-      "updated": "2026-07-20T11:44:50.625+0900",
+      "updated": "2026-07-23T14:11:05.947+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-13T14:17:30.588+0900"
     },
@@ -4514,7 +4600,7 @@
       "startDate": "2026-07-14",
       "dueDate": "2026-07-31",
       "created": "2026-06-19T00:56:18.229+0900",
-      "updated": "2026-07-21T12:45:32.637+0900",
+      "updated": "2026-07-23T15:08:57.506+0900",
       "resolutionDate": "2026-07-21T12:45:32.622+0900",
       "lastStatusChangedAt": "2026-07-21T12:45:32.637+0900"
     },
@@ -4651,7 +4737,7 @@
       "project": "FT",
       "status": "Backlog",
       "statusCategory": "new",
-      "priority": "P2",
+      "priority": "P1",
       "assignee": {
         "name": "이유정",
         "email": null,
@@ -4683,7 +4769,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-19T00:56:13.461+0900",
-      "updated": "2026-07-21T15:30:44.150+0900",
+      "updated": "2026-07-23T18:40:40.209+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-07T17:10:48.963+0900"
     },
@@ -5024,7 +5110,7 @@
       "startDate": "2026-06-01",
       "dueDate": "2026-06-29",
       "created": "2026-06-19T00:56:07.202+0900",
-      "updated": "2026-07-14T10:50:07.216+0900",
+      "updated": "2026-07-23T14:22:09.954+0900",
       "resolutionDate": "2026-06-29T15:49:42.053+0900",
       "lastStatusChangedAt": "2026-06-29T15:49:42.084+0900"
     },
@@ -5718,7 +5804,7 @@
       "summary": "장바구니 내 탭 추가",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "개발완료",
+      "status": "배포완료",
       "statusCategory": "indeterminate",
       "priority": "P2",
       "assignee": {
@@ -5743,15 +5829,17 @@
       ],
       "subSubject": null,
       "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q3",
+      "yearQuarters": [
+        "2026-Q3"
+      ],
       "subGroup": "MSS-P Commerce Core",
       "startDate": "2026-06-30",
-      "dueDate": "2026-07-22",
+      "dueDate": "2026-07-29",
       "created": "2026-06-19T00:55:46.859+0900",
-      "updated": "2026-07-21T20:13:39.036+0900",
+      "updated": "2026-07-23T09:35:01.638+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-15T11:16:45.194+0900"
+      "lastStatusChangedAt": "2026-07-22T20:04:50.664+0900"
     },
     {
       "key": "FT-127",
@@ -6525,7 +6613,7 @@
       "summary": "[design-driven][공통] 카드형 UI 사이 간격 개선",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "개발중",
+      "status": "배포완료",
       "statusCategory": "indeterminate",
       "priority": "P2",
       "assignee": {
@@ -6559,9 +6647,9 @@
       "startDate": "2026-06-26",
       "dueDate": "2026-07-31",
       "created": "2026-06-19T00:55:24.221+0900",
-      "updated": "2026-07-21T10:01:46.476+0900",
+      "updated": "2026-07-23T13:41:11.168+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-16T09:02:11.875+0900"
+      "lastStatusChangedAt": "2026-07-23T13:41:11.168+0900"
     },
     {
       "key": "FT-98",
@@ -7567,7 +7655,7 @@
       "startDate": null,
       "dueDate": "2026-07-24",
       "created": "2026-06-02T14:39:18.721+0900",
-      "updated": "2026-07-21T17:02:38.415+0900",
+      "updated": "2026-07-23T19:05:25.677+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-20T17:53:26.786+0900"
     },
@@ -8025,7 +8113,7 @@
       "startDate": null,
       "dueDate": "2026-09-30",
       "created": "2026-05-27T14:46:43.110+0900",
-      "updated": "2026-07-20T10:03:05.482+0900",
+      "updated": "2026-07-22T10:02:19.491+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-20T09:52:08.870+0900"
     },
@@ -11858,7 +11946,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-04-20T09:04:48.612+0900",
-      "updated": "2026-07-21T16:25:57.071+0900",
+      "updated": "2026-07-23T13:17:40.105+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
