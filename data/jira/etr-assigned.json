@@ -1,7 +1,123 @@
 {
-  "lastSync": "2026-07-24T06:59:53+09:00",
-  "count": 87,
+  "lastSync": "2026-07-25T06:59:05+09:00",
+  "count": 88,
   "items": [
+    {
+      "key": "ETR-4606",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4606",
+      "summary": "[퀵윈][랭킹판] 검색창 급상승 키워드 '더보기' 클릭 시 랭킹판/검색어 탭 랜딩 개선",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "완료",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-06-01T09:22:49.891+0900",
+      "updated": "2026-07-24T14:24:52.889+0900",
+      "resolutionDate": "2026-07-24T14:24:32.843+0900",
+      "lastStatusChangedAt": null
+    },
+    {
+      "key": "ETR-5712",
+      "url": "https://jira.team.musinsa.com/browse/ETR-5712",
+      "summary": "[브랜드 랭킹] 콘텐츠 캐러셀 정보 요소 추가",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "Tech 검토 대기 중",
+      "statusCategory": "new",
+      "priority": "P0",
+      "assignee": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "김혜림",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "OneDesignSync",
+        "fasttrack",
+        "ux-ft"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": "2026-Q3",
+      "yearQuarters": [
+        "2026-Q3"
+      ],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": "2026-08-07",
+      "created": "2026-07-21T08:38:15.376+0900",
+      "updated": "2026-07-24T12:09:40.974+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null
+    },
+    {
+      "key": "ETR-3541",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3541",
+      "summary": "[무배당발] 빠른 교환·환불 서비스 제한 가능성 유의사항 문구 추가",
+      "issueType": "기타(KTLO/BAU)",
+      "project": "ETR",
+      "status": "완료",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "백승민",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "conveyor",
+        "one",
+        "운영본부"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": "2026-04-07",
+      "dueDate": "2026-07-20",
+      "created": "2026-04-07T20:07:09.848+0900",
+      "updated": "2026-07-24T10:38:21.100+0900",
+      "resolutionDate": "2026-07-21T14:23:13.956+0900",
+      "lastStatusChangedAt": null
+    },
     {
       "key": "ETR-4605",
       "url": "https://jira.team.musinsa.com/browse/ETR-4605",
@@ -227,44 +343,6 @@
       "lastStatusChangedAt": null
     },
     {
-      "key": "ETR-3541",
-      "url": "https://jira.team.musinsa.com/browse/ETR-3541",
-      "summary": "[무배당발] 빠른 교환·환불 서비스 제한 가능성 유의사항 문구 추가",
-      "issueType": "기타(KTLO/BAU)",
-      "project": "ETR",
-      "status": "완료",
-      "statusCategory": "done",
-      "priority": "P0",
-      "assignee": {
-        "name": "안우진",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "백승민",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [
-        "conveyor",
-        "one",
-        "운영본부"
-      ],
-      "mainSubject": null,
-      "mainSubjects": [],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
-      "subGroup": null,
-      "startDate": "2026-04-07",
-      "dueDate": "2026-07-20",
-      "created": "2026-04-07T20:07:09.848+0900",
-      "updated": "2026-07-21T14:23:14.029+0900",
-      "resolutionDate": "2026-07-21T14:23:13.956+0900",
-      "lastStatusChangedAt": null
-    },
-    {
       "key": "ETR-3815",
       "url": "https://jira.team.musinsa.com/browse/ETR-3815",
       "summary": "퀵픽스 배너광고 영역에 기획전 날짜·슬로건 추가 노출 요청",
@@ -339,44 +417,6 @@
       "dueDate": null,
       "created": "2026-04-27T14:47:08.504+0900",
       "updated": "2026-07-15T13:13:52.054+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": null
-    },
-    {
-      "key": "ETR-4606",
-      "url": "https://jira.team.musinsa.com/browse/ETR-4606",
-      "summary": "[퀵윈][랭킹판] 검색창 급상승 키워드 '더보기' 클릭 시 랭킹판/검색어 탭 랜딩 개선",
-      "issueType": "과제 발의",
-      "project": "ETR",
-      "status": "Tech 검토 중",
-      "statusCategory": "indeterminate",
-      "priority": "P0",
-      "assignee": {
-        "name": "안우진",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "촤비스",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [
-        "auto-etr-triaged",
-        "conveyor",
-        "one"
-      ],
-      "mainSubject": null,
-      "mainSubjects": [],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
-      "subGroup": null,
-      "startDate": null,
-      "dueDate": "2026-07-24",
-      "created": "2026-06-01T09:22:49.891+0900",
-      "updated": "2026-07-14T14:06:22.046+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
