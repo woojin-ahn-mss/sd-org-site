@@ -1,15 +1,15 @@
 {
-  "lastSync": "2026-07-28T07:00:03+09:00",
-  "count": 637,
+  "lastSync": "2026-07-29T06:58:08+09:00",
+  "count": 641,
   "items": [
     {
-      "key": "FT-364",
-      "url": "https://jira.team.musinsa.com/browse/FT-364",
-      "summary": "[design-driven][공통] 바텀 네비게이션 리퀴드 글라스 적용",
+      "key": "FT-368",
+      "url": "https://jira.team.musinsa.com/browse/FT-368",
+      "summary": "[무신사 퀵픽스] 추천판 > 캠페인 섹션 마지막에 누락되지 않게 개선 및 맨 마지막 브랜드숍 전체 상품 캠페인 필터로 더보기 기본 제공",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "디자인완료",
-      "statusCategory": "indeterminate",
+      "status": "SUGGESTED",
+      "statusCategory": "new",
       "priority": "P2",
       "assignee": {
         "name": "안우진",
@@ -18,6 +18,91 @@
       },
       "reporter": {
         "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "conveyor-bot",
+        "fast-track-away",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": "2026-Q3",
+      "yearQuarters": [
+        "2026-Q3"
+      ],
+      "subGroup": null,
+      "startDate": "2026-07-24",
+      "dueDate": "2026-08-04",
+      "created": "2026-07-28T22:03:59.440+0900",
+      "updated": "2026-07-28T22:04:19.805+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null
+    },
+    {
+      "key": "FT-367",
+      "url": "https://jira.team.musinsa.com/browse/FT-367",
+      "summary": "[무신사 퀵픽스] 출첵 버튼 클릭 후 스크롤 위치 이동 불일치 버그",
+      "issueType": "Initiative",
+      "project": "FT",
+      "status": "SUGGESTED",
+      "statusCategory": "new",
+      "priority": "P2",
+      "assignee": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "conveyor-bot",
+        "fast-track-away",
+        "one",
+        "standby"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": "2026-Q3",
+      "yearQuarters": [
+        "2026-Q3"
+      ],
+      "subGroup": null,
+      "startDate": "2026-07-28",
+      "dueDate": "2026-08-04",
+      "created": "2026-07-28T13:42:35.411+0900",
+      "updated": "2026-07-28T15:26:15.780+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null
+    },
+    {
+      "key": "FT-366",
+      "url": "https://jira.team.musinsa.com/browse/FT-366",
+      "summary": "[design-driven][랭킹판] 월간랭킹 New 마크 적용",
+      "issueType": "Initiative",
+      "project": "FT",
+      "status": "디자인완료",
+      "statusCategory": "indeterminate",
+      "priority": "P2",
+      "assignee": {
+        "name": "하수종",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "김혜림",
         "email": null,
         "accountId": null
       },
@@ -36,12 +121,101 @@
         "2026-Q3"
       ],
       "subGroup": null,
+      "startDate": "2026-07-24",
+      "dueDate": "2026-08-04",
+      "created": "2026-07-28T09:03:14.626+0900",
+      "updated": "2026-07-28T21:42:12.212+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-07-28T09:03:18.044+0900"
+    },
+    {
+      "key": "FT-365",
+      "url": "https://jira.team.musinsa.com/browse/FT-365",
+      "summary": "[브랜드숍] 상단 타이틀 축소 및 태그 노출 정리",
+      "issueType": "Initiative",
+      "project": "FT",
+      "status": "개발중",
+      "statusCategory": "indeterminate",
+      "priority": "P2",
+      "assignee": {
+        "name": "김애란",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "OneDesignSync",
+        "conveyor",
+        "conveyor-bot",
+        "fast-track-away",
+        "fasttrack",
+        "one",
+        "pel-auto",
+        "standby",
+        "ux-ft"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": "2026-Q3",
+      "yearQuarters": [
+        "2026-Q3"
+      ],
+      "subGroup": null,
+      "startDate": "2026-07-21",
+      "dueDate": "2026-08-04",
+      "created": "2026-07-28T09:02:40.057+0900",
+      "updated": "2026-07-28T16:04:54.321+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-07-28T10:12:40.104+0900"
+    },
+    {
+      "key": "FT-364",
+      "url": "https://jira.team.musinsa.com/browse/FT-364",
+      "summary": "[design-driven][공통] 바텀 네비게이션 리퀴드 글라스 적용",
+      "issueType": "Initiative",
+      "project": "FT",
+      "status": "디자인완료",
+      "statusCategory": "indeterminate",
+      "priority": "P2",
+      "assignee": {
+        "name": "김광섭",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "서정명",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "conveyor",
+        "conveyor-bot",
+        "fast-track-away",
+        "one",
+        "standby",
+        "ux-ft"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": "2026-Q3",
+      "yearQuarters": [
+        "2026-Q3"
+      ],
+      "subGroup": null,
       "startDate": "2026-07-21",
       "dueDate": "2026-07-31",
       "created": "2026-07-24T13:46:31.775+0900",
-      "updated": "2026-07-24T13:46:49.245+0900",
+      "updated": "2026-07-28T20:06:50.324+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-24T13:46:41.731+0900"
+      "lastStatusChangedAt": "2026-07-28T20:06:50.324+0900"
     },
     {
       "key": "FT-363",
@@ -49,11 +223,11 @@
       "summary": "[SRP] 검색결과 내 솔드아웃 캐러셀 미노출 처리",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "개발완료",
-      "statusCategory": "indeterminate",
+      "status": "론치완료",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
-        "name": "하수종",
+        "name": "한신혜",
         "email": null,
         "accountId": null
       },
@@ -81,9 +255,9 @@
       "startDate": "2026-07-24",
       "dueDate": "2026-08-03",
       "created": "2026-07-24T11:51:10.806+0900",
-      "updated": "2026-07-27T08:30:11.794+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-24T16:30:23.611+0900"
+      "updated": "2026-07-28T12:02:46.267+0900",
+      "resolutionDate": "2026-07-28T12:02:38.963+0900",
+      "lastStatusChangedAt": "2026-07-28T12:02:38.975+0900"
     },
     {
       "key": "FT-362",
@@ -218,11 +392,11 @@
       "summary": "[랭킹판] 오프라인탭 배너 분할 및 뉴스 콘텐츠 링크 추가",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "디자인중",
+      "status": "디자인완료",
       "statusCategory": "indeterminate",
       "priority": "P2",
       "assignee": {
-        "name": "김혜림",
+        "name": "방소윤",
         "email": null,
         "accountId": null
       },
@@ -236,7 +410,8 @@
         "conveyor",
         "conveyor-bot",
         "fast-track-away",
-        "one"
+        "one",
+        "standby"
       ],
       "mainSubject": null,
       "mainSubjects": [],
@@ -248,11 +423,11 @@
       ],
       "subGroup": null,
       "startDate": "2026-07-21",
-      "dueDate": "2026-07-28",
+      "dueDate": null,
       "created": "2026-07-21T16:23:25.437+0900",
-      "updated": "2026-07-27T10:51:13.598+0900",
+      "updated": "2026-07-28T16:42:39.972+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-27T10:50:55.616+0900"
+      "lastStatusChangedAt": "2026-07-28T10:07:14.220+0900"
     },
     {
       "key": "FT-358",
@@ -335,7 +510,7 @@
       "startDate": "2026-07-14",
       "dueDate": "2026-07-31",
       "created": "2026-07-20T13:12:38.426+0900",
-      "updated": "2026-07-27T16:02:18.542+0900",
+      "updated": "2026-07-28T13:00:53.676+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-22T09:47:00.855+0900"
     },
@@ -781,8 +956,8 @@
       "summary": "쿠폰라벨 미노출 대상 적용",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "개발완료",
-      "statusCategory": "indeterminate",
+      "status": "론치완료",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "하수종",
@@ -813,9 +988,9 @@
       "startDate": "2026-07-09",
       "dueDate": "2026-07-28",
       "created": "2026-07-13T15:09:07.181+0900",
-      "updated": "2026-07-24T16:38:00.161+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-22T09:36:30.908+0900"
+      "updated": "2026-07-28T11:33:43.391+0900",
+      "resolutionDate": "2026-07-28T10:48:28.240+0900",
+      "lastStatusChangedAt": "2026-07-28T10:48:28.251+0900"
     },
     {
       "key": "FT-340",
@@ -1069,7 +1244,7 @@
       "startDate": "2026-07-08",
       "dueDate": "2026-08-05",
       "created": "2026-07-09T15:17:52.356+0900",
-      "updated": "2026-07-27T11:32:34.147+0900",
+      "updated": "2026-07-28T15:16:46.228+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-27T11:32:34.147+0900"
     },
@@ -1399,7 +1574,7 @@
       "startDate": "2026-07-15",
       "dueDate": "2026-07-28",
       "created": "2026-07-07T15:00:04.200+0900",
-      "updated": "2026-07-27T13:58:41.730+0900",
+      "updated": "2026-07-28T16:09:18.589+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-14T14:55:34.819+0900"
     },
@@ -1950,7 +2125,7 @@
       "startDate": "2026-07-06",
       "dueDate": "2026-08-05",
       "created": "2026-07-06T17:00:43.941+0900",
-      "updated": "2026-07-27T16:50:28.642+0900",
+      "updated": "2026-07-28T17:17:17.995+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-23T14:00:26.494+0900"
     },
@@ -2414,7 +2589,7 @@
       "startDate": "2026-07-01",
       "dueDate": "2026-12-31",
       "created": "2026-07-01T14:04:24.655+0900",
-      "updated": "2026-07-27T16:52:57.192+0900",
+      "updated": "2026-07-28T19:55:17.542+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -3170,7 +3345,7 @@
       "startDate": "2026-06-24",
       "dueDate": null,
       "created": "2026-06-24T11:06:23.207+0900",
-      "updated": "2026-07-09T12:17:39.226+0900",
+      "updated": "2026-07-28T09:42:23.382+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-09T12:17:39.226+0900"
     },
@@ -3239,6 +3414,7 @@
         "conveyor",
         "fasttrack",
         "one",
+        "pel-auto",
         "standby",
         "ux-ft"
       ],
@@ -3258,7 +3434,7 @@
       "startDate": "2026-07-10",
       "dueDate": "2026-07-31",
       "created": "2026-06-23T18:35:54.073+0900",
-      "updated": "2026-07-27T13:58:43.106+0900",
+      "updated": "2026-07-28T18:40:13.750+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-06T17:21:03.656+0900"
     },
@@ -4531,7 +4707,7 @@
       "startDate": "0026-07-06",
       "dueDate": "2026-07-30",
       "created": "2026-06-19T00:56:21.001+0900",
-      "updated": "2026-07-27T13:58:45.335+0900",
+      "updated": "2026-07-28T17:16:50.684+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-13T14:17:30.588+0900"
     },
@@ -5922,7 +6098,7 @@
         "fasttrack",
         "one",
         "standby",
-        "ux-ft-close"
+        "ux-ft-drop"
       ],
       "mainSubject": "06.공통/네비게이션",
       "mainSubjects": [
@@ -5938,7 +6114,7 @@
       "startDate": "0026-07-02",
       "dueDate": "2026-07-31",
       "created": "2026-06-19T00:55:43.717+0900",
-      "updated": "2026-07-16T11:52:11.791+0900",
+      "updated": "2026-07-28T17:16:50.006+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-08T16:07:18.064+0900"
     },
@@ -6245,7 +6421,7 @@
       "startDate": null,
       "dueDate": "2026-09-30",
       "created": "2026-06-19T00:55:35.278+0900",
-      "updated": "2026-07-02T10:09:40.718+0900",
+      "updated": "2026-07-28T13:54:24.820+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-02T10:09:33.948+0900"
     },
@@ -7388,7 +7564,7 @@
         "conveyor",
         "fasttrack",
         "one",
-        "ux-ft-close"
+        "ux-ft-drop"
       ],
       "mainSubject": "06.공통/네비게이션",
       "mainSubjects": [
@@ -7406,7 +7582,7 @@
       "startDate": "2026-06-09",
       "dueDate": "2026-06-22",
       "created": "2026-06-08T10:46:35.821+0900",
-      "updated": "2026-07-20T13:28:40.202+0900",
+      "updated": "2026-07-28T17:17:03.719+0900",
       "resolutionDate": "2026-06-24T10:39:49.728+0900",
       "lastStatusChangedAt": "2026-07-20T13:27:03.961+0900"
     },
@@ -7670,7 +7846,7 @@
       "startDate": null,
       "dueDate": "2026-07-29",
       "created": "2026-06-02T14:39:18.721+0900",
-      "updated": "2026-07-27T10:04:04.666+0900",
+      "updated": "2026-07-28T16:34:08.308+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-27T10:03:21.487+0900"
     },
@@ -12380,7 +12556,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-04-14T13:38:04.607+0900",
-      "updated": "2026-07-21T14:01:48.385+0900",
+      "updated": "2026-07-28T18:40:15.544+0900",
       "resolutionDate": "2026-07-09T14:11:22.971+0900",
       "lastStatusChangedAt": null
     },
