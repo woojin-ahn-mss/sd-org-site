@@ -1,7 +1,191 @@
 {
-  "lastSync": "2026-08-04T07:01:21+09:00",
-  "count": 357,
+  "lastSync": "2026-08-05T07:06:27+09:00",
+  "count": 361,
   "items": [
+    {
+      "key": "ETR-6115",
+      "url": "https://jira.team.musinsa.com/browse/ETR-6115",
+      "summary": "PDP 내 유즈드 상품 추천 영역 추가 (새상품 섹션 내)",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "매니저 승인 대기",
+      "statusCategory": "indeterminate",
+      "priority": "P0",
+      "assignee": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "design-driven",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-08-04T18:31:01.122+0900",
+      "updated": "2026-08-04T18:32:01.075+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-08-04T18:31:05.159+0900",
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-6114",
+      "url": "https://jira.team.musinsa.com/browse/ETR-6114",
+      "summary": "오프라인 혜택 쿠폰 화면 CMS 기반 모듈화 및 QR 스캔 지원",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "매니저 승인 대기",
+      "statusCategory": "indeterminate",
+      "priority": "P0",
+      "assignee": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "design-driven",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-08-04T18:30:05.271+0900",
+      "updated": "2026-08-04T18:32:01.170+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-08-04T18:30:09.638+0900",
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-6109",
+      "url": "https://jira.team.musinsa.com/browse/ETR-6109",
+      "summary": "[타임세일] 전체 품절 시 다음 타임세일 상품 공개 일정 안내 추가",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "매니저 승인 대기",
+      "statusCategory": "indeterminate",
+      "priority": "P0",
+      "assignee": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-08-04T17:21:32.965+0900",
+      "updated": "2026-08-04T17:21:53.163+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-08-04T17:21:41.386+0900",
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-6106",
+      "url": "https://jira.team.musinsa.com/browse/ETR-6106",
+      "summary": "[design-driven][장바구니] 결제 즉시할인 혜택 넛지 추가",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-우선착수",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "김경윤",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "김경윤",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "conveyor",
+        "design-driven",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-08-04T15:38:12.470+0900",
+      "updated": "2026-08-04T15:39:20.980+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-08-04T15:38:40.205+0900",
+      "linkedTickets": [
+        {
+          "key": "FT-331",
+          "summary": "[장바구니] 결제 즉시할인 혜택 넛지 추가",
+          "status": "디자인완료",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "outward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
     {
       "key": "ETR-6070",
       "url": "https://jira.team.musinsa.com/browse/ETR-6070",
@@ -79,15 +263,15 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-08-03T15:56:49.320+0900",
-      "updated": "2026-08-03T17:07:22.495+0900",
+      "updated": "2026-08-04T10:13:47.068+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-08-03T16:59:32.214+0900",
       "linkedTickets": [
         {
           "key": "FT-373",
           "summary": "[PDP] 태그상품 모아보기 구좌 - 통이미지 태깅 데이터 추가",
-          "status": "디자인완료",
-          "statusCategory": "indeterminate",
+          "status": "Dropped",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward"
@@ -100,11 +284,20 @@
           "assignee": null,
           "linkType": "Relates",
           "direction": "outward"
+        },
+        {
+          "key": "FT-374",
+          "summary": "[FastTrack] PDP 태그상품 모아보기 구좌 - 통이미지 태깅 데이터 추가",
+          "status": "개발중",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
         }
       ],
       "progress": {
-        "done": 0,
-        "total": 2
+        "done": 1,
+        "total": 3
       }
     },
     {
@@ -142,13 +335,22 @@
       "startDate": "2026-08-03",
       "dueDate": null,
       "created": "2026-08-03T14:52:29.984+0900",
-      "updated": "2026-08-03T17:21:17.273+0900",
+      "updated": "2026-08-04T13:43:42.616+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-08-03T15:26:12.598+0900",
       "linkedTickets": [
         {
           "key": "FT-372",
           "summary": "[필터] 냉감 등 상품 속성 시즌 필터 노출",
+          "status": "Dropped",
+          "statusCategory": "done",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        },
+        {
+          "key": "FT-375",
+          "summary": "특정시점에 (예: 지금처럼 무더운 여름) 상품의 속성을 필터로 노출할 수 있는 방안 모색 후 리더십에게 공유 ",
           "status": "SUGGESTED",
           "statusCategory": "new",
           "assignee": null,
@@ -157,8 +359,8 @@
         }
       ],
       "progress": {
-        "done": 0,
-        "total": 1
+        "done": 1,
+        "total": 2
       }
     },
     {
@@ -291,7 +493,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-07-30T10:37:21.840+0900",
-      "updated": "2026-08-03T10:38:52.145+0900",
+      "updated": "2026-08-04T13:49:59.527+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-08-03T10:38:12.056+0900",
       "linkedTickets": [
@@ -303,11 +505,20 @@
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward"
+        },
+        {
+          "key": "TM-3339",
+          "summary": "결제수단 화면 개선 + 혜택 안내 명확화",
+          "status": "디자인중",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Problem/Incident",
+          "direction": "inward"
         }
       ],
       "progress": {
         "done": 0,
-        "total": 1
+        "total": 2
       }
     },
     {
@@ -446,7 +657,7 @@
         {
           "key": "FT-370",
           "summary": "[design-driven][공통] 전문관 홈 작동 방식 ",
-          "status": "디자인완료",
+          "status": "개발중",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
@@ -815,7 +1026,7 @@
       "summary": "[무신사 퀵픽스] 출첵 버튼 클릭 후 스크롤 위치 이동 불일치 버그",
       "issueType": "기타(KTLO/BAU)",
       "project": "ETR",
-      "status": "검토완료-우선착수",
+      "status": "완료",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -843,9 +1054,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-07-28T13:30:33.083+0900",
-      "updated": "2026-07-28T13:43:23.090+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-28T13:42:43.319+0900",
+      "updated": "2026-08-04T14:01:49.064+0900",
+      "resolutionDate": "2026-08-04T14:01:49.033+0900",
+      "lastStatusChangedAt": "2026-08-04T14:01:49.064+0900",
       "linkedTickets": [
         {
           "key": "FT-367",
@@ -1635,7 +1846,7 @@
         {
           "key": "FT-368",
           "summary": "[무신사 퀵픽스] 추천판 > 캠페인 섹션 마지막에 누락되지 않게 개선 및 맨 마지막 브랜드숍 전체 상품 캠페인 필터로 더보기 기본 제공",
-          "status": "개발중",
+          "status": "QA중",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
@@ -2031,15 +2242,15 @@
         {
           "key": "FTD-40",
           "summary": "[PDP] 사이즈 영역 밀도감 개선",
-          "status": "In Progress",
-          "statusCategory": "indeterminate",
+          "status": "완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward"
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 1
       }
     },
@@ -3024,7 +3235,7 @@
       "startDate": null,
       "dueDate": "2026-08-04",
       "created": "2026-07-21T10:14:52.333+0900",
-      "updated": "2026-07-24T16:33:29.216+0900",
+      "updated": "2026-08-04T14:13:26.443+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-21T16:17:36.951+0900",
       "linkedTickets": [
@@ -3045,11 +3256,20 @@
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward"
+        },
+        {
+          "key": "MEC-211",
+          "summary": "[인수인계 및 배포][FT-358] 유즈드 PDP 'AI 비슷한 상품' 추천 전시 (FF)",
+          "status": "In Progress",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
         }
       ],
       "progress": {
         "done": 0,
-        "total": 2
+        "total": 3
       }
     },
     {
@@ -3102,8 +3322,8 @@
         {
           "key": "MDC-866",
           "summary": "[인수인계 및 배포][인수인계] FT-359 랭킹판 오프라인탭 배너 분할 및 뉴스 콘텐츠 링크 추가",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "In Progress",
+          "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward"
@@ -4513,7 +4733,7 @@
         {
           "key": "FT-328",
           "summary": "[design-driven][카테고리메뉴] 서비스탭_ 전문관 파비콘추가",
-          "status": "개발중",
+          "status": "QA중",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
@@ -6813,7 +7033,7 @@
       "summary": "[design-driven][필터] 탑필터 안내 문구 표기",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-우선착수",
+      "status": "완료",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -6841,15 +7061,15 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-30T14:18:29.154+0900",
-      "updated": "2026-08-03T13:28:40.992+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-01T15:33:51.508+0900",
+      "updated": "2026-08-04T14:03:49.711+0900",
+      "resolutionDate": "2026-08-04T14:01:46.830+0900",
+      "lastStatusChangedAt": "2026-08-04T14:01:46.863+0900",
       "linkedTickets": [
         {
           "key": "FT-167",
           "summary": "[design-driven][필터] 탑필터 안내 문구 표기",
-          "status": "배포완료",
-          "statusCategory": "indeterminate",
+          "status": "론치완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "outward"
@@ -6928,7 +7148,7 @@
         }
       ],
       "progress": {
-        "done": 5,
+        "done": 6,
         "total": 9
       }
     },
@@ -12088,7 +12308,7 @@
       "summary": "[무신사] 퀵픽스 필터 조건 매칭 상품에 몰로코 광고 삽입 (1·13·25·37번째 위치)",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-백로그",
+      "status": "완료",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -12116,9 +12336,9 @@
       "startDate": null,
       "dueDate": "2026-06-18",
       "created": "2026-06-03T21:14:03.700+0900",
-      "updated": "2026-06-09T10:11:02.849+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-04T17:49:13.957+0900",
+      "updated": "2026-08-04T11:37:44.280+0900",
+      "resolutionDate": "2026-08-04T11:37:44.217+0900",
+      "lastStatusChangedAt": "2026-08-04T11:37:44.280+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,

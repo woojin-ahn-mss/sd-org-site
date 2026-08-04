@@ -1,15 +1,98 @@
 {
-  "lastSync": "2026-08-04T07:02:09+09:00",
-  "count": 646,
+  "lastSync": "2026-08-05T07:07:28+09:00",
+  "count": 645,
   "items": [
+    {
+      "key": "FT-375",
+      "url": "https://jira.team.musinsa.com/browse/FT-375",
+      "summary": "특정시점에 (예: 지금처럼 무더운 여름) 상품의 속성을 필터로 노출할 수 있는 방안 모색 후 리더십에게 공유 ",
+      "issueType": "Initiative",
+      "project": "FT",
+      "status": "SUGGESTED",
+      "statusCategory": "new",
+      "priority": "P2",
+      "assignee": {
+        "name": "진혜란",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "conveyor",
+        "conveyor-bot",
+        "fast-track-away",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": "2026-Q3",
+      "yearQuarters": [
+        "2026-Q3"
+      ],
+      "subGroup": null,
+      "startDate": "2026-08-03",
+      "dueDate": "2026-08-11",
+      "created": "2026-08-04T13:43:39.088+0900",
+      "updated": "2026-08-04T13:50:30.939+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null
+    },
+    {
+      "key": "FT-374",
+      "url": "https://jira.team.musinsa.com/browse/FT-374",
+      "summary": "[FastTrack] PDP 태그상품 모아보기 구좌 - 통이미지 태깅 데이터 추가",
+      "issueType": "Initiative",
+      "project": "FT",
+      "status": "개발중",
+      "statusCategory": "indeterminate",
+      "priority": "P2",
+      "assignee": {
+        "name": "하수종",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "conveyor",
+        "conveyor-bot",
+        "fast-track-away",
+        "one",
+        "standby"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": "2026-Q3",
+      "yearQuarters": [
+        "2026-Q3"
+      ],
+      "subGroup": null,
+      "startDate": "2026-08-03",
+      "dueDate": "2026-08-07",
+      "created": "2026-08-04T10:13:43.426+0900",
+      "updated": "2026-08-04T11:58:23.394+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-08-04T11:06:39.634+0900"
+    },
     {
       "key": "FT-373",
       "url": "https://jira.team.musinsa.com/browse/FT-373",
       "summary": "[PDP] 태그상품 모아보기 구좌 - 통이미지 태깅 데이터 추가",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "디자인완료",
-      "statusCategory": "indeterminate",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P1",
       "assignee": {
         "name": "이혜영",
@@ -38,11 +121,11 @@
       ],
       "subGroup": null,
       "startDate": "2026-08-03",
-      "dueDate": "2026-08-10",
+      "dueDate": "2026-08-07",
       "created": "2026-08-03T16:59:34.926+0900",
-      "updated": "2026-08-03T18:36:09.103+0900",
+      "updated": "2026-08-04T10:41:01.027+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-08-03T18:35:20.258+0900"
+      "lastStatusChangedAt": "2026-08-04T10:41:00.111+0900"
     },
     {
       "key": "FT-372",
@@ -50,8 +133,8 @@
       "summary": "[필터] 냉감 등 상품 속성 시즌 필터 노출",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "SUGGESTED",
-      "statusCategory": "new",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "진혜란",
@@ -78,9 +161,9 @@
       "startDate": "2026-08-03",
       "dueDate": null,
       "created": "2026-08-03T15:43:22.366+0900",
-      "updated": "2026-08-03T18:58:00.290+0900",
+      "updated": "2026-08-04T13:44:38.537+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": null
+      "lastStatusChangedAt": "2026-08-04T13:44:37.622+0900"
     },
     {
       "key": "FT-371",
@@ -121,7 +204,7 @@
       "startDate": "2026-07-29",
       "dueDate": "2026-08-06",
       "created": "2026-07-30T23:29:23.759+0900",
-      "updated": "2026-08-03T20:21:54.230+0900",
+      "updated": "2026-08-04T13:16:58.020+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-31T09:50:08.668+0900"
     },
@@ -131,11 +214,11 @@
       "summary": "[design-driven][공통] 전문관 홈 작동 방식 ",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "디자인완료",
+      "status": "개발중",
       "statusCategory": "indeterminate",
       "priority": "P2",
       "assignee": {
-        "name": "안우진",
+        "name": "한다혜",
         "email": null,
         "accountId": null
       },
@@ -164,9 +247,9 @@
       "startDate": "2026-07-29",
       "dueDate": "2026-08-19",
       "created": "2026-07-30T13:26:46.167+0900",
-      "updated": "2026-08-03T14:03:05.091+0900",
+      "updated": "2026-08-04T18:22:25.238+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-31T13:53:33.763+0900"
+      "lastStatusChangedAt": "2026-08-04T15:37:22.761+0900"
     },
     {
       "key": "FT-369",
@@ -216,7 +299,7 @@
       "summary": "[무신사 퀵픽스] 추천판 > 캠페인 섹션 마지막에 누락되지 않게 개선 및 맨 마지막 브랜드숍 전체 상품 캠페인 필터로 더보기 기본 제공",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "개발중",
+      "status": "QA중",
       "statusCategory": "indeterminate",
       "priority": "P2",
       "assignee": {
@@ -252,9 +335,9 @@
       "startDate": "2026-07-28",
       "dueDate": "2026-08-12",
       "created": "2026-07-28T22:03:59.440+0900",
-      "updated": "2026-08-03T11:10:28.976+0900",
+      "updated": "2026-08-04T15:04:29.128+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-08-03T11:10:25.516+0900"
+      "lastStatusChangedAt": "2026-08-04T15:04:29.128+0900"
     },
     {
       "key": "FT-367",
@@ -557,7 +640,7 @@
       "startDate": "2026-07-16",
       "dueDate": "2026-07-30",
       "created": "2026-07-22T10:46:08.011+0900",
-      "updated": "2026-08-03T10:17:15.255+0900",
+      "updated": "2026-08-04T09:50:31.034+0900",
       "resolutionDate": "2026-07-30T15:01:10.565+0900",
       "lastStatusChangedAt": "2026-07-30T15:01:10.585+0900"
     },
@@ -613,7 +696,7 @@
       "statusCategory": "indeterminate",
       "priority": "P2",
       "assignee": {
-        "name": "박경민",
+        "name": "방소윤",
         "email": null,
         "accountId": null
       },
@@ -640,9 +723,9 @@
       ],
       "subGroup": null,
       "startDate": "2026-07-21",
-      "dueDate": "2026-08-18",
+      "dueDate": "2026-08-06",
       "created": "2026-07-21T16:23:25.437+0900",
-      "updated": "2026-08-03T18:03:51.691+0900",
+      "updated": "2026-08-04T10:17:55.915+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-30T11:50:04.343+0900"
     },
@@ -685,7 +768,7 @@
       "startDate": "2026-07-21",
       "dueDate": "2026-08-05",
       "created": "2026-07-21T16:17:29.565+0900",
-      "updated": "2026-08-03T19:02:32.094+0900",
+      "updated": "2026-08-04T15:02:40.344+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-31T10:08:07.567+0900"
     },
@@ -1671,6 +1754,8 @@
         "accountId": null
       },
       "labels": [
+        "conveyor",
+        "design-driven",
         "fasttrack",
         "one"
       ],
@@ -1684,7 +1769,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-07-07T15:45:00.970+0900",
-      "updated": "2026-08-03T14:53:52.414+0900",
+      "updated": "2026-08-04T21:46:33.294+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-20T17:30:07.837+0900"
     },
@@ -1694,8 +1779,8 @@
       "summary": "[design-driven][부티크] 전체 브랜드 별도 섹션",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "Dropped",
-      "statusCategory": "done",
+      "status": "디자인완료",
+      "statusCategory": "indeterminate",
       "priority": "P2",
       "assignee": {
         "name": "이현규",
@@ -1708,6 +1793,7 @@
         "accountId": null
       },
       "labels": [
+        "conveyor",
         "design-driven",
         "fasttrack",
         "one"
@@ -1724,9 +1810,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-07-07T15:03:05.200+0900",
-      "updated": "2026-08-03T10:17:12.141+0900",
+      "updated": "2026-08-04T21:46:29.269+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-20T09:26:46.276+0900"
+      "lastStatusChangedAt": "2026-08-04T10:15:00.859+0900"
     },
     {
       "key": "FT-329",
@@ -1774,7 +1860,7 @@
       "summary": "[design-driven][카테고리메뉴] 서비스탭_ 전문관 파비콘추가",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "개발중",
+      "status": "QA중",
       "statusCategory": "indeterminate",
       "priority": "P2",
       "assignee": {
@@ -1788,6 +1874,7 @@
         "accountId": null
       },
       "labels": [
+        "conveyor",
         "design-driven",
         "fasttrack",
         "one",
@@ -1803,9 +1890,9 @@
       "startDate": "2026-07-15",
       "dueDate": "2026-08-05",
       "created": "2026-07-07T15:00:04.200+0900",
-      "updated": "2026-08-03T17:00:29.354+0900",
+      "updated": "2026-08-04T21:46:25.095+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-14T14:55:34.819+0900"
+      "lastStatusChangedAt": "2026-08-04T09:27:52.894+0900"
     },
     {
       "key": "FT-327",
@@ -2361,7 +2448,7 @@
       "startDate": "2026-07-06",
       "dueDate": "2026-08-05",
       "created": "2026-07-06T17:00:43.941+0900",
-      "updated": "2026-07-31T19:06:41.115+0900",
+      "updated": "2026-08-04T14:55:39.438+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-23T14:00:26.494+0900"
     },
@@ -2827,7 +2914,7 @@
       "startDate": "2026-07-01",
       "dueDate": "2026-12-31",
       "created": "2026-07-01T14:04:24.655+0900",
-      "updated": "2026-08-04T01:13:18.705+0900",
+      "updated": "2026-08-05T01:51:50.320+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -3675,7 +3762,7 @@
       "startDate": "2026-07-10",
       "dueDate": "2026-08-19",
       "created": "2026-06-23T18:35:54.073+0900",
-      "updated": "2026-08-03T10:16:58.001+0900",
+      "updated": "2026-08-04T16:00:35.959+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-06T17:21:03.656+0900"
     },
@@ -4920,8 +5007,8 @@
       "summary": "[design-driven][필터] 탑필터 안내 문구 표기",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "배포완료",
-      "statusCategory": "indeterminate",
+      "status": "론치완료",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "성보현",
@@ -4955,9 +5042,9 @@
       "startDate": "2026-07-04",
       "dueDate": "2026-08-03",
       "created": "2026-06-19T00:56:21.001+0900",
-      "updated": "2026-08-03T13:58:28.859+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-31T14:48:59.048+0900"
+      "updated": "2026-08-04T14:01:44.644+0900",
+      "resolutionDate": "2026-08-04T14:01:44.632+0900",
+      "lastStatusChangedAt": "2026-08-04T14:01:44.644+0900"
     },
     {
       "key": "FT-166",
@@ -14296,7 +14383,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-03-27T15:41:31.188+0900",
-      "updated": "2026-07-10T10:33:44.687+0900",
+      "updated": "2026-08-04T09:55:58.833+0900",
       "resolutionDate": "2026-05-26T10:46:44.098+0900",
       "lastStatusChangedAt": "2026-05-26T10:46:44.132+0900"
     },
@@ -26106,154 +26193,6 @@
       "updated": "2026-07-08T11:26:40.237+0900",
       "resolutionDate": "2025-09-10T13:30:43.108+0900",
       "lastStatusChangedAt": "2025-09-10T13:30:43.230+0900"
-    },
-    {
-      "key": "TM-2810",
-      "url": "https://jira.team.musinsa.com/browse/TM-2810",
-      "summary": "[콘텐츠] 콘텐츠 하단 오프라인스토어 링크 추가",
-      "issueType": "Initiative",
-      "project": "TM",
-      "status": "론치완료",
-      "statusCategory": "done",
-      "priority": "Big-Rock",
-      "assignee": {
-        "name": "이솔이",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "안우진",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [
-        "CMS26",
-        "DUE_OVERDUE_BOT",
-        "domain-content",
-        "msse-be-campaign",
-        "one",
-        "pel",
-        "ux-ft-close"
-      ],
-      "mainSubject": "46.오프라인/O4O",
-      "mainSubjects": [
-        "46.오프라인/O4O"
-      ],
-      "subSubject": "콘텐츠",
-      "subSubjects": [
-        "콘텐츠"
-      ],
-      "yearQuarter": "2026-Q2",
-      "yearQuarters": [
-        "2026-Q2"
-      ],
-      "subGroup": "MSS-P Discovery & Engagement",
-      "startDate": "2026-04-24",
-      "dueDate": "2026-06-29",
-      "created": "2026-03-30T14:54:22.276+0900",
-      "updated": "2026-08-01T10:00:57.058+0900",
-      "resolutionDate": "2026-06-30T00:08:33.775+0900",
-      "lastStatusChangedAt": "2026-06-30T00:08:33.791+0900",
-      "manual": true
-    },
-    {
-      "key": "TM-2289",
-      "url": "https://jira.team.musinsa.com/browse/TM-2289",
-      "summary": "[앱리뷰] 앱 전반에 걸쳐서 긍정적인 경험 후 앱 리뷰 요청",
-      "issueType": "Initiative",
-      "project": "TM",
-      "status": "론치완료",
-      "statusCategory": "done",
-      "priority": "P0",
-      "assignee": {
-        "name": "신제경",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "안우진",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [
-        "26'1Q",
-        "26'2Q",
-        "one",
-        "pel",
-        "홈앤디"
-      ],
-      "mainSubject": "99.기타",
-      "mainSubjects": [
-        "99.기타"
-      ],
-      "subSubject": "추천",
-      "subSubjects": [
-        "추천",
-        "앱테크",
-        "주문완료"
-      ],
-      "yearQuarter": "2026-Q1",
-      "yearQuarters": [
-        "2026-Q1",
-        "2026-Q2"
-      ],
-      "subGroup": "MSS-P Discovery & Engagement",
-      "startDate": "2026-02-25",
-      "dueDate": "2026-06-10",
-      "created": "2026-02-12T14:28:04.898+0900",
-      "updated": "2026-08-01T10:01:42.259+0900",
-      "resolutionDate": "2026-06-11T10:18:55.915+0900",
-      "lastStatusChangedAt": "2026-06-11T10:18:55.950+0900",
-      "manual": true
-    },
-    {
-      "key": "FT-43",
-      "url": "https://jira.team.musinsa.com/browse/FT-43",
-      "summary": "[design-driven][공통] 전문관 탭 가독성 및 여백 개선 ",
-      "issueType": "Initiative",
-      "project": "FT",
-      "status": "론치완료",
-      "statusCategory": "done",
-      "priority": "P2",
-      "assignee": {
-        "name": "이규현",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "서정명",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [
-        "7월퀵윈",
-        "conveyor",
-        "design-driven",
-        "fasttrack",
-        "one",
-        "pel",
-        "ux-ft-close"
-      ],
-      "mainSubject": "06.공통/네비게이션",
-      "mainSubjects": [
-        "06.공통/네비게이션"
-      ],
-      "subSubject": "전문관",
-      "subSubjects": [
-        "전문관"
-      ],
-      "yearQuarter": "2026-Q2",
-      "yearQuarters": [
-        "2026-Q2"
-      ],
-      "subGroup": null,
-      "startDate": null,
-      "dueDate": "2026-06-10",
-      "created": "2026-05-06T20:39:42.922+0900",
-      "updated": "2026-08-03T10:16:22.648+0900",
-      "resolutionDate": "2026-06-11T09:50:16.951+0900",
-      "lastStatusChangedAt": "2026-06-11T09:50:16.958+0900",
-      "manual": true
     }
   ]
 }
