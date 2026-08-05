@@ -1,18 +1,112 @@
 {
-  "lastSync": "2026-08-05T07:06:27+09:00",
-  "count": 361,
+  "lastSync": "2026-08-06T07:07:40+09:00",
+  "count": 363,
   "items": [
+    {
+      "key": "ETR-6141",
+      "url": "https://jira.team.musinsa.com/browse/ETR-6141",
+      "summary": "[FastTrack] [검색] AI 기반 서브웨이 필터 자동 생성 구축 및 카테고리 확장 (MSS)",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "PMO 검토 중",
+      "statusCategory": "indeterminate",
+      "priority": "P0",
+      "assignee": {
+        "name": "이승연",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "진혜란",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": "2026-08-10",
+      "created": "2026-08-05T16:05:49.549+0900",
+      "updated": "2026-08-05T18:23:02.323+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-08-05T16:20:47.424+0900",
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-6139",
+      "url": "https://jira.team.musinsa.com/browse/ETR-6139",
+      "summary": "[SRP] 유즈드 검색결과 0건 시 유즈드 탭 미노출",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-우선착수",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "차정현",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "김경윤",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-08-05T14:17:26.498+0900",
+      "updated": "2026-08-05T14:32:21.456+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-08-05T14:17:36.529+0900",
+      "linkedTickets": [
+        {
+          "key": "FT-381",
+          "summary": "[SRP] 유즈드 검색결과 0건 시 유즈드 탭 미노출",
+          "status": "개발중",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
     {
       "key": "ETR-6115",
       "url": "https://jira.team.musinsa.com/browse/ETR-6115",
       "summary": "PDP 내 유즈드 상품 추천 영역 추가 (새상품 섹션 내)",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "매니저 승인 대기",
-      "statusCategory": "indeterminate",
+      "status": "검토완료-미진행",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
-        "name": "촤비스",
+        "name": "김경윤",
         "email": null,
         "accountId": null
       },
@@ -35,11 +129,11 @@
       "yearQuarters": [],
       "subGroup": null,
       "startDate": null,
-      "dueDate": null,
+      "dueDate": "2026-08-19",
       "created": "2026-08-04T18:31:01.122+0900",
-      "updated": "2026-08-04T18:32:01.075+0900",
+      "updated": "2026-08-05T09:39:24.448+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-08-04T18:31:05.159+0900",
+      "lastStatusChangedAt": "2026-08-05T09:38:55.623+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -52,8 +146,8 @@
       "summary": "오프라인 혜택 쿠폰 화면 CMS 기반 모듈화 및 QR 스캔 지원",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "매니저 승인 대기",
-      "statusCategory": "indeterminate",
+      "status": "반려",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
         "name": "촤비스",
@@ -81,13 +175,23 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-08-04T18:30:05.271+0900",
-      "updated": "2026-08-04T18:32:01.170+0900",
+      "updated": "2026-08-05T11:09:21.380+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-08-04T18:30:09.638+0900",
-      "linkedTickets": [],
+      "lastStatusChangedAt": "2026-08-05T11:09:19.825+0900",
+      "linkedTickets": [
+        {
+          "key": "TM-2802",
+          "summary": "아즈니섬 무인 카페 커피 교환권",
+          "status": "기획중",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "outward"
+        }
+      ],
       "progress": {
         "done": 0,
-        "total": 0
+        "total": 1
       }
     },
     {
@@ -112,6 +216,7 @@
       "labels": [
         "auto-etr-triaged",
         "conveyor",
+        "design-driven",
         "one"
       ],
       "mainSubject": null,
@@ -124,13 +229,23 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-08-04T17:21:32.965+0900",
-      "updated": "2026-08-04T17:21:53.163+0900",
+      "updated": "2026-08-05T15:55:52.300+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-08-04T17:21:41.386+0900",
-      "linkedTickets": [],
+      "linkedTickets": [
+        {
+          "key": "FT-382",
+          "summary": "[타임세일] 전체 품절 시 다음 타임세일 상품 공개 일정 안내 추가",
+          "status": "디자인중",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "outward"
+        }
+      ],
       "progress": {
         "done": 0,
-        "total": 0
+        "total": 1
       }
     },
     {
@@ -167,7 +282,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-08-04T15:38:12.470+0900",
-      "updated": "2026-08-04T15:39:20.980+0900",
+      "updated": "2026-08-05T10:35:58.544+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-08-04T15:38:40.205+0900",
       "linkedTickets": [
@@ -288,7 +403,7 @@
         {
           "key": "FT-374",
           "summary": "[FastTrack] PDP 태그상품 모아보기 구좌 - 통이미지 태깅 데이터 추가",
-          "status": "개발중",
+          "status": "QA중",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
@@ -493,7 +608,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-07-30T10:37:21.840+0900",
-      "updated": "2026-08-04T13:49:59.527+0900",
+      "updated": "2026-08-05T13:50:42.567+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-08-03T10:38:12.056+0900",
       "linkedTickets": [
@@ -514,11 +629,20 @@
           "assignee": null,
           "linkType": "Problem/Incident",
           "direction": "inward"
+        },
+        {
+          "key": "TM-4149",
+          "summary": "29CM 주문서 결제혜택 개선 - 상품/브랜드 탐색 연결 개선",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "outward"
         }
       ],
       "progress": {
         "done": 0,
-        "total": 2
+        "total": 3
       }
     },
     {
@@ -3260,15 +3384,15 @@
         {
           "key": "MEC-211",
           "summary": "[인수인계 및 배포][FT-358] 유즈드 PDP 'AI 비슷한 상품' 추천 전시 (FF)",
-          "status": "In Progress",
-          "statusCategory": "indeterminate",
+          "status": "완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward"
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 3
       }
     },
@@ -3313,7 +3437,7 @@
         {
           "key": "FT-359",
           "summary": "[랭킹판] 오프라인탭 배너 분할 및 뉴스 콘텐츠 링크 추가",
-          "status": "개발중",
+          "status": "개발완료",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
@@ -4697,7 +4821,7 @@
       "summary": "[카테고리메뉴] 서비스탭_ 전문관 파비콘추가",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-우선착수",
+      "status": "완료",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -4726,15 +4850,15 @@
       "startDate": "2026-07-10",
       "dueDate": null,
       "created": "2026-07-08T15:14:10.244+0900",
-      "updated": "2026-08-03T10:17:10.597+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-14T10:20:31.451+0900",
+      "updated": "2026-08-05T11:12:47.042+0900",
+      "resolutionDate": "2026-08-05T11:12:46.051+0900",
+      "lastStatusChangedAt": "2026-08-05T11:12:46.107+0900",
       "linkedTickets": [
         {
           "key": "FT-328",
           "summary": "[design-driven][카테고리메뉴] 서비스탭_ 전문관 파비콘추가",
-          "status": "QA중",
-          "statusCategory": "indeterminate",
+          "status": "론치완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward"
@@ -4750,7 +4874,7 @@
         }
       ],
       "progress": {
-        "done": 1,
+        "done": 2,
         "total": 2
       }
     },
@@ -4805,7 +4929,7 @@
         {
           "key": "FT-336",
           "summary": "[판영역] 탭 높이 조절",
-          "status": "QA중",
+          "status": "배포완료",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
@@ -5821,7 +5945,7 @@
         {
           "key": "FT-315",
           "summary": "[추천판] 라이브 특가 모듈 개선 — 날짜/시간 표시, 쿠폰 아이콘화, 브랜드/프로모션 정보 구분",
-          "status": "개발중",
+          "status": "개발완료",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
@@ -7061,7 +7185,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-30T14:18:29.154+0900",
-      "updated": "2026-08-04T14:03:49.711+0900",
+      "updated": "2026-08-05T15:37:04.306+0900",
       "resolutionDate": "2026-08-04T14:01:46.830+0900",
       "lastStatusChangedAt": "2026-08-04T14:01:46.863+0900",
       "linkedTickets": [
@@ -7077,8 +7201,8 @@
         {
           "key": "DBA-13026",
           "summary": " [campaign] cpcms_filter PLP 배너 전시여부 컬럼 추가 요청",
-          "status": "HOLD",
-          "statusCategory": "indeterminate",
+          "status": "완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Blocks",
           "direction": "inward"
@@ -7145,11 +7269,20 @@
           "assignee": null,
           "linkType": "Relates",
           "direction": "outward"
+        },
+        {
+          "key": "MEC-222",
+          "summary": "content-web release v2.32.0",
+          "status": "완료",
+          "statusCategory": "done",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "outward"
         }
       ],
       "progress": {
-        "done": 6,
-        "total": 9
+        "done": 8,
+        "total": 10
       }
     },
     {
