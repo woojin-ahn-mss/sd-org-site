@@ -1,7 +1,93 @@
 {
-  "lastSync": "2026-08-07T10:01:49+09:00",
-  "count": 704,
+  "lastSync": "2026-08-08T06:32:39+09:00",
+  "count": 706,
   "items": [
+    {
+      "key": "FT-492",
+      "url": "https://jira.team.musinsa.com/browse/FT-492",
+      "summary": "[design-driven][장바구니] 결제 즉시할인 혜택 넛지 추가",
+      "issueType": "Initiative",
+      "project": "FT",
+      "status": "Dropped",
+      "statusCategory": "done",
+      "priority": "P2",
+      "assignee": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "conveyor",
+        "conveyor-bot",
+        "design-driven",
+        "fast-track-away",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": "2026-Q3",
+      "yearQuarters": [
+        "2026-Q3"
+      ],
+      "subGroup": null,
+      "startDate": "2026-08-04",
+      "dueDate": "2026-08-14",
+      "created": "2026-08-07T11:02:05.109+0900",
+      "updated": "2026-08-07T11:07:19.686+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-08-07T11:07:19.686+0900"
+    },
+    {
+      "key": "FT-491",
+      "url": "https://jira.team.musinsa.com/browse/FT-491",
+      "summary": "[타임세일] 전체 품절 시 다음 타임세일 상품 공개 일정 안내 추가",
+      "issueType": "Initiative",
+      "project": "FT",
+      "status": "디자인완료",
+      "statusCategory": "indeterminate",
+      "priority": "P2",
+      "assignee": {
+        "name": "신제경",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "conveyor-bot",
+        "design-driven",
+        "fast-track-away",
+        "one",
+        "standby"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": "2026-Q3",
+      "yearQuarters": [
+        "2026-Q3"
+      ],
+      "subGroup": null,
+      "startDate": "2026-08-04",
+      "dueDate": "2026-08-14",
+      "created": "2026-08-07T10:35:25.211+0900",
+      "updated": "2026-08-07T15:52:56.962+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-08-07T15:44:30.464+0900"
+    },
     {
       "key": "FT-433",
       "url": "https://jira.team.musinsa.com/browse/FT-433",
@@ -1913,8 +1999,8 @@
       "summary": "[타임세일] 전체 품절 시 다음 타임세일 상품 공개 일정 안내 추가",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "디자인중",
-      "statusCategory": "indeterminate",
+      "status": "철회/반려/취소",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "이현규",
@@ -1940,9 +2026,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-08-05T15:55:48.714+0900",
-      "updated": "2026-08-06T19:19:46.291+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-08-05T15:57:37.693+0900"
+      "updated": "2026-08-07T15:27:21.659+0900",
+      "resolutionDate": "2026-08-07T15:27:21.633+0900",
+      "lastStatusChangedAt": "2026-08-07T15:27:06.463+0900"
     },
     {
       "key": "FT-381",
@@ -2355,6 +2441,7 @@
         "accountId": null
       },
       "labels": [
+        "DUE_OVERDUE_BOT",
         "auto-etr-triaged",
         "conveyor",
         "conveyor-bot",
@@ -2372,9 +2459,9 @@
       ],
       "subGroup": null,
       "startDate": "2026-07-29",
-      "dueDate": "2026-08-06",
+      "dueDate": "2026-08-14",
       "created": "2026-07-30T23:29:23.759+0900",
-      "updated": "2026-08-05T13:17:08.098+0900",
+      "updated": "2026-08-07T13:29:21.373+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-31T09:50:08.668+0900"
     },
@@ -2460,7 +2547,7 @@
       "startDate": "2026-07-27",
       "dueDate": "2026-08-19",
       "created": "2026-07-29T11:18:36.153+0900",
-      "updated": "2026-08-07T08:02:20.299+0900",
+      "updated": "2026-08-07T10:02:11.443+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-08-06T15:50:27.497+0900"
     },
@@ -2734,11 +2821,11 @@
       "summary": "[카테고리메뉴]오프라인탭 API 변경",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "개발중",
+      "status": "개발완료",
       "statusCategory": "indeterminate",
       "priority": "P2",
       "assignee": {
-        "name": "김애란",
+        "name": "문호은",
         "email": null,
         "accountId": null
       },
@@ -2767,9 +2854,9 @@
       "startDate": "2026-07-16",
       "dueDate": "2026-08-11",
       "created": "2026-07-23T16:33:25.059+0900",
-      "updated": "2026-08-03T13:27:11.822+0900",
+      "updated": "2026-08-07T14:30:16.022+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-30T13:39:09.649+0900"
+      "lastStatusChangedAt": "2026-08-07T14:29:58.871+0900"
     },
     {
       "key": "FT-361",
@@ -2906,11 +2993,11 @@
       "summary": "[유즈드] AI 이미지 서치 유사 디자인 기반 상품 추천 영역 추가",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "QA중",
-      "statusCategory": "indeterminate",
+      "status": "론치완료",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
-        "name": "하수종",
+        "name": "성종건",
         "email": null,
         "accountId": null
       },
@@ -2920,6 +3007,7 @@
         "accountId": null
       },
       "labels": [
+        "DUE_OVERDUE_BOT",
         "auto-etr-triaged",
         "conveyor",
         "conveyor-bot",
@@ -2939,9 +3027,9 @@
       "startDate": "2026-07-21",
       "dueDate": "2026-08-05",
       "created": "2026-07-21T16:17:29.565+0900",
-      "updated": "2026-08-05T13:49:21.563+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-31T10:08:07.567+0900"
+      "updated": "2026-08-07T14:28:05.273+0900",
+      "resolutionDate": "2026-08-07T11:01:18.818+0900",
+      "lastStatusChangedAt": "2026-08-07T11:01:18.839+0900"
     },
     {
       "key": "FT-357",
@@ -3557,7 +3645,7 @@
       "summary": "[무신사] 카드 목록 UX 개선 — 추가/수정/삭제 버튼 접근성 향상",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "디자인완료",
+      "status": "개발중",
       "statusCategory": "indeterminate",
       "priority": "P2",
       "assignee": {
@@ -3571,6 +3659,7 @@
         "accountId": null
       },
       "labels": [
+        "DUE_OVERDUE_BOT",
         "auto-etr-triaged",
         "conveyor",
         "conveyor-bot",
@@ -3587,11 +3676,11 @@
       ],
       "subGroup": null,
       "startDate": "2026-07-13",
-      "dueDate": "2026-08-06",
+      "dueDate": "0026-08-13",
       "created": "2026-07-13T13:34:37.695+0900",
-      "updated": "2026-08-03T11:27:42.069+0900",
+      "updated": "2026-08-07T11:02:17.492+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-20T17:30:10.321+0900"
+      "lastStatusChangedAt": "2026-08-07T10:06:36.014+0900"
     },
     {
       "key": "FT-338",
@@ -3690,7 +3779,7 @@
       "summary": "[판영역] 탭 높이 조절",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "Rollback",
+      "status": "론치완료",
       "statusCategory": "done",
       "priority": "P2",
       "assignee": {
@@ -3725,9 +3814,9 @@
       "startDate": "2026-07-08",
       "dueDate": "2026-08-05",
       "created": "2026-07-09T15:17:52.356+0900",
-      "updated": "2026-08-07T08:45:09.311+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-08-07T08:45:09.311+0900"
+      "updated": "2026-08-07T11:23:09.013+0900",
+      "resolutionDate": "2026-08-07T11:23:08.996+0900",
+      "lastStatusChangedAt": "2026-08-07T11:23:09.013+0900"
     },
     {
       "key": "FT-335",
@@ -3943,7 +4032,7 @@
       "startDate": "2026-08-06",
       "dueDate": "2026-08-11",
       "created": "2026-07-07T15:45:00.970+0900",
-      "updated": "2026-08-06T18:54:14.070+0900",
+      "updated": "2026-08-07T14:31:01.401+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-20T17:30:07.837+0900"
     },
@@ -4330,8 +4419,8 @@
       "summary": "[design-driven][공통] 상단 앱설치 유도 배너 시인성 개선",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "Backlog",
-      "statusCategory": "new",
+      "status": "디자인중",
+      "statusCategory": "indeterminate",
       "priority": "P2",
       "assignee": {
         "name": "이규현",
@@ -4361,9 +4450,9 @@
       "startDate": null,
       "dueDate": "2026-07-31",
       "created": "2026-07-07T14:52:20.654+0900",
-      "updated": "2026-08-07T09:30:20.298+0900",
+      "updated": "2026-08-07T12:18:45.926+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-08-07T09:15:40.048+0900"
+      "lastStatusChangedAt": "2026-08-07T12:18:45.926+0900"
     },
     {
       "key": "FT-320",
@@ -5093,7 +5182,7 @@
       "startDate": "2026-07-01",
       "dueDate": "2026-12-31",
       "created": "2026-07-01T14:04:24.655+0900",
-      "updated": "2026-08-06T18:10:11.449+0900",
+      "updated": "2026-08-07T19:02:28.698+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -5942,9 +6031,9 @@
       "startDate": "2026-07-10",
       "dueDate": "2026-08-19",
       "created": "2026-06-23T18:35:54.073+0900",
-      "updated": "2026-08-04T16:00:35.959+0900",
+      "updated": "2026-08-07T11:36:53.318+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-06T17:21:03.656+0900"
+      "lastStatusChangedAt": null
     },
     {
       "key": "FT-207",
@@ -7615,7 +7704,7 @@
       "startDate": null,
       "dueDate": "2026-09-30",
       "created": "2026-06-19T00:56:11.360+0900",
-      "updated": "2026-08-03T10:16:48.505+0900",
+      "updated": "2026-08-07T17:00:06.011+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-13T18:17:14.874+0900"
     },

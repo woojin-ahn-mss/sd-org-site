@@ -1,12 +1,55 @@
 {
-  "lastSync": "2026-08-07T10:00:58+09:00",
-  "count": 364,
+  "lastSync": "2026-08-08T06:31:49+09:00",
+  "count": 366,
   "items": [
     {
-      "key": "ETR-6190",
-      "url": "https://jira.team.musinsa.com/browse/ETR-6190",
-      "summary": "[퀵픽스 피드백] 2-3일 지속 현상 — 데이터 확인 요청",
-      "issueType": "기타(KTLO/BAU)",
+      "key": "ETR-6198",
+      "url": "https://jira.team.musinsa.com/browse/ETR-6198",
+      "summary": "[홈지면] 무배당발 도착 보장일 노출",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-미진행",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "이승연",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-08-07T12:20:50.436+0900",
+      "updated": "2026-08-07T12:41:30.257+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-08-07T12:41:01.574+0900",
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-6192",
+      "url": "https://jira.team.musinsa.com/browse/ETR-6192",
+      "summary": "[PDP] 컬러 옵션 선택 UI — 텍스트 목록 대신 이미지 스와치 형태로 표시 개선",
+      "issueType": "과제 발의",
       "project": "ETR",
       "status": "매니저 승인 대기",
       "statusCategory": "indeterminate",
@@ -35,10 +78,55 @@
       "subGroup": null,
       "startDate": null,
       "dueDate": null,
-      "created": "2026-08-06T21:17:39.024+0900",
-      "updated": "2026-08-06T21:18:01.505+0900",
+      "created": "2026-08-07T10:25:01.459+0900",
+      "updated": "2026-08-07T10:25:34.766+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-08-06T21:17:42.634+0900",
+      "lastStatusChangedAt": "2026-08-07T10:25:05.170+0900",
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-6190",
+      "url": "https://jira.team.musinsa.com/browse/ETR-6190",
+      "summary": "[퀵픽스 피드백] 2-3일 지속 현상 — 데이터 확인 요청",
+      "issueType": "기타(KTLO/BAU)",
+      "project": "ETR",
+      "status": "완료",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "이승연",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": "2026-Q3",
+      "yearQuarters": [
+        "2026-Q3"
+      ],
+      "subGroup": null,
+      "startDate": "2026-08-06",
+      "dueDate": "2026-08-07",
+      "created": "2026-08-06T21:17:39.024+0900",
+      "updated": "2026-08-07T23:23:30.643+0900",
+      "resolutionDate": "2026-08-07T15:47:17.805+0900",
+      "lastStatusChangedAt": "2026-08-07T15:47:17.842+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -243,11 +331,11 @@
       "summary": "[타임세일] 전체 품절 시 다음 타임세일 상품 공개 일정 안내 추가",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "매니저 승인 대기",
-      "statusCategory": "indeterminate",
+      "status": "검토완료-우선착수",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
-        "name": "촤비스",
+        "name": "김경윤",
         "email": null,
         "accountId": null
       },
@@ -272,23 +360,32 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-08-04T17:21:32.965+0900",
-      "updated": "2026-08-05T15:55:52.300+0900",
+      "updated": "2026-08-07T10:36:13.065+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-08-04T17:21:41.386+0900",
+      "lastStatusChangedAt": "2026-08-07T10:35:33.743+0900",
       "linkedTickets": [
         {
           "key": "FT-382",
           "summary": "[타임세일] 전체 품절 시 다음 타임세일 상품 공개 일정 안내 추가",
-          "status": "디자인중",
-          "statusCategory": "indeterminate",
+          "status": "철회/반려/취소",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "outward"
+        },
+        {
+          "key": "FT-491",
+          "summary": "[타임세일] 전체 품절 시 다음 타임세일 상품 공개 일정 안내 추가",
+          "status": "디자인완료",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
         }
       ],
       "progress": {
-        "done": 0,
-        "total": 1
+        "done": 1,
+        "total": 2
       }
     },
     {
@@ -325,7 +422,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-08-04T15:38:12.470+0900",
-      "updated": "2026-08-06T14:23:39.498+0900",
+      "updated": "2026-08-07T11:07:17.239+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-08-04T15:38:40.205+0900",
       "linkedTickets": [
@@ -491,9 +588,9 @@
       ],
       "subGroup": null,
       "startDate": "2026-08-03",
-      "dueDate": null,
+      "dueDate": "2026-08-10",
       "created": "2026-08-03T14:52:29.984+0900",
-      "updated": "2026-08-04T13:43:42.616+0900",
+      "updated": "2026-08-07T11:43:12.021+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-08-03T15:26:12.598+0900",
       "linkedTickets": [
@@ -3545,7 +3642,7 @@
       "summary": "[유즈드] AI 이미지 서치 유사 디자인 기반 상품 추천 영역 추가",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-우선착수",
+      "status": "완료",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -3573,15 +3670,15 @@
       "startDate": null,
       "dueDate": "2026-08-04",
       "created": "2026-07-21T10:14:52.333+0900",
-      "updated": "2026-08-04T14:13:26.443+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-21T16:17:36.951+0900",
+      "updated": "2026-08-07T11:02:43.878+0900",
+      "resolutionDate": "2026-08-07T11:02:43.104+0900",
+      "lastStatusChangedAt": "2026-08-07T11:02:43.127+0900",
       "linkedTickets": [
         {
           "key": "FT-358",
           "summary": "[유즈드] AI 이미지 서치 유사 디자인 기반 상품 추천 영역 추가",
-          "status": "QA중",
-          "statusCategory": "indeterminate",
+          "status": "론치완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward"
@@ -3606,7 +3703,7 @@
         }
       ],
       "progress": {
-        "done": 1,
+        "done": 2,
         "total": 3
       }
     },
@@ -3994,7 +4091,7 @@
         {
           "key": "FT-362",
           "summary": "[카테고리메뉴]오프라인탭 API 변경",
-          "status": "개발중",
+          "status": "개발완료",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
@@ -4577,14 +4674,14 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-07-13T09:15:34.840+0900",
-      "updated": "2026-08-07T00:02:35.607+0900",
+      "updated": "2026-08-07T10:06:04.080+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-13T13:34:44.884+0900",
       "linkedTickets": [
         {
           "key": "FT-339",
           "summary": "[무신사] 카드 목록 UX 개선 — 추가/수정/삭제 버튼 접근성 향상",
-          "status": "디자인완료",
+          "status": "개발중",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
@@ -5001,7 +5098,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-07-08T16:52:23.922+0900",
-      "updated": "2026-08-07T00:02:59.703+0900",
+      "updated": "2026-08-07T10:05:14.514+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-09T11:32:15.958+0900",
       "linkedTickets": [
@@ -5098,7 +5195,7 @@
       "summary": "[판영역] 탭 높이 조절",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-미진행",
+      "status": "완료",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -5127,9 +5224,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-07-08T15:08:35.423+0900",
-      "updated": "2026-08-07T08:52:48.554+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-08-07T08:52:42.857+0900",
+      "updated": "2026-08-07T11:35:18.688+0900",
+      "resolutionDate": "2026-08-07T11:24:29.529+0900",
+      "lastStatusChangedAt": "2026-08-07T11:24:29.594+0900",
       "linkedTickets": [
         {
           "key": "FT-327",
@@ -5143,7 +5240,7 @@
         {
           "key": "FT-336",
           "summary": "[판영역] 탭 높이 조절",
-          "status": "Rollback",
+          "status": "론치완료",
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
@@ -5701,7 +5798,7 @@
       "startDate": null,
       "dueDate": "2026-07-23",
       "created": "2026-07-06T09:29:44.704+0900",
-      "updated": "2026-08-07T00:03:28.374+0900",
+      "updated": "2026-08-07T10:01:57.305+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-09T11:43:43.840+0900",
       "linkedTickets": [
@@ -16553,7 +16650,7 @@
         {
           "key": "TM-3296",
           "summary": "[29CM] 검색홈 인기 검색어 노출 UI/UX 개선",
-          "status": "디자인완료",
+          "status": "개발중",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
@@ -19406,7 +19503,7 @@
           "direction": "inward"
         },
         {
-          "key": "CMALL-784",
+          "key": "COMCO-3602",
           "summary": "[29CM] 결제 실패 시 흰화면 멈춤 UX 개선 — 명시적 에러 UI 및 주문서 복귀 플로우",
           "status": "SUGGESTED",
           "statusCategory": "new",
