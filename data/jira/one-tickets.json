@@ -1,7 +1,121 @@
 {
-  "lastSync": "2026-08-11T06:36:42+09:00",
-  "count": 1128,
+  "lastSync": "2026-08-12T06:40:44+09:00",
+  "count": 1130,
   "items": [
+    {
+      "key": "FT-497",
+      "url": "https://jira.team.musinsa.com/browse/FT-497",
+      "summary": "[FastTrack] [검색] AI 기반 서브웨이 필터 자동 생성 구축 및 카테고리 확장 (MSS)",
+      "issueType": "Initiative",
+      "project": "FT",
+      "status": "SUGGESTED",
+      "statusCategory": "new",
+      "priority": "P2",
+      "assignee": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "conveyor",
+        "conveyor-bot",
+        "fast-track-away",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": "2026-Q3",
+      "yearQuarters": [
+        "2026-Q3"
+      ],
+      "subGroup": null,
+      "startDate": "2026-08-05",
+      "dueDate": "2026-08-18",
+      "created": "2026-08-11T13:37:50.959+0900",
+      "updated": "2026-08-11T13:37:58.857+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null,
+      "linkedTickets": [
+        {
+          "key": "ETR-6141",
+          "summary": "[FastTrack] [검색] AI 기반 서브웨이 필터 자동 생성 구축 및 카테고리 확장 (MSS)",
+          "status": "PMO 검토 중",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "outward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "FT-493",
+      "url": "https://jira.team.musinsa.com/browse/FT-493",
+      "summary": "[design-driven][부티크] 전체 브랜드 별도 섹션",
+      "issueType": "Initiative",
+      "project": "FT",
+      "status": "Dropped",
+      "statusCategory": "done",
+      "priority": "P2",
+      "assignee": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "conveyor",
+        "conveyor-bot",
+        "design-driven",
+        "fast-track-away",
+        "one",
+        "one밀도감_디스커버리"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": "2026-Q3",
+      "yearQuarters": [
+        "2026-Q3"
+      ],
+      "subGroup": null,
+      "startDate": "2026-08-04",
+      "dueDate": "2026-08-18",
+      "created": "2026-08-11T09:08:29.628+0900",
+      "updated": "2026-08-11T11:59:34.251+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-08-11T11:59:34.251+0900",
+      "linkedTickets": [
+        {
+          "key": "ETR-6080",
+          "summary": "[design-driven][부티크] 전체 브랜드 별도 섹션",
+          "status": "검토완료-우선착수",
+          "statusCategory": "done",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "outward"
+        }
+      ],
+      "progress": {
+        "done": 1,
+        "total": 1
+      }
+    },
     {
       "key": "TM-4175",
       "url": "https://jira.team.musinsa.com/browse/TM-4175",
@@ -38,7 +152,7 @@
       "startDate": "2026-08-10",
       "dueDate": "2026-08-10",
       "created": "2026-08-10T14:15:13.212+0900",
-      "updated": "2026-08-11T06:00:48.306+0900",
+      "updated": "2026-08-12T06:00:32.682+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -63,7 +177,7 @@
       "summary": "[29CM] 갤러리 댓글 개선 — 정렬 기능 및 SNS 요소 추가",
       "issueType": "기타(KTLO/BAU)",
       "project": "ETR",
-      "status": "검토완료-백로그",
+      "status": "검토완료-우선착수",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -91,9 +205,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-08-10T09:51:09.369+0900",
-      "updated": "2026-08-10T14:10:08.406+0900",
+      "updated": "2026-08-11T08:48:28.764+0900",
       "resolutionDate": "2026-08-10T13:48:31.432+0900",
-      "lastStatusChangedAt": "2026-08-10T14:09:30.816+0900",
+      "lastStatusChangedAt": "2026-08-11T08:47:47.702+0900",
       "linkedTickets": [
         {
           "key": "TM-4172",
@@ -116,7 +230,7 @@
       "summary": "[29CM] 갤러리 상품 정보 레이어 기본 표시 비활성화",
       "issueType": "기타(KTLO/BAU)",
       "project": "ETR",
-      "status": "검토완료-백로그",
+      "status": "검토완료-우선착수",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -144,9 +258,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-08-10T09:50:55.471+0900",
-      "updated": "2026-08-10T14:10:06.174+0900",
+      "updated": "2026-08-11T08:49:17.994+0900",
       "resolutionDate": "2026-08-10T13:48:19.086+0900",
-      "lastStatusChangedAt": "2026-08-10T14:09:28.243+0900",
+      "lastStatusChangedAt": "2026-08-11T08:48:38.440+0900",
       "linkedTickets": [
         {
           "key": "TM-4172",
@@ -212,7 +326,7 @@
       "summary": "[이구홈갤러리] 게시물 등록 날짜 표기 추가",
       "issueType": "기타(KTLO/BAU)",
       "project": "ETR",
-      "status": "검토완료-백로그",
+      "status": "검토완료-우선착수",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -240,9 +354,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-08-08T14:13:20.590+0900",
-      "updated": "2026-08-10T14:11:38.424+0900",
+      "updated": "2026-08-11T08:47:33.597+0900",
       "resolutionDate": "2026-08-10T09:37:10.403+0900",
-      "lastStatusChangedAt": "2026-08-10T14:11:33.606+0900",
+      "lastStatusChangedAt": "2026-08-11T08:47:33.597+0900",
       "linkedTickets": [
         {
           "key": "TM-4172",
@@ -347,7 +461,7 @@
         {
           "key": "FT-331",
           "summary": "[장바구니] 결제 즉시할인 혜택 넛지 추가",
-          "status": "디자인완료",
+          "status": "QA중",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Duplicate",
@@ -385,11 +499,13 @@
         "design-driven",
         "fast-track-away",
         "one",
-        "standby"
+        "standby",
+        "세일판",
+        "세일판BFF"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": "세일(판)",
       "subSubjects": [
@@ -403,7 +519,7 @@
       "startDate": "2026-08-04",
       "dueDate": "2026-08-26",
       "created": "2026-08-07T10:35:25.211+0900",
-      "updated": "2026-08-10T16:28:19.016+0900",
+      "updated": "2026-08-11T10:40:38.358+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-08-10T16:01:51.959+0900",
       "linkedTickets": [
@@ -442,11 +558,20 @@
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward"
+        },
+        {
+          "key": "MDC-1046",
+          "summary": "[타임세일] 전체 품절 시 다음 타임세일 상품 공개 일정 안내 추가",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "outward"
         }
       ],
       "progress": {
         "done": 2,
-        "total": 4
+        "total": 5
       }
     },
     {
@@ -550,7 +675,7 @@
     {
       "key": "ETR-6150",
       "url": "https://jira.team.musinsa.com/browse/ETR-6150",
-      "summary": "[TT리뷰 8/6] AI 해설 방향성 싱크",
+      "summary": "[TT 8/6] AI 해설 방향성 싱크",
       "issueType": "과제 발의",
       "project": "ETR",
       "status": "검토완료-우선착수",
@@ -582,7 +707,7 @@
       "startDate": null,
       "dueDate": "2026-08-06",
       "created": "2026-08-06T09:59:55.321+0900",
-      "updated": "2026-08-10T16:47:14.542+0900",
+      "updated": "2026-08-11T15:57:08.330+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-08-06T14:26:47.642+0900",
       "linkedTickets": [],
@@ -624,13 +749,23 @@
       "startDate": null,
       "dueDate": "2026-08-10",
       "created": "2026-08-05T16:05:49.549+0900",
-      "updated": "2026-08-05T18:23:02.323+0900",
+      "updated": "2026-08-11T13:37:55.225+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-08-05T16:20:47.424+0900",
-      "linkedTickets": [],
+      "linkedTickets": [
+        {
+          "key": "FT-497",
+          "summary": "[FastTrack] [검색] AI 기반 서브웨이 필터 자동 생성 구축 및 카테고리 확장 (MSS)",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        }
+      ],
       "progress": {
         "done": 0,
-        "total": 0
+        "total": 1
       }
     },
     {
@@ -1014,7 +1149,7 @@
         {
           "key": "FT-331",
           "summary": "[장바구니] 결제 즉시할인 혜택 넛지 추가",
-          "status": "디자인완료",
+          "status": "QA중",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
@@ -1063,7 +1198,7 @@
       "startDate": "2026-08-03",
       "dueDate": "2026-08-11",
       "created": "2026-08-04T13:43:39.088+0900",
-      "updated": "2026-08-10T17:06:10.163+0900",
+      "updated": "2026-08-11T17:47:35.228+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-08-10T15:44:42.444+0900",
       "linkedTickets": [
@@ -1102,11 +1237,20 @@
           "assignee": null,
           "linkType": "Relates",
           "direction": "outward"
+        },
+        {
+          "key": "TL-235",
+          "summary": "[FT][MSS] 냉감 필터 노출 영역 확대",
+          "status": "완료",
+          "statusCategory": "done",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "outward"
         }
       ],
       "progress": {
-        "done": 2,
-        "total": 4
+        "done": 3,
+        "total": 5
       }
     },
     {
@@ -1219,7 +1363,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-08-04T10:12:14.373+0900",
-      "updated": "2026-08-10T13:08:51.172+0900",
+      "updated": "2026-08-11T09:08:33.263+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-08-04T10:13:37.276+0900",
       "linkedTickets": [
@@ -1231,11 +1375,20 @@
           "assignee": null,
           "linkType": "Relates",
           "direction": "outward"
+        },
+        {
+          "key": "FT-493",
+          "summary": "[design-driven][부티크] 전체 브랜드 별도 섹션",
+          "status": "Dropped",
+          "statusCategory": "done",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
         }
       ],
       "progress": {
-        "done": 0,
-        "total": 1
+        "done": 1,
+        "total": 2
       }
     },
     {
@@ -1412,15 +1565,15 @@
         {
           "key": "MDC-1032",
           "summary": "[인수인계 및 배포][PEL] FT-375 냉감 공통필터 — PLP/SRP 공통 필터 승격",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward"
         }
       ],
       "progress": {
-        "done": 1,
+        "done": 2,
         "total": 3
       }
     },
@@ -1460,7 +1613,7 @@
       "startDate": "2026-08-03",
       "dueDate": "2026-08-04",
       "created": "2026-08-03T14:10:32.309+0900",
-      "updated": "2026-08-11T06:00:48.117+0900",
+      "updated": "2026-08-12T06:00:33.008+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -1717,7 +1870,7 @@
       "startDate": "2026-07-31",
       "dueDate": "2026-08-31",
       "created": "2026-07-31T10:06:40.980+0900",
-      "updated": "2026-08-11T06:00:48.482+0900",
+      "updated": "2026-08-12T06:00:56.257+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -1843,7 +1996,7 @@
       "startDate": "2026-07-29",
       "dueDate": "2026-08-19",
       "created": "2026-07-30T13:26:46.167+0900",
-      "updated": "2026-08-06T17:44:12.497+0900",
+      "updated": "2026-08-11T14:55:54.660+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-08-04T15:37:22.761+0900",
       "linkedTickets": [
@@ -3310,7 +3463,7 @@
       "startDate": "2026-03-27",
       "dueDate": "2026-09-30",
       "created": "2026-07-27T16:22:06.514+0900",
-      "updated": "2026-08-11T06:00:51.038+0900",
+      "updated": "2026-08-12T06:00:35.505+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -4648,7 +4801,7 @@
         {
           "key": "TM-3085",
           "summary": "사이즈 실측 항목 확대에 따른 연관지면 개선(PDP/PLP/마이)",
-          "status": "개발중",
+          "status": "QA중",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
@@ -4896,7 +5049,7 @@
       "startDate": "2026-07-21",
       "dueDate": "2026-08-14",
       "created": "2026-07-24T13:46:31.775+0900",
-      "updated": "2026-08-10T12:21:46.745+0900",
+      "updated": "2026-08-11T11:35:28.447+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-29T11:35:19.824+0900",
       "linkedTickets": [
@@ -4908,11 +5061,20 @@
           "assignee": null,
           "linkType": "Relates",
           "direction": "outward"
+        },
+        {
+          "key": "TL-232",
+          "summary": "바텀네비게이션 리퀴드 글래스 스타일 적용 + FAB 사이즈, 성별필터 사이즈 확대",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "outward"
         }
       ],
       "progress": {
         "done": 1,
-        "total": 1
+        "total": 2
       }
     },
     {
@@ -5269,7 +5431,7 @@
       "startDate": "2026-07-23",
       "dueDate": "2026-07-23",
       "created": "2026-07-23T17:05:43.430+0900",
-      "updated": "2026-08-11T06:00:50.829+0900",
+      "updated": "2026-08-12T06:00:35.546+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -5294,8 +5456,8 @@
       "summary": "[카테고리메뉴]오프라인탭 API 변경",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "개발완료",
-      "statusCategory": "indeterminate",
+      "status": "론치완료",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "문호은",
@@ -5315,9 +5477,9 @@
         "standby",
         "홈앤디"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": "카테고리/SRP",
       "subSubjects": [
@@ -5331,9 +5493,9 @@
       "startDate": "2026-07-16",
       "dueDate": "2026-08-11",
       "created": "2026-07-23T16:33:25.059+0900",
-      "updated": "2026-08-10T15:15:50.697+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-08-07T14:29:58.871+0900",
+      "updated": "2026-08-11T15:29:02.909+0900",
+      "resolutionDate": "2026-08-11T15:29:02.896+0900",
+      "lastStatusChangedAt": "2026-08-11T15:29:02.909+0900",
       "linkedTickets": [
         {
           "key": "ETR-5671",
@@ -5395,7 +5557,7 @@
       "startDate": "2026-07-23",
       "dueDate": "2026-07-24",
       "created": "2026-07-23T16:32:29.615+0900",
-      "updated": "2026-08-11T06:00:51.458+0900",
+      "updated": "2026-08-12T06:00:37.727+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -5450,7 +5612,7 @@
       "startDate": "2026-07-23",
       "dueDate": "2026-07-24",
       "created": "2026-07-23T16:30:25.314+0900",
-      "updated": "2026-08-11T06:00:51.049+0900",
+      "updated": "2026-08-12T06:00:38.391+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -5971,9 +6133,9 @@
         "fast-track-away",
         "one"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": "랭킹",
       "subSubjects": [
@@ -6356,9 +6518,9 @@
         "one",
         "standby"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": "랭킹",
       "subSubjects": [
@@ -6504,7 +6666,7 @@
       "startDate": "2026-07-21",
       "dueDate": "2026-07-16",
       "created": "2026-07-21T14:45:30.561+0900",
-      "updated": "2026-08-11T06:00:51.206+0900",
+      "updated": "2026-08-12T06:00:36.243+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -6999,7 +7161,7 @@
       "startDate": "2026-07-20",
       "dueDate": "2026-07-20",
       "created": "2026-07-20T11:27:59.187+0900",
-      "updated": "2026-08-11T06:00:52.147+0900",
+      "updated": "2026-08-12T06:00:38.395+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -7054,7 +7216,7 @@
       "startDate": "2026-07-20",
       "dueDate": "2026-07-20",
       "created": "2026-07-20T10:41:44.550+0900",
-      "updated": "2026-08-11T06:00:51.254+0900",
+      "updated": "2026-08-12T06:00:36.440+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -7109,7 +7271,7 @@
       "startDate": "2026-07-20",
       "dueDate": "2026-07-20",
       "created": "2026-07-20T10:09:06.255+0900",
-      "updated": "2026-08-11T06:00:51.937+0900",
+      "updated": "2026-08-12T06:00:37.109+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -7189,8 +7351,8 @@
         {
           "key": "PD-8964",
           "summary": "[추천판][전문관 홈] 상품명 제거 테스트",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "In Design",
+          "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Blocks",
           "direction": "outward"
@@ -7725,7 +7887,7 @@
       "startDate": "2026-07-21",
       "dueDate": "2026-08-28",
       "created": "2026-07-20T09:04:28.601+0900",
-      "updated": "2026-08-06T17:02:15.607+0900",
+      "updated": "2026-08-11T14:55:43.985+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-21T15:44:35.382+0900",
       "linkedTickets": [
@@ -8004,7 +8166,7 @@
       "startDate": "2026-07-16",
       "dueDate": "2026-07-16",
       "created": "2026-07-16T15:17:49.133+0900",
-      "updated": "2026-08-11T06:00:51.286+0900",
+      "updated": "2026-08-12T06:00:38.635+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -8066,22 +8228,22 @@
       "startDate": "2026-07-16",
       "dueDate": null,
       "created": "2026-07-16T13:29:24.776+0900",
-      "updated": "2026-07-24T10:48:49.335+0900",
+      "updated": "2026-08-11T15:30:18.843+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-23T16:33:28.188+0900",
       "linkedTickets": [
         {
           "key": "FT-362",
           "summary": "[카테고리메뉴]오프라인탭 API 변경",
-          "status": "개발완료",
-          "statusCategory": "indeterminate",
+          "status": "론치완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward"
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 1
       }
     },
@@ -8211,7 +8373,7 @@
       "startDate": "2026-07-15",
       "dueDate": "2026-07-15",
       "created": "2026-07-15T16:52:31.554+0900",
-      "updated": "2026-08-11T06:00:51.750+0900",
+      "updated": "2026-08-12T06:00:39.293+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -8266,7 +8428,7 @@
       "startDate": "2026-07-15",
       "dueDate": "2026-07-15",
       "created": "2026-07-15T14:35:24.780+0900",
-      "updated": "2026-08-11T06:00:53.455+0900",
+      "updated": "2026-08-12T06:00:38.989+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -8861,7 +9023,7 @@
       "startDate": "2026-07-14",
       "dueDate": "2026-07-14",
       "created": "2026-07-14T13:48:18.412+0900",
-      "updated": "2026-08-11T06:00:53.799+0900",
+      "updated": "2026-08-12T06:00:41.335+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -8960,7 +9122,7 @@
       "startDate": "2026-07-08",
       "dueDate": "2026-07-24",
       "created": "2026-07-13T15:33:34.399+0900",
-      "updated": "2026-08-11T06:00:51.255+0900",
+      "updated": "2026-08-12T06:00:36.553+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-15T13:22:44.451+0900",
       "linkedTickets": [
@@ -9656,7 +9818,7 @@
       "startDate": "2026-07-09",
       "dueDate": "2026-07-10",
       "created": "2026-07-09T17:11:08.919+0900",
-      "updated": "2026-08-11T06:00:54.156+0900",
+      "updated": "2026-08-12T06:00:41.686+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -9896,14 +10058,14 @@
       "startDate": "2026-07-09",
       "dueDate": "2026-06-24",
       "created": "2026-07-09T12:17:33.774+0900",
-      "updated": "2026-08-11T06:00:53.922+0900",
+      "updated": "2026-08-12T06:00:41.532+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-09T12:17:35.639+0900",
       "linkedTickets": [
         {
           "key": "ETR-5270",
           "summary": "수량 입력 시 수기 입력 가능하도록 수정",
-          "status": "검토완료-백로그",
+          "status": "검토완료-미진행",
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
@@ -10028,9 +10190,9 @@
         "추천판",
         "홈앤디"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": "추천",
       "subSubjects": [
@@ -10183,9 +10345,9 @@
         "one",
         "ux-ft-backlog"
       ],
-      "mainSubject": "09.캠페인",
+      "mainSubject": "03.캠페인/기획전/라이브",
       "mainSubjects": [
-        "09.캠페인"
+        "03.캠페인/기획전/라이브"
       ],
       "subSubject": "캠페인",
       "subSubjects": [
@@ -10512,7 +10674,7 @@
       "startDate": "2026-07-08",
       "dueDate": "2026-07-06",
       "created": "2026-07-08T10:11:47.314+0900",
-      "updated": "2026-08-11T06:00:53.865+0900",
+      "updated": "2026-08-12T06:00:42.569+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -10631,7 +10793,7 @@
       "startDate": "2026-07-08",
       "dueDate": "2026-07-09",
       "created": "2026-07-08T09:37:20.245+0900",
-      "updated": "2026-08-11T06:00:54.985+0900",
+      "updated": "2026-08-12T06:00:42.077+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [],
@@ -10894,11 +11056,11 @@
       "summary": "[장바구니] 결제 즉시할인 혜택 넛지 추가",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "디자인완료",
+      "status": "QA중",
       "statusCategory": "indeterminate",
       "priority": "P2",
       "assignee": {
-        "name": "심규환",
+        "name": "장미진",
         "email": null,
         "accountId": null
       },
@@ -10919,15 +11081,17 @@
       "mainSubjects": [],
       "subSubject": null,
       "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
+      "yearQuarter": "2026-Q3",
+      "yearQuarters": [
+        "2026-Q3"
+      ],
       "subGroup": null,
       "startDate": "2026-08-06",
-      "dueDate": "2026-08-11",
+      "dueDate": "2026-08-14",
       "created": "2026-07-07T15:45:00.970+0900",
-      "updated": "2026-08-10T15:32:57.505+0900",
+      "updated": "2026-08-11T18:03:15.539+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-20T17:30:07.837+0900",
+      "lastStatusChangedAt": "2026-08-11T15:33:18.903+0900",
       "linkedTickets": [
         {
           "key": "ETR-3677",
@@ -10973,11 +11137,29 @@
           "assignee": null,
           "linkType": "Relates",
           "direction": "outward"
+        },
+        {
+          "key": "PD-9012",
+          "summary": "장바구니 결제 혜택 넛징 디자인 QA",
+          "status": "완료",
+          "statusCategory": "done",
+          "assignee": null,
+          "linkType": "Blocks",
+          "direction": "inward"
+        },
+        {
+          "key": "TL-233",
+          "summary": "[장바구니] 결제혜택 넛지 추가 (바로가기 버튼)",
+          "status": "완료",
+          "statusCategory": "done",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "outward"
         }
       ],
       "progress": {
-        "done": 4,
-        "total": 5
+        "done": 6,
+        "total": 7
       }
     },
     {
@@ -11135,9 +11317,9 @@
         "one",
         "standby"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": "카테고리/SRP",
       "subSubjects": [
@@ -11315,9 +11497,9 @@
         "fasttrack",
         "one"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -11495,9 +11677,9 @@
         "standby",
         "ux-ft-drop"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": "필터/PLP",
       "subSubjects": [
@@ -11631,7 +11813,7 @@
       "startDate": "2026-07-07",
       "dueDate": "2026-07-02",
       "created": "2026-07-07T12:04:56.966+0900",
-      "updated": "2026-08-11T06:00:56.053+0900",
+      "updated": "2026-08-12T06:00:44.623+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -11686,7 +11868,7 @@
       "startDate": "2026-07-07",
       "dueDate": "2026-06-30",
       "created": "2026-07-07T11:37:30.698+0900",
-      "updated": "2026-08-11T06:00:55.795+0900",
+      "updated": "2026-08-12T06:00:43.276+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -11817,7 +11999,7 @@
       "startDate": "2026-07-07",
       "dueDate": "2026-07-07",
       "created": "2026-07-07T10:50:42.184+0900",
-      "updated": "2026-08-11T06:00:56.717+0900",
+      "updated": "2026-08-12T06:00:41.551+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -11872,7 +12054,7 @@
       "startDate": "2026-07-07",
       "dueDate": "2026-07-08",
       "created": "2026-07-07T09:52:50.342+0900",
-      "updated": "2026-08-11T06:00:56.537+0900",
+      "updated": "2026-08-12T06:00:43.825+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -11927,7 +12109,7 @@
       "startDate": "2026-07-07",
       "dueDate": "2026-07-08",
       "created": "2026-07-07T09:50:00.101+0900",
-      "updated": "2026-08-11T06:00:54.333+0900",
+      "updated": "2026-08-12T06:00:45.294+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [],
@@ -11972,7 +12154,7 @@
       "startDate": "2026-07-07",
       "dueDate": "2026-07-08",
       "created": "2026-07-07T09:49:37.438+0900",
-      "updated": "2026-08-11T06:00:54.945+0900",
+      "updated": "2026-08-12T06:00:43.155+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -12027,7 +12209,7 @@
       "startDate": "2026-07-07",
       "dueDate": "2026-07-07",
       "created": "2026-07-07T09:47:03.990+0900",
-      "updated": "2026-08-11T06:00:56.172+0900",
+      "updated": "2026-08-12T06:00:43.341+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -12082,7 +12264,7 @@
       "startDate": "2026-07-07",
       "dueDate": "2026-07-07",
       "created": "2026-07-07T09:46:49.920+0900",
-      "updated": "2026-08-11T06:00:56.278+0900",
+      "updated": "2026-08-12T06:00:42.022+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -12383,9 +12565,9 @@
         "one",
         "standby"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -12452,7 +12634,7 @@
       "startDate": "2026-07-06",
       "dueDate": "2026-07-07",
       "created": "2026-07-06T18:06:56.515+0900",
-      "updated": "2026-08-11T06:00:56.706+0900",
+      "updated": "2026-08-12T06:00:45.076+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -12507,7 +12689,7 @@
       "startDate": "2026-07-06",
       "dueDate": "2026-07-07",
       "created": "2026-07-06T17:45:23.788+0900",
-      "updated": "2026-08-11T06:00:56.552+0900",
+      "updated": "2026-08-12T06:00:46.125+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -12746,9 +12928,9 @@
         "추천판",
         "홈앤디"
       ],
-      "mainSubject": "02.콘텐츠/발매/스냅/라이브",
+      "mainSubject": "02.콘텐츠/발매/스페셜",
       "mainSubjects": [
-        "02.콘텐츠/발매/스냅/라이브"
+        "02.콘텐츠/발매/스페셜"
       ],
       "subSubject": "추천",
       "subSubjects": [
@@ -12826,7 +13008,7 @@
       "startDate": "2026-07-06",
       "dueDate": "2026-07-07",
       "created": "2026-07-06T16:52:18.632+0900",
-      "updated": "2026-08-11T06:00:56.621+0900",
+      "updated": "2026-08-12T06:00:44.888+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -12881,7 +13063,7 @@
       "startDate": "2026-07-06",
       "dueDate": "2026-07-07",
       "created": "2026-07-06T10:52:06.171+0900",
-      "updated": "2026-08-11T06:00:55.948+0900",
+      "updated": "2026-08-12T06:00:45.680+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -13073,7 +13255,7 @@
         },
         {
           "key": "TM-4050",
-          "summary": "[MSS][검색]통합검색 입력창 개선",
+          "summary": "[MSS][검색]통합검색 검색홈 개선",
           "status": "기획중",
           "statusCategory": "indeterminate",
           "assignee": null,
@@ -13991,7 +14173,7 @@
       "startDate": "2026-07-03",
       "dueDate": "2026-07-02",
       "created": "2026-07-03T13:10:16.790+0900",
-      "updated": "2026-08-11T06:00:56.071+0900",
+      "updated": "2026-08-12T06:00:44.206+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -14045,7 +14227,7 @@
       "startDate": "2026-07-03",
       "dueDate": "2026-07-01",
       "created": "2026-07-03T12:11:56.740+0900",
-      "updated": "2026-08-11T06:00:56.383+0900",
+      "updated": "2026-08-12T06:00:44.947+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -14169,7 +14351,7 @@
       "startDate": "2026-07-03",
       "dueDate": "2026-07-02",
       "created": "2026-07-03T11:48:44.327+0900",
-      "updated": "2026-08-11T06:00:56.079+0900",
+      "updated": "2026-08-12T06:00:45.071+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -14843,9 +15025,9 @@
         "fast-track-away",
         "one"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": "검색",
       "subSubjects": [
@@ -15248,14 +15430,14 @@
       "startDate": "2026-06-30",
       "dueDate": "2026-07-01",
       "created": "2026-06-30T14:51:37.048+0900",
-      "updated": "2026-08-11T06:00:58.941+0900",
+      "updated": "2026-08-12T06:00:46.246+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
         {
           "key": "ETR-5367",
           "summary": "[design-driven][공통] 퍼널 배너 스타일 개선",
-          "status": "검토완료-백로그",
+          "status": "검토완료-미진행",
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
@@ -15303,7 +15485,7 @@
       "startDate": "2026-06-30",
       "dueDate": "2026-06-26",
       "created": "2026-06-30T14:31:18.013+0900",
-      "updated": "2026-08-11T06:00:59.086+0900",
+      "updated": "2026-08-12T06:00:45.971+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -15914,11 +16096,11 @@
       "summary": "[design-driven][공통] 퍼널 배너 스타일 개선",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-백로그",
+      "status": "검토완료-미진행",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
-        "name": "이승연",
+        "name": "김경윤",
         "email": null,
         "accountId": null
       },
@@ -15942,9 +16124,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-30T14:18:08.594+0900",
-      "updated": "2026-08-03T10:16:32.358+0900",
+      "updated": "2026-08-11T12:16:14.617+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-30T14:51:44.016+0900",
+      "lastStatusChangedAt": "2026-08-11T12:16:08.911+0900",
       "linkedTickets": [
         {
           "key": "FT-90",
@@ -16323,9 +16505,9 @@
         "랭킹",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": "랭킹",
       "subSubjects": [
@@ -16403,7 +16585,7 @@
       "startDate": "2026-06-29",
       "dueDate": "2026-06-29",
       "created": "2026-06-29T16:21:59.689+0900",
-      "updated": "2026-08-11T06:00:59.214+0900",
+      "updated": "2026-08-12T06:00:45.944+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -17271,7 +17453,7 @@
       "startDate": "2026-06-25",
       "dueDate": "2026-06-23",
       "created": "2026-06-25T17:15:04.776+0900",
-      "updated": "2026-08-11T06:00:59.614+0900",
+      "updated": "2026-08-12T06:00:47.477+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -17326,7 +17508,7 @@
       "startDate": "2026-06-25",
       "dueDate": "2026-06-23",
       "created": "2026-06-25T17:14:54.335+0900",
-      "updated": "2026-08-11T06:00:58.757+0900",
+      "updated": "2026-08-12T06:00:48.498+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -17381,7 +17563,7 @@
       "startDate": "2026-06-25",
       "dueDate": "2026-06-18",
       "created": "2026-06-25T17:14:41.172+0900",
-      "updated": "2026-08-11T06:00:59.860+0900",
+      "updated": "2026-08-12T06:00:48.407+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -17436,7 +17618,7 @@
       "startDate": "2026-06-25",
       "dueDate": "2026-06-18",
       "created": "2026-06-25T17:14:20.596+0900",
-      "updated": "2026-08-11T06:00:58.605+0900",
+      "updated": "2026-08-12T06:00:48.328+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -17605,7 +17787,7 @@
       "startDate": "2026-06-24",
       "dueDate": "2026-06-11",
       "created": "2026-06-24T15:28:16.689+0900",
-      "updated": "2026-08-11T06:00:59.390+0900",
+      "updated": "2026-08-12T06:00:51.457+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -17781,9 +17963,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "05.브랜드 인덱스/브랜드샵(홈)",
+      "mainSubject": "06.브랜드인덱스/브랜드샵(홈)",
       "mainSubjects": [
-        "05.브랜드 인덱스/브랜드샵(홈)"
+        "06.브랜드인덱스/브랜드샵(홈)"
       ],
       "subSubject": "브랜드 샵",
       "subSubjects": [
@@ -17999,7 +18181,7 @@
       "startDate": "2026-06-24",
       "dueDate": "2026-06-25",
       "created": "2026-06-24T15:18:50.691+0900",
-      "updated": "2026-08-11T06:00:59.599+0900",
+      "updated": "2026-08-12T06:00:49.957+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -18054,7 +18236,7 @@
       "startDate": "2026-06-24",
       "dueDate": "2026-06-16",
       "created": "2026-06-24T15:18:35.955+0900",
-      "updated": "2026-08-11T06:01:01.493+0900",
+      "updated": "2026-08-12T06:00:50.153+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -18109,7 +18291,7 @@
       "startDate": "2026-06-24",
       "dueDate": "2026-06-17",
       "created": "2026-06-24T15:18:23.114+0900",
-      "updated": "2026-08-11T06:01:01.304+0900",
+      "updated": "2026-08-12T06:00:49.876+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -18337,9 +18519,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": "추천",
       "subSubjects": [
@@ -18357,7 +18539,7 @@
       "startDate": "2026-06-24",
       "dueDate": "2026-06-24",
       "created": "2026-06-24T13:26:06.706+0900",
-      "updated": "2026-08-11T06:01:02.881+0900",
+      "updated": "2026-08-12T06:00:51.450+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -18487,7 +18669,7 @@
         {
           "key": "ETR-5270",
           "summary": "수량 입력 시 수기 입력 가능하도록 수정",
-          "status": "검토완료-백로그",
+          "status": "검토완료-미진행",
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
@@ -18553,7 +18735,7 @@
       "startDate": "2026-06-24",
       "dueDate": "2026-06-24",
       "created": "2026-06-24T11:06:08.479+0900",
-      "updated": "2026-08-11T06:01:01.846+0900",
+      "updated": "2026-08-12T06:00:50.885+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -18674,14 +18856,14 @@
       "startDate": "2026-06-24",
       "dueDate": "2026-06-24",
       "created": "2026-06-24T11:05:11.514+0900",
-      "updated": "2026-08-11T06:01:02.262+0900",
+      "updated": "2026-08-12T06:00:50.537+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
         {
           "key": "ETR-5269",
           "summary": "[design-driven][PLP] 상품 정보영역 내 간격 등 개선",
-          "status": "검토완료-백로그",
+          "status": "검토완료-미진행",
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
@@ -18773,9 +18955,9 @@
         "standby",
         "ux-ft"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": "공통(GNB/게이트웨이)",
       "subSubjects": [
@@ -18789,7 +18971,7 @@
       "startDate": "2026-07-10",
       "dueDate": "2026-08-19",
       "created": "2026-06-23T18:35:54.073+0900",
-      "updated": "2026-08-10T11:03:58.573+0900",
+      "updated": "2026-08-11T16:19:29.846+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -19373,7 +19555,7 @@
       "summary": "수량 입력 시 수기 입력 가능하도록 수정",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-백로그",
+      "status": "검토완료-미진행",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -19401,9 +19583,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-23T14:57:07.765+0900",
-      "updated": "2026-07-09T12:18:17.124+0900",
+      "updated": "2026-08-11T12:16:10.932+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-09T12:17:37.766+0900",
+      "lastStatusChangedAt": "2026-08-11T12:16:05.376+0900",
       "linkedTickets": [
         {
           "key": "FT-116",
@@ -19444,11 +19626,11 @@
       "summary": "[design-driven][PLP] 상품 정보영역 내 간격 등 개선",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-백로그",
+      "status": "검토완료-미진행",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
-        "name": "이승연",
+        "name": "김경윤",
         "email": null,
         "accountId": null
       },
@@ -19473,9 +19655,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-23T14:57:05.550+0900",
-      "updated": "2026-08-03T10:16:38.944+0900",
+      "updated": "2026-08-11T12:16:12.955+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-24T11:05:19.198+0900",
+      "lastStatusChangedAt": "2026-08-11T12:16:07.134+0900",
       "linkedTickets": [
         {
           "key": "FT-114",
@@ -19609,7 +19791,7 @@
       "startDate": "2026-06-23",
       "dueDate": "2026-06-17",
       "created": "2026-06-23T10:06:46.426+0900",
-      "updated": "2026-08-11T06:01:05.138+0900",
+      "updated": "2026-08-12T06:00:55.078+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -19664,7 +19846,7 @@
       "startDate": "2026-06-23",
       "dueDate": "2026-06-17",
       "created": "2026-06-23T10:06:06.182+0900",
-      "updated": "2026-08-11T06:01:05.202+0900",
+      "updated": "2026-08-12T06:00:55.129+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -19719,7 +19901,7 @@
       "startDate": "2026-06-23",
       "dueDate": "2026-06-16",
       "created": "2026-06-23T10:05:52.754+0900",
-      "updated": "2026-08-11T06:01:05.457+0900",
+      "updated": "2026-08-12T06:00:55.594+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -20049,9 +20231,9 @@
         "one",
         "pel"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": "추천",
       "subSubjects": [
@@ -20150,9 +20332,9 @@
         "one",
         "pel"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -20199,9 +20381,9 @@
         "standby",
         "홈앤디"
       ],
-      "mainSubject": "02.콘텐츠/발매/스냅/라이브",
+      "mainSubject": "02.콘텐츠/발매/스페셜",
       "mainSubjects": [
-        "02.콘텐츠/발매/스냅/라이브"
+        "02.콘텐츠/발매/스페셜"
       ],
       "subSubject": "추천",
       "subSubjects": [
@@ -20337,9 +20519,9 @@
         "one",
         "pel"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -20618,9 +20800,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "10.좋아요/최근본",
+      "mainSubject": "09.좋아요/최근본",
       "mainSubjects": [
-        "10.좋아요/최근본"
+        "09.좋아요/최근본"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -20662,9 +20844,9 @@
         "auto-etr-triaged",
         "one"
       ],
-      "mainSubject": "02.콘텐츠/발매/스냅/라이브",
+      "mainSubject": "02.콘텐츠/발매/스페셜",
       "mainSubjects": [
-        "02.콘텐츠/발매/스냅/라이브"
+        "02.콘텐츠/발매/스페셜"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -20720,9 +20902,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -20771,9 +20953,9 @@
         "mode_b",
         "one"
       ],
-      "mainSubject": "02.콘텐츠/발매/스냅/라이브",
+      "mainSubject": "02.콘텐츠/발매/스페셜",
       "mainSubjects": [
-        "02.콘텐츠/발매/스냅/라이브"
+        "02.콘텐츠/발매/스페셜"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -20885,9 +21067,9 @@
         "mode_b",
         "one"
       ],
-      "mainSubject": "07. PDP/후기",
+      "mainSubject": "07. PDP",
       "mainSubjects": [
-        "07. PDP/후기"
+        "07. PDP"
       ],
       "subSubject": "추천",
       "subSubjects": [
@@ -20939,9 +21121,9 @@
         "pel",
         "홈앤디"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -21000,9 +21182,9 @@
         "one",
         "team-display"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": "브랜드 인덱스",
       "subSubjects": [
@@ -21064,9 +21246,9 @@
         "one",
         "team-order"
       ],
-      "mainSubject": "22.주문/결제",
+      "mainSubject": "22.마이페이지",
       "mainSubjects": [
-        "22.주문/결제"
+        "22.마이페이지"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -21114,9 +21296,9 @@
         "team-display",
         "방향검증"
       ],
-      "mainSubject": "02.콘텐츠/발매/스냅/라이브",
+      "mainSubject": "02.콘텐츠/발매/스페셜",
       "mainSubjects": [
-        "02.콘텐츠/발매/스냅/라이브"
+        "02.콘텐츠/발매/스페셜"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -21179,9 +21361,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "02.콘텐츠/발매/스냅/라이브",
+      "mainSubject": "02.콘텐츠/발매/스페셜",
       "mainSubjects": [
-        "02.콘텐츠/발매/스냅/라이브"
+        "02.콘텐츠/발매/스페셜"
       ],
       "subSubject": "콘텐츠",
       "subSubjects": [
@@ -21249,9 +21431,9 @@
         "team-display",
         "홈앤디"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -21302,9 +21484,9 @@
         "one",
         "team-campaign"
       ],
-      "mainSubject": "02.콘텐츠/발매/스냅/라이브",
+      "mainSubject": "02.콘텐츠/발매/스페셜",
       "mainSubjects": [
-        "02.콘텐츠/발매/스냅/라이브"
+        "02.콘텐츠/발매/스페셜"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -21369,9 +21551,9 @@
         "fasttrack",
         "one"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -21436,9 +21618,9 @@
         "one",
         "ux-ft-backlog"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": "공통(GNB/게이트웨이)",
       "subSubjects": [
@@ -21505,9 +21687,9 @@
         "one",
         "pel"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -21570,9 +21752,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "02.콘텐츠/발매/스냅/라이브",
+      "mainSubject": "02.콘텐츠/발매/스페셜",
       "mainSubjects": [
-        "02.콘텐츠/발매/스냅/라이브"
+        "02.콘텐츠/발매/스페셜"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -21620,9 +21802,9 @@
         "fasttrack",
         "one"
       ],
-      "mainSubject": "07. PDP/후기",
+      "mainSubject": "07. PDP",
       "mainSubjects": [
-        "07. PDP/후기"
+        "07. PDP"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -21792,9 +21974,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": "라이브커머스",
       "subSubjects": [
@@ -21843,9 +22025,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -21895,9 +22077,9 @@
         "pel",
         "ux-ft-backlog"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -21998,9 +22180,9 @@
         "pel",
         "홈앤디"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": "추천",
       "subSubjects": [
@@ -22062,9 +22244,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -22076,7 +22258,7 @@
       "startDate": "2026-07-04",
       "dueDate": "2026-08-03",
       "created": "2026-06-19T00:56:21.001+0900",
-      "updated": "2026-08-04T14:01:44.644+0900",
+      "updated": "2026-08-11T10:43:51.053+0900",
       "resolutionDate": "2026-08-04T14:01:44.632+0900",
       "lastStatusChangedAt": "2026-08-04T14:01:44.644+0900",
       "linkedTickets": [
@@ -22131,9 +22313,9 @@
         "one",
         "pel"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -22232,9 +22414,9 @@
         "one",
         "standby"
       ],
-      "mainSubject": "07. PDP/후기",
+      "mainSubject": "07. PDP",
       "mainSubjects": [
-        "07. PDP/후기"
+        "07. PDP"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -22350,9 +22532,9 @@
         "design-driven",
         "one"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -22408,9 +22590,9 @@
         "one",
         "pel"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -22454,9 +22636,9 @@
         "one",
         "ux-ft-general"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": "공통(GNB/게이트웨이)",
       "subSubjects": [
@@ -22668,9 +22850,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -22765,9 +22947,9 @@
         "design-driven",
         "one"
       ],
-      "mainSubject": "02.콘텐츠/발매/스냅/라이브",
+      "mainSubject": "02.콘텐츠/발매/스페셜",
       "mainSubjects": [
-        "02.콘텐츠/발매/스냅/라이브"
+        "02.콘텐츠/발매/스페셜"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -22822,9 +23004,9 @@
         "design-driven",
         "one"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -22869,9 +23051,9 @@
         "design-driven",
         "one"
       ],
-      "mainSubject": "08.이벤트/앱테크/온보딩",
+      "mainSubject": "08.앱테크/혜택홈",
       "mainSubjects": [
-        "08.이벤트/앱테크/온보딩"
+        "08.앱테크/혜택홈"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -22978,9 +23160,9 @@
         "design-driven",
         "one"
       ],
-      "mainSubject": "08.이벤트/앱테크/온보딩",
+      "mainSubject": "08.앱테크/혜택홈",
       "mainSubjects": [
-        "08.이벤트/앱테크/온보딩"
+        "08.앱테크/혜택홈"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -23046,9 +23228,9 @@
         "pel",
         "ux-ft-backlog"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": "앱테크",
       "subSubjects": [
@@ -23167,9 +23349,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "05.브랜드 인덱스/브랜드샵(홈)",
+      "mainSubject": "06.브랜드인덱스/브랜드샵(홈)",
       "mainSubjects": [
-        "05.브랜드 인덱스/브랜드샵(홈)"
+        "06.브랜드인덱스/브랜드샵(홈)"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -23233,9 +23415,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -23279,9 +23461,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -23326,9 +23508,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "07. PDP/후기",
+      "mainSubject": "07. PDP",
       "mainSubjects": [
-        "07. PDP/후기"
+        "07. PDP"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -23372,9 +23554,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "02.콘텐츠/발매/스냅/라이브",
+      "mainSubject": "02.콘텐츠/발매/스페셜",
       "mainSubjects": [
-        "02.콘텐츠/발매/스냅/라이브"
+        "02.콘텐츠/발매/스페셜"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -23419,9 +23601,9 @@
         "one",
         "pel"
       ],
-      "mainSubject": "09.캠페인",
+      "mainSubject": "03.캠페인/기획전/라이브",
       "mainSubjects": [
-        "09.캠페인"
+        "03.캠페인/기획전/라이브"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -23466,9 +23648,9 @@
         "pel",
         "홈앤디"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -23557,9 +23739,9 @@
         "one",
         "pel"
       ],
-      "mainSubject": "02.콘텐츠/발매/스냅/라이브",
+      "mainSubject": "02.콘텐츠/발매/스페셜",
       "mainSubjects": [
-        "02.콘텐츠/발매/스냅/라이브"
+        "02.콘텐츠/발매/스페셜"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -23655,9 +23837,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -23712,9 +23894,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "07. PDP/후기",
+      "mainSubject": "07. PDP",
       "mainSubjects": [
-        "07. PDP/후기"
+        "07. PDP"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -23760,9 +23942,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "07. PDP/후기",
+      "mainSubject": "07. PDP",
       "mainSubjects": [
-        "07. PDP/후기"
+        "07. PDP"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -23807,9 +23989,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "07. PDP/후기",
+      "mainSubject": "07. PDP",
       "mainSubjects": [
-        "07. PDP/후기"
+        "07. PDP"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -23907,9 +24089,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": "필터/PLP",
       "subSubjects": [
@@ -23957,9 +24139,9 @@
         "랭킹",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": "랭킹",
       "subSubjects": [
@@ -24008,9 +24190,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": "추천",
       "subSubjects": [
@@ -24346,9 +24528,9 @@
         "standby",
         "ux-ft-drop"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -24471,9 +24653,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": "랭킹",
       "subSubjects": [
@@ -24520,9 +24702,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": "세일(판)",
       "subSubjects": [
@@ -24568,9 +24750,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -24617,9 +24799,9 @@
         "fasttrack",
         "one"
       ],
-      "mainSubject": "02.콘텐츠/발매/스냅/라이브",
+      "mainSubject": "02.콘텐츠/발매/스페셜",
       "mainSubjects": [
-        "02.콘텐츠/발매/스냅/라이브"
+        "02.콘텐츠/발매/스페셜"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -24672,9 +24854,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": "콘텐츠",
       "subSubjects": [
@@ -24725,9 +24907,9 @@
         "one",
         "ux-ft-general"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": "공통(GNB/게이트웨이)",
       "subSubjects": [
@@ -24843,9 +25025,9 @@
         "pel",
         "ux-ft-drop"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -24911,7 +25093,7 @@
         {
           "key": "ETR-5270",
           "summary": "수량 입력 시 수기 입력 가능하도록 수정",
-          "status": "검토완료-백로그",
+          "status": "검토완료-미진행",
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
@@ -24988,9 +25170,9 @@
         "design-driven",
         "one"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -25009,7 +25191,7 @@
         {
           "key": "ETR-5269",
           "summary": "[design-driven][PLP] 상품 정보영역 내 간격 등 개선",
-          "status": "검토완료-백로그",
+          "status": "검토완료-미진행",
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
@@ -25102,9 +25284,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": "카테고리/SRP",
       "subSubjects": [
@@ -25150,9 +25332,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -25266,9 +25448,9 @@
         "design-driven",
         "one"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -25543,9 +25725,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": "알림",
       "subSubjects": [
@@ -25564,15 +25746,15 @@
         {
           "key": "TM-3484",
           "summary": "[무신사/MATCH] 개인수집정보/맞춤정보 활용 개인화 고도화",
-          "status": "기획중",
-          "statusCategory": "indeterminate",
+          "status": "철회/반려/취소",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward"
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 1
       }
     },
@@ -25650,9 +25832,9 @@
         "one",
         "standby"
       ],
-      "mainSubject": "05.브랜드 인덱스/브랜드샵(홈)",
+      "mainSubject": "06.브랜드인덱스/브랜드샵(홈)",
       "mainSubjects": [
-        "05.브랜드 인덱스/브랜드샵(홈)"
+        "06.브랜드인덱스/브랜드샵(홈)"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -25761,9 +25943,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "05.브랜드 인덱스/브랜드샵(홈)",
+      "mainSubject": "06.브랜드인덱스/브랜드샵(홈)",
       "mainSubjects": [
-        "05.브랜드 인덱스/브랜드샵(홈)"
+        "06.브랜드인덱스/브랜드샵(홈)"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -25806,9 +25988,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -25818,7 +26000,7 @@
       "startDate": null,
       "dueDate": "2026-10-31",
       "created": "2026-06-19T00:55:21.751+0900",
-      "updated": "2026-08-11T06:00:56.386+0900",
+      "updated": "2026-08-12T06:00:45.157+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [],
@@ -25851,9 +26033,9 @@
         "one",
         "ux-ft-drop"
       ],
-      "mainSubject": "02.콘텐츠/발매/스냅/라이브",
+      "mainSubject": "02.콘텐츠/발매/스페셜",
       "mainSubjects": [
-        "02.콘텐츠/발매/스냅/라이브"
+        "02.콘텐츠/발매/스페셜"
       ],
       "subSubject": "PDP",
       "subSubjects": [
@@ -26040,9 +26222,9 @@
         "pel",
         "리서치예정"
       ],
-      "mainSubject": "07. PDP/후기",
+      "mainSubject": "07. PDP",
       "mainSubjects": [
-        "07. PDP/후기"
+        "07. PDP"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -26119,9 +26301,9 @@
         "one",
         "ux-ft-drop"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -26140,7 +26322,7 @@
         {
           "key": "ETR-5367",
           "summary": "[design-driven][공통] 퍼널 배너 스타일 개선",
-          "status": "검토완료-백로그",
+          "status": "검토완료-미진행",
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
@@ -26178,9 +26360,9 @@
         "pel",
         "ux-ft-baclog"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -27331,9 +27513,9 @@
         "one",
         "ux-ft-close"
       ],
-      "mainSubject": "07. PDP/후기",
+      "mainSubject": "07. PDP",
       "mainSubjects": [
-        "07. PDP/후기"
+        "07. PDP"
       ],
       "subSubject": "후기",
       "subSubjects": [
@@ -27635,9 +27817,9 @@
         "ux-ft",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": "랭킹",
       "subSubjects": [
@@ -27978,7 +28160,7 @@
       "startDate": "2026-06-10",
       "dueDate": "2026-06-11",
       "created": "2026-06-10T23:37:15.266+0900",
-      "updated": "2026-08-11T06:01:28.443+0900",
+      "updated": "2026-08-12T06:01:18.790+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -28033,7 +28215,7 @@
       "startDate": "2026-06-10",
       "dueDate": "2026-06-11",
       "created": "2026-06-10T23:35:19.930+0900",
-      "updated": "2026-08-11T06:01:28.584+0900",
+      "updated": "2026-08-12T06:01:18.017+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -28088,7 +28270,7 @@
       "startDate": "2026-06-10",
       "dueDate": "2026-06-11",
       "created": "2026-06-10T23:32:31.260+0900",
-      "updated": "2026-08-11T06:01:27.803+0900",
+      "updated": "2026-08-12T06:01:18.581+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -28143,7 +28325,7 @@
       "startDate": "2026-06-10",
       "dueDate": "2026-06-09",
       "created": "2026-06-10T23:28:56.871+0900",
-      "updated": "2026-08-11T06:01:28.331+0900",
+      "updated": "2026-08-12T06:01:18.778+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -28543,7 +28725,7 @@
       "startDate": "2026-07-01",
       "dueDate": "2026-09-30",
       "created": "2026-06-09T19:06:10.148+0900",
-      "updated": "2026-08-11T06:01:30.180+0900",
+      "updated": "2026-08-12T06:01:19.343+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [],
@@ -28734,9 +28916,9 @@
         "랭킹",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": "랭킹",
       "subSubjects": [
@@ -28880,7 +29062,7 @@
       "startDate": "2026-06-09",
       "dueDate": "2026-06-09",
       "created": "2026-06-09T10:29:02.346+0900",
-      "updated": "2026-08-11T06:01:30.893+0900",
+      "updated": "2026-08-12T06:01:21.242+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -28935,7 +29117,7 @@
       "startDate": "2026-06-09",
       "dueDate": "2026-06-09",
       "created": "2026-06-09T10:28:10.372+0900",
-      "updated": "2026-08-11T06:01:30.701+0900",
+      "updated": "2026-08-12T06:01:19.900+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -28992,7 +29174,7 @@
       "startDate": "2026-06-09",
       "dueDate": "2026-06-09",
       "created": "2026-06-09T10:17:29.586+0900",
-      "updated": "2026-08-11T06:01:31.993+0900",
+      "updated": "2026-08-12T06:01:20.035+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -29047,7 +29229,7 @@
       "startDate": "2026-06-09",
       "dueDate": "2026-06-09",
       "created": "2026-06-09T10:14:06.961+0900",
-      "updated": "2026-08-11T06:01:30.409+0900",
+      "updated": "2026-08-12T06:01:21.774+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -29102,7 +29284,7 @@
       "startDate": "2026-06-09",
       "dueDate": "2026-06-09",
       "created": "2026-06-09T10:11:54.664+0900",
-      "updated": "2026-08-11T06:01:30.632+0900",
+      "updated": "2026-08-12T06:01:21.469+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -29157,7 +29339,7 @@
       "startDate": "2026-06-09",
       "dueDate": "2026-06-09",
       "created": "2026-06-09T10:10:53.751+0900",
-      "updated": "2026-08-11T06:01:32.360+0900",
+      "updated": "2026-08-12T06:01:20.223+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -29706,9 +29888,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": "전문관",
       "subSubjects": [
@@ -29997,7 +30179,7 @@
       "startDate": "2026-06-08",
       "dueDate": "2026-06-09",
       "created": "2026-06-08T18:26:35.558+0900",
-      "updated": "2026-08-11T06:01:30.758+0900",
+      "updated": "2026-08-12T06:01:22.038+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -30105,7 +30287,7 @@
       "startDate": "2026-06-08",
       "dueDate": "2026-06-09",
       "created": "2026-06-08T15:45:47.968+0900",
-      "updated": "2026-08-11T06:01:30.944+0900",
+      "updated": "2026-08-12T06:01:22.015+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -30160,7 +30342,7 @@
       "startDate": "2026-06-08",
       "dueDate": "2026-06-09",
       "created": "2026-06-08T15:43:59.615+0900",
-      "updated": "2026-08-11T06:01:32.238+0900",
+      "updated": "2026-08-12T06:01:22.107+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -30915,9 +31097,9 @@
         "one",
         "ux-ft-drop"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": "전문관",
       "subSubjects": [
@@ -30974,9 +31156,9 @@
         "one",
         "스냅워크샵"
       ],
-      "mainSubject": "02.콘텐츠/발매/스냅/라이브",
+      "mainSubject": "02.콘텐츠/발매/스페셜",
       "mainSubjects": [
-        "02.콘텐츠/발매/스냅/라이브"
+        "02.콘텐츠/발매/스페셜"
       ],
       "subSubject": "스냅",
       "subSubjects": [
@@ -31023,9 +31205,9 @@
         "one",
         "스냅워크샵"
       ],
-      "mainSubject": "02.콘텐츠/발매/스냅/라이브",
+      "mainSubject": "02.콘텐츠/발매/스페셜",
       "mainSubjects": [
-        "02.콘텐츠/발매/스냅/라이브"
+        "02.콘텐츠/발매/스페셜"
       ],
       "subSubject": "스냅",
       "subSubjects": [
@@ -31071,9 +31253,9 @@
         "UGC활성화",
         "one"
       ],
-      "mainSubject": "02.콘텐츠/발매/스냅/라이브",
+      "mainSubject": "02.콘텐츠/발매/스페셜",
       "mainSubjects": [
-        "02.콘텐츠/발매/스냅/라이브"
+        "02.콘텐츠/발매/스페셜"
       ],
       "subSubject": "스냅",
       "subSubjects": [
@@ -31119,9 +31301,9 @@
         "UGC활성화",
         "one"
       ],
-      "mainSubject": "02.콘텐츠/발매/스냅/라이브",
+      "mainSubject": "02.콘텐츠/발매/스페셜",
       "mainSubjects": [
-        "02.콘텐츠/발매/스냅/라이브"
+        "02.콘텐츠/발매/스페셜"
       ],
       "subSubject": "검색",
       "subSubjects": [
@@ -31168,9 +31350,9 @@
         "UGC활성화",
         "one"
       ],
-      "mainSubject": "02.콘텐츠/발매/스냅/라이브",
+      "mainSubject": "02.콘텐츠/발매/스페셜",
       "mainSubjects": [
-        "02.콘텐츠/발매/스냅/라이브"
+        "02.콘텐츠/발매/스페셜"
       ],
       "subSubject": "스냅",
       "subSubjects": [
@@ -31371,9 +31553,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": "공통(GNB/게이트웨이)",
       "subSubjects": [
@@ -31387,7 +31569,7 @@
       "startDate": "2026-06-17",
       "dueDate": "2026-09-30",
       "created": "2026-06-04T23:56:01.978+0900",
-      "updated": "2026-08-11T06:01:31.084+0900",
+      "updated": "2026-08-12T06:01:21.243+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-06T09:41:30.304+0900",
       "linkedTickets": [
@@ -31460,9 +31642,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "05.브랜드 인덱스/브랜드샵(홈)",
+      "mainSubject": "06.브랜드인덱스/브랜드샵(홈)",
       "mainSubjects": [
-        "05.브랜드 인덱스/브랜드샵(홈)"
+        "06.브랜드인덱스/브랜드샵(홈)"
       ],
       "subSubject": "브랜드 샵",
       "subSubjects": [
@@ -31529,7 +31711,7 @@
       "startDate": "2026-06-04",
       "dueDate": "2026-06-01",
       "created": "2026-06-04T23:51:10.691+0900",
-      "updated": "2026-08-11T06:01:31.426+0900",
+      "updated": "2026-08-12T06:01:22.200+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -31593,7 +31775,7 @@
       "startDate": "2026-06-04",
       "dueDate": "2026-06-01",
       "created": "2026-06-04T23:48:05.173+0900",
-      "updated": "2026-08-11T06:01:31.983+0900",
+      "updated": "2026-08-12T06:01:22.515+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -31648,7 +31830,7 @@
       "startDate": "2026-06-04",
       "dueDate": "2026-05-29",
       "created": "2026-06-04T23:46:01.973+0900",
-      "updated": "2026-08-11T06:01:33.047+0900",
+      "updated": "2026-08-12T06:01:22.416+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -31694,9 +31876,9 @@
         "one",
         "ux-ft-close"
       ],
-      "mainSubject": "02.콘텐츠/발매/스냅/라이브",
+      "mainSubject": "02.콘텐츠/발매/스페셜",
       "mainSubjects": [
-        "02.콘텐츠/발매/스냅/라이브"
+        "02.콘텐츠/발매/스페셜"
       ],
       "subSubject": "콘텐츠",
       "subSubjects": [
@@ -31774,9 +31956,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": "추천",
       "subSubjects": [
@@ -31834,9 +32016,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "05.브랜드 인덱스/브랜드샵(홈)",
+      "mainSubject": "06.브랜드인덱스/브랜드샵(홈)",
       "mainSubjects": [
-        "05.브랜드 인덱스/브랜드샵(홈)"
+        "06.브랜드인덱스/브랜드샵(홈)"
       ],
       "subSubject": "랭킹",
       "subSubjects": [
@@ -32121,9 +32303,9 @@
       "labels": [
         "one"
       ],
-      "mainSubject": "02.콘텐츠/발매/스냅/라이브",
+      "mainSubject": "02.콘텐츠/발매/스페셜",
       "mainSubjects": [
-        "02.콘텐츠/발매/스냅/라이브"
+        "02.콘텐츠/발매/스페셜"
       ],
       "subSubject": "스냅",
       "subSubjects": [
@@ -32244,9 +32426,9 @@
         "one",
         "ux-ft-drop"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": "공통(GNB/게이트웨이)",
       "subSubjects": [
@@ -32508,9 +32690,9 @@
         "전문관",
         "홈앤디"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": "전문관",
       "subSubjects": [
@@ -32597,9 +32779,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": "필터/PLP",
       "subSubjects": [
@@ -32654,9 +32836,9 @@
       "labels": [
         "one"
       ],
-      "mainSubject": "02.콘텐츠/발매/스냅/라이브",
+      "mainSubject": "02.콘텐츠/발매/스페셜",
       "mainSubjects": [
-        "02.콘텐츠/발매/스냅/라이브"
+        "02.콘텐츠/발매/스페셜"
       ],
       "subSubject": "콘텐츠",
       "subSubjects": [
@@ -32902,9 +33084,9 @@
         "general-task",
         "one"
       ],
-      "mainSubject": "02.콘텐츠/발매/스냅/라이브",
+      "mainSubject": "02.콘텐츠/발매/스페셜",
       "mainSubjects": [
-        "02.콘텐츠/발매/스냅/라이브"
+        "02.콘텐츠/발매/스페셜"
       ],
       "subSubject": "추천",
       "subSubjects": [
@@ -33017,9 +33199,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": "필터/PLP",
       "subSubjects": [
@@ -33079,9 +33261,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": "추천",
       "subSubjects": [
@@ -33193,9 +33375,9 @@
         "ux-ft",
         "홈앤디"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": "추천",
       "subSubjects": [
@@ -33349,7 +33531,7 @@
       "startDate": null,
       "dueDate": "2026-06-04",
       "created": "2026-06-01T18:37:32.485+0900",
-      "updated": "2026-08-11T06:01:33.108+0900",
+      "updated": "2026-08-12T06:01:21.802+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -33578,7 +33760,7 @@
       "startDate": "2026-06-01",
       "dueDate": "2026-06-02",
       "created": "2026-06-01T13:04:02.633+0900",
-      "updated": "2026-08-11T06:01:32.527+0900",
+      "updated": "2026-08-12T06:01:22.550+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -33786,9 +33968,9 @@
         "전문관",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": "전문관",
       "subSubjects": [
@@ -34443,9 +34625,9 @@
         "랭킹",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": "랭킹",
       "subSubjects": [
@@ -34502,9 +34684,9 @@
         "one",
         "pel"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": "추천",
       "subSubjects": [
@@ -35014,9 +35196,9 @@
         "one",
         "삭제"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": "추천",
       "subSubjects": [
@@ -35028,7 +35210,7 @@
       "startDate": "2026-05-28",
       "dueDate": null,
       "created": "2026-05-28T13:02:35.389+0900",
-      "updated": "2026-08-07T10:35:06.454+0900",
+      "updated": "2026-08-11T11:23:23.277+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-27T09:24:59.129+0900",
       "linkedTickets": [
@@ -35136,9 +35318,9 @@
         "one",
         "삭제"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -35305,9 +35487,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": "검색",
       "subSubjects": [
@@ -35322,7 +35504,7 @@
       "startDate": null,
       "dueDate": "2026-09-30",
       "created": "2026-05-27T17:31:30.911+0900",
-      "updated": "2026-08-11T06:01:33.377+0900",
+      "updated": "2026-08-12T06:01:23.702+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-08-03T10:33:06.272+0900",
       "linkedTickets": [
@@ -35446,9 +35628,9 @@
         "fasttrack",
         "one"
       ],
-      "mainSubject": "02.콘텐츠/발매/스냅/라이브",
+      "mainSubject": "02.콘텐츠/발매/스페셜",
       "mainSubjects": [
-        "02.콘텐츠/발매/스냅/라이브"
+        "02.콘텐츠/발매/스페셜"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -35524,9 +35706,9 @@
         "fasttrack",
         "one"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -35665,9 +35847,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -35751,9 +35933,9 @@
         "pel",
         "ux-ft-general"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": "공통(GNB/게이트웨이)",
       "subSubjects": [
@@ -35811,9 +35993,9 @@
         "pel",
         "ux-ft-backlog"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": "추천",
       "subSubjects": [
@@ -36012,9 +36194,9 @@
         "전문관",
         "홈앤디"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": "전문관",
       "subSubjects": [
@@ -36211,9 +36393,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -36422,7 +36604,7 @@
       "startDate": "2026-05-22",
       "dueDate": "2026-05-26",
       "created": "2026-05-22T13:20:41.309+0900",
-      "updated": "2026-08-11T06:01:34.706+0900",
+      "updated": "2026-08-12T06:01:23.551+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -36584,9 +36766,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": "추천",
       "subSubjects": [
@@ -36660,9 +36842,9 @@
       "labels": [
         "one"
       ],
-      "mainSubject": "05.브랜드 인덱스/브랜드샵(홈)",
+      "mainSubject": "06.브랜드인덱스/브랜드샵(홈)",
       "mainSubjects": [
-        "05.브랜드 인덱스/브랜드샵(홈)"
+        "06.브랜드인덱스/브랜드샵(홈)"
       ],
       "subSubject": "추천",
       "subSubjects": [
@@ -36861,9 +37043,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": "검색",
       "subSubjects": [
@@ -37177,9 +37359,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -37444,9 +37626,9 @@
       "labels": [
         "one"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -37503,9 +37685,9 @@
         "pel",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": "랭킹",
       "subSubjects": [
@@ -37563,9 +37745,9 @@
         "auto-etr-triaged",
         "one"
       ],
-      "mainSubject": "02.콘텐츠/발매/스냅/라이브",
+      "mainSubject": "02.콘텐츠/발매/스페셜",
       "mainSubjects": [
-        "02.콘텐츠/발매/스냅/라이브"
+        "02.콘텐츠/발매/스페셜"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -37718,9 +37900,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -37979,9 +38161,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -38352,9 +38534,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": "필터/PLP",
       "subSubjects": [
@@ -38746,9 +38928,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -38758,7 +38940,7 @@
       "startDate": null,
       "dueDate": "2026-09-30",
       "created": "2026-05-18T15:58:48.846+0900",
-      "updated": "2026-08-11T06:00:57.071+0900",
+      "updated": "2026-08-12T06:00:45.835+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -38873,9 +39055,9 @@
         "one",
         "ux-ft-close"
       ],
-      "mainSubject": "02.콘텐츠/발매/스냅/라이브",
+      "mainSubject": "02.콘텐츠/발매/스페셜",
       "mainSubjects": [
-        "02.콘텐츠/발매/스냅/라이브"
+        "02.콘텐츠/발매/스페셜"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -38933,9 +39115,9 @@
         "fasttrack",
         "one"
       ],
-      "mainSubject": "22.주문/결제",
+      "mainSubject": "22.마이페이지",
       "mainSubjects": [
-        "22.주문/결제"
+        "22.마이페이지"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -39007,9 +39189,9 @@
         "무탠다드_노출",
         "무탠다드_온라인"
       ],
-      "mainSubject": "07. PDP/후기",
+      "mainSubject": "07. PDP",
       "mainSubjects": [
-        "07. PDP/후기"
+        "07. PDP"
       ],
       "subSubject": "PDP",
       "subSubjects": [
@@ -39312,9 +39494,9 @@
         "one",
         "pel"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -39359,9 +39541,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "02.콘텐츠/발매/스냅/라이브",
+      "mainSubject": "02.콘텐츠/발매/스페셜",
       "mainSubjects": [
-        "02.콘텐츠/발매/스냅/라이브"
+        "02.콘텐츠/발매/스페셜"
       ],
       "subSubject": "추천",
       "subSubjects": [
@@ -39693,9 +39875,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": "랭킹",
       "subSubjects": [
@@ -39928,9 +40110,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -40035,9 +40217,9 @@
         "one",
         "앱테크"
       ],
-      "mainSubject": "08.이벤트/앱테크/온보딩",
+      "mainSubject": "08.앱테크/혜택홈",
       "mainSubjects": [
-        "08.이벤트/앱테크/온보딩"
+        "08.앱테크/혜택홈"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -40251,9 +40433,9 @@
         "auto-etr-triaged",
         "one"
       ],
-      "mainSubject": "02.콘텐츠/발매/스냅/라이브",
+      "mainSubject": "02.콘텐츠/발매/스페셜",
       "mainSubjects": [
-        "02.콘텐츠/발매/스냅/라이브"
+        "02.콘텐츠/발매/스페셜"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -40417,9 +40599,9 @@
         "one",
         "pdp"
       ],
-      "mainSubject": "07. PDP/후기",
+      "mainSubject": "07. PDP",
       "mainSubjects": [
-        "07. PDP/후기"
+        "07. PDP"
       ],
       "subSubject": "추천",
       "subSubjects": [
@@ -40431,7 +40613,7 @@
       "startDate": "2026-05-11",
       "dueDate": "2026-05-08",
       "created": "2026-05-14T01:21:31.881+0900",
-      "updated": "2026-08-11T06:01:36.037+0900",
+      "updated": "2026-08-12T06:01:25.499+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -40517,9 +40699,9 @@
         "one",
         "pel"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -40813,15 +40995,15 @@
         {
           "key": "TM-3484",
           "summary": "[무신사/MATCH] 개인수집정보/맞춤정보 활용 개인화 고도화",
-          "status": "기획중",
-          "statusCategory": "indeterminate",
+          "status": "철회/반려/취소",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Blocks",
           "direction": "inward"
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 1
       }
     },
@@ -41231,7 +41413,7 @@
       "startDate": "2026-06-16",
       "dueDate": "2026-08-12",
       "created": "2026-05-12T17:28:48.942+0900",
-      "updated": "2026-08-11T06:01:35.497+0900",
+      "updated": "2026-08-12T06:01:24.561+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -41247,15 +41429,15 @@
         {
           "key": "TL-223",
           "summary": "홈지면 무배당발 도착보장일 정보 노출 확대",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "outward"
         }
       ],
       "progress": {
-        "done": 1,
+        "done": 2,
         "total": 2
       }
     },
@@ -41432,9 +41614,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": "검색",
       "subSubjects": [
@@ -41686,9 +41868,9 @@
         "one",
         "pel"
       ],
-      "mainSubject": "07. PDP/후기",
+      "mainSubject": "07. PDP",
       "mainSubjects": [
-        "07. PDP/후기"
+        "07. PDP"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -41743,9 +41925,9 @@
         "one",
         "pel"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -41901,9 +42083,9 @@
         "pel",
         "ux-ft-close"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": "전문관",
       "subSubjects": [
@@ -42069,9 +42251,9 @@
         "one",
         "pel"
       ],
-      "mainSubject": "07. PDP/후기",
+      "mainSubject": "07. PDP",
       "mainSubjects": [
-        "07. PDP/후기"
+        "07. PDP"
       ],
       "subSubject": "스냅",
       "subSubjects": [
@@ -42594,9 +42776,9 @@
         "auto-etr-triaged",
         "one"
       ],
-      "mainSubject": "10.좋아요/최근본",
+      "mainSubject": "09.좋아요/최근본",
       "mainSubjects": [
-        "10.좋아요/최근본"
+        "09.좋아요/최근본"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -42694,9 +42876,9 @@
         "auto-etr-triaged",
         "one"
       ],
-      "mainSubject": "02.콘텐츠/발매/스냅/라이브",
+      "mainSubject": "02.콘텐츠/발매/스페셜",
       "mainSubjects": [
-        "02.콘텐츠/발매/스냅/라이브"
+        "02.콘텐츠/발매/스페셜"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -42750,9 +42932,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "10.좋아요/최근본",
+      "mainSubject": "09.좋아요/최근본",
       "mainSubjects": [
-        "10.좋아요/최근본"
+        "09.좋아요/최근본"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -42814,9 +42996,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -43266,9 +43448,9 @@
         "one",
         "team-display"
       ],
-      "mainSubject": "10.좋아요/최근본",
+      "mainSubject": "09.좋아요/최근본",
       "mainSubjects": [
-        "10.좋아요/최근본"
+        "09.좋아요/최근본"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -43323,9 +43505,9 @@
         "mode_b",
         "one"
       ],
-      "mainSubject": "02.콘텐츠/발매/스냅/라이브",
+      "mainSubject": "02.콘텐츠/발매/스페셜",
       "mainSubjects": [
-        "02.콘텐츠/발매/스냅/라이브"
+        "02.콘텐츠/발매/스페셜"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -43685,9 +43867,9 @@
         "mode_b",
         "one"
       ],
-      "mainSubject": "07. PDP/후기",
+      "mainSubject": "07. PDP",
       "mainSubjects": [
-        "07. PDP/후기"
+        "07. PDP"
       ],
       "subSubject": "추천",
       "subSubjects": [
@@ -43844,9 +44026,9 @@
         "pel",
         "홈앤디"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -43891,9 +44073,9 @@
         "세일판",
         "홈앤디"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": "카테고리/SRP",
       "subSubjects": [
@@ -44103,9 +44285,9 @@
         "one",
         "team-display"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": "브랜드 인덱스",
       "subSubjects": [
@@ -44213,9 +44395,9 @@
         "랭킹",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": "랭킹",
       "subSubjects": [
@@ -44262,9 +44444,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": "전문관",
       "subSubjects": [
@@ -44312,9 +44494,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": "전문관",
       "subSubjects": [
@@ -44359,9 +44541,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": "전문관",
       "subSubjects": [
@@ -44406,9 +44588,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "07. PDP/후기",
+      "mainSubject": "07. PDP",
       "mainSubjects": [
-        "07. PDP/후기"
+        "07. PDP"
       ],
       "subSubject": "전문관",
       "subSubjects": [
@@ -44456,9 +44638,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "02.콘텐츠/발매/스냅/라이브",
+      "mainSubject": "02.콘텐츠/발매/스페셜",
       "mainSubjects": [
-        "02.콘텐츠/발매/스냅/라이브"
+        "02.콘텐츠/발매/스페셜"
       ],
       "subSubject": "전문관",
       "subSubjects": [
@@ -44503,9 +44685,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": "전문관",
       "subSubjects": [
@@ -44550,9 +44732,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": "전문관",
       "subSubjects": [
@@ -44597,9 +44779,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": "전문관",
       "subSubjects": [
@@ -44647,9 +44829,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": "전문관",
       "subSubjects": [
@@ -44694,9 +44876,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": "전문관",
       "subSubjects": [
@@ -44741,9 +44923,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": "전문관",
       "subSubjects": [
@@ -44789,9 +44971,9 @@
         "전문관",
         "홈앤디"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": "전문관",
       "subSubjects": [
@@ -44836,9 +45018,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": "전문관",
       "subSubjects": [
@@ -44977,9 +45159,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": "전문관",
       "subSubjects": [
@@ -44993,22 +45175,22 @@
       "startDate": "2026-07-13",
       "dueDate": "2026-09-30",
       "created": "2026-04-23T16:16:24.102+0900",
-      "updated": "2026-08-11T06:01:37.220+0900",
+      "updated": "2026-08-12T06:01:26.580+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
         {
           "key": "TM-3484",
           "summary": "[무신사/MATCH] 개인수집정보/맞춤정보 활용 개인화 고도화",
-          "status": "기획중",
-          "statusCategory": "indeterminate",
+          "status": "철회/반려/취소",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward"
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 1
       }
     },
@@ -45036,9 +45218,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "11.회원/멤버십",
+      "mainSubject": "11.체험단/래플",
       "mainSubjects": [
-        "11.회원/멤버십"
+        "11.체험단/래플"
       ],
       "subSubject": "전문관",
       "subSubjects": [
@@ -45083,9 +45265,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "08.이벤트/앱테크/온보딩",
+      "mainSubject": "08.앱테크/혜택홈",
       "mainSubjects": [
-        "08.이벤트/앱테크/온보딩"
+        "08.앱테크/혜택홈"
       ],
       "subSubject": "전문관",
       "subSubjects": [
@@ -45202,9 +45384,9 @@
         "one",
         "team-order"
       ],
-      "mainSubject": "22.주문/결제",
+      "mainSubject": "22.마이페이지",
       "mainSubjects": [
-        "22.주문/결제"
+        "22.마이페이지"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -45463,9 +45645,9 @@
         "one",
         "team-display"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -45901,9 +46083,9 @@
         "team-display",
         "방향검증"
       ],
-      "mainSubject": "02.콘텐츠/발매/스냅/라이브",
+      "mainSubject": "02.콘텐츠/발매/스페셜",
       "mainSubjects": [
-        "02.콘텐츠/발매/스냅/라이브"
+        "02.콘텐츠/발매/스페셜"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -46414,7 +46596,7 @@
         {
           "key": "FT-331",
           "summary": "[장바구니] 결제 즉시할인 혜택 넛지 추가",
-          "status": "디자인완료",
+          "status": "QA중",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
@@ -46554,9 +46736,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "02.콘텐츠/발매/스냅/라이브",
+      "mainSubject": "02.콘텐츠/발매/스페셜",
       "mainSubjects": [
-        "02.콘텐츠/발매/스냅/라이브"
+        "02.콘텐츠/발매/스페셜"
       ],
       "subSubject": "콘텐츠",
       "subSubjects": [
@@ -46614,9 +46796,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "05.브랜드 인덱스/브랜드샵(홈)",
+      "mainSubject": "06.브랜드인덱스/브랜드샵(홈)",
       "mainSubjects": [
-        "05.브랜드 인덱스/브랜드샵(홈)"
+        "06.브랜드인덱스/브랜드샵(홈)"
       ],
       "subSubject": "브랜드 인덱스",
       "subSubjects": [
@@ -46675,9 +46857,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": "추천",
       "subSubjects": [
@@ -46840,9 +47022,9 @@
         "team-display",
         "홈앤디"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -46902,9 +47084,9 @@
         "team-display",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -46971,9 +47153,9 @@
         "one",
         "team-campaign"
       ],
-      "mainSubject": "02.콘텐츠/발매/스냅/라이브",
+      "mainSubject": "02.콘텐츠/발매/스페셜",
       "mainSubjects": [
-        "02.콘텐츠/발매/스냅/라이브"
+        "02.콘텐츠/발매/스페셜"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -47201,7 +47383,7 @@
     {
       "key": "TM-2850",
       "url": "https://jira.team.musinsa.com/browse/TM-2850",
-      "summary": "[무탠다드] 온라인 주문 매장발송 (스토어 출고)",
+      "summary": "[무탠다드, 편집샵] 온라인 주문 매장발송 (스토어 출고)",
       "issueType": "Initiative",
       "project": "TM",
       "status": "기획중",
@@ -47244,9 +47426,9 @@
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": "2026-05-28",
-      "dueDate": "2026-10-21",
+      "dueDate": "2026-11-30",
       "created": "2026-04-06T13:17:01.251+0900",
-      "updated": "2026-08-11T06:01:38.278+0900",
+      "updated": "2026-08-12T06:01:27.875+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -47294,9 +47476,9 @@
         "랭킹",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": "랭킹",
       "subSubjects": [
@@ -47362,9 +47544,9 @@
         "fasttrack",
         "one"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -47495,9 +47677,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -47544,9 +47726,9 @@
         "pel",
         "ux-ft-close"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -47597,9 +47779,9 @@
         "전문관",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": "랭킹",
       "subSubjects": [
@@ -47756,9 +47938,9 @@
         "msse-be-campaign",
         "one"
       ],
-      "mainSubject": "02.콘텐츠/발매/스냅/라이브",
+      "mainSubject": "02.콘텐츠/발매/스페셜",
       "mainSubjects": [
-        "02.콘텐츠/발매/스냅/라이브"
+        "02.콘텐츠/발매/스페셜"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -47957,14 +48139,14 @@
       "startDate": "2026-07-27",
       "dueDate": "2026-10-30",
       "created": "2026-03-30T14:52:04.533+0900",
-      "updated": "2026-08-11T06:01:40.439+0900",
+      "updated": "2026-08-12T06:01:29.157+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-08-06T18:05:34.032+0900",
       "linkedTickets": [
         {
           "key": "TM-2807",
           "summary": "[P1][오프라인] MSS-오프라인 관련 탐색동선 개선",
-          "status": "준비중",
+          "status": "기획중",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Blocks",
@@ -48020,14 +48202,14 @@
       "startDate": "2026-07-27",
       "dueDate": "2026-10-30",
       "created": "2026-03-30T14:50:13.021+0900",
-      "updated": "2026-08-11T06:01:39.969+0900",
+      "updated": "2026-08-12T06:01:29.727+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-08-06T18:05:31.516+0900",
       "linkedTickets": [
         {
           "key": "TM-2807",
           "summary": "[P1][오프라인] MSS-오프라인 관련 탐색동선 개선",
-          "status": "준비중",
+          "status": "기획중",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Blocks",
@@ -48045,7 +48227,7 @@
       "summary": "[P1][오프라인] MSS-오프라인 관련 탐색동선 개선",
       "issueType": "Initiative",
       "project": "TM",
-      "status": "준비중",
+      "status": "기획중",
       "statusCategory": "indeterminate",
       "priority": "Big-Rock",
       "assignee": {
@@ -48080,9 +48262,9 @@
       "startDate": "2026-08-10",
       "dueDate": "2026-11-06",
       "created": "2026-03-30T14:46:46.055+0900",
-      "updated": "2026-08-11T06:01:40.210+0900",
+      "updated": "2026-08-12T06:01:28.627+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-16T23:22:14.443+0900",
+      "lastStatusChangedAt": "2026-08-11T11:24:06.717+0900",
       "linkedTickets": [
         {
           "key": "ETR-3711",
@@ -48280,9 +48462,9 @@
         "ux-ft-close",
         "홈앤디"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": "공통(GNB/게이트웨이)",
       "subSubjects": [
@@ -48513,7 +48695,7 @@
       "startDate": "2026-03-27",
       "dueDate": "2026-09-30",
       "created": "2026-03-27T12:57:09.337+0900",
-      "updated": "2026-08-11T06:01:38.395+0900",
+      "updated": "2026-08-12T06:01:27.335+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -48610,9 +48792,9 @@
         "one",
         "pel"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -48657,9 +48839,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -48753,9 +48935,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -48865,7 +49047,7 @@
       "startDate": "2026-04-01",
       "dueDate": "2026-09-17",
       "created": "2026-03-25T21:47:10.141+0900",
-      "updated": "2026-08-11T06:01:44.067+0900",
+      "updated": "2026-08-12T06:01:33.186+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -48989,9 +49171,9 @@
         "one",
         "pel"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -49231,9 +49413,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "02.콘텐츠/발매/스냅/라이브",
+      "mainSubject": "02.콘텐츠/발매/스페셜",
       "mainSubjects": [
-        "02.콘텐츠/발매/스냅/라이브"
+        "02.콘텐츠/발매/스페셜"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -49279,9 +49461,9 @@
         "fasttrack",
         "one"
       ],
-      "mainSubject": "07. PDP/후기",
+      "mainSubject": "07. PDP",
       "mainSubjects": [
-        "07. PDP/후기"
+        "07. PDP"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -49443,9 +49625,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": "라이브커머스",
       "subSubjects": [
@@ -49492,9 +49674,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -49540,9 +49722,9 @@
         "one",
         "pel"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -49585,9 +49767,9 @@
       "labels": [
         "one"
       ],
-      "mainSubject": "22.주문/결제",
+      "mainSubject": "22.마이페이지",
       "mainSubjects": [
-        "22.주문/결제"
+        "22.마이페이지"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -49637,9 +49819,9 @@
         "pel",
         "홈앤디"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": "추천",
       "subSubjects": [
@@ -49707,9 +49889,9 @@
         "fasttrack",
         "one"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -49755,9 +49937,9 @@
         "msse-be-campaign",
         "one"
       ],
-      "mainSubject": "02.콘텐츠/발매/스냅/라이브",
+      "mainSubject": "02.콘텐츠/발매/스페셜",
       "mainSubjects": [
-        "02.콘텐츠/발매/스냅/라이브"
+        "02.콘텐츠/발매/스페셜"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -49964,9 +50146,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -50053,9 +50235,9 @@
         "one",
         "pel"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -50110,9 +50292,9 @@
         "fasttrack",
         "one"
       ],
-      "mainSubject": "07. PDP/후기",
+      "mainSubject": "07. PDP",
       "mainSubjects": [
-        "07. PDP/후기"
+        "07. PDP"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -50158,9 +50340,9 @@
         "one",
         "pel"
       ],
-      "mainSubject": "07. PDP/후기",
+      "mainSubject": "07. PDP",
       "mainSubjects": [
-        "07. PDP/후기"
+        "07. PDP"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -50258,9 +50440,9 @@
         "fasttrack",
         "one"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -50316,9 +50498,9 @@
         "one",
         "pel"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -50384,9 +50566,9 @@
         "pel",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -50444,9 +50626,9 @@
         "one",
         "앱테크-출석체크"
       ],
-      "mainSubject": "08.이벤트/앱테크/온보딩",
+      "mainSubject": "08.앱테크/혜택홈",
       "mainSubjects": [
-        "08.이벤트/앱테크/온보딩"
+        "08.앱테크/혜택홈"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -50504,9 +50686,9 @@
         "ux-ft-close",
         "홈앤디"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -50589,9 +50771,9 @@
         "pel",
         "홈앤디"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -50652,9 +50834,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "08.이벤트/앱테크/온보딩",
+      "mainSubject": "08.앱테크/혜택홈",
       "mainSubjects": [
-        "08.이벤트/앱테크/온보딩"
+        "08.앱테크/혜택홈"
       ],
       "subSubject": "세일(판)",
       "subSubjects": [
@@ -50698,9 +50880,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -50742,9 +50924,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -50843,9 +51025,9 @@
         "msse-be-campaign",
         "one"
       ],
-      "mainSubject": "02.콘텐츠/발매/스냅/라이브",
+      "mainSubject": "02.콘텐츠/발매/스페셜",
       "mainSubjects": [
-        "02.콘텐츠/발매/스냅/라이브"
+        "02.콘텐츠/발매/스페셜"
       ],
       "subSubject": "발매",
       "subSubjects": [
@@ -51028,9 +51210,9 @@
         "one",
         "pel"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -51161,9 +51343,9 @@
         "세일판",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -51209,9 +51391,9 @@
         "세일판",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -51304,9 +51486,9 @@
         "세일판",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -51402,9 +51584,9 @@
         "세일판",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -51448,9 +51630,9 @@
         "세일판",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -51512,9 +51694,9 @@
       "startDate": "2026-08-24",
       "dueDate": "2026-09-25",
       "created": "2026-03-13T10:46:45.901+0900",
-      "updated": "2026-08-11T06:01:46.182+0900",
+      "updated": "2026-08-12T06:01:36.186+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-01T10:15:18.622+0900",
+      "lastStatusChangedAt": null,
       "linkedTickets": [
         {
           "key": "MSSCXTF-1232",
@@ -51565,9 +51747,9 @@
         "세일판",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -51613,9 +51795,9 @@
         "세일판",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -51659,9 +51841,9 @@
         "세일판",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -51705,9 +51887,9 @@
         "세일판",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -51751,9 +51933,9 @@
         "세일판",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": "라이브커머스",
       "subSubjects": [
@@ -51799,9 +51981,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": "필터/PLP",
       "subSubjects": [
@@ -51866,9 +52048,9 @@
         "세일판",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -51903,7 +52085,7 @@
       "summary": "[세일판] 한정 수량 특가 > 특가 예정 노출",
       "issueType": "Initiative",
       "project": "TM",
-      "status": "기획완료",
+      "status": "디자인중",
       "statusCategory": "indeterminate",
       "priority": "Big-Rock",
       "assignee": {
@@ -51922,9 +52104,9 @@
         "세일판",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": "세일(판)",
       "subSubjects": [
@@ -51939,9 +52121,9 @@
       "startDate": "2026-04-06",
       "dueDate": "2026-09-30",
       "created": "2026-03-13T10:45:58.632+0900",
-      "updated": "2026-08-11T06:01:47.652+0900",
+      "updated": "2026-08-12T06:01:37.083+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-27T11:07:16.722+0900",
+      "lastStatusChangedAt": "2026-08-11T11:40:36.097+0900",
       "linkedTickets": [
         {
           "key": "ETR-3308",
@@ -52028,9 +52210,9 @@
         "세일판",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -52073,9 +52255,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": "세일(판)",
       "subSubjects": [
@@ -52121,9 +52303,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": "세일(판)",
       "subSubjects": [
@@ -52169,9 +52351,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": "세일(판)",
       "subSubjects": [
@@ -52217,9 +52399,9 @@
         "세일판",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -52263,9 +52445,9 @@
         "세일판",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -52311,9 +52493,9 @@
         "세일판",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -52359,9 +52541,9 @@
         "세일판",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -52405,9 +52587,9 @@
         "세일판",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -52451,9 +52633,9 @@
         "세일판",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": "세일(판)",
       "subSubjects": [
@@ -52508,9 +52690,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -52554,9 +52736,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -52648,9 +52830,9 @@
         "msse-be-campaign",
         "one"
       ],
-      "mainSubject": "08.이벤트/앱테크/온보딩",
+      "mainSubject": "08.앱테크/혜택홈",
       "mainSubjects": [
-        "08.이벤트/앱테크/온보딩"
+        "08.앱테크/혜택홈"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -52744,9 +52926,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -52850,9 +53032,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "02.콘텐츠/발매/스냅/라이브",
+      "mainSubject": "02.콘텐츠/발매/스페셜",
       "mainSubjects": [
-        "02.콘텐츠/발매/스냅/라이브"
+        "02.콘텐츠/발매/스페셜"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -52906,9 +53088,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -52953,9 +53135,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "05.브랜드 인덱스/브랜드샵(홈)",
+      "mainSubject": "06.브랜드인덱스/브랜드샵(홈)",
       "mainSubjects": [
-        "05.브랜드 인덱스/브랜드샵(홈)"
+        "06.브랜드인덱스/브랜드샵(홈)"
       ],
       "subSubject": "추천",
       "subSubjects": [
@@ -53081,9 +53263,9 @@
         "one",
         "pel"
       ],
-      "mainSubject": "07. PDP/후기",
+      "mainSubject": "07. PDP",
       "mainSubjects": [
-        "07. PDP/후기"
+        "07. PDP"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -53139,9 +53321,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -53187,9 +53369,9 @@
         "pel",
         "홈앤디"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -53270,9 +53452,9 @@
         "pel",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -53329,9 +53511,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -53408,9 +53590,9 @@
         "one",
         "pel"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -53492,9 +53674,9 @@
         "one",
         "pel"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -53548,9 +53730,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "07. PDP/후기",
+      "mainSubject": "07. PDP",
       "mainSubjects": [
-        "07. PDP/후기"
+        "07. PDP"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -53599,9 +53781,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": "랭킹",
       "subSubjects": [
@@ -53655,9 +53837,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "08.이벤트/앱테크/온보딩",
+      "mainSubject": "08.앱테크/혜택홈",
       "mainSubjects": [
-        "08.이벤트/앱테크/온보딩"
+        "08.앱테크/혜택홈"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -53703,9 +53885,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": "콘텐츠",
       "subSubjects": [
@@ -53753,9 +53935,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -53802,9 +53984,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": "추천",
       "subSubjects": [
@@ -53891,9 +54073,9 @@
         "우선순위1",
         "홈앤디"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": "추천",
       "subSubjects": [
@@ -53969,9 +54151,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": "랭킹",
       "subSubjects": [
@@ -54020,9 +54202,9 @@
         "msse-be-campaign",
         "one"
       ],
-      "mainSubject": "02.콘텐츠/발매/스냅/라이브",
+      "mainSubject": "02.콘텐츠/발매/스페셜",
       "mainSubjects": [
-        "02.콘텐츠/발매/스냅/라이브"
+        "02.콘텐츠/발매/스페셜"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -54094,9 +54276,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "08.이벤트/앱테크/온보딩",
+      "mainSubject": "08.앱테크/혜택홈",
       "mainSubjects": [
-        "08.이벤트/앱테크/온보딩"
+        "08.앱테크/혜택홈"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -54245,9 +54427,9 @@
         "one",
         "pel"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": "앱테크",
       "subSubjects": [
@@ -54393,7 +54575,7 @@
       "startDate": "2026-04-06",
       "dueDate": "2026-07-22",
       "created": "2026-02-27T16:50:57.625+0900",
-      "updated": "2026-08-10T23:03:10.863+0900",
+      "updated": "2026-08-11T11:00:18.522+0900",
       "resolutionDate": "2026-07-27T10:40:40.925+0900",
       "lastStatusChangedAt": "2026-07-27T10:40:40.940+0900",
       "linkedTickets": [
@@ -54447,9 +54629,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "05.브랜드 인덱스/브랜드샵(홈)",
+      "mainSubject": "06.브랜드인덱스/브랜드샵(홈)",
       "mainSubjects": [
-        "05.브랜드 인덱스/브랜드샵(홈)"
+        "06.브랜드인덱스/브랜드샵(홈)"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -54549,9 +54731,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "08.이벤트/앱테크/온보딩",
+      "mainSubject": "08.앱테크/혜택홈",
       "mainSubjects": [
-        "08.이벤트/앱테크/온보딩"
+        "08.앱테크/혜택홈"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -54660,9 +54842,9 @@
         "fasttrack",
         "one"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -54770,9 +54952,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -54817,9 +54999,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -54863,9 +55045,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "07. PDP/후기",
+      "mainSubject": "07. PDP",
       "mainSubjects": [
-        "07. PDP/후기"
+        "07. PDP"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -54911,9 +55093,9 @@
         "one",
         "pel"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -55029,9 +55211,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "02.콘텐츠/발매/스냅/라이브",
+      "mainSubject": "02.콘텐츠/발매/스페셜",
       "mainSubjects": [
-        "02.콘텐츠/발매/스냅/라이브"
+        "02.콘텐츠/발매/스페셜"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -55077,9 +55259,9 @@
         "one",
         "pel"
       ],
-      "mainSubject": "09.캠페인",
+      "mainSubject": "03.캠페인/기획전/라이브",
       "mainSubjects": [
-        "09.캠페인"
+        "03.캠페인/기획전/라이브"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -55123,9 +55305,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -55207,7 +55389,7 @@
       "startDate": "2026-07-27",
       "dueDate": "2026-09-30",
       "created": "2026-02-23T20:41:50.733+0900",
-      "updated": "2026-08-11T06:02:01.263+0900",
+      "updated": "2026-08-11T10:25:33.581+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-08-10T23:59:00.975+0900",
       "linkedTickets": [
@@ -55283,7 +55465,7 @@
       "startDate": "2026-02-24",
       "dueDate": "2026-03-31",
       "created": "2026-02-23T15:32:37.134+0900",
-      "updated": "2026-08-11T06:01:47.922+0900",
+      "updated": "2026-08-12T06:01:39.338+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [],
@@ -55376,9 +55558,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": "카테고리/SRP",
       "subSubjects": [
@@ -55444,9 +55626,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": "추천",
       "subSubjects": [
@@ -55502,9 +55684,9 @@
         "pel",
         "홈앤디"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -55595,9 +55777,9 @@
         "fasttrack",
         "one"
       ],
-      "mainSubject": "02.콘텐츠/발매/스냅/라이브",
+      "mainSubject": "02.콘텐츠/발매/스페셜",
       "mainSubjects": [
-        "02.콘텐츠/발매/스냅/라이브"
+        "02.콘텐츠/발매/스페셜"
       ],
       "subSubject": "콘텐츠",
       "subSubjects": [
@@ -55717,7 +55899,7 @@
       "startDate": "2026-04-30",
       "dueDate": "2026-09-30",
       "created": "2026-02-13T17:00:25.059+0900",
-      "updated": "2026-08-11T06:01:49.123+0900",
+      "updated": "2026-08-12T06:01:40.808+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-08-03T11:09:16.077+0900",
       "linkedTickets": [
@@ -55839,9 +56021,9 @@
         "pel",
         "ux-ft-close"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -55931,7 +56113,7 @@
       "startDate": "2026-07-27",
       "dueDate": "2026-09-30",
       "created": "2026-02-12T16:22:26.124+0900",
-      "updated": "2026-08-11T06:01:48.891+0900",
+      "updated": "2026-08-12T06:01:41.096+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-27T22:52:20.020+0900",
       "linkedTickets": [
@@ -55976,9 +56158,9 @@
         "무탠다드_탐색",
         "홈앤디"
       ],
-      "mainSubject": "05.브랜드 인덱스/브랜드샵(홈)",
+      "mainSubject": "06.브랜드인덱스/브랜드샵(홈)",
       "mainSubjects": [
-        "05.브랜드 인덱스/브랜드샵(홈)"
+        "06.브랜드인덱스/브랜드샵(홈)"
       ],
       "subSubject": "검색",
       "subSubjects": [
@@ -56055,9 +56237,9 @@
         "우선순위2",
         "홈앤디"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": "카테고리/SRP",
       "subSubjects": [
@@ -56114,9 +56296,9 @@
         "one",
         "무탠다드_온라인"
       ],
-      "mainSubject": "07. PDP/후기",
+      "mainSubject": "07. PDP",
       "mainSubjects": [
-        "07. PDP/후기"
+        "07. PDP"
       ],
       "subSubject": "후기",
       "subSubjects": [
@@ -56267,9 +56449,9 @@
         "우선순위2",
         "홈앤디"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -56359,9 +56541,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "08.이벤트/앱테크/온보딩",
+      "mainSubject": "08.앱테크/혜택홈",
       "mainSubjects": [
-        "08.이벤트/앱테크/온보딩"
+        "08.앱테크/혜택홈"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -56415,9 +56597,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "08.이벤트/앱테크/온보딩",
+      "mainSubject": "08.앱테크/혜택홈",
       "mainSubjects": [
-        "08.이벤트/앱테크/온보딩"
+        "08.앱테크/혜택홈"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -56463,9 +56645,9 @@
         "msse-be-campaign",
         "one"
       ],
-      "mainSubject": "08.이벤트/앱테크/온보딩",
+      "mainSubject": "08.앱테크/혜택홈",
       "mainSubjects": [
-        "08.이벤트/앱테크/온보딩"
+        "08.앱테크/혜택홈"
       ],
       "subSubject": "캠페인",
       "subSubjects": [
@@ -56535,9 +56717,9 @@
         "무탠다드_온라인",
         "홈앤디"
       ],
-      "mainSubject": "05.브랜드 인덱스/브랜드샵(홈)",
+      "mainSubject": "06.브랜드인덱스/브랜드샵(홈)",
       "mainSubjects": [
-        "05.브랜드 인덱스/브랜드샵(홈)"
+        "06.브랜드인덱스/브랜드샵(홈)"
       ],
       "subSubject": "캠페인",
       "subSubjects": [
@@ -56612,9 +56794,9 @@
         "one",
         "pel"
       ],
-      "mainSubject": "02.콘텐츠/발매/스냅/라이브",
+      "mainSubject": "02.콘텐츠/발매/스페셜",
       "mainSubjects": [
-        "02.콘텐츠/발매/스냅/라이브"
+        "02.콘텐츠/발매/스페셜"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -56662,9 +56844,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": "콘텐츠",
       "subSubjects": [
@@ -56802,9 +56984,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "05.브랜드 인덱스/브랜드샵(홈)",
+      "mainSubject": "06.브랜드인덱스/브랜드샵(홈)",
       "mainSubjects": [
-        "05.브랜드 인덱스/브랜드샵(홈)"
+        "06.브랜드인덱스/브랜드샵(홈)"
       ],
       "subSubject": "필터/PLP",
       "subSubjects": [
@@ -56850,9 +57032,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "02.콘텐츠/발매/스냅/라이브",
+      "mainSubject": "02.콘텐츠/발매/스페셜",
       "mainSubjects": [
-        "02.콘텐츠/발매/스냅/라이브"
+        "02.콘텐츠/발매/스페셜"
       ],
       "subSubject": "검색",
       "subSubjects": [
@@ -56902,9 +57084,9 @@
         "무탠다드_온라인",
         "홈앤디"
       ],
-      "mainSubject": "05.브랜드 인덱스/브랜드샵(홈)",
+      "mainSubject": "06.브랜드인덱스/브랜드샵(홈)",
       "mainSubjects": [
-        "05.브랜드 인덱스/브랜드샵(홈)"
+        "06.브랜드인덱스/브랜드샵(홈)"
       ],
       "subSubject": "브랜드 샵",
       "subSubjects": [
@@ -56919,7 +57101,7 @@
       "startDate": "2026-06-05",
       "dueDate": "2026-09-30",
       "created": "2026-02-05T17:45:08.024+0900",
-      "updated": "2026-08-11T06:01:48.679+0900",
+      "updated": "2026-08-12T06:01:40.017+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -56980,9 +57162,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -57037,9 +57219,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -57083,9 +57265,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -57129,9 +57311,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "07. PDP/후기",
+      "mainSubject": "07. PDP",
       "mainSubjects": [
-        "07. PDP/후기"
+        "07. PDP"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -57175,9 +57357,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "07. PDP/후기",
+      "mainSubject": "07. PDP",
       "mainSubjects": [
-        "07. PDP/후기"
+        "07. PDP"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -57221,9 +57403,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "07. PDP/후기",
+      "mainSubject": "07. PDP",
       "mainSubjects": [
-        "07. PDP/후기"
+        "07. PDP"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -57309,9 +57491,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": "필터/PLP",
       "subSubjects": [
@@ -57361,9 +57543,9 @@
         "우선순위6",
         "홈앤디"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": "필터/PLP",
       "subSubjects": [
@@ -57411,9 +57593,9 @@
         "랭킹",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": "랭킹",
       "subSubjects": [
@@ -57477,9 +57659,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": "추천",
       "subSubjects": [
@@ -57527,9 +57709,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": "추천",
       "subSubjects": [
@@ -57606,9 +57788,9 @@
         "pel",
         "홈앤디"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": "추천",
       "subSubjects": [
@@ -57711,9 +57893,9 @@
         "msse-be-campaign",
         "one"
       ],
-      "mainSubject": "08.이벤트/앱테크/온보딩",
+      "mainSubject": "08.앱테크/혜택홈",
       "mainSubjects": [
-        "08.이벤트/앱테크/온보딩"
+        "08.앱테크/혜택홈"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -57898,9 +58080,9 @@
         "pel",
         "ux-ft-close"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -58010,9 +58192,9 @@
         "fasttrack",
         "one"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -58057,9 +58239,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": "검색",
       "subSubjects": [
@@ -58155,9 +58337,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": "랭킹",
       "subSubjects": [
@@ -58204,9 +58386,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": "추천",
       "subSubjects": [
@@ -58251,9 +58433,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": "세일(판)",
       "subSubjects": [
@@ -58328,9 +58510,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -58375,9 +58557,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": "콘텐츠",
       "subSubjects": [
@@ -58442,7 +58624,7 @@
       "startDate": "2026-06-22",
       "dueDate": "2026-09-30",
       "created": "2025-12-23T11:42:16.368+0900",
-      "updated": "2026-08-11T06:01:51.175+0900",
+      "updated": "2026-08-12T06:01:42.917+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -58511,9 +58693,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "02.콘텐츠/발매/스냅/라이브",
+      "mainSubject": "02.콘텐츠/발매/스페셜",
       "mainSubjects": [
-        "02.콘텐츠/발매/스냅/라이브"
+        "02.콘텐츠/발매/스페셜"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -58574,9 +58756,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "05.브랜드 인덱스/브랜드샵(홈)",
+      "mainSubject": "06.브랜드인덱스/브랜드샵(홈)",
       "mainSubjects": [
-        "05.브랜드 인덱스/브랜드샵(홈)"
+        "06.브랜드인덱스/브랜드샵(홈)"
       ],
       "subSubject": "브랜드 샵",
       "subSubjects": [
@@ -58620,9 +58802,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": "공통(GNB/게이트웨이)",
       "subSubjects": [
@@ -58670,9 +58852,9 @@
         "msse-be-campaign",
         "one"
       ],
-      "mainSubject": "08.이벤트/앱테크/온보딩",
+      "mainSubject": "08.앱테크/혜택홈",
       "mainSubjects": [
-        "08.이벤트/앱테크/온보딩"
+        "08.앱테크/혜택홈"
       ],
       "subSubject": "캠페인",
       "subSubjects": [
@@ -58730,9 +58912,9 @@
         "msse-be-campaign",
         "one"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": "유즈드",
       "subSubjects": [
@@ -58744,7 +58926,7 @@
       "startDate": "2026-06-30",
       "dueDate": "2026-06-30",
       "created": "2025-11-26T23:25:22.018+0900",
-      "updated": "2026-08-11T06:01:56.969+0900",
+      "updated": "2026-08-12T06:01:47.528+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-07T09:16:59.736+0900",
       "linkedTickets": [],
@@ -58778,9 +58960,9 @@
         "msse-be-campaign",
         "one"
       ],
-      "mainSubject": "02.콘텐츠/발매/스냅/라이브",
+      "mainSubject": "02.콘텐츠/발매/스페셜",
       "mainSubjects": [
-        "02.콘텐츠/발매/스냅/라이브"
+        "02.콘텐츠/발매/스페셜"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -58853,9 +59035,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "09.캠페인",
+      "mainSubject": "03.캠페인/기획전/라이브",
       "mainSubjects": [
-        "09.캠페인"
+        "03.캠페인/기획전/라이브"
       ],
       "subSubject": "공통(GNB/게이트웨이)",
       "subSubjects": [
@@ -59014,9 +59196,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "09.캠페인",
+      "mainSubject": "03.캠페인/기획전/라이브",
       "mainSubjects": [
-        "09.캠페인"
+        "03.캠페인/기획전/라이브"
       ],
       "subSubject": "콘텐츠",
       "subSubjects": [
@@ -59063,9 +59245,9 @@
         "one",
         "ux-ft-drop"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -59110,9 +59292,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -59155,9 +59337,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -59212,9 +59394,9 @@
         "msse-be-campaign",
         "one"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -59272,9 +59454,9 @@
         "랭킹",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": "랭킹",
       "subSubjects": [
@@ -59338,9 +59520,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -59393,9 +59575,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -59450,9 +59632,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -59516,9 +59698,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -59666,9 +59848,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -59723,9 +59905,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -59780,9 +59962,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -59827,9 +60009,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -59872,9 +60054,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -59928,9 +60110,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": "전문관",
       "subSubjects": [
@@ -60259,9 +60441,9 @@
         "one",
         "pel"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -60322,9 +60504,9 @@
         "추천판",
         "홈앤디"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": "추천",
       "subSubjects": [
@@ -60478,9 +60660,9 @@
         "one",
         "pel"
       ],
-      "mainSubject": "07. PDP/후기",
+      "mainSubject": "07. PDP",
       "mainSubjects": [
-        "07. PDP/후기"
+        "07. PDP"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -60524,9 +60706,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": "공통(GNB/게이트웨이)",
       "subSubjects": [
@@ -60742,9 +60924,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": "필터/PLP",
       "subSubjects": [
@@ -60791,9 +60973,9 @@
         "fasttrack",
         "one"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -60838,9 +61020,9 @@
         "one",
         "ux-ft-drop"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -60969,9 +61151,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": "카테고리/SRP",
       "subSubjects": [
@@ -61020,9 +61202,9 @@
         "msse-be-campaign",
         "one"
       ],
-      "mainSubject": "02.콘텐츠/발매/스냅/라이브",
+      "mainSubject": "02.콘텐츠/발매/스페셜",
       "mainSubjects": [
-        "02.콘텐츠/발매/스냅/라이브"
+        "02.콘텐츠/발매/스페셜"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -61133,9 +61315,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "07. PDP/후기",
+      "mainSubject": "07. PDP",
       "mainSubjects": [
-        "07. PDP/후기"
+        "07. PDP"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -61235,9 +61417,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -61444,9 +61626,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -61495,9 +61677,9 @@
         "p-backlog",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": "랭킹",
       "subSubjects": [
@@ -61822,7 +62004,7 @@
       "startDate": "2025-10-06",
       "dueDate": "2025-12-31",
       "created": "2025-10-20T16:28:28.450+0900",
-      "updated": "2026-08-11T06:01:56.438+0900",
+      "updated": "2026-08-12T06:01:48.918+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [],
@@ -61939,9 +62121,9 @@
         "pel",
         "ux-ft-close"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -62005,9 +62187,9 @@
         "one",
         "개발검토"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -62312,9 +62494,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -62422,9 +62604,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": "알림",
       "subSubjects": [
@@ -62471,9 +62653,9 @@
         "fasttrack",
         "one"
       ],
-      "mainSubject": "05.브랜드 인덱스/브랜드샵(홈)",
+      "mainSubject": "06.브랜드인덱스/브랜드샵(홈)",
       "mainSubjects": [
-        "05.브랜드 인덱스/브랜드샵(홈)"
+        "06.브랜드인덱스/브랜드샵(홈)"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -62519,9 +62701,9 @@
         "ready-to-roll",
         "개발검토"
       ],
-      "mainSubject": "02.콘텐츠/발매/스냅/라이브",
+      "mainSubject": "02.콘텐츠/발매/스페셜",
       "mainSubjects": [
-        "02.콘텐츠/발매/스냅/라이브"
+        "02.콘텐츠/발매/스페셜"
       ],
       "subSubject": "추천",
       "subSubjects": [
@@ -62631,9 +62813,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -62677,9 +62859,9 @@
         "DUE_OVERDUE_BOT",
         "one"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": "콘텐츠",
       "subSubjects": [
@@ -62747,9 +62929,9 @@
         "one",
         "pel"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -62855,9 +63037,9 @@
         "pel",
         "홈앤디"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -63041,9 +63223,9 @@
         "서치앤파인딩_기획",
         "홈앤디"
       ],
-      "mainSubject": "05.브랜드 인덱스/브랜드샵(홈)",
+      "mainSubject": "06.브랜드인덱스/브랜드샵(홈)",
       "mainSubjects": [
-        "05.브랜드 인덱스/브랜드샵(홈)"
+        "06.브랜드인덱스/브랜드샵(홈)"
       ],
       "subSubject": "브랜드 인덱스",
       "subSubjects": [
@@ -63194,9 +63376,9 @@
         "one",
         "pel"
       ],
-      "mainSubject": "01.추천",
+      "mainSubject": "01.추천/홈탭/탐색",
       "mainSubjects": [
-        "01.추천"
+        "01.추천/홈탭/탐색"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -63253,9 +63435,9 @@
         "one",
         "서치앤파인딩_기획"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -63267,7 +63449,7 @@
       "startDate": "2025-09-15",
       "dueDate": "2026-05-31",
       "created": "2025-09-10T16:22:09.073+0900",
-      "updated": "2026-08-11T06:01:59.349+0900",
+      "updated": "2026-08-12T06:01:49.557+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -63361,9 +63543,9 @@
         "msse-be-campaign",
         "one"
       ],
-      "mainSubject": "02.콘텐츠/발매/스냅/라이브",
+      "mainSubject": "02.콘텐츠/발매/스페셜",
       "mainSubjects": [
-        "02.콘텐츠/발매/스냅/라이브"
+        "02.콘텐츠/발매/스페셜"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -63429,7 +63611,7 @@
       "startDate": "2026-06-25",
       "dueDate": "2026-11-30",
       "created": "2025-09-10T07:33:29.959+0900",
-      "updated": "2026-08-11T06:01:59.228+0900",
+      "updated": "2026-08-12T06:01:49.719+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -63474,9 +63656,9 @@
         "one",
         "p-backlog"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -63539,9 +63721,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "03.랭킹/세일/커스텀판",
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
       "mainSubjects": [
-        "03.랭킹/세일/커스텀판"
+        "04.랭킹/세일/커스텀(탭)/발견"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -63637,9 +63819,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "05.브랜드 인덱스/브랜드샵(홈)",
+      "mainSubject": "06.브랜드인덱스/브랜드샵(홈)",
       "mainSubjects": [
-        "05.브랜드 인덱스/브랜드샵(홈)"
+        "06.브랜드인덱스/브랜드샵(홈)"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -63686,9 +63868,9 @@
         "one",
         "서치앤파인딩_기획"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": "필터/PLP",
       "subSubjects": [
@@ -63763,9 +63945,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": "필터/PLP",
       "subSubjects": [
@@ -63811,9 +63993,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "02.콘텐츠/발매/스냅/라이브",
+      "mainSubject": "02.콘텐츠/발매/스페셜",
       "mainSubjects": [
-        "02.콘텐츠/발매/스냅/라이브"
+        "02.콘텐츠/발매/스페셜"
       ],
       "subSubject": "PDP",
       "subSubjects": [
@@ -63956,9 +64138,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "05.브랜드 인덱스/브랜드샵(홈)",
+      "mainSubject": "06.브랜드인덱스/브랜드샵(홈)",
       "mainSubjects": [
-        "05.브랜드 인덱스/브랜드샵(홈)"
+        "06.브랜드인덱스/브랜드샵(홈)"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -64084,9 +64266,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -64175,9 +64357,9 @@
         "pel",
         "리서치예정"
       ],
-      "mainSubject": "07. PDP/후기",
+      "mainSubject": "07. PDP",
       "mainSubjects": [
-        "07. PDP/후기"
+        "07. PDP"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -64232,9 +64414,9 @@
         "one",
         "pel"
       ],
-      "mainSubject": "06.공통/네비게이션",
+      "mainSubject": "00.공통 네비게이션",
       "mainSubjects": [
-        "06.공통/네비게이션"
+        "00.공통 네비게이션"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -64283,9 +64465,9 @@
         "인수인계",
         "홈앤디"
       ],
-      "mainSubject": "05.브랜드 인덱스/브랜드샵(홈)",
+      "mainSubject": "06.브랜드인덱스/브랜드샵(홈)",
       "mainSubjects": [
-        "05.브랜드 인덱스/브랜드샵(홈)"
+        "06.브랜드인덱스/브랜드샵(홈)"
       ],
       "subSubject": "추천",
       "subSubjects": [
@@ -64654,9 +64836,9 @@
         "서치앤파인딩_기획",
         "의장님코멘트"
       ],
-      "mainSubject": "04.검색/카테고리/필터",
+      "mainSubject": "05.검색/필터 로직",
       "mainSubjects": [
-        "04.검색/카테고리/필터"
+        "05.검색/필터 로직"
       ],
       "subSubject": "카테고리/SRP",
       "subSubjects": [
@@ -64847,7 +65029,7 @@
       "startDate": "2026-07-01",
       "dueDate": "2026-09-18",
       "created": "2025-07-01T17:26:53.865+0900",
-      "updated": "2026-08-11T06:02:01.636+0900",
+      "updated": "2026-08-12T06:01:52.476+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null,
       "linkedTickets": [
@@ -64901,9 +65083,9 @@
         "one",
         "스냅"
       ],
-      "mainSubject": "02.콘텐츠/발매/스냅/라이브",
+      "mainSubject": "02.콘텐츠/발매/스페셜",
       "mainSubjects": [
-        "02.콘텐츠/발매/스냅/라이브"
+        "02.콘텐츠/발매/스페셜"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -64964,7 +65146,7 @@
       "startDate": "2026-07-27",
       "dueDate": "2026-10-30",
       "created": "2025-04-04T10:42:52.964+0900",
-      "updated": "2026-08-11T06:01:59.356+0900",
+      "updated": "2026-08-12T06:01:51.516+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-08-10T16:44:21.091+0900",
       "linkedTickets": [
@@ -65155,7 +65337,7 @@
         {
           "key": "FT-331",
           "summary": "[장바구니] 결제 즉시할인 혜택 넛지 추가",
-          "status": "디자인완료",
+          "status": "QA중",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",

@@ -1,5 +1,5 @@
 {
-  "lastSync": "2026-08-11T06:34:50+09:00",
+  "lastSync": "2026-08-12T06:38:53+09:00",
   "count": 372,
   "items": [
     {
@@ -8,7 +8,7 @@
       "summary": "[29CM] 갤러리 댓글 개선 — 정렬 기능 및 SNS 요소 추가",
       "issueType": "기타(KTLO/BAU)",
       "project": "ETR",
-      "status": "검토완료-백로그",
+      "status": "검토완료-우선착수",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -36,9 +36,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-08-10T09:51:09.369+0900",
-      "updated": "2026-08-10T14:10:08.406+0900",
+      "updated": "2026-08-11T08:48:28.764+0900",
       "resolutionDate": "2026-08-10T13:48:31.432+0900",
-      "lastStatusChangedAt": "2026-08-10T14:09:30.816+0900",
+      "lastStatusChangedAt": "2026-08-11T08:47:47.702+0900",
       "linkedTickets": [
         {
           "key": "TM-4172",
@@ -61,7 +61,7 @@
       "summary": "[29CM] 갤러리 상품 정보 레이어 기본 표시 비활성화",
       "issueType": "기타(KTLO/BAU)",
       "project": "ETR",
-      "status": "검토완료-백로그",
+      "status": "검토완료-우선착수",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -89,9 +89,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-08-10T09:50:55.471+0900",
-      "updated": "2026-08-10T14:10:06.174+0900",
+      "updated": "2026-08-11T08:49:17.994+0900",
       "resolutionDate": "2026-08-10T13:48:19.086+0900",
-      "lastStatusChangedAt": "2026-08-10T14:09:28.243+0900",
+      "lastStatusChangedAt": "2026-08-11T08:48:38.440+0900",
       "linkedTickets": [
         {
           "key": "TM-4172",
@@ -157,7 +157,7 @@
       "summary": "[이구홈갤러리] 게시물 등록 날짜 표기 추가",
       "issueType": "기타(KTLO/BAU)",
       "project": "ETR",
-      "status": "검토완료-백로그",
+      "status": "검토완료-우선착수",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -185,9 +185,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-08-08T14:13:20.590+0900",
-      "updated": "2026-08-10T14:11:38.424+0900",
+      "updated": "2026-08-11T08:47:33.597+0900",
       "resolutionDate": "2026-08-10T09:37:10.403+0900",
-      "lastStatusChangedAt": "2026-08-10T14:11:33.606+0900",
+      "lastStatusChangedAt": "2026-08-11T08:47:33.597+0900",
       "linkedTickets": [
         {
           "key": "TM-4172",
@@ -348,7 +348,7 @@
     {
       "key": "ETR-6150",
       "url": "https://jira.team.musinsa.com/browse/ETR-6150",
-      "summary": "[TT리뷰 8/6] AI 해설 방향성 싱크",
+      "summary": "[TT 8/6] AI 해설 방향성 싱크",
       "issueType": "과제 발의",
       "project": "ETR",
       "status": "검토완료-우선착수",
@@ -380,7 +380,7 @@
       "startDate": null,
       "dueDate": "2026-08-06",
       "created": "2026-08-06T09:59:55.321+0900",
-      "updated": "2026-08-10T16:47:14.542+0900",
+      "updated": "2026-08-11T15:57:08.330+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-08-06T14:26:47.642+0900",
       "linkedTickets": [],
@@ -422,13 +422,23 @@
       "startDate": null,
       "dueDate": "2026-08-10",
       "created": "2026-08-05T16:05:49.549+0900",
-      "updated": "2026-08-05T18:23:02.323+0900",
+      "updated": "2026-08-11T13:37:55.225+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-08-05T16:20:47.424+0900",
-      "linkedTickets": [],
+      "linkedTickets": [
+        {
+          "key": "FT-497",
+          "summary": "[FastTrack] [검색] AI 기반 서브웨이 필터 자동 생성 구축 및 카테고리 확장 (MSS)",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        }
+      ],
       "progress": {
         "done": 0,
-        "total": 0
+        "total": 1
       }
     },
     {
@@ -685,7 +695,7 @@
         {
           "key": "FT-331",
           "summary": "[장바구니] 결제 즉시할인 혜택 넛지 추가",
-          "status": "디자인완료",
+          "status": "QA중",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
@@ -732,7 +742,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-08-04T10:12:14.373+0900",
-      "updated": "2026-08-10T13:08:51.172+0900",
+      "updated": "2026-08-11T09:08:33.263+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-08-04T10:13:37.276+0900",
       "linkedTickets": [
@@ -744,11 +754,20 @@
           "assignee": null,
           "linkType": "Relates",
           "direction": "outward"
+        },
+        {
+          "key": "FT-493",
+          "summary": "[design-driven][부티크] 전체 브랜드 별도 섹션",
+          "status": "Dropped",
+          "statusCategory": "done",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
         }
       ],
       "progress": {
-        "done": 0,
-        "total": 1
+        "done": 1,
+        "total": 2
       }
     },
     {
@@ -925,15 +944,15 @@
         {
           "key": "MDC-1032",
           "summary": "[인수인계 및 배포][PEL] FT-375 냉감 공통필터 — PLP/SRP 공통 필터 승격",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward"
         }
       ],
       "progress": {
-        "done": 1,
+        "done": 2,
         "total": 3
       }
     },
@@ -2969,7 +2988,7 @@
         {
           "key": "TM-3085",
           "summary": "사이즈 실측 항목 확대에 따른 연관지면 개선(PDP/PLP/마이)",
-          "status": "개발중",
+          "status": "QA중",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
@@ -4421,22 +4440,22 @@
       "startDate": "2026-07-16",
       "dueDate": null,
       "created": "2026-07-16T13:29:24.776+0900",
-      "updated": "2026-07-24T10:48:49.335+0900",
+      "updated": "2026-08-11T15:30:18.843+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-23T16:33:28.188+0900",
       "linkedTickets": [
         {
           "key": "FT-362",
           "summary": "[카테고리메뉴]오프라인탭 API 변경",
-          "status": "개발완료",
-          "statusCategory": "indeterminate",
+          "status": "론치완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward"
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 1
       }
     },
@@ -6274,7 +6293,7 @@
         },
         {
           "key": "TM-4050",
-          "summary": "[MSS][검색]통합검색 입력창 개선",
+          "summary": "[MSS][검색]통합검색 검색홈 개선",
           "status": "기획중",
           "statusCategory": "indeterminate",
           "assignee": null,
@@ -8081,11 +8100,11 @@
       "summary": "[design-driven][공통] 퍼널 배너 스타일 개선",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-백로그",
+      "status": "검토완료-미진행",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
-        "name": "이승연",
+        "name": "김경윤",
         "email": null,
         "accountId": null
       },
@@ -8109,9 +8128,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-30T14:18:08.594+0900",
-      "updated": "2026-08-03T10:16:32.358+0900",
+      "updated": "2026-08-11T12:16:14.617+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-30T14:51:44.016+0900",
+      "lastStatusChangedAt": "2026-08-11T12:16:08.911+0900",
       "linkedTickets": [
         {
           "key": "FT-90",
@@ -9537,7 +9556,7 @@
       "summary": "수량 입력 시 수기 입력 가능하도록 수정",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-백로그",
+      "status": "검토완료-미진행",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -9565,9 +9584,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-23T14:57:07.765+0900",
-      "updated": "2026-07-09T12:18:17.124+0900",
+      "updated": "2026-08-11T12:16:10.932+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-09T12:17:37.766+0900",
+      "lastStatusChangedAt": "2026-08-11T12:16:05.376+0900",
       "linkedTickets": [
         {
           "key": "FT-116",
@@ -9608,11 +9627,11 @@
       "summary": "[design-driven][PLP] 상품 정보영역 내 간격 등 개선",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-백로그",
+      "status": "검토완료-미진행",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
-        "name": "이승연",
+        "name": "김경윤",
         "email": null,
         "accountId": null
       },
@@ -9637,9 +9656,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-23T14:57:05.550+0900",
-      "updated": "2026-08-03T10:16:38.944+0900",
+      "updated": "2026-08-11T12:16:12.955+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-06-24T11:05:19.198+0900",
+      "lastStatusChangedAt": "2026-08-11T12:16:07.134+0900",
       "linkedTickets": [
         {
           "key": "FT-114",
@@ -17767,15 +17786,15 @@
         {
           "key": "TM-3484",
           "summary": "[무신사/MATCH] 개인수집정보/맞춤정보 활용 개인화 고도화",
-          "status": "기획중",
-          "statusCategory": "indeterminate",
+          "status": "철회/반려/취소",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Blocks",
           "direction": "inward"
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 1
       }
     },
@@ -20097,7 +20116,7 @@
         {
           "key": "FT-331",
           "summary": "[장바구니] 결제 즉시할인 혜택 넛지 추가",
-          "status": "디자인완료",
+          "status": "QA중",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
