@@ -1,11 +1,1055 @@
 {
-  "lastSync": "2026-08-12T06:38:57+09:00",
+  "lastSync": "2026-08-16T06:14:28+09:00",
   "count": 90,
   "items": [
     {
-      "key": "ETR-5902",
-      "url": "https://jira.team.musinsa.com/browse/ETR-5902",
-      "summary": "[Tech-Heads 7/27] 후기 콘텐츠화 (웃긴 후기 BEST/투표/팔로우 커뮤니티화)",
+      "key": "ETR-5539",
+      "url": "https://jira.team.musinsa.com/browse/ETR-5539",
+      "summary": "[카테고리 변경] 모자 카테고리를 2depth에서 1depth로 변경",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "반려",
+      "statusCategory": "done",
+      "priority": "Big-Rock",
+      "assignee": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-07-08T18:06:56.400+0900",
+      "updated": "2026-08-14T10:56:36.771+0900",
+      "resolutionDate": "2026-08-14T10:56:36.722+0900",
+      "lastStatusChangedAt": null
+    },
+    {
+      "key": "ETR-4605",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4605",
+      "summary": "[랭킹판] 글로벌(일본/미국) vs 한국 검색어 랭킹 비교 기능 신설",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-미진행",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": "MSS-P Global",
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-06-01T09:22:40.286+0900",
+      "updated": "2026-08-14T10:54:21.301+0900",
+      "resolutionDate": "2026-08-14T10:54:21.281+0900",
+      "lastStatusChangedAt": null
+    },
+    {
+      "key": "ETR-4576",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4576",
+      "summary": "이벤트/혜택 앱 메뉴에 댓글이벤트 필터 URL 진입점 추가",
+      "issueType": "기타(KTLO/BAU)",
+      "project": "ETR",
+      "status": "검토완료-미진행",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-29T09:03:30.079+0900",
+      "updated": "2026-08-14T10:54:17.781+0900",
+      "resolutionDate": "2026-08-14T10:54:17.759+0900",
+      "lastStatusChangedAt": null
+    },
+    {
+      "key": "ETR-4460",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4460",
+      "summary": "[무신사 체크인 이벤트] 아웃링크 직접 연결 대신 앱 내 기획전 중간 페이지 경유 플로우 추가",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "반려",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-26T08:46:31.680+0900",
+      "updated": "2026-08-14T10:54:10.209+0900",
+      "resolutionDate": "2026-08-14T10:54:05.174+0900",
+      "lastStatusChangedAt": null
+    },
+    {
+      "key": "ETR-4419",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4419",
+      "summary": "라이브 모듈 개선 — 하단 정보 구조, 아이콘 색상, 캐러셀 사이즈 조정",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-미진행",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "박준현",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-21T23:36:24.384+0900",
+      "updated": "2026-08-14T10:54:02.448+0900",
+      "resolutionDate": "2026-08-14T10:54:02.426+0900",
+      "lastStatusChangedAt": null
+    },
+    {
+      "key": "ETR-3930",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3930",
+      "summary": "기획전 상품진열 페이지 탭 → 단일 스크롤 페이지 전환 및 퀵바로구매 UI 적용",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-미진행",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "fasttrack",
+        "one",
+        "기획전"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-01T18:16:36.071+0900",
+      "updated": "2026-08-14T10:53:40.576+0900",
+      "resolutionDate": "2026-08-14T10:53:40.546+0900",
+      "lastStatusChangedAt": null
+    },
+    {
+      "key": "ETR-3927",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3927",
+      "summary": "스토어 메뉴 리스트(스페셜/래플/기프트 등) 개인화 추천순 및 성별 기본 정렬 적용",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-미진행",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one",
+        "콘텐츠"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-05-01T11:26:17.082+0900",
+      "updated": "2026-08-14T10:53:39.799+0900",
+      "resolutionDate": "2026-08-14T10:53:39.781+0900",
+      "lastStatusChangedAt": null
+    },
+    {
+      "key": "ETR-3885",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3885",
+      "summary": "CMS 내 지도 서비스 삽입 요청 ",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-미진행",
+      "statusCategory": "done",
+      "priority": "Big-Rock",
+      "assignee": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "김지은",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "무신사"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": "2026-05-29",
+      "dueDate": null,
+      "created": "2026-04-28T10:27:46.723+0900",
+      "updated": "2026-08-14T10:53:37.358+0900",
+      "resolutionDate": "2026-08-14T10:53:37.337+0900",
+      "lastStatusChangedAt": null
+    },
+    {
+      "key": "ETR-3815",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3815",
+      "summary": "퀵픽스 배너광고 영역에 기획전 날짜·슬로건 추가 노출 요청",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "반려",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "CX",
+        "auto-etr-triaged",
+        "conveyor",
+        "fasttrack",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-04-22T17:11:35.250+0900",
+      "updated": "2026-08-14T10:53:28.781+0900",
+      "resolutionDate": "2026-08-14T10:53:28.752+0900",
+      "lastStatusChangedAt": null
+    },
+    {
+      "key": "ETR-3715",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3715",
+      "summary": "브랜드숍 앱메인 하단 팝업 배너 운영",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-미진행",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "김연수",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "무탠다드_과제요청리스트",
+        "무탠다드_노출"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-04-20T17:21:57.315+0900",
+      "updated": "2026-08-14T10:53:25.240+0900",
+      "resolutionDate": "2026-08-14T10:53:20.533+0900",
+      "lastStatusChangedAt": null
+    },
+    {
+      "key": "ETR-3732",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3732",
+      "summary": "적립금 소진 수단 확대 (리뷰 활성화)",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "반려",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "김연수",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "무탠다드_과제요청리스트",
+        "무탠다드_세일즈"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-04-20T17:25:00.462+0900",
+      "updated": "2026-08-14T10:53:24.284+0900",
+      "resolutionDate": "2026-08-14T10:53:24.265+0900",
+      "lastStatusChangedAt": null
+    },
+    {
+      "key": "ETR-3728",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3728",
+      "summary": "옵션 품절 시 대체 상품 제안",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "반려",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "김연수",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "무탠다드_과제요청리스트",
+        "무탠다드_탐색"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": "2026-Q3",
+      "yearQuarters": [
+        "2026-Q3"
+      ],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-04-20T17:24:28.943+0900",
+      "updated": "2026-08-14T10:53:22.492+0900",
+      "resolutionDate": "2026-08-14T10:53:22.461+0900",
+      "lastStatusChangedAt": null
+    },
+    {
+      "key": "ETR-3576",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3576",
+      "summary": "[스냅 어드민 2.0] 운영 효율 고도화",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-미진행",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "박시온",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "무신사"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": "2026-04-30",
+      "dueDate": null,
+      "created": "2026-04-10T16:19:13.393+0900",
+      "updated": "2026-08-14T10:52:58.982+0900",
+      "resolutionDate": "2026-08-14T10:52:58.958+0900",
+      "lastStatusChangedAt": null
+    },
+    {
+      "key": "ETR-3550",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3550",
+      "summary": "[MSS][상품광고] SRP/카테고리숍 광고 로직 개선",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-미진행",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "이영석",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "26'2Q",
+        "Y26Q1"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2"
+      ],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-04-08T17:43:51.203+0900",
+      "updated": "2026-08-14T10:52:56.263+0900",
+      "resolutionDate": "2026-08-14T10:52:56.216+0900",
+      "lastStatusChangedAt": null
+    },
+    {
+      "key": "ETR-3524",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3524",
+      "summary": "[기간특가/하루특가] 카운트다운 노출 일시 포맷 수정",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-미진행",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "오지연",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "무신사"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-04-07T11:29:29.201+0900",
+      "updated": "2026-08-14T10:52:54.467+0900",
+      "resolutionDate": "2026-08-14T10:52:54.444+0900",
+      "lastStatusChangedAt": null
+    },
+    {
+      "key": "ETR-3320",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3320",
+      "summary": "무진장 Ai 크리에이티브 공모전 페이지 제작 문의",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "반려",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "김세림",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-03-20T16:36:02.795+0900",
+      "updated": "2026-08-14T10:52:08.612+0900",
+      "resolutionDate": "2026-08-14T10:52:08.585+0900",
+      "lastStatusChangedAt": null
+    },
+    {
+      "key": "ETR-3160",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3160",
+      "summary": "[체험단] bizest 조회 기능 추가 요청",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-미진행",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "오지연",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "체험단"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2"
+      ],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-03-13T11:32:16.450+0900",
+      "updated": "2026-08-14T10:51:48.635+0900",
+      "resolutionDate": "2026-08-14T10:51:48.607+0900",
+      "lastStatusChangedAt": null
+    },
+    {
+      "key": "ETR-3090",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3090",
+      "summary": "검색 화면에 실시간 인기 브랜드 추가",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "반려",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "서경선",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "무신사"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2"
+      ],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-03-09T17:35:59.188+0900",
+      "updated": "2026-08-14T10:51:38.839+0900",
+      "resolutionDate": "2026-08-14T10:51:38.819+0900",
+      "lastStatusChangedAt": null
+    },
+    {
+      "key": "ETR-3087",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3087",
+      "summary": "CPCMS 상품 노출 화면 수정 (탭 이동)",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-미진행",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "서경선",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "Y2605재검토",
+        "Y2606재검토",
+        "Y26Q3재검토",
+        "무신사"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2"
+      ],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-03-09T17:15:10.013+0900",
+      "updated": "2026-08-14T10:51:37.880+0900",
+      "resolutionDate": "2026-08-14T10:51:37.859+0900",
+      "lastStatusChangedAt": null
+    },
+    {
+      "key": "ETR-3083",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3083",
+      "summary": "CPCMS 특가 모듈 - 브랜드 모듈 더보기 랜딩 개선",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-미진행",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "서경선",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "무신사"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2"
+      ],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-03-09T16:59:30.534+0900",
+      "updated": "2026-08-14T10:51:34.385+0900",
+      "resolutionDate": "2026-08-14T10:51:34.359+0900",
+      "lastStatusChangedAt": null
+    },
+    {
+      "key": "ETR-3080",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3080",
+      "summary": "무진장 구매력 챌린지 이벤트",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "반려",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "서경선",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "무신사"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2"
+      ],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-03-09T16:44:36.739+0900",
+      "updated": "2026-08-14T10:51:33.450+0900",
+      "resolutionDate": "2026-08-14T10:51:33.416+0900",
+      "lastStatusChangedAt": null
+    },
+    {
+      "key": "ETR-3070",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3070",
+      "summary": "랭킹 대시보드 개선을 통한 콘텐츠 제작 최적화 ",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-미진행",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "류예지",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "무신사"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": "2026-Q2",
+      "yearQuarters": [
+        "2026-Q2"
+      ],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-03-09T15:55:11.499+0900",
+      "updated": "2026-08-14T10:51:29.896+0900",
+      "resolutionDate": "2026-08-14T10:51:29.873+0900",
+      "lastStatusChangedAt": null
+    },
+    {
+      "key": "ETR-3003",
+      "url": "https://jira.team.musinsa.com/browse/ETR-3003",
+      "summary": "[무탠다드 본부 온라인사업실] 1Q 과제_온/오프라인 교차 구매에 따른 리워드 혜택(테크 과제 요청 리스트를 통해 사전 커뮤니케이션이 완료된 건)",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-미진행",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "오기현",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "무탠다드_O4O",
+        "무탠다드_과제요청리스트"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": "2026-Q1",
+      "yearQuarters": [
+        "2026-Q1"
+      ],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-03-05T12:34:15.455+0900",
+      "updated": "2026-08-14T10:51:21.934+0900",
+      "resolutionDate": "2026-08-14T10:51:21.904+0900",
+      "lastStatusChangedAt": null
+    },
+    {
+      "key": "ETR-2842",
+      "url": "https://jira.team.musinsa.com/browse/ETR-2842",
+      "summary": "[MSS][상품광고] 최근본 - 상품탭 적용",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-미진행",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "김경애",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": "2026-Q1",
+      "yearQuarters": [
+        "2026-Q1"
+      ],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-02-14T12:46:39.726+0900",
+      "updated": "2026-08-14T10:51:08.311+0900",
+      "resolutionDate": "2026-08-14T10:51:08.281+0900",
+      "lastStatusChangedAt": null
+    },
+    {
+      "key": "ETR-2729",
+      "url": "https://jira.team.musinsa.com/browse/ETR-2729",
+      "summary": "[픗웨어] 브랜드숍 상단 GNB 커스텀 및 별도관 개발 요청의 건",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "반려",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "백종권",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-02-03T12:27:09.633+0900",
+      "updated": "2026-08-14T10:50:57.742+0900",
+      "resolutionDate": "2026-08-14T10:50:57.715+0900",
+      "lastStatusChangedAt": null
+    },
+    {
+      "key": "ETR-2603",
+      "url": "https://jira.team.musinsa.com/browse/ETR-2603",
+      "summary": "무배당발 서비스 페이지 고도화 요청",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "반려",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "신혜인",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": "MSS-P Discovery & Engagement",
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-01-21T12:44:34.747+0900",
+      "updated": "2026-08-14T10:50:45.923+0900",
+      "resolutionDate": "2026-08-14T10:50:45.901+0900",
+      "lastStatusChangedAt": null
+    },
+    {
+      "key": "ETR-2501",
+      "url": "https://jira.team.musinsa.com/browse/ETR-2501",
+      "summary": "랭킹 내 카테고리 순서 변경 기능 추가 요청의 건",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "반려",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "오소희",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "CPCMS_v2"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": "2026-Q1",
+      "yearQuarters": [
+        "2026-Q1"
+      ],
+      "subGroup": "MSS-P Discovery & Engagement",
+      "startDate": "2026-01-08",
+      "dueDate": "2026-01-31",
+      "created": "2026-01-07T10:44:40.221+0900",
+      "updated": "2026-08-14T10:50:33.852+0900",
+      "resolutionDate": "2026-08-14T10:50:33.823+0900",
+      "lastStatusChangedAt": null
+    },
+    {
+      "key": "ETR-2050",
+      "url": "https://jira.team.musinsa.com/browse/ETR-2050",
+      "summary": "[MSS] 유즈드 상품 탐색 고도화",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-미진행",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "권민용",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": "MSS-P Recommerce",
+      "startDate": "2026-01-01",
+      "dueDate": null,
+      "created": "2025-11-21T17:35:41.902+0900",
+      "updated": "2026-08-14T10:49:44.596+0900",
+      "resolutionDate": "2026-08-14T10:49:44.577+0900",
+      "lastStatusChangedAt": null
+    },
+    {
+      "key": "ETR-6007",
+      "url": "https://jira.team.musinsa.com/browse/ETR-6007",
+      "summary": "[design-driven][공통] 앱 딥링크 브릿지 페이지 개선",
       "issueType": "과제 발의",
       "project": "ETR",
       "status": "검토완료-백로그",
@@ -17,24 +1061,61 @@
         "accountId": null
       },
       "reporter": {
-        "name": "이승연",
+        "name": "김경윤",
         "email": null,
         "accountId": null
       },
-      "labels": [],
+      "labels": [
+        "conveyor",
+        "design-driven"
+      ],
       "mainSubject": null,
       "mainSubjects": [],
       "subSubject": null,
       "subSubjects": [],
-      "yearQuarter": "2026-Q4",
-      "yearQuarters": [
-        "2026-Q4"
-      ],
+      "yearQuarter": null,
+      "yearQuarters": [],
       "subGroup": null,
       "startDate": null,
       "dueDate": null,
-      "created": "2026-07-27T13:12:50.040+0900",
-      "updated": "2026-08-11T16:11:37.530+0900",
+      "created": "2026-07-29T17:36:18.181+0900",
+      "updated": "2026-08-13T16:28:34.078+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null
+    },
+    {
+      "key": "ETR-4612",
+      "url": "https://jira.team.musinsa.com/browse/ETR-4612",
+      "summary": "[상품 카드 유형 정비] 모든 정보 노출을 기준으로 상품 카드 유형 정비",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "Tech 검토 대기 중",
+      "statusCategory": "new",
+      "priority": "P0",
+      "assignee": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "안우진",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": "2026-06-24",
+      "created": "2026-06-01T11:35:52.348+0900",
+      "updated": "2026-08-12T15:21:38.741+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -308,46 +1389,6 @@
       "lastStatusChangedAt": null
     },
     {
-      "key": "ETR-5712",
-      "url": "https://jira.team.musinsa.com/browse/ETR-5712",
-      "summary": "[브랜드 랭킹] 콘텐츠 캐러셀 정보 요소 추가",
-      "issueType": "과제 발의",
-      "project": "ETR",
-      "status": "검토완료-우선착수",
-      "statusCategory": "done",
-      "priority": "P0",
-      "assignee": {
-        "name": "안우진",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "김혜림",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [
-        "OneDesignSync",
-        "fasttrack",
-        "ux-ft"
-      ],
-      "mainSubject": null,
-      "mainSubjects": [],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": "2026-Q3",
-      "yearQuarters": [
-        "2026-Q3"
-      ],
-      "subGroup": null,
-      "startDate": null,
-      "dueDate": null,
-      "created": "2026-07-21T08:38:15.376+0900",
-      "updated": "2026-08-06T17:07:25.679+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": null
-    },
-    {
       "key": "ETR-4340",
       "url": "https://jira.team.musinsa.com/browse/ETR-4340",
       "summary": "[design-driven] 브랜드 로고 비율별 사이즈 개선",
@@ -462,44 +1503,6 @@
       "lastStatusChangedAt": null
     },
     {
-      "key": "ETR-4605",
-      "url": "https://jira.team.musinsa.com/browse/ETR-4605",
-      "summary": "[랭킹판] 글로벌(일본/미국) vs 한국 검색어 랭킹 비교 기능 신설",
-      "issueType": "과제 발의",
-      "project": "ETR",
-      "status": "검토완료-미진행",
-      "statusCategory": "done",
-      "priority": "P0",
-      "assignee": {
-        "name": "안우진",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "촤비스",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [
-        "auto-etr-triaged",
-        "conveyor",
-        "one"
-      ],
-      "mainSubject": null,
-      "mainSubjects": [],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
-      "subGroup": "MSS-P Global",
-      "startDate": null,
-      "dueDate": null,
-      "created": "2026-06-01T09:22:40.286+0900",
-      "updated": "2026-07-30T09:14:28.099+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": null
-    },
-    {
       "key": "ETR-5905",
       "url": "https://jira.team.musinsa.com/browse/ETR-5905",
       "summary": "[design-driven][공통] 뒤로가기 UX",
@@ -536,45 +1539,6 @@
       "dueDate": null,
       "created": "2026-07-27T15:25:31.955+0900",
       "updated": "2026-07-29T18:12:14.169+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": null
-    },
-    {
-      "key": "ETR-3927",
-      "url": "https://jira.team.musinsa.com/browse/ETR-3927",
-      "summary": "스토어 메뉴 리스트(스페셜/래플/기프트 등) 개인화 추천순 및 성별 기본 정렬 적용",
-      "issueType": "과제 발의",
-      "project": "ETR",
-      "status": "검토완료-미진행",
-      "statusCategory": "done",
-      "priority": "P0",
-      "assignee": {
-        "name": "안우진",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "촤비스",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [
-        "auto-etr-triaged",
-        "conveyor",
-        "one",
-        "콘텐츠"
-      ],
-      "mainSubject": null,
-      "mainSubjects": [],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
-      "subGroup": null,
-      "startDate": null,
-      "dueDate": null,
-      "created": "2026-05-01T11:26:17.082+0900",
-      "updated": "2026-07-29T16:15:37.376+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -768,46 +1732,6 @@
       "lastStatusChangedAt": null
     },
     {
-      "key": "ETR-3815",
-      "url": "https://jira.team.musinsa.com/browse/ETR-3815",
-      "summary": "퀵픽스 배너광고 영역에 기획전 날짜·슬로건 추가 노출 요청",
-      "issueType": "과제 발의",
-      "project": "ETR",
-      "status": "반려",
-      "statusCategory": "done",
-      "priority": "P0",
-      "assignee": {
-        "name": "안우진",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "촤비스",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [
-        "CX",
-        "auto-etr-triaged",
-        "conveyor",
-        "fasttrack",
-        "one"
-      ],
-      "mainSubject": null,
-      "mainSubjects": [],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
-      "subGroup": null,
-      "startDate": null,
-      "dueDate": null,
-      "created": "2026-04-22T17:11:35.250+0900",
-      "updated": "2026-07-20T13:56:03.186+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": null
-    },
-    {
       "key": "ETR-3879",
       "url": "https://jira.team.musinsa.com/browse/ETR-3879",
       "summary": "[상품/전시 > 콘텐츠/캠페인 관리 > 발매 관리] 발매 컨텐츠 등록 내 상품 상태 확인 기능 추가 요청",
@@ -991,40 +1915,6 @@
       "lastStatusChangedAt": null
     },
     {
-      "key": "ETR-5539",
-      "url": "https://jira.team.musinsa.com/browse/ETR-5539",
-      "summary": "[카테고리 변경] 모자 카테고리를 2depth에서 1depth로 변경",
-      "issueType": "과제 발의",
-      "project": "ETR",
-      "status": "반려",
-      "statusCategory": "done",
-      "priority": "Big-Rock",
-      "assignee": {
-        "name": "안우진",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "안우진",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [],
-      "mainSubject": null,
-      "mainSubjects": [],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
-      "subGroup": null,
-      "startDate": null,
-      "dueDate": null,
-      "created": "2026-07-08T18:06:56.400+0900",
-      "updated": "2026-07-08T18:09:58.465+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": null
-    },
-    {
       "key": "ETR-5339",
       "url": "https://jira.team.musinsa.com/browse/ETR-5339",
       "summary": "[홈메인] 세일판 — 전역 성별 필터와 컨텐츠 불일치 개선",
@@ -1093,121 +1983,6 @@
       "dueDate": null,
       "created": "2026-04-20T15:19:33.228+0900",
       "updated": "2026-07-07T09:34:01.596+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": null
-    },
-    {
-      "key": "ETR-3728",
-      "url": "https://jira.team.musinsa.com/browse/ETR-3728",
-      "summary": "옵션 품절 시 대체 상품 제안",
-      "issueType": "과제 발의",
-      "project": "ETR",
-      "status": "반려",
-      "statusCategory": "done",
-      "priority": "P0",
-      "assignee": {
-        "name": "안우진",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "김연수",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [
-        "무탠다드_과제요청리스트",
-        "무탠다드_탐색"
-      ],
-      "mainSubject": null,
-      "mainSubjects": [],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": "2026-Q3",
-      "yearQuarters": [
-        "2026-Q3"
-      ],
-      "subGroup": null,
-      "startDate": null,
-      "dueDate": null,
-      "created": "2026-04-20T17:24:28.943+0900",
-      "updated": "2026-07-06T09:02:03.033+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": null
-    },
-    {
-      "key": "ETR-3003",
-      "url": "https://jira.team.musinsa.com/browse/ETR-3003",
-      "summary": "[무탠다드 본부 온라인사업실] 1Q 과제_온/오프라인 교차 구매에 따른 리워드 혜택(테크 과제 요청 리스트를 통해 사전 커뮤니케이션이 완료된 건)",
-      "issueType": "과제 발의",
-      "project": "ETR",
-      "status": "검토완료-미진행",
-      "statusCategory": "done",
-      "priority": "P0",
-      "assignee": {
-        "name": "안우진",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "오기현",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [
-        "무탠다드_O4O",
-        "무탠다드_과제요청리스트"
-      ],
-      "mainSubject": null,
-      "mainSubjects": [],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": "2026-Q1",
-      "yearQuarters": [
-        "2026-Q1"
-      ],
-      "subGroup": null,
-      "startDate": null,
-      "dueDate": null,
-      "created": "2026-03-05T12:34:15.455+0900",
-      "updated": "2026-07-06T09:02:00.665+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": null
-    },
-    {
-      "key": "ETR-4419",
-      "url": "https://jira.team.musinsa.com/browse/ETR-4419",
-      "summary": "라이브 모듈 개선 — 하단 정보 구조, 아이콘 색상, 캐러셀 사이즈 조정",
-      "issueType": "과제 발의",
-      "project": "ETR",
-      "status": "검토완료-미진행",
-      "statusCategory": "done",
-      "priority": "P0",
-      "assignee": {
-        "name": "안우진",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "박준현",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [
-        "conveyor",
-        "one"
-      ],
-      "mainSubject": null,
-      "mainSubjects": [],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
-      "subGroup": null,
-      "startDate": null,
-      "dueDate": null,
-      "created": "2026-05-21T23:36:24.384+0900",
-      "updated": "2026-07-02T21:47:28.357+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -1324,46 +2099,6 @@
       "created": "2026-06-13T14:48:35.254+0900",
       "updated": "2026-06-29T14:17:43.346+0900",
       "resolutionDate": "2026-06-24T17:07:15.484+0900",
-      "lastStatusChangedAt": null
-    },
-    {
-      "key": "ETR-3930",
-      "url": "https://jira.team.musinsa.com/browse/ETR-3930",
-      "summary": "기획전 상품진열 페이지 탭 → 단일 스크롤 페이지 전환 및 퀵바로구매 UI 적용",
-      "issueType": "과제 발의",
-      "project": "ETR",
-      "status": "검토완료-미진행",
-      "statusCategory": "done",
-      "priority": "P0",
-      "assignee": {
-        "name": "안우진",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "촤비스",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [
-        "auto-etr-triaged",
-        "conveyor",
-        "fasttrack",
-        "one",
-        "기획전"
-      ],
-      "mainSubject": null,
-      "mainSubjects": [],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
-      "subGroup": null,
-      "startDate": null,
-      "dueDate": null,
-      "created": "2026-05-01T18:16:36.071+0900",
-      "updated": "2026-06-26T02:36:49.738+0900",
-      "resolutionDate": null,
       "lastStatusChangedAt": null
     },
     {
@@ -1665,44 +2400,6 @@
       "dueDate": null,
       "created": "2026-05-26T14:55:09.230+0900",
       "updated": "2026-06-11T15:58:22.188+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": null
-    },
-    {
-      "key": "ETR-4460",
-      "url": "https://jira.team.musinsa.com/browse/ETR-4460",
-      "summary": "[무신사 체크인 이벤트] 아웃링크 직접 연결 대신 앱 내 기획전 중간 페이지 경유 플로우 추가",
-      "issueType": "과제 발의",
-      "project": "ETR",
-      "status": "반려",
-      "statusCategory": "done",
-      "priority": "P0",
-      "assignee": {
-        "name": "안우진",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "촤비스",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [
-        "auto-etr-triaged",
-        "conveyor",
-        "one"
-      ],
-      "mainSubject": null,
-      "mainSubjects": [],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
-      "subGroup": null,
-      "startDate": null,
-      "dueDate": null,
-      "created": "2026-05-26T08:46:31.680+0900",
-      "updated": "2026-06-11T15:58:17.733+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -2043,43 +2740,6 @@
       "lastStatusChangedAt": null
     },
     {
-      "key": "ETR-3732",
-      "url": "https://jira.team.musinsa.com/browse/ETR-3732",
-      "summary": "적립금 소진 수단 확대 (리뷰 활성화)",
-      "issueType": "과제 발의",
-      "project": "ETR",
-      "status": "반려",
-      "statusCategory": "done",
-      "priority": "P0",
-      "assignee": {
-        "name": "안우진",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "김연수",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [
-        "무탠다드_과제요청리스트",
-        "무탠다드_세일즈"
-      ],
-      "mainSubject": null,
-      "mainSubjects": [],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
-      "subGroup": null,
-      "startDate": null,
-      "dueDate": null,
-      "created": "2026-04-20T17:25:00.462+0900",
-      "updated": "2026-06-11T09:19:14.043+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": null
-    },
-    {
       "key": "ETR-1178",
       "url": "https://jira.team.musinsa.com/browse/ETR-1178",
       "summary": "이미지 내 무신사 워터마크 기능 추가",
@@ -2115,47 +2775,6 @@
       "dueDate": null,
       "created": "2025-04-21T12:08:45.065+0900",
       "updated": "2026-06-10T17:24:54.926+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": null
-    },
-    {
-      "key": "ETR-3087",
-      "url": "https://jira.team.musinsa.com/browse/ETR-3087",
-      "summary": "CPCMS 상품 노출 화면 수정 (탭 이동)",
-      "issueType": "과제 발의",
-      "project": "ETR",
-      "status": "검토완료-미진행",
-      "statusCategory": "done",
-      "priority": "P0",
-      "assignee": {
-        "name": "안우진",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "서경선",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [
-        "Y2605재검토",
-        "Y2606재검토",
-        "Y26Q3재검토",
-        "무신사"
-      ],
-      "mainSubject": null,
-      "mainSubjects": [],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": "2026-Q2",
-      "yearQuarters": [
-        "2026-Q2"
-      ],
-      "subGroup": null,
-      "startDate": null,
-      "dueDate": null,
-      "created": "2026-03-09T17:15:10.013+0900",
-      "updated": "2026-06-10T11:02:55.422+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -2235,44 +2854,6 @@
       "lastStatusChangedAt": null
     },
     {
-      "key": "ETR-4576",
-      "url": "https://jira.team.musinsa.com/browse/ETR-4576",
-      "summary": "이벤트/혜택 앱 메뉴에 댓글이벤트 필터 URL 진입점 추가",
-      "issueType": "기타(KTLO/BAU)",
-      "project": "ETR",
-      "status": "검토완료-미진행",
-      "statusCategory": "done",
-      "priority": "P0",
-      "assignee": {
-        "name": "안우진",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "촤비스",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [
-        "auto-etr-triaged",
-        "conveyor",
-        "one"
-      ],
-      "mainSubject": null,
-      "mainSubjects": [],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
-      "subGroup": null,
-      "startDate": null,
-      "dueDate": null,
-      "created": "2026-05-29T09:03:30.079+0900",
-      "updated": "2026-06-04T23:49:26.821+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": null
-    },
-    {
       "key": "ETR-4265",
       "url": "https://jira.team.musinsa.com/browse/ETR-4265",
       "summary": "무신사 바지 카테고리 PLP 핏 필터를 바지 전용 핏으로 교체 및 다양화",
@@ -2311,45 +2892,6 @@
       "lastStatusChangedAt": null
     },
     {
-      "key": "ETR-3550",
-      "url": "https://jira.team.musinsa.com/browse/ETR-3550",
-      "summary": "[MSS][상품광고] SRP/카테고리숍 광고 로직 개선",
-      "issueType": "과제 발의",
-      "project": "ETR",
-      "status": "검토완료-미진행",
-      "statusCategory": "done",
-      "priority": "P0",
-      "assignee": {
-        "name": "안우진",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "이영석",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [
-        "26'2Q",
-        "Y26Q1"
-      ],
-      "mainSubject": null,
-      "mainSubjects": [],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": "2026-Q2",
-      "yearQuarters": [
-        "2026-Q2"
-      ],
-      "subGroup": null,
-      "startDate": null,
-      "dueDate": null,
-      "created": "2026-04-08T17:43:51.203+0900",
-      "updated": "2026-05-29T14:24:31.382+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": null
-    },
-    {
       "key": "ETR-4261",
       "url": "https://jira.team.musinsa.com/browse/ETR-4261",
       "summary": "콘텐츠·발매 상세 페이지 하단 관련 브랜드 상시 노출 (멀티브랜드 대응 포함)",
@@ -2385,43 +2927,6 @@
       "created": "2026-05-18T11:26:37.515+0900",
       "updated": "2026-05-28T18:05:29.823+0900",
       "resolutionDate": "2026-05-28T18:03:01.660+0900",
-      "lastStatusChangedAt": null
-    },
-    {
-      "key": "ETR-3715",
-      "url": "https://jira.team.musinsa.com/browse/ETR-3715",
-      "summary": "브랜드숍 앱메인 하단 팝업 배너 운영",
-      "issueType": "과제 발의",
-      "project": "ETR",
-      "status": "검토완료-미진행",
-      "statusCategory": "done",
-      "priority": "P0",
-      "assignee": {
-        "name": "안우진",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "김연수",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [
-        "무탠다드_과제요청리스트",
-        "무탠다드_노출"
-      ],
-      "mainSubject": null,
-      "mainSubjects": [],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
-      "subGroup": null,
-      "startDate": null,
-      "dueDate": null,
-      "created": "2026-04-20T17:21:57.315+0900",
-      "updated": "2026-05-28T15:26:38.697+0900",
-      "resolutionDate": null,
       "lastStatusChangedAt": null
     },
     {
@@ -2614,78 +3119,6 @@
       "lastStatusChangedAt": null
     },
     {
-      "key": "ETR-3576",
-      "url": "https://jira.team.musinsa.com/browse/ETR-3576",
-      "summary": "[스냅 어드민 2.0] 운영 효율 고도화",
-      "issueType": "과제 발의",
-      "project": "ETR",
-      "status": "검토완료-미진행",
-      "statusCategory": "done",
-      "priority": "P0",
-      "assignee": {
-        "name": "안우진",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "박시온",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [
-        "무신사"
-      ],
-      "mainSubject": null,
-      "mainSubjects": [],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
-      "subGroup": null,
-      "startDate": "2026-04-30",
-      "dueDate": null,
-      "created": "2026-04-10T16:19:13.393+0900",
-      "updated": "2026-05-20T17:41:21.776+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": null
-    },
-    {
-      "key": "ETR-3885",
-      "url": "https://jira.team.musinsa.com/browse/ETR-3885",
-      "summary": "CMS 내 지도 서비스 삽입 요청 ",
-      "issueType": "과제 발의",
-      "project": "ETR",
-      "status": "검토완료-미진행",
-      "statusCategory": "done",
-      "priority": "Big-Rock",
-      "assignee": {
-        "name": "안우진",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "김지은",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [
-        "무신사"
-      ],
-      "mainSubject": null,
-      "mainSubjects": [],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
-      "subGroup": null,
-      "startDate": "2026-05-29",
-      "dueDate": null,
-      "created": "2026-04-28T10:27:46.723+0900",
-      "updated": "2026-05-08T13:57:04.553+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": null
-    },
-    {
       "key": "ETR-3862",
       "url": "https://jira.team.musinsa.com/browse/ETR-3862",
       "summary": "사이즈 필터에서 이종 단위(유럽 사이즈 등) mm 치환 표기 동작 정책 확인 및 개선",
@@ -2718,260 +3151,6 @@
       "dueDate": null,
       "created": "2026-04-24T16:18:54.371+0900",
       "updated": "2026-04-30T08:39:01.901+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": null
-    },
-    {
-      "key": "ETR-3160",
-      "url": "https://jira.team.musinsa.com/browse/ETR-3160",
-      "summary": "[체험단] bizest 조회 기능 추가 요청",
-      "issueType": "과제 발의",
-      "project": "ETR",
-      "status": "검토완료-미진행",
-      "statusCategory": "done",
-      "priority": "P0",
-      "assignee": {
-        "name": "안우진",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "오지연",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [
-        "체험단"
-      ],
-      "mainSubject": null,
-      "mainSubjects": [],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": "2026-Q2",
-      "yearQuarters": [
-        "2026-Q2"
-      ],
-      "subGroup": null,
-      "startDate": null,
-      "dueDate": null,
-      "created": "2026-03-13T11:32:16.450+0900",
-      "updated": "2026-04-27T16:27:37.967+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": null
-    },
-    {
-      "key": "ETR-3320",
-      "url": "https://jira.team.musinsa.com/browse/ETR-3320",
-      "summary": "무진장 Ai 크리에이티브 공모전 페이지 제작 문의",
-      "issueType": "과제 발의",
-      "project": "ETR",
-      "status": "반려",
-      "statusCategory": "done",
-      "priority": "P0",
-      "assignee": {
-        "name": "안우진",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "김세림",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [],
-      "mainSubject": null,
-      "mainSubjects": [],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
-      "subGroup": null,
-      "startDate": null,
-      "dueDate": null,
-      "created": "2026-03-20T16:36:02.795+0900",
-      "updated": "2026-04-23T14:09:35.811+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": null
-    },
-    {
-      "key": "ETR-3090",
-      "url": "https://jira.team.musinsa.com/browse/ETR-3090",
-      "summary": "검색 화면에 실시간 인기 브랜드 추가",
-      "issueType": "과제 발의",
-      "project": "ETR",
-      "status": "반려",
-      "statusCategory": "done",
-      "priority": "P0",
-      "assignee": {
-        "name": "안우진",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "서경선",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [
-        "무신사"
-      ],
-      "mainSubject": null,
-      "mainSubjects": [],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": "2026-Q2",
-      "yearQuarters": [
-        "2026-Q2"
-      ],
-      "subGroup": null,
-      "startDate": null,
-      "dueDate": null,
-      "created": "2026-03-09T17:35:59.188+0900",
-      "updated": "2026-04-23T14:09:35.811+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": null
-    },
-    {
-      "key": "ETR-3080",
-      "url": "https://jira.team.musinsa.com/browse/ETR-3080",
-      "summary": "무진장 구매력 챌린지 이벤트",
-      "issueType": "과제 발의",
-      "project": "ETR",
-      "status": "반려",
-      "statusCategory": "done",
-      "priority": "P0",
-      "assignee": {
-        "name": "안우진",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "서경선",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [
-        "무신사"
-      ],
-      "mainSubject": null,
-      "mainSubjects": [],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": "2026-Q2",
-      "yearQuarters": [
-        "2026-Q2"
-      ],
-      "subGroup": null,
-      "startDate": null,
-      "dueDate": null,
-      "created": "2026-03-09T16:44:36.739+0900",
-      "updated": "2026-04-23T14:09:35.811+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": null
-    },
-    {
-      "key": "ETR-2729",
-      "url": "https://jira.team.musinsa.com/browse/ETR-2729",
-      "summary": "[픗웨어] 브랜드숍 상단 GNB 커스텀 및 별도관 개발 요청의 건",
-      "issueType": "과제 발의",
-      "project": "ETR",
-      "status": "반려",
-      "statusCategory": "done",
-      "priority": "P0",
-      "assignee": {
-        "name": "안우진",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "백종권",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [],
-      "mainSubject": null,
-      "mainSubjects": [],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
-      "subGroup": null,
-      "startDate": null,
-      "dueDate": null,
-      "created": "2026-02-03T12:27:09.633+0900",
-      "updated": "2026-04-23T14:09:35.811+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": null
-    },
-    {
-      "key": "ETR-2603",
-      "url": "https://jira.team.musinsa.com/browse/ETR-2603",
-      "summary": "무배당발 서비스 페이지 고도화 요청",
-      "issueType": "과제 발의",
-      "project": "ETR",
-      "status": "반려",
-      "statusCategory": "done",
-      "priority": "P0",
-      "assignee": {
-        "name": "안우진",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "신혜인",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [],
-      "mainSubject": null,
-      "mainSubjects": [],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
-      "subGroup": "MSS-P Discovery & Engagement",
-      "startDate": null,
-      "dueDate": null,
-      "created": "2026-01-21T12:44:34.747+0900",
-      "updated": "2026-04-23T14:09:35.811+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": null
-    },
-    {
-      "key": "ETR-2501",
-      "url": "https://jira.team.musinsa.com/browse/ETR-2501",
-      "summary": "랭킹 내 카테고리 순서 변경 기능 추가 요청의 건",
-      "issueType": "과제 발의",
-      "project": "ETR",
-      "status": "반려",
-      "statusCategory": "done",
-      "priority": "P0",
-      "assignee": {
-        "name": "안우진",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "오소희",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [
-        "CPCMS_v2"
-      ],
-      "mainSubject": null,
-      "mainSubjects": [],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": "2026-Q1",
-      "yearQuarters": [
-        "2026-Q1"
-      ],
-      "subGroup": "MSS-P Discovery & Engagement",
-      "startDate": "2026-01-08",
-      "dueDate": "2026-01-31",
-      "created": "2026-01-07T10:44:40.221+0900",
-      "updated": "2026-04-23T14:09:35.811+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -3009,42 +3188,6 @@
       "created": "2026-02-14T12:39:51.375+0900",
       "updated": "2026-04-16T18:45:20.300+0900",
       "resolutionDate": "2026-04-16T18:45:19.919+0900",
-      "lastStatusChangedAt": null
-    },
-    {
-      "key": "ETR-3524",
-      "url": "https://jira.team.musinsa.com/browse/ETR-3524",
-      "summary": "[기간특가/하루특가] 카운트다운 노출 일시 포맷 수정",
-      "issueType": "과제 발의",
-      "project": "ETR",
-      "status": "검토완료-미진행",
-      "statusCategory": "done",
-      "priority": "P0",
-      "assignee": {
-        "name": "안우진",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "오지연",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [
-        "무신사"
-      ],
-      "mainSubject": null,
-      "mainSubjects": [],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
-      "subGroup": null,
-      "startDate": null,
-      "dueDate": null,
-      "created": "2026-04-07T11:29:29.201+0900",
-      "updated": "2026-04-16T08:35:50.909+0900",
-      "resolutionDate": null,
       "lastStatusChangedAt": null
     },
     {
@@ -3086,78 +3229,6 @@
       "lastStatusChangedAt": null
     },
     {
-      "key": "ETR-2050",
-      "url": "https://jira.team.musinsa.com/browse/ETR-2050",
-      "summary": "[MSS] 유즈드 상품 탐색 고도화",
-      "issueType": "과제 발의",
-      "project": "ETR",
-      "status": "검토완료-미진행",
-      "statusCategory": "done",
-      "priority": "P0",
-      "assignee": {
-        "name": "안우진",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "권민용",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [],
-      "mainSubject": null,
-      "mainSubjects": [],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": null,
-      "yearQuarters": [],
-      "subGroup": "MSS-P Recommerce",
-      "startDate": "2026-01-01",
-      "dueDate": null,
-      "created": "2025-11-21T17:35:41.902+0900",
-      "updated": "2026-04-08T17:27:41.240+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": null
-    },
-    {
-      "key": "ETR-3070",
-      "url": "https://jira.team.musinsa.com/browse/ETR-3070",
-      "summary": "랭킹 대시보드 개선을 통한 콘텐츠 제작 최적화 ",
-      "issueType": "과제 발의",
-      "project": "ETR",
-      "status": "검토완료-미진행",
-      "statusCategory": "done",
-      "priority": "P0",
-      "assignee": {
-        "name": "안우진",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "류예지",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [
-        "무신사"
-      ],
-      "mainSubject": null,
-      "mainSubjects": [],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": "2026-Q2",
-      "yearQuarters": [
-        "2026-Q2"
-      ],
-      "subGroup": null,
-      "startDate": null,
-      "dueDate": null,
-      "created": "2026-03-09T15:55:11.499+0900",
-      "updated": "2026-04-08T09:37:42.796+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": null
-    },
-    {
       "key": "ETR-2977",
       "url": "https://jira.team.musinsa.com/browse/ETR-2977",
       "summary": "[카테고리마케팅] 랜덤뽑기 중복 참여 불가 조치 요청 / 무신사 뷰티 페스타",
@@ -3194,44 +3265,6 @@
       "lastStatusChangedAt": null
     },
     {
-      "key": "ETR-3083",
-      "url": "https://jira.team.musinsa.com/browse/ETR-3083",
-      "summary": "CPCMS 특가 모듈 - 브랜드 모듈 더보기 랜딩 개선",
-      "issueType": "과제 발의",
-      "project": "ETR",
-      "status": "검토완료-미진행",
-      "statusCategory": "done",
-      "priority": "P0",
-      "assignee": {
-        "name": "안우진",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "서경선",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [
-        "무신사"
-      ],
-      "mainSubject": null,
-      "mainSubjects": [],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": "2026-Q2",
-      "yearQuarters": [
-        "2026-Q2"
-      ],
-      "subGroup": null,
-      "startDate": null,
-      "dueDate": null,
-      "created": "2026-03-09T16:59:30.534+0900",
-      "updated": "2026-04-03T14:00:06.579+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": null
-    },
-    {
       "key": "ETR-3212",
       "url": "https://jira.team.musinsa.com/browse/ETR-3212",
       "summary": "[CMS 2.0] 특별기획전 내 불필요 속성 'K커넥트' 제거 요청",
@@ -3263,42 +3296,6 @@
       "created": "2026-03-17T15:33:00.233+0900",
       "updated": "2026-03-20T16:27:38.290+0900",
       "resolutionDate": "2026-03-20T16:26:53.470+0900",
-      "lastStatusChangedAt": null
-    },
-    {
-      "key": "ETR-2842",
-      "url": "https://jira.team.musinsa.com/browse/ETR-2842",
-      "summary": "[MSS][상품광고] 최근본 - 상품탭 적용",
-      "issueType": "과제 발의",
-      "project": "ETR",
-      "status": "검토완료-미진행",
-      "statusCategory": "done",
-      "priority": "P0",
-      "assignee": {
-        "name": "안우진",
-        "email": null,
-        "accountId": null
-      },
-      "reporter": {
-        "name": "김경애",
-        "email": null,
-        "accountId": null
-      },
-      "labels": [],
-      "mainSubject": null,
-      "mainSubjects": [],
-      "subSubject": null,
-      "subSubjects": [],
-      "yearQuarter": "2026-Q1",
-      "yearQuarters": [
-        "2026-Q1"
-      ],
-      "subGroup": null,
-      "startDate": null,
-      "dueDate": null,
-      "created": "2026-02-14T12:46:39.726+0900",
-      "updated": "2026-03-16T19:07:11.396+0900",
-      "resolutionDate": null,
       "lastStatusChangedAt": null
     },
     {
