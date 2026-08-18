@@ -1,7 +1,49 @@
 {
-  "lastSync": "2026-08-18T06:19:09+09:00",
-  "count": 627,
+  "lastSync": "2026-08-19T06:16:13+09:00",
+  "count": 628,
   "items": [
+    {
+      "key": "TM-4232",
+      "url": "https://jira.team.musinsa.com/browse/TM-4232",
+      "summary": "[랭킹] 신상 화제성 랭킹(주간) 로직 신설",
+      "issueType": "Initiative",
+      "project": "TM",
+      "status": "기획중",
+      "statusCategory": "indeterminate",
+      "priority": "Emergency",
+      "assignee": {
+        "name": "방소윤",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "옥여경",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "홈앤디"
+      ],
+      "mainSubject": "04.랭킹/세일/커스텀(탭)/발견",
+      "mainSubjects": [
+        "04.랭킹/세일/커스텀(탭)/발견"
+      ],
+      "subSubject": "랭킹",
+      "subSubjects": [
+        "랭킹"
+      ],
+      "yearQuarter": "2026-Q3",
+      "yearQuarters": [
+        "2026-Q3"
+      ],
+      "subGroup": "MSS-P Discovery & Engagement",
+      "startDate": "2026-08-12",
+      "dueDate": "2026-11-30",
+      "created": "2026-08-18T13:26:05.261+0900",
+      "updated": "2026-08-19T06:00:20.432+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": null
+    },
     {
       "key": "TM-4212",
       "url": "https://jira.team.musinsa.com/browse/TM-4212",
@@ -21,9 +63,9 @@
         "뷰티",
         "홈앤디"
       ],
-      "mainSubject": "06.PLP",
+      "mainSubject": "13.PLP",
       "mainSubjects": [
-        "06.PLP"
+        "13.PLP"
       ],
       "subSubject": "뷰티",
       "subSubjects": [
@@ -42,7 +84,7 @@
     {
       "key": "TM-4211",
       "url": "https://jira.team.musinsa.com/browse/TM-4211",
-      "summary": "[공통] 재구매 상품 저장 및 탐색 동선 신설 (세미 장바구니)",
+      "summary": "[공통] 재구매 상품모음(세미 장바구니) 신설 및 탐색 동선 연계 ",
       "issueType": "Initiative",
       "project": "TM",
       "status": "SUGGESTED",
@@ -64,28 +106,34 @@
       ],
       "mainSubject": null,
       "mainSubjects": [],
-      "subSubject": null,
-      "subSubjects": [],
+      "subSubject": "뷰티",
+      "subSubjects": [
+        "뷰티"
+      ],
       "yearQuarter": null,
       "yearQuarters": [],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-08-16T11:16:32.435+0900",
-      "updated": "2026-08-17T20:28:54.181+0900",
+      "updated": "2026-08-18T12:00:36.774+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
     {
       "key": "TM-4209",
       "url": "https://jira.team.musinsa.com/browse/TM-4209",
-      "summary": "[뷰티] SRP/PLP 뷰티 특화 필터/패싯 개선",
+      "summary": "[뷰티] SRP/PLP 뷰티 특화 필터 개선",
       "issueType": "Initiative",
       "project": "TM",
       "status": "SUGGESTED",
       "statusCategory": "new",
       "priority": "P0",
-      "assignee": null,
+      "assignee": {
+        "name": "문호은",
+        "email": null,
+        "accountId": null
+      },
       "reporter": {
         "name": "배정화",
         "email": null,
@@ -95,9 +143,9 @@
         "뷰티",
         "홈앤디"
       ],
-      "mainSubject": "06.PLP",
+      "mainSubject": "13.PLP",
       "mainSubjects": [
-        "06.PLP"
+        "13.PLP"
       ],
       "subSubject": "뷰티",
       "subSubjects": [
@@ -109,7 +157,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-08-16T11:07:29.077+0900",
-      "updated": "2026-08-16T21:36:09.512+0900",
+      "updated": "2026-08-18T15:39:51.451+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -122,7 +170,11 @@
       "status": "SUGGESTED",
       "statusCategory": "new",
       "priority": "P0",
-      "assignee": null,
+      "assignee": {
+        "name": "문호은",
+        "email": null,
+        "accountId": null
+      },
       "reporter": {
         "name": "배정화",
         "email": null,
@@ -134,15 +186,17 @@
       ],
       "mainSubject": null,
       "mainSubjects": [],
-      "subSubject": null,
-      "subSubjects": [],
+      "subSubject": "뷰티",
+      "subSubjects": [
+        "뷰티"
+      ],
       "yearQuarter": null,
       "yearQuarters": [],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
       "dueDate": null,
       "created": "2026-08-16T10:57:26.275+0900",
-      "updated": "2026-08-17T17:41:02.214+0900",
+      "updated": "2026-08-18T15:03:45.972+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -152,7 +206,7 @@
       "summary": "MSS 내 29CM 상품 노출 ",
       "issueType": "Initiative",
       "project": "TM",
-      "status": "준비중",
+      "status": "기획중",
       "statusCategory": "indeterminate",
       "priority": "Emergency",
       "assignee": {
@@ -186,7 +240,7 @@
       "startDate": "2026-08-10",
       "dueDate": "2026-09-30",
       "created": "2026-08-12T14:29:31.180+0900",
-      "updated": "2026-08-18T06:00:21.829+0900",
+      "updated": "2026-08-19T06:00:20.574+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -228,7 +282,7 @@
       "startDate": "2026-06-22",
       "dueDate": "2026-09-18",
       "created": "2026-06-17T21:21:52.854+0900",
-      "updated": "2026-08-18T06:00:21.861+0900",
+      "updated": "2026-08-19T06:00:20.559+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -306,9 +360,9 @@
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": "2026-08-13",
-      "dueDate": null,
+      "dueDate": "2026-10-14",
       "created": "2026-08-10T10:08:50.744+0900",
-      "updated": "2026-08-14T18:16:40.731+0900",
+      "updated": "2026-08-19T06:00:23.155+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -362,7 +416,7 @@
       "summary": "뷰티 고객 취향정보 수집 항목 개선",
       "issueType": "Initiative",
       "project": "TM",
-      "status": "개발중",
+      "status": "QA중",
       "statusCategory": "indeterminate",
       "priority": "Big-Rock",
       "assignee": {
@@ -378,9 +432,9 @@
       "labels": [
         "뷰티"
       ],
-      "mainSubject": "31.마이",
+      "mainSubject": "22.마이",
       "mainSubjects": [
-        "31.마이"
+        "22.마이"
       ],
       "subSubject": "추천",
       "subSubjects": [
@@ -395,7 +449,7 @@
       "startDate": "2026-08-07",
       "dueDate": "2026-08-19",
       "created": "2026-08-10T09:41:45.362+0900",
-      "updated": "2026-08-18T06:00:21.737+0900",
+      "updated": "2026-08-19T06:00:23.097+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -405,7 +459,7 @@
       "summary": "[랭킹] 일간/주간 상품 랭킹 아카이빙 추가",
       "issueType": "Initiative",
       "project": "TM",
-      "status": "디자인중",
+      "status": "개발중",
       "statusCategory": "indeterminate",
       "priority": "Emergency",
       "assignee": {
@@ -438,7 +492,7 @@
       "startDate": "2026-08-07",
       "dueDate": "2026-09-10",
       "created": "2026-08-06T18:52:15.802+0900",
-      "updated": "2026-08-18T06:00:24.281+0900",
+      "updated": "2026-08-19T06:00:23.284+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -564,7 +618,7 @@
       "startDate": "2026-08-13",
       "dueDate": "2026-09-30",
       "created": "2026-08-06T09:47:56.254+0900",
-      "updated": "2026-08-18T06:00:24.655+0900",
+      "updated": "2026-08-19T06:00:23.108+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -606,7 +660,7 @@
       "startDate": "2026-08-24",
       "dueDate": "2026-09-30",
       "created": "2026-07-29T10:34:31.603+0900",
-      "updated": "2026-08-18T06:00:24.407+0900",
+      "updated": "2026-08-19T06:00:23.556+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -649,7 +703,7 @@
       "startDate": "2026-08-17",
       "dueDate": "2026-09-30",
       "created": "2026-07-31T13:56:47.866+0900",
-      "updated": "2026-08-18T06:00:24.567+0900",
+      "updated": "2026-08-19T06:00:24.565+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -689,7 +743,7 @@
       "startDate": "2026-07-31",
       "dueDate": "2026-08-14",
       "created": "2026-07-30T14:21:20.768+0900",
-      "updated": "2026-08-18T06:00:24.487+0900",
+      "updated": "2026-08-19T06:00:24.960+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -972,9 +1026,9 @@
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": "2026-08-03",
-      "dueDate": "2026-08-28",
+      "dueDate": "2026-08-21",
       "created": "2026-07-28T16:29:37.573+0900",
-      "updated": "2026-08-18T06:00:24.435+0900",
+      "updated": "2026-08-19T06:00:25.920+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -1039,9 +1093,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "42.광고",
+      "mainSubject": "38.광고",
       "mainSubjects": [
-        "42.광고"
+        "38.광고"
       ],
       "subSubject": "공통(GNB/게이트웨이)",
       "subSubjects": [
@@ -1053,7 +1107,7 @@
       "startDate": "2026-03-27",
       "dueDate": "2026-09-30",
       "created": "2026-07-27T16:22:06.514+0900",
-      "updated": "2026-08-18T06:00:24.478+0900",
+      "updated": "2026-08-19T06:00:25.830+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -1140,7 +1194,7 @@
       "startDate": "2026-07-16",
       "dueDate": "2026-10-20",
       "created": "2026-07-16T15:24:13.660+0900",
-      "updated": "2026-08-18T06:00:27.211+0900",
+      "updated": "2026-08-19T06:00:27.459+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -1182,7 +1236,7 @@
       "startDate": "2026-07-13",
       "dueDate": "2026-09-30",
       "created": "2026-07-09T17:22:19.087+0900",
-      "updated": "2026-08-18T06:00:29.572+0900",
+      "updated": "2026-08-19T06:00:28.329+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -1627,9 +1681,9 @@
       ],
       "subGroup": "Core-E Discovery",
       "startDate": "2026-07-09",
-      "dueDate": "2026-08-31",
+      "dueDate": "2026-08-28",
       "created": "2026-06-25T11:51:45.532+0900",
-      "updated": "2026-08-18T06:00:34.909+0900",
+      "updated": "2026-08-19T06:00:33.682+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -1680,7 +1734,7 @@
       "startDate": "2026-06-24",
       "dueDate": "2026-06-24",
       "created": "2026-06-24T13:26:06.706+0900",
-      "updated": "2026-08-18T06:00:37.881+0900",
+      "updated": "2026-08-19T06:00:36.584+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -1780,7 +1834,7 @@
       "summary": "[무신사] 상품 이미지별 성별 설정 적용 - 전시, 커머스",
       "issueType": "Initiative",
       "project": "TM",
-      "status": "기획중",
+      "status": "기획완료",
       "statusCategory": "indeterminate",
       "priority": "Big-Rock",
       "assignee": {
@@ -1825,7 +1879,7 @@
       "startDate": "2026-06-22",
       "dueDate": "2026-09-30",
       "created": "2026-06-18T14:37:24.398+0900",
-      "updated": "2026-08-18T06:00:48.142+0900",
+      "updated": "2026-08-19T06:00:47.503+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -1877,7 +1931,7 @@
       "summary": "[세일판] 균일가 하루특가 신설",
       "issueType": "Initiative",
       "project": "TM",
-      "status": "디자인완료",
+      "status": "개발중",
       "statusCategory": "indeterminate",
       "priority": "Big-Rock",
       "assignee": {
@@ -1911,7 +1965,7 @@
       "startDate": "2026-06-24",
       "dueDate": "2026-09-30",
       "created": "2026-06-17T18:11:40.959+0900",
-      "updated": "2026-08-18T06:00:49.807+0900",
+      "updated": "2026-08-19T06:00:49.290+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -1951,10 +2005,10 @@
         "2026-Q3"
       ],
       "subGroup": "MSS-P Discovery & Engagement",
-      "startDate": "2026-07-27",
+      "startDate": "2026-09-14",
       "dueDate": null,
       "created": "2026-06-17T16:20:17.922+0900",
-      "updated": "2026-08-14T10:31:40.028+0900",
+      "updated": "2026-08-18T15:36:50.830+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -1964,7 +2018,7 @@
       "summary": "[Partner Growth][MSS][세일판] 상품광고 - 광고 모듈 추가 (할인 상품)",
       "issueType": "Initiative",
       "project": "TM",
-      "status": "QA중",
+      "status": "개발중",
       "statusCategory": "indeterminate",
       "priority": "P0",
       "assignee": {
@@ -1982,9 +2036,9 @@
         "세일판BFF",
         "홈앤디"
       ],
-      "mainSubject": "42.광고",
+      "mainSubject": "38.광고",
       "mainSubjects": [
-        "42.광고"
+        "38.광고"
       ],
       "subSubject": "세일(판)",
       "subSubjects": [
@@ -1998,7 +2052,7 @@
       "startDate": "2026-08-05",
       "dueDate": "2026-08-19",
       "created": "2026-06-17T01:02:00.683+0900",
-      "updated": "2026-08-18T06:00:50.776+0900",
+      "updated": "2026-08-19T06:00:49.515+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -2043,7 +2097,7 @@
       "startDate": "2026-07-28",
       "dueDate": "2026-09-30",
       "created": "2026-06-16T23:24:25.754+0900",
-      "updated": "2026-08-18T06:00:51.543+0900",
+      "updated": "2026-08-19T06:00:50.986+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -2112,9 +2166,9 @@
         "2026-3Q",
         "홈앤디"
       ],
-      "mainSubject": "42.광고",
+      "mainSubject": "38.광고",
       "mainSubjects": [
-        "42.광고"
+        "38.광고"
       ],
       "subSubject": "광고",
       "subSubjects": [
@@ -2217,7 +2271,7 @@
       "startDate": "2026-07-13",
       "dueDate": "2026-10-20",
       "created": "2026-06-16T16:10:45.859+0900",
-      "updated": "2026-08-18T06:00:53.287+0900",
+      "updated": "2026-08-19T06:00:53.499+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -2264,7 +2318,7 @@
       "startDate": "2026-07-13",
       "dueDate": "2026-10-20",
       "created": "2026-06-16T16:10:28.110+0900",
-      "updated": "2026-08-18T06:00:53.118+0900",
+      "updated": "2026-08-19T06:00:52.605+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -2307,7 +2361,7 @@
       "startDate": "2026-07-13",
       "dueDate": "2026-09-02",
       "created": "2026-06-16T16:02:19.085+0900",
-      "updated": "2026-08-18T06:00:53.283+0900",
+      "updated": "2026-08-19T06:00:53.906+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -2350,7 +2404,7 @@
       "startDate": "2026-09-09",
       "dueDate": "2026-09-30",
       "created": "2026-06-16T15:53:24.189+0900",
-      "updated": "2026-08-18T06:00:53.194+0900",
+      "updated": "2026-08-19T06:00:53.565+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -2396,7 +2450,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-16T15:41:01.224+0900",
-      "updated": "2026-08-14T06:30:41.937+0900",
+      "updated": "2026-08-18T23:12:29.717+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -2483,7 +2537,7 @@
       "startDate": "2026-08-04",
       "dueDate": "2026-09-30",
       "created": "2026-06-16T09:09:30.500+0900",
-      "updated": "2026-08-18T06:00:54.661+0900",
+      "updated": "2026-08-19T06:00:54.499+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -2562,7 +2616,7 @@
       "startDate": "2026-07-01",
       "dueDate": "2026-09-30",
       "created": "2026-06-16T07:18:51.116+0900",
-      "updated": "2026-08-18T06:00:55.929+0900",
+      "updated": "2026-08-19T06:00:56.721+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -2641,7 +2695,7 @@
       "startDate": "2026-08-03",
       "dueDate": "2026-10-20",
       "created": "2026-06-15T10:57:49.918+0900",
-      "updated": "2026-08-18T06:00:59.287+0900",
+      "updated": "2026-08-19T06:00:59.149+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -2729,9 +2783,9 @@
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": "2026-07-01",
-      "dueDate": "2026-09-23",
+      "dueDate": "2026-09-30",
       "created": "2026-06-14T23:19:15.147+0900",
-      "updated": "2026-08-18T06:00:59.496+0900",
+      "updated": "2026-08-19T06:00:59.894+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -3371,9 +3425,9 @@
       ],
       "subGroup": "Core-E Discovery",
       "startDate": "2026-07-13",
-      "dueDate": "2026-09-30",
+      "dueDate": "2026-09-07",
       "created": "2026-06-05T14:56:22.424+0900",
-      "updated": "2026-08-18T06:01:04.770+0900",
+      "updated": "2026-08-19T06:01:05.702+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -3985,7 +4039,7 @@
       "startDate": "2026-06-17",
       "dueDate": "2026-09-30",
       "created": "2026-06-04T23:56:01.978+0900",
-      "updated": "2026-08-18T06:01:05.726+0900",
+      "updated": "2026-08-19T06:01:06.074+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -4155,7 +4209,7 @@
       "startDate": "2026-10-12",
       "dueDate": "2026-12-31",
       "created": "2026-06-04T21:47:55.043+0900",
-      "updated": "2026-08-18T06:01:05.082+0900",
+      "updated": "2026-08-19T06:01:06.318+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -4828,7 +4882,7 @@
       "startDate": "2026-07-22",
       "dueDate": "2026-07-24",
       "created": "2026-06-02T11:16:29.717+0900",
-      "updated": "2026-08-14T18:00:37.730+0900",
+      "updated": "2026-08-18T22:24:29.483+0900",
       "resolutionDate": "2026-07-24T14:18:40.936+0900",
       "lastStatusChangedAt": null
     },
@@ -5320,7 +5374,7 @@
       "startDate": "2026-06-12",
       "dueDate": "2026-06-25",
       "created": "2026-05-28T10:10:43.520+0900",
-      "updated": "2026-07-27T13:07:08.593+0900",
+      "updated": "2026-08-18T18:19:17.181+0900",
       "resolutionDate": "2026-06-26T13:23:16.656+0900",
       "lastStatusChangedAt": null
     },
@@ -5362,9 +5416,9 @@
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": null,
-      "dueDate": "2026-09-30",
+      "dueDate": null,
       "created": "2026-05-27T17:31:30.911+0900",
-      "updated": "2026-08-18T06:01:06.396+0900",
+      "updated": "2026-08-18T10:24:37.029+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -5718,7 +5772,7 @@
       "startDate": "2026-05-28",
       "dueDate": "2026-09-07",
       "created": "2026-05-20T18:54:31.520+0900",
-      "updated": "2026-08-18T06:01:07.978+0900",
+      "updated": "2026-08-19T06:01:07.596+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -5878,7 +5932,7 @@
       "startDate": "2026-08-05",
       "dueDate": "2026-09-30",
       "created": "2026-05-20T11:32:01.591+0900",
-      "updated": "2026-08-18T06:01:08.335+0900",
+      "updated": "2026-08-19T06:01:08.261+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -6213,7 +6267,7 @@
       "startDate": "2026-07-14",
       "dueDate": "2026-08-25",
       "created": "2026-05-14T22:37:53.821+0900",
-      "updated": "2026-08-18T06:01:07.666+0900",
+      "updated": "2026-08-19T06:01:08.783+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -6300,7 +6354,7 @@
       "startDate": "2026-08-03",
       "dueDate": null,
       "created": "2026-05-14T22:17:52.922+0900",
-      "updated": "2026-08-14T10:31:44.002+0900",
+      "updated": "2026-08-18T15:36:40.631+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -6379,7 +6433,7 @@
       "startDate": "2026-07-27",
       "dueDate": "2026-09-30",
       "created": "2026-05-14T20:10:08.697+0900",
-      "updated": "2026-08-18T06:01:09.518+0900",
+      "updated": "2026-08-19T06:01:07.245+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -6532,7 +6586,7 @@
       "startDate": "2026-05-11",
       "dueDate": "2026-06-12",
       "created": "2026-05-14T20:05:12.311+0900",
-      "updated": "2026-07-16T10:10:50.484+0900",
+      "updated": "2026-08-18T18:17:15.300+0900",
       "resolutionDate": "2026-06-26T13:24:38.651+0900",
       "lastStatusChangedAt": null
     },
@@ -6724,9 +6778,9 @@
         "one",
         "pel"
       ],
-      "mainSubject": "42.광고",
+      "mainSubject": "38.광고",
       "mainSubjects": [
-        "42.광고"
+        "38.광고"
       ],
       "subSubject": "추천",
       "subSubjects": [
@@ -6856,7 +6910,7 @@
       "startDate": "2026-05-12",
       "dueDate": "2026-09-30",
       "created": "2026-05-13T15:30:08.835+0900",
-      "updated": "2026-08-18T06:01:09.775+0900",
+      "updated": "2026-08-19T06:01:07.919+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -6903,7 +6957,7 @@
       "startDate": "2026-06-16",
       "dueDate": "2026-08-12",
       "created": "2026-05-12T17:28:48.942+0900",
-      "updated": "2026-08-14T06:30:50.766+0900",
+      "updated": "2026-08-18T09:54:59.389+0900",
       "resolutionDate": "2026-08-12T11:48:53.030+0900",
       "lastStatusChangedAt": null
     },
@@ -7023,15 +7077,15 @@
       "subSubjects": [
         "후기"
       ],
-      "yearQuarter": "2026-Q3",
+      "yearQuarter": "2026-Q4",
       "yearQuarters": [
-        "2026-Q3"
+        "2026-Q4"
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": "2026-07-20",
-      "dueDate": "2026-10-30",
+      "dueDate": "2026-12-31",
       "created": "2026-05-04T10:27:37.566+0900",
-      "updated": "2026-08-18T06:01:09.401+0900",
+      "updated": "2026-08-19T06:01:09.099+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -7074,7 +7128,7 @@
       "startDate": "2026-04-30",
       "dueDate": "2026-08-28",
       "created": "2026-04-30T18:48:36.306+0900",
-      "updated": "2026-08-18T06:01:09.126+0900",
+      "updated": "2026-08-19T06:01:09.770+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -7247,7 +7301,7 @@
       "startDate": "2026-05-04",
       "dueDate": "2026-07-28",
       "created": "2026-04-27T15:20:16.401+0900",
-      "updated": "2026-08-18T06:01:09.825+0900",
+      "updated": "2026-08-19T06:01:09.343+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -8006,13 +8060,13 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "00.공통 네비게이션",
+      "mainSubject": "12.전문관",
       "mainSubjects": [
-        "00.공통 네비게이션"
+        "12.전문관"
       ],
-      "subSubject": "전문관",
+      "subSubject": "키즈",
       "subSubjects": [
-        "전문관"
+        "키즈"
       ],
       "yearQuarter": "2026-Q3",
       "yearQuarters": [
@@ -8022,7 +8076,7 @@
       "startDate": "2026-07-13",
       "dueDate": "2026-09-30",
       "created": "2026-04-23T16:16:24.102+0900",
-      "updated": "2026-08-18T06:01:09.716+0900",
+      "updated": "2026-08-19T06:01:09.465+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -8181,9 +8235,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "42.광고",
+      "mainSubject": "38.광고",
       "mainSubjects": [
-        "42.광고"
+        "38.광고"
       ],
       "subSubject": "카테고리/SRP",
       "subSubjects": [
@@ -8224,9 +8278,9 @@
         "DUE_OVERDUE_BOT",
         "홈앤디"
       ],
-      "mainSubject": "42.광고",
+      "mainSubject": "38.광고",
       "mainSubjects": [
-        "42.광고"
+        "38.광고"
       ],
       "subSubject": "카테고리/SRP",
       "subSubjects": [
@@ -8266,9 +8320,9 @@
       "labels": [
         "DUE_OVERDUE_BOT"
       ],
-      "mainSubject": "42.광고",
+      "mainSubject": "38.광고",
       "mainSubjects": [
-        "42.광고"
+        "38.광고"
       ],
       "subSubject": "카테고리/SRP",
       "subSubjects": [
@@ -8308,9 +8362,9 @@
       "labels": [
         "DUE_OVERDUE_BOT"
       ],
-      "mainSubject": "42.광고",
+      "mainSubject": "38.광고",
       "mainSubjects": [
-        "42.광고"
+        "38.광고"
       ],
       "subSubject": "카테고리/SRP",
       "subSubjects": [
@@ -8354,9 +8408,9 @@
         "pel",
         "홈앤디"
       ],
-      "mainSubject": "42.광고",
+      "mainSubject": "38.광고",
       "mainSubjects": [
-        "42.광고"
+        "38.광고"
       ],
       "subSubject": "카테고리/SRP",
       "subSubjects": [
@@ -8397,9 +8451,9 @@
         "DUE_OVERDUE_BOT",
         "홈앤디"
       ],
-      "mainSubject": "42.광고",
+      "mainSubject": "38.광고",
       "mainSubjects": [
-        "42.광고"
+        "38.광고"
       ],
       "subSubject": "필터/PLP",
       "subSubjects": [
@@ -8439,9 +8493,9 @@
       "labels": [
         "DUE_OVERDUE_BOT"
       ],
-      "mainSubject": "42.광고",
+      "mainSubject": "38.광고",
       "mainSubjects": [
-        "42.광고"
+        "38.광고"
       ],
       "subSubject": "카테고리/SRP",
       "subSubjects": [
@@ -8455,7 +8509,7 @@
       "startDate": "2026-04-21",
       "dueDate": "2026-05-15",
       "created": "2026-04-21T11:53:14.039+0900",
-      "updated": "2026-08-18T06:01:09.920+0900",
+      "updated": "2026-08-19T06:01:09.972+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -8482,9 +8536,9 @@
         "DUE_OVERDUE_BOT",
         "홈앤디"
       ],
-      "mainSubject": "42.광고",
+      "mainSubject": "38.광고",
       "mainSubjects": [
-        "42.광고"
+        "38.광고"
       ],
       "subSubject": "카테고리/SRP",
       "subSubjects": [
@@ -8526,9 +8580,9 @@
         "pel",
         "홈앤디"
       ],
-      "mainSubject": "42.광고",
+      "mainSubject": "38.광고",
       "mainSubjects": [
-        "42.광고"
+        "38.광고"
       ],
       "subSubject": "필터/PLP",
       "subSubjects": [
@@ -8624,7 +8678,7 @@
       "startDate": null,
       "dueDate": "2026-06-30",
       "created": "2026-04-20T14:02:57.268+0900",
-      "updated": "2026-08-18T06:01:10.250+0900",
+      "updated": "2026-08-19T06:01:09.820+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -8810,7 +8864,7 @@
       "summary": "[One-App] [M2] 검색입력창(StartPage)",
       "issueType": "Initiative",
       "project": "TM",
-      "status": "QA중",
+      "status": "배포완료",
       "statusCategory": "indeterminate",
       "priority": "P0",
       "assignee": {
@@ -8847,7 +8901,7 @@
       "startDate": "2026-03-30",
       "dueDate": "2026-08-11",
       "created": "2026-04-10T11:55:12.881+0900",
-      "updated": "2026-08-18T06:01:12.003+0900",
+      "updated": "2026-08-19T06:01:11.106+0900",
       "resolutionDate": "2026-04-13T10:58:08.571+0900",
       "lastStatusChangedAt": null
     },
@@ -8924,9 +8978,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "42.광고",
+      "mainSubject": "38.광고",
       "mainSubjects": [
-        "42.광고"
+        "38.광고"
       ],
       "subSubject": "공통(GNB/게이트웨이)",
       "subSubjects": [
@@ -8938,9 +8992,9 @@
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": "2026-03-27",
-      "dueDate": "2026-09-30",
+      "dueDate": "2026-08-31",
       "created": "2026-03-27T12:57:09.337+0900",
-      "updated": "2026-08-18T06:01:12.483+0900",
+      "updated": "2026-08-19T06:01:11.231+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -8992,7 +9046,7 @@
       "startDate": "2026-05-28",
       "dueDate": "2026-11-30",
       "created": "2026-04-06T13:17:01.251+0900",
-      "updated": "2026-08-18T06:01:11.469+0900",
+      "updated": "2026-08-19T06:01:11.139+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -9201,9 +9255,9 @@
         "one",
         "orders"
       ],
-      "mainSubject": "42.광고",
+      "mainSubject": "38.광고",
       "mainSubjects": [
-        "42.광고"
+        "38.광고"
       ],
       "subSubject": "디스플레이 최적화",
       "subSubjects": [
@@ -9260,7 +9314,7 @@
       "startDate": "2026-04-01",
       "dueDate": "2026-12-31",
       "created": "2026-03-31T18:32:33.336+0900",
-      "updated": "2026-08-18T06:01:12.865+0900",
+      "updated": "2026-08-19T06:01:11.506+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -9532,7 +9586,7 @@
       "startDate": "2026-07-27",
       "dueDate": "2026-10-30",
       "created": "2026-03-30T14:52:04.533+0900",
-      "updated": "2026-08-18T06:01:12.192+0900",
+      "updated": "2026-08-19T06:01:11.829+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -9580,7 +9634,7 @@
       "startDate": "2026-07-27",
       "dueDate": "2026-10-30",
       "created": "2026-03-30T14:50:13.021+0900",
-      "updated": "2026-08-18T06:01:12.895+0900",
+      "updated": "2026-08-19T06:01:11.997+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -9625,7 +9679,7 @@
       "startDate": "2026-08-10",
       "dueDate": "2026-11-06",
       "created": "2026-03-30T14:46:46.055+0900",
-      "updated": "2026-08-18T06:01:12.710+0900",
+      "updated": "2026-08-19T06:01:11.601+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -9920,9 +9974,9 @@
         "orders",
         "스냅"
       ],
-      "mainSubject": "42.광고",
+      "mainSubject": "38.광고",
       "mainSubjects": [
-        "42.광고"
+        "38.광고"
       ],
       "subSubject": "스냅",
       "subSubjects": [
@@ -10024,7 +10078,7 @@
       "startDate": "2026-07-01",
       "dueDate": "2026-09-21",
       "created": "2026-03-25T22:54:28.219+0900",
-      "updated": "2026-08-18T06:01:15.054+0900",
+      "updated": "2026-08-19T06:01:13.622+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -10053,9 +10107,9 @@
         "one",
         "pel"
       ],
-      "mainSubject": "42.광고",
+      "mainSubject": "38.광고",
       "mainSubjects": [
-        "42.광고"
+        "38.광고"
       ],
       "subSubject": "PDP",
       "subSubjects": [
@@ -10135,9 +10189,9 @@
       "labels": [
         "홈앤디"
       ],
-      "mainSubject": "42.광고",
+      "mainSubject": "38.광고",
       "mainSubjects": [
-        "42.광고"
+        "38.광고"
       ],
       "subSubject": "공통(GNB/게이트웨이)",
       "subSubjects": [
@@ -10587,7 +10641,7 @@
       "startDate": "2026-07-20",
       "dueDate": "2026-09-30",
       "created": "2026-03-20T14:19:14.516+0900",
-      "updated": "2026-08-18T06:01:17.679+0900",
+      "updated": "2026-08-19T06:01:16.400+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -10731,7 +10785,7 @@
       "startDate": "2026-04-01",
       "dueDate": "2026-06-30",
       "created": "2026-03-19T18:45:04.303+0900",
-      "updated": "2026-08-18T06:01:19.421+0900",
+      "updated": "2026-08-19T06:01:18.479+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -10839,9 +10893,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "42.광고",
+      "mainSubject": "38.광고",
       "mainSubjects": [
-        "42.광고"
+        "38.광고"
       ],
       "subSubject": "검색",
       "subSubjects": [
@@ -10885,9 +10939,9 @@
         "ux-ft-close",
         "홈앤디"
       ],
-      "mainSubject": "42.광고",
+      "mainSubject": "38.광고",
       "mainSubjects": [
-        "42.광고"
+        "38.광고"
       ],
       "subSubject": "공통(GNB/게이트웨이)",
       "subSubjects": [
@@ -11358,7 +11412,7 @@
       "startDate": "2026-07-01",
       "dueDate": "2026-10-30",
       "created": "2026-03-17T11:38:02.159+0900",
-      "updated": "2026-08-18T06:01:18.997+0900",
+      "updated": "2026-08-19T06:01:19.001+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -11742,9 +11796,9 @@
         "세일판",
         "홈앤디"
       ],
-      "mainSubject": "42.광고",
+      "mainSubject": "38.광고",
       "mainSubjects": [
-        "42.광고"
+        "38.광고"
       ],
       "subSubject": "세일(판)",
       "subSubjects": [
@@ -12145,7 +12199,7 @@
       "summary": "[세일판] 한정 수량 특가 > 특가 예정 노출",
       "issueType": "Initiative",
       "project": "TM",
-      "status": "디자인중",
+      "status": "기획중",
       "statusCategory": "indeterminate",
       "priority": "Big-Rock",
       "assignee": {
@@ -12181,7 +12235,7 @@
       "startDate": "2026-04-06",
       "dueDate": "2026-09-30",
       "created": "2026-03-13T10:45:58.632+0900",
-      "updated": "2026-08-18T06:01:19.779+0900",
+      "updated": "2026-08-19T06:01:19.566+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -12646,7 +12700,7 @@
       "startDate": "2026-07-15",
       "dueDate": "2026-09-09",
       "created": "2026-03-12T13:59:22.220+0900",
-      "updated": "2026-08-18T06:01:19.782+0900",
+      "updated": "2026-08-19T06:01:19.142+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -12923,9 +12977,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "42.광고",
+      "mainSubject": "38.광고",
       "mainSubjects": [
-        "42.광고"
+        "38.광고"
       ],
       "subSubject": "추천",
       "subSubjects": [
@@ -12968,9 +13022,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "42.광고",
+      "mainSubject": "38.광고",
       "mainSubjects": [
-        "42.광고"
+        "38.광고"
       ],
       "subSubject": "추천",
       "subSubjects": [
@@ -13523,7 +13577,7 @@
       "summary": "[랭킹] 랭킹판 내 무배당발 필터 추가",
       "issueType": "Initiative",
       "project": "TM",
-      "status": "개발중",
+      "status": "QA중",
       "statusCategory": "indeterminate",
       "priority": "Big-Rock",
       "assignee": {
@@ -13555,7 +13609,7 @@
       "startDate": "2026-05-28",
       "dueDate": "2026-08-27",
       "created": "2026-02-24T15:02:24.375+0900",
-      "updated": "2026-08-18T06:01:19.345+0900",
+      "updated": "2026-08-19T06:01:18.854+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -13679,9 +13733,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "42.광고",
+      "mainSubject": "38.광고",
       "mainSubjects": [
-        "42.광고"
+        "38.광고"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -13693,7 +13747,7 @@
       "startDate": "2026-02-24",
       "dueDate": "2026-03-31",
       "created": "2026-02-23T15:32:37.134+0900",
-      "updated": "2026-08-18T06:01:20.009+0900",
+      "updated": "2026-08-19T06:01:19.499+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -13722,9 +13776,9 @@
         "Y26Q1",
         "홈앤디"
       ],
-      "mainSubject": "42.광고",
+      "mainSubject": "38.광고",
       "mainSubjects": [
-        "42.광고"
+        "38.광고"
       ],
       "subSubject": "카테고리/SRP",
       "subSubjects": [
@@ -13768,9 +13822,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "42.광고",
+      "mainSubject": "38.광고",
       "mainSubjects": [
-        "42.광고"
+        "38.광고"
       ],
       "subSubject": "추천",
       "subSubjects": [
@@ -13808,9 +13862,9 @@
       "labels": [
         "Y26Q1"
       ],
-      "mainSubject": "42.광고",
+      "mainSubject": "38.광고",
       "mainSubjects": [
-        "42.광고"
+        "38.광고"
       ],
       "subSubject": "최근본",
       "subSubjects": [
@@ -13937,9 +13991,9 @@
         "conveyor",
         "one"
       ],
-      "mainSubject": "42.광고",
+      "mainSubject": "38.광고",
       "mainSubjects": [
-        "42.광고"
+        "38.광고"
       ],
       "subSubject": "PDP",
       "subSubjects": [
@@ -14006,7 +14060,7 @@
       "startDate": "2026-04-30",
       "dueDate": "2026-09-30",
       "created": "2026-02-13T17:00:25.059+0900",
-      "updated": "2026-08-18T06:01:19.834+0900",
+      "updated": "2026-08-19T06:01:19.274+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -14016,8 +14070,8 @@
       "summary": "[체험단] 제세공과금 수취 자동화 시스템 구축",
       "issueType": "Initiative",
       "project": "TM",
-      "status": "HOLD",
-      "statusCategory": "indeterminate",
+      "status": "Dropped",
+      "statusCategory": "done",
       "priority": "Big-Rock",
       "assignee": {
         "name": "박정아",
@@ -14049,7 +14103,7 @@
       "startDate": "2026-07-06",
       "dueDate": "2026-08-18",
       "created": "2026-02-13T13:21:16.908+0900",
-      "updated": "2026-08-18T06:01:21.618+0900",
+      "updated": "2026-08-19T06:01:40.616+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -14097,7 +14151,7 @@
       "startDate": "2026-06-23",
       "dueDate": "2026-09-30",
       "created": "2025-07-31T17:43:04.096+0900",
-      "updated": "2026-08-18T06:01:22.159+0900",
+      "updated": "2026-08-19T06:01:19.714+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -14186,7 +14240,7 @@
       "startDate": "2026-07-27",
       "dueDate": "2026-09-30",
       "created": "2026-02-12T16:22:26.124+0900",
-      "updated": "2026-08-18T06:01:20.122+0900",
+      "updated": "2026-08-19T06:01:20.218+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -14623,7 +14677,7 @@
       "startDate": "2026-02-09",
       "dueDate": "2026-06-30",
       "created": "2026-02-09T18:09:19.995+0900",
-      "updated": "2026-08-13T11:13:45.675+0900",
+      "updated": "2026-08-18T18:57:57.551+0900",
       "resolutionDate": "2026-07-06T09:55:54.782+0900",
       "lastStatusChangedAt": null
     },
@@ -14715,7 +14769,7 @@
       "startDate": "2026-06-05",
       "dueDate": "2026-09-30",
       "created": "2026-02-05T17:45:08.024+0900",
-      "updated": "2026-08-18T06:01:22.268+0900",
+      "updated": "2026-08-19T06:01:19.598+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -14958,9 +15012,9 @@
       "labels": [
         "Y26Q1"
       ],
-      "mainSubject": "42.광고",
+      "mainSubject": "38.광고",
       "mainSubjects": [
-        "42.광고"
+        "38.광고"
       ],
       "subSubject": "PDP",
       "subSubjects": [
@@ -15001,9 +15055,9 @@
         "DUE_OVERDUE_BOT",
         "홈앤디"
       ],
-      "mainSubject": "42.광고",
+      "mainSubject": "38.광고",
       "mainSubjects": [
-        "42.광고"
+        "38.광고"
       ],
       "subSubject": "카테고리/SRP",
       "subSubjects": [
@@ -15425,7 +15479,7 @@
       "startDate": "2026-01-01",
       "dueDate": "2026-10-20",
       "created": "2025-12-11T13:35:13.147+0900",
-      "updated": "2026-08-18T06:01:26.066+0900",
+      "updated": "2026-08-19T06:01:24.225+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -15473,7 +15527,7 @@
       "startDate": "2026-10-01",
       "dueDate": "2026-12-31",
       "created": "2025-12-11T11:53:44.850+0900",
-      "updated": "2026-08-18T06:01:25.833+0900",
+      "updated": "2026-08-19T06:01:25.363+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -15523,7 +15577,7 @@
       "startDate": null,
       "dueDate": "2026-10-22",
       "created": "2025-12-11T09:54:43.093+0900",
-      "updated": "2026-08-18T06:01:26.249+0900",
+      "updated": "2026-08-19T06:01:25.459+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -15564,7 +15618,7 @@
       "startDate": "2025-12-01",
       "dueDate": "2026-10-20",
       "created": "2025-12-11T09:54:27.024+0900",
-      "updated": "2026-08-18T06:01:26.392+0900",
+      "updated": "2026-08-19T06:01:24.760+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -15620,8 +15674,8 @@
       "summary": "[One-App M2] 캠페인/ 캠페인 관리",
       "issueType": "Initiative",
       "project": "TM",
-      "status": "개발중",
-      "statusCategory": "indeterminate",
+      "status": "론치완료",
+      "statusCategory": "done",
       "priority": "Big-Rock",
       "assignee": {
         "name": "임다은",
@@ -15659,8 +15713,8 @@
       "startDate": "2026-01-05",
       "dueDate": "2026-08-11",
       "created": "2025-12-11T09:53:21.984+0900",
-      "updated": "2026-08-18T06:01:26.435+0900",
-      "resolutionDate": null,
+      "updated": "2026-08-19T06:01:40.325+0900",
+      "resolutionDate": "2026-08-18T11:05:21.917+0900",
       "lastStatusChangedAt": null
     },
     {
@@ -15707,7 +15761,7 @@
       "startDate": "2026-01-05",
       "dueDate": "2026-08-11",
       "created": "2025-12-11T09:51:43.349+0900",
-      "updated": "2026-08-18T06:01:26.410+0900",
+      "updated": "2026-08-19T06:01:25.606+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -15752,7 +15806,7 @@
       "startDate": "2025-12-01",
       "dueDate": "2026-10-20",
       "created": "2025-12-11T09:50:56.997+0900",
-      "updated": "2026-08-18T06:01:25.666+0900",
+      "updated": "2026-08-19T06:01:26.453+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -15889,7 +15943,7 @@
       "startDate": "2026-06-22",
       "dueDate": "2026-10-22",
       "created": "2025-12-10T18:16:13.320+0900",
-      "updated": "2026-08-18T06:01:26.477+0900",
+      "updated": "2026-08-19T06:01:26.363+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -15985,7 +16039,7 @@
       "startDate": "2026-01-01",
       "dueDate": "2026-10-20",
       "created": "2025-12-10T18:08:59.858+0900",
-      "updated": "2026-08-18T06:01:25.553+0900",
+      "updated": "2026-08-19T06:01:26.317+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -16029,13 +16083,14 @@
       "yearQuarter": "2026-Q1",
       "yearQuarters": [
         "2026-Q1",
-        "2026-Q2"
+        "2026-Q2",
+        "2026-Q3"
       ],
       "subGroup": "MSS-P Discovery & Engagement",
       "startDate": "2026-01-12",
       "dueDate": "2026-08-11",
       "created": "2025-12-10T17:24:20.490+0900",
-      "updated": "2026-08-18T06:01:17.718+0900",
+      "updated": "2026-08-18T11:20:04.960+0900",
       "resolutionDate": "2026-08-17T21:41:44.766+0900",
       "lastStatusChangedAt": null
     },
@@ -16080,7 +16135,7 @@
       "startDate": "2026-01-05",
       "dueDate": "2026-10-20",
       "created": "2025-12-10T17:23:11.260+0900",
-      "updated": "2026-08-18T06:01:26.670+0900",
+      "updated": "2026-08-19T06:01:24.663+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -16130,7 +16185,7 @@
       "startDate": "2026-09-01",
       "dueDate": "2026-12-31",
       "created": "2025-12-10T17:04:30.731+0900",
-      "updated": "2026-08-18T06:01:26.691+0900",
+      "updated": "2026-08-19T06:01:26.282+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -16222,7 +16277,7 @@
       "startDate": "2026-07-15",
       "dueDate": "2026-09-11",
       "created": "2025-12-09T10:16:44.249+0900",
-      "updated": "2026-08-18T06:01:26.920+0900",
+      "updated": "2026-08-19T06:01:25.204+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -17034,9 +17089,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "42.광고",
+      "mainSubject": "38.광고",
       "mainSubjects": [
-        "42.광고"
+        "38.광고"
       ],
       "subSubject": "랭킹",
       "subSubjects": [
@@ -17322,7 +17377,7 @@
       "startDate": "2026-06-15",
       "dueDate": "2026-07-29",
       "created": "2025-11-19T21:25:41.154+0900",
-      "updated": "2026-08-17T21:58:07.032+0900",
+      "updated": "2026-08-18T15:31:06.654+0900",
       "resolutionDate": "2026-07-31T10:54:29.035+0900",
       "lastStatusChangedAt": null
     },
@@ -17434,9 +17489,9 @@
       "labels": [
         "DUE_OVERDUE_BOT"
       ],
-      "mainSubject": "42.광고",
+      "mainSubject": "38.광고",
       "mainSubjects": [
-        "42.광고"
+        "38.광고"
       ],
       "subSubject": "좋아요",
       "subSubjects": [
@@ -17751,9 +17806,9 @@
         "one",
         "신규제휴카드"
       ],
-      "mainSubject": "44.PLCC",
+      "mainSubject": "44.제휴카드",
       "mainSubjects": [
-        "44.PLCC"
+        "44.제휴카드"
       ],
       "subSubject": "PDP",
       "subSubjects": [
@@ -17799,9 +17854,9 @@
         "accountId": null
       },
       "labels": [],
-      "mainSubject": "45.무신사머니",
+      "mainSubject": "45.무신사머니/페이먼츠",
       "mainSubjects": [
-        "45.무신사머니"
+        "45.무신사머니/페이먼츠"
       ],
       "subSubject": "앱테크",
       "subSubjects": [
@@ -17821,7 +17876,7 @@
       "startDate": "2025-11-26",
       "dueDate": "2026-09-30",
       "created": "2025-09-25T14:42:00.619+0900",
-      "updated": "2026-08-18T06:01:29.171+0900",
+      "updated": "2026-08-19T06:01:27.905+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -17892,9 +17947,9 @@
         "기획완료",
         "홈앤디"
       ],
-      "mainSubject": "42.광고",
+      "mainSubject": "38.광고",
       "mainSubjects": [
-        "42.광고"
+        "38.광고"
       ],
       "subSubject": "디스플레이 최적화",
       "subSubjects": [
@@ -18509,7 +18564,7 @@
       "startDate": "2025-10-22",
       "dueDate": "2026-08-05",
       "created": "2025-09-09T17:32:56.181+0900",
-      "updated": "2026-08-14T18:00:42.010+0900",
+      "updated": "2026-08-18T21:40:29.348+0900",
       "resolutionDate": "2026-08-05T11:47:28.696+0900",
       "lastStatusChangedAt": null
     },
@@ -18923,9 +18978,9 @@
         "p-backlog",
         "홈"
       ],
-      "mainSubject": "42.광고",
+      "mainSubject": "38.광고",
       "mainSubjects": [
-        "42.광고"
+        "38.광고"
       ],
       "subSubject": null,
       "subSubjects": [],
@@ -18982,7 +19037,7 @@
       "startDate": "2026-07-20",
       "dueDate": "2026-08-31",
       "created": "2025-09-03T10:55:20.359+0900",
-      "updated": "2026-08-18T06:01:31.181+0900",
+      "updated": "2026-08-19T06:01:29.284+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -19902,7 +19957,7 @@
       "startDate": "2025-07-01",
       "dueDate": "2025-12-31",
       "created": "2025-07-01T14:02:47.960+0900",
-      "updated": "2026-08-14T20:10:20.914+0900",
+      "updated": "2026-08-18T10:02:31.947+0900",
       "resolutionDate": "2026-04-01T08:52:02.845+0900",
       "lastStatusChangedAt": null
     },
@@ -19960,7 +20015,7 @@
       "startDate": "2025-10-13",
       "dueDate": "2026-05-12",
       "created": "2025-06-24T11:11:09.737+0900",
-      "updated": "2026-08-14T06:30:58.342+0900",
+      "updated": "2026-08-18T18:16:45.357+0900",
       "resolutionDate": "2026-05-18T14:26:57.173+0900",
       "lastStatusChangedAt": null
     },
@@ -20956,7 +21011,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-04-23T18:44:47.058+0900",
-      "updated": "2026-08-11T15:15:00.267+0900",
+      "updated": "2026-08-18T12:03:02.377+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -21306,9 +21361,9 @@
         "26'1Q",
         "홈앤디"
       ],
-      "mainSubject": "42.광고",
+      "mainSubject": "38.광고",
       "mainSubjects": [
-        "42.광고"
+        "38.광고"
       ],
       "subSubject": "카테고리/SRP",
       "subSubjects": [
@@ -26243,9 +26298,9 @@
         "one",
         "홈앤디"
       ],
-      "mainSubject": "42.광고",
+      "mainSubject": "38.광고",
       "mainSubjects": [
-        "42.광고"
+        "38.광고"
       ],
       "subSubject": "추천",
       "subSubjects": [
