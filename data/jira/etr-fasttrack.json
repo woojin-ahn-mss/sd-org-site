@@ -1,18 +1,126 @@
 {
-  "lastSync": "2026-08-19T06:16:33+09:00",
-  "count": 389,
+  "lastSync": "2026-08-20T06:19:25+09:00",
+  "count": 392,
   "items": [
+    {
+      "key": "ETR-6450",
+      "url": "https://jira.team.musinsa.com/browse/ETR-6450",
+      "summary": "유즈드 컬러 및 브랜딩 적용 강화 — 특정 지면에 유즈드 아이덴티티 일관성 확보",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-백로그",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "김경윤",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "design-driven",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-08-19T13:53:36.194+0900",
+      "updated": "2026-08-19T13:55:03.893+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-08-19T13:54:26.771+0900",
+      "linkedTickets": [
+        {
+          "key": "FT-513",
+          "summary": "[주문내역] 유즈드 배너 아이덴티티 일관성 확보",
+          "status": "Backlog",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-6449",
+      "url": "https://jira.team.musinsa.com/browse/ETR-6449",
+      "summary": "PLP/SRP 남녀 성별 필터 스크롤 최상단 시 센터 고정 노출",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-백로그",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "김경윤",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "design-driven",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-08-19T13:53:04.194+0900",
+      "updated": "2026-08-19T13:54:24.684+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-08-19T13:53:48.284+0900",
+      "linkedTickets": [
+        {
+          "key": "FT-512",
+          "summary": "PLP/SRP 남녀 성별 필터 스크롤 최상단 시 센터 고정 노출",
+          "status": "Backlog",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
     {
       "key": "ETR-6411",
       "url": "https://jira.team.musinsa.com/browse/ETR-6411",
       "summary": "[퀵픽스] 앱 반복 멈춤/속도 저하 현상 개선",
       "issueType": "기타(KTLO/BAU)",
       "project": "ETR",
-      "status": "매니저 승인 대기",
-      "statusCategory": "indeterminate",
+      "status": "검토완료-우선착수",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
-        "name": "촤비스",
+        "name": "이승연",
         "email": null,
         "accountId": null
       },
@@ -36,13 +144,23 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-08-18T17:54:11.950+0900",
-      "updated": "2026-08-18T17:54:23.209+0900",
+      "updated": "2026-08-19T15:01:22.189+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-08-18T17:54:15.400+0900",
-      "linkedTickets": [],
+      "lastStatusChangedAt": "2026-08-19T15:00:45.019+0900",
+      "linkedTickets": [
+        {
+          "key": "FT-514",
+          "summary": "[퀵픽스] 앱 반복 멈춤/속도 저하 현상 개선",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        }
+      ],
       "progress": {
         "done": 0,
-        "total": 0
+        "total": 1
       }
     },
     {
@@ -336,7 +454,7 @@
       "statusCategory": "indeterminate",
       "priority": "P0",
       "assignee": {
-        "name": "촤비스",
+        "name": "이창연",
         "email": null,
         "accountId": null
       },
@@ -360,7 +478,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-08-17T10:34:05.419+0900",
-      "updated": "2026-08-17T10:34:21.176+0900",
+      "updated": "2026-08-19T09:23:53.400+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-08-17T10:34:12.810+0900",
       "linkedTickets": [],
@@ -683,7 +801,7 @@
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
-        "name": "방소윤",
+        "name": "김혜림",
         "email": null,
         "accountId": null
       },
@@ -707,7 +825,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-08-12T09:46:12.591+0900",
-      "updated": "2026-08-18T21:11:00.362+0900",
+      "updated": "2026-08-19T13:02:23.867+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-08-13T11:09:48.090+0900",
       "linkedTickets": [],
@@ -1112,6 +1230,79 @@
       }
     },
     {
+      "key": "ETR-6178",
+      "url": "https://jira.team.musinsa.com/browse/ETR-6178",
+      "summary": " [design-driven] 랭킹판 검색어 탭에서 하단라인 제거 ",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "검토완료-우선착수",
+      "statusCategory": "done",
+      "priority": "P0",
+      "assignee": {
+        "name": "김경윤",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "김혜림",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "conveyor",
+        "design-driven",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": "2026-Q3",
+      "yearQuarters": [
+        "2026-Q3"
+      ],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-08-06T17:20:04.374+0900",
+      "updated": "2026-08-19T13:48:39.501+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-08-19T13:35:54.909+0900",
+      "linkedTickets": [
+        {
+          "key": "PD-8977",
+          "summary": "[design-driven] 랭킹판 검색어 탭 하단 라인 제거 및 상하 간격 조정 ",
+          "status": "완료",
+          "statusCategory": "done",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        },
+        {
+          "key": "PEL-2562",
+          "summary": "[FE][design-driven] 랭킹판 검색어 탭(TabOutlined) 하단 구분선 제거 + 상하 간격 조정",
+          "status": "HOLD",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        },
+        {
+          "key": "FT-510",
+          "summary": "[design-driven] 랭킹판 검색어 탭에서 하단라인 제거",
+          "status": "디자인완료",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "outward"
+        }
+      ],
+      "progress": {
+        "done": 1,
+        "total": 3
+      }
+    },
+    {
       "key": "ETR-6150",
       "url": "https://jira.team.musinsa.com/browse/ETR-6150",
       "summary": "[TT 8/6] AI 해설 방향성 싱크",
@@ -1213,7 +1404,7 @@
       "summary": "[SRP] 유즈드 검색결과 0건 시 유즈드 탭 미노출",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-우선착수",
+      "status": "완료",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -1240,22 +1431,22 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-08-05T14:17:26.498+0900",
-      "updated": "2026-08-05T14:32:21.456+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-08-05T14:17:36.529+0900",
+      "updated": "2026-08-19T15:03:31.719+0900",
+      "resolutionDate": "2026-08-19T15:03:30.822+0900",
+      "lastStatusChangedAt": "2026-08-19T15:03:30.877+0900",
       "linkedTickets": [
         {
           "key": "FT-381",
           "summary": "[SRP] 유즈드 검색결과 0건 시 유즈드 탭 미노출",
-          "status": "개발완료",
-          "statusCategory": "indeterminate",
+          "status": "론치완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward"
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 1
       }
     },
@@ -2801,15 +2992,15 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-07-27T17:36:06.472+0900",
-      "updated": "2026-08-06T17:17:18.282+0900",
+      "updated": "2026-08-19T13:42:30.500+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-08-06T17:16:39.198+0900",
       "linkedTickets": [
         {
           "key": "FT-473",
           "summary": "[추천판] 하이라이트 퀵메뉴 세로형 디자인",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Blocks",
           "direction": "outward"
@@ -2822,11 +3013,20 @@
           "assignee": null,
           "linkType": "Relates",
           "direction": "outward"
+        },
+        {
+          "key": "ETR-6033",
+          "summary": "[뷰티 전문관] 하이라이트 퀵메뉴 2줄 케이스 디자인",
+          "status": "검토완료-미진행",
+          "statusCategory": "done",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
         }
       ],
       "progress": {
-        "done": 0,
-        "total": 2
+        "done": 2,
+        "total": 3
       }
     },
     {
@@ -7638,7 +7838,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-07-06T09:26:52.514+0900",
-      "updated": "2026-08-13T10:35:51.519+0900",
+      "updated": "2026-08-19T10:13:09.394+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-06T18:07:30.342+0900",
       "linkedTickets": [
@@ -7650,11 +7850,20 @@
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward"
+        },
+        {
+          "key": "MDC-1162",
+          "summary": "[인수인계 및 배포][인수인계] FT-319 전문관 검색 시 해당 전문관 브랜드를 최근 방문 브랜드에 노출",
+          "status": "In Progress",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
         }
       ],
       "progress": {
         "done": 0,
-        "total": 1
+        "total": 2
       }
     },
     {
@@ -8717,7 +8926,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-06-30T14:18:29.154+0900",
-      "updated": "2026-08-05T15:37:04.306+0900",
+      "updated": "2026-08-19T11:34:40.332+0900",
       "resolutionDate": "2026-08-04T14:01:46.830+0900",
       "lastStatusChangedAt": "2026-08-04T14:01:46.863+0900",
       "linkedTickets": [
@@ -8796,8 +9005,8 @@
         {
           "key": "MEC-178",
           "summary": "cms-web release v2.32.0",
-          "status": "Ready To Deploy",
-          "statusCategory": "indeterminate",
+          "status": "완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "outward"
@@ -8813,7 +9022,7 @@
         }
       ],
       "progress": {
-        "done": 8,
+        "done": 9,
         "total": 10
       }
     },
