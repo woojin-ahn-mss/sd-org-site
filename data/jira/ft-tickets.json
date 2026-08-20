@@ -1,5 +1,5 @@
 {
-  "lastSync": "2026-08-20T06:20:24+09:00",
+  "lastSync": "2026-08-21T06:22:02+09:00",
   "count": 726,
   "items": [
     {
@@ -257,8 +257,8 @@
       "summary": "PLP/SRP 남녀 성별 필터 스크롤 최상단 시 센터 고정 노출",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "Backlog",
-      "statusCategory": "new",
+      "status": "디자인중",
+      "statusCategory": "indeterminate",
       "priority": "P2",
       "assignee": {
         "name": "유정선",
@@ -266,7 +266,7 @@
         "accountId": null
       },
       "reporter": {
-        "name": "김경윤",
+        "name": "서정명",
         "email": null,
         "accountId": null
       },
@@ -289,9 +289,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-08-19T13:53:41.162+0900",
-      "updated": "2026-08-19T13:56:54.487+0900",
+      "updated": "2026-08-20T08:41:24.711+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-08-19T13:53:42.552+0900"
+      "lastStatusChangedAt": "2026-08-20T08:41:19.296+0900"
     },
     {
       "key": "FT-510",
@@ -303,7 +303,7 @@
       "statusCategory": "indeterminate",
       "priority": "P2",
       "assignee": {
-        "name": "김혜림",
+        "name": "김애란",
         "email": null,
         "accountId": null
       },
@@ -316,7 +316,8 @@
         "auto-etr-triaged",
         "conveyor",
         "design-driven",
-        "one"
+        "one",
+        "standby"
       ],
       "mainSubject": null,
       "mainSubjects": [],
@@ -327,10 +328,10 @@
         "2026-Q3"
       ],
       "subGroup": null,
-      "startDate": null,
+      "startDate": "2026-08-20",
       "dueDate": null,
       "created": "2026-08-19T13:35:56.890+0900",
-      "updated": "2026-08-19T13:37:02.440+0900",
+      "updated": "2026-08-20T22:34:13.162+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-08-19T13:37:02.440+0900"
     },
@@ -426,9 +427,13 @@
       "status": "Backlog",
       "statusCategory": "new",
       "priority": "P2",
-      "assignee": null,
+      "assignee": {
+        "name": "신행철",
+        "email": null,
+        "accountId": null
+      },
       "reporter": {
-        "name": "김경윤",
+        "name": "신행철",
         "email": null,
         "accountId": null
       },
@@ -450,7 +455,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-08-17T10:37:26.781+0900",
-      "updated": "2026-08-17T10:37:35.052+0900",
+      "updated": "2026-08-20T14:57:59.557+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-08-17T10:37:28.489+0900"
     },
@@ -849,7 +854,7 @@
       "summary": "[타임세일] 전체 품절 시 다음 타임세일 상품 공개 일정 안내 추가",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "QA중",
+      "status": "Waiting For Review",
       "statusCategory": "indeterminate",
       "priority": "P2",
       "assignee": {
@@ -889,9 +894,9 @@
       "startDate": "2026-08-04",
       "dueDate": "2026-08-26",
       "created": "2026-08-07T10:35:25.211+0900",
-      "updated": "2026-08-19T17:06:12.493+0900",
+      "updated": "2026-08-20T18:12:48.978+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-08-18T17:21:48.290+0900"
+      "lastStatusChangedAt": "2026-08-20T18:12:48.978+0900"
     },
     {
       "key": "FT-433",
@@ -3271,7 +3276,7 @@
       "startDate": "2026-07-29",
       "dueDate": "2026-08-14",
       "created": "2026-07-30T23:29:23.759+0900",
-      "updated": "2026-08-19T16:39:09.755+0900",
+      "updated": "2026-08-20T10:13:08.844+0900",
       "resolutionDate": "2026-08-17T21:44:21.609+0900",
       "lastStatusChangedAt": "2026-08-17T21:44:21.627+0900"
     },
@@ -3281,7 +3286,7 @@
       "summary": "[design-driven][공통] 전문관 홈 작동 방식 ",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "개발완료",
+      "status": "Waiting For Review",
       "statusCategory": "indeterminate",
       "priority": "P2",
       "assignee": {
@@ -3314,9 +3319,9 @@
       "startDate": "2026-07-29",
       "dueDate": "2026-08-26",
       "created": "2026-07-30T13:26:46.167+0900",
-      "updated": "2026-08-19T12:01:10.820+0900",
+      "updated": "2026-08-20T09:01:23.377+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-08-13T16:12:12.470+0900"
+      "lastStatusChangedAt": "2026-08-20T09:01:23.377+0900"
     },
     {
       "key": "FT-369",
@@ -3458,8 +3463,8 @@
       "summary": "[design-driven][랭킹판] 월간랭킹 New 마크 적용",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "개발완료",
-      "statusCategory": "indeterminate",
+      "status": "론치완료",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "박경민",
@@ -3491,9 +3496,9 @@
       "startDate": "2026-07-24",
       "dueDate": "2026-08-19",
       "created": "2026-07-28T09:03:14.626+0900",
-      "updated": "2026-08-18T22:38:53.832+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-08-12T10:06:59.261+0900"
+      "updated": "2026-08-20T14:54:45.449+0900",
+      "resolutionDate": "2026-08-20T14:54:45.418+0900",
+      "lastStatusChangedAt": "2026-08-20T14:54:45.449+0900"
     },
     {
       "key": "FT-365",
@@ -3547,8 +3552,8 @@
       "summary": "[design-driven][공통] 바텀 네비게이션 리퀴드 글라스 적용 / FAB 액션 아이콘 사이즈 / 성별 필터 사이즈 변경",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "개발완료",
-      "statusCategory": "indeterminate",
+      "status": "론치완료",
+      "statusCategory": "done",
       "priority": "P2",
       "assignee": {
         "name": "이규현",
@@ -3581,9 +3586,9 @@
       "startDate": "2026-07-21",
       "dueDate": "2026-08-19",
       "created": "2026-07-24T13:46:31.775+0900",
-      "updated": "2026-08-19T14:06:09.788+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-08-18T17:48:47.433+0900"
+      "updated": "2026-08-20T10:59:24.134+0900",
+      "resolutionDate": "2026-08-20T10:13:53.403+0900",
+      "lastStatusChangedAt": "2026-08-20T10:13:53.436+0900"
     },
     {
       "key": "FT-363",
@@ -4729,7 +4734,7 @@
       "startDate": "2026-07-08",
       "dueDate": "2026-08-24",
       "created": "2026-07-09T11:32:14.085+0900",
-      "updated": "2026-08-17T21:42:58.910+0900",
+      "updated": "2026-08-20T10:13:08.218+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-08-03T10:32:40.564+0900"
     },
@@ -4871,11 +4876,11 @@
       "summary": "[design-driven][부티크] 전체 브랜드 별도 섹션",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "디자인완료",
+      "status": "개발중",
       "statusCategory": "indeterminate",
       "priority": "P2",
       "assignee": {
-        "name": "이현규",
+        "name": "한다혜",
         "email": null,
         "accountId": null
       },
@@ -4901,12 +4906,12 @@
         "2026-Q3"
       ],
       "subGroup": null,
-      "startDate": null,
-      "dueDate": null,
+      "startDate": "2026-08-20",
+      "dueDate": "2026-08-27",
       "created": "2026-07-07T15:03:05.200+0900",
-      "updated": "2026-08-14T10:23:44.624+0900",
+      "updated": "2026-08-20T17:04:00.457+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-08-04T10:15:00.859+0900"
+      "lastStatusChangedAt": "2026-08-20T15:51:33.881+0900"
     },
     {
       "key": "FT-329",
@@ -5377,7 +5382,7 @@
       "startDate": "2026-07-06",
       "dueDate": "2026-08-26",
       "created": "2026-07-06T18:07:21.544+0900",
-      "updated": "2026-08-14T17:39:35.955+0900",
+      "updated": "2026-08-20T11:47:05.079+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-24T09:54:04.467+0900"
     },
@@ -5554,7 +5559,7 @@
       "startDate": "2026-07-06",
       "dueDate": "2026-08-05",
       "created": "2026-07-06T17:00:43.941+0900",
-      "updated": "2026-08-18T15:28:00.013+0900",
+      "updated": "2026-08-20T10:13:08.957+0900",
       "resolutionDate": "2026-08-06T14:04:50.809+0900",
       "lastStatusChangedAt": "2026-08-06T14:04:50.821+0900"
     },
@@ -6021,7 +6026,7 @@
       "startDate": "2026-07-01",
       "dueDate": "2026-12-31",
       "created": "2026-07-01T14:04:24.655+0900",
-      "updated": "2026-08-19T19:03:40.384+0900",
+      "updated": "2026-08-20T20:36:45.245+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -6872,7 +6877,7 @@
       "startDate": "2026-07-10",
       "dueDate": "2026-08-26",
       "created": "2026-06-23T18:35:54.073+0900",
-      "updated": "2026-08-19T17:50:23.595+0900",
+      "updated": "2026-08-20T14:08:04.304+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -10601,9 +10606,9 @@
       ],
       "subGroup": "MSS-P Product Design",
       "startDate": null,
-      "dueDate": null,
+      "dueDate": "2026-07-16",
       "created": "2026-06-12T14:19:34.463+0900",
-      "updated": "2026-08-03T10:16:28.886+0900",
+      "updated": "2026-08-20T14:11:54.176+0900",
       "resolutionDate": "2026-07-16T09:35:38.146+0900",
       "lastStatusChangedAt": "2026-07-16T09:35:38.157+0900"
     },
@@ -17505,9 +17510,9 @@
       "yearQuarters": [],
       "subGroup": null,
       "startDate": null,
-      "dueDate": null,
+      "dueDate": "2026-05-26",
       "created": "2026-03-27T15:41:31.188+0900",
-      "updated": "2026-08-04T09:55:58.833+0900",
+      "updated": "2026-08-20T14:16:33.577+0900",
       "resolutionDate": "2026-05-26T10:46:44.098+0900",
       "lastStatusChangedAt": "2026-05-26T10:46:44.132+0900"
     },
@@ -23914,7 +23919,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2025-10-27T11:42:19.954+0900",
-      "updated": "2025-11-28T10:42:25.429+0900",
+      "updated": "2026-08-20T16:40:36.376+0900",
       "resolutionDate": "2025-11-20T14:28:57.882+0900",
       "lastStatusChangedAt": "2025-11-20T14:28:57.999+0900"
     },
