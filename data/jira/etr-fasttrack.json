@@ -1,7 +1,93 @@
 {
-  "lastSync": "2026-08-27T09:23:14+09:00",
-  "count": 421,
+  "lastSync": "2026-08-28T14:03:50+09:00",
+  "count": 423,
   "items": [
+    {
+      "key": "ETR-6672",
+      "url": "https://jira.team.musinsa.com/browse/ETR-6672",
+      "summary": "[퀵픽스] 유료사은품 영역 위치 하단 이동 또는 사이즈 축소",
+      "issueType": "기타(KTLO/BAU)",
+      "project": "ETR",
+      "status": "매니저 승인 대기",
+      "statusCategory": "indeterminate",
+      "priority": "P0",
+      "assignee": {
+        "name": "김효진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-08-27T17:19:32.123+0900",
+      "updated": "2026-08-28T11:02:28.625+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-08-27T17:19:35.741+0900",
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
+    {
+      "key": "ETR-6642",
+      "url": "https://jira.team.musinsa.com/browse/ETR-6642",
+      "summary": "[퀵픽스] 코디 뷰에서 현재 보고 있는 상품 포함 표시",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "매니저 승인 대기",
+      "statusCategory": "indeterminate",
+      "priority": "P0",
+      "assignee": {
+        "name": "김효진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-08-27T11:48:27.791+0900",
+      "updated": "2026-08-28T11:02:31.259+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-08-27T11:48:31.766+0900",
+      "linkedTickets": [],
+      "progress": {
+        "done": 0,
+        "total": 0
+      }
+    },
     {
       "key": "ETR-6617",
       "url": "https://jira.team.musinsa.com/browse/ETR-6617",
@@ -87,15 +173,15 @@
         {
           "key": "ETR-6604",
           "summary": "[무신사] PDP IP 팬스토어 상품 — 상단/하단 브랜드 영역 UI 통일",
-          "status": "매니저 승인 대기",
-          "statusCategory": "indeterminate",
+          "status": "검토완료-백로그",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "outward"
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 1
       }
     },
@@ -105,11 +191,11 @@
       "summary": "[무신사] PDP IP 팬스토어 상품 — 상단/하단 브랜드 영역 UI 통일",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "매니저 승인 대기",
-      "statusCategory": "indeterminate",
+      "status": "검토완료-백로그",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
-        "name": "김효진",
+        "name": "이승연",
         "email": null,
         "accountId": null
       },
@@ -133,9 +219,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-08-26T13:51:29.696+0900",
-      "updated": "2026-08-27T09:09:45.840+0900",
+      "updated": "2026-08-28T09:45:01.972+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-08-26T13:51:33.665+0900",
+      "lastStatusChangedAt": "2026-08-28T09:44:25.435+0900",
       "linkedTickets": [
         {
           "key": "ETR-6605",
@@ -145,11 +231,20 @@
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward"
+        },
+        {
+          "key": "TM-4311",
+          "summary": "[무신사] PDP IP 팬스토어 상품 — 상단/하단 브랜드 영역 UI 통일",
+          "status": "SUGGESTED",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
         }
       ],
       "progress": {
         "done": 1,
-        "total": 1
+        "total": 2
       }
     },
     {
@@ -158,11 +253,11 @@
       "summary": "[무신사] 앱 에러 발생 (퀵픽스 피드백)",
       "issueType": "기타(KTLO/BAU)",
       "project": "ETR",
-      "status": "매니저 승인 대기",
-      "statusCategory": "indeterminate",
+      "status": "검토완료-미진행",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
-        "name": "김효진",
+        "name": "이승연",
         "email": null,
         "accountId": null
       },
@@ -186,9 +281,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-08-26T13:50:48.223+0900",
-      "updated": "2026-08-27T09:09:46.701+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-08-26T13:50:52.552+0900",
+      "updated": "2026-08-28T09:44:26.075+0900",
+      "resolutionDate": "2026-08-28T09:44:06.991+0900",
+      "lastStatusChangedAt": "2026-08-28T09:44:02.408+0900",
       "linkedTickets": [],
       "progress": {
         "done": 0,
@@ -389,7 +484,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-08-24T10:46:27.388+0900",
-      "updated": "2026-08-26T21:44:23.408+0900",
+      "updated": "2026-08-27T17:22:44.989+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-08-26T16:51:40.898+0900",
       "linkedTickets": [
@@ -495,15 +590,15 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-08-24T10:40:35.052+0900",
-      "updated": "2026-08-26T11:51:31.449+0900",
+      "updated": "2026-08-27T10:43:21.898+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-08-25T13:49:12.886+0900",
+      "lastStatusChangedAt": "2026-08-27T10:43:21.898+0900",
       "linkedTickets": [
         {
           "key": "FT-537",
           "summary": "[퀵픽스] 스냅 > 비패션(뷰티/디지털/라이프) 연관 콘텐츠 노출 제한",
-          "status": "Backlog",
-          "statusCategory": "new",
+          "status": "개발중",
+          "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward"
@@ -617,7 +712,7 @@
         {
           "key": "FT-535",
           "summary": "[퀵픽스] 코디 1개일 때도 코디컷 이미지 노출",
-          "status": "기획완료",
+          "status": "디자인완료",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
@@ -685,14 +780,14 @@
     {
       "key": "ETR-6538",
       "url": "https://jira.team.musinsa.com/browse/ETR-6538",
-      "summary": "[퀵픽스] 유료사은품 영역 UX 개선 및 퀵주문 통합",
+      "summary": "[퀵픽스] 이벤트딜 영역 UX 개선 및 퀵주문 통합",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "매니저 승인 대기",
-      "statusCategory": "indeterminate",
+      "status": "검토완료-미진행",
+      "statusCategory": "done",
       "priority": "P0",
       "assignee": {
-        "name": "김효진",
+        "name": "박승현",
         "email": null,
         "accountId": null
       },
@@ -716,22 +811,22 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-08-24T10:39:09.926+0900",
-      "updated": "2026-08-26T11:51:39.991+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-08-24T10:39:13.494+0900",
+      "updated": "2026-08-27T13:21:42.406+0900",
+      "resolutionDate": "2026-08-27T09:51:37.700+0900",
+      "lastStatusChangedAt": "2026-08-27T09:51:33.403+0900",
       "linkedTickets": [
         {
           "key": "FT-533",
           "summary": "[퀵픽스] 유료사은품 영역 UX 개선 및 퀵주문 통합",
-          "status": "Backlog",
-          "statusCategory": "new",
+          "status": "Dropped",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward"
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 1
       }
     },
@@ -989,7 +1084,7 @@
       "summary": "[퀵픽스] 앱 반복 멈춤/속도 저하 현상 개선",
       "issueType": "기타(KTLO/BAU)",
       "project": "ETR",
-      "status": "검토완료-우선착수",
+      "status": "완료",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -1017,22 +1112,22 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-08-18T17:54:11.950+0900",
-      "updated": "2026-08-26T11:51:36.164+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-08-19T15:00:45.019+0900",
+      "updated": "2026-08-27T16:36:45.170+0900",
+      "resolutionDate": "2026-08-27T16:36:44.386+0900",
+      "lastStatusChangedAt": "2026-08-27T16:36:44.425+0900",
       "linkedTickets": [
         {
           "key": "FT-514",
           "summary": "[퀵픽스] 앱 반복 멈춤/속도 저하 현상 개선",
-          "status": "개발중",
-          "statusCategory": "indeterminate",
+          "status": "론치완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward"
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 1
       }
     },
@@ -3113,7 +3208,7 @@
       "summary": "[design-driven][공통] 전문관 홈 작동 방식 ",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-우선착수",
+      "status": "완료",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -3141,9 +3236,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-07-29T17:36:50.868+0900",
-      "updated": "2026-08-13T16:28:37.188+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-29T17:36:59.892+0900",
+      "updated": "2026-08-27T10:27:26.870+0900",
+      "resolutionDate": "2026-08-27T10:27:25.974+0900",
+      "lastStatusChangedAt": "2026-08-27T10:27:26.011+0900",
       "linkedTickets": [
         {
           "key": "FTD-18",
@@ -3157,25 +3252,16 @@
         {
           "key": "FT-370",
           "summary": "[design-driven][공통] 전문관 홈 작동 방식 ",
-          "status": "배포완료",
-          "statusCategory": "indeterminate",
+          "status": "론치완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward"
-        },
-        {
-          "key": "FT-160",
-          "summary": "[design-driven][공통] 전문관 홈 작동 방식 ",
-          "status": "개발완료",
-          "statusCategory": "indeterminate",
-          "assignee": null,
-          "linkType": "Relates",
-          "direction": "outward"
         }
       ],
       "progress": {
-        "done": 1,
-        "total": 3
+        "done": 2,
+        "total": 2
       }
     },
     {
@@ -3266,7 +3352,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-07-29T17:36:06.808+0900",
-      "updated": "2026-08-26T21:44:30.233+0900",
+      "updated": "2026-08-27T13:20:39.921+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-29T17:36:16.098+0900",
       "linkedTickets": [
@@ -4046,8 +4132,8 @@
         {
           "key": "PD-8942",
           "summary": "[이벤트딜] 페이지 설명 영역과 탭 위치 변경 + 전체 탭 추가",
-          "status": "In Design",
-          "statusCategory": "indeterminate",
+          "status": "완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward"
@@ -4064,7 +4150,7 @@
         {
           "key": "FT-557",
           "summary": "[이벤트딜] 페이지 설명 영역과 탭 위치 변경 + 전체 탭 추가",
-          "status": "디자인중",
+          "status": "디자인완료",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
@@ -4072,7 +4158,7 @@
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 3
       }
     },
@@ -4203,7 +4289,7 @@
         {
           "key": "ETR-5891",
           "summary": "[무신사] 퀵픽스 화면 특정 영역 한 줄 정보 추가",
-          "status": "검토완료-우선착수",
+          "status": "완료",
           "statusCategory": "done",
           "assignee": null,
           "linkType": "Duplicate",
@@ -4538,7 +4624,7 @@
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
-        "name": "이승연",
+        "name": "이현규",
         "email": null,
         "accountId": null
       },
@@ -4562,22 +4648,22 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-07-27T17:38:44.876+0900",
-      "updated": "2026-08-25T13:45:56.398+0900",
+      "updated": "2026-08-27T16:57:17.185+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-08-06T17:17:17.052+0900",
       "linkedTickets": [
         {
           "key": "FT-398",
           "summary": "[추천판] 브랜드탭 내 새로고침 버튼 추가",
-          "status": "Backlog",
-          "statusCategory": "new",
+          "status": "Dropped",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "outward"
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 1
       }
     },
@@ -4906,7 +4992,7 @@
       "summary": "[무신사] 퀵픽스 화면 특정 영역 한 줄 정보 추가",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-우선착수",
+      "status": "완료",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -4934,9 +5020,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-07-27T09:22:38.048+0900",
-      "updated": "2026-08-26T11:51:48.159+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-29T11:18:44.671+0900",
+      "updated": "2026-08-27T16:02:59.020+0900",
+      "resolutionDate": "2026-08-27T16:02:58.207+0900",
+      "lastStatusChangedAt": "2026-08-27T16:02:58.234+0900",
       "linkedTickets": [
         {
           "key": "ETR-5938",
@@ -4950,8 +5036,8 @@
         {
           "key": "FT-369",
           "summary": "[무신사] 퀵픽스 화면 특정 영역 한 줄 정보 추가",
-          "status": "배포완료",
-          "statusCategory": "indeterminate",
+          "status": "론치완료",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "inward"
@@ -4967,7 +5053,7 @@
         }
       ],
       "progress": {
-        "done": 2,
+        "done": 3,
         "total": 3
       }
     },
@@ -5290,11 +5376,11 @@
       "summary": "[BEST 매거진] 커뮤니티형 정보 노출 강화",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-백로그",
+      "status": "검토완료-미진행",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
-        "name": "김혜림",
+        "name": "김경윤",
         "email": null,
         "accountId": null
       },
@@ -5319,22 +5405,22 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-07-24T16:25:27.038+0900",
-      "updated": "2026-08-25T13:46:00.590+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-29T18:11:18.639+0900",
+      "updated": "2026-08-28T09:32:53.822+0900",
+      "resolutionDate": "2026-08-28T09:32:53.778+0900",
+      "lastStatusChangedAt": "2026-08-28T09:32:49.047+0900",
       "linkedTickets": [
         {
           "key": "FT-401",
           "summary": "[콘텐츠판] BEST 매거진커뮤니티형 정보 노출 강화",
-          "status": "Backlog",
-          "statusCategory": "new",
+          "status": "Dropped",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "outward"
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 1
       }
     },
@@ -6406,6 +6492,7 @@
       },
       "labels": [
         "conveyor",
+        "design-driven",
         "one"
       ],
       "mainSubject": null,
@@ -6420,7 +6507,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-07-21T13:22:08.585+0900",
-      "updated": "2026-08-25T13:46:04.999+0900",
+      "updated": "2026-08-27T09:37:48.252+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-24T14:56:56.562+0900",
       "linkedTickets": [
@@ -6751,11 +6838,11 @@
       "summary": "[브랜드 랭킹] 콘텐츠 캐러셀 정보 요소 추가",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-우선착수",
+      "status": "검토완료-미진행",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
-        "name": "김혜림",
+        "name": "김경윤",
         "email": null,
         "accountId": null
       },
@@ -6784,22 +6871,22 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-07-21T08:38:15.376+0900",
-      "updated": "2026-08-25T13:46:06.324+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-08-06T17:06:45.869+0900",
+      "updated": "2026-08-28T09:33:19.588+0900",
+      "resolutionDate": "2026-08-28T09:33:19.561+0900",
+      "lastStatusChangedAt": "2026-08-28T09:33:13.966+0900",
       "linkedTickets": [
         {
           "key": "FT-387",
           "summary": "[브랜드 랭킹] 콘텐츠 캐러셀 정보 요소 추가",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "Dropped",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "outward"
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 1
       }
     },
@@ -6907,15 +6994,15 @@
         {
           "key": "FT-541",
           "summary": "[추천판] 추천판 상단 광고 슬롯 수 확대 — 전체 탭 또는 다탭 적용",
-          "status": "Backlog",
-          "statusCategory": "new",
+          "status": "Dropped",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "outward"
         }
       ],
       "progress": {
-        "done": 1,
+        "done": 2,
         "total": 2
       }
     },
@@ -8652,7 +8739,7 @@
       "summary": "앱테크 랭킹 섹션 분리 및 오프라인 체크인 이벤트 진입점 추가",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-백로그",
+      "status": "검토완료-미진행",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -8681,9 +8768,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-07-07T09:27:12.516+0900",
-      "updated": "2026-08-26T11:51:58.863+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-07T09:35:49.481+0900",
+      "updated": "2026-08-28T09:38:24.083+0900",
+      "resolutionDate": "2026-08-28T09:38:24.052+0900",
+      "lastStatusChangedAt": "2026-08-28T09:38:19.668+0900",
       "linkedTickets": [
         {
           "key": "AP-178",
@@ -8697,15 +8784,15 @@
         {
           "key": "FT-549",
           "summary": "앱테크 랭킹 섹션 분리 및 오프라인 체크인 이벤트 진입점 추가",
-          "status": "Backlog",
-          "statusCategory": "new",
+          "status": "Dropped",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "outward"
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 2
       }
     },
@@ -8715,7 +8802,7 @@
       "summary": "앱테크에 오프라인 체크인 이벤트 노출 추가",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-백로그",
+      "status": "검토완료-미진행",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -8744,9 +8831,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-07-07T09:26:53.923+0900",
-      "updated": "2026-08-26T11:51:59.564+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-07T09:35:57.372+0900",
+      "updated": "2026-08-28T09:38:25.634+0900",
+      "resolutionDate": "2026-08-28T09:38:25.561+0900",
+      "lastStatusChangedAt": "2026-08-28T09:38:21.384+0900",
       "linkedTickets": [
         {
           "key": "AP-167",
@@ -8760,15 +8847,15 @@
         {
           "key": "FT-548",
           "summary": "앱테크에 오프라인 체크인 이벤트 노출 추가",
-          "status": "Backlog",
-          "statusCategory": "new",
+          "status": "Dropped",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "outward"
         }
       ],
       "progress": {
-        "done": 0,
+        "done": 1,
         "total": 2
       }
     },
@@ -11231,7 +11318,7 @@
         {
           "key": "FT-547",
           "summary": "[홈메인] 세일판 — 전역 성별 필터와 컨텐츠 불일치 개선",
-          "status": "기획완료",
+          "status": "디자인완료",
           "statusCategory": "indeterminate",
           "assignee": null,
           "linkType": "Relates",
@@ -14922,15 +15009,15 @@
         {
           "key": "FT-555",
           "summary": "[유즈드] 메인 퀵메뉴 영역 확장 및 상품 개수 표시, 테마 칩스 UI 개선",
-          "status": "Backlog",
-          "statusCategory": "new",
+          "status": "Dropped",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "outward"
         }
       ],
       "progress": {
-        "done": 1,
+        "done": 2,
         "total": 2
       }
     },
@@ -17295,15 +17382,15 @@
         {
           "key": "FT-545",
           "summary": "[라이브] 라이브 편성표 성별 개인화 ",
-          "status": "SUGGESTED",
-          "statusCategory": "new",
+          "status": "Dropped",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "outward"
         }
       ],
       "progress": {
-        "done": 1,
+        "done": 2,
         "total": 2
       }
     },
@@ -17366,7 +17453,7 @@
       "summary": "[홈/배너] 캠페인 배너 성별 분리 및 개인화 고도화",
       "issueType": "과제 발의",
       "project": "ETR",
-      "status": "검토완료-백로그",
+      "status": "검토완료-미진행",
       "statusCategory": "done",
       "priority": "P0",
       "assignee": {
@@ -17395,9 +17482,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-05-29T09:01:05.702+0900",
-      "updated": "2026-08-26T11:52:33.230+0900",
-      "resolutionDate": null,
-      "lastStatusChangedAt": "2026-07-07T17:03:45.011+0900",
+      "updated": "2026-08-28T09:59:08.991+0900",
+      "resolutionDate": "2026-08-28T09:59:08.958+0900",
+      "lastStatusChangedAt": "2026-08-28T09:59:04.035+0900",
       "linkedTickets": [
         {
           "key": "TM-3176",
@@ -17429,15 +17516,15 @@
         {
           "key": "FT-544",
           "summary": "[홈/배너] 캠페인 배너 성별 분리 및 개인화 고도화",
-          "status": "Backlog",
-          "statusCategory": "new",
+          "status": "Dropped",
+          "statusCategory": "done",
           "assignee": null,
           "linkType": "Relates",
           "direction": "outward"
         }
       ],
       "progress": {
-        "done": 1,
+        "done": 2,
         "total": 4
       }
     },
