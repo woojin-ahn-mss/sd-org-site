@@ -1,7 +1,113 @@
 {
-  "lastSync": "2026-08-28T14:03:50+09:00",
-  "count": 423,
+  "lastSync": "2026-08-31T08:03:45+09:00",
+  "count": 426,
   "items": [
+    {
+      "key": "ETR-6712",
+      "url": "https://jira.team.musinsa.com/browse/ETR-6712",
+      "summary": "PLP 컨텐츠탭 추가 — 카테고리/브랜드/상품 맞춤 컨텐츠 노출",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "매니저 승인 대기",
+      "statusCategory": "indeterminate",
+      "priority": "P0",
+      "assignee": {
+        "name": "김효진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-08-29T00:38:04.341+0900",
+      "updated": "2026-08-29T00:48:33.137+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-08-29T00:38:08.566+0900",
+      "linkedTickets": [
+        {
+          "key": "FT-601",
+          "summary": "PLP 컨텐츠탭 추가 — 카테고리/브랜드/상품 맞춤 컨텐츠 노출",
+          "status": "Backlog",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
+    {
+      "key": "ETR-6711",
+      "url": "https://jira.team.musinsa.com/browse/ETR-6711",
+      "summary": "온사이트캠페인 메인 배너 문구 다양화 — 후킹성 문구 교체 기능 개선",
+      "issueType": "과제 발의",
+      "project": "ETR",
+      "status": "매니저 승인 대기",
+      "statusCategory": "indeterminate",
+      "priority": "P0",
+      "assignee": {
+        "name": "김효진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-08-29T00:37:53.867+0900",
+      "updated": "2026-08-29T00:48:27.360+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-08-29T00:37:58.083+0900",
+      "linkedTickets": [
+        {
+          "key": "FT-600",
+          "summary": "온사이트캠페인 메인 배너 문구 다양화 — 후킹성 문구 교체 기능 개선",
+          "status": "Backlog",
+          "statusCategory": "new",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
+      }
+    },
     {
       "key": "ETR-6672",
       "url": "https://jira.team.musinsa.com/browse/ETR-6672",
@@ -43,6 +149,60 @@
       "progress": {
         "done": 0,
         "total": 0
+      }
+    },
+    {
+      "key": "ETR-6662",
+      "url": "https://jira.team.musinsa.com/browse/ETR-6662",
+      "summary": "[공통] 툴팁 위치 개선 — OS 바텀네비게이션 글래스 효과 적용 기기 대응",
+      "issueType": "기타(KTLO/BAU)",
+      "project": "ETR",
+      "status": "매니저 승인 대기",
+      "statusCategory": "indeterminate",
+      "priority": "P0",
+      "assignee": {
+        "name": "김효진",
+        "email": null,
+        "accountId": null
+      },
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "conveyor",
+        "design-driven",
+        "one"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": null,
+      "yearQuarters": [],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-08-27T15:34:16.083+0900",
+      "updated": "2026-08-28T19:17:46.348+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-08-27T15:34:19.803+0900",
+      "linkedTickets": [
+        {
+          "key": "FT-591",
+          "summary": "[공통] 툴팁 위치 개선 — OS 바텀네비게이션 글래스 효과 적용 기기 대응",
+          "status": "디자인완료",
+          "statusCategory": "indeterminate",
+          "assignee": null,
+          "linkType": "Relates",
+          "direction": "inward"
+        }
+      ],
+      "progress": {
+        "done": 0,
+        "total": 1
       }
     },
     {
@@ -8952,7 +9112,7 @@
       "linkedTickets": [
         {
           "key": "TM-3638",
-          "summary": "[조건부혜택] Phase 0-1. 퀵주문 서비스 확장 (상품군 확대·합배송·클레임 정책)",
+          "summary": "[조건부혜택] Phase 0-1. 플러스오더 서비스 확장 (상품군 확대·합배송·클레임 정책)",
           "status": "기획중",
           "statusCategory": "indeterminate",
           "assignee": null,
@@ -8961,7 +9121,7 @@
         },
         {
           "key": "TM-3638",
-          "summary": "[조건부혜택] Phase 0-1. 퀵주문 서비스 확장 (상품군 확대·합배송·클레임 정책)",
+          "summary": "[조건부혜택] Phase 0-1. 플러스오더 서비스 확장 (상품군 확대·합배송·클레임 정책)",
           "status": "기획중",
           "statusCategory": "indeterminate",
           "assignee": null,
@@ -9085,7 +9245,7 @@
       "linkedTickets": [
         {
           "key": "TM-3638",
-          "summary": "[조건부혜택] Phase 0-1. 퀵주문 서비스 확장 (상품군 확대·합배송·클레임 정책)",
+          "summary": "[조건부혜택] Phase 0-1. 플러스오더 서비스 확장 (상품군 확대·합배송·클레임 정책)",
           "status": "기획중",
           "statusCategory": "indeterminate",
           "assignee": null,
@@ -9244,7 +9404,7 @@
       "linkedTickets": [
         {
           "key": "TM-3638",
-          "summary": "[조건부혜택] Phase 0-1. 퀵주문 서비스 확장 (상품군 확대·합배송·클레임 정책)",
+          "summary": "[조건부혜택] Phase 0-1. 플러스오더 서비스 확장 (상품군 확대·합배송·클레임 정책)",
           "status": "기획중",
           "statusCategory": "indeterminate",
           "assignee": null,
@@ -18769,7 +18929,7 @@
         },
         {
           "key": "TM-3638",
-          "summary": "[조건부혜택] Phase 0-1. 퀵주문 서비스 확장 (상품군 확대·합배송·클레임 정책)",
+          "summary": "[조건부혜택] Phase 0-1. 플러스오더 서비스 확장 (상품군 확대·합배송·클레임 정책)",
           "status": "기획중",
           "statusCategory": "indeterminate",
           "assignee": null,
