@@ -1,7 +1,110 @@
 {
-  "lastSync": "2026-08-31T08:04:54+09:00",
-  "count": 802,
+  "lastSync": "2026-09-01T09:18:11+09:00",
+  "count": 805,
   "items": [
+    {
+      "key": "FT-604",
+      "url": "https://jira.team.musinsa.com/browse/FT-604",
+      "summary": "[퀵픽스] 특정 화면 '품절 포함' 옵션 기본값 ON으로 변경",
+      "issueType": "Initiative",
+      "project": "FT",
+      "status": "Backlog",
+      "statusCategory": "new",
+      "priority": "P2",
+      "assignee": null,
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged",
+        "fast-track-away"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": "2026-Q3",
+      "yearQuarters": [
+        "2026-Q3"
+      ],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-08-31T10:24:20.224+0900",
+      "updated": "2026-08-31T17:53:20.220+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-08-31T10:24:21.588+0900"
+    },
+    {
+      "key": "FT-603",
+      "url": "https://jira.team.musinsa.com/browse/FT-603",
+      "summary": "배너 등록 관리 도구 — 링크 등록 시 랜딩 URL 미리보기/유효성 검증 기능 추가",
+      "issueType": "Initiative",
+      "project": "FT",
+      "status": "Backlog",
+      "statusCategory": "new",
+      "priority": "P2",
+      "assignee": null,
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": "2026-Q3",
+      "yearQuarters": [
+        "2026-Q3"
+      ],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-08-31T10:23:56.269+0900",
+      "updated": "2026-08-31T10:23:58.265+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-08-31T10:23:57.504+0900"
+    },
+    {
+      "key": "FT-602",
+      "url": "https://jira.team.musinsa.com/browse/FT-602",
+      "summary": "[퀵픽스] 무신사 피드 광고 회귀 — 짧은 스크롤에 동일 광고 반복 + 줄광고 미노출",
+      "issueType": "Initiative",
+      "project": "FT",
+      "status": "Backlog",
+      "statusCategory": "new",
+      "priority": "P2",
+      "assignee": null,
+      "reporter": {
+        "name": "촤비스",
+        "email": null,
+        "accountId": null
+      },
+      "labels": [
+        "auto-etr-triaged"
+      ],
+      "mainSubject": null,
+      "mainSubjects": [],
+      "subSubject": null,
+      "subSubjects": [],
+      "yearQuarter": "2026-Q3",
+      "yearQuarters": [
+        "2026-Q3"
+      ],
+      "subGroup": null,
+      "startDate": null,
+      "dueDate": null,
+      "created": "2026-08-31T10:23:27.144+0900",
+      "updated": "2026-08-31T10:23:29.302+0900",
+      "resolutionDate": null,
+      "lastStatusChangedAt": "2026-08-31T10:23:28.679+0900"
+    },
     {
       "key": "FT-601",
       "url": "https://jira.team.musinsa.com/browse/FT-601",
@@ -371,6 +474,7 @@
         "auto-etr-triaged",
         "conveyor",
         "design-driven",
+        "fast-track-away",
         "one",
         "ux-ft-general"
       ],
@@ -386,7 +490,7 @@
       "startDate": "2026-08-27",
       "dueDate": "2026-09-11",
       "created": "2026-08-27T15:34:28.031+0900",
-      "updated": "2026-08-28T19:03:13.963+0900",
+      "updated": "2026-09-01T08:33:45.603+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-08-27T16:50:22.013+0900"
     },
@@ -1414,11 +1518,11 @@
       "summary": "[공통] 전문관 홈 작동 방식 MW 적용",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "디자인완료",
+      "status": "개발중",
       "statusCategory": "indeterminate",
       "priority": "P2",
       "assignee": {
-        "name": "유정선",
+        "name": "김광섭",
         "email": null,
         "accountId": null
       },
@@ -1447,9 +1551,9 @@
       "startDate": "2026-08-26",
       "dueDate": "2026-09-04",
       "created": "2026-08-25T11:35:58.948+0900",
-      "updated": "2026-08-28T18:05:21.217+0900",
+      "updated": "2026-08-31T18:04:16.613+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-08-26T16:33:22.295+0900"
+      "lastStatusChangedAt": "2026-08-31T10:26:28.822+0900"
     },
     {
       "key": "FT-557",
@@ -1666,7 +1770,7 @@
       "summary": "[브랜드숍] 필터/카테고리 유지 검색 버튼 추가",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "준비중",
+      "status": "기획완료",
       "statusCategory": "indeterminate",
       "priority": "P2",
       "assignee": {
@@ -1683,6 +1787,7 @@
         "9월퀵윈",
         "conveyor",
         "one",
+        "standby",
         "홈앤디"
       ],
       "mainSubject": "06.브랜드인덱스/브랜드샵(홈)",
@@ -1702,9 +1807,9 @@
       "startDate": "2026-08-25",
       "dueDate": "2026-09-30",
       "created": "2026-08-24T13:38:12.992+0900",
-      "updated": "2026-08-25T18:34:14.298+0900",
+      "updated": "2026-09-01T09:15:46.951+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-08-25T18:34:14.298+0900"
+      "lastStatusChangedAt": "2026-08-31T16:45:36.519+0900"
     },
     {
       "key": "FT-551",
@@ -1876,7 +1981,7 @@
       "summary": "[홈메인] 세일판 — 전역 성별 필터와 컨텐츠 불일치 개선",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "디자인완료",
+      "status": "개발중",
       "statusCategory": "indeterminate",
       "priority": "P2",
       "assignee": {
@@ -1914,9 +2019,9 @@
       "startDate": "2026-08-24",
       "dueDate": "2026-09-30",
       "created": "2026-08-24T13:37:56.665+0900",
-      "updated": "2026-08-28T17:39:57.048+0900",
+      "updated": "2026-08-31T16:55:15.932+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-08-27T11:43:18.943+0900"
+      "lastStatusChangedAt": "2026-08-31T10:12:46.814+0900"
     },
     {
       "key": "FT-546",
@@ -2253,7 +2358,7 @@
       "startDate": null,
       "dueDate": "2026-09-30",
       "created": "2026-08-24T13:37:31.439+0900",
-      "updated": "2026-08-25T14:55:58.237+0900",
+      "updated": "2026-08-31T10:25:41.754+0900",
       "resolutionDate": "2026-08-25T14:55:25.765+0900",
       "lastStatusChangedAt": "2026-08-25T14:55:24.780+0900"
     },
@@ -2332,7 +2437,7 @@
       "startDate": "2026-08-26",
       "dueDate": "2026-09-11",
       "created": "2026-08-24T13:20:13.058+0900",
-      "updated": "2026-08-28T14:31:24.035+0900",
+      "updated": "2026-08-31T15:10:22.673+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-08-27T13:35:53.199+0900"
     },
@@ -2782,7 +2887,7 @@
       "startDate": "2026-08-12",
       "dueDate": "2026-09-10",
       "created": "2026-08-21T15:10:19.363+0900",
-      "updated": "2026-08-28T14:17:38.544+0900",
+      "updated": "2026-09-01T08:09:00.698+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-08-25T17:17:07.606+0900"
     },
@@ -3161,7 +3266,7 @@
       "summary": "[공통] PLP/SRP 남녀 성별 필터 스크롤 최상단 시 센터 고정 노출",
       "issueType": "Initiative",
       "project": "FT",
-      "status": "디자인중",
+      "status": "디자인완료",
       "statusCategory": "indeterminate",
       "priority": "P2",
       "assignee": {
@@ -3178,7 +3283,9 @@
         "auto-etr-triaged",
         "conveyor",
         "design-driven",
+        "fast-track-away",
         "one",
+        "standby",
         "ux-ft-general"
       ],
       "mainSubject": null,
@@ -3193,9 +3300,9 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-08-19T13:53:41.162+0900",
-      "updated": "2026-08-21T09:51:44.789+0900",
+      "updated": "2026-09-01T08:31:55.151+0900",
       "resolutionDate": null,
-      "lastStatusChangedAt": "2026-08-20T08:41:19.296+0900"
+      "lastStatusChangedAt": "2026-08-31T14:53:29.690+0900"
     },
     {
       "key": "FT-510",
@@ -6350,7 +6457,7 @@
       "statusCategory": "done",
       "priority": "P2",
       "assignee": {
-        "name": "허유선",
+        "name": "서정명",
         "email": null,
         "accountId": null
       },
@@ -6379,7 +6486,7 @@
       "startDate": "2026-07-29",
       "dueDate": "2026-08-26",
       "created": "2026-07-30T13:26:46.167+0900",
-      "updated": "2026-08-27T10:21:49.082+0900",
+      "updated": "2026-08-31T11:33:59.283+0900",
       "resolutionDate": "2026-08-27T10:21:44.761+0900",
       "lastStatusChangedAt": "2026-08-27T10:21:44.773+0900"
     },
@@ -8246,7 +8353,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-07-07T14:55:15.633+0900",
-      "updated": "2026-08-27T13:20:39.316+0900",
+      "updated": "2026-08-31T11:16:49.263+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-08-25T19:46:06.631+0900"
     },
@@ -8689,7 +8796,7 @@
       "startDate": "2026-07-01",
       "dueDate": "2026-12-31",
       "created": "2026-07-06T15:34:57.560+0900",
-      "updated": "2026-08-28T10:31:13.886+0900",
+      "updated": "2026-08-31T09:31:12.718+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": "2026-07-06T15:42:49.723+0900"
     },
@@ -9118,7 +9225,7 @@
       "startDate": "2026-07-01",
       "dueDate": "2026-12-31",
       "created": "2026-07-01T14:04:24.655+0900",
-      "updated": "2026-08-28T18:16:35.606+0900",
+      "updated": "2026-09-01T09:01:34.099+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -9969,7 +10076,7 @@
       "startDate": "2026-07-10",
       "dueDate": "2026-09-02",
       "created": "2026-06-23T18:35:54.073+0900",
-      "updated": "2026-08-26T23:53:35.454+0900",
+      "updated": "2026-09-01T08:28:15.161+0900",
       "resolutionDate": null,
       "lastStatusChangedAt": null
     },
@@ -11469,7 +11576,7 @@
       "startDate": null,
       "dueDate": "2026-09-30",
       "created": "2026-06-19T00:56:14.731+0900",
-      "updated": "2026-08-27T10:21:43.580+0900",
+      "updated": "2026-08-31T16:54:00.824+0900",
       "resolutionDate": "2026-08-14T10:55:43.752+0900",
       "lastStatusChangedAt": "2026-08-27T10:21:42.156+0900"
     },
@@ -11643,7 +11750,7 @@
       "startDate": null,
       "dueDate": "2026-09-30",
       "created": "2026-06-19T00:56:11.360+0900",
-      "updated": "2026-08-28T17:00:04.049+0900",
+      "updated": "2026-08-31T13:52:40.628+0900",
       "resolutionDate": "2026-08-14T10:55:39.880+0900",
       "lastStatusChangedAt": "2026-07-13T18:17:14.874+0900"
     },
@@ -13843,7 +13950,7 @@
       "startDate": "2026-06-11",
       "dueDate": "2026-06-19",
       "created": "2026-06-11T00:00:16.696+0900",
-      "updated": "2026-08-24T15:31:59.466+0900",
+      "updated": "2026-08-31T14:20:39.627+0900",
       "resolutionDate": "2026-06-22T08:58:01.186+0900",
       "lastStatusChangedAt": "2026-06-22T08:58:01.220+0900"
     },
@@ -19146,7 +19253,7 @@
       "startDate": null,
       "dueDate": null,
       "created": "2026-04-14T13:38:04.607+0900",
-      "updated": "2026-07-29T11:40:06.543+0900",
+      "updated": "2026-08-31T23:33:34.140+0900",
       "resolutionDate": "2026-07-09T14:11:22.971+0900",
       "lastStatusChangedAt": null
     },
